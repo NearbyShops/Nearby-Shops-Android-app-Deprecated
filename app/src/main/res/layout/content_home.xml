@@ -28,9 +28,12 @@
         <TextView
 
             android:gravity="center"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:padding="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:textSize="20sp"
             android:textColor="@color/colorWhite"
             android:background="@color/cyan900"
@@ -39,12 +42,13 @@
             android:text="@string/nearby_shops"/>
 
         <TextView
-
-
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:gravity="center"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:padding="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:textSize="20sp"
             android:textColor="@color/colorWhite"
             android:background="@android:color/holo_orange_dark"
@@ -187,15 +191,17 @@
 
 
     <TextView
-
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:textColor="@color/colorWhite"
         android:textSize="30dp"
-        android:padding="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:layout_marginTop="30dp"
         android:background="@color/deepOrange800"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Item / Shop Categories"/>
+        android:text="Item Categories"/>
 
 </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

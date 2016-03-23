@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+
+        <ImageView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:scaleType="centerCrop"
+            android:src="@drawable/veggies"
+            android:id="@+id/imageView" />
+
+
+
+        <TextView
+            android:textSize="40sp"
+            android:textColor="@color/colorWhite"
+            android:background="#994f360c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="// D-Mart, Kukutpally"
+            android:id="@+id/textView"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/textView2"
+            android:layout_alignEnd="@+id/textView2"
+            android:layout_marginTop="30dp" />
+
+
+        <!--
+    <TextView
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"
+        android:background="#994f360c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="At : D-Mart, Sanath Nagar"
+        android:id="@+id/shopName"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="97dp" />
+
+-->
+    <TextView
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"
+        android:background="#ff4f360c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Available : 21"
+        android:id="@+id/textView2"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="57dp" />
+
+
+    <TextView
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"
+        android:background="#ff4f360c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price : Rs 70"
+        android:id="@+id/textView3"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"/>
+
+
+        <ImageView
+            android:src="@drawable/ic_favorite_border_white_24px"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/favourite"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignParentLeft="true"
+
+            android:layout_marginTop="30dp"/>
+
+</RelativeLayout>
+
+
+    <!--
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:background="@color/teal"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="At : D-Mart, Kukutpally\nShop Rating: 4.3"/>
+
+
+        <ImageView
+            android:layout_weight="1"
+            android:src="@drawable/veggies"
+            android:scaleType="centerCrop"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:background="@color/teal"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Available : 21"/>
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:textColor="@color/colorWhite"
+            android:background="@color/teal"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price : 20"/>
+
+
+    </LinearLayout>
+
+-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_marginRight="10dp"
+            android:textColor="@color/colorWhite"
+            android:background="@color/blueGrey800"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textSize="20dp"
+
+            android:paddingLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Total : 140"/>
+
+
+
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:background="@color/grey800"
+            android:src="@drawable/ic_remove_white_24px"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            />
+
+
+        <EditText
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:inputType="number"
+            android:text="6"
+            android:layout_width="70dp"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:background="@color/grey800"
+            android:src="@drawable/ic_add_white_24px"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:background="@color/teal"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20 Items in Cart"/>
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:textColor="@color/colorWhite"
+            android:background="@color/teal"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Cart Total : Rs 468"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@color/grey800"
+        android:src="@drawable/ic_add_shopping_cart_white_24px"
+        android:layout_width="100dp"
+        android:layout_height="match_parent" />
+
+        <TextView
+        android:textSize="24sp"
+        android:gravity="right"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/colorWhite"
+        android:background="@color/grey800"
+        android:text="Add to Cart"
+        android:padding="20dp"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>
