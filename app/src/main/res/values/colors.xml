@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+
+    colorPrimary = #3F51B5
+    colorPrimaryDark = #303F9F
+    colorAccent = #FF4081
+
+    -->
+
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00796B</color>
+    <color name="colorAccent">#FF5722</color>
+
+    <color name="colorWhite">#FFffff</color>
+
+    <color name="teal">#00796B</color>
+    <color name="darkGreen">#2E7D32</color>
+    <color name="orangeDark">#EF6C00</color>
+    <color name="deepOrange900">#BF360C</color>
+    <color name="deepOrange800">#D84315</color>
+    <color name="grey800">#424242</color>
+    <color name="blueGrey800">#37474F</color>
+    <color name="cyan900">#006064</color>
+</resources>
