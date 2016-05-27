@@ -2,12 +2,11 @@
 <resources>
 
     <!--
-
     colorPrimary = #3F51B5
     colorPrimaryDark = #303F9F
     colorAccent = #FF4081
-
     -->
+
 
     <color name="colorPrimary">#009688</color>
     <color name="colorPrimaryDark">#00796B</color>
@@ -23,4 +22,34 @@
     <color name="grey800">#424242</color>
     <color name="blueGrey800">#37474F</color>
     <color name="cyan900">#006064</color>
+
+
+    <!-- colors -->
+
+
+    <color name="backgroundClean">#00000000</color>
+    <color name="backgroundTinted">#88000000</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="buttonColor">#037BA3</color>
+    <color name="buttonColorDark">#036a8c</color>
+
+    <color name="orange">#ff6600</color>
+    <color name="itemAvailable">#00897B</color>
+
+
+    <integer-array name="gplus_colors">
+        <item>@color/gplus_color_1</item>
+        <item>@color/gplus_color_2</item>
+        <item>@color/gplus_color_3</item>
+        <item>@color/gplus_color_4</item>
+    </integer-array>
+
+
+
+    <color name="gplus_color_1">#3e802f</color>
+    <color name="gplus_color_2">#f4b400</color>
+    <color name="gplus_color_3">#427fed</color>
+    <color name="gplus_color_4">#b23424</color>
+
 </resources>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v4.widget.NestedScrollView
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
 <LinearLayout
@@ -22,39 +21,41 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:orientation="horizontal">
 
         <TextView
-
-            android:gravity="center"
-            android:layout_marginRight="10dp"
+            android:id="@+id/shopsNearby"
+            android:gravity="bottom|right"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:textSize="20sp"
             android:textColor="@color/colorWhite"
             android:background="@color/cyan900"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/nearby_shops"/>
+            android:text="Shops Nearby"/>
 
         <TextView
+            android:id="@+id/itemsNearby"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:gravity="center"
-            android:layout_marginLeft="10dp"
+            android:gravity="bottom|right"
+
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:textSize="20sp"
             android:textColor="@color/colorWhite"
-            android:background="@android:color/holo_orange_dark"
+            android:background="@color/gplus_color_2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/nearby_items"/>
+            android:text="Items Nearby"/>
 
 
     </LinearLayout>
@@ -62,80 +63,43 @@
 
     <TextView
         android:textColor="@color/colorWhite"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginTop="30dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/darker_gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Filter Shops : ( By Range of Delivery )"/>
+        android:text="Filter Shops by Range of Delivery"/>
 
 
 
 
     <com.appyvet.rangebar.RangeBar
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         xmlns:custom="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/rangebar"
+        android:id="@+id/rangebarDeliveryRange"
         android:layout_width="match_parent"
         android:layout_height="92dp"
         custom:tickStart="0"
-        custom:tickInterval="0.5"
-        custom:tickEnd="10"
+        custom:tickInterval="1"
+        custom:tickEnd="30"
         custom:pinColor="@color/cyan900"
         custom:pinRadius="25dp"
         custom:textColor="@color/colorWhite"
         custom:barWeight="2dp"
-        custom:connectingLineWeight="10dp"
+        custom:connectingLineWeight="5dp"
         custom:connectingLineColor="@android:color/holo_green_dark"
         custom:selectorColor="@android:color/holo_orange_dark"
-        custom:selectorSize="5dp"
-        custom:tickColor="@android:color/darker_gray"
+        custom:selectorSize="7dp"
+        custom:tickColor="@color/colorWhite"
         custom:tickHeight="1dp" />
 
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-
-        <TextView
-            android:textColor="@color/colorWhite"
-            android:textSize="15dp"
-            android:padding="5dp"
-            android:background="@android:color/darker_gray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Min: km's"/>
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-
-
-        <TextView
-            android:textColor="@color/colorWhite"
-            android:textSize="15dp"
-            android:padding="5dp"
-            android:background="@android:color/darker_gray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Max: km's"/>
-
-
-
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -146,8 +110,8 @@
             android:gravity="center"
             android:typeface="monospace"
             android:layout_weight="1"
-            android:padding="10dp"
-            android:textSize="20sp"
+            android:padding="5dp"
+            android:textSize="15sp"
             android:textColor="@color/colorWhite"
             android:background="@android:color/holo_blue_dark"
             android:layout_width="0dp"
@@ -166,8 +130,8 @@
             android:gravity="center"
             android:typeface="monospace"
             android:layout_weight="1"
-            android:padding="10dp"
-            android:textSize="20sp"
+            android:padding="9dp"
+            android:textSize="15sp"
             android:textColor="@color/colorWhite"
             android:background="@android:color/holo_orange_dark"
             android:layout_width="0dp"
@@ -182,26 +146,112 @@
         android:textColor="@color/colorWhite"
         android:textSize="15dp"
         android:padding="5dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/darker_gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Range of Delivery (In Kilometers)"/>
+        android:text="Filter Shops by Proximity"/>
+
+
+    <com.appyvet.rangebar.RangeBar
+        android:layout_marginTop="0dp"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rangebarProximity"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        custom:rangeBar="false"
+        custom:tickStart="0"
+        custom:tickInterval="1"
+        custom:tickEnd="30"
+        custom:pinColor="@color/cyan900"
+        custom:pinRadius="25dp"
+        custom:textColor="@color/colorWhite"
+        custom:barWeight="2dp"
+        custom:connectingLineWeight="5dp"
+        custom:connectingLineColor="@color/blueGrey800"
+        custom:selectorColor="@color/orangeDark"
+        custom:selectorSize="7dp"
+        custom:tickColor="@color/colorWhite"
+        custom:tickHeight="1dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textMin"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:padding="5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Min: km's"/>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/textMax"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:padding="5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Max: km's"/>
+
+    </LinearLayout>
 
 
 
     <TextView
+        android:layout_gravity="end"
+        android:padding="5dp"
+        android:textSize="15dp"
+        android:gravity="right|bottom"
+        android:layout_marginTop="10dp"
+        android:background="@color/gplus_color_2"
+        android:textColor="@color/colorWhite"
+        android:id="@+id/setLocation"
+        android:text="Set Location Manually"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:background="@color/blueGrey800"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">d
+
+        <ImageView
+            android:padding="10dp"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_local_mall_white_24px"/>
+
+
+    <TextView
+        android:id="@+id/itemCategories"
+        android:gravity="bottom|right"
+        android:layout_weight="1"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:textColor="@color/colorWhite"
-        android:textSize="30dp"
-        android:paddingTop="20dp"
+        android:textSize="25sp"
+        android:paddingTop="10dp"
         android:paddingBottom="20dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/deepOrange800"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:text="Item Categories"/>
 
+    </LinearLayout>
+
 </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</ScrollView>
