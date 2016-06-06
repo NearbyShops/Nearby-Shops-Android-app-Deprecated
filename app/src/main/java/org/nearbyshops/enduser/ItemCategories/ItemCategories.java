@@ -134,7 +134,7 @@ public class ItemCategories extends AppCompatActivity implements  ItemCategories
             tabLayout.setVisibility(View.VISIBLE);
         }
 
-        tabLayout.addTab(tabLayout.newTab().setText(" // " + categoryName + " "));
+        tabLayout.addTab(tabLayout.newTab().setText("" + categoryName + " : : "));
         tabLayout.setScrollPosition(tabLayout.getTabCount()-1,0,true);
 
     }

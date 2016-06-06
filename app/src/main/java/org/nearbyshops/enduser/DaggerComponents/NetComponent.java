@@ -1,12 +1,16 @@
 package org.nearbyshops.enduser.DaggerComponents;
 
 
+import org.nearbyshops.enduser.Carts.CartsListActivity;
 import org.nearbyshops.enduser.DaggerModules.AppModule;
 import org.nearbyshops.enduser.DaggerModules.NetModule;
 import org.nearbyshops.enduser.DataProvidersRetrofit.ItemCategoryRetrofitProvider;
 import org.nearbyshops.enduser.DataProvidersRetrofit.ItemProviderRetrofit;
 import org.nearbyshops.enduser.DataProvidersRetrofit.ShopRetrofitProvider;
-import org.nearbyshops.enduser.ShopsForItems.ShopsForItem;
+import org.nearbyshops.enduser.ShopsForItems.AdapterFilledCarts;
+import org.nearbyshops.enduser.ShopsForItems.AdapterNewCarts;
+import org.nearbyshops.enduser.ShopsForItems.FilledCartsFragment;
+import org.nearbyshops.enduser.ShopsForItems.NewCartsFragment;
 
 import javax.inject.Singleton;
 
@@ -29,5 +33,14 @@ public interface NetComponent {
 
     void inject(ItemProviderRetrofit providerRetrofit);
 
-    void Inject(ShopsForItem shopsForItem);
+    void Inject(FilledCartsFragment shopsForItem);
+
+    void Inject(NewCartsFragment newCartsFragment);
+
+    void Inject(AdapterNewCarts adapterNewCarts);
+
+    void Inject(AdapterFilledCarts adapterFilledCarts);
+
+    void Inject(CartsListActivity cartsListActivity);
+
 }

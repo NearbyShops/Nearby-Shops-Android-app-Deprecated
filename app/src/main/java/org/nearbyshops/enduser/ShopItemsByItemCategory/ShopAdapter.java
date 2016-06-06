@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopNItemsByCat;
+package org.nearbyshops.enduser.ShopItemsByItemCategory;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -76,7 +76,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView shopName;
         ImageView shopImage;
@@ -85,9 +85,17 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
 
+            itemView.setOnClickListener(this);
+
             distance = (TextView) itemView.findViewById(R.id.distance);
             shopName = (TextView) itemView.findViewById(R.id.shopName);
             shopImage = (ImageView) itemView.findViewById(R.id.shopImage);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            //Toast.makeText(context,"Item Click : " + String.valueOf(getLayoutPosition()),Toast.LENGTH_SHORT).show();
         }
     }
 }

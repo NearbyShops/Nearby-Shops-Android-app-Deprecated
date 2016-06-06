@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopNItemsByCat;
+package org.nearbyshops.enduser.ShopItemsByItemCategory;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -47,7 +47,7 @@ public class PagerAdapter extends FragmentPagerAdapter{
     @Override
     public int getCount() {
         // Show 3 total pages.
-        return 3;
+        return 2;
     }
 
     @Override

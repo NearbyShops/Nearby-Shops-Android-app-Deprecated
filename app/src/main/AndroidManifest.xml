@@ -49,7 +49,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ShopNItemsByCat.ShopItemSwipeView"
+            android:name=".ShopItemsByItemCategory.ShopItemSwipeView"
             android:label="Shops and Items"
             android:parentActivityName=".ItemCategories.ItemCategories"
             android:theme="@style/AppTheme.NoActionBar">
@@ -58,13 +58,31 @@
                 android:value="org.nearbyshops.enduser.ItemCategories.ItemCategories" />
         </activity>
         <activity
-            android:name=".ShopsForItems.ShopsForItem"
+            android:name=".ShopsForItems.ShopsForItemSwipe"
             android:label="@string/title_activity_shops_for_item"
-            android:parentActivityName=".ShopNItemsByCat.ShopItemSwipeView"
+            android:parentActivityName=".ShopItemsByItemCategory.ShopItemSwipeView"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduser.ShopNItemsByCat.ShopItemSwipeView" />
+                android:value="org.nearbyshops.enduser.ShopItemsByItemCategory.ShopItemSwipeView" />
+        </activity>
+        <activity
+            android:name=".Carts.CartsListActivity"
+            android:label="@string/title_activity_carts_list"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
+        <activity
+            android:name=".Carts.CartItemListActivity"
+            android:label="@string/title_activity_cart_item_list"
+            android:parentActivityName=".Carts.CartsListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Carts.CartsListActivity" />
         </activity>
     </application>
 

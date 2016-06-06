@@ -28,7 +28,7 @@
 
 
     <color name="backgroundClean">#00000000</color>
-    <color name="backgroundTinted">#88000000</color>
+    <color name="backgroundTinted">#88006064</color>
 
     <color name="white">#FFFFFF</color>
     <color name="buttonColor">#037BA3</color>

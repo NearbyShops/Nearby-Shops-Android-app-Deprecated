@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopNItemsByCat;
+package org.nearbyshops.enduser.ShopItemsByItemCategory;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,7 +31,6 @@ import javax.inject.Inject;
  * Created by sumeet on 25/5/16.
  */
 public class ShopFragment extends Fragment implements DataSubscriber<Shop>, SwipeRefreshLayout.OnRefreshListener {
-
 
 
         ItemCategory itemCategory;

@@ -1,12 +1,14 @@
-package org.nearbyshops.enduser.ShopNItemsByCat;
+package org.nearbyshops.enduser.ShopItemsByItemCategory;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -15,6 +17,8 @@ import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.ModelStats.ItemStats;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
+import org.nearbyshops.enduser.ShopsForItems.FilledCartsFragment;
+import org.nearbyshops.enduser.ShopsForItems.ShopsForItemSwipe;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
 import java.util.List;
@@ -93,20 +97,49 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView itemName;
         ImageView itemImage;
         TextView priceRange;
         TextView shopCount;
+        RelativeLayout itemsListItem;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
+            itemView.setOnClickListener(this);
             itemName = (TextView) itemView.findViewById(R.id.itemName);
             itemImage = (ImageView) itemView.findViewById(R.id.itemImage);
             priceRange = (TextView) itemView.findViewById(R.id.price_range);
             shopCount = (TextView) itemView.findViewById(R.id.shop_count);
+            itemsListItem = (RelativeLayout) itemView.findViewById(R.id.items_list_item);
+            itemsListItem.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+
+         //   Toast.makeText(context,"Item Click : " + String.valueOf(getLayoutPosition()),Toast.LENGTH_SHORT).show();
+
+            switch(view.getId())
+            {
+                case R.id.items_list_item:
+
+                    if(dataset!=null)
+                    {
+                        Intent intent = new Intent(context, ShopsForItemSwipe.class);
+                        intent.putExtra(ShopsForItemSwipe.ITEM_INTENT_KEY,dataset.get(getLayoutPosition()));
+                        context.startActivity(intent);
+                    }
+
+                    break;
+
+                default:
+
+                    break;
+            }
+
         }
     }
 }

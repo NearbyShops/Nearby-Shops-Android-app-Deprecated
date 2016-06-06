@@ -54,7 +54,7 @@ public class UtilityGeneral {
 
 
 
-    public static void saveDistributorID(int distributorID)
+    public static void saveEndUserID(int endUserID)
     {
         Context context = MyApplication.getAppContext();
         // Get a handle to shared preference
@@ -63,19 +63,19 @@ public class UtilityGeneral {
 
         // write to the shared preference
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(context.getString(R.string.preference_distributor_id_key),distributorID);
+        editor.putInt(context.getString(R.string.preference_end_user_id_key),endUserID);
         editor.commit();
 
     }
 
-    public static int getDistributorID(Context context) {
+    public static int getEndUserID(Context context) {
         // Get a handle to shared preference
         SharedPreferences sharedPref;
         sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), context.MODE_PRIVATE);
 
         // read from shared preference
-        int distributorID = sharedPref.getInt(context.getString(R.string.preference_distributor_id_key), 0);
-        return distributorID;
+        int endUserID = sharedPref.getInt(context.getString(R.string.preference_end_user_id_key), 0);
+        return endUserID;
     }
 
 

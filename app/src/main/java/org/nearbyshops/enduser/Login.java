@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
 
         serviceUrlEditText.setText(UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
-        distributorIDEditText.setText(String.valueOf(UtilityGeneral.getDistributorID(MyApplication.getAppContext())));
+        distributorIDEditText.setText(String.valueOf(UtilityGeneral.getEndUserID(MyApplication.getAppContext())));
 
         serviceUrlEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -84,7 +84,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
                 if(!s.toString().equals(new String(""))) {
 
-                    UtilityGeneral.saveDistributorID(Integer.parseInt(s.toString()));
+                    UtilityGeneral.saveEndUserID(Integer.parseInt(s.toString()));
                 }
             }
         });

@@ -25,7 +25,7 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.ShopNItemsByCat.ShopItemSwipeView;
+import org.nearbyshops.enduser.ShopItemsByItemCategory.ShopItemSwipeView;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
 import java.util.ArrayList;

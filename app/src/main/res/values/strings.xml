@@ -100,6 +100,8 @@
     <string name="preference_file_name">sharedpreferencefile</string>
     <string name="preference_service_url_key">service_url</string>
     <string name="preference_distributor_id_key">distributor_id_key</string>
+    <string name="preference_end_user_id_key">end_user_id_key</string>
+
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -175,6 +177,8 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_categories">Categories</string>
-    <string name="title_activity_shop_item_swipe_view">ShopItemSwipeView</string>
-    <string name="title_activity_shops_for_item">ShopsForItem</string>
+    <string name="title_activity_shop_item_swipe_view">Shop <Item></Item></string>
+    <string name="title_activity_shops_for_item">Shops For Item</string>
+    <string name="title_activity_carts_list">Carts List</string>
+    <string name="title_activity_cart_item_list">CartItemListActivity</string>
 </resources>

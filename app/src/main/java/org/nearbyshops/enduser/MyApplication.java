@@ -20,7 +20,7 @@ public class MyApplication extends Application{
 
         MyApplication.context = getApplicationContext();
 
-        LeakCanary.install(this);
+        //LeakCanary.install(this);
 
         ApplicationState.getInstance().setMyApplication(this);
     }
@@ -29,7 +29,6 @@ public class MyApplication extends Application{
     public static Context getAppContext() {
 
         return MyApplication.context;
-
 
     }
 

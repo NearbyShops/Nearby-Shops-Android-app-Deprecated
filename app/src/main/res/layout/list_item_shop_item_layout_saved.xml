@@ -18,53 +18,36 @@
 
 
 <LinearLayout
-    android:background="#22000000"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/shopItem_list_item"
     android:paddingBottom="2dp"
-    android:paddingLeft="3dp"
-    android:paddingRight="3dp"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
     android:paddingTop="2dp"
-    android:layout_marginBottom="5dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginLeft="3dp"
-    android:layout_marginRight="3dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
-    <LinearLayout
-        android:layout_marginBottom="5dp"
-        android:background="#000000"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
 
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:padding="0dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="150dp">
 
         <ImageView
-            android:background="#44000000"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="5dp"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/carrots"
             android:id="@+id/shopImage" />
 
         <TextView
-            android:layout_marginTop="0dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:textSize="25sp"
+            android:textSize="30sp"
             android:textColor="@color/colorWhite"
             android:background="#99424242"
             android:layout_width="wrap_content"
@@ -73,7 +56,9 @@
             android:id="@+id/shopName"
             android:layout_marginLeft="10dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignRight="@+id/itemsAvailable"
+            android:layout_alignEnd="@+id/itemsAvailable"
+            android:layout_marginTop="15dp" />
 
 
         <!--
@@ -92,58 +77,73 @@
         android:layout_marginBottom="97dp" />
 
 -->
-
-
+    <TextView
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textSize="17sp"
+        android:textColor="@color/colorWhite"
+        android:background="#aa424242"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Available : 21"
+        android:id="@+id/itemsAvailable"
+        android:layout_marginRight="5dp"
+        android:layout_alignBottom="@+id/shopImage"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="45dp" />
 
         <TextView
-            android:textColor="@color/colorWhite"
-            android:background="#33000000"
+
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textSize="17sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0/10"
-            android:id="@+id/rating"
-            android:layout_marginLeft="105dp"
-            android:layout_alignBottom="@+id/shopImage"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="30dp" />
-
-        <TextView
             android:textColor="@color/colorWhite"
-            android:background="#33000000"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textSize="17sp"
+            android:background="#aa424242"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00 Km"
+            android:text="21 Km"
             android:id="@+id/distance"
-            android:layout_marginLeft="105dp"
+            android:layout_marginLeft="5dp"
             android:layout_alignBottom="@+id/shopImage"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="0dp" />
+            android:layout_marginBottom="10dp" />
+
+
+        <TextView
+
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textSize="17sp"
+            android:textColor="@color/colorWhite"
+            android:background="#aa424242"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivery : Rs 20"
+            android:id="@+id/deliveryCharge"
+            android:layout_marginLeft="5dp"
+            android:layout_alignBottom="@+id/shopImage"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="45dp" />
 
 
         <TextView
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:textSize="15sp"
+            android:textSize="17sp"
+            android:textColor="@color/colorWhite"
+            android:background="#aa424242"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delivery : Rs 00"
-            android:id="@+id/deliveryCharge"
-            android:layout_marginRight="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="0dp"
-            android:layout_alignBottom="@id/shopImage"
-            android:layout_alignParentRight="true" />
-
-
+            android:text="Item Price : Rs 70"
+            android:id="@+id/itemPrice"
+            android:layout_marginRight="5dp"
+            android:layout_alignBottom="@+id/shopImage"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp"/>
 
 
         <ImageView
@@ -151,78 +151,15 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/favourite"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
             android:layout_alignBottom="@+id/imageView"
             android:layout_alignParentLeft="true"
 
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="30dp"/>
 
 </RelativeLayout>
 
-
-    <LinearLayout
-        android:layout_marginBottom="0dp"
-        android:background="#88000000"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:layout_marginBottom="0dp"
-            android:layout_marginRight="0dp"
-            android:textSize="17sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Available : 00"
-            android:id="@+id/itemsAvailable"
-
-            android:layout_alignBottom="@+id/shopImage"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-
-
-        <LinearLayout
-
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="0dp"
-            android:layout_alignLeft="@id/itemPrice"
-            android:layout_below="@id/shopImage"
-            android:background="#000000"
-            android:layout_width="1dp"
-            android:layout_height="20dp"/>
-
-        <TextView
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textSize="17sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Item Price : Rs 0"
-            android:id="@+id/itemPrice"
-            android:layout_marginRight="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_below="@id/shopImage"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-
-
-
-    </LinearLayout>
 
     <!--
 
@@ -291,13 +228,6 @@
 -->
 
     <LinearLayout
-        android:layout_marginBottom="0dp"
-        android:background="#88000000"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -306,12 +236,10 @@
         android:layout_marginRight="0dp"
         android:layout_marginLeft="0dp">
 
-
-
         <TextView
             android:id="@+id/itemTotal"
             android:layout_weight="1"
-            android:layout_marginRight="3dp"
+            android:layout_marginRight="5dp"
             android:textColor="@color/colorWhite"
             android:background="@color/blueGrey800"
             android:gravity="center_vertical"
@@ -320,7 +248,7 @@
             android:paddingRight="5dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Total : 0"/>
+            android:text="Total : 140"/>
 
 
 
@@ -339,7 +267,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:inputType="number"
-            android:text="0"
+            android:text="6"
             android:layout_width="70dp"
             android:layout_height="match_parent" />
 
@@ -370,11 +298,11 @@
             android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0 Items in Cart"/>
+            android:text="20 Items in Cart"/>
 
         <TextView
             android:id="@+id/cartTotal"
-            android:layout_marginLeft="3dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:textColor="@color/colorWhite"
             android:background="@color/teal"
@@ -382,7 +310,7 @@
             android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Cart Total : Rs 0"/>
+            android:text=" Total : Rs 468"/>
 
 
     </LinearLayout>
@@ -406,7 +334,6 @@
         android:layout_height="match_parent" />
 
         <TextView
-            android:id="@+id/textAddToCart"
         android:textSize="24sp"
         android:gravity="right"
         android:layout_marginRight="0dp"
@@ -419,13 +346,5 @@
         android:layout_height="wrap_content" />
 
     </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_marginTop="5dp"
-        android:background="#88000000"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
 
 </LinearLayout>

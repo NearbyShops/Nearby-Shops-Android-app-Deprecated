@@ -7,7 +7,11 @@ import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.nearbyshops.enduser.Model.CartItem;
 import org.nearbyshops.enduser.MyApplication;
+import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
+import org.nearbyshops.enduser.RetrofitRESTContract.CartService;
+import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
@@ -103,5 +107,34 @@ public class NetModule {
         return shopItemService;
     }
 
+
+    @Provides
+    @Singleton
+    CartService provideCartService(Retrofit retrofit)
+    {
+        CartService cartService = retrofit.create(CartService.class);
+
+        return cartService;
+    }
+
+
+    @Provides
+    @Singleton
+    CartItemService provideCartItemService(Retrofit retrofit)
+    {
+        CartItemService cartItemService = retrofit.create(CartItemService.class);
+
+        return  cartItemService;
+    }
+
+
+    @Provides
+    @Singleton
+    CartStatsService provideCartStatsService(Retrofit retrofit)
+    {
+        CartStatsService service = retrofit.create(CartStatsService.class);
+
+        return service;
+    }
 
 }

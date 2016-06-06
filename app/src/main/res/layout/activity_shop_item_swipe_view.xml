@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="org.nearbyshops.enduser.ShopNItemsByCat.ShopItemSwipeView">
+    tools:context="org.nearbyshops.enduser.ShopItemsByItemCategory.ShopItemSwipeView">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -61,7 +61,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
 
+            <ImageView
+                android:id="@+id/listOrMap"
+                android:scaleType="centerCrop"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="10dp"
+                android:paddingRight="0dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:src="@drawable/ic_list_black_24px"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/listMapText"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:textSize="15dp"
+                android:textColor="@color/colorWhite"
+                android:text="List / Map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -100,7 +130,6 @@
         android:src="@drawable/ic_add_shopping_cart_white_24px" />
 
 
-
     <com.wunderlist.slidinglayer.SlidingLayer
         android:id="@+id/slidingLayer"
         android:elevation="5dp"
@@ -113,6 +142,7 @@
             android:background="@color/colorWhite"
             android:layout_width="250dp"
             android:layout_height="match_parent">
+
             <TextView
                 android:textSize="25dp"
                 android:text="Hello from Swipe View !"
@@ -121,7 +151,7 @@
 
         </LinearLayout>
 
-
     </com.wunderlist.slidinglayer.SlidingLayer>
+
 
 </android.support.design.widget.CoordinatorLayout>

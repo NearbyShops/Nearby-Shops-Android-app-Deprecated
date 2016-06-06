@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopNItemsByCat;
+package org.nearbyshops.enduser.ShopItemsByItemCategory;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -34,7 +34,6 @@ public class ShopItemSwipeView extends AppCompatActivity {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-
 
     public static final String ITEM_CATEGORY_INTENT_KEY = "itemCategoryIntentKey";
     ItemCategory itemCategory;
@@ -90,12 +89,7 @@ public class ShopItemSwipeView extends AppCompatActivity {
         slidingLayer.setOffsetDistance(10);
         slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
 
-
-
-
-
     }
-
 
 
 
@@ -126,7 +120,9 @@ public class ShopItemSwipeView extends AppCompatActivity {
         if(slidingLayer.isClosed())
         {
             slidingLayer.openLayer(true);
-        }else
+
+        }
+        else
         {
             slidingLayer.closeLayer(true);
         }
@@ -136,8 +132,10 @@ public class ShopItemSwipeView extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_shop_item_swipe_view, menu);
+
         return true;
     }
 
@@ -163,4 +161,5 @@ public class ShopItemSwipeView extends AppCompatActivity {
 
         ButterKnife.unbind(this);
     }
+
 }
