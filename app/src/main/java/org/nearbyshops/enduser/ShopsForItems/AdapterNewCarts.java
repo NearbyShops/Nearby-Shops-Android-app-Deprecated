@@ -300,10 +300,6 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
         }
 
 
-
-
-
-
         @OnClick(R.id.addToCart)
         void addToCartClick(View view){
 

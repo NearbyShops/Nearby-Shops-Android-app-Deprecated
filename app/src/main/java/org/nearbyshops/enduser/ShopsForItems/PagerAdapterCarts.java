@@ -12,7 +12,7 @@ import org.nearbyshops.enduser.ShopItemsByItemCategory.ShopFragment;
 /**
  * Created by sumeet on 25/5/16.
  */
-public class PagerAdapterCarts extends FragmentPagerAdapter implements AdapterNewCarts.NotifyCallbacks{
+public class PagerAdapterCarts extends FragmentPagerAdapter implements FilledCartsFragment.NotifyPagerAdapter,NewCartsFragment.NotifyPagerAdapter{
 
     Item item = null;
 
@@ -38,7 +38,7 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements AdapterNe
 
             filledCartsFragment = FilledCartsFragment.newInstance(item);
 
-
+            filledCartsFragment.setNotifyPagerAdapter(this);
 
             return filledCartsFragment;
 
@@ -47,7 +47,7 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements AdapterNe
 
             newCartsFragment = NewCartsFragment.newInstance(item);
 
-            newCartsFragment.setNotifyCallbacks(this);
+            newCartsFragment.setNotifyPagerAdapter(this);
 
 
             return newCartsFragment;
@@ -88,7 +88,7 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements AdapterNe
                 }
 
 
-                return ("Filled Carts - " + String.valueOf(filledCartsTotal));
+                return ("Filled Carts (" + String.valueOf(filledCartsTotal) + ")");
 
 
             case 1:
@@ -104,7 +104,7 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements AdapterNe
 
                 }
 
-                return ("New Carts - " + String.valueOf(newCartsTotal));
+                return ("New Carts (" + String.valueOf(newCartsTotal) + ")");
 
             case 2:
                 return " Map";
@@ -114,11 +114,80 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements AdapterNe
     }
 
 
+
+   // public void notifyAddToCart() {
+
+//        filledCartsFragment.notifyCartDataChanged();
+
+  //      this.notifyDataSetChanged();
+//    /}
+
+
+    //boolean isNewCartCallbackFired = false;
+    //boolean isFilledCartCallbackFired = false;
+
+    boolean flag = true;
+
     @Override
-    public void notifyAddToCart() {
+    public void notifyFilledCartsChanged() {
 
-        filledCartsFragment.notifyCartDataChanged();
+        notifyDataSetChanged();
 
-        this.notifyDataSetChanged();
+        if (flag) {
+
+            newCartsFragment.onResume();
+
+            flag = false;
+
+
+        } else
+        {
+            flag = true;
+        }
+
+
+
+
+
+        //if(isNewCartCallbackFired == false) {
+
+
+
+        //    isNewCartCallbackFired = false;
+        //}
+
+        //isFilledCartCallbackFired = true;
+
     }
+
+    @Override
+    public void notifyNewCartsChanged() {
+
+        notifyDataSetChanged();
+
+        if(flag)
+        {
+            filledCartsFragment.onResume();
+
+            flag = false;
+
+        }else
+        {
+            flag = true;
+        }
+
+
+
+        //if(isFilledCartCallbackFired){
+
+
+
+        //    isFilledCartCallbackFired = false;
+        //}
+
+
+        //isNewCartCallbackFired = true;
+    }
+
+
 }

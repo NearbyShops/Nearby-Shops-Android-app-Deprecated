@@ -1,9 +1,12 @@
 package org.nearbyshops.enduser.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by sumeet on 30/5/16.
  */
-public class CartItem {
+public class CartItem implements Parcelable{
 
     int cartID;
 
@@ -22,6 +25,8 @@ public class CartItem {
 
     String rt_quantityUnit;
 
+    public CartItem() {
+    }
 
     public int getRt_availableItemQuantity() {
         return rt_availableItemQuantity;
@@ -86,5 +91,49 @@ public class CartItem {
     public void setItemQuantity(int itemQuantity) {
         this.itemQuantity = itemQuantity;
     }
+
+
+
+    // parcelable implementation
+
+
+    protected CartItem(Parcel in) {
+        cartID = in.readInt();
+        itemID = in.readInt();
+        item = in.readParcelable(Item.class.getClassLoader());
+        itemQuantity = in.readInt();
+        rt_availableItemQuantity = in.readInt();
+        rt_itemPrice = in.readDouble();
+        rt_quantityUnit = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(cartID);
+        dest.writeInt(itemID);
+        dest.writeParcelable(item, flags);
+        dest.writeInt(itemQuantity);
+        dest.writeInt(rt_availableItemQuantity);
+        dest.writeDouble(rt_itemPrice);
+        dest.writeString(rt_quantityUnit);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<CartItem> CREATOR = new Creator<CartItem>() {
+        @Override
+        public CartItem createFromParcel(Parcel in) {
+            return new CartItem(in);
+        }
+
+        @Override
+        public CartItem[] newArray(int size) {
+            return new CartItem[size];
+        }
+    };
+
 
 }

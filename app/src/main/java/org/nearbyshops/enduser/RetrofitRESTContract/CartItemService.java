@@ -23,7 +23,8 @@ public interface CartItemService {
     @GET("/api/CartItem")
     Call<List<CartItem>> getCartItem(@Query("CartID")int cartID,
                                      @Query("ItemID")int itemID,
-                                     @Query("EndUserID") int endUserID);
+                                     @Query("EndUserID") int endUserID,
+                                     @Query("ShopID") int shopID);
 
     @DELETE("/api/CartItem")
     Call<ResponseBody> deleteCartItem(@Query("CartID")int cartID, @Query("ItemID") int itemID,

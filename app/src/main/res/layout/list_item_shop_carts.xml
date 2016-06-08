@@ -5,7 +5,7 @@
     android:background="#22000000"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/shopItem_list_item"
+    android:id="@+id/carts_list_item"
     android:paddingBottom="2dp"
     android:paddingLeft="3dp"
     android:paddingRight="3dp"

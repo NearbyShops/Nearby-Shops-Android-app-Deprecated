@@ -32,20 +32,28 @@
 
         <ImageView
             android:background="#44000000"
-            android:layout_marginRight="0dp"
+            android:layout_marginRight="5dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="5dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:scaleType="centerCrop"
             android:src="@drawable/carrots"
-            android:id="@+id/shopImage" />
 
+            android:id="@+id/itemImage" />
+
+        <LinearLayout
+            android:background="#88000000"
+            android:layout_toRightOf="@id/itemImage"
+            android:layout_width="1dp"
+            android:layout_height="100dp"/>
+        
+        
         <TextView
             android:layout_marginTop="0dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:textSize="25sp"
+            android:textSize="24sp"
             android:textColor="@color/colorWhite"
             android:background="#99424242"
             android:layout_width="wrap_content"
@@ -58,21 +66,6 @@
 
 
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:textColor="@color/colorWhite"
-            android:background="#33000000"
-            android:layout_marginRight="10dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textSize="17sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0/10"
-            android:id="@+id/rating"
-            android:layout_toRightOf="@id/shopImage"
-            android:layout_alignBottom="@id/shopImage"/>
 
         <TextView
             android:layout_marginLeft="10dp"
@@ -100,11 +93,10 @@
             android:layout_height="wrap_content"
             android:text="Price : Rs 0"
             android:id="@+id/itemPrice"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="0dp"
             android:layout_marginLeft="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_alignBottom="@id/shopImage"
+            android:layout_alignBottom="@id/itemImage"
             android:layout_alignParentRight="true" />
 
     </RelativeLayout>
@@ -129,6 +121,20 @@
 
 
 
+        <TextView
+            android:background="@color/blueGrey800"
+            android:id="@+id/itemTotal"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Total = Rs 240"/>
+
+
+
         <ImageView
             android:id="@+id/reduceQuantity"
             android:layout_gravity="center_vertical"
@@ -145,7 +151,7 @@
             android:layout_marginRight="5dp"
             android:inputType="number"
             android:text="0"
-            android:layout_width="70dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent" />
 
         <ImageView
@@ -155,17 +161,6 @@
             android:src="@drawable/ic_add_white_24px"
             android:layout_width="40dp"
             android:layout_height="40dp" />
-
-        <TextView
-            android:id="@+id/itemTotal"
-            android:layout_weight="1"
-            android:layout_marginLeft="3dp"
-            android:textColor="#88000000"
-            android:gravity="center_vertical|right"
-            android:textSize="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text=" x 14 (Unit Price) = Rs 240"/>
 
     </LinearLayout>
 
@@ -184,8 +179,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-
         <TextView
             android:layout_weight="1"
             android:layout_gravity="right"
@@ -195,7 +188,7 @@
             android:gravity="center"
             android:layout_marginRight="0dp"
             android:textColor="@color/colorWhite"
-            android:background="@color/deepOrange900"
+            android:background="@color/teal"
             android:text="Remove"
             android:padding="5dp"
             android:layout_width="90dp"
@@ -210,7 +203,7 @@
             android:gravity="center"
             android:layout_marginRight="0dp"
             android:textColor="@color/colorWhite"
-            android:background="@color/gplus_color_1"
+            android:background="@color/teal"
             android:text="Update"
             android:padding="5dp"
             android:layout_width="90dp"

@@ -1,6 +1,7 @@
 package org.nearbyshops.enduser.DaggerComponents;
 
 
+import org.nearbyshops.enduser.Carts.CartItemListActivity;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
 import org.nearbyshops.enduser.DaggerModules.AppModule;
 import org.nearbyshops.enduser.DaggerModules.NetModule;
@@ -42,5 +43,7 @@ public interface NetComponent {
     void Inject(AdapterFilledCarts adapterFilledCarts);
 
     void Inject(CartsListActivity cartsListActivity);
+
+    void Inject(CartItemListActivity cartItemListActivity);
 
 }

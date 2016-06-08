@@ -46,8 +46,9 @@ public class NewCartsFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     SwipeRefreshLayout swipeContainer;
 
-    AdapterNewCarts.NotifyCallbacks notifyCallbacks;
 
+
+    NotifyPagerAdapter notifyPagerAdapter;
 
 
     public NewCartsFragment() {
@@ -201,6 +202,22 @@ public class NewCartsFragment extends Fragment implements SwipeRefreshLayout.OnR
             dataset.clear();
             dataset.addAll(response.body());
             adapter.notifyDataSetChanged();
+
+            if(notifyPagerAdapter!=null)
+            {
+                notifyPagerAdapter.notifyNewCartsChanged();
+            }
+
+
+        }else
+        {
+            dataset.clear();
+            adapter.notifyDataSetChanged();
+
+            if(notifyPagerAdapter!=null)
+            {
+                notifyPagerAdapter.notifyNewCartsChanged();
+            }
         }
 
         swipeContainer.setRefreshing(false);
@@ -218,23 +235,24 @@ public class NewCartsFragment extends Fragment implements SwipeRefreshLayout.OnR
 
         makeNetworkCall();
 
-        if(notifyCallbacks!=null)
-        {
-            notifyCallbacks.notifyAddToCart();
-        }
+    }
+
+
+    public NotifyPagerAdapter getNotifyPagerAdapter() {
+        return notifyPagerAdapter;
+    }
+
+    public void setNotifyPagerAdapter(NotifyPagerAdapter notifyPagerAdapter) {
+        this.notifyPagerAdapter = notifyPagerAdapter;
     }
 
 
 
-    public AdapterNewCarts.NotifyCallbacks getNotifyCallbacks() {
-
-        return notifyCallbacks;
+    public interface NotifyPagerAdapter
+    {
+        void notifyNewCartsChanged();
     }
 
-    public void setNotifyCallbacks(AdapterNewCarts.NotifyCallbacks notifyCallbacks) {
-
-        this.notifyCallbacks = notifyCallbacks;
-    }
 
 
 }

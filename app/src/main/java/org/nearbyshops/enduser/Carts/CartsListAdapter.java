@@ -1,11 +1,13 @@
 package org.nearbyshops.enduser.Carts;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -18,6 +20,8 @@ import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * Created by sumeet on 5/6/16.
@@ -59,6 +63,7 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
 
         holder.shopName.setText(shop.getShopName());
 
+
         String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
                 + dataset.get(position).getShop().getImagePath();
 
@@ -67,19 +72,19 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
                 .placeholder(R.drawable.nature_people)
                 .into(holder.shopImage);
 
-
     }
 
 
 
     @Override
     public int getItemCount() {
+
         return dataset.size();
     }
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView shopImage;
         TextView shopName;
@@ -88,6 +93,7 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
         TextView deliveryCharge;
         TextView itemsInCart;
         TextView cartTotal;
+        LinearLayout cartsListItem;
 
 
         public ViewHolder(View itemView) {
@@ -101,7 +107,37 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
             itemsInCart = (TextView) itemView.findViewById(R.id.itemsInCart);
             cartTotal = (TextView) itemView.findViewById(R.id.cartTotal);
 
+
+            cartsListItem = (LinearLayout) itemView.findViewById(R.id.carts_list_item);
+
+            cartsListItem.setOnClickListener(this);
         }
+
+
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId())
+            {
+
+                case R.id.carts_list_item:
+
+                    Intent intent = new Intent(context,CartItemListActivity.class);
+
+                    intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,dataset.get(getLayoutPosition()).getShop());
+
+                    context.startActivity(intent);
+
+                    break;
+
+                default:
+
+                    break;
+            }
+        }
+
+
+
     }
 
 }

@@ -1,0 +1,89 @@
+<RelativeLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/total"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="1dp"
+        android:text="Total:"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:gravity="left"
+        android:textColor="@color/colorWhite"
+        android:background="@color/grey800"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+
+    <TextView
+        android:id="@+id/totalValue"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="5dp"
+        android:text=": Rs 541"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:gravity="left"
+        android:textColor="@color/colorWhite"
+        android:background="@color/grey800"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/total"
+        android:layout_alignParentBottom="true"/>
+
+
+    <TextView
+        android:id="@+id/subTotal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="0dp"
+        android:text="Sub Total \nDelivery Charges "
+        android:textSize="15dp"
+        android:padding="10dp"
+        android:gravity="left"
+        android:textColor="@color/colorWhite"
+        android:background="@color/grey800"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/total"/>
+
+    <LinearLayout
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_above="@id/subTotal"
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+
+
+
+    <TextView
+        android:id="@+id/subTotalValue"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="5dp"
+        android:text=": Rs 521 \n: Rs 20"
+        android:textSize="15dp"
+        android:padding="10dp"
+        android:gravity="left"
+        android:textColor="@color/colorWhite"
+        android:background="@color/grey800"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/total"
+        android:layout_toRightOf="@id/subTotal"
+        android:layout_alignParentRight="true"/>
+
+
+</RelativeLayout>

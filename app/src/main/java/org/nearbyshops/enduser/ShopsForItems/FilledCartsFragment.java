@@ -33,7 +33,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, Callback<List<ShopItem>> {
+public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, Callback<List<ShopItem>>,AdapterFilledCarts.NotifyFilledCart {
 
     Item item;
 
@@ -49,6 +49,8 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     GridLayoutManager layoutManager;
 
     SwipeRefreshLayout swipeContainer;
+
+    NotifyPagerAdapter notifyPagerAdapter;
 
 
     public FilledCartsFragment() {
@@ -100,7 +102,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
     void setupRecyclerView()
     {
-        adapter = new AdapterFilledCarts(dataset,getActivity(),item);
+        adapter = new AdapterFilledCarts(dataset,getActivity(),item,this);
 
         recyclerView.setAdapter(adapter);
 
@@ -204,6 +206,24 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
             dataset.addAll(response.body());
             adapter.notifyDataSetChanged();
 
+            if(notifyPagerAdapter!=null) {
+                notifyPagerAdapter.notifyFilledCartsChanged();
+            }
+
+            adapter.makeNetworkCall();
+
+
+        }else
+        {
+
+            dataset.clear();
+            adapter.notifyDataSetChanged();
+
+
+            if(notifyPagerAdapter!=null) {
+                notifyPagerAdapter.notifyFilledCartsChanged();
+            }
+
             adapter.makeNetworkCall();
         }
 
@@ -218,9 +238,25 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     }
 
 
-    void notifyCartDataChanged()
-    {
+    @Override
+    public void notifyCartDataChanged() {
         makeNetworkCall();
     }
 
+
+
+    public interface NotifyPagerAdapter
+    {
+        void notifyFilledCartsChanged();
+    }
+
+
+    public NotifyPagerAdapter getNotifyPagerAdapter() {
+        return notifyPagerAdapter;
+    }
+
+    public void setNotifyPagerAdapter(NotifyPagerAdapter notifyPagerAdapter) {
+        this.notifyPagerAdapter = notifyPagerAdapter;
+    }
 }
+

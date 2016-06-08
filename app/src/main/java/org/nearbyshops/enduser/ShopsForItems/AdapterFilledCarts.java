@@ -66,16 +66,19 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
     Context context;
 
+    NotifyFilledCart notifyFilledCart;
 
-    public AdapterFilledCarts(List<ShopItem> dataset, Context context,Item item) {
+
+    public AdapterFilledCarts(List<ShopItem> dataset, Context context,Item item,NotifyFilledCart notifyFilledCart) {
         this.dataset = dataset;
         this.context = context;
         this.item = item;
+        this.notifyFilledCart = notifyFilledCart;
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
 
-        makeNetworkCall();
+        //makeNetworkCall();
     }
 
 
@@ -87,7 +90,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
         cartStatsMap.clear();
 
         Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(0,item.getItemID(),
-                UtilityGeneral.getEndUserID(MyApplication.getAppContext()));
+                UtilityGeneral.getEndUserID(MyApplication.getAppContext()),0);
 
         cartItemCall.enqueue(this);
 
@@ -110,6 +113,12 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                         cartStatsMap.put(cartStats.getShopID(),cartStats);
                     }
 
+                    //showToastMessage("Cart Stats Updated !");
+
+                    notifyDataSetChanged();
+                }else
+                {
+                    cartStatsMap.clear();
                     notifyDataSetChanged();
                 }
 
@@ -143,8 +152,8 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
         Shop shop = null;
 
 
-        if(cartItemMap.size()>0)
-        {
+        //if(cartItemMap.size()>0)
+        //{
             CartItem cartItem = cartItemMap.get(dataset.get(position).getShopID());
 
             if(cartItem!=null)
@@ -157,13 +166,20 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                 holder.itemTotal.setText("Total : " + String.format( "%.2f", total));
 
                 holder.addToCartText.setText("Update Cart");
+
+            }else
+            {
+
+                holder.shopItemListItem.setBackgroundResource(R.color.shopItemColor);
+                //holder.shopItemListItem.setBackgroundColor(22000000);
+
             }
 
-        }
 
 
-        if(cartStatsMap.size()>0)
-        {
+
+        //if(cartStatsMap.size()>0)
+        //{
             CartStats cartStats = cartStatsMap.get(dataset.get(position).getShopID());
 
             if(cartStats!=null)
@@ -171,7 +187,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                 holder.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
                 holder.cartTotal.setText("Cart Total : Rs " + String.valueOf(cartStats.getCart_Total()));
             }
-        }
+        //}
 
 
         if(shopItem!=null)
@@ -306,7 +322,6 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
             }
 
             if (!cartItemMap.containsKey(dataset.get(getLayoutPosition()).getShopID()))
-
             {
 
                 if (Integer.parseInt(itemQuantity.getText().toString()) == 0) {
@@ -314,7 +329,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
                 } else {
 
-                    showToastMessage("Add to cart! : " + dataset.get(getLayoutPosition()).getShopID());
+                    //showToastMessage("Add to cart! : " + dataset.get(getLayoutPosition()).getShopID());
 
                     Call<ResponseBody> call = cartItemService.createCartItem(
                             cartItem,
@@ -345,7 +360,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                            makeNetworkCall();
+
 
                             if(response.code()==200)
                             {
@@ -354,8 +369,13 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
                                 addToCartText.setText("Add to Cart");
 
-                                makeNetworkCall();
+                                //makeNetworkCall();
 
+                                notifyFilledCart.notifyCartDataChanged();
+
+                            }else
+                            {
+                                makeNetworkCall();
                             }
 
                         }
@@ -394,10 +414,14 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
             if (response.code() == 201) {
                 Toast.makeText(context, "Add to cart successful !", Toast.LENGTH_SHORT).show();
+
+                makeNetworkCall();
+
             }
 
             if (response.code() == 200) {
                 Toast.makeText(context, "Update cart successful !", Toast.LENGTH_SHORT).show();
+
             }
 
 
@@ -687,8 +711,17 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
             }
 
             notifyDataSetChanged();
-        }
 
+            //showToastMessage("Cart Item Updated !");
+
+        }else
+        {
+            cartItemMap.clear();
+
+            notifyDataSetChanged();
+
+            //showToastMessage("Cart Item Updated - Null !");
+        }
     }
 
     @Override
@@ -701,6 +734,13 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
     void showToastMessage(String message)
     {
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    public interface NotifyFilledCart
+    {
+        void notifyCartDataChanged();
     }
 
 }

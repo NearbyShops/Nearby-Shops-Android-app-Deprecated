@@ -109,7 +109,7 @@ public class CartsListActivity extends AppCompatActivity implements SwipeRefresh
         DisplayMetrics metrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        layoutManager.setSpanCount(metrics.widthPixels/400);
+        layoutManager.setSpanCount(metrics.widthPixels/350);
 
     }
 
@@ -160,6 +160,10 @@ public class CartsListActivity extends AppCompatActivity implements SwipeRefresh
         {
             dataset.clear();
             dataset.addAll(response.body());
+            adapter.notifyDataSetChanged();
+        }else
+        {
+            dataset.clear();
             adapter.notifyDataSetChanged();
         }
 

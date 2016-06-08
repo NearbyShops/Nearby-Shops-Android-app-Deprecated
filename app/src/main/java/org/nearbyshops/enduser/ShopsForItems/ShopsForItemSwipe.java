@@ -195,4 +195,5 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target{
     public void onPrepareLoad(Drawable placeHolderDrawable) {
 
     }
+
 }
