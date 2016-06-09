@@ -31,6 +31,7 @@
 
 
         <LinearLayout
+            android:id="@+id/filterBar"
             android:background="@color/cyan900"
             app:layout_scrollFlags="scroll|enterAlways"
             android:orientation="horizontal"
@@ -96,6 +97,8 @@
         </LinearLayout>
 
 
+
+
         <android.support.design.widget.TabLayout
             android:background="@color/blueGrey800"
             android:id="@+id/tablayout"
@@ -119,6 +122,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
+    <!--
 
 
     <android.support.design.widget.FloatingActionButton
@@ -130,17 +134,21 @@
         android:src="@drawable/ic_add_shopping_cart_white_24px" />
 
 
+    -->
+
     <com.wunderlist.slidinglayer.SlidingLayer
         android:id="@+id/slidingLayer"
         android:elevation="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/slidingContents"
             android:layout_gravity="right"
             android:orientation="vertical"
             android:background="@color/colorWhite"
-            android:layout_width="250dp"
+            android:layout_marginLeft="@dimen/slidinglayerwidth"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
@@ -149,7 +157,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </com.wunderlist.slidinglayer.SlidingLayer>
 

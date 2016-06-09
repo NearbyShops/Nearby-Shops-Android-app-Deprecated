@@ -53,6 +53,7 @@ public class NetModule {
         return PreferenceManager.getDefaultSharedPreferences(application);
     }
 
+    /*
     @Provides
     @Singleton
     Cache provideOkHttpCache(Application application) {
@@ -60,6 +61,8 @@ public class NetModule {
         Cache cache = new Cache(application.getCacheDir(), cacheSize);
         return cache;
     }
+
+    */
 
     @Provides
     @Singleton
@@ -71,7 +74,7 @@ public class NetModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient(Cache cache) {
+    OkHttpClient provideOkHttpClient() {
 
         OkHttpClient client = new OkHttpClient()
                 .newBuilder()
@@ -80,8 +83,12 @@ public class NetModule {
         // cache is commented out ... you can add cache by putting it back in the builder options
         //.cache(cache)
 
+        //Cache cache
+
         return client;
     }
+
+
 
     @Provides
     @Singleton

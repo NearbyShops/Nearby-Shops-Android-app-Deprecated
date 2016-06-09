@@ -11,4 +11,5 @@
     <dimen name="shadow_size">5dp</dimen>
     <dimen name="offset_distance">5dp</dimen>
     <dimen name="preview_offset_distance">5dp</dimen>
+    <dimen name="slidinglayerwidth">20dp</dimen>
 </resources>

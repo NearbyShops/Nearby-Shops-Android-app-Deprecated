@@ -63,7 +63,7 @@
 
         <TextView
             android:textColor="@color/colorWhite"
-            android:background="#33000000"
+            android:background="#99424242"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textSize="17sp"
@@ -79,7 +79,7 @@
 
         <TextView
             android:textColor="@color/colorWhite"
-            android:background="#33000000"
+            android:background="#99424242"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textSize="17sp"

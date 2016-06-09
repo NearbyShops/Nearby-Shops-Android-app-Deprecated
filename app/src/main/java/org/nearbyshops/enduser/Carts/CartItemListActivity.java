@@ -7,11 +7,18 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.CartItem;
 import org.nearbyshops.enduser.Model.Shop;
+import org.nearbyshops.enduser.ModelStats.CartStats;
+import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
@@ -45,7 +52,26 @@ public class CartItemListActivity extends AppCompatActivity
 
     Shop shop = null;
 
+    CartStats cartStats = null;
+
     public final static String SHOP_INTENT_KEY = "shop_cart_item";
+    public final static String CART_STATS_INTENT_KEY = "cart_stats";
+
+    TextView totalValue;
+    TextView estimatedTotal;
+
+    double cartTotal = 0;
+
+
+    // header views
+    ImageView shopImage;
+    TextView shopName;
+    TextView rating;
+    TextView distance;
+    TextView deliveryCharge;
+    TextView itemsInCart;
+    TextView cartTotalHeader;
+    LinearLayout cartsListItem;
 
 
     public CartItemListActivity() {
@@ -64,18 +90,69 @@ public class CartItemListActivity extends AppCompatActivity
         // findViewByID's
         swipeContainer = (SwipeRefreshLayout)findViewById(R.id.swipeContainer);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        totalValue = (TextView) findViewById(R.id.totalValue);
+        estimatedTotal = (TextView) findViewById(R.id.estimatedTotal);
 
-        setupSwipeContainer();
-        setupRecyclerView();
+
+        shopImage = (ImageView) findViewById(R.id.shopImage);
+        shopName = (TextView) findViewById(R.id.shopName);
+        rating = (TextView) findViewById(R.id.rating);
+        distance = (TextView) findViewById(R.id.distance);
+        deliveryCharge = (TextView) findViewById(R.id.deliveryCharge);
+        itemsInCart = (TextView) findViewById(R.id.itemsInCart);
+        cartTotalHeader = (TextView) findViewById(R.id.cartTotal);
+        cartsListItem = (LinearLayout)findViewById(R.id.carts_list_item);
+
+
 
 
         // get shop from intent
 
         shop = getIntent().getParcelableExtra(SHOP_INTENT_KEY);
+        cartStats = getIntent().getParcelableExtra(CART_STATS_INTENT_KEY);
+
+        if(cartStats!=null)
+        {
+            cartTotal = cartStats.getCart_Total();
+            totalValue.setText(" : Rs " + String.format("%.2f", cartTotal));
+        }
+
+        setupHeader();
+        setupSwipeContainer();
+        setupRecyclerView();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+
+    void setupHeader()
+    {
+
+        if(cartStats!=null)
+        {
+            itemsInCart.setText(cartStats.getItemsInCart() + " Items in Cart");
+            cartTotalHeader.setText("Cart Total : Rs " + cartStats.getCart_Total());
+        }
+
+        if(shop!=null)
+        {
+            deliveryCharge.setText("Delivery\nRs " + shop.getDeliveryCharges() + "\nPer Order");
+            distance.setText(String.format( "%.2f", shop.getDistance())
+                    + " Km");
+
+            shopName.setText(shop.getShopName());
+
+
+            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+                    + shop.getImagePath();
+
+            Picasso.with(this)
+                    .load(imagePath)
+                    .placeholder(R.drawable.nature_people)
+                    .into(shopImage);
+        }
+
+    }
 
 
     void setupSwipeContainer()
@@ -97,7 +174,7 @@ public class CartItemListActivity extends AppCompatActivity
     {
 
 
-        adapter = new CartItemAdapter(dataset,this,this);
+        adapter = new CartItemAdapter(dataset,this,this,cartStats);
 
         recyclerView.setAdapter(adapter);
 
@@ -169,7 +246,11 @@ public class CartItemListActivity extends AppCompatActivity
         {
             dataset.clear();
             dataset.addAll(response.body());
+
             adapter.notifyDataSetChanged();
+
+
+
         }else
         {
             dataset.clear();
@@ -192,6 +273,7 @@ public class CartItemListActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+
 
 
         swipeContainer.post(new Runnable() {
@@ -229,6 +311,8 @@ public class CartItemListActivity extends AppCompatActivity
                 if(response.code() == 200)
                 {
                     showToastMessage("Item Updated !");
+
+                    totalValue.setText(" : Rs " + String.format("%.2f", cartTotal));
                 }
             }
 
@@ -267,5 +351,11 @@ public class CartItemListActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public void notifyTotal(double total) {
+
+        cartTotal = total;
+        estimatedTotal.setText("Estimated Total (Before Update) : Rs " + String.format("%.2f", cartTotal));
+    }
 
 }

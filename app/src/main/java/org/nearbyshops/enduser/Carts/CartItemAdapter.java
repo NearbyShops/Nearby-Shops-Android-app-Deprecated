@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.Utility.InputFilterMinMax;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,15 +33,24 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
 
     List<CartItem> dataset = null;
+
+
     Context context;
     NotifyCartItem notifyCartItem;
 
+    CartStats cartStats;
 
-    public CartItemAdapter(List<CartItem> dataset, Context context, NotifyCartItem notifyCartItem) {
+    double cartTotal = 0;
+
+
+    public CartItemAdapter(List<CartItem> dataset, Context context, NotifyCartItem notifyCartItem,CartStats cartStats) {
 
         this.dataset = dataset;
         this.context = context;
         this.notifyCartItem = notifyCartItem;
+        this.cartStats = cartStats;
+
+        cartTotal = cartStats.getCart_Total();
 
     }
 
@@ -194,7 +205,6 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
 
 
-
         public void reduceQuantityClick()
         {
             setFilter();
@@ -287,6 +297,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
             cartItem = dataset.get(getLayoutPosition());
 
+            double previousTotal = cartItem.getRt_itemPrice()*cartItem.getItemQuantity();
 
             double total = 0;
 
@@ -319,6 +330,9 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
                     //ex.printStackTrace();
                 }
 
+                cartTotal = cartTotal - previousTotal + total;
+
+
             }else
             {
                 //itemsInCart.setText(String.valueOf(0) + " " + "Items in Cart");
@@ -332,6 +346,11 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
 
             itemTotal.setText("Total " + String.format( "%.2f", total));
+
+
+
+
+            notifyCartItem.notifyTotal(cartTotal);
 
                     //cartTotal.setText("Cart Total : Rs " + String.format( "%.2f", total));
         }
@@ -362,11 +381,14 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
     }
 
 
+
     public interface NotifyCartItem{
 
         void notifyUpdate(CartItem cartItem);
 
         void notifyRemove(CartItem cartItem);
+
+        void notifyTotal(double total);
 
     }
 

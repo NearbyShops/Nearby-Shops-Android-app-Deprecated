@@ -184,6 +184,11 @@ public class Home extends AppCompatActivity
 
     void updateRangeBars()
     {
+        if(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY)>30)
+        {
+            return;
+        }
+
         rangeBarDeliveryRange.setRangePinsByValue(
                 UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
                 UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY));
@@ -197,6 +202,11 @@ public class Home extends AppCompatActivity
     {
         if(isDeliveryRangeUpdated)
         {
+            if(deliveryRangeMax > 30 )
+            {
+                deliveryRangeMax = 30;
+            }
+
             UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,deliveryRangeMin);
             UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,deliveryRangeMax);
         }

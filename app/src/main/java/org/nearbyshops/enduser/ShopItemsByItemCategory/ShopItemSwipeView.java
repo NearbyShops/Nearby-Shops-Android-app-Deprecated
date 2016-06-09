@@ -9,11 +9,14 @@ import android.support.v7.widget.Toolbar;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
@@ -43,10 +46,12 @@ public class ShopItemSwipeView extends AppCompatActivity {
     @Bind(R.id.tablayout)
     TabLayout tabLayout;
 
-    @Bind(R.id.filter)
-    ImageView filter;
+    //@Bind(R.id.filter)
+    //ImageView filter;
 
     SlidingLayer slidingLayer;
+
+    RelativeLayout slidingContents;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -73,27 +78,50 @@ public class ShopItemSwipeView extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         tabLayout.setupWithViewPager(mViewPager);
 
         slidingLayer = (SlidingLayer)findViewById(R.id.slidingLayer);
+        slidingContents = (RelativeLayout) findViewById(R.id.slidingContents);
 
+
+        setupSlidingLayer();
+
+    }
+
+
+    void setupSlidingLayer()
+    {
 
         ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
         //slidingLayer.setShadowSizeRes(R.dimen.shadow_size);
 
-        slidingLayer.setChangeStateOnTap(false);
-        slidingLayer.setSlidingEnabled(true);
-        slidingLayer.setPreviewOffsetDistance(15);
-        slidingLayer.setOffsetDistance(10);
-        slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
+        if(slidingLayer!=null)
+        {
+            slidingLayer.setChangeStateOnTap(true);
+            slidingLayer.setSlidingEnabled(true);
+            slidingLayer.setPreviewOffsetDistance(15);
+            slidingLayer.setOffsetDistance(10);
+            slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
+
+
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+            //RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(250, ViewGroup.LayoutParams.MATCH_PARENT);
+
+            //slidingContents.setLayoutParams(layoutParams);
+
+            //slidingContents.setMinimumWidth(metrics.widthPixels-50);
+
+        }
 
     }
 
 
 
-    @OnClick({R.id.filter,R.id.filterText})
+    //@OnClick({R.id.filter,R.id.filterText})
     void filterIconClick(View view)
     {
 
@@ -111,7 +139,6 @@ public class ShopItemSwipeView extends AppCompatActivity {
     }
 
 
-    @OnClick(R.id.fab)
     void fabClick(View view)
     {
         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

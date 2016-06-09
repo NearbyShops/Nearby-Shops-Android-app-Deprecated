@@ -180,5 +180,5 @@
     <string name="title_activity_shop_item_swipe_view">Shop <Item></Item></string>
     <string name="title_activity_shops_for_item">Shops For Item</string>
     <string name="title_activity_carts_list">Carts List</string>
-    <string name="title_activity_cart_item_list">Confirm Items</string>
+    <string name="title_activity_cart_item_list">Items in Cart</string>
 </resources>

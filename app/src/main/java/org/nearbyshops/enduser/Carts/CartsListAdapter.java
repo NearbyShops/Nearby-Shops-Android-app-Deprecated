@@ -125,6 +125,7 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
                     Intent intent = new Intent(context,CartItemListActivity.class);
 
                     intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,dataset.get(getLayoutPosition()).getShop());
+                    intent.putExtra(CartItemListActivity.CART_STATS_INTENT_KEY,dataset.get(getLayoutPosition()));
 
                     context.startActivity(intent);
 

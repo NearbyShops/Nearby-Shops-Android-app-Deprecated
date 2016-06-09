@@ -96,8 +96,8 @@
 
 
         <TextView
+            android:background="#99424242"
             android:textColor="@color/colorWhite"
-            android:background="#33000000"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textSize="17sp"
@@ -113,7 +113,7 @@
 
         <TextView
             android:textColor="@color/colorWhite"
-            android:background="#33000000"
+            android:background="#99424242"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textSize="17sp"
@@ -209,7 +209,7 @@
             android:textSize="17sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Item Price : Rs 0"
+            android:text=" Rs 45.76 / Kg"
             android:id="@+id/itemPrice"
             android:layout_marginRight="0dp"
             android:layout_marginLeft="0dp"

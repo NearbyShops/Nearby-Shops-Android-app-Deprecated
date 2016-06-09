@@ -392,14 +392,23 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                 {
                     // Update from cart
 
-                    Call<ResponseBody> callUpdate = cartItemService.updateCartItem(
-                            cartItem,
-                            UtilityGeneral.getEndUserID(MyApplication.getAppContext()),
-                            dataset.get(getLayoutPosition()).getShopID()
-                    );
+                    if(getLayoutPosition() < dataset.size())
+                    {
+                        ShopItem shop = dataset.get(getLayoutPosition());
+
+                        Call<ResponseBody> callUpdate = cartItemService.updateCartItem(
+                                cartItem,
+                                UtilityGeneral.getEndUserID(MyApplication.getAppContext()),
+                                shop.getShopID()
+                        );
+
+                        callUpdate.enqueue(this);
+
+                    }
 
 
-                    callUpdate.enqueue(this);
+
+
 
                 }
 
