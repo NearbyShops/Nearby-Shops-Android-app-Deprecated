@@ -1,8 +1,12 @@
 package org.nearbyshops.enduser.DaggerComponents;
 
 
+import org.nearbyshops.enduser.Carts.AddAddressActivity;
 import org.nearbyshops.enduser.Carts.CartItemListActivity;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
+import org.nearbyshops.enduser.Carts.DeliveryAddressActivity;
+import org.nearbyshops.enduser.Carts.EditAddressActivity;
+import org.nearbyshops.enduser.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduser.DaggerModules.AppModule;
 import org.nearbyshops.enduser.DaggerModules.NetModule;
 import org.nearbyshops.enduser.DataProvidersRetrofit.ItemCategoryRetrofitProvider;
@@ -45,5 +49,13 @@ public interface NetComponent {
     void Inject(CartsListActivity cartsListActivity);
 
     void Inject(CartItemListActivity cartItemListActivity);
+
+    void Inject(DeliveryAddressActivity deliveryAddressActivity);
+
+    void Inject(AddAddressActivity addAddressActivity);
+
+    void Inject(EditAddressActivity editAddressActivity);
+
+    void Inject(PlaceOrderActivity placeOrderActivity);
 
 }

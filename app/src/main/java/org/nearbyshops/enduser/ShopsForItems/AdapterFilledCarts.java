@@ -95,7 +95,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
         cartItemCall.enqueue(this);
 
         Call<List<CartStats>> listCall = cartStatsService
-                .getCart(UtilityGeneral.getEndUserID(MyApplication.getAppContext()),
+                .getCart(UtilityGeneral.getEndUserID(MyApplication.getAppContext()),0,
                         UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
                         UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY));
 

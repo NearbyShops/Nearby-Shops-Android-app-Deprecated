@@ -40,7 +40,7 @@
         </activity>
         <activity
             android:name=".Login"
-            android:label="Login"
+            android:label="Service Setup and Login"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -83,6 +83,51 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Carts.CartsListActivity" />
+        </activity>
+        <activity
+            android:name=".Carts.PlaceOrderActivity"
+            android:label="@string/title_activity_place_order"
+            android:parentActivityName=".Carts.CartItemListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Carts.CartItemListActivity" />
+        </activity>
+        <activity
+            android:name=".Carts.DeliveryAddressActivity"
+            android:label="@string/title_activity_delivery_address"
+            android:parentActivityName=".Carts.PlaceOrderActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Carts.PlaceOrderActivity" />
+        </activity>
+        <activity
+            android:name=".Carts.EditAddressActivity"
+            android:label="@string/title_activity_edit_address"
+            android:parentActivityName=".Carts.DeliveryAddressActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Carts.DeliveryAddressActivity" />
+        </activity>
+        <activity
+            android:name=".Carts.AddAddressActivity"
+            android:label="@string/title_activity_add_address"
+            android:parentActivityName=".Carts.DeliveryAddressActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Carts.DeliveryAddressActivity" />
+        </activity>
+        <activity
+            android:name=".aaSamples.NavigationDrawerSample"
+            android:label="@string/title_activity_navigation_drawer_sample"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
         </activity>
     </application>
 

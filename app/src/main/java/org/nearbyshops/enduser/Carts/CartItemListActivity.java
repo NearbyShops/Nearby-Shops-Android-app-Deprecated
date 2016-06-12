@@ -1,5 +1,6 @@
 package org.nearbyshops.enduser.Carts;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,6 +30,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +40,8 @@ import retrofit2.Response;
 public class CartItemListActivity extends AppCompatActivity
         implements SwipeRefreshLayout.OnRefreshListener, Callback<List<CartItem>>,CartItemAdapter.NotifyCartItem {
 
+
+    TextView confirmItems;
 
     @Inject
     CartItemService cartItemService;
@@ -84,6 +90,9 @@ public class CartItemListActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_item_list);
+
+        ButterKnife.bind(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -92,6 +101,7 @@ public class CartItemListActivity extends AppCompatActivity
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         totalValue = (TextView) findViewById(R.id.totalValue);
         estimatedTotal = (TextView) findViewById(R.id.estimatedTotal);
+        confirmItems = (TextView) findViewById(R.id.confirm);
 
 
         shopImage = (ImageView) findViewById(R.id.shopImage);
@@ -122,6 +132,17 @@ public class CartItemListActivity extends AppCompatActivity
         setupRecyclerView();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+
+
+    @OnClick(R.id.confirm)
+    void confirmItemsClick(View view)
+    {
+        Intent intent = new Intent(this,PlaceOrderActivity.class);
+        intent.putExtra(PlaceOrderActivity.CART_STATS_INTENT_KEY,cartStats);
+
+        startActivity(intent);
     }
 
 
@@ -313,6 +334,8 @@ public class CartItemListActivity extends AppCompatActivity
                     showToastMessage("Item Updated !");
 
                     totalValue.setText(" : Rs " + String.format("%.2f", cartTotal));
+                    cartStats.setCart_Total(cartTotal);
+
                 }
             }
 
@@ -346,6 +369,8 @@ public class CartItemListActivity extends AppCompatActivity
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                showToastMessage("Remove failed. Try again !");
+
             }
         });
     }
@@ -358,4 +383,12 @@ public class CartItemListActivity extends AppCompatActivity
         estimatedTotal.setText("Estimated Total (Before Update) : Rs " + String.format("%.2f", cartTotal));
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        ButterKnife.unbind(this);
+
+    }
 }

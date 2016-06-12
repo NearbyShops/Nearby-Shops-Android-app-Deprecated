@@ -9,6 +9,7 @@
 
 
     <LinearLayout
+        android:background="@color/colorWhite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/activity_vertical_margin"
@@ -18,74 +19,12 @@
         android:orientation="vertical">
 
 
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:background="@color/orangeDark"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:src="@drawable/shop512"
-                    android:scaleType="fitCenter"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="25dp"
-                    android:layout_marginRight="0dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/shopsNearby"
-                    android:gravity="bottom|right"
-                    android:layout_marginRight="5dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="25sp"
-                    android:textColor="@color/colorWhite"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Shops Nearby"/>
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/itemsNearby"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:gravity="bottom|right"
-
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textSize="25sp"
-                android:textColor="@color/colorWhite"
-                android:background="@color/gplus_color_2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="Items Nearby"/>
-
-
-        </LinearLayout>
-
 
         <LinearLayout
             android:layout_gravity="right"
             android:id="@+id/filterControls"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="0dp"
             android:padding="10dp"
-            android:background="#00000000"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -101,7 +40,7 @@
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray"
+            android:background="@color/cyan900"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Filter Shops by Range of Delivery"/>
@@ -179,7 +118,7 @@
             android:textSize="15dp"
             android:padding="5dp"
             android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray"
+            android:background="@color/cyan900"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Filter Shops by Proximity"/>
@@ -217,7 +156,7 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="15dp"
                 android:padding="5dp"
-                android:background="@android:color/darker_gray"
+                android:background="@color/cyan900"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Min: km's"/>
@@ -232,7 +171,7 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="15dp"
                 android:padding="5dp"
-                android:background="@android:color/darker_gray"
+                android:background="@color/cyan900"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Max: km's"/>
@@ -259,6 +198,69 @@
 
 
 
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:background="@color/orangeDark"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:src="@drawable/shop512"
+                    android:scaleType="fitCenter"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="25dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/shopsNearby"
+                    android:gravity="bottom|right"
+                    android:layout_marginRight="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="25sp"
+                    android:textColor="@color/colorWhite"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Shops Nearby"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/itemsNearby"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:gravity="bottom|right"
+
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textSize="25sp"
+                android:textColor="@color/colorWhite"
+                android:background="@color/gplus_color_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Items Nearby"/>
+
+
+        </LinearLayout>
+
+
+
 
 
         <RelativeLayout
@@ -266,7 +268,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:orientation="horizontal"
-            android:layout_marginTop="30dp">d
+            android:layout_marginTop="10dp">d
 
             <ImageView
                 android:scaleType="fitCenter"

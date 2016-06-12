@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_orders"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Orders" />
+        <item
+            android:id="@+id/nav_carts"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Carts" />
+
+    </group>
+
+    <item android:title="Favourites">
+        <menu>
+            <item
+                android:id="@+id/nav_favourite_shops"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Favourite Shops" />
+            <item
+                android:id="@+id/nav_item_wishlist"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Items wishlist" />
+        </menu>
+    </item>
+
+
+
+    <item android:title="Settings">
+
+        <menu>
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Settings" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_menu_send"
+            android:title="About" />
+
+        </menu>
+
+    </item>
+
+
+
+</menu>

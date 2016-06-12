@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="org.nearbyshops.enduser.Carts.EditAddressActivity"
+    tools:showIn="@layout/activity_edit_address">
+
+
+    <android.support.design.widget.TextInputLayout
+        android:padding="0dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:id="@+id/receiversNameContainer"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:inputType="textPersonName"
+            android:id="@+id/receiversName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Receivers Name"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/phoneNumberContainer"
+        android:layout_below="@id/receiversNameContainer"
+        android:padding="0dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+
+        android:layout_gravity="center_vertical"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:inputType="number"
+            android:id="@+id/receiversPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Phone Number"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@id/phoneNumberContainer"
+        android:padding="0dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+
+        android:layout_gravity="center_vertical"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/deliveryAddressContainer">
+
+        <EditText
+            android:inputType="textMultiLine"
+            android:id="@+id/deliveryAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Delivery Address"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@id/deliveryAddressContainer"
+        android:padding="0dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+
+        android:layout_gravity="center_vertical"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cityContainer">
+
+        <EditText
+            android:inputType="textMultiLine"
+            android:id="@+id/addressCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter City"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@id/cityContainer"
+        android:padding="0dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+
+        android:layout_gravity="center_vertical"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pincodeContainer">
+
+        <EditText
+            android:inputType="number"
+            android:id="@+id/pincode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Pincode"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@id/pincodeContainer"
+        android:padding="0dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+
+        android:layout_gravity="center_vertical"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/landmarkContainer">
+
+        <EditText
+            android:inputType="text"
+            android:id="@+id/landmark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Landmark (Optional)"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+
+
+    <TextView
+        android:id="@+id/updateAddress"
+        android:gravity="right"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:background="@color/phonographyBlue"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:layout_below="@id/landmarkContainer"
+        android:text="Update Address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
+
+
+</ScrollView>

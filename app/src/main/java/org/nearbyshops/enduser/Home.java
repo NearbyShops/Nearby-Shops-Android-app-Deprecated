@@ -9,9 +9,14 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,8 +26,10 @@ import com.appyvet.rangebar.RangeBar;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 
+import org.nearbyshops.enduser.Carts.CartsListActivity;
 import org.nearbyshops.enduser.ItemCategories.ItemCategories;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.aaSamples.NavigationDrawerSample;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,9 +37,18 @@ import butterknife.OnClick;
 
 
 public class Home extends AppCompatActivity
-        implements View.OnClickListener, RangeBar.OnRangeBarChangeListener, LocationListener {
+        implements View.OnClickListener, RangeBar.OnRangeBarChangeListener, LocationListener, NavigationView.OnNavigationItemSelectedListener {
+
+    // views for navigation drawer
 
 
+    Toolbar toolbar;
+    DrawerLayout drawer;
+    NavigationView navigationView;
+
+
+
+    // Views
     @Bind(R.id.itemCategories)
     TextView itemCategories;
     @Bind(R.id.rangebarDeliveryRange)
@@ -45,6 +61,9 @@ public class Home extends AppCompatActivity
     TextView textMin;
     @Bind(R.id.shopsNearby)
     TextView shopsNearby;
+
+    @Bind(R.id.itemsNearby)
+    TextView itemsNearby;
 
     @Bind(R.id.setLocation)
     TextView setLocation;
@@ -70,11 +89,11 @@ public class Home extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home_nav_layout);
 
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //itemCategories = (TextView) findViewById(R.id.itemCategories);
@@ -117,7 +136,30 @@ public class Home extends AppCompatActivity
 
 
 
+
+        // navigation drawer setup
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        setupNavigationDrawer();
+
     } // onCreate() Ends
+
+
+
+    void setupNavigationDrawer()
+    {
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+
+
 
 
     @OnClick(R.id.setLocation)
@@ -143,7 +185,12 @@ public class Home extends AppCompatActivity
         //Intent intent = new Intent(this, SettingsActivity.class);
 
         //startActivity(intent);
-        savePreferences();
+        //savePreferences();
+
+        Intent intent = new Intent(this, NavigationDrawerSample.class);
+
+        startActivity(intent);
+
 
         //Intent intent = new Intent(this, Categories.class);
 
@@ -425,4 +472,63 @@ public class Home extends AppCompatActivity
             mlocationManager.removeUpdates(this);
         }
     }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+
+
+        int id = item.getItemId();
+
+        if (id == R.id.nav_about) {
+            // Handle the camera action
+
+            showToastMessage("about");
+
+
+        } else if (id == R.id.nav_settings) {
+
+            showToastMessage("Settings");
+
+        } else if (id == R.id.nav_carts) {
+
+            Intent intent = new Intent(this, CartsListActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
+    void showToastMessage(String message)
+    {
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+
+
+
+
 }
+
+
+

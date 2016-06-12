@@ -8,10 +8,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.nearbyshops.enduser.Model.CartItem;
+import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartService;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
+import org.nearbyshops.enduser.RetrofitRESTContract.DeliveryAddressService;
+import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
@@ -140,6 +143,26 @@ public class NetModule {
     CartStatsService provideCartStatsService(Retrofit retrofit)
     {
         CartStatsService service = retrofit.create(CartStatsService.class);
+
+        return service;
+    }
+
+    @Provides
+    @Singleton
+    DeliveryAddressService provideDeliveryAddressService(Retrofit retrofit)
+    {
+
+        DeliveryAddressService service = retrofit.create(DeliveryAddressService.class);
+
+        return service;
+    }
+
+
+    @Provides
+    @Singleton
+    OrderService provideOrderService(Retrofit retrofit)
+    {
+        OrderService service = retrofit.create(OrderService.class);
 
         return service;
     }

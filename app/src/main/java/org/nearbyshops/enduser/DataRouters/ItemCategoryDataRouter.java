@@ -57,6 +57,10 @@ public class ItemCategoryDataRouter implements DataRouter<ItemCategory> {
     @Override
     public DataProviderItemCategory getDataProvider() {
 
+
+        return networkDataProvider;
+
+        /*
         if(UtilityGeneral.isNetworkAvailable(MyApplication.getAppContext()))
         {
             // network is available . Make a network call using network data router
@@ -68,6 +72,9 @@ public class ItemCategoryDataRouter implements DataRouter<ItemCategory> {
             // network is not available.
             return dbDataProvider;
         }
+
+        */
+
     }
 
 }

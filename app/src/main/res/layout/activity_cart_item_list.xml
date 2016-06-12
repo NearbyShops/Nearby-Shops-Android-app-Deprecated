@@ -10,12 +10,12 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
+        android:theme="@style/AppTheme.AppBarOverlay"
         android:background="#00000000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
             android:id="@+id/toolbar"
             app:titleTextColor="@color/colorWhite"
             android:layout_width="match_parent"
@@ -89,7 +89,7 @@
 
 
     <RelativeLayout
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
         android:orientation="vertical"
         android:elevation="5dp"
         android:layout_width="match_parent"
@@ -207,6 +207,7 @@
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:elevation="0dp"
+            android:layout_marginTop="?attr/actionBarSize"
             android:layout_above="@id/estimatedTotal"
             android:layout_marginBottom="5dp"
             android:id="@+id/swipeContainer"

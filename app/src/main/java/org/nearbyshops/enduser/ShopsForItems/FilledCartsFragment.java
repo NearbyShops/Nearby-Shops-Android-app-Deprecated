@@ -194,7 +194,10 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
     void showToastMessage(String message)
     {
-        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+        if(getActivity()!=null)
+        {
+            Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

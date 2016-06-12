@@ -10,6 +10,9 @@ import org.nearbyshops.enduser.Model.Shop;
  */
 public class CartStats implements Parcelable{
 
+
+    int cartID;
+
     int itemsInCart;
 
     double cart_Total;
@@ -19,6 +22,58 @@ public class CartStats implements Parcelable{
     Shop shop;
 
 
+
+
+
+
+    // Parcelable Implementation
+
+    protected CartStats(Parcel in) {
+        cartID = in.readInt();
+        itemsInCart = in.readInt();
+        cart_Total = in.readDouble();
+        shopID = in.readInt();
+        shop = in.readParcelable(Shop.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(cartID);
+        dest.writeInt(itemsInCart);
+        dest.writeDouble(cart_Total);
+        dest.writeInt(shopID);
+        dest.writeParcelable(shop, flags);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<CartStats> CREATOR = new Creator<CartStats>() {
+        @Override
+        public CartStats createFromParcel(Parcel in) {
+            return new CartStats(in);
+        }
+
+        @Override
+        public CartStats[] newArray(int size) {
+            return new CartStats[size];
+        }
+    };
+
+
+
+    // Getter and Setter Methods
+
+
+    public int getCartID() {
+        return cartID;
+    }
+
+    public void setCartID(int cartID) {
+        this.cartID = cartID;
+    }
 
     public Shop getShop() {
         return shop;
@@ -51,41 +106,6 @@ public class CartStats implements Parcelable{
     public void setShopID(int shopID) {
         this.shopID = shopID;
     }
-
-
-
-
-    protected CartStats(Parcel in) {
-        itemsInCart = in.readInt();
-        cart_Total = in.readDouble();
-        shopID = in.readInt();
-        shop = in.readParcelable(Shop.class.getClassLoader());
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(itemsInCart);
-        dest.writeDouble(cart_Total);
-        dest.writeInt(shopID);
-        dest.writeParcelable(shop, flags);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<CartStats> CREATOR = new Creator<CartStats>() {
-        @Override
-        public CartStats createFromParcel(Parcel in) {
-            return new CartStats(in);
-        }
-
-        @Override
-        public CartStats[] newArray(int size) {
-            return new CartStats[size];
-        }
-    };
 
 
 

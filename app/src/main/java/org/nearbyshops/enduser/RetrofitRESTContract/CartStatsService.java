@@ -21,6 +21,6 @@ import retrofit2.http.Query;
 public interface CartStatsService {
 
     @GET("api/CartStats/{EndUserID}")
-    Call<List<CartStats>> getCart(@Path("EndUserID") int endUserID,
+    Call<List<CartStats>> getCart(@Path("EndUserID") int endUserID,@Query("CartID") int cartID,
                                   @Query("latCenter")double latCenter, @Query("lonCenter")double lonCenter);
 }
