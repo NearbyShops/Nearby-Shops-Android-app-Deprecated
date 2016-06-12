@@ -129,6 +129,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
+        <activity
+            android:name=".Orders.OrderHome"
+            android:label="@string/title_activity_order_home"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
     </application>
 
 </manifest>

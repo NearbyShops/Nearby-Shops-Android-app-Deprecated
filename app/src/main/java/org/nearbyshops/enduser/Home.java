@@ -28,6 +28,7 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduser.Carts.CartsListActivity;
 import org.nearbyshops.enduser.ItemCategories.ItemCategories;
+import org.nearbyshops.enduser.Orders.OrderHome;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.aaSamples.NavigationDrawerSample;
 
@@ -494,7 +495,9 @@ public class Home extends AppCompatActivity
             Intent intent = new Intent(this, CartsListActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_orders) {
+
+            startActivity(new Intent(this, OrderHome.class));
 
         } else if (id == R.id.nav_share) {
 

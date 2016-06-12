@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -130,15 +131,26 @@ public class CartsListActivity extends AppCompatActivity implements SwipeRefresh
     void makeNetworkCall()
     {
 
+
+
+        Call<List<CartStats>> call = cartStatsService.getCart(
+                UtilityGeneral.getEndUserID(this),0,
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY));
+
+        call.enqueue(this);
+
+
+        Log.d("applog",String.valueOf(UtilityGeneral.getEndUserID(this)) + " "
+        + UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY) + " "
+        + UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY));
+
+
+        /*
         if(UtilityGeneral.isNetworkAvailable(this))
         {
 
-            Call<List<CartStats>> call = cartStatsService.getCart(
-                    UtilityGeneral.getEndUserID(this),0,
-                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY));
 
-            call.enqueue(this);
         }
         else
         {
@@ -147,6 +159,8 @@ public class CartsListActivity extends AppCompatActivity implements SwipeRefresh
             swipeContainer.setRefreshing(false);
 
         }
+
+        */
 
     }
 
