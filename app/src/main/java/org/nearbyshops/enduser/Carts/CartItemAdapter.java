@@ -84,7 +84,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
             holder.itemName.setText(item.getItemName());
 
             holder.itemQuantity.setText(String.valueOf(cartItem.getItemQuantity()));
-            holder.itemPrice.setText("Price : " + String.format( "%.2f", cartItem.getRt_itemPrice()));
+            holder.itemPrice.setText("Price : " + String.format( "%.2f", cartItem.getRt_itemPrice()) + " per " + item.getQuantityUnit());
 
             //holder.itemTotal.setText(" x " + cartItem.getRt_availableItemQuantity() + " (Unit Price) = "
             //        + "Rs:" +  String.format( "%.2f", cartItem.getRt_itemPrice()*cartItem.getItemQuantity()));

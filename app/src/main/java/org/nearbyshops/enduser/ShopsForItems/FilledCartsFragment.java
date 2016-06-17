@@ -153,7 +153,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
                 }
 
-                adapter.notifyDataSetChanged();
+                //adapter.notifyDataSetChanged();
             }
         });
     }

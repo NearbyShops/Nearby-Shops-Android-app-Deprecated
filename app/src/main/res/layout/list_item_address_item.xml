@@ -1,6 +1,7 @@
 <RelativeLayout
     android:id="@+id/list_item_delivery_address"
     android:layout_marginRight="10dp"
+    android:layout_marginBottom="10dp"
     android:background="#22000000"
     android:padding="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -31,12 +32,11 @@
 
 
     <TextView
-
         android:layout_below="@id/border"
         android:id="@+id/deliveryAddress"
         android:padding="5dp"
         android:textSize="15dp"
-        android:text="B-91, HAL COlony, Balanagar"
+        android:text="K-53, BEL Colony, Koramangla"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

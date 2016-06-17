@@ -4,14 +4,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_orders"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/colored_shop_storefront"
             android:title="Orders" />
         <item
             android:id="@+id/nav_carts"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/colored_basket"
             android:title="Carts" />
 
     </group>
+
+
 
     <item android:title="Favourites">
         <menu>
@@ -22,24 +24,70 @@
             <item
                 android:id="@+id/nav_item_wishlist"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Items wishlist" />
+                android:title="Favourite Items" />
         </menu>
     </item>
 
+
+
+    <item android:title="Lists">
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_item_list"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Items List" />
+
+        </menu>
+
+    </item>
+
+
+
+    <item android:title="Reviews and Ratings">
+        <menu>
+            <item
+                android:id="@+id/nav_ratings"
+                android:icon="@drawable/ic_menu_share"
+                android:title="My Ratings" />
+            <item
+                android:id="@+id/nav_reviews"
+                android:icon="@drawable/ic_menu_send"
+                android:title="My Reviews" />
+        </menu>
+    </item>
 
 
     <item android:title="Settings">
 
         <menu>
 
+
+        <item
+            android:id="@+id/nav_faqs"
+            android:icon="@drawable/ic_menu_share"
+            android:title="FAQs" />
+
+        <item
+            android:id="@+id/nav_usage"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Learn Usage" />
+
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_share"
             android:title="Settings" />
+
         <item
-            android:id="@+id/nav_about"
+            android:id="@+id/nav_about_service"
             android:icon="@drawable/ic_menu_send"
-            android:title="About" />
+            android:title="About Service" />
+
+        <item
+            android:id="@+id/nav_about_application"
+            android:icon="@drawable/ic_menu_send"
+            android:title="About Nearby Shops" />
 
         </menu>
 

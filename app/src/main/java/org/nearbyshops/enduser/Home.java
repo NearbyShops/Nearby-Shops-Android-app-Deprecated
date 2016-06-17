@@ -480,7 +480,7 @@ public class Home extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_about) {
+        if (id == R.id.nav_about_service) {
             // Handle the camera action
 
             showToastMessage("about");

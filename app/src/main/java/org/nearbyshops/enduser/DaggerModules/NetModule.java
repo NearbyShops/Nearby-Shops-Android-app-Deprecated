@@ -3,6 +3,7 @@ package org.nearbyshops.enduser.DaggerModules;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -94,8 +95,10 @@ public class NetModule {
 
 
     @Provides
-    @Singleton
     Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
+
+        Log.d("applog","Retrofit: " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))

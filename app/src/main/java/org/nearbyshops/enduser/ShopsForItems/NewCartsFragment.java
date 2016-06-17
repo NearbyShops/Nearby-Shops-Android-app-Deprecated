@@ -100,7 +100,7 @@ public class NewCartsFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     void setupRecyclerView()
     {
-        adapter = new AdapterNewCarts(dataset,getActivity(),this);
+        adapter = new AdapterNewCarts(dataset,getActivity(),this,item);
 
         recyclerView.setAdapter(adapter);
 

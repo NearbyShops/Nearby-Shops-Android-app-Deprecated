@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.Cart;
 import org.nearbyshops.enduser.Model.CartItem;
+import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.MyApplication;
@@ -55,11 +56,14 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
 
     NotifyCallbacks notifyCallbacks;
 
+    Item item;
 
-    public AdapterNewCarts(List<ShopItem> dataset, Context context, NotifyCallbacks callbacks) {
+
+    public AdapterNewCarts(List<ShopItem> dataset, Context context, NotifyCallbacks callbacks, Item item) {
         this.dataset = dataset;
         this.context = context;
         this.notifyCallbacks = callbacks;
+        this.item = item;
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -110,7 +114,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
         if(shopItem !=null)
         {
             holder.itemsAvailable.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()));
-            holder.itemPrice.setText("Price : Rs " + String.format( "%.2f", shopItem.getItemPrice()));
+            holder.itemPrice.setText("Rs " + String.format( "%.2f", shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
 
         }
 

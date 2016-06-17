@@ -131,14 +131,13 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements FilledCar
     @Override
     public void notifyFilledCartsChanged() {
 
-        notifyDataSetChanged();
+
 
         if (flag) {
 
-            newCartsFragment.onResume();
-
             flag = false;
 
+            newCartsFragment.onResume();
 
         } else
         {
@@ -146,6 +145,8 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements FilledCar
         }
 
 
+
+        notifyDataSetChanged();
 
 
 
@@ -163,18 +164,20 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements FilledCar
     @Override
     public void notifyNewCartsChanged() {
 
-        notifyDataSetChanged();
-
         if(flag)
         {
-            filledCartsFragment.onResume();
 
             flag = false;
+
+            filledCartsFragment.onResume();
 
         }else
         {
             flag = true;
         }
+
+
+        notifyDataSetChanged();
 
 
 

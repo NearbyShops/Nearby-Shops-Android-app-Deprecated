@@ -217,7 +217,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
         if(shopItem !=null)
         {
             holder.itemsAvailable.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()));
-            holder.itemPrice.setText("Price : Rs " + String.format( "%.2f", shopItem.getItemPrice()));
+            holder.itemPrice.setText("Rs " + String.format( "%.2f", shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
 
         }
 

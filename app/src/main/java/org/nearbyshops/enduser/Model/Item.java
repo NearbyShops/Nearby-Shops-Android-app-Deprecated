@@ -6,7 +6,13 @@ import android.os.Parcelable;
 
 import org.nearbyshops.enduser.ModelStats.ItemStats;
 
+import java.sql.Timestamp;
+
 public class Item implements Parcelable{
+
+
+	ItemCategory itemCategory;
+	ItemStats itemStats;
 
 	int itemID;
 	
@@ -15,13 +21,67 @@ public class Item implements Parcelable{
 	String itemImageURL;
 	
 	//technically it is the name of the manufacturer
-	String brandName;
 
 	int itemCategoryID;
 
-	ItemCategory itemCategory;
 
-	ItemStats itemStats;
+
+	// recently added
+	String quantityUnit;
+	Timestamp dateTimeCreated;
+	String itemDescriptionLong;
+
+
+
+
+
+
+
+
+
+	protected Item(Parcel in) {
+		itemCategory = in.readParcelable(ItemCategory.class.getClassLoader());
+		itemStats = in.readParcelable(ItemStats.class.getClassLoader());
+		itemID = in.readInt();
+		itemName = in.readString();
+		itemDescription = in.readString();
+		itemImageURL = in.readString();
+		itemCategoryID = in.readInt();
+		quantityUnit = in.readString();
+		itemDescriptionLong = in.readString();
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(itemCategory, flags);
+		dest.writeParcelable(itemStats, flags);
+		dest.writeInt(itemID);
+		dest.writeString(itemName);
+		dest.writeString(itemDescription);
+		dest.writeString(itemImageURL);
+		dest.writeInt(itemCategoryID);
+		dest.writeString(quantityUnit);
+		dest.writeString(itemDescriptionLong);
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	public static final Creator<Item> CREATOR = new Creator<Item>() {
+		@Override
+		public Item createFromParcel(Parcel in) {
+			return new Item(in);
+		}
+
+		@Override
+		public Item[] newArray(int size) {
+			return new Item[size];
+		}
+	};
+
+
 
 
 	/*
@@ -29,6 +89,31 @@ public class Item implements Parcelable{
 	// Getter and Setter Methods
 
 	 */
+
+
+	public String getQuantityUnit() {
+		return quantityUnit;
+	}
+
+	public void setQuantityUnit(String quantityUnit) {
+		this.quantityUnit = quantityUnit;
+	}
+
+	public Timestamp getDateTimeCreated() {
+		return dateTimeCreated;
+	}
+
+	public void setDateTimeCreated(Timestamp dateTimeCreated) {
+		this.dateTimeCreated = dateTimeCreated;
+	}
+
+	public String getItemDescriptionLong() {
+		return itemDescriptionLong;
+	}
+
+	public void setItemDescriptionLong(String itemDescriptionLong) {
+		this.itemDescriptionLong = itemDescriptionLong;
+	}
 
 	public ItemCategory getItemCategory() {
 		return itemCategory;
@@ -88,18 +173,6 @@ public class Item implements Parcelable{
 	}
 
 
-
-	public String getBrandName() {
-		return brandName;
-	}
-
-
-
-	public void setBrandName(String brandName) {
-		this.brandName = brandName;
-	}
-
-
 	public String getItemName() {
 		return itemName;
 	}
@@ -135,46 +208,5 @@ public class Item implements Parcelable{
 	*
 	*/
 
-
-
-	protected Item(Parcel in) {
-		itemID = in.readInt();
-		itemName = in.readString();
-		itemDescription = in.readString();
-		itemImageURL = in.readString();
-		brandName = in.readString();
-		itemCategoryID = in.readInt();
-		itemCategory = in.readParcelable(ItemCategory.class.getClassLoader());
-		itemStats = in.readParcelable(ItemStats.class.getClassLoader());
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeInt(itemID);
-		dest.writeString(itemName);
-		dest.writeString(itemDescription);
-		dest.writeString(itemImageURL);
-		dest.writeString(brandName);
-		dest.writeInt(itemCategoryID);
-		dest.writeParcelable(itemCategory, flags);
-		dest.writeParcelable(itemStats, flags);
-	}
-
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	public static final Creator<Item> CREATOR = new Creator<Item>() {
-		@Override
-		public Item createFromParcel(Parcel in) {
-			return new Item(in);
-		}
-
-		@Override
-		public Item[] newArray(int size) {
-			return new Item[size];
-		}
-	};
 
 }
