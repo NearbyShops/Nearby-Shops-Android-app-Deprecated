@@ -40,7 +40,7 @@
         </activity>
         <activity
             android:name=".Login"
-            android:label="Service Setup and Login"
+            android:label="Nearby Shops : Login"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

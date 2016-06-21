@@ -24,6 +24,7 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+
         <!--
         <TextView
             android:paddingTop="10dp"
@@ -37,6 +38,9 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+           Up and running with material design
+Android uses a new design metaphor inspired by paper and ink that provides a reassuring sense of tactility. Visit the material design site for more resources.
+
 
             -->
 
@@ -97,6 +101,7 @@
         android:layout_height="match_parent"
         android:layout_margin="2dp"/>
 
+    <!--
     <com.wunderlist.slidinglayer.SlidingLayer
         android:elevation="5dp"
         android:id="@+id/slidingLayer"
@@ -118,5 +123,7 @@
         </LinearLayout>
 
     </com.wunderlist.slidinglayer.SlidingLayer>
+
+    -->
 
 </android.support.design.widget.CoordinatorLayout>

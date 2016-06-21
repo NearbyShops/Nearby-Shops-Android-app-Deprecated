@@ -105,7 +105,7 @@ public class UtilityGeneral {
         context = MyApplication.getAppContext();
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), context.MODE_PRIVATE);
-        String service_url = sharedPref.getString(context.getString(R.string.preference_service_url_key), "default");
+        String service_url = sharedPref.getString(context.getString(R.string.preference_service_url_key), "");
 
         //service_url = "http://localareademo-env.ap-southeast-1.elasticbeanstalk.com";
 
@@ -127,6 +127,12 @@ public class UtilityGeneral {
     }
 
 
+    public static String getConfigImageEndpointURL(Context context)
+    {
+        return UtilityGeneral.getServiceURL(context) + "/api/ServiceConfigImages";
+    }
+
+
     public DisplayMetrics getDisplayMetrics(Activity activity)
     {
 
@@ -135,6 +141,8 @@ public class UtilityGeneral {
 
         return metrics;
     }
+
+
 
 
     /*

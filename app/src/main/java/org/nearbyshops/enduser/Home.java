@@ -1,12 +1,14 @@
 package org.nearbyshops.enduser;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -31,6 +33,9 @@ import org.nearbyshops.enduser.ItemCategories.ItemCategories;
 import org.nearbyshops.enduser.Orders.OrderHome;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.aaSamples.NavigationDrawerSample;
+
+import java.util.Currency;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -121,6 +126,83 @@ public class Home extends AppCompatActivity
         // sliding layer setup
 
 
+
+
+        // navigation drawer setup
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        setupNavigationDrawer();
+
+
+        // currencySample
+
+    } // onCreate() Ends
+
+
+
+
+    /*
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    void currencyCodes()
+    {
+
+        String[] countries = Locale.getISOLanguages();
+
+
+        Locale locale =  new Locale("en","IN");
+
+        Locale.Builder builder = new Locale.Builder();
+
+        //builder.addUnicodeLocaleAttribute("abcd");
+
+
+
+        Locale[] locales = Locale.getAvailableLocales();
+
+        Currency currency = Currency.getInstance(locale);
+
+
+        String currencySymbols = "";
+
+        for(Object curr: Currency.getAvailableCurrencies().toArray())
+        {
+            Currency cur = (Currency)curr;
+
+            currencySymbols = currencySymbols + cur.getSymbol() + "\n";
+        }
+
+
+        TextView currencyCode = (TextView) findViewById();
+
+
+        String countryString = "";
+
+        for(String country: countries)
+        {
+            countryString = countryString + country + " ";
+        }
+
+        currencyCode.setText(currency.getSymbol() + " " + currency.getCurrencyCode() + " " + currency.getDisplayName()
+                                        + "\n"  + locale.getDisplayCountry()
+                                        + "\n"  + locale.getCountry()
+                                        + "\n"  + locale.getISO3Country()
+                                        + "\n"  + getResources().getString(R.string.Rs)
+        );
+
+
+        currencyCode.setText(currencySymbols);
+
+
+    }
+
+    */
+
+
+
+    void setupSlidingLayer()
+    {
+
         slidingLayer = (SlidingLayer)findViewById(R.id.slidingLayer);
 
 
@@ -136,16 +218,7 @@ public class Home extends AppCompatActivity
         slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
 
 
-
-
-        // navigation drawer setup
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        setupNavigationDrawer();
-
-    } // onCreate() Ends
-
-
+    }
 
     void setupNavigationDrawer()
     {
@@ -240,6 +313,13 @@ public class Home extends AppCompatActivity
         rangeBarDeliveryRange.setRangePinsByValue(
                 UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
                 UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY));
+
+
+        if(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY)>
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY))
+        {
+            return;
+        }
 
         rangeBarProximity.setSeekPinByValue(
                 UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY));

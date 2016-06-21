@@ -102,4 +102,15 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.1.2'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:palette-v7:23.4.0'
+
+
+    // apache commons dependency for URL Validation
+    // https://mvnrepository.com/artifact/commons-validator/commons-validator
+    compile group: 'commons-validator', name: 'commons-validator', version: '1.4.0'
+
+
+    // goolge play services for location and other facilities.
+
+    compile 'com.google.android.gms:play-services:9.0.2'
+
 }

@@ -21,12 +21,8 @@ public interface DataComponent {
 
     void Inject(ItemCategoryDataRouter dataRouter);
 
-    void Inject(ItemCategories itemCategories);
-
     void Inject(ShopFragment shopFragment);
 
     void Inject(ItemFragment itemFragment);
-
-
 
 }

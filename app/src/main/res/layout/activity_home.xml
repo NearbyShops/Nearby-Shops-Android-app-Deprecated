@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    xmlns:slidingLayer="http://schemas.android.com/apk/res-auto"
-    tools:context="org.nearbyshops.enduser.Home">
+    xmlns:slidingLayer="http://schemas.android.com/apk/res-auto">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,13 +19,29 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+        <!--
+        <TextView
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:padding="15dp"
+            android:id="@+id/currencyCode"
+            android:textSize="25sp"
+            android:text="Currency Code : "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+            -->
+
+
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_home" />
 
 
 
+    <!--
+
     <com.wunderlist.slidinglayer.SlidingLayer
+
         android:id="@+id/slidingLayer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -49,4 +64,6 @@
     </com.wunderlist.slidinglayer.SlidingLayer>
 
 
+
+    -->
 </android.support.design.widget.CoordinatorLayout>

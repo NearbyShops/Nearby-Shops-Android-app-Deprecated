@@ -15,7 +15,9 @@ import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartService;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.RetrofitRESTContract.DeliveryAddressService;
+import org.nearbyshops.enduser.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
+import org.nearbyshops.enduser.RetrofitRESTContract.ServiceConfigurationService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
@@ -68,6 +70,8 @@ public class NetModule {
 
     */
 
+
+
     @Provides
     @Singleton
     Gson provideGson() {
@@ -110,64 +114,91 @@ public class NetModule {
     }
 
 
+
+
     @Provides
-    @Singleton
     ShopItemService provideShopItemService(Retrofit retrofit)
     {
 
         ShopItemService shopItemService = retrofit.create(ShopItemService.class);
+
+        Log.d("applog","ShopItemService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
 
         return shopItemService;
     }
 
 
     @Provides
-    @Singleton
     CartService provideCartService(Retrofit retrofit)
     {
         CartService cartService = retrofit.create(CartService.class);
+
+        Log.d("applog","CartService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
 
         return cartService;
     }
 
 
     @Provides
-    @Singleton
     CartItemService provideCartItemService(Retrofit retrofit)
     {
         CartItemService cartItemService = retrofit.create(CartItemService.class);
+
+        Log.d("applog","CartItemService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
 
         return  cartItemService;
     }
 
 
     @Provides
-    @Singleton
     CartStatsService provideCartStatsService(Retrofit retrofit)
     {
         CartStatsService service = retrofit.create(CartStatsService.class);
+
+        Log.d("applog","CartStatsService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
 
         return service;
     }
 
     @Provides
-    @Singleton
     DeliveryAddressService provideDeliveryAddressService(Retrofit retrofit)
     {
 
         DeliveryAddressService service = retrofit.create(DeliveryAddressService.class);
 
+        Log.d("applog","DeliveryAddressService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+
         return service;
     }
 
 
     @Provides
-    @Singleton
     OrderService provideOrderService(Retrofit retrofit)
     {
         OrderService service = retrofit.create(OrderService.class);
 
+        Log.d("applog","OrderService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+
         return service;
+    }
+
+
+    @Provides
+    ItemCategoryService itemCategoryService(Retrofit retrofit)
+    {
+        ItemCategoryService service = retrofit.create(ItemCategoryService.class);
+
+        Log.d("applog","ItemCategoryService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+
+        return service;
+    }
+
+
+    @Provides
+    ServiceConfigurationService configurationService(Retrofit retrofit)
+    {
+        ServiceConfigurationService configurationService = retrofit.create(ServiceConfigurationService.class);
+        return configurationService;
     }
 
 }

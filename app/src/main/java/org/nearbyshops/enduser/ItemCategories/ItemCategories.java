@@ -18,6 +18,7 @@ import org.nearbyshops.enduser.DataRouters.ItemCategoryDataRouter;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.R;
+import org.nearbyshops.enduser.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduser.StandardInterfacesGeneric.DataSubscriber;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
@@ -28,8 +29,11 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class ItemCategories extends AppCompatActivity implements  ItemCategoriesAdapter.requestSubCategory,DataSubscriber<ItemCategory>{
+public class ItemCategories extends AppCompatActivity implements  ItemCategoriesAdapter.requestSubCategory, Callback<List<ItemCategory>> {
 
     int currentCategoryID = 1; // the ID of root category is always supposed to be 1
     ItemCategory currentCategory = null;
@@ -45,8 +49,11 @@ public class ItemCategories extends AppCompatActivity implements  ItemCategories
 
     @Bind(R.id.tablayout) TabLayout tabLayout;
 
+//    @Inject
+//    ItemCategoryDataRouter dataRouter;
+
     @Inject
-    ItemCategoryDataRouter dataRouter;
+    ItemCategoryService itemCategoryService;
 
     boolean isRootCategory = true;
     ArrayList<String> categoryTree = new ArrayList<>();
@@ -57,7 +64,7 @@ public class ItemCategories extends AppCompatActivity implements  ItemCategories
 
 
         DaggerComponentBuilder.getInstance()
-                .getDataComponent()
+                .getNetComponent()
                 .Inject(this);
 
         currentCategory = new ItemCategory();
@@ -100,13 +107,20 @@ public class ItemCategories extends AppCompatActivity implements  ItemCategories
         layoutManager.setSpanCount(metrics.widthPixels/350);
 
 
-        if (metrics.widthPixels >= 600 && (
-                getResources().getConfiguration().orientation
-                        == Configuration.ORIENTATION_PORTRAIT
-        )){
 
-        }
+    }
 
+
+    void setupSlidingLayer()
+    {
+
+
+//        if (metrics.widthPixels >= 600 && (
+//                getResources().getConfiguration().orientation
+//                        == Configuration.ORIENTATION_PORTRAIT
+//        )){
+//
+//        }
 
         // setup Sliding Layer
 
@@ -122,8 +136,6 @@ public class ItemCategories extends AppCompatActivity implements  ItemCategories
         slidingLayer.setPreviewOffsetDistance(50);
         slidingLayer.setOffsetDistance(20);
         slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
-
-
     }
 
 
@@ -154,6 +166,8 @@ public class ItemCategories extends AppCompatActivity implements  ItemCategories
 
     void makeNetworkRequest()
     {
+
+        /*
         dataRouter.getDataProvider().readMany(
                 currentCategoryID,
                 0,
@@ -163,6 +177,18 @@ public class ItemCategories extends AppCompatActivity implements  ItemCategories
                 UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
                 UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
                 this);
+
+*/
+
+        Call<List<ItemCategory>> call = itemCategoryService.getItemCategories(currentCategoryID,0,
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY));
+
+
+        call.enqueue(this);
     }
 
 
@@ -265,62 +291,49 @@ public class ItemCategories extends AppCompatActivity implements  ItemCategories
     }
 
 
-    @Override
-    public void createCallback(boolean isOffline, boolean isSuccessful, int httpStatusCode, ItemCategory itemCategory) {
-
-    }
-
-    @Override
-    public void readCallback(boolean isOffline, boolean isSuccessful, int httpStatusCode, ItemCategory itemCategory) {
-
-    }
-
-    @Override
-    public void readManyCallback(boolean isOffline, boolean isSuccessful, int httpStatusCode, List<ItemCategory> list) {
-
-
-        if (!isOffline) {
-
-            if (isSuccessful) {
-                dataset.clear();
-
-                if (list != null) {
-
-                    dataset.addAll(list);
-                }
-
-                listAdapter.notifyDataSetChanged();
-
-            } else {// request failed
-
-                showToastMessage("Network Request Failed !!");
-
-            }
-
-        }
-        else {
-
-            if(!isSuccessful)
-            {
-                showToastMessage("Application is Offline ! No Network !");
-            }
-        }
-
-    }
-
-    @Override
-    public void updateCallback(boolean isOffline, boolean isSuccessful, int httpStatusCode) {
-
-    }
-
-    @Override
-    public void deleteShopCallback(boolean isOffline, boolean isSuccessful, int httpStatusCode) {
-
-    }
 
 
     void showToastMessage(String message)
     {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+
+
+
+
+    @Override
+    public void onResponse(Call<List<ItemCategory>> call, Response<List<ItemCategory>> response) {
+
+
+
+
+        if(response.code() == 200)
+        {
+            dataset.clear();
+
+            if (response.body() != null) {
+
+                dataset.addAll(response.body());
+            }
+
+            listAdapter.notifyDataSetChanged();
+
+        }else if(response.code() == 204)
+        {
+            showToastMessage("No Content !");
+
+        }else
+        {
+            showToastMessage("Server Error !");
+        }
+
+
+    }
+
+    @Override
+    public void onFailure(Call<List<ItemCategory>> call, Throwable t) {
+
+
+        showToastMessage("Network Request failed !");
     }
 }

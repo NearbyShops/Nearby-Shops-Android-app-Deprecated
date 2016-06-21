@@ -9,93 +9,146 @@
     tools:context=".Login">
 
     <android.support.design.widget.AppBarLayout
+        android:theme="@style/AppTheme.AppBarOverlay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:fitsSystemWindows="true"
+        android:minHeight="200dp"
+        android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+
+
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:contentScrim="@color/colorPrimary"
+            android:fitsSystemWindows="true"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:background="@drawable/images"
+                android:id="@+id/login_backdrop"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.7"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:layout_collapseMode="pin"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <!--
+            app:popupTheme="@style/AppTheme.PopupOverlay" -->
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+        <!--
+
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        -->
 
 
         <!--
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
 
-        -->
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+          -->
+
 
 
 
         <android.support.design.widget.TextInputLayout
+            android:background="@color/grey800"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:id="@+id/inputLayoutServiceURL"
             android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-
                 android:id="@+id/serviceURLEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Service URL"/>
 
+            <TextView
+                android:id="@+id/urlValidText"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
         </android.support.design.widget.TextInputLayout>
 
 
+
         <LinearLayout
-            android:layout_marginBottom="10dp"
+            android:id="@+id/serviceURLBar"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/gplus_color_2"
+
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
 
-        <TextView
-            android:gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/colorPrimaryDark"
-            android:layout_gravity="left"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-
-            android:text="Discover\nServices"
-            android:textSize="@dimen/appbar_label_size"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
 
             <LinearLayout
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"/>
 
-        <TextView
-            android:layout_marginRight="20dp"
+            <TextView
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/blueGrey800"
+                android:layout_gravity="left"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
 
-            android:background="@color/colorPrimaryDark"
-            android:layout_gravity="right"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="Paste\nService URL"
-            android:textSize="@dimen/appbar_label_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+                android:text="Discover\nServices"
+                android:textSize="@dimen/appbar_label_size"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
 
 
-
+            <TextView
+                android:layout_marginRight="10dp"
+                android:background="@color/blueGrey800"
+                android:layout_gravity="right"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="Paste\nService URL"
+                android:textSize="@dimen/appbar_label_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
+
     </android.support.design.widget.AppBarLayout>
+
+
 
     <include layout="@layout/content_login" />
 

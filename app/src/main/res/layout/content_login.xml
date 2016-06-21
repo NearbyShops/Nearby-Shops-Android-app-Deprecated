@@ -3,163 +3,207 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Login"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_login"
+
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
     <!--
+    tools:showIn="@layout/activity_login"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     -->
 
-
-<LinearLayout
-    android:minWidth="400dp"
-    android:layout_marginRight="30dp"
-    android:layout_gravity="right|center_vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
 
-            android:inputType="number"
-            android:id="@+id/distributorIDEdittext"
-            android:layout_width="match_parent"
+
+        <LinearLayout
+            android:id="@+id/login_block"
+            android:layout_alignParentRight="true"
+            android:minWidth="400dp"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:hint="Enter Distributor ID"/>
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
 
-    </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <EditText
+                        android:id="@+id/distributorIDEdittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Username"/>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-
-            android:inputType="number"
-            android:id="@+id/distributorPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Password"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <LinearLayout
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:weightSum="2"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/loginButton"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="right"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:textColor="@color/white"
-            android:background="@color/blueGrey800"/>
-
-        <Button
-            android:id="@+id/signUpButton"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="right"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:background="@color/cyan900"
-            android:textColor="@color/white"/>
-    </LinearLayout>
+                </android.support.design.widget.TextInputLayout>
 
 
-    <TextView
-        android:layout_marginTop="10dp"
-        android:textColor="@color/white"
-        android:padding="5dp"
-        android:text="Service Configuration"
-        android:background="@android:color/darker_gray"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/distributorPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Password"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/loginButton"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="right"
+                        android:layout_height="wrap_content"
+                        android:text="Login"
+                        android:textColor="@color/white"
+                        android:background="@color/blueGrey800"/>
+
+                    <Button
+                        android:id="@+id/signUpButton"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="right"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Sign Up"
+                        android:background="@color/cyan900"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
 
 
-    <TextView
-        android:layout_marginTop="10dp"
-        app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-        android:textColor="@color/white"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/colorPrimaryDark"
-        android:layout_gravity="left"
-        android:gravity="left"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:text="Change \nService Discovery Provider"
-        android:textSize="@dimen/appbar_label_size"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:padding="5dp"
+                    android:text="Service Configuration"
+                    android:background="@android:color/darker_gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-    <LinearLayout
 
-        app:layout_scrollFlags="scroll|enterAlways"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_gravity="left"
+                    android:gravity="left"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Change \nService Discovery Provider"
+                    android:textSize="@dimen/appbar_label_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:textColor="@color/white"
+
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_gravity="left"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="Create Service"
+                        android:textSize="@dimen/appbar_label_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/white"
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_gravity="left"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="Submit Service"
+                        android:textSize="@dimen/appbar_label_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+
+
+        </LinearLayout>
 
         <TextView
-            android:textColor="@color/white"
-
-            android:background="@color/colorPrimaryDark"
-            android:layout_gravity="left"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="Create Service"
-            android:textSize="@dimen/appbar_label_size"
-            android:layout_width="wrap_content"
+            android:id="@+id/notice"
+            android:layout_below="@id/login_block"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#22000000"
+            android:padding="10dp"
+            android:text="Kindly note that each service is managed autonomously and independenly.
+                    \n\nYou will need to register seperately for each Service and each service will have different login credentials.
+                    \n\nWe aplogize for the pain of regestering seperately for each service.
+                    \n\nBut in the near future you might expect to have Single sign-in which will enable you to login to all the services with one single ID."
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:gravity="center"
-            android:layout_weight="1"
+            android:layout_below="@id/notice"
+            android:padding="10dp"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/white"
-            android:background="@color/colorPrimaryDark"
-            android:layout_gravity="left"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="Submit Service"
-            android:textSize="@dimen/appbar_label_size"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#22000000"
+            android:text="You are connected to Nearby Shops Hyderabad.
+                    \nPlease Enter your login credentials for this service."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_above="@id/notice"
+            android:layout_toLeftOf="@id/login_block"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-    </LinearLayout>
 
 
-
-</LinearLayout>
+    </RelativeLayout>
 
 </android.support.v4.widget.NestedScrollView>

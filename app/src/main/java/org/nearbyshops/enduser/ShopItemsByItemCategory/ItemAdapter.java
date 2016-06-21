@@ -53,7 +53,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ItemAdapter.ViewHolder holder, int position) {
 
+        if(position >= dataset.size())
+        {
+            return;
+        }
+
+
         holder.itemName.setText(dataset.get(position).getItemName());
+
+        holder.itemDescription.setText(dataset.get(position).getItemDescription());
 
         if(dataset.get(position).getItemStats()!=null)
         {
@@ -70,7 +78,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             holder.priceRange.setText( "Rs: "
                     + String.valueOf(itemStats.getMin_price())
                     + " - "
-                    + String.valueOf(itemStats.getMax_price()));
+                    + String.valueOf(itemStats.getMax_price())
+                    + "\nper " + dataset.get(position).getQuantityUnit()
+            );
 
 
             Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
@@ -99,16 +109,20 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        TextView itemDescription;
         TextView itemName;
         ImageView itemImage;
         TextView priceRange;
         TextView shopCount;
+
         RelativeLayout itemsListItem;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             itemView.setOnClickListener(this);
+
+            itemDescription = (TextView) itemView.findViewById(R.id.itemDescription);
             itemName = (TextView) itemView.findViewById(R.id.itemName);
             itemImage = (ImageView) itemView.findViewById(R.id.itemImage);
             priceRange = (TextView) itemView.findViewById(R.id.price_range);
