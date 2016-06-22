@@ -2,4 +2,5 @@
 <resources>
     <dimen name="slidinglayerwidth">100dp</dimen>
     <dimen name="menu_item_width">200dp</dimen>
+    <dimen name="home_menu_options_row_height">200dp</dimen>
 </resources>

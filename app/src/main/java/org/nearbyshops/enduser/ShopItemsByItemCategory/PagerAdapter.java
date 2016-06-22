@@ -53,7 +53,14 @@ public class PagerAdapter extends FragmentPagerAdapter{
     @Override
     public CharSequence getPageTitle(int position) {
 
-        String categoryName = itemCategory.getCategoryName();
+
+        String categoryName = "";
+
+        if(itemCategory!=null)
+        {
+            categoryName = itemCategory.getCategoryName();
+        }
+
 
         switch (position) {
 

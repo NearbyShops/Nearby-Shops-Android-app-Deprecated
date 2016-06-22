@@ -1,18 +1,19 @@
 package org.nearbyshops.enduser;
 
+
 import android.Manifest;
-import android.annotation.TargetApi;
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.os.ResultReceiver;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,22 +21,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appyvet.rangebar.IRangeBarFormatter;
 import com.appyvet.rangebar.RangeBar;
-import com.wunderlist.slidinglayer.SlidingLayer;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStates;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 
 import org.nearbyshops.enduser.Carts.CartsListActivity;
+import org.nearbyshops.enduser.Geocoding.Constants;
+import org.nearbyshops.enduser.Geocoding.FetchAddressIntentService;
 import org.nearbyshops.enduser.ItemCategories.ItemCategories;
 import org.nearbyshops.enduser.Orders.OrderHome;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
-import org.nearbyshops.enduser.aaSamples.NavigationDrawerSample;
-
-import java.util.Currency;
-import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,40 +55,50 @@ import butterknife.OnClick;
 
 
 public class Home extends AppCompatActivity
-        implements View.OnClickListener, RangeBar.OnRangeBarChangeListener, LocationListener, NavigationView.OnNavigationItemSelectedListener {
+        implements RangeBar.OnRangeBarChangeListener, NavigationView.OnNavigationItemSelectedListener,  GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     // views for navigation drawer
-
 
     Toolbar toolbar;
     DrawerLayout drawer;
     NavigationView navigationView;
 
-
+    @Bind(R.id.shop_filters)
+    LinearLayout shopFilters;
 
     // Views
-    @Bind(R.id.itemCategories)
-    TextView itemCategories;
+    @Bind(R.id.option_item_categories)
+    RelativeLayout itemCategories;
+
     @Bind(R.id.rangebarDeliveryRange)
     RangeBar rangeBarDeliveryRange;
+
     @Bind(R.id.rangebarProximity)
     RangeBar rangeBarProximity;
+
     @Bind(R.id.textMax)
     TextView textMax;
     @Bind(R.id.textMin)
     TextView textMin;
-    @Bind(R.id.shopsNearby)
-    TextView shopsNearby;
 
-    @Bind(R.id.itemsNearby)
-    TextView itemsNearby;
 
-    @Bind(R.id.setLocation)
-    TextView setLocation;
 
-    //Unbinder unbinder;
+    // location variables
+    //private FusedLocationProviderApi fusedLocationProviderApi = LocationServices.FusedLocationApi;
 
-    SlidingLayer slidingLayer;
+    GoogleApiClient mGoogleApiClient;
+    Location mLastLocation;
+    LocationRequest mLocationRequest;
+
+    @Bind(R.id.text_lat_lon)
+    TextView text_lat_longitude;
+
+    // location variables ends
+
+    int delivery_range_current_min = ServiceConstants.DELIVERY_RANGE_CITY_MIN;
+    int delivery_range_current_max = ServiceConstants.DELIVERY_RANGE_CITY_MAX;
+
 
     IRangeBarFormatter rangeBarFormatter = new IRangeBarFormatter() {
 
@@ -90,6 +112,7 @@ public class Home extends AppCompatActivity
 
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -99,15 +122,23 @@ public class Home extends AppCompatActivity
 
         ButterKnife.bind(this);
 
+        // Location Code
+
+        // Create an instance of GoogleAPIClient.
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
+
+        // Location code ends
+
+
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        //itemCategories = (TextView) findViewById(R.id.itemCategories);
-
-        //if(itemCategories!=null)
-        //{
-        //  itemCategories.setOnClickListener(this);
-        //}
 
 
         // setup Range Bars
@@ -120,180 +151,82 @@ public class Home extends AppCompatActivity
         updateRangeBars();
 
 
-        requestLocation();
-
-
-        // sliding layer setup
-
-
-
-
         // navigation drawer setup
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         setupNavigationDrawer();
 
 
-        // currencySample
-
     } // onCreate() Ends
 
 
 
 
-    /*
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    void currencyCodes()
-    {
-
-        String[] countries = Locale.getISOLanguages();
-
-
-        Locale locale =  new Locale("en","IN");
-
-        Locale.Builder builder = new Locale.Builder();
-
-        //builder.addUnicodeLocaleAttribute("abcd");
 
 
 
-        Locale[] locales = Locale.getAvailableLocales();
 
-        Currency currency = Currency.getInstance(locale);
-
-
-        String currencySymbols = "";
-
-        for(Object curr: Currency.getAvailableCurrencies().toArray())
-        {
-            Currency cur = (Currency)curr;
-
-            currencySymbols = currencySymbols + cur.getSymbol() + "\n";
-        }
-
-
-        TextView currencyCode = (TextView) findViewById();
-
-
-        String countryString = "";
-
-        for(String country: countries)
-        {
-            countryString = countryString + country + " ";
-        }
-
-        currencyCode.setText(currency.getSymbol() + " " + currency.getCurrencyCode() + " " + currency.getDisplayName()
-                                        + "\n"  + locale.getDisplayCountry()
-                                        + "\n"  + locale.getCountry()
-                                        + "\n"  + locale.getISO3Country()
-                                        + "\n"  + getResources().getString(R.string.Rs)
-        );
-
-
-        currencyCode.setText(currencySymbols);
-
-
-    }
-
-    */
-
-
-
-    void setupSlidingLayer()
-    {
-
-        slidingLayer = (SlidingLayer)findViewById(R.id.slidingLayer);
-
-
-        ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
-        //slidingLayer.setShadowSizeRes(R.dimen.shadow_size);
-        //slidingLayer.setOffsetDistanceRes(R.dimen.offset_distance);
-        //slidingLayer.setPreviewOffsetDistanceRes(R.dimen.preview_offset_distance);
-        //slidingLayer.setStickTo(SlidingLayer.STICK_TO_LEFT);
-        slidingLayer.setChangeStateOnTap(true);
-        slidingLayer.setSlidingEnabled(true);
-        slidingLayer.setPreviewOffsetDistance(50);
-        slidingLayer.setOffsetDistance(20);
-        slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
-
-
-    }
 
     void setupNavigationDrawer()
     {
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
-
     }
 
 
 
+    @OnClick(R.id.option_item_categories)
+    public void itemCategoriesClick() {
+
+        Intent intent = new Intent(this, ItemCategories.class);
+        startActivity(intent);
+    }
 
 
-    @OnClick(R.id.setLocation)
-    void setLocationClick(View view)
+    boolean visible = false;
+
+    @OnClick(R.id.show_hide_filters)
+    public void showHideFilters(View view )
     {
-        if(slidingLayer.isClosed())
+
+        if(visible)
         {
-            slidingLayer.openLayer(true);
+            shopFilters.setVisibility(View.GONE);
+            visible = false;
+
         }else
         {
-            slidingLayer.closeLayer(true);
+            shopFilters.setVisibility(View.VISIBLE);
+
+            visible = true;
         }
 
     }
 
-    @OnClick(R.id.shopsNearby)
-    public void shopsButtonClick() {
 
-    }
+    boolean location_block_visible = false;
 
-    @OnClick(R.id.itemsNearby)
-    public void itemsNearbyClick() {
-        //Intent intent = new Intent(this, SettingsActivity.class);
-
-        //startActivity(intent);
-        //savePreferences();
-
-        Intent intent = new Intent(this, NavigationDrawerSample.class);
-
-        startActivity(intent);
+    @Bind(R.id.location_settings_block)
+    RelativeLayout locationBlock;
 
 
-        //Intent intent = new Intent(this, Categories.class);
+    @OnClick(R.id.show_hide_location_settings)
+    public void showHideLocationBlock(View view)
+    {
+        if(location_block_visible)
+        {
+            locationBlock.setVisibility(View.GONE);
+            location_block_visible = false;
 
-        //startActivity(intent);
-    }
-
-    @OnClick(R.id.itemCategories)
-    public void itemCategoriesClick() {
-
-        savePreferences();
-
-        Intent intent = new Intent(this, ItemCategories.class);
-        startActivity(intent);
-
-    }
-
-
-    @Override
-    public void onClick(View v) {
-
-        //Intent intent = new Intent(this,GeolocationTest.class);
-
-        //startActivity(intent);
-
-        //Intent intent = new Intent(this, ItemCategories.class);
-
-        //startActivity(intent);
-
-
+        }else
+        {
+            locationBlock.setVisibility(View.VISIBLE);
+            location_block_visible = true;
+        }
     }
 
 
@@ -303,28 +236,31 @@ public class Home extends AppCompatActivity
     boolean isDeliveryRangeUpdated = false;
     boolean isProximityUpdated = false;
 
+
     void updateRangeBars()
     {
-        if(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY)>30)
+        if(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,30)>30)
         {
             return;
         }
 
         rangeBarDeliveryRange.setRangePinsByValue(
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY));
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,0),
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,30));
 
 
-        if(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY)>
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY))
+        if(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,30)>
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,30))
         {
             return;
         }
 
         rangeBarProximity.setSeekPinByValue(
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY));
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,30));
 
     }
+
+
 
     void savePreferences()
     {
@@ -341,9 +277,16 @@ public class Home extends AppCompatActivity
 
         if(isProximityUpdated)
         {
+            if(proximity>30)
+            {
+                proximity = 30;
+            }
+
+
             UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,proximity);
         }
     }
+
 
     @Override
     public void onRangeChangeListener(
@@ -404,155 +347,9 @@ public class Home extends AppCompatActivity
 
 
 
-    /*
-        The following code is for getting the current location
-     */
-
-    final int MY_PERMISSIONS_REQUEST_READ_LOCATION = 1;
-
-    LocationManager mlocationManager;
-
-    public void requestLocation() {
 
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission
-                (this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
 
-
-            /// / TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-
-
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_READ_LOCATION);
-
-            return;
-        }
-
-        mlocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        mlocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 5, this);
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_LOCATION:
-
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-
-                    LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                            != PackageManager.PERMISSION_GRANTED
-                            && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                            != PackageManager.PERMISSION_GRANTED) {
-
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
-                        return;
-                    }
-
-                    mlocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                    mlocationManager.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER, 2000, 5, this);
-
-                }
-                break;
-        }
-    }
-
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-        if(location!=null)
-        {
-
-            UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,(float)location.getLatitude());
-            UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,(float)location.getLongitude());
-
-
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission
-                    (this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED) {
-
-
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-
-                return;
-            }
-
-            mlocationManager.removeUpdates(this);
-        }
-
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-
-        if (mlocationManager != null) {
-            if (ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION) !=
-                    PackageManager.PERMISSION_GRANTED &&
-                    ActivityCompat.checkSelfPermission(
-                            this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
-
-            mlocationManager.removeUpdates(this);
-        }
-    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -607,6 +404,329 @@ public class Home extends AppCompatActivity
     {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
+
+
+
+
+
+
+    // location code begins
+
+    // location code
+
+
+    @Override
+    protected void onStart() {
+
+        if (mGoogleApiClient != null) {
+            mGoogleApiClient.connect();
+        }
+
+        super.onStart();
+    }
+
+
+    @Override
+    protected void onStop() {
+
+        if (mGoogleApiClient != null) {
+
+            mGoogleApiClient.disconnect();
+        }
+
+
+        super.onStop();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mGoogleApiClient.isConnected()) {
+
+            //startLocationUpdates();
+        }
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        savePreferences();
+        stopLocationUpdates();
+    }
+
+
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+
+            return;
+        }
+
+
+        if (mGoogleApiClient == null) {
+
+            return;
+        }
+
+
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+
+        if (mLastLocation != null) {
+
+            saveLocation(mLastLocation);
+
+
+        }else
+        {
+
+            // if getlastlocation does not work then request the device to get the current location.
+            createLocationRequest();
+
+
+            if(mLocationRequest!=null)
+            {
+                startLocationUpdates();
+            }
+
+        }
+    }
+
+
+
+
+    private static final int REQUEST_CHECK_SETTINGS = 3;
+
+
+    protected void createLocationRequest() {
+
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(10000);
+        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(mLocationRequest);
+
+        PendingResult<LocationSettingsResult> result =
+                LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build());
+
+
+        result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
+            @Override
+            public void onResult(@NonNull LocationSettingsResult locationSettingsResult) {
+
+                final Status status = locationSettingsResult.getStatus();
+                final LocationSettingsStates states = locationSettingsResult.getLocationSettingsStates();
+
+                switch (status.getStatusCode()) {
+                    case LocationSettingsStatusCodes.SUCCESS:
+                        // All location settings are satisfied. The client can
+                        // initialize location requests here.
+                        break;
+                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                        // Location settings are not satisfied, but this can be fixed
+                        // by showing the user a dialog.
+                        try {
+                            // Show the dialog by calling startResolutionForResult(),
+                            // and check the result in onActivityResult().
+                            status.startResolutionForResult(
+                                    Home.this,
+                                    REQUEST_CHECK_SETTINGS);
+
+                        } catch (IntentSender.SendIntentException e) {
+                            // Ignore the error.
+                        }
+                        break;
+
+                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                        // Location settings are not satisfied. However, we have no way
+                        // to fix the settings so we won't show the dialog.
+                        // ...
+                        break;
+
+                }
+            }
+
+        });
+    }
+
+
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CHECK_SETTINGS) {
+
+            if (resultCode == RESULT_OK) {
+
+
+                showToastMessage("Permission granted !");
+
+                onConnected(null);
+
+            } else {
+
+
+                showToastMessage("Not granted !");
+            }
+
+
+        }
+
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+
+    protected void startLocationUpdates() {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
+        LocationServices.FusedLocationApi.requestLocationUpdates(
+                mGoogleApiClient, mLocationRequest, this);
+    }
+
+
+
+    protected void stopLocationUpdates() {
+
+        LocationServices.FusedLocationApi.removeLocationUpdates(
+                mGoogleApiClient, this);
+
+    }
+
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+        saveLocation(location);
+
+        stopLocationUpdates();
+    }
+
+
+    void saveLocation(Location location)
+    {
+
+        text_lat_longitude.setText("Latitude    : " + String.format("%.4f",location.getLatitude())
+                + "\nLongitude : " + String.format("%.4f",location.getLongitude()));
+
+        startIntentService(location);
+
+        UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,(float)location.getLatitude());
+        UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,(float)location.getLongitude());
+
+    }
+
+
+    @OnClick(R.id.text_update)
+    void updateLocationClick(View view)
+    {
+        // if getlastlocation does not work then request the device to get the current location.
+        createLocationRequest();
+
+
+        if(mLocationRequest!=null)
+        {
+            startLocationUpdates();
+        }
+
+    }
+
+
+    // location code Ends
+
+
+
+    // address resolution code
+
+    @Bind(R.id.text_address)
+    TextView text_address;
+
+
+    private AddressResultReceiver mResultReceiver = new AddressResultReceiver();
+
+    protected void startIntentService(Location location) {
+        Intent intent = new Intent(this, FetchAddressIntentService.class);
+        intent.putExtra(Constants.RECEIVER, mResultReceiver);
+        intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);
+        startService(intent);
+    }
+
+
+
+
+    @SuppressLint("ParcelCreator")
+    class AddressResultReceiver extends ResultReceiver {
+
+        public AddressResultReceiver() {
+
+            super(new Handler());
+        }
+
+
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+
+            // Display the address string
+            // or an error message sent from the intent service.
+
+            String mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
+
+            if(mAddressOutput!=null && text_address!=null)
+            {
+                text_address.setText(mAddressOutput);
+            }
+
+
+
+            // Show a toast message if an address was found.
+            if (resultCode == Constants.SUCCESS_RESULT) {
+                //showToastMessage(getString(R.string.address_found));
+            }
+
+        }
+    }
+
+    // address resolution code ends
+
+
 
 
 

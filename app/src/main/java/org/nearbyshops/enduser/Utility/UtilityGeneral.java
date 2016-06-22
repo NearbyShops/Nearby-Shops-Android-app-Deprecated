@@ -39,6 +39,20 @@ public class UtilityGeneral {
     }
 
 
+    public static float getFromSharedPrefFloat(String key,float defaultValue)
+    {
+        Context context = MyApplication.getAppContext();
+        // Get a handle to shared preference
+        SharedPreferences sharedPref;
+        sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), context.MODE_PRIVATE);
+
+        // read from shared preference
+        float value = sharedPref.getFloat(key, defaultValue);
+
+        return value;
+    }
+
+
     public static float getFromSharedPrefFloat(String key)
     {
         Context context = MyApplication.getAppContext();
@@ -47,11 +61,10 @@ public class UtilityGeneral {
         sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), context.MODE_PRIVATE);
 
         // read from shared preference
-        float value = sharedPref.getFloat(key, 0.0f);
+        float value = sharedPref.getFloat(key,0.0f);
 
         return value;
     }
-
 
 
     public static void saveEndUserID(int endUserID)

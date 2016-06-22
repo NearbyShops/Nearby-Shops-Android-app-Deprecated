@@ -30,13 +30,11 @@
             <ImageView
                 android:background="@drawable/images"
                 android:id="@+id/login_backdrop"
-                android:fitsSystemWindows="true"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7"
                 android:scaleType="centerCrop"
-                android:adjustViewBounds="true"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="300dp" />
 
 
 

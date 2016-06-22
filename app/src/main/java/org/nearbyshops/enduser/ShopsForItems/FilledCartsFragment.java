@@ -171,11 +171,11 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
             Call<List<ShopItem>> call = shopItemService.getShopItems(
                     0,item.getItemID(),
-                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
-                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
-                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
-                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
+                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,0),
+                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,0),
+                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,0),
+                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,0),
+                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,0),
                     UtilityGeneral.getEndUserID(MyApplication.getAppContext()),
                     true);
 

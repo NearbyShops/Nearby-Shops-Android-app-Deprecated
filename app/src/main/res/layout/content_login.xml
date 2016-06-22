@@ -180,6 +180,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/service_info"
             android:layout_below="@id/notice"
             android:padding="10dp"
             android:layout_marginLeft="10dp"
@@ -192,6 +193,7 @@
             android:layout_height="wrap_content" />
 
         <ImageView
+
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_above="@id/notice"
@@ -201,6 +203,16 @@
             android:adjustViewBounds="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/locationData"
+            android:text="Location Data: "
+            android:layout_below="@id/service_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
 
 
 
