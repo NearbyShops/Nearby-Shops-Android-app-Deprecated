@@ -19,6 +19,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -472,6 +473,12 @@ public class Home extends AppCompatActivity
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
 
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},
+                    1);
+
+
             return;
         }
 
@@ -601,6 +608,8 @@ public class Home extends AppCompatActivity
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+        Log.d("applog","Google api client connection failed !");
+
     }
 
 
@@ -614,21 +623,41 @@ public class Home extends AppCompatActivity
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+
+
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},
+                    2);
+
             return;
         }
 
-        LocationServices.FusedLocationApi.requestLocationUpdates(
-                mGoogleApiClient, mLocationRequest, this);
+
+        if(mGoogleApiClient.isConnected())
+        {
+            LocationServices.FusedLocationApi.requestLocationUpdates(
+                    mGoogleApiClient, mLocationRequest, this);
+        }
+
     }
 
 
 
     protected void stopLocationUpdates() {
 
-        LocationServices.FusedLocationApi.removeLocationUpdates(
-                mGoogleApiClient, this);
+
+        if(mGoogleApiClient.isConnected())
+        {
+            LocationServices.FusedLocationApi.removeLocationUpdates(
+                    mGoogleApiClient, this);
+        }
 
     }
+
+
+
+
 
 
     @Override
@@ -729,8 +758,53 @@ public class Home extends AppCompatActivity
 
 
 
+    // handle results for permission request
 
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode)
+        {
+            case 1:
+
+                if(grantResults.length>0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+
+                    onConnected(null);
+
+                }
+                else
+                {
+                    showToastMessage("Permission denied cant access location !");
+                }
+
+
+                break;
+
+
+            case 2:
+
+                if(grantResults.length>0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+
+                    startLocationUpdates();
+
+                }
+                else
+                {
+                    showToastMessage("Permission denied cant access location !");
+                }
+
+
+            default:
+
+                break;
+        }
+    }
 }
 
 

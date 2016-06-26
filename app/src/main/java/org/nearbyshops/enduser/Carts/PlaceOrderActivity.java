@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.Home;
 import org.nearbyshops.enduser.Model.Order;
 import org.nearbyshops.enduser.ModelStats.CartStats;
 import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
@@ -336,6 +337,14 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                     if(response.code() == 201)
                     {
                         showToastMessage("Successful !");
+
+
+                        Intent i = new Intent(PlaceOrderActivity.this,Home.class);
+
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                        startActivity(i);
+
                     }else
                     {
 

@@ -327,7 +327,6 @@ public class ItemCategories extends AppCompatActivity implements  ItemCategories
             showToastMessage("Server Error !");
         }
 
-
     }
 
     @Override

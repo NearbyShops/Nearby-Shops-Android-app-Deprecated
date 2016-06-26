@@ -661,8 +661,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Ta
 
     protected void stopLocationUpdates() {
 
-        LocationServices.FusedLocationApi.removeLocationUpdates(
-                mGoogleApiClient, this);
+
+        if(mGoogleApiClient.isConnected())
+        {
+            LocationServices.FusedLocationApi.removeLocationUpdates(
+                    mGoogleApiClient, this);
+        }
 
     }
 
@@ -726,7 +730,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Ta
 
             String mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
 
-            locationdata.setText(mAddressOutput);
+//            locationdata.setText(mAddressOutput);
 
 
             // Show a toast message if an address was found.
@@ -741,9 +745,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Ta
 
 
 
-
-    @Bind(R.id.locationData)
-    TextView locationdata;
+    /*
 
     void displayResult(Location location,String message)
     {
@@ -756,6 +758,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Ta
 
     }
 
+    */
 
     // address resolution code ends
 
