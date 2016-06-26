@@ -22,14 +22,15 @@ public interface ItemService
 
     @GET("/api/Item")
     Call<List<Item>> getItems(
-            @Query("ItemCategoryID") int itemCategoryID,
-            @Query("ShopID") int shopID,
-            @Query("latCenter") double latCenter,
-            @Query("lonCenter") double lonCenter,
-            @Query("deliveryRangeMax")double deliveryRangeMax,
-            @Query("deliveryRangeMin")double deliveryRangeMin,
-            @Query("proximity")double proximity
-    );
+            @Query("ItemCategoryID") Integer itemCategoryID,
+            @Query("ShopID") Integer shopID,
+            @Query("latCenter") Double latCenter,
+            @Query("lonCenter") Double lonCenter,
+            @Query("deliveryRangeMax")Double deliveryRangeMax,
+            @Query("deliveryRangeMin")Double deliveryRangeMin,
+            @Query("proximity")Double proximity);
+
+//
 
     @GET("/api/Item/{id}")
     Call<Item> getItem(@Path("id") int ItemID);

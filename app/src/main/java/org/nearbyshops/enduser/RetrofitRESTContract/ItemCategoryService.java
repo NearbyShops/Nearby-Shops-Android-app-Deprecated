@@ -23,16 +23,16 @@ public interface ItemCategoryService {
 
     @GET("/api/ItemCategory")
     Call<List<ItemCategory>> getItemCategories(
-            @Query("ParentID") int parentID,
-            @Query("ShopID") int shopID,
-            @Query("latCenter")double latCenter,@Query("lonCenter")double lonCenter,
-            @Query("deliveryRangeMax")double deliveryRangeMax,
-            @Query("deliveryRangeMin")double deliveryRangeMin,
-            @Query("proximity")double proximity
+            @Query("ParentID") Integer parentID,
+            @Query("ShopID") Integer shopID,
+            @Query("latCenter")Double latCenter,@Query("lonCenter")Double lonCenter,
+            @Query("deliveryRangeMax")Double deliveryRangeMax,
+            @Query("deliveryRangeMin")Double deliveryRangeMin,
+            @Query("proximity")Double proximity
     );
 
     @GET("/api/ItemCategory/{id}")
-    Call<ItemCategory> getItemCategory(@Path("id") int ItemCategoryID);
+    Call<ItemCategory> getItemCategory(@Path("id") Integer ItemCategoryID);
 
     @POST("/api/ItemCategory")
     Call<ItemCategory> insertItemCategory(@Body ItemCategory itemCategory);

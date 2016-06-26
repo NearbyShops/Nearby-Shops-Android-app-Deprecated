@@ -16,6 +16,7 @@ import org.nearbyshops.enduser.RetrofitRESTContract.CartService;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.RetrofitRESTContract.DeliveryAddressService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemCategoryService;
+import org.nearbyshops.enduser.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ServiceConfigurationService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
@@ -29,6 +30,7 @@ import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.PUT;
 
 /**
  * Created by sumeet on 14/5/16.
@@ -200,5 +202,15 @@ public class NetModule {
         ServiceConfigurationService configurationService = retrofit.create(ServiceConfigurationService.class);
         return configurationService;
     }
+
+
+    @Provides
+    ItemService itemService(Retrofit retrofit)
+    {
+
+        ItemService itemService = retrofit.create(ItemService.class);
+        return itemService;
+    }
+
 
 }

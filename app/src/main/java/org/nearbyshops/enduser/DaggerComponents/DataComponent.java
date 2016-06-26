@@ -23,6 +23,4 @@ public interface DataComponent {
 
     void Inject(ShopFragment shopFragment);
 
-    void Inject(ItemFragment itemFragment);
-
 }

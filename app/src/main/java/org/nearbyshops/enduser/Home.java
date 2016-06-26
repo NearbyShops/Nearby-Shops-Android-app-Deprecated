@@ -80,6 +80,7 @@ public class Home extends AppCompatActivity
 
     @Bind(R.id.textMax)
     TextView textMax;
+
     @Bind(R.id.textMin)
     TextView textMin;
 
@@ -409,8 +410,6 @@ public class Home extends AppCompatActivity
 
 
 
-
-
     // location code begins
 
     // location code
@@ -422,6 +421,8 @@ public class Home extends AppCompatActivity
         if (mGoogleApiClient != null) {
             mGoogleApiClient.connect();
         }
+
+//        showToastMessage("onStart");
 
         super.onStart();
     }
@@ -444,10 +445,6 @@ public class Home extends AppCompatActivity
     protected void onResume() {
         super.onResume();
 
-        if (mGoogleApiClient.isConnected()) {
-
-            //startLocationUpdates();
-        }
     }
 
 
@@ -591,14 +588,13 @@ public class Home extends AppCompatActivity
             } else {
 
 
-                showToastMessage("Not granted !");
+                showToastMessage("Permission not granted !");
             }
-
-
         }
-
-
     }
+
+
+
 
     @Override
     public void onConnectionSuspended(int i) {
@@ -656,10 +652,6 @@ public class Home extends AppCompatActivity
     }
 
 
-
-
-
-
     @Override
     public void onLocationChanged(Location location) {
 
@@ -667,6 +659,8 @@ public class Home extends AppCompatActivity
 
         stopLocationUpdates();
     }
+
+
 
 
     void saveLocation(Location location)

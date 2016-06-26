@@ -59,8 +59,8 @@ public class ItemProviderRetrofit implements DataProviderItem {
                 latCenter,
                 lonCenter,
                 deliveryRangeMax,
-                deliveryRangeMin,
-                proximity);
+                deliveryRangeMin,proximity
+        );
 
 
         listCall.enqueue(new Callback<List<Item>>() {

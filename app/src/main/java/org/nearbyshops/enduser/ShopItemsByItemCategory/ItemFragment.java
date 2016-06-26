@@ -17,8 +17,7 @@ import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.StandardInterfaces.DataProviderItem;
-import org.nearbyshops.enduser.StandardInterfacesGeneric.DataSubscriber;
+import org.nearbyshops.enduser.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduser.Utility.DividerItemDecoration;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
@@ -27,17 +26,24 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 /**
  * Created by sumeet on 25/5/16.
  */
-public class ItemFragment extends Fragment implements DataSubscriber<Item>, SwipeRefreshLayout.OnRefreshListener {
+public class ItemFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
 
 
         ItemCategory itemCategory;
 
+//        @Inject
+//        DataProviderItem itemDataProvider;
+
         @Inject
-        DataProviderItem itemDataProvider;
+        ItemService itemService;
 
         RecyclerView recyclerView;
 
@@ -62,7 +68,7 @@ public class ItemFragment extends Fragment implements DataSubscriber<Item>, Swip
     public ItemFragment() {
         // inject dependencies through dagger
         DaggerComponentBuilder.getInstance()
-                .getDataComponent().Inject(this);
+                .getNetComponent().Inject(this);
     }
 
     /**
@@ -77,6 +83,9 @@ public class ItemFragment extends Fragment implements DataSubscriber<Item>, Swip
             fragment.setArguments(args);
             return fragment;
         }
+
+
+
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -100,21 +109,6 @@ public class ItemFragment extends Fragment implements DataSubscriber<Item>, Swip
                         android.R.color.holo_orange_light,
                         android.R.color.holo_red_light);
             }
-
-
-
-
-
-            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-
-            /*
-            textView.setText(String.valueOf(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY))
-                    + ":" + String.valueOf(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY))
-                    + " \nProximity:" + String.valueOf(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY))
-                    + " \nDeliveryRange:" + String.valueOf(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY))
-                    + ":" + String.valueOf(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY)));
-
-            */
 
             return rootView;
         }
@@ -167,7 +161,7 @@ public class ItemFragment extends Fragment implements DataSubscriber<Item>, Swip
 
                 }
 
-                adapter.notifyDataSetChanged();
+//                adapter.notifyDataSetChanged();
             }
         });
 
@@ -176,24 +170,42 @@ public class ItemFragment extends Fragment implements DataSubscriber<Item>, Swip
 
     void makeNetworkCall()
     {
-        if(UtilityGeneral.isNetworkAvailable(getActivity()))
-        {
-            // Network Available
 
-            itemDataProvider.readMany(itemCategory.getItemCategoryID(),0,
-                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
-                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
-                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
-                    UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
-                    this);
-        }
-        else
+            Call<List<Item>> call = itemService.getItems(itemCategory.getItemCategoryID(),null,
+                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
+                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
+                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
+                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
+                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY)
+            );
 
-        {
-            showToastMessage("No network. Application is Offline !");
-            swipeContainer.setRefreshing(false);
-        }
+
+        call.enqueue(new Callback<List<Item>>() {
+            @Override
+            public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
+
+                dataset.clear();
+
+                if(response.body()!=null)
+                {
+                    dataset.addAll(response.body());
+                }
+
+                adapter.notifyDataSetChanged();
+                swipeContainer.setRefreshing(false);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Item>> call, Throwable t) {
+
+                swipeContainer.setRefreshing(false);
+
+                showToastMessage("Network request failed !");
+            }
+        });
+
+
     }
 
 
@@ -211,64 +223,5 @@ public class ItemFragment extends Fragment implements DataSubscriber<Item>, Swip
     }
 
 
-    @Override
-    public void readManyCallback(boolean isOffline, boolean isSuccessful, int httpStatusCode, List<Item> itemList) {
-
-
-        if(!isOffline)
-        {
-            // Online
-            if(isSuccessful)
-            {
-
-                // Successful
-
-                dataset.clear();
-                if(itemList!=null)
-                {
-                    dataset.addAll(itemList);
-                }
-
-                adapter.notifyDataSetChanged();
-                swipeContainer.setRefreshing(false);
-                //showToastMessage(String.valueOf(dataset.size()));
-
-            }else
-            {
-                // UnSuccessful
-                swipeContainer.setRefreshing(false);
-            }
-
-
-        }else
-        {
-            // offline
-            showToastMessage("Application Offline !");
-
-            swipeContainer.setRefreshing(false);
-        }
-
-
-    }
-
-    @Override
-    public void updateCallback(boolean isOffline, boolean isSuccessful, int httpStatusCode) {
-
-    }
-
-    @Override
-    public void deleteShopCallback(boolean isOffline, boolean isSuccessful, int httpStatusCode) {
-
-    }
-
-    @Override
-    public void createCallback(boolean isOffline, boolean isSuccessful, int httpStatusCode, Item item) {
-
-    }
-
-    @Override
-    public void readCallback(boolean isOffline, boolean isSuccessful, int httpStatusCode, Item item) {
-
-    }
 
 }

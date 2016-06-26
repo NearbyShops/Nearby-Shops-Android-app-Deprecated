@@ -20,12 +20,12 @@ public interface ShopItemService {
 
     @GET("/api/ShopItem")
     Call<List<ShopItem>> getShopItems(
-            @Query("ShopID")int ShopID, @Query("ItemID") int itemID,
-            @Query("latCenter")double latCenter,@Query("lonCenter")double lonCenter,
-            @Query("deliveryRangeMax")double deliveryRangeMax,
-            @Query("deliveryRangeMin")double deliveryRangeMin,
-            @Query("proximity")double proximity,
-            @Query("EndUserID") int endUserID,@Query("IsFilledCart") boolean isFilledCart
+            @Query("ShopID")Integer ShopID, @Query("ItemID") Integer itemID,
+            @Query("latCenter")Double latCenter,@Query("lonCenter")Double lonCenter,
+            @Query("deliveryRangeMax")Double deliveryRangeMax,
+            @Query("deliveryRangeMin")Double deliveryRangeMin,
+            @Query("proximity")Double proximity,
+            @Query("EndUserID")Integer endUserID,@Query("IsFilledCart")Boolean isFilledCart
     );
 
 

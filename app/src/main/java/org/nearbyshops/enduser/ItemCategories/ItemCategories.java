@@ -180,12 +180,12 @@ public class ItemCategories extends AppCompatActivity implements  ItemCategories
 
 */
 
-        Call<List<ItemCategory>> call = itemCategoryService.getItemCategories(currentCategoryID,0,
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,0),
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,0),
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,0),
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,0),
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,0));
+        Call<List<ItemCategory>> call = itemCategoryService.getItemCategories(currentCategoryID,null,
+                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,0),
+                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,0),
+                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,0),
+                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,0),
+                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,0));
 
 
         call.enqueue(this);

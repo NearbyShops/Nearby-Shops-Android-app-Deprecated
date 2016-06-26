@@ -14,6 +14,7 @@ import org.nearbyshops.enduser.DataProvidersRetrofit.ItemProviderRetrofit;
 import org.nearbyshops.enduser.DataProvidersRetrofit.ShopRetrofitProvider;
 import org.nearbyshops.enduser.ItemCategories.ItemCategories;
 import org.nearbyshops.enduser.Login;
+import org.nearbyshops.enduser.ShopItemsByItemCategory.ItemFragment;
 import org.nearbyshops.enduser.ShopsForItems.AdapterFilledCarts;
 import org.nearbyshops.enduser.ShopsForItems.AdapterNewCarts;
 import org.nearbyshops.enduser.ShopsForItems.FilledCartsFragment;
@@ -63,4 +64,6 @@ public interface NetComponent {
     void Inject(ItemCategories itemCategories);
 
     void Inject(Login login);
+
+    void Inject(ItemFragment itemFragment);
 }
