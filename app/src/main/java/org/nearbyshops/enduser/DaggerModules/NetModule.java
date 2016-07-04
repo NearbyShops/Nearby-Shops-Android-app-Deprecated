@@ -20,6 +20,7 @@ import org.nearbyshops.enduser.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ServiceConfigurationService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
+import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
 import javax.inject.Singleton;
@@ -210,6 +211,16 @@ public class NetModule {
 
         ItemService itemService = retrofit.create(ItemService.class);
         return itemService;
+    }
+
+
+
+    @Provides
+    ShopService shopService(Retrofit retrofit)
+    {
+
+        ShopService shopService = retrofit.create(ShopService.class);
+        return shopService;
     }
 
 

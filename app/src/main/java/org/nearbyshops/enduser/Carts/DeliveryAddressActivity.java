@@ -2,8 +2,6 @@ package org.nearbyshops.enduser.Carts;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,14 +12,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.nearbyshops.enduser.DaggerComponentBuilder;
-import org.nearbyshops.enduser.Model.CartItem;
+import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.EndUser;
-import org.nearbyshops.enduser.Model.Shop;
-import org.nearbyshops.enduser.ModelStats.CartStats;
 import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.DeliveryAddressService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 

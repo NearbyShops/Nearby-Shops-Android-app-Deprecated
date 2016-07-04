@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme">
 
         <service
-            android:name=".Geocoding.FetchAddressIntentService"
+            android:name=".UtilityGeocoding.FetchAddressIntentService"
             android:exported="false"/>
 
 
@@ -27,15 +27,20 @@
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".GeolocationTest" />
-        <activity
-            android:name=".ItemCategories.ItemCategories"
-            android:label="Item Categories"
-            android:parentActivityName=".Home"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduser.Home" />
-        </activity>
+
+
+        <!--<activity-->
+            <!--android:name=".ItemCategoryOption.FragmentItemCategories"-->
+            <!--android:label="Item Categories"-->
+            <!--android:parentActivityName=".Home"-->
+            <!--android:theme="@style/AppTheme.NoActionBar">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.PARENT_ACTIVITY"-->
+                <!--android:value="org.nearbyshops.enduser.Home" />-->
+        <!--</activity>-->
+
+
+
         <activity
             android:name=".Categories"
             android:label="@string/title_activity_categories"
@@ -56,22 +61,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ShopItemsByItemCategory.ShopItemSwipeView"
+            android:name=".ItemCategoryOption.ShopItemSwipeView"
             android:label="Shops and Items"
-            android:parentActivityName=".ItemCategories.ItemCategories"
+            android:parentActivityName=".ItemCategoryOption.FragmentItemCategories"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduser.ItemCategories.ItemCategories" />
+                android:value="org.nearbyshops.enduser.ItemCategoryOption.FragmentItemCategories" />
         </activity>
         <activity
-            android:name=".ShopsForItems.ShopsForItemSwipe"
+            android:name=".ShopItemByItem.ShopsForItemSwipe"
             android:label="@string/title_activity_shops_for_item"
-            android:parentActivityName=".ShopItemsByItemCategory.ShopItemSwipeView"
+            android:parentActivityName=".ItemCategoryOption.ShopItemSwipeView"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduser.ShopItemsByItemCategory.ShopItemSwipeView" />
+                android:value="org.nearbyshops.enduser.ItemCategoryOption.ShopItemSwipeView" />
         </activity>
         <activity
             android:name=".Carts.CartsListActivity"

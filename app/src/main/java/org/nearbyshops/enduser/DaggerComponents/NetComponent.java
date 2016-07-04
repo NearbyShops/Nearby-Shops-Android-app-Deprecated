@@ -9,16 +9,17 @@ import org.nearbyshops.enduser.Carts.EditAddressActivity;
 import org.nearbyshops.enduser.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduser.DaggerModules.AppModule;
 import org.nearbyshops.enduser.DaggerModules.NetModule;
-import org.nearbyshops.enduser.DataProvidersRetrofit.ItemCategoryRetrofitProvider;
-import org.nearbyshops.enduser.DataProvidersRetrofit.ItemProviderRetrofit;
-import org.nearbyshops.enduser.DataProvidersRetrofit.ShopRetrofitProvider;
-import org.nearbyshops.enduser.ItemCategories.ItemCategories;
+import org.nearbyshops.enduser.zzDataProvidersRetrofit.ItemCategoryRetrofitProvider;
+import org.nearbyshops.enduser.zzDataProvidersRetrofit.ItemProviderRetrofit;
+import org.nearbyshops.enduser.zzDataProvidersRetrofit.ShopRetrofitProvider;
+import org.nearbyshops.enduser.ItemCategoryOption.FragmentItemCategories;
 import org.nearbyshops.enduser.Login;
-import org.nearbyshops.enduser.ShopItemsByItemCategory.ItemFragment;
-import org.nearbyshops.enduser.ShopsForItems.AdapterFilledCarts;
-import org.nearbyshops.enduser.ShopsForItems.AdapterNewCarts;
-import org.nearbyshops.enduser.ShopsForItems.FilledCartsFragment;
-import org.nearbyshops.enduser.ShopsForItems.NewCartsFragment;
+import org.nearbyshops.enduser.ItemCategoryOption.FragmentItem;
+import org.nearbyshops.enduser.ItemCategoryOption.FragmentShop;
+import org.nearbyshops.enduser.ShopItemByItem.AdapterFilledCarts;
+import org.nearbyshops.enduser.ShopItemByItem.AdapterNewCarts;
+import org.nearbyshops.enduser.ShopItemByItem.FilledCartsFragment;
+import org.nearbyshops.enduser.ShopItemByItem.NewCartsFragment;
 
 import javax.inject.Singleton;
 
@@ -61,9 +62,11 @@ public interface NetComponent {
 
     void Inject(PlaceOrderActivity placeOrderActivity);
 
-    void Inject(ItemCategories itemCategories);
+    void Inject(FragmentItemCategories fragmentItemCategories);
 
     void Inject(Login login);
 
-    void Inject(ItemFragment itemFragment);
+    void Inject(FragmentItem itemFragment);
+
+    void Inject(FragmentShop shopFragment);
 }

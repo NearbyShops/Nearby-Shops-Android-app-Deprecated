@@ -5,32 +5,93 @@ import android.os.Parcelable;
 
 public class ItemCategory implements Parcelable{
 
-	
 	int itemCategoryID;
-	
+
 	String categoryName;
 	String categoryDescription;
-	
-	//AbstractCategory parentCategory;
-	
-	// items contained in this category
-	//@OneToMany(mappedBy="itemCategory")
-	
-	//List<Item> items = new ArrayList<Item>();
 
 	int parentCategoryID;
 	boolean isLeafNode;
 
 	String imagePath;
 
+	// recently added
+	boolean isAbstractNode;
+	String descriptionShort;
+
+
 	// variables for utility functions
 
 	ItemCategory parentCategory = null;
 
 
+	protected ItemCategory(Parcel in) {
+		parentCategory = in.readParcelable(ItemCategory.class.getClassLoader());
+		itemCategoryID = in.readInt();
+		categoryName = in.readString();
+		categoryDescription = in.readString();
+		parentCategoryID = in.readInt();
+		isLeafNode = in.readByte() != 0;
+		imagePath = in.readString();
+		isAbstractNode = in.readByte() != 0;
+		descriptionShort = in.readString();
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(parentCategory, flags);
+		dest.writeInt(itemCategoryID);
+		dest.writeString(categoryName);
+		dest.writeString(categoryDescription);
+		dest.writeInt(parentCategoryID);
+		dest.writeByte((byte) (isLeafNode ? 1 : 0));
+		dest.writeString(imagePath);
+		dest.writeByte((byte) (isAbstractNode ? 1 : 0));
+		dest.writeString(descriptionShort);
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	public static final Creator<ItemCategory> CREATOR = new Creator<ItemCategory>() {
+		@Override
+		public ItemCategory createFromParcel(Parcel in) {
+			return new ItemCategory(in);
+		}
+
+		@Override
+		public ItemCategory[] newArray(int size) {
+			return new ItemCategory[size];
+		}
+	};
 
 
 
+
+	/*
+	*
+	* Getter and Setters
+	*
+	* */
+
+
+	public Boolean getAbstractNode() {
+		return isAbstractNode;
+	}
+
+	public void setAbstractNode(Boolean abstractNode) {
+		isAbstractNode = abstractNode;
+	}
+
+	public String getDescriptionShort() {
+		return descriptionShort;
+	}
+
+	public void setDescriptionShort(String descriptionShort) {
+		this.descriptionShort = descriptionShort;
+	}
 
 	public String getImagePath() {
 		return imagePath;
@@ -105,42 +166,8 @@ public class ItemCategory implements Parcelable{
 
 	// parcelable Implementation
 
-	protected ItemCategory(Parcel in) {
-		itemCategoryID = in.readInt();
-		categoryName = in.readString();
-		categoryDescription = in.readString();
-		parentCategoryID = in.readInt();
-		isLeafNode = in.readByte() != 0;
-		imagePath = in.readString();
-		parentCategory = in.readParcelable(ItemCategory.class.getClassLoader());
-	}
 
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeInt(itemCategoryID);
-		dest.writeString(categoryName);
-		dest.writeString(categoryDescription);
-		dest.writeInt(parentCategoryID);
-		dest.writeByte((byte) (isLeafNode ? 1 : 0));
-		dest.writeString(imagePath);
-		dest.writeParcelable(parentCategory, flags);
-	}
 
-	@Override
-	public int describeContents() {
-		return 0;
-	}
 
-	public static final Creator<ItemCategory> CREATOR = new Creator<ItemCategory>() {
-		@Override
-		public ItemCategory createFromParcel(Parcel in) {
-			return new ItemCategory(in);
-		}
-
-		@Override
-		public ItemCategory[] newArray(int size) {
-			return new ItemCategory[size];
-		}
-	};
 
 }

@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.CartItem;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelStats.CartStats;

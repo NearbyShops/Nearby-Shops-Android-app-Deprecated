@@ -2,9 +2,6 @@ package org.nearbyshops.enduser.Carts;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,7 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Home;
 import org.nearbyshops.enduser.Model.Order;
 import org.nearbyshops.enduser.ModelStats.CartStats;

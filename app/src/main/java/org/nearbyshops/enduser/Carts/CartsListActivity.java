@@ -1,8 +1,6 @@
 package org.nearbyshops.enduser.Carts;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,14 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
-import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
 import org.nearbyshops.enduser.ModelStats.CartStats;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
-import org.nearbyshops.enduser.ShopsForItems.AdapterNewCarts;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
 import java.util.ArrayList;

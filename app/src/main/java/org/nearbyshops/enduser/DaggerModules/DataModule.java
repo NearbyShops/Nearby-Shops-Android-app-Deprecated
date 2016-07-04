@@ -1,16 +1,16 @@
 package org.nearbyshops.enduser.DaggerModules;
 
 
-import org.nearbyshops.enduser.DataProvidersRetrofit.ItemCategoryRetrofitProvider;
-import org.nearbyshops.enduser.DataProvidersRetrofit.ItemProviderRetrofit;
-import org.nearbyshops.enduser.DataProvidersRetrofit.ShopRetrofitProvider;
-import org.nearbyshops.enduser.DataRouters.ItemCategoryDataRouter;
-import org.nearbyshops.enduser.Database.FakeDAO;
+import org.nearbyshops.enduser.zzDataProvidersRetrofit.ItemCategoryRetrofitProvider;
+import org.nearbyshops.enduser.zzDataProvidersRetrofit.ItemProviderRetrofit;
+import org.nearbyshops.enduser.zzDataProvidersRetrofit.ShopRetrofitProvider;
+import org.nearbyshops.enduser.zzDataRouters.ItemCategoryDataRouter;
+import org.nearbyshops.enduser.zzDatabase.FakeDAO;
 import org.nearbyshops.enduser.Model.ItemCategory;
-import org.nearbyshops.enduser.StandardInterfaces.DataProviderItem;
-import org.nearbyshops.enduser.StandardInterfaces.DataProviderItemCategory;
-import org.nearbyshops.enduser.StandardInterfaces.DataProviderShop;
-import org.nearbyshops.enduser.StandardInterfacesGeneric.DataSubscriber;
+import org.nearbyshops.enduser.zzStandardInterfaces.DataProviderItem;
+import org.nearbyshops.enduser.zzStandardInterfaces.DataProviderItemCategory;
+import org.nearbyshops.enduser.zzStandardInterfaces.DataProviderShop;
+import org.nearbyshops.enduser.zzStandardInterfacesGeneric.DataSubscriber;
 
 import javax.inject.Named;
 import javax.inject.Singleton;

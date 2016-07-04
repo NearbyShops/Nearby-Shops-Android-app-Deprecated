@@ -2,10 +2,7 @@ package org.nearbyshops.enduser.DaggerComponents;
 
 
 import org.nearbyshops.enduser.DaggerModules.DataModule;
-import org.nearbyshops.enduser.DataRouters.ItemCategoryDataRouter;
-import org.nearbyshops.enduser.ItemCategories.ItemCategories;
-import org.nearbyshops.enduser.ShopItemsByItemCategory.ItemFragment;
-import org.nearbyshops.enduser.ShopItemsByItemCategory.ShopFragment;
+import org.nearbyshops.enduser.zzDataRouters.ItemCategoryDataRouter;
 
 import javax.inject.Singleton;
 
@@ -20,7 +17,4 @@ import dagger.Component;
 public interface DataComponent {
 
     void Inject(ItemCategoryDataRouter dataRouter);
-
-    void Inject(ShopFragment shopFragment);
-
 }

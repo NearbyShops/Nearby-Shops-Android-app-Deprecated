@@ -1,6 +1,8 @@
 package org.nearbyshops.enduser.RetrofitRESTContract;
 
 import org.nearbyshops.enduser.Model.Shop;
+import org.nearbyshops.enduser.ModelEndPoints.ShopEndPoint;
+import org.nearbyshops.enduser.ModelEndPoints.ShopItemEndPoint;
 
 import java.util.List;
 
@@ -19,25 +21,41 @@ import retrofit2.http.Query;
  */
 public interface ShopService {
 
-    @GET("/api/Shop")
-    Call<List<Shop>> getShops(@Query("DistributorID") int distributorID,
-                              @Query("LeafNodeItemCategoryID")int itemCategoryID,
-                              @Query("latCenter")double latCenter,
-                              @Query("lonCenter")double lonCenter,
-                              @Query("deliveryRangeMax")double deliveryRangeMax,
-                              @Query("deliveryRangeMin")double deliveryRangeMin,
-                              @Query("proximity")double proximity);
+    @GET("/api/v1/Shop/Deprecated")
+    Call<List<Shop>> getShops(@Query("DistributorID") Integer distributorID,
+                              @Query("LeafNodeItemCategoryID")Integer itemCategoryID,
+                              @Query("latCenter")Double latCenter,
+                              @Query("lonCenter")Double lonCenter,
+                              @Query("deliveryRangeMax")Double deliveryRangeMax,
+                              @Query("deliveryRangeMin")Double deliveryRangeMin,
+                              @Query("proximity")Double proximity);
 
-    @GET("/api/Shop/{id}")
+
+
+
+    @GET("/api/v1/Shop/FilterByItemCat/{ItemCategoryID}")
+    Call<ShopEndPoint> filterShopsByItemCategory(
+            @Path("ItemCategoryID")Integer itemCategoryID,
+            @Query("DistributorID")Integer distributorID,
+            @Query("latCenter")Double latCenter, @Query("lonCenter")Double lonCenter,
+            @Query("deliveryRangeMax")Double deliveryRangeMax,
+            @Query("deliveryRangeMin")Double deliveryRangeMin,
+            @Query("proximity")Double proximity,
+            @Query("SortBy") String sortBy,
+            @Query("Limit") Integer limit, @Query("Offset") Integer offset,
+            @Query("metadata_only")Boolean metaonly);
+
+
+    @GET("/api/v1/Shop/{id}")
     Call<Shop> getShop(@Path("id") int id);
 
-    @POST("/api/Shop")
+    @POST("/api/v1/Shop")
     Call<Shop> postShop(@Body Shop shop);
 
-    @PUT("/api/Shop/{id}")
+    @PUT("/api/v1/Shop/{id}")
     Call<ResponseBody> putShop(@Body Shop shop, @Path("id") int id);
 
-    @DELETE("/api/Shop/{id}")
+    @DELETE("/api/v1/Shop/{id}")
     Call<ResponseBody> deleteShop(@Path("id") int id);
 
 }

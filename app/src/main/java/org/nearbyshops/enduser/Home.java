@@ -44,9 +44,10 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 
 import org.nearbyshops.enduser.Carts.CartsListActivity;
-import org.nearbyshops.enduser.Geocoding.Constants;
-import org.nearbyshops.enduser.Geocoding.FetchAddressIntentService;
-import org.nearbyshops.enduser.ItemCategories.ItemCategories;
+import org.nearbyshops.enduser.ItemCategoryOption.ShopItemSwipeView;
+import org.nearbyshops.enduser.UtilityGeocoding.Constants;
+import org.nearbyshops.enduser.UtilityGeocoding.FetchAddressIntentService;
+import org.nearbyshops.enduser.ItemCategoryOption.FragmentItemCategories;
 import org.nearbyshops.enduser.Orders.OrderHome;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
@@ -184,7 +185,7 @@ public class Home extends AppCompatActivity
     @OnClick(R.id.option_item_categories)
     public void itemCategoriesClick() {
 
-        Intent intent = new Intent(this, ItemCategories.class);
+        Intent intent = new Intent(this, ShopItemSwipeView.class);
         startActivity(intent);
     }
 

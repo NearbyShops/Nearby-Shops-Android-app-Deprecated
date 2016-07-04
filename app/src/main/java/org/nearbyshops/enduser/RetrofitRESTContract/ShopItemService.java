@@ -18,7 +18,8 @@ import retrofit2.http.Query;
  */
 public interface ShopItemService {
 
-    @GET("/api/ShopItem")
+
+    @GET("/api/v1/ShopItem/Deprecated")
     Call<List<ShopItem>> getShopItems(
             @Query("ShopID")Integer ShopID, @Query("ItemID") Integer itemID,
             @Query("latCenter")Double latCenter,@Query("lonCenter")Double lonCenter,
@@ -29,13 +30,14 @@ public interface ShopItemService {
     );
 
 
-    @POST("/api/ShopItem")
+
+    @POST("/api/v1/ShopItem")
     Call<ResponseBody> postShopItem(@Body ShopItem shopItem);
 
-    @PUT("/api/ShopItem")
+    @PUT("/api/v1/ShopItem")
     Call<ResponseBody> putShopItem(@Body ShopItem shopItem);
 
-    @DELETE("/api/ShopItem")
+    @DELETE("/api/v1/ShopItem")
     Call<ResponseBody> deleteShopItem(@Query("ShopID") int ShopID, @Query("ItemID") int itemID);
 
 }

@@ -277,7 +277,7 @@
 
 
             `<TextView
-                android:id="@+id/itemCategories"
+                android:id="@+id/fragmentItemCategories"
                 android:gravity="bottom|right"
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
