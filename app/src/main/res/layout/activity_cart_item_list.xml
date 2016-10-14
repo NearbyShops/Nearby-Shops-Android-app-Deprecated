@@ -11,19 +11,8 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:theme="@style/AppTheme.AppBarOverlay"
-        android:background="#00000000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            app:titleTextColor="@color/colorWhite"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-
 
 
         <!--
@@ -78,77 +67,58 @@
 
 
 
-
-    </android.support.design.widget.AppBarLayout>
-
-
-    <include layout="@layout/list_item_shop_carts"
-        android:layout_height="wrap_content"
-        android:layout_width="0dp" />
-
-
-
-    <RelativeLayout
-
-        android:orientation="vertical"
-        android:elevation="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-
-
-
-    <TextView
-            android:layout_marginBottom="5dp"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/confirm"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text="Confirm Items"
-            android:textSize="24dp"
-            android:padding="10dp"
-            android:gravity="left"
-            android:textColor="@color/colorWhite"
-            android:background="@color/cyan900"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:titleTextColor="@color/colorWhite"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|left" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
 
 
-        <LinearLayout
-            android:layout_above="@id/confirm"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:background="#000000"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:layout_height="80dp">
 
-        <LinearLayout
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_above="@id/confirm"
-            android:background="#000000"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
 
+
+<!--
+
+            <LinearLayout
+                android:layout_above="@id/confirm"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_above="@id/confirm"
+                android:background="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+-->
 
 
 
 
 
             <TextView
-                android:layout_above="@id/confirm"
+                android:layout_alignParentBottom="true"
                 android:id="@+id/total"
                 android:layout_marginTop="1dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
                 android:text="Total"
                 android:paddingRight="20dp"
@@ -164,12 +134,12 @@
 
 
             <TextView
-                android:layout_above="@id/confirm"
+                android:layout_alignParentBottom="true"
                 android:id="@+id/totalValue"
                 android:layout_marginTop="1dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="1dp"
                 android:layout_marginLeft="0dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="1dp"
                 android:text=": Rs 00.00"
                 android:textSize="20dp"
                 android:padding="10dp"
@@ -180,54 +150,76 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/total" />
 
-        <LinearLayout
-            android:layout_above="@id/total"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:background="#000000"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
-
-
-
-        <TextView
-            android:textColor="@color/colorWhite"
-            android:padding="5dp"
-            android:background="@color/cyan900"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_above="@id/total"
-            android:id="@+id/estimatedTotal"
-            android:text="Estimated Total (Before Update) : Rs 231.00"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:elevation="0dp"
-            android:layout_marginTop="?attr/actionBarSize"
-            android:layout_above="@id/estimatedTotal"
-            android:layout_marginBottom="5dp"
-            android:id="@+id/swipeContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.RecyclerView
-                android:background="#00000000"
-                android:id="@+id/recyclerView"
+            <LinearLayout
+                android:layout_above="@id/total"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="#000000"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        </android.support.v4.widget.SwipeRefreshLayout>
+                android:layout_height="1dp"/>
 
 
+            <TextView
+                android:textColor="@color/colorWhite"
+                android:padding="5dp"
+                android:background="@color/blueGrey800"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_above="@id/total"
+                android:id="@+id/estimatedTotal"
+                android:text="Estimated Total (Before Update) : Rs 231.00"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+<!--
+
+    <include layout="@layout/list_item_shop_carts"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp" />
+
+-->
+
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/swipeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:background="#00000000"
+            android:id="@+id/recyclerView"
+            android:layout_marginBottom="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
 
 
-    </RelativeLayout>
+    <TextView
+        android:layout_marginBottom="2dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/confirm"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:text="Confirm Items"
+        android:textSize="24dp"
+        android:padding="10dp"
+        android:gravity="start"
+        android:textColor="@color/colorWhite"
+        android:background="@color/blueGrey800"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" />
 
 
 </android.support.design.widget.CoordinatorLayout>

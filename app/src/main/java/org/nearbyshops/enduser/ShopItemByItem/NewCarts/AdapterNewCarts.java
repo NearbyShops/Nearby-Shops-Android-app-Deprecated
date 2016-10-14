@@ -1,6 +1,8 @@
-package org.nearbyshops.enduser.ShopItemByItem;
+package org.nearbyshops.enduser.ShopItemByItem.NewCarts;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -16,16 +18,19 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
+import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Model.CartItem;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.Model.ShopItem;
+import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduser.Utility.InputFilterMinMax;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import java.util.List;
 
@@ -45,9 +50,9 @@ import retrofit2.Response;
 public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHolder>{
 
 
-    List<ShopItem> dataset;
+    private List<ShopItem> dataset;
 
-    Context context;
+    private Context context;
 
     @Inject
     CartItemService cartItemService;
@@ -56,12 +61,15 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
 
     Item item;
 
+    AppCompatActivity activity;
 
-    public AdapterNewCarts(List<ShopItem> dataset, Context context, NotifyCallbacks callbacks, Item item) {
+
+    public AdapterNewCarts(List<ShopItem> dataset, Context context, NotifyCallbacks callbacks, Item item, AppCompatActivity activity) {
         this.dataset = dataset;
         this.context = context;
         this.notifyCallbacks = callbacks;
         this.item = item;
+        this.activity = activity;
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -306,6 +314,16 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
         void addToCartClick(View view){
 
 
+
+            if(UtilityLogin.getEndUser(activity)==null)
+            {
+                showLoginDialog();
+                return;
+            }
+
+
+            EndUser endUser = UtilityLogin.getEndUser(context);
+
             CartItem cartItem = new CartItem();
 
             cartItem.setItemID(dataset.get(getLayoutPosition()).getItemID());
@@ -313,9 +331,11 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
 
             Call<ResponseBody> call = cartItemService.createCartItem(
                     cartItem,
-                    UtilityGeneral.getEndUserID(MyApplication.getAppContext()),
+                    endUser.getEndUserID(),
                     dataset.get(getLayoutPosition()).getShopID()
             );
+
+            //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
 
             call.enqueue(this);
 
@@ -408,5 +428,15 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
         void notifyAddToCart();
 
     }
+
+
+    private void showLoginDialog()
+    {
+        FragmentManager fm = activity.getSupportFragmentManager();
+        LoginDialog loginDialog = new LoginDialog();
+        loginDialog.show(fm,"serviceUrl");
+    }
+
+
 
 }

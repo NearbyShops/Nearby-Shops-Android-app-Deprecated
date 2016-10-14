@@ -1,6 +1,7 @@
 package org.nearbyshops.enduser.Carts;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,11 +11,14 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
+import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.Login.LoginDialog;
+import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.ModelStats.CartStats;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,16 +132,22 @@ public class CartsListActivity extends AppCompatActivity implements SwipeRefresh
     {
 
 
+        EndUser endUser = UtilityLogin.getEndUser(this);
+        if(endUser==null)
+        {
+            showLoginDialog();
+            return;
+        }
 
         Call<List<CartStats>> call = cartStatsService.getCart(
-                UtilityGeneral.getEndUserID(this),0,
+                endUser.getEndUserID(),0,
                 UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
                 UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY));
 
         call.enqueue(this);
 
 
-        Log.d("applog",String.valueOf(UtilityGeneral.getEndUserID(this)) + " "
+        Log.d("applog",String.valueOf(endUser.getEndUserID()) + " "
         + UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY) + " "
         + UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY));
 
@@ -214,6 +224,15 @@ public class CartsListActivity extends AppCompatActivity implements SwipeRefresh
             }
         });
 
+    }
+
+
+
+    private void showLoginDialog()
+    {
+        FragmentManager fm = getSupportFragmentManager();
+        LoginDialog loginDialog = new LoginDialog();
+        loginDialog.show(fm,"serviceUrl");
     }
 
 

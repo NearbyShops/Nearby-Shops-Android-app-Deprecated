@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
+import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.DeliveryAddressService;

@@ -67,7 +67,7 @@ public class UtilityGeneral {
     }
 
 
-    public static void saveEndUserID(int endUserID)
+    public static void saveEndUserID_(int endUserID)
     {
         Context context = MyApplication.getAppContext();
         // Get a handle to shared preference
@@ -81,7 +81,7 @@ public class UtilityGeneral {
 
     }
 
-    public static int getEndUserID(Context context) {
+    public static int getEndUserID_(Context context) {
         // Get a handle to shared preference
         SharedPreferences sharedPref;
         sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), context.MODE_PRIVATE);
@@ -118,7 +118,7 @@ public class UtilityGeneral {
         context = MyApplication.getAppContext();
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), context.MODE_PRIVATE);
-        String service_url = sharedPref.getString(context.getString(R.string.preference_service_url_key), "");
+        String service_url = sharedPref.getString(context.getString(R.string.preference_service_url_key), "http://nearbyshops.org");
 
         //service_url = "http://localareademo-env.ap-southeast-1.elasticbeanstalk.com";
 

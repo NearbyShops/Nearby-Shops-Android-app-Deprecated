@@ -60,13 +60,15 @@
             android:src="@drawable/carrots"
             android:id="@+id/shopImage" />
 
+
+        <!--android:textColor="@color/colorWhite"
+            android:background="#99424242"-->
+
         <TextView
             android:layout_marginTop="0dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textSize="25sp"
-            android:textColor="@color/colorWhite"
-            android:background="#99424242"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="// D-Mart, Green hills"
@@ -96,58 +98,46 @@
 
 
         <TextView
-            android:background="#99424242"
-            android:textColor="@color/colorWhite"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/shopName"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:textSize="17sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0/10"
-            android:id="@+id/rating"
-            android:layout_marginLeft="105dp"
-            android:layout_alignBottom="@+id/shopImage"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="30dp" />
+            android:text="Shop Rating : 7/10"
+            android:id="@+id/rating"/>
 
         <TextView
-            android:textColor="@color/colorWhite"
-            android:background="#99424242"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/rating"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:textSize="17sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00 Km"
-            android:id="@+id/distance"
-            android:layout_marginLeft="105dp"
-            android:layout_alignBottom="@+id/shopImage"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="0dp" />
+            android:text="Distance : 5 Km"
+            android:id="@+id/distance" />
 
 
         <TextView
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delivery : Rs 00"
             android:id="@+id/deliveryCharge"
             android:layout_marginRight="0dp"
             android:layout_marginLeft="0dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_alignBottom="@id/shopImage"
-            android:layout_alignParentRight="true" />
+            android:layout_below="@id/distance"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"/>
 
-
-
+<!--
 
         <ImageView
-            android:src="@drawable/ic_favorite_border_white_24px"
+            app:srcCompat="@drawable/ic_favorite_border_white_24px"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/favourite"
@@ -157,6 +147,7 @@
             android:layout_alignParentLeft="true"
 
             android:layout_marginTop="10dp"/>
+-->
 
 </RelativeLayout>
 

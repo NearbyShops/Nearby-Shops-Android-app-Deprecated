@@ -8,11 +8,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
+import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.DeliveryAddressService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import javax.inject.Inject;
 
@@ -97,7 +98,7 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
         deliveryAddress.setLandmark(landMark.getText().toString());
         deliveryAddress.setPhoneNumber(Long.parseLong(receiversPhoneNumber.getText().toString()));
 
-        deliveryAddress.setEndUserID(UtilityGeneral.getEndUserID(this));
+        deliveryAddress.setEndUserID(UtilityLogin.getEndUser(this).getEndUserID());
 
     }
 

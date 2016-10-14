@@ -1,6 +1,6 @@
 package org.nearbyshops.enduser.zzDataProvidersRetrofit;
 
-import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
+import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduser.zzStandardInterfaces.DataProviderShop;

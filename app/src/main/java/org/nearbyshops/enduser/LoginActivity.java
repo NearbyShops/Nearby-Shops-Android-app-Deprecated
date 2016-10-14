@@ -46,10 +46,10 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.apache.commons.validator.routines.UrlValidator;
-import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
+import org.nearbyshops.enduser.ModelRoles.EndUser;
+import org.nearbyshops.enduser.Utility.UtilityLogin;
 import org.nearbyshops.enduser.UtilityGeocoding.Constants;
 import org.nearbyshops.enduser.UtilityGeocoding.FetchAddressIntentService;
-import org.nearbyshops.enduser.Model.EndUser;
 import org.nearbyshops.enduser.Model.Service;
 import org.nearbyshops.enduser.RetrofitRESTContract.EndUserService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ServiceConfigurationService;
@@ -65,7 +65,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class Login extends AppCompatActivity implements View.OnClickListener, Target, GoogleApiClient.ConnectionCallbacks,
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, Target, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
 
@@ -118,7 +118,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Ta
 
     UrlValidator urlValidator = null;
 
-    public Login() {
+    public LoginActivity() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -186,7 +186,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Ta
                     //inputLayoutServiceURL.setError(null);
                     //inputLayoutServiceURL.setErrorEnabled(false);
                     urlValidText.setVisibility(View.GONE);
-
                     makeServiceConfigCall();
 
                 } else {
@@ -380,7 +379,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Ta
 
         if (!username.equals("") && !passwordstr.equals("")) {
 
-            Call<EndUser> call = service.getEndUser(passwordstr, username);
+            Call<EndUser> call = service.EndUserLogin(UtilityLogin.baseEncoding(username,passwordstr));
 
 
             call.enqueue(new Callback<EndUser>() {
@@ -389,15 +388,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Ta
 
 
                     if (response.code() == 200) {
-                        showToastMessage("Login Successful");
+                        showToastMessage("LoginActivity Successful");
 
 
                         if (response.body() != null) {
-                            UtilityGeneral.saveEndUserID(response.body().getEndUserID());
+
+//                            UtilityGeneral.saveEndUserID(response.body().getEndUserID());
 
 //                            showToastMessage(response.body().getEndUserName() + " : " + response.body().getEndUserID());
 
-                            startActivity(new Intent(Login.this, Home.class));
+                            startActivity(new Intent(LoginActivity.this, Home.class));
                         }
 
 
@@ -566,7 +566,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Ta
                             // Show the dialog by calling startResolutionForResult(),
                             // and check the result in onActivityResult().
                             status.startResolutionForResult(
-                                    Login.this,
+                                    LoginActivity.this,
                                     REQUEST_CHECK_SETTINGS);
 
                         } catch (IntentSender.SendIntentException e) {

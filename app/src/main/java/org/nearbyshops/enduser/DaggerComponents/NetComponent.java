@@ -9,17 +9,22 @@ import org.nearbyshops.enduser.Carts.EditAddressActivity;
 import org.nearbyshops.enduser.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduser.DaggerModules.AppModule;
 import org.nearbyshops.enduser.DaggerModules.NetModule;
+import org.nearbyshops.enduser.ItemCategoryOption.FragmentShopOld;
+import org.nearbyshops.enduser.ItemsByCategory.ItemCategories.ItemCategoriesFragmentItem;
+import org.nearbyshops.enduser.ItemsByCategory.Items.FragmentItem_ItemByCategory;
+import org.nearbyshops.enduser.Login.LoginDialog;
+import org.nearbyshops.enduser.LoginActivity;
+import org.nearbyshops.enduser.ShopsByCategory.ItemCategories.ItemCategoriesFragment;
+import org.nearbyshops.enduser.ShopsByCategory.Shops.FragmentShop;
 import org.nearbyshops.enduser.zzDataProvidersRetrofit.ItemCategoryRetrofitProvider;
 import org.nearbyshops.enduser.zzDataProvidersRetrofit.ItemProviderRetrofit;
 import org.nearbyshops.enduser.zzDataProvidersRetrofit.ShopRetrofitProvider;
 import org.nearbyshops.enduser.ItemCategoryOption.FragmentItemCategories;
-import org.nearbyshops.enduser.Login;
 import org.nearbyshops.enduser.ItemCategoryOption.FragmentItem;
-import org.nearbyshops.enduser.ItemCategoryOption.FragmentShop;
-import org.nearbyshops.enduser.ShopItemByItem.AdapterFilledCarts;
-import org.nearbyshops.enduser.ShopItemByItem.AdapterNewCarts;
-import org.nearbyshops.enduser.ShopItemByItem.FilledCartsFragment;
-import org.nearbyshops.enduser.ShopItemByItem.NewCartsFragment;
+import org.nearbyshops.enduser.ShopItemByItem.FilledCarts.AdapterFilledCarts;
+import org.nearbyshops.enduser.ShopItemByItem.NewCarts.AdapterNewCarts;
+import org.nearbyshops.enduser.ShopItemByItem.FilledCarts.FilledCartsFragment;
+import org.nearbyshops.enduser.ShopItemByItem.NewCarts.NewCartsFragment;
 
 import javax.inject.Singleton;
 
@@ -64,9 +69,19 @@ public interface NetComponent {
 
     void Inject(FragmentItemCategories fragmentItemCategories);
 
-    void Inject(Login login);
+    void Inject(LoginActivity loginActivity);
 
     void Inject(FragmentItem itemFragment);
 
-    void Inject(FragmentShop shopFragment);
+    void Inject(FragmentShopOld shopFragment);
+
+    void Inject(LoginDialog loginDialog);
+
+    void Inject(ItemCategoriesFragment itemCategoriesFragment);
+
+    void Inject(FragmentShop fragmentShop);
+
+    void Inject(ItemCategoriesFragmentItem itemCategoriesFragmentItem);
+
+    void Inject(FragmentItem_ItemByCategory fragmentItem_itemByCategory);
 }

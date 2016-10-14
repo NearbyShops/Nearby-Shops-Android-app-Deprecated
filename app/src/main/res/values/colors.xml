@@ -5,12 +5,19 @@
     colorPrimary = #3F51B5
     colorPrimaryDark = #303F9F
     colorAccent = #FF4081
-    -->
 
 
     <color name="colorPrimary">#009688</color>
     <color name="colorPrimaryDark">#00796B</color>
     <color name="colorAccent">#FF5722</color>
+    -->
+
+    <color name="light_grey">#22000000</color>
+
+
+    <color name="colorPrimary">#607D8B</color>
+    <color name="colorPrimaryDark">#455A64</color>
+    <color name="colorAccent">#FF9800</color>
 
     <color name="colorWhite">#FFffff</color>
 

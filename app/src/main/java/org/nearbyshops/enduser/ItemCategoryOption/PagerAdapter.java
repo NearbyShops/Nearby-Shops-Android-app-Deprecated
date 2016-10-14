@@ -3,7 +3,6 @@ package org.nearbyshops.enduser.ItemCategoryOption;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 
 import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyTitleChanged;
@@ -21,7 +20,7 @@ public class PagerAdapter extends FragmentPagerAdapter implements NotifyTitleCha
 
     FragmentItem fragmentItem = FragmentItem.newInstance(itemCategory);
 
-    FragmentShop fragmentShop = FragmentShop.newInstance(2,itemCategory);
+    FragmentShopOld fragmentShopOld = FragmentShopOld.newInstance(2,itemCategory);
 
 
 
@@ -54,7 +53,7 @@ public class PagerAdapter extends FragmentPagerAdapter implements NotifyTitleCha
         }else if(position == 2)
         {
 
-            return fragmentShop;
+            return fragmentShopOld;
         }
         return null;
 

@@ -34,7 +34,6 @@
 
         <LinearLayout
             android:id="@+id/filterBar"
-            android:background="@color/cyan900"
             app:layout_scrollFlags="scroll|enterAlways"
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -102,14 +101,12 @@
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabLayoutCat"
-            android:background="@color/buttonColorDark"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             app:tabGravity="fill"
             app:tabMode="scrollable"
-            app:tabIndicatorHeight="4dp"
-            app:tabIndicatorColor="@color/colorAccent"
-            app:tabBackground="@color/buttonColorDark" />
+            app:tabIndicatorHeight="2dp"
+            app:tabIndicatorColor="@color/colorAccent"/>
 
 
         <android.support.design.widget.TabLayout
@@ -119,7 +116,7 @@
             android:layout_height="wrap_content"
             app:tabGravity="fill"
             app:tabMode="scrollable"
-            app:tabIndicatorHeight="4dp"
+            app:tabIndicatorHeight="2dp"
             app:tabIndicatorColor="@color/gplus_color_2"
             app:tabBackground="@color/blueGrey800" />
 

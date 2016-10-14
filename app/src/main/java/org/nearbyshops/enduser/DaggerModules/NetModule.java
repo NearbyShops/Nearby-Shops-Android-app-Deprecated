@@ -15,6 +15,7 @@ import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartService;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.RetrofitRESTContract.DeliveryAddressService;
+import org.nearbyshops.enduser.RetrofitRESTContract.EndUserService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
@@ -102,6 +103,7 @@ public class NetModule {
 
 
     @Provides
+    @Singleton
     Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
 
         Log.d("applog","Retrofit: " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
@@ -221,6 +223,15 @@ public class NetModule {
 
         ShopService shopService = retrofit.create(ShopService.class);
         return shopService;
+    }
+
+
+    @Provides
+    EndUserService endUserService(Retrofit retrofit)
+    {
+
+        EndUserService endUserService = retrofit.create(EndUserService.class);
+        return endUserService;
     }
 
 

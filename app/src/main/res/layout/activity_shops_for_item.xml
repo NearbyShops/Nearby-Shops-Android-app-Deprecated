@@ -25,7 +25,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         <LinearLayout
-            android:background="@color/cyan900"
+            android:background="@color/colorPrimaryDark"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -53,16 +53,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"/>
 
-        <TextView
-            android:id="@+id/cartsButton"
-            android:padding="10dp"
-            android:background="@color/deepOrange900"
-            android:text="Carts"
-            android:textSize="17dp"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
 
         </LinearLayout>
@@ -95,7 +85,7 @@
             android:layout_height="wrap_content"
             app:tabGravity="fill"
             app:tabMode="scrollable"
-            app:tabIndicatorHeight="4dp"
+            app:tabIndicatorHeight="2dp"
             app:tabIndicatorColor="@color/gplus_color_2"
             app:tabBackground="@color/blueGrey800" />
 
@@ -117,7 +107,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:orientation="vertical"
             android:background="@color/colorWhite"
             android:layout_width="250dp"

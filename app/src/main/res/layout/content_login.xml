@@ -177,9 +177,9 @@
             android:background="#22000000"
             android:padding="10dp"
             android:text="Kindly note that each service is managed autonomously and independenly
-                    \nYou will need to register seperately for each Service and each service will have different login credentials.
+                    \nYou will need to register seperately for each Service and each service will have different loginActivity credentials.
                     \nWe aplogize for the pain of regestering seperately for each service.
-                    \nBut in the near future you might expect to have Single sign-in which will enable you to login to all the services with one single ID."
+                    \nBut in the near future you might expect to have Single sign-in which will enable you to loginActivity to all the services with one single ID."
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -192,7 +192,7 @@
             android:layout_marginTop="10dp"
             android:background="#22000000"
             android:text="You are connected to Nearby Shops Hyderabad.
-                    \nPlease Enter your login credentials for this service."
+                    \nPlease Enter your loginActivity credentials for this service."
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

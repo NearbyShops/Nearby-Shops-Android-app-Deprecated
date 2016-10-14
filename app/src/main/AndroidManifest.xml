@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--suppress AndroidDomInspection -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.nearbyshops.enduser">
+    package="org.nearbyshops.enduser"
+    android:installLocation="auto">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <!-- To auto-complete the email text field in the loginActivity form with the user's emails -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -25,7 +26,16 @@
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
         <activity android:name=".GeolocationTest" />
 
 
@@ -40,25 +50,10 @@
         <!--</activity>-->
 
 
-
         <activity
-            android:name=".Categories"
-            android:label="@string/title_activity_categories"
-            android:parentActivityName=".Home"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduser.Home" />
-        </activity>
-        <activity
-            android:name=".Login"
+            android:name=".LoginActivity"
             android:label="Nearby Shops : Login"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ItemCategoryOption.ShopItemSwipeView"
@@ -150,6 +145,31 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
+
+
+        <activity
+            android:name=".ShopsByCategory.ShopsByCategory"
+            android:label="@string/label_shops_by_category"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
+
+
+
+        <activity
+            android:name=".ItemsByCategory.ItemsByCategory"
+            android:label="@string/label_items_by_category"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
+
+
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.zaDeprecatedItemCategories;
+package org.nearbyshops.enduser;
 
 import org.nearbyshops.enduser.Application.ApplicationState;
 

@@ -105,6 +105,8 @@ public class ShopItemSwipeView extends AppCompatActivity implements NotifyCatego
 
         setupSlidingLayer();
 
+        insertTab("Root");
+
     }
 
 
@@ -338,7 +340,6 @@ public class ShopItemSwipeView extends AppCompatActivity implements NotifyCatego
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-
         Icepick.restoreInstanceState(this,savedInstanceState);
     }
 
@@ -346,8 +347,6 @@ public class ShopItemSwipeView extends AppCompatActivity implements NotifyCatego
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
         Icepick.saveInstanceState(this,outState);
-
     }
 }

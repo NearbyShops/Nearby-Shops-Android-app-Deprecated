@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopItemByItem;
+package org.nearbyshops.enduser.ShopItemByItem.FilledCarts;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -16,11 +16,12 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
+import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.CartItem;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.Model.ShopItem;
+import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.ModelStats.CartStats;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
@@ -28,6 +29,7 @@ import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.Utility.InputFilterMinMax;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +48,7 @@ import retrofit2.Response;
 /**
  * Created by sumeet on 27/5/16.
  */
-public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.ViewHolder> implements Callback<List<CartItem>>  {
+public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.ViewHolder>{
 
 
     @Inject
@@ -55,17 +57,17 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
     @Inject
     CartStatsService cartStatsService;
 
-    Map<Integer,CartItem> cartItemMap = new HashMap<>();
-    Map<Integer,CartStats> cartStatsMap = new HashMap<>();
+    private Map<Integer,CartItem> cartItemMap = new HashMap<>();
+    private Map<Integer,CartStats> cartStatsMap = new HashMap<>();
 
 
-    Item item;
+    private Item item;
 
-    List<ShopItem> dataset;
+    private List<ShopItem> dataset;
 
-    Context context;
+    private Context context;
 
-    NotifyFilledCart notifyFilledCart;
+    private NotifyFilledCart notifyFilledCart;
 
 
     public AdapterFilledCarts(List<ShopItem> dataset, Context context,Item item,NotifyFilledCart notifyFilledCart) {
@@ -88,13 +90,53 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
         cartItemMap.clear();
         cartStatsMap.clear();
 
-        Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(0,item.getItemID(),
-                UtilityGeneral.getEndUserID(MyApplication.getAppContext()),0);
+        EndUser endUser = UtilityLogin.getEndUser(context);
+        if(endUser == null)
+        {
+            return;
+        }
 
-        cartItemCall.enqueue(this);
+        Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(0,item.getItemID(),
+                endUser.getEndUserID(),0);
+
+        cartItemCall.enqueue(new Callback<List<CartItem>>() {
+            @Override
+            public void onResponse(Call<List<CartItem>> call, Response<List<CartItem>> response) {
+
+
+                //Toast.makeText(context,"Response Code: " + response.code(),Toast.LENGTH_SHORT).show();
+
+                if(response.body()!=null)
+                {
+
+                    for(CartItem cartItem: response.body())
+                    {
+                        cartItemMap.put(cartItem.getCart().getShopID(),cartItem);
+                    }
+
+                    notifyDataSetChanged();
+
+                    //showToastMessage("Cart Item Updated !");
+
+                }else
+                {
+                    cartItemMap.clear();
+
+                    notifyDataSetChanged();
+
+                    //showToastMessage("Cart Item Updated - Null !");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CartItem>> call, Throwable t) {
+
+                Toast.makeText(context," Unsuccessful !",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         Call<List<CartStats>> listCall = cartStatsService
-                .getCart(UtilityGeneral.getEndUserID(MyApplication.getAppContext()),0,
+                .getCart(endUser.getEndUserID(), 0,
                         UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
                         UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY));
 
@@ -208,8 +250,8 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
             holder.shopName.setText(shop.getShopName());
 
-            holder.distance.setText(String.format( "%.2f", shop.getDistance()) + " Km");
-            holder.deliveryCharge.setText("Delivery :\nRs " + String.format( "%.0f", shop.getDeliveryCharges()) + "\nPer Order");
+            holder.distance.setText("Distance : " + String.format( "%.2f", shop.getDistance()) + " Km");
+            holder.deliveryCharge.setText("Delivery : Rs " + String.format( "%.0f", shop.getDeliveryCharges()) + " Per Order");
 
         }
 
@@ -230,7 +272,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
 
 
-    class ViewHolder extends RecyclerView.ViewHolder implements Callback<ResponseBody>, TextWatcher {
+    class ViewHolder extends RecyclerView.ViewHolder{
 
 
         @Bind(R.id.textAddToCart)
@@ -287,7 +329,126 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
             ButterKnife.bind(this, itemView);
 
-            itemQuantity.addTextChangedListener(this);
+            itemQuantity.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    setFilter();
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    shopItem = dataset.get(getLayoutPosition());
+                    cartItem = cartItemMap.get(dataset.get(getLayoutPosition()).getShopID());
+
+                    cartStats = cartStatsMap.get(dataset.get(getLayoutPosition()).getShopID());
+
+
+            /*
+
+            if(cartItem==null)
+            {
+
+                if(Integer.parseInt(itemQuantity.getText().toString())==0)
+                {
+                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+
+                }else
+                {
+                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+                }
+
+
+            }else
+            {
+                if(Integer.parseInt(itemQuantity.getText().toString())==0)
+                {
+                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
+
+                }else
+                {
+                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                }
+            }
+
+            */
+
+
+
+                    double total = 0;
+                    int availableItems = shopItem.getAvailableItemQuantity();
+
+                    if (!itemQuantity.getText().toString().equals(""))
+                    {
+
+                        try{
+
+                            if(Integer.parseInt(itemQuantity.getText().toString())>availableItems)
+                            {
+
+                                return;
+                            }
+
+                            total = shopItem.getItemPrice() * Integer.parseInt(itemQuantity.getText().toString());
+
+
+                            if(Integer.parseInt(itemQuantity.getText().toString())==0)
+                            {
+                                if(cartItem==null)
+                                {
+
+                                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+
+                                }else
+                                {
+                                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
+
+                                    addToCartText.setText("Remove Item");
+
+                                }
+
+                            }else
+                            {
+                                if(cartItem==null)
+                                {
+                                    // no shop exist
+
+                                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+
+                                }else
+                                {
+                                    // shop Exist
+
+                                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+
+                                    addToCartText.setText("Update Cart");
+                                }
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            //ex.printStackTrace();
+                        }
+
+                    }
+
+
+                    itemTotal.setText("Total : " + String.format( "%.2f", total));
+
+                    cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+
+
+                }
+            });
 
         }
 
@@ -330,13 +491,37 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
                     //showToastMessage("Add to cart! : " + dataset.get(getLayoutPosition()).getShopID());
 
+                    EndUser endUser = UtilityLogin.getEndUser(context);
+                    if(endUser==null)
+                    {
+                        return;
+                    }
+
+
                     Call<ResponseBody> call = cartItemService.createCartItem(
                             cartItem,
-                            UtilityGeneral.getEndUserID(MyApplication.getAppContext()),
+                            endUser.getEndUserID(),
                             dataset.get(getLayoutPosition()).getShopID()
                     );
 
-                    call.enqueue(this);
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+                            if (response.code() == 201) {
+                                Toast.makeText(context, "Add to cart successful !", Toast.LENGTH_SHORT).show();
+
+                                makeNetworkCall();
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                        }
+                    });
                 }
 
 
@@ -349,8 +534,15 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                 {
                     // Delete from cart
 
+                    //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
+                    EndUser endUser = UtilityLogin.getEndUser(context);
+                    if(endUser==null)
+                    {
+                        return;
+                    }
+
                     Call<ResponseBody> callDelete = cartItemService.deleteCartItem(0,cartItem.getItemID(),
-                            UtilityGeneral.getEndUserID(MyApplication.getAppContext()),
+                            endUser.getEndUserID(),
                             dataset.get(getLayoutPosition()).getShopID()
                     );
 
@@ -391,53 +583,41 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                 {
                     // Update from cart
 
+                    //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
+                    EndUser endUser = UtilityLogin.getEndUser(context);
+
                     if(getLayoutPosition() < dataset.size())
                     {
                         ShopItem shop = dataset.get(getLayoutPosition());
 
                         Call<ResponseBody> callUpdate = cartItemService.updateCartItem(
                                 cartItem,
-                                UtilityGeneral.getEndUserID(MyApplication.getAppContext()),
+                                endUser.getEndUserID(),
                                 shop.getShopID()
                         );
 
-                        callUpdate.enqueue(this);
+                        callUpdate.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+                                if (response.code() == 200) {
+                                    Toast.makeText(context, "Update cart successful !", Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                            }
+                        });
 
                     }
 
-
-
-
-
                 }
-
-
             }
-
-        }
-
-
-        @Override
-        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-            if (response.code() == 201) {
-                Toast.makeText(context, "Add to cart successful !", Toast.LENGTH_SHORT).show();
-
-                makeNetworkCall();
-
-            }
-
-            if (response.code() == 200) {
-                Toast.makeText(context, "Update cart successful !", Toast.LENGTH_SHORT).show();
-
-            }
-
-
-        }
-
-        @Override
-        public void onFailure(Call<ResponseBody> call, Throwable t) {
-
         }
 
 
@@ -581,162 +761,10 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
         }
 
 
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            setFilter();
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            shopItem = dataset.get(getLayoutPosition());
-            cartItem = cartItemMap.get(dataset.get(getLayoutPosition()).getShopID());
-
-            cartStats = cartStatsMap.get(dataset.get(getLayoutPosition()).getShopID());
-
-
-            /*
-
-            if(cartItem==null)
-            {
-
-                if(Integer.parseInt(itemQuantity.getText().toString())==0)
-                {
-                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
-
-                }else
-                {
-                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
-                }
-
-
-            }else
-            {
-                if(Integer.parseInt(itemQuantity.getText().toString())==0)
-                {
-                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
-
-                }else
-                {
-                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
-                }
-            }
-
-            */
-
-
-
-            double total = 0;
-            int availableItems = shopItem.getAvailableItemQuantity();
-
-            if (!itemQuantity.getText().toString().equals(""))
-            {
-
-                try{
-
-                    if(Integer.parseInt(itemQuantity.getText().toString())>availableItems)
-                    {
-
-                        return;
-                    }
-
-                    total = shopItem.getItemPrice() * Integer.parseInt(itemQuantity.getText().toString());
-
-
-                    if(Integer.parseInt(itemQuantity.getText().toString())==0)
-                    {
-                        if(cartItem==null)
-                        {
-
-                            itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
-
-
-                        }else
-                        {
-                            itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
-
-
-                            addToCartText.setText("Remove Item");
-
-                        }
-
-                    }else
-                    {
-                        if(cartItem==null)
-                        {
-                            // no shop exist
-
-                            itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
-
-                        }else
-                        {
-                            // shop Exist
-
-                            itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
-
-                            addToCartText.setText("Update Cart");
-                        }
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    //ex.printStackTrace();
-                }
-
-            }
-
-
-            itemTotal.setText("Total : " + String.format( "%.2f", total));
-
-            cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-
 
     }// View Holder Ends
 
 
-
-    @Override
-    public void onResponse(Call<List<CartItem>> call, Response<List<CartItem>> response) {
-
-
-        //Toast.makeText(context,"Response Code: " + response.code(),Toast.LENGTH_SHORT).show();
-
-        if(response.body()!=null)
-        {
-
-            for(CartItem cartItem: response.body())
-            {
-                cartItemMap.put(cartItem.getCart().getShopID(),cartItem);
-            }
-
-            notifyDataSetChanged();
-
-            //showToastMessage("Cart Item Updated !");
-
-        }else
-        {
-            cartItemMap.clear();
-
-            notifyDataSetChanged();
-
-            //showToastMessage("Cart Item Updated - Null !");
-        }
-    }
-
-    @Override
-    public void onFailure(Call<List<CartItem>> call, Throwable t) {
-
-        Toast.makeText(context," Unsuccessful !",Toast.LENGTH_SHORT).show();
-    }
 
 
     void showToastMessage(String message)

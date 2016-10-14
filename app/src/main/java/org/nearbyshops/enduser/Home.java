@@ -12,13 +12,18 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.os.ResultReceiver;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,8 +48,12 @@ import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 
+import org.apache.commons.validator.routines.UrlValidator;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
-import org.nearbyshops.enduser.ItemCategoryOption.ShopItemSwipeView;
+import org.nearbyshops.enduser.ItemsByCategory.ItemsByCategory;
+import org.nearbyshops.enduser.Login.LoginDialog;
+import org.nearbyshops.enduser.Login.ServiceURLDialog;
+import org.nearbyshops.enduser.ShopsByCategory.ShopsByCategory;
 import org.nearbyshops.enduser.UtilityGeocoding.Constants;
 import org.nearbyshops.enduser.UtilityGeocoding.FetchAddressIntentService;
 import org.nearbyshops.enduser.ItemCategoryOption.FragmentItemCategories;
@@ -85,6 +94,13 @@ public class Home extends AppCompatActivity
     @Bind(R.id.textMin)
     TextView textMin;
 
+    @Bind(R.id.serviceURL)
+    TextInputEditText serviceURL;
+
+    @Bind(R.id.text_input_service_url)
+    TextInputLayout textInputServiceURL;
+
+    UrlValidator urlValidator;
 
 
     // location variables
@@ -160,9 +176,60 @@ public class Home extends AppCompatActivity
         setupNavigationDrawer();
 
 
+        if(UtilityGeneral.getServiceURL(this).equals("http://nearbyshops.org"))
+        {
+//            showLoginDialog();
+        }
+
+
+        String[] schemes = {"http", "https"};
+
+        urlValidator = new UrlValidator(schemes);
+
+        serviceURL.setText(UtilityGeneral.getServiceURL(this));
+
+        serviceURL.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (urlValidator.isValid(s.toString())) {
+                    UtilityGeneral.saveServiceURL(s.toString());
+                    textInputServiceURL.setError(null);
+                    textInputServiceURL.setErrorEnabled(false);
+                }
+                else
+                {
+//                    serviceURL.setError("URL Invalid");
+                    textInputServiceURL.setErrorEnabled(true);
+                    textInputServiceURL.setError("Invalid URL");
+                }
+            }
+        });
+
+
+
+
     } // onCreate() Ends
 
 
+
+
+    private void showLoginDialog()
+    {
+        FragmentManager fm = getSupportFragmentManager();
+        ServiceURLDialog loginDialog = new ServiceURLDialog();
+        loginDialog.show(fm,"serviceUrl");
+    }
 
 
 
@@ -185,9 +252,22 @@ public class Home extends AppCompatActivity
     @OnClick(R.id.option_item_categories)
     public void itemCategoriesClick() {
 
-        Intent intent = new Intent(this, ShopItemSwipeView.class);
+//        Intent intent = new Intent(this, ShopItemSwipeView.class);
+
+        Intent intent = new Intent(this, ItemsByCategory.class);
         startActivity(intent);
     }
+
+
+    @OnClick(R.id.option_shops_by_category)
+    public void shopsByCategoryClick() {
+
+        Intent intent = new Intent(this, ShopsByCategory.class);
+        startActivity(intent);
+    }
+
+
+
 
 
     boolean visible = false;

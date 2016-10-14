@@ -2,6 +2,7 @@ package org.nearbyshops.enduser.Carts;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,14 +17,17 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
+import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Model.CartItem;
 import org.nearbyshops.enduser.Model.Shop;
+import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.ModelStats.CartStats;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,14 +108,14 @@ public class CartItemListActivity extends AppCompatActivity
         confirmItems = (TextView) findViewById(R.id.confirm);
 
 
-        shopImage = (ImageView) findViewById(R.id.shopImage);
-        shopName = (TextView) findViewById(R.id.shopName);
-        rating = (TextView) findViewById(R.id.rating);
-        distance = (TextView) findViewById(R.id.distance);
-        deliveryCharge = (TextView) findViewById(R.id.deliveryCharge);
-        itemsInCart = (TextView) findViewById(R.id.itemsInCart);
-        cartTotalHeader = (TextView) findViewById(R.id.cartTotal);
-        cartsListItem = (LinearLayout)findViewById(R.id.carts_list_item);
+//        shopImage = (ImageView) findViewById(R.id.shopImage);
+//        shopName = (TextView) findViewById(R.id.shopName);
+//        rating = (TextView) findViewById(R.id.rating);
+//        distance = (TextView) findViewById(R.id.distance);
+//        deliveryCharge = (TextView) findViewById(R.id.deliveryCharge);
+//        itemsInCart = (TextView) findViewById(R.id.itemsInCart);
+//        cartTotalHeader = (TextView) findViewById(R.id.cartTotal);
+//        cartsListItem = (LinearLayout)findViewById(R.id.carts_list_item);
 
 
 
@@ -127,7 +131,7 @@ public class CartItemListActivity extends AppCompatActivity
             totalValue.setText(" : Rs " + String.format("%.2f", cartTotal));
         }
 
-        setupHeader();
+//        setupHeader();
         setupSwipeContainer();
         setupRecyclerView();
 
@@ -146,7 +150,7 @@ public class CartItemListActivity extends AppCompatActivity
     }
 
 
-    void setupHeader()
+    /*void setupHeader()
     {
 
         if(cartStats!=null)
@@ -174,7 +178,7 @@ public class CartItemListActivity extends AppCompatActivity
         }
 
     }
-
+*/
 
     void setupSwipeContainer()
     {
@@ -242,10 +246,20 @@ public class CartItemListActivity extends AppCompatActivity
 
         if(UtilityGeneral.isNetworkAvailable(this))
         {
+
+            EndUser endUser = UtilityLogin.getEndUser(this);
+
+            if(endUser==null)
+            {
+                showLoginDialog();
+                return;
+            }
+
+
             if(shop!=null)
             {
                 Call<List<CartItem>> call = cartItemService.getCartItem(0,0,
-                        UtilityGeneral.getEndUserID(this),shop.getShopID());
+                        endUser.getEndUserID(),shop.getShopID());
 
                 call.enqueue(this);
             }
@@ -391,4 +405,15 @@ public class CartItemListActivity extends AppCompatActivity
         ButterKnife.unbind(this);
 
     }
+
+
+
+
+    private void showLoginDialog()
+    {
+        FragmentManager fm = getSupportFragmentManager();
+        LoginDialog loginDialog = new LoginDialog();
+        loginDialog.show(fm,"serviceUrl");
+    }
+
 }

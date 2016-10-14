@@ -1,9 +1,12 @@
 package org.nearbyshops.enduser.Model;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.sql.Timestamp;
 
-public class ShopItem{
+public class ShopItem implements Parcelable{
 	
 	public static final String UNIT_KG = "Kg.";
 	public static final String UNIT_GRAMS = "Grams.";
@@ -20,15 +23,15 @@ public class ShopItem{
 
 
 	// holding shop and item reference for parsing JSON
-	Shop shop;
+	private Shop shop;
 	//int itemID;
-	Item item;
+	private Item item;
 
 
-	int shopID;
-	int itemID;
-	int availableItemQuantity;
-	double itemPrice;
+	private int shopID;
+	private int itemID;
+	private int availableItemQuantity;
+	private double itemPrice;
 
 	
 	// in certain cases the shop might take extra delivery charge for the particular item 
@@ -49,10 +52,48 @@ public class ShopItem{
 
 
 	// recently added variables
-	int extraDeliveryCharge;
-	Timestamp dateTimeAdded;
-	Timestamp lastUpdateDateTime;
+	private int extraDeliveryCharge;
+	private Timestamp dateTimeAdded;
+	private Timestamp lastUpdateDateTime;
 
+
+	protected ShopItem(Parcel in) {
+		shop = in.readParcelable(Shop.class.getClassLoader());
+		item = in.readParcelable(Item.class.getClassLoader());
+		shopID = in.readInt();
+		itemID = in.readInt();
+		availableItemQuantity = in.readInt();
+		itemPrice = in.readDouble();
+		extraDeliveryCharge = in.readInt();
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(shop, flags);
+		dest.writeParcelable(item, flags);
+		dest.writeInt(shopID);
+		dest.writeInt(itemID);
+		dest.writeInt(availableItemQuantity);
+		dest.writeDouble(itemPrice);
+		dest.writeInt(extraDeliveryCharge);
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	public static final Creator<ShopItem> CREATOR = new Creator<ShopItem>() {
+		@Override
+		public ShopItem createFromParcel(Parcel in) {
+			return new ShopItem(in);
+		}
+
+		@Override
+		public ShopItem[] newArray(int size) {
+			return new ShopItem[size];
+		}
+	};
 
 	public int getExtraDeliveryCharge() {
 		return extraDeliveryCharge;

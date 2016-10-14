@@ -2,6 +2,7 @@ package org.nearbyshops.enduser.Carts;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,12 +13,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
-import org.nearbyshops.enduser.Model.EndUser;
+import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.Login.LoginDialog;
+import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.DeliveryAddressService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,12 +153,29 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
     void makeNetworkCall()
     {
+        EndUser endUser = UtilityLogin.getEndUser(this);
+
+        if(endUser == null)
+        {
+            showLoginDialog();
+            return;
+        }
 
         Call<List<DeliveryAddress>> call = deliveryAddressService.getAddresses(
-                UtilityGeneral.getEndUserID(this));
+                endUser.getEndUserID());
 
                 call.enqueue(this);
     }
+
+
+
+    private void showLoginDialog()
+    {
+        FragmentManager fm = getSupportFragmentManager();
+        LoginDialog loginDialog = new LoginDialog();
+        loginDialog.show(fm,"serviceUrl");
+    }
+
 
 
 

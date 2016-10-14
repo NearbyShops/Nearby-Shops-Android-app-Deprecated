@@ -2,6 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/colored_shop_storefront"
+            android:title="Login" />
+
+
+        <item
+            android:id="@+id/nav_change_password"
+            android:icon="@drawable/colored_shop_storefront"
+            android:title="Change Password" />
+
         <item
             android:id="@+id/nav_orders"
             android:icon="@drawable/colored_shop_storefront"

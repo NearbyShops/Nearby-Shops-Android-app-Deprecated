@@ -2,7 +2,6 @@ package org.nearbyshops.enduser.ItemCategoryOption;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,13 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.wunderlist.slidinglayer.SlidingLayer;
-
 import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.ModelEndPoints.ItemCategoryEndPoint;
-import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
+import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.R;
@@ -28,7 +25,6 @@ import org.nearbyshops.enduser.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 

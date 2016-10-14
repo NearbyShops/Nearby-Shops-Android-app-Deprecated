@@ -2,27 +2,29 @@ package org.nearbyshops.enduser.ShopItemByItem;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import org.nearbyshops.enduser.Model.Item;
+import org.nearbyshops.enduser.ShopItemByItem.FilledCarts.FilledCartsFragment;
+import org.nearbyshops.enduser.ShopItemByItem.NewCarts.NewCartsFragment;
 
 /**
  * Created by sumeet on 25/5/16.
  */
-public class PagerAdapterCarts extends FragmentPagerAdapter implements FilledCartsFragment.NotifyPagerAdapter,NewCartsFragment.NotifyPagerAdapter{
+public class PagerAdapterShopItem extends FragmentStatePagerAdapter{
 
-    Item item = null;
+    private Item item = null;
 
-    FilledCartsFragment filledCartsFragment;
-    NewCartsFragment newCartsFragment;
+    private FilledCartsFragment filledCartsFragment;
+    private NewCartsFragment newCartsFragment;
 
 
-    public PagerAdapterCarts(FragmentManager fm, Item item) {
+    public PagerAdapterShopItem(FragmentManager fm, Item item) {
         super(fm);
         this.item = item;
     }
 
-    public PagerAdapterCarts(FragmentManager fm) {
+    public PagerAdapterShopItem(FragmentManager fm) {
         super(fm);
     }
 
@@ -35,7 +37,7 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements FilledCar
 
             filledCartsFragment = FilledCartsFragment.newInstance(item);
 
-            filledCartsFragment.setNotifyPagerAdapter(this);
+//            filledCartsFragment.setNotifyPagerAdapter(this);
 
             return filledCartsFragment;
 
@@ -44,7 +46,7 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements FilledCar
 
             newCartsFragment = NewCartsFragment.newInstance(item);
 
-            newCartsFragment.setNotifyPagerAdapter(this);
+//            newCartsFragment.setNotifyPagerAdapter(this);
 
 
             return newCartsFragment;
@@ -65,6 +67,7 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements FilledCar
         return 2;
     }
 
+/*
     @Override
     public CharSequence getPageTitle(int position) {
 
@@ -109,6 +112,7 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements FilledCar
         }
         return null;
     }
+*/
 
 
 
@@ -123,6 +127,7 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements FilledCar
     //boolean isNewCartCallbackFired = false;
     //boolean isFilledCartCallbackFired = false;
 
+/*
     boolean flag = true;
 
     @Override
@@ -157,8 +162,10 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements FilledCar
         //isFilledCartCallbackFired = true;
 
     }
+*/
 
 
+/*
     @Override
     public void notifyNewCartsChanged() {
 
@@ -189,6 +196,57 @@ public class PagerAdapterCarts extends FragmentPagerAdapter implements FilledCar
 
         //isNewCartCallbackFired = true;
     }
+*/
+
+
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+
+            case 0:
+                return titleFilledCarts;
+            case 1:
+                return titleNewCarts;
+            case 2:
+                return titleDetachedItemCategories;
+            case 3:
+                return titleDetachedItems;
+        }
+        return null;
+    }
+
+
+
+    private String titleFilledCarts = "Filled Carts (0/0)";
+    private String titleNewCarts = "New Carts (0/0)";
+    private String titleDetachedItemCategories = "Detached Item-Categories (0/0)";
+    private String titleDetachedItems = "Detached Items (0/0)";
+
+
+    public void setTitle(String title, int tabPosition)
+    {
+        if(tabPosition == 0){
+
+            titleFilledCarts = title;
+        }
+        else if (tabPosition == 1)
+        {
+
+            titleNewCarts = title;
+        }else if(tabPosition == 2)
+        {
+            titleDetachedItemCategories = title;
+
+        }else if(tabPosition == 3)
+        {
+            titleDetachedItems = title;
+        }
+
+
+        notifyDataSetChanged();
+    }
+
 
 
 }

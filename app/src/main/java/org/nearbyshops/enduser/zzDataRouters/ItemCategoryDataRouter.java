@@ -1,7 +1,7 @@
 package org.nearbyshops.enduser.zzDataRouters;
 
 
-import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
+import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.DaggerModules.DataModule;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.zzStandardInterfaces.DataProviderItemCategory;

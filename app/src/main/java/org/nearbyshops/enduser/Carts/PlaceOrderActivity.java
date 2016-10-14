@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.nearbyshops.enduser.zaDeprecatedItemCategories.DaggerComponentBuilder;
+import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Home;
 import org.nearbyshops.enduser.Model.Order;
 import org.nearbyshops.enduser.ModelStats.CartStats;
@@ -19,6 +19,7 @@ import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import java.util.List;
 
@@ -229,7 +230,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
             return;
         }
 
-        Call<List<CartStats>> call = cartStatsService.getCart(UtilityGeneral.getEndUserID(this),cartStats.getCartID(),0,0);
+        Call<List<CartStats>> call = cartStatsService.getCart(UtilityLogin.getEndUser(this).getEndUserID(),cartStats.getCartID(),0,0);
 
         call.enqueue(this);
 
