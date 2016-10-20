@@ -19,7 +19,6 @@ import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.EndUserService;
-import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import javax.inject.Inject;

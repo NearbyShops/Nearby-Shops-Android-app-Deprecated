@@ -102,7 +102,7 @@ public class FragmentShopOld extends Fragment implements SwipeRefreshLayout.OnRe
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
-            View rootView = inflater.inflate(R.layout.fragment_shops, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_shop_item_by_shop, container, false);
             //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
 
 //            itemCategory = getArguments().getParcelable("itemCat");

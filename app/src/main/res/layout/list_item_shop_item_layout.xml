@@ -319,7 +319,7 @@
             android:id="@+id/reduceQuantity"
             android:layout_gravity="center_vertical"
             android:background="@color/grey800"
-            android:src="@drawable/ic_remove_white_24px"
+            app:srcCompat="@drawable/ic_remove_white_24px"
             android:layout_width="40dp"
             android:layout_height="40dp" />
 
@@ -338,7 +338,7 @@
             android:id="@+id/increaseQuantity"
             android:layout_gravity="center_vertical"
             android:background="@color/grey800"
-            android:src="@drawable/ic_add_white_24px"
+            app:srcCompat="@drawable/ic_add_white_24px"
             android:layout_width="40dp"
             android:layout_height="40dp" />
 
@@ -392,7 +392,7 @@
         android:paddingBottom="10dp"
         android:layout_marginLeft="0dp"
         android:background="@color/grey800"
-        android:src="@drawable/ic_add_shopping_cart_white_24px"
+        app:srcCompat="@drawable/ic_add_shopping_cart_white_24px"
         android:layout_width="100dp"
         android:layout_height="match_parent" />
 

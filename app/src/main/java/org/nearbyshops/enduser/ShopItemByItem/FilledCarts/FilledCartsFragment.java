@@ -17,6 +17,7 @@ import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ShopItem;
+import org.nearbyshops.enduser.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
@@ -28,7 +29,6 @@ import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -49,10 +49,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     ShopItemService shopItemService;
 
     @State
-    public ArrayList<ShopItem> dataset = new ArrayList<>();
-
-    @State
-    boolean changeNotified;
+    ArrayList<ShopItem> dataset = new ArrayList<>();
 
 
     RecyclerView recyclerView;
@@ -147,7 +144,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
         DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        layoutManager.setSpanCount(metrics.widthPixels/400);
+        layoutManager.setSpanCount(metrics.widthPixels/350);
 
     }
 
@@ -191,10 +188,89 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
             if(endUser == null)
             {
-                showLoginDialog();
+//                showLoginDialog();
+                swipeContainer.setRefreshing(false);
+
+
+                if(getActivity() instanceof NotifySwipeToRight)
+                {
+                    ((NotifySwipeToRight)getActivity()).notifySwipeRight();
+                }
+
                 return;
             }
 
+
+            Call<ShopItemEndPoint> callEndpoint = shopItemService.getShopItemEndpoint(
+                    null,null,item.getItemID(),
+                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,0),
+                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,0),
+                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,0),
+                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,0),
+                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,0),
+                    endUser.getEndUserID(),true,
+                    null,null,null,null,
+                    null,null,null,null
+            );
+
+
+            callEndpoint.enqueue(new Callback<ShopItemEndPoint>() {
+                @Override
+                public void onResponse(Call<ShopItemEndPoint> call, Response<ShopItemEndPoint> response) {
+
+                    if (isDestroyed) {
+                        return;
+                    }
+
+                    if (response.body() != null)
+                    {
+
+                        dataset.clear();
+
+                        dataset.addAll(response.body().getResults());
+
+                        if(response.body().getItemCount()==0)
+                        {
+
+                            if(getActivity() instanceof NotifySwipeToRight)
+                            {
+                                ((NotifySwipeToRight)getActivity()).notifySwipeRight();
+                            }
+                        }
+
+
+                        if(notifyChange)
+                        {
+                            filledCartsChanged();
+                        }
+
+
+                        adapter.makeNetworkCall();
+                        adapter.notifyDataSetChanged();
+                        notifyTitleChanged();
+                        swipeContainer.setRefreshing(false);
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<ShopItemEndPoint> call, Throwable t) {
+
+                    if(isDestroyed)
+                    {
+                        return;
+                    }
+
+                    showToastMessage("Network Request failed !");
+                    swipeContainer.setRefreshing(false);
+
+
+                }
+            });
+
+
+
+/*
             // Network Available
 
             Call<List<ShopItem>> call = shopItemService.getShopItems(
@@ -214,51 +290,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
                 public void onResponse(Call<List<ShopItem>> call, Response<List<ShopItem>> response) {
 
 
-                    if(isDestroyed)
-                    {
-                        return;
-                    }
 
-                    if(response.body()!=null)
-                    {
-                        dataset.clear();
-                        dataset.addAll(response.body());
-                        adapter.notifyDataSetChanged();
-
-                        if(getActivity() instanceof NotifyFillCartsChanged)
-                        {
-                            ((NotifyFillCartsChanged)getActivity()).notifyFilledCartsChanged();
-                        }
-
-                        adapter.makeNetworkCall();
-
-
-                    }else
-                    {
-
-                        dataset.clear();
-                        adapter.notifyDataSetChanged();
-
-
-
-                        if(notifyChange)
-                        {
-                            filledCartsChanged();
-                        }
-
-
-
-
-                        if(getActivity() instanceof NotifySwipeToRight)
-                        {
-                            ((NotifySwipeToRight)getActivity()).notifySwipeRight();
-                        }
-
-                        adapter.makeNetworkCall();
-                    }
-
-                    notifyTitleChanged();
-                    swipeContainer.setRefreshing(false);
 
 
                 }
@@ -272,11 +304,11 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
                         return;
                     }
 
-                    showToastMessage("Network Request failed !");
-                    swipeContainer.setRefreshing(false);
 
                 }
-            });
+            });*/
+
+
     }
 
 

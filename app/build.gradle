@@ -3,8 +3,6 @@ apply plugin: 'android-apt'
 
 
 
-
-
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
@@ -124,6 +122,7 @@ dependencies {
     //compile 'com.google.android.gms:play-services:9.0.2'
 
     compile 'com.google.android.gms:play-services-location:9.6.1'
+    compile 'com.google.android.gms:play-services-maps:9.6.1'
 
     compile 'com.android.support:multidex:1.0.1'
 
@@ -135,4 +134,6 @@ dependencies {
     provided 'frankiesardo:icepick-processor:3.2.0'
 
 
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
 }

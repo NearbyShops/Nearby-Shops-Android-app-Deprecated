@@ -118,9 +118,19 @@ public class UtilityLogin {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 
         SharedPreferences.Editor prefsEditor = sharedPref.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(endUser);
-        prefsEditor.putString("admin", json);
+
+        if(endUser == null)
+        {
+            prefsEditor.putString("admin", "null");
+
+        }
+        else
+        {
+            Gson gson = new Gson();
+            String json = gson.toJson(endUser);
+            prefsEditor.putString("admin", json);
+        }
+
         prefsEditor.apply();
     }
 

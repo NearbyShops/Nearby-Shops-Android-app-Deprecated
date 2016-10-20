@@ -1,6 +1,7 @@
 package org.nearbyshops.enduser.RetrofitRESTContract;
 
 import org.nearbyshops.enduser.Model.ShopItem;
+import org.nearbyshops.enduser.ModelEndPoints.ShopItemEndPoint;
 
 import java.util.List;
 
@@ -29,6 +30,23 @@ public interface ShopItemService {
             @Query("EndUserID")Integer endUserID,@Query("IsFilledCart")Boolean isFilledCart
     );
 
+    
+
+    @GET("/api/v1/ShopItem")
+    Call<ShopItemEndPoint> getShopItemEndpoint(
+            @Query("ItemCategoryID")Integer ItemCategoryID,
+            @Query("ShopID")Integer ShopID, @Query("ItemID") Integer itemID,
+            @Query("latCenter")Double latCenter,@Query("lonCenter")Double lonCenter,
+            @Query("deliveryRangeMax")Double deliveryRangeMax,
+            @Query("deliveryRangeMin")Double deliveryRangeMin,
+            @Query("proximity")Double proximity,
+            @Query("EndUserID") Integer endUserID,@Query("IsFilledCart") Boolean isFilledCart,
+            @Query("IsOutOfStock") Boolean isOutOfStock,@Query("PriceEqualsZero")Boolean priceEqualsZero,
+            @Query("MinPrice")Integer minPrice,@Query("MaxPrice")Integer maxPrice,
+            @Query("SortBy") String sortBy,
+            @Query("Limit") Integer limit, @Query("Offset") Integer offset,
+            @Query("metadata_only")Boolean metaonly
+    );
 
 
     @POST("/api/v1/ShopItem")

@@ -166,13 +166,13 @@ public class FragmentItem_ItemByCategory extends Fragment
         layoutManager = new GridLayoutManager(getActivity(),1);
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.addItemDecoration(
+        /*recyclerView.addItemDecoration(
                 new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL_LIST)
         );
 
         recyclerView.addItemDecoration(
                 new DividerItemDecoration(getActivity(),DividerItemDecoration.HORIZONTAL_LIST)
-        );
+        );*/
 
 
         DisplayMetrics metrics = new DisplayMetrics();
@@ -310,6 +310,22 @@ public class FragmentItem_ItemByCategory extends Fragment
         });
 
     }
+
+
+    public static class EndPoint implements Callback<ItemEndPoint>{
+
+        @Override
+        public void onResponse(Call<ItemEndPoint> call, Response<ItemEndPoint> response) {
+
+        }
+
+        @Override
+        public void onFailure(Call<ItemEndPoint> call, Throwable t) {
+
+        }
+    }
+
+
 
 
     void showToastMessage(String message)

@@ -1,10 +1,7 @@
 package org.nearbyshops.enduser;
 
 import org.nearbyshops.enduser.Application.ApplicationState;
-
-import org.nearbyshops.enduser.DaggerComponents.DaggerDataComponent;
 import org.nearbyshops.enduser.DaggerComponents.DaggerNetComponent;
-import org.nearbyshops.enduser.DaggerComponents.DataComponent;
 import org.nearbyshops.enduser.DaggerComponents.NetComponent;
 import org.nearbyshops.enduser.DaggerModules.AppModule;
 import org.nearbyshops.enduser.DaggerModules.NetModule;
@@ -19,7 +16,7 @@ public class DaggerComponentBuilder {
 
     private NetComponent mNetComponent;
 
-    private DataComponent dataComponent;
+//    private DataComponent dataComponent;
 
 
     private DaggerComponentBuilder() {
@@ -60,7 +57,7 @@ public class DaggerComponentBuilder {
 
 
 
-
+/*
 
     public DataComponent getDataComponent()
     {
@@ -71,6 +68,6 @@ public class DaggerComponentBuilder {
         }
 
         return dataComponent;
-    }
+    }*/
 
 }

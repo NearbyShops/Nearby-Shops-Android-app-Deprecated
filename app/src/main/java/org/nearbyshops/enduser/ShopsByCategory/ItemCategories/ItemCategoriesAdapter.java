@@ -70,7 +70,7 @@ public class ItemCategoriesAdapter extends RecyclerView.Adapter<ItemCategoriesAd
     @Override
     public ItemCategoriesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category_edit_stock,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category_shop_home,parent,false);
 
         return new ViewHolder(v);
     }

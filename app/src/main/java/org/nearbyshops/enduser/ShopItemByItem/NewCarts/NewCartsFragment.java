@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Login.LoginDialog;
+import org.nearbyshops.enduser.Login.NotifyAboutLogin;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
@@ -39,7 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NewCartsFragment extends Fragment
-        implements SwipeRefreshLayout.OnRefreshListener, AdapterNewCarts.NotifyCallbacks , NotifyFillCartsChanged{
+        implements SwipeRefreshLayout.OnRefreshListener, AdapterNewCarts.NotifyCallbacks , NotifyFillCartsChanged, NotifyAboutLogin{
 
     Item item;
 
@@ -49,7 +50,7 @@ public class NewCartsFragment extends Fragment
     AdapterNewCarts adapter;
 
     @State
-    public ArrayList<ShopItem> dataset = new ArrayList<>();
+    ArrayList<ShopItem> dataset = new ArrayList<>();
 
     GridLayoutManager layoutManager;
     SwipeRefreshLayout swipeContainer;
@@ -181,11 +182,14 @@ public class NewCartsFragment extends Fragment
 
             EndUser endUser = UtilityLogin.getEndUser(getActivity());
 
-            if(endUser ==null)
+            Integer endUserID = null;
+
+
+            if(endUser != null)
             {
-                showLoginDialog();
-                return;
+                endUserID = endUser.getEndUserID();
             }
+
 
             // Network Available
             Call<List<ShopItem>> call = shopItemService.getShopItems(
@@ -195,7 +199,7 @@ public class NewCartsFragment extends Fragment
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
-                    endUser.getEndUserID(),
+                    endUserID,
                     false);
 
             call.enqueue(new Callback<List<ShopItem>>() {
@@ -342,4 +346,9 @@ public class NewCartsFragment extends Fragment
     }
 
 
+    @Override
+    public void NotifyLogin() {
+
+        makeRefreshNetworkCall();
+    }
 }

@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.nearbyshops.enduser.Carts.AddAddressActivity"
+    tools:context="org.nearbyshops.enduser.DeliveryAddress.AddAddressActivity"
     tools:showIn="@layout/activity_add_address">
 
 

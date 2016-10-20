@@ -13,8 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.wunderlist.slidinglayer.SlidingLayer;
-
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.Model.Shop;

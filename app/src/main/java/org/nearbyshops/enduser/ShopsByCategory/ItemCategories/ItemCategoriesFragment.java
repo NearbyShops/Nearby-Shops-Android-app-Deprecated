@@ -104,7 +104,7 @@ public class ItemCategoriesFragment extends Fragment
         super.onCreateView(inflater, container, savedInstanceState);
 
 
-        View rootView = inflater.inflate(R.layout.fragment_edit_stock, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_item_category_shop_home, container, false);
 
         ButterKnife.bind(this,rootView);
 

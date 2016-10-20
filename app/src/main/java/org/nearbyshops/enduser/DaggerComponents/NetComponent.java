@@ -1,11 +1,11 @@
 package org.nearbyshops.enduser.DaggerComponents;
 
 
-import org.nearbyshops.enduser.Carts.AddAddressActivity;
+import org.nearbyshops.enduser.DeliveryAddress.AddAddressActivity;
 import org.nearbyshops.enduser.Carts.CartItemListActivity;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
-import org.nearbyshops.enduser.Carts.DeliveryAddressActivity;
-import org.nearbyshops.enduser.Carts.EditAddressActivity;
+import org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity;
+import org.nearbyshops.enduser.DeliveryAddress.EditAddressActivity;
 import org.nearbyshops.enduser.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduser.DaggerModules.AppModule;
 import org.nearbyshops.enduser.DaggerModules.NetModule;
@@ -13,12 +13,15 @@ import org.nearbyshops.enduser.ItemCategoryOption.FragmentShopOld;
 import org.nearbyshops.enduser.ItemsByCategory.ItemCategories.ItemCategoriesFragmentItem;
 import org.nearbyshops.enduser.ItemsByCategory.Items.FragmentItem_ItemByCategory;
 import org.nearbyshops.enduser.Login.LoginDialog;
+import org.nearbyshops.enduser.Login.LoginServiceDialog;
 import org.nearbyshops.enduser.LoginActivity;
+import org.nearbyshops.enduser.ShopDetail.ShopDetail;
+import org.nearbyshops.enduser.ShopDetail.RateReviewDialog;
+import org.nearbyshops.enduser.ShopItemByShop.ItemCategories.ItemCategoriesFragmentShopHome;
+import org.nearbyshops.enduser.ShopItemByShop.ShopItems.FragmentShopItemsByShop;
+import org.nearbyshops.enduser.ShopReview.ShopReviews;
 import org.nearbyshops.enduser.ShopsByCategory.ItemCategories.ItemCategoriesFragment;
 import org.nearbyshops.enduser.ShopsByCategory.Shops.FragmentShop;
-import org.nearbyshops.enduser.zzDataProvidersRetrofit.ItemCategoryRetrofitProvider;
-import org.nearbyshops.enduser.zzDataProvidersRetrofit.ItemProviderRetrofit;
-import org.nearbyshops.enduser.zzDataProvidersRetrofit.ShopRetrofitProvider;
 import org.nearbyshops.enduser.ItemCategoryOption.FragmentItemCategories;
 import org.nearbyshops.enduser.ItemCategoryOption.FragmentItem;
 import org.nearbyshops.enduser.ShopItemByItem.FilledCarts.AdapterFilledCarts;
@@ -41,11 +44,11 @@ public interface NetComponent {
     // void inject(MyFragment fragment);
     // void inject(MyService service);
 
-    void inject(ItemCategoryRetrofitProvider provider);
-
-    void inject(ShopRetrofitProvider provider);
-
-    void inject(ItemProviderRetrofit providerRetrofit);
+//    void inject(ItemCategoryRetrofitProvider provider);
+//
+//    void inject(ShopRetrofitProvider provider);
+//
+//    void inject(ItemProviderRetrofit providerRetrofit);
 
     void Inject(FilledCartsFragment shopsForItem);
 
@@ -84,4 +87,16 @@ public interface NetComponent {
     void Inject(ItemCategoriesFragmentItem itemCategoriesFragmentItem);
 
     void Inject(FragmentItem_ItemByCategory fragmentItem_itemByCategory);
+
+    void Inject(LoginServiceDialog loginServiceDialog);
+
+    void Inject(ShopDetail shopDetail);
+
+    void Inject(RateReviewDialog rateReviewDialog);
+
+    void Inject(ShopReviews shopReviews);
+
+    void Inject(ItemCategoriesFragmentShopHome itemCategoriesFragmentShopHome);
+
+    void Inject(FragmentShopItemsByShop fragmentShopItemsByShop);
 }

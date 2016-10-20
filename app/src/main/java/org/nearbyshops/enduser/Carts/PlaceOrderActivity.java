@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduser.Home;
 import org.nearbyshops.enduser.Model.Order;
 import org.nearbyshops.enduser.ModelStats.CartStats;
@@ -18,7 +19,6 @@ import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
-import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import java.util.List;

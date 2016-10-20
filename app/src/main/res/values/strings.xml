@@ -1,13 +1,34 @@
 <resources>
 
 
-
     <string-array name="unicodeCurrencySymbols">
         <item name="Rs">\u20B9</item>
         <item name="Yen">\u00A5</item>
         <item name="rouble">\u20BD</item>
         <item name="usd">\u0024</item>
     </string-array>
+
+    <string name="usage_instructions_select_location">Long Click To select Location.</string>
+    <string name="toast_location_not_selected">Location not selected !</string>
+
+
+    <string name="udate_successful_api_response">Update Successful !</string>
+    <string name="api_response_partially_updated">Partially Updated. Check data changes !</string>
+    <string name="api_response_no_item_updated">No item updated !</string>
+
+    <string name="rate_and_review">Book Review</string>
+    <string name="title_activity_book_reviews">Book Reviews</string>
+    <string name="favourite_book_message">You need to login to mark this book as favourite !</string>
+
+
+    <string name="date_format_simple">MMMM d \'\'yyyy</string>
+    <string name="book_rating_not_yet_rated">Not Yet Rated</string>
+    <string name="book_date_of_publish_not_available">Date of Publish : Not Available</string>
+    <string name="date_of_publish">"Date of Publish : "</string>
+    <string name="rating_not_available">Rating : N/A</string>
+    <string name="not_yet_rated">Not Yet Rated !</string>
+    <string name="book_review_be_the_first_to_review">"Be the first to review and rate this book. "</string>
+
 
     <string name="app_name">Nearby Shops</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
@@ -22,7 +43,6 @@
     <string name="preference_service_url_key">service_url</string>
     <string name="preference_distributor_id_key">distributor_id_key</string>
     <string name="preference_end_user_id_key">end_user_id_key</string>
-
 
 
     <string name="pref_title_vibrate">Vibrate</string>
@@ -65,5 +85,8 @@
     <string name="sort_by_descending">Descending</string>
     <string name="label_shops_by_category">Shops By Category</string>
     <string name="label_items_by_category">Items By Category</string>
+    <string name="title_activity_shop_home">Shop Home</string>
+    <string name="items">Items</string>
+    <string name="title_activity_order_result">OrderResultActivity</string>
 
 </resources>

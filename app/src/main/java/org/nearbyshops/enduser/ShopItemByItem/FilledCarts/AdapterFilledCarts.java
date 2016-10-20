@@ -586,6 +586,11 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                     //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
                     EndUser endUser = UtilityLogin.getEndUser(context);
 
+                    if(endUser==null)
+                    {
+                        return;
+                    }
+
                     if(getLayoutPosition() < dataset.size())
                     {
                         ShopItem shop = dataset.get(getLayoutPosition());

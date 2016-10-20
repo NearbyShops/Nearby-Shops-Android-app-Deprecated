@@ -1,0 +1,64 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <FrameLayout
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.nearbyshops.communityLibrary.database.BookMeetups.PickLocationActivity" />
+
+
+    <TextView
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:background="@color/phonographyBlue"
+        android:id="@+id/confirm_selected_location_button"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:text="Use Selected Location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/instructions_text"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginRight="10sp"
+        android:layout_marginEnd="10dp"
+        android:textSize="20sp"
+        android:background="@color/white"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_above="@id/confirm_selected_location_button"
+        android:text="@string/usage_instructions_select_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:background="@color/white"
+        android:paddingLeft="5dp"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:layout_above="@id/instructions_text"
+        android:text="Instructions :"
+        android:layout_alignRight="@id/instructions_text"
+        android:layout_alignEnd="@id/instructions_text"
+        android:layout_alignLeft="@id/instructions_text"
+        android:layout_alignStart="@id/instructions_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
+
+<!--android:name="com.google.android.gms.maps.SupportMapFragment"-->

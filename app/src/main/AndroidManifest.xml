@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--suppress AndroidDomInspection -->
+<?xml version="1.0" encoding="utf-8"?><!-- suppress AndroidDomInspection -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.nearbyshops.enduser"
     android:installLocation="auto">
@@ -17,52 +16,44 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <service
             android:name=".UtilityGeocoding.FetchAddressIntentService"
-            android:exported="false"/>
-
+            android:exported="false" />
 
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" >
-
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity android:name=".GeolocationTest" />
 
-
-        <!--<activity-->
-            <!--android:name=".ItemCategoryOption.FragmentItemCategories"-->
-            <!--android:label="Item Categories"-->
-            <!--android:parentActivityName=".Home"-->
-            <!--android:theme="@style/AppTheme.NoActionBar">-->
-            <!--<meta-data-->
-                <!--android:name="android.support.PARENT_ACTIVITY"-->
-                <!--android:value="org.nearbyshops.enduser.Home" />-->
-        <!--</activity>-->
-
+        <!-- <activity -->
+        <!-- android:name=".ItemCategoryOption.FragmentItemCategories" -->
+        <!-- android:label="Item Categories" -->
+        <!-- android:parentActivityName=".Home" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar"> -->
+        <!-- <meta-data -->
+        <!-- android:name="android.support.PARENT_ACTIVITY" -->
+        <!-- android:value="org.nearbyshops.enduser.Home" /> -->
+        <!-- </activity> -->
 
         <activity
             android:name=".LoginActivity"
             android:label="Nearby Shops : Login"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ItemCategoryOption.ShopItemSwipeView"
             android:label="Shops and Items"
-            android:parentActivityName=".ItemCategoryOption.FragmentItemCategories"
+            android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduser.ItemCategoryOption.FragmentItemCategories" />
+                android:value=".Home" />
         </activity>
         <activity
             android:name=".ShopItemByItem.ShopsForItemSwipe"
@@ -101,7 +92,7 @@
                 android:value="org.nearbyshops.enduser.Carts.CartItemListActivity" />
         </activity>
         <activity
-            android:name=".Carts.DeliveryAddressActivity"
+            android:name=".DeliveryAddress.DeliveryAddressActivity"
             android:label="@string/title_activity_delivery_address"
             android:parentActivityName=".Carts.PlaceOrderActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -110,22 +101,22 @@
                 android:value="org.nearbyshops.enduser.Carts.PlaceOrderActivity" />
         </activity>
         <activity
-            android:name=".Carts.EditAddressActivity"
+            android:name=".DeliveryAddress.EditAddressActivity"
             android:label="@string/title_activity_edit_address"
-            android:parentActivityName=".Carts.DeliveryAddressActivity"
+            android:parentActivityName=".DeliveryAddress.DeliveryAddressActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduser.Carts.DeliveryAddressActivity" />
+                android:value="org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity" />
         </activity>
         <activity
-            android:name=".Carts.AddAddressActivity"
+            android:name=".DeliveryAddress.AddAddressActivity"
             android:label="@string/title_activity_add_address"
-            android:parentActivityName=".Carts.DeliveryAddressActivity"
+            android:parentActivityName=".DeliveryAddress.DeliveryAddressActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduser.Carts.DeliveryAddressActivity" />
+                android:value="org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity" />
         </activity>
         <activity
             android:name=".aaSamples.NavigationDrawerSample"
@@ -145,8 +136,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
-
-
         <activity
             android:name=".ShopsByCategory.ShopsByCategory"
             android:label="@string/label_shops_by_category"
@@ -156,9 +145,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
-
-
-
         <activity
             android:name=".ItemsByCategory.ItemsByCategory"
             android:label="@string/label_items_by_category"
@@ -168,7 +154,74 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
+        <activity
+            android:name=".ShopDetail.ShopDetail"
+            android:label="@string/label_items_by_category"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
+        <activity
+            android:name=".ShopReview.ShopReviews"
+            android:label="Shop Reviews"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
+        <activity
+            android:name=".ShopHome.ShopHome"
+            android:label="@string/title_activity_shop_home"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
+        <activity
+            android:name=".ShopItemByShop.ShopItemByShopByCategory"
+            android:label="@string/title_activity_shop_home"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
 
+        <activity
+            android:name=".Carts.OrderResultActivity"
+            android:label="@string/title_activity_order_result"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
+        <activity
+            android:name=".DeliveryAddress.PickLocationActivity"
+            android:label="Pick Location"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
+
+
+        <!--Google Maps Key-->
+
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCVGFtuD4fMtv1qNg35eMdcDONm3W_tduE" />
 
     </application>
 

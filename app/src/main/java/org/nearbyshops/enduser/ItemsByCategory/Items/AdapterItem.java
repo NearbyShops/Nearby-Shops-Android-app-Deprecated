@@ -2,12 +2,13 @@ package org.nearbyshops.enduser.ItemsByCategory.Items;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -43,7 +44,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
     public AdapterItem.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_items_by_item_category,parent,false);
+                .inflate(R.layout.list_item_items_by_item_category_card,parent,false);
 
         return new ViewHolder(view);
     }
@@ -77,7 +78,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
                     + String.valueOf(itemStats.getMin_price())
                     + " - "
                     + String.valueOf(itemStats.getMax_price())
-                    + "\nper " + dataset.get(position).getQuantityUnit()
+                    + " per " + dataset.get(position).getQuantityUnit()
             );
 
 
@@ -113,7 +114,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
         TextView priceRange;
         TextView shopCount;
 
-        RelativeLayout itemsListItem;
+        CardView itemsListItem;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -125,7 +126,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
             itemImage = (ImageView) itemView.findViewById(R.id.itemImage);
             priceRange = (TextView) itemView.findViewById(R.id.price_range);
             shopCount = (TextView) itemView.findViewById(R.id.shop_count);
-            itemsListItem = (RelativeLayout) itemView.findViewById(R.id.items_list_item);
+            itemsListItem = (CardView) itemView.findViewById(R.id.items_list_item);
             itemsListItem.setOnClickListener(this);
         }
 

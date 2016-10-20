@@ -24,6 +24,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.nearbyshops.enduser.Carts.CartsListActivity;
+import org.nearbyshops.enduser.Login.NotifyAboutLogin;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.ModelStats.ItemStats;
 import org.nearbyshops.enduser.MyApplication;
@@ -42,7 +43,7 @@ import butterknife.ButterKnife;
  * Created by sumeet on 31/5/16.
  */
 public class ShopsForItemSwipe extends AppCompatActivity implements Target,
-        NotifySwipeToRight,NotifyFillCartsChanged, NotifyTitleChanged,NotifyNewCartsChanged{
+        NotifySwipeToRight,NotifyFillCartsChanged, NotifyTitleChanged,NotifyNewCartsChanged, NotifyAboutLogin{
 
 
     private PagerAdapterShopItem pagerAdapter;
@@ -261,4 +262,14 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target,
                 ((NotifyNewCartsChanged)fragment).notifyNewCartsChanged();
             }
     }
+
+    @Override
+    public void NotifyLogin() {
+
+        notifyNewCartsChanged();
+        notifyFilledCartsChanged();
+    }
+
+
+
 }

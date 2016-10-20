@@ -3,27 +3,43 @@
 
     <group android:checkableBehavior="single">
 
+
+        <!--
+        android:icon="@drawable/colored_shop_storefront"
+        -->
+
         <item
             android:id="@+id/nav_login"
-            android:icon="@drawable/colored_shop_storefront"
             android:title="Login" />
-
 
         <item
             android:id="@+id/nav_change_password"
-            android:icon="@drawable/colored_shop_storefront"
             android:title="Change Password" />
-
-        <item
-            android:id="@+id/nav_orders"
-            android:icon="@drawable/colored_shop_storefront"
-            android:title="Orders" />
-        <item
-            android:id="@+id/nav_carts"
-            android:icon="@drawable/colored_basket"
-            android:title="Carts" />
-
     </group>
+
+
+    <item android:title="Carts and Orders">
+
+        <menu>
+
+
+            <item
+                android:id="@+id/nav_carts"
+                android:title="Carts" />
+
+            <item
+                android:id="@+id/nav_orders"
+                android:title="Orders" />
+
+
+            <item
+                android:id="@+id/nav_delivery_address"
+                android:title="Delivery Address" />
+
+
+        </menu>
+    </item>
+
 
 
 
@@ -31,11 +47,9 @@
         <menu>
             <item
                 android:id="@+id/nav_favourite_shops"
-                android:icon="@drawable/ic_menu_share"
                 android:title="Favourite Shops" />
             <item
                 android:id="@+id/nav_item_wishlist"
-                android:icon="@drawable/ic_menu_send"
                 android:title="Favourite Items" />
         </menu>
     </item>
@@ -48,7 +62,6 @@
 
             <item
                 android:id="@+id/nav_item_list"
-                android:icon="@drawable/ic_menu_share"
                 android:title="Items List" />
 
         </menu>
@@ -57,52 +70,65 @@
 
 
 
-    <item android:title="Reviews and Ratings">
+    <item android:title="Reviews">
         <menu>
             <item
-                android:id="@+id/nav_ratings"
-                android:icon="@drawable/ic_menu_share"
-                android:title="My Ratings" />
+                android:id="@+id/nav_shop_reviews"
+                android:title="Shop Reviews" />
             <item
-                android:id="@+id/nav_reviews"
-                android:icon="@drawable/ic_menu_send"
-                android:title="My Reviews" />
+                android:id="@+id/nav_item_reviews"
+                android:title="Item Reviews" />
         </menu>
     </item>
+
 
 
     <item android:title="Settings">
 
         <menu>
 
+            <item
+                android:id="@+id/nav_settings"
+                android:title="Settings" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_faqs"
-            android:icon="@drawable/ic_menu_share"
-            android:title="FAQs" />
 
-        <item
-            android:id="@+id/nav_usage"
-            android:icon="@drawable/ic_menu_share"
-            android:title="Usage Instructions" />
 
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_share"
-            android:title="Settings" />
 
-        <item
-            android:id="@+id/nav_about_service"
-            android:icon="@drawable/ic_menu_send"
-            android:title="About Service" />
+    <item android:title="Help">
 
-        <item
-            android:id="@+id/nav_about_application"
-            android:icon="@drawable/ic_menu_send"
-            android:title="About Nearby Shops" />
+        <menu>
+
+            <item
+                android:id="@+id/nav_faqs"
+                android:title="FAQs" />
+
+            <item
+                android:id="@+id/nav_usage"
+                android:title="Usage Instructions" />
 
         </menu>
 
+    </item>
+
+
+
+
+
+    <item android:title="About">
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_about_service"
+                android:title="About Service" />
+
+            <item
+                android:id="@+id/nav_about_application"
+                android:title="About Nearby Shops" />
+
+        </menu>
     </item>
 
 

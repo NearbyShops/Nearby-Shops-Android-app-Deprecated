@@ -21,6 +21,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -50,13 +51,16 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 import org.apache.commons.validator.routines.UrlValidator;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
+import org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduser.ItemsByCategory.ItemsByCategory;
 import org.nearbyshops.enduser.Login.LoginDialog;
-import org.nearbyshops.enduser.Login.ServiceURLDialog;
+import org.nearbyshops.enduser.Login.NotifyAboutLogin;
+import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduser.SharedPreferences.UtilityLocation;
 import org.nearbyshops.enduser.ShopsByCategory.ShopsByCategory;
+import org.nearbyshops.enduser.Utility.UtilityLogin;
 import org.nearbyshops.enduser.UtilityGeocoding.Constants;
 import org.nearbyshops.enduser.UtilityGeocoding.FetchAddressIntentService;
-import org.nearbyshops.enduser.ItemCategoryOption.FragmentItemCategories;
 import org.nearbyshops.enduser.Orders.OrderHome;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
@@ -67,7 +71,7 @@ import butterknife.OnClick;
 
 public class Home extends AppCompatActivity
         implements RangeBar.OnRangeBarChangeListener, NavigationView.OnNavigationItemSelectedListener,  GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, LocationListener {
+        GoogleApiClient.OnConnectionFailedListener, LocationListener , NotifyAboutLogin{
 
     // views for navigation drawer
 
@@ -179,6 +183,7 @@ public class Home extends AppCompatActivity
         if(UtilityGeneral.getServiceURL(this).equals("http://nearbyshops.org"))
         {
 //            showLoginDialog();
+//            showLoginDialog();
         }
 
 
@@ -218,6 +223,8 @@ public class Home extends AppCompatActivity
 
 
 
+//        setlabelLogin();
+
 
     } // onCreate() Ends
 
@@ -227,7 +234,7 @@ public class Home extends AppCompatActivity
     private void showLoginDialog()
     {
         FragmentManager fm = getSupportFragmentManager();
-        ServiceURLDialog loginDialog = new ServiceURLDialog();
+        LoginDialog loginDialog = new LoginDialog();
         loginDialog.show(fm,"serviceUrl");
     }
 
@@ -311,6 +318,31 @@ public class Home extends AppCompatActivity
             location_block_visible = true;
         }
     }
+
+
+
+    boolean market_information_visible = false;
+
+    @Bind(R.id.market_information)
+    CardView market_information_block;
+
+    @OnClick(R.id.market_information_label)
+    void showHideMarketInformation(View view)
+    {
+        if(market_information_visible)
+        {
+
+            market_information_block.setVisibility(View.GONE);
+            market_information_visible = false;
+        }
+        else
+        {
+            market_information_block.setVisibility(View.VISIBLE);
+            market_information_visible = true;
+        }
+    }
+
+
 
 
     float deliveryRangeMax = 0;
@@ -463,13 +495,69 @@ public class Home extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        }else if(id == R.id.nav_login)
+        {
+
+            loginClick(item);
         }
+
+        else if(id == R.id.nav_delivery_address)
+        {
+            startActivity(new Intent(this, DeliveryAddressActivity.class));
+        }
+
 
         //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+    void loginClick(MenuItem item)
+    {
+        if(UtilityLogin.getEndUser(this)==null)
+        {
+            showLoginDialog();
+        }
+        else
+        {
+            UtilityLogin.saveEndUser(null,this);
+
+            item.setTitle("Login");
+
+            showToastMessage("You are logged out !");
+        }
+
+    }
+
+
+
+    void setlabelLogin()
+    {
+        if(UtilityLogin.getEndUser(this)==null)
+        {
+            navigationView.getMenu().getItem(0).setTitle("Login");
+        }
+        else
+        {
+            navigationView.getMenu().getItem(0).setTitle("Logout");
+        }
+    }
+
+
+
+    @Override
+    public void NotifyLogin() {
+
+        navigationView.getMenu().getItem(0).setTitle("Logout");
+
+        showToastMessage("You are logged In !");
+    }
+
+
+
 
 
     @Override
@@ -526,6 +614,7 @@ public class Home extends AppCompatActivity
     protected void onResume() {
         super.onResume();
 
+        setlabelLogin();
     }
 
 
@@ -755,6 +844,9 @@ public class Home extends AppCompatActivity
         UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,(float)location.getLatitude());
         UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,(float)location.getLongitude());
 
+
+        UtilityLocation.saveCurrentLocation(this,location);
+
     }
 
 
@@ -791,7 +883,6 @@ public class Home extends AppCompatActivity
         intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);
         startService(intent);
     }
-
 
 
 
@@ -880,6 +971,9 @@ public class Home extends AppCompatActivity
                 break;
         }
     }
+
+
+
 }
 
 
