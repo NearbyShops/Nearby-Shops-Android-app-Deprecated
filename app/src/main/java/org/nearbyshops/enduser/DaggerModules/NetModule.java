@@ -23,6 +23,7 @@ import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ServiceConfigurationService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewService;
+import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewThanksService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
@@ -256,5 +257,13 @@ public class NetModule {
         return retrofit.create(FavouriteShopService.class);
     }
 
+
+    @Provides
+    ShopReviewThanksService shopReviewThanksService(Retrofit retrofit)
+    {
+
+//        EndUserService endUserService = ;
+        return retrofit.create(ShopReviewThanksService.class);
+    }
 
 }

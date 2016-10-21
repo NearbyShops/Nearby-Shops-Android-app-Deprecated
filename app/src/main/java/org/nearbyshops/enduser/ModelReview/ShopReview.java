@@ -62,6 +62,15 @@ public class ShopReview implements Parcelable{
     private Timestamp reviewDate;
 
     private EndUser rt_end_user_profile;
+    private int rt_thanks_count;
+
+    public int getRt_thanks_count() {
+        return rt_thanks_count;
+    }
+
+    public void setRt_thanks_count(int rt_thanks_count) {
+        this.rt_thanks_count = rt_thanks_count;
+    }
 
 
     // getter and Setter Methods
@@ -74,6 +83,7 @@ public class ShopReview implements Parcelable{
         rating = in.readInt();
         reviewText = in.readString();
         reviewTitle = in.readString();
+        rt_thanks_count = in.readInt();
 
         reviewDate = new Timestamp(in.readLong());
     }
@@ -86,6 +96,7 @@ public class ShopReview implements Parcelable{
         dest.writeInt(rating);
         dest.writeString(reviewText);
         dest.writeString(reviewTitle);
+        dest.writeInt(rt_thanks_count);
 
 
         if(reviewDate!=null)

@@ -1,9 +1,12 @@
 package org.nearbyshops.enduser.ShopDetail;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -11,6 +14,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +29,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -40,6 +52,7 @@ import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.FavouriteShopService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewService;
+import org.nearbyshops.enduser.SharedPreferences.UtilityLocation;
 import org.nearbyshops.enduser.ShopReview.ShopReviews;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
@@ -58,7 +71,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Target, RatingBar.OnRatingBarChangeListener ,NotifyReviewUpdate {
+public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Target, RatingBar.OnRatingBarChangeListener ,NotifyReviewUpdate, OnMapReadyCallback {
 
     public final static String SHOP_DETAIL_INTENT_KEY = "intent_key_shop_detail";
 
@@ -67,6 +80,9 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
     @Inject
     FavouriteShopService favouriteShopService;
+
+    private GoogleMap mMap;
+    Marker currentMarker;
 
     Shop shop;
 
@@ -180,7 +196,22 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
 
         checkFavourite();
+        setupMap();
     }
+
+
+    void setupMap()
+    {
+        SupportMapFragment mapFragment1 = new SupportMapFragment();
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.map,mapFragment1).commit();
+
+        mapFragment1.getMapAsync(this);
+    }
+
+
+
 
 
     void bindViews(Shop shop) {
@@ -813,6 +844,55 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
 
         readFullDescription.setVisibility(View.GONE);
+    }
+
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        mMap = googleMap;
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},2);
+
+            return;
+        }
+
+        mMap.setMyLocationEnabled(true);
+        mMap.getUiSettings().setMapToolbarEnabled(true);
+//        mMap.getUiSettings().setAllGesturesEnabled(true);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+
+
+//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(,14));
+
+//        Location currentLocation = UtilityLocation.getCurrentLocation(this);
+
+        if(shop!=null)
+        {
+            LatLng latLng = new LatLng(shop.getLatCenter(),shop.getLonCenter());
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,11));
+            mMap.addCircle(new CircleOptions().center(latLng).radius(shop.getDeliveryRange()*1000).fillColor(R.color.light_grey).strokeWidth(1).strokeColor(R.color.buttonColorDark));
+
+            //
+
+            currentMarker = mMap.addMarker(new MarkerOptions().position(latLng).title(shop.getShopName()));
+//                mMap.moveCamera();
+//            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+            currentMarker.showInfoWindow();
+
+        }
+
     }
 
 

@@ -34,10 +34,10 @@
         android:textColor="#ffffff"
         android:background="@color/phonographyBlue"
         android:id="@+id/addNewAddress"
-        android:textSize="25sp"
+        android:textSize="17sp"
         android:layout_alignParentBottom="true"
         android:padding="10dp"
-        android:text="Add New Address"
+        android:text="Add new address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

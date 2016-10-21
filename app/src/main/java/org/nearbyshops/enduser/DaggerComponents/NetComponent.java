@@ -19,6 +19,7 @@ import org.nearbyshops.enduser.ShopDetail.ShopDetail;
 import org.nearbyshops.enduser.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduser.ShopItemByShop.ItemCategories.ItemCategoriesFragmentShopHome;
 import org.nearbyshops.enduser.ShopItemByShop.ShopItems.FragmentShopItemsByShop;
+import org.nearbyshops.enduser.ShopReview.ShopReviewAdapter;
 import org.nearbyshops.enduser.ShopReview.ShopReviews;
 import org.nearbyshops.enduser.ShopsByCategory.ItemCategories.ItemCategoriesFragment;
 import org.nearbyshops.enduser.ShopsByCategory.Shops.FragmentShop;
@@ -99,4 +100,6 @@ public interface NetComponent {
     void Inject(ItemCategoriesFragmentShopHome itemCategoriesFragmentShopHome);
 
     void Inject(FragmentShopItemsByShop fragmentShopItemsByShop);
+
+    void Inject(ShopReviewAdapter shopReviewAdapter);
 }

@@ -25,6 +25,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:text="Use Selected Location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

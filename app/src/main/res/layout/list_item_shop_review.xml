@@ -6,6 +6,7 @@
     android:paddingBottom="10dp"
     android:paddingLeft="5dp"
     android:paddingStart="5dp"
+    android:id="@+id/list_item_shop_review"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -89,7 +90,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="0dp"
         android:id="@+id/border_bottom"
         android:layout_below="@id/review_text"
         android:background="#88000000"
@@ -101,17 +102,25 @@
     <TextView
         android:textColor="@color/phonographyBlue"
         android:textStyle="bold"
+        android:paddingTop="10dp"
+        android:paddingLeft="5dp"
+        android:paddingStart="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="0dp"
         android:id="@+id/thanks_button"
         android:layout_below="@id/border_bottom"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:text="Thanked !"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
+        android:paddingStart="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
+        android:id="@+id/thanks_count"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
         android:layout_alignParentRight="true"
@@ -126,7 +135,7 @@
         android:layout_marginEnd="20dp"
         android:layout_toStartOf="@id/thanks_button"
         android:layout_toLeftOf="@id/thanks_button"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/border_bottom"
         android:text="Did you find this review useful ? If yes then do not forget to say thanks ! "
         android:layout_width="wrap_content"

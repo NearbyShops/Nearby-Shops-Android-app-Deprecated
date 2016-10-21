@@ -11,16 +11,24 @@ import android.widget.Toast;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
+import org.apache.commons.collections.ArrayStack;
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelEndPoints.ShopReviewEndPoint;
+import org.nearbyshops.enduser.ModelEndPoints.ShopReviewThanksEndpoint;
 import org.nearbyshops.enduser.ModelReview.ShopReview;
+import org.nearbyshops.enduser.ModelReview.ShopReviewThanks;
+import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewService;
+import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewThanksService;
 import org.nearbyshops.enduser.ShopsByCategory.SlidingLayerSortShops;
 import org.nearbyshops.enduser.Utility.DividerItemDecoration;
+import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -35,7 +43,15 @@ import retrofit2.Response;
 
 public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
+
+    @State
     ArrayList<ShopReview> dataset = new ArrayList<>();
+
+    @State
+    ArrayList<ShopReviewThanks> datasetThanks = new ArrayList<>();
+
+    Map<Integer,ShopReviewThanks> thanksMap = new HashMap<>();
+
 
     @Bind(R.id.recyclerView)
     RecyclerView reviewsList;
@@ -47,8 +63,14 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
     @Inject
     ShopReviewService shopReviewService;
 
+    @Inject
+    ShopReviewThanksService thanksService;
+
+
     @State
     Shop shop;
+
+    boolean activityStopped = false;
 
 
 
@@ -126,11 +148,15 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
                 }
             });
 
+
+            makeNetworkCallThanks();
         }
         else
         {
             onRestoreInstanceState(savedInstanceState);
         }
+
+
 
 
         setupRecyclerView();
@@ -144,7 +170,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
     void setupRecyclerView()
     {
 
-        adapter = new ShopReviewAdapter(dataset,this);
+        adapter = new ShopReviewAdapter(dataset,thanksMap,this);
         reviewsList.setAdapter(adapter);
         layoutManager = new GridLayoutManager(this,1);
         reviewsList.setLayoutManager(layoutManager);
@@ -170,12 +196,15 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
         });
 
 
+/*
         reviewsList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
-//        reviewsList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL_LIST));
+        reviewsList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL_LIST));
 
         final DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        layoutManager.setSpanCount(metrics.widthPixels/350);
+        layoutManager.setSpanCount(metrics.widthPixels/350);*/
+
+
     }
 
 
@@ -277,6 +306,8 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
         offset = 0 ; // reset the offset
         makeNetworkCall();
 
+        makeNetworkCallThanks();
+
 //        Log.d("applog","refreshed");
     }
 
@@ -306,11 +337,17 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
             @Override
             public void onResponse(Call<ShopReviewEndPoint> call, Response<ShopReviewEndPoint> response) {
 
+                if(activityStopped)
+                {
+                    return;
+                }
+
                 if(response.body()!=null && response.body().getResults()!=null)
                 {
+                    item_count = response.body().getItemCount();
                     dataset.addAll(response.body().getResults());
                     adapter.notifyDataSetChanged();
-                    item_count = response.body().getItemCount();
+
                 }
 
                 stopRefreshing();
@@ -320,18 +357,85 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
             @Override
             public void onFailure(Call<ShopReviewEndPoint> call, Throwable t) {
 
+                if(activityStopped)
+                {
+                    return;
+                }
+
                 showToastMessage("Network Not available !");
 
                 stopRefreshing();
 
             }
         });
+    }
 
 
+
+    private void makeNetworkCallThanks()
+    {
+
+        EndUser endUser = UtilityLogin.getEndUser(this);
+
+        Call<ShopReviewThanksEndpoint> endpointCall = thanksService.getShopReviewThanks(null,endUser.getEndUserID(),
+                shop.getShopID(),null,100,0,null);
+
+
+        endpointCall.enqueue(new Callback<ShopReviewThanksEndpoint>() {
+            @Override
+            public void onResponse(Call<ShopReviewThanksEndpoint> call, Response<ShopReviewThanksEndpoint> response) {
+
+
+                if(activityStopped)
+                {
+                    return;
+                }
+
+                if(response.body()!=null)
+                {
+                    datasetThanks.clear();
+                    datasetThanks.addAll(response.body().getResults());
+
+
+                    for(ShopReviewThanks thanks: datasetThanks)
+                    {
+                        thanksMap.put(thanks.getShopReviewID(),thanks);
+                    }
+
+                    adapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ShopReviewThanksEndpoint> call, Throwable t) {
+
+
+                if(activityStopped)
+                {
+                    return;
+                }
+
+//                showToastMessage("Network Not available !");
+
+//                stopRefreshing();
+
+            }
+        });
 
 
     }
 
+
+
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        activityStopped = true;
+    }
 
     void stopRefreshing()
     {
@@ -346,10 +450,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
         super.onSaveInstanceState(outState);
 
         Icepick.saveInstanceState(this,outState);
-
-        outState.putParcelableArrayList("dataset",dataset);
-
-
+//        outState.putParcelableArrayList("dataset",dataset);
     }
 
 
@@ -360,12 +461,33 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
         Icepick.restoreInstanceState(this,savedInstanceState);
 
-        if(savedInstanceState!=null)
+        thanksMap.clear();
+        for(ShopReviewThanks thanks: datasetThanks)
+        {
+            thanksMap.put(thanks.getShopReviewID(),thanks);
+        }
+
+        adapter.notifyDataSetChanged();
+
+
+
+        /*if(savedInstanceState!=null)
         {
             ArrayList<ShopReview> tempCat = savedInstanceState.getParcelableArrayList("dataset");
+
             dataset.clear();
             dataset.addAll(tempCat);
             adapter.notifyDataSetChanged();
-        }
+        }*/
+
+
     }
+
+
+
+
+
+
+
+
 }
