@@ -24,9 +24,11 @@ import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifySwipeToRight;
+import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
+import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItems;
 
 import java.util.ArrayList;
 
@@ -39,7 +41,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        AdapterFilledCarts.NotifyFilledCart, NotifyNewCartsChanged
+        AdapterFilledCarts.NotifyFilledCart, NotifyNewCartsChanged, NotifySort
 
 {
 
@@ -201,7 +203,13 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
             }
 
 
-            Call<ShopItemEndPoint> callEndpoint = shopItemService.getShopItemEndpoint(
+        String current_sort = "";
+
+        current_sort = UtilitySortShopItems.getSort(getContext()) + " " + UtilitySortShopItems.getAscending(getContext());
+
+
+
+        Call<ShopItemEndPoint> callEndpoint = shopItemService.getShopItemEndpoint(
                     null,null,item.getItemID(),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,0),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,0),
@@ -210,7 +218,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,0),
                     endUser.getEndUserID(),true,
                     null,null,null,null,
-                    null,null,null,null
+                    current_sort,null,null,null
             );
 
 
@@ -397,5 +405,9 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     }
 
 
+    @Override
+    public void notifySortChanged() {
+        onRefresh();
+    }
 }
 

@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduser.Carts.CartsListActivity;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
@@ -32,17 +34,19 @@ import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifySwipeToRight;
+import org.nearbyshops.enduser.ShopReview.SlidingLayerSortReview;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by sumeet on 31/5/16.
  */
-public class ShopsForItemSwipe extends AppCompatActivity implements Target,
+public class ShopsForItemSwipe extends AppCompatActivity implements Target, NotifySort,
         NotifySwipeToRight,NotifyFillCartsChanged, NotifyTitleChanged,NotifyNewCartsChanged, NotifyAboutLogin{
 
 
@@ -112,10 +116,65 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target,
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(pagerAdapter);
-
         tabLayout.setupWithViewPager(mViewPager);
+
+        setupSlidingLayer();
     }
 
+
+    @Bind(R.id.slidingLayer)
+    SlidingLayer slidingLayer;
+
+
+
+    void setupSlidingLayer()
+    {
+
+        ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
+        //slidingLayer.setShadowSizeRes(R.dimen.shadow_size);
+
+        if(slidingLayer!=null)
+        {
+            slidingLayer.setChangeStateOnTap(true);
+            slidingLayer.setSlidingEnabled(true);
+            slidingLayer.setPreviewOffsetDistance(15);
+            slidingLayer.setOffsetDistance(10);
+            slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
+
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+            //RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(250, ViewGroup.LayoutParams.MATCH_PARENT);
+
+            //slidingContents.setLayoutParams(layoutParams);
+
+            //slidingContents.setMinimumWidth(metrics.widthPixels-50);
+
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.slidinglayerfragment,new SlidingLayerSortShopItem())
+                    .commit();
+
+        }
+
+    }
+
+
+
+
+    @OnClick({R.id.icon_sort,R.id.text_sort})
+    void sortClick()
+    {
+        slidingLayer.openLayer(true);
+    }
+
+
+    @OnClick({R.id.icon_checkout,R.id.text_checkout})
+    void checkoutClick()
+    {
+        cartsButtonClick();
+    }
 
 
 
@@ -156,7 +215,6 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target,
     void cartsButtonClick()
     {
         Intent intent = new Intent(this, CartsListActivity.class);
-
         startActivity(intent);
     }
 
@@ -270,6 +328,20 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target,
         notifyFilledCartsChanged();
     }
 
+
+
+
+    @Override
+    public void notifySortChanged() {
+
+        Fragment fragment = (Fragment)pagerAdapter.instantiateItem(mViewPager,mViewPager.getCurrentItem());
+
+        if(fragment instanceof NotifySort)
+        {
+            ((NotifySort)fragment).notifySortChanged();
+        }
+
+    }
 
 
 }

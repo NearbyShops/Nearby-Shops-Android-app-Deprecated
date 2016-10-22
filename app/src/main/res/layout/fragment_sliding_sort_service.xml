@@ -139,7 +139,7 @@
             android:layout_height="wrap_content" />
 
         <LinearLayout
-            android:id="@+id/sort_row_three"
+            android:id="@+id/row_sort_order"
             android:layout_marginTop="10dp"
             android:weightSum="2"
             android:layout_below="@id/header_sort_order"
@@ -179,7 +179,7 @@
             android:id="@+id/border_two"
             android:background="#88000000"
             android:layout_marginTop="10dp"
-            android:layout_below="@id/sort_row_three"
+            android:layout_below="@id/row_sort_order"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
 

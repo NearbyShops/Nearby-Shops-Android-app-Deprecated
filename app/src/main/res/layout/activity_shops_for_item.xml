@@ -52,6 +52,7 @@
                 android:layout_height="match_parent"/>
 
             <ImageView
+                android:id="@+id/icon_checkout"
                 app:srcCompat="@drawable/ic_shopping_basket_white_24px"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
@@ -152,27 +153,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+
     <com.wunderlist.slidinglayer.SlidingLayer
         android:id="@+id/slidingLayer"
-        android:elevation="5dp"
+        android:elevation="15dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <FrameLayout
+            android:background="@color/white"
             android:layout_gravity="end"
-            android:orientation="vertical"
-            android:background="@color/colorWhite"
-            android:layout_width="250dp"
-            android:layout_height="match_parent">
+            android:layout_marginLeft="@dimen/slidinglayerwidth"
+            android:layout_marginStart="@dimen/slidinglayerwidth"
+            android:id="@+id/slidinglayerfragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-            <TextView
-                android:textSize="25dp"
-                android:text="Hello from Swipe View !"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
 
     </com.wunderlist.slidinglayer.SlidingLayer>
+
+
 
 </android.support.design.widget.CoordinatorLayout>
