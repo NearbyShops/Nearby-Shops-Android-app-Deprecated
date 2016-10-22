@@ -232,9 +232,9 @@
                 android:layout_marginStart="5dp"
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
-                android:background="@color/grey800"
+                android:background="@color/buttonColorDark"
                 android:textColor="@color/white"
-                android:text="YOU"
+                android:text="You"
                 android:layout_toRightOf="@id/member_name"
                 android:layout_toEndOf="@id/member_name"
                 android:layout_width="wrap_content"
@@ -264,14 +264,21 @@
                 android:layout_height="wrap_content" />
 
 
+            <!--
+            android:layout_toRightOf="@id/member_profile_image"
+                android:layout_toEndOf="@id/member_profile_image"
+
+                android:layout_toRightOf="@id/member_profile_image"
+                android:layout_toEndOf="@id/member_profile_image"
+
+            -->
+
             <TextView
                 android:id="@+id/review_title"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_toRightOf="@id/member_profile_image"
-                android:layout_toEndOf="@id/member_profile_image"
+                android:layout_marginLeft="0dp"
+                android:layout_marginStart="0dp"
                 android:layout_below="@id/member_profile_image"
                 android:text="Review Title"
                 android:layout_width="wrap_content"
@@ -279,11 +286,9 @@
 
             <TextView
                 android:id="@+id/review_description"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_toRightOf="@id/member_profile_image"
-                android:layout_toEndOf="@id/member_profile_image"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginStart="0dp"
                 android:layout_below="@id/review_title"
                 android:text="Review Description"
                 android:layout_width="wrap_content"
@@ -373,12 +378,27 @@
             android:layout_height="300dp"/>
 
 
+        <!--
+        android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+        -->
+
 
         <TextView
+            android:textSize="17sp"
             android:layout_marginTop="10dp"
+            android:id="@+id/get_directions_button"
+            android:layout_below="@id/map"
+            android:text="Get directions to shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:layout_marginTop="20dp"
             android:padding="5dp"
             android:background="@color/light_grey"
-            android:layout_below="@id/map"
+            android:layout_below="@id/get_directions_button"
             android:id="@+id/delivery_information_header"
             android:text="Delivery Information"
             android:layout_width="match_parent"
@@ -404,6 +424,12 @@
             android:layout_height="wrap_content" />
 
 
+        <!--
+        android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+
+        -->
+
         <TextView
             android:layout_marginTop="10dp"
             android:textSize="17sp"
@@ -411,8 +437,6 @@
             android:id="@+id/read_all_reviews_button"
             android:layout_below="@id/shop_reviews_header"
             android:text="Read all reviews"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

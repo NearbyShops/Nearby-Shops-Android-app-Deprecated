@@ -183,6 +183,9 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
     }
 
 
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -194,10 +197,6 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
             longitude.setText(String.valueOf(data.getDoubleExtra("longitude",0)));
         }
     }
-
-
-
-
 
 
 

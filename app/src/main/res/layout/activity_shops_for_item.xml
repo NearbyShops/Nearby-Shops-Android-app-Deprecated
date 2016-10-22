@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ShopItemByItem.ShopsForItemSwipe">
@@ -18,43 +17,53 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+
+
         <LinearLayout
-            android:background="@color/colorPrimaryDark"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <ImageView
+            <ImageView
+                android:id="@+id/icon_sort"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                app:srcCompat="@drawable/ic_sort_black_24px"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
 
-            android:layout_margin="10dp"
-            android:id="@+id/actionBarImage"
-            android:scaleType="centerCrop"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
-
-        <TextView
-
-            android:id="@+id/itemStats"
-            android:textSize="17dp"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/text_sort"
+                android:padding="5dp"
+                android:text="Filter / Sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"/>
 
+            <ImageView
+                app:srcCompat="@drawable/ic_shopping_basket_white_24px"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
 
-
+            <TextView
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Checkout"
+                android:id="@+id/text_checkout"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
 
@@ -92,13 +101,56 @@
     </android.support.design.widget.AppBarLayout>
 
 
+<!--
+
+    <LinearLayout
+        android:visibility="gone"
+        android:background="@color/colorPrimaryDark"
+        app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+
+            android:layout_margin="10dp"
+            android:id="@+id/actionBarImage"
+            android:scaleType="centerCrop"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <TextView
+
+            android:id="@+id/itemStats"
+            android:textSize="17dp"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+-->
+
+    <!--
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/list_item_items_by_item_category_card"/>
+
+    -->
+
+
     <android.support.v4.view.ViewPager
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-
+        android:layout_height="match_parent" />
 
     <com.wunderlist.slidinglayer.SlidingLayer
         android:id="@+id/slidingLayer"

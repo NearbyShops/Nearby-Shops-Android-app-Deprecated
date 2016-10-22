@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -892,6 +893,22 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
             currentMarker.showInfoWindow();
 
         }
+
+    }
+
+
+
+    @OnClick(R.id.get_directions_button)
+    void getDirections()
+    {
+
+        String str_latitude = String.valueOf(shop.getLatCenter());
+        String str_longitude = String.valueOf(shop.getLonCenter());
+
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + str_latitude +  "," + str_longitude);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
 
     }
 

@@ -1,6 +1,7 @@
 package org.nearbyshops.enduser.ShopReview;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,6 +10,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.apache.commons.collections.ArrayStack;
@@ -28,6 +37,7 @@ import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -87,6 +97,9 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
 
 
+//    HorizontalBarChart chart;
+
+
 
 
 
@@ -111,6 +124,8 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+//        chart = (HorizontalBarChart) findViewById(R.id.chart);
 
 
         shop = getIntent().getParcelableExtra(SHOP_INTENT_KEY);
@@ -163,7 +178,77 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
         setupSwipeContainer();
         setupSlidingLayer();
 
+
+        // setup chart
+
+        setupChart();
+
     }
+
+
+
+
+    void setupChart()
+    {
+
+
+
+//        chart.setDescription("Shop Review Stats");
+
+
+/*
+        List<BarEntry> entries = new ArrayList<BarEntry>();
+
+        entries.add(new BarEntry(1,909));
+        entries.add(new BarEntry(2,50));
+        entries.add(new BarEntry(3,342));
+        entries.add(new BarEntry(4,130));
+        entries.add(new BarEntry(5,250));
+
+
+        BarDataSet dataSet = new BarDataSet(entries,"Ratings");
+
+//        dataSet.setColors(new int[]{R.color.gplus_color_2,R.color.buttonColorDark,R.color.colorAccent,R.color.orangeDark,R.color.darkGreen},this);
+
+        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+
+        BarData barData = new BarData(dataSet);
+//        chart.setData(barData);
+
+
+        XAxis axis = new XAxis();
+        axis.setDrawGridLines(false);
+
+*/
+
+/*
+        chart.setDrawGridBackground(false);
+        chart.setDrawBorders(false);
+        chart.setDrawValueAboveBar(true);
+
+
+        chart.getXAxis().setDrawGridLines(false);
+        XAxis x_axis = chart.getXAxis();
+        x_axis.setDrawGridLines(false);
+*/
+
+
+
+/*
+        chart.getXAxis().setDrawGridLines(false);
+//        chart.getXAxis().mAxisRange = 1;
+
+        chart.getXAxis().setGranularity(1f);
+        chart.getAxisLeft().setDrawGridLines(false);
+        chart.getAxisRight().setDrawGridLines(false);
+
+
+        chart.invalidate();
+*/
+
+    }
+
+
 
 
 
@@ -196,13 +281,14 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
         });
 
 
-/*
         reviewsList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
-        reviewsList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL_LIST));
+//        reviewsList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL_LIST));
 
+/*
         final DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        layoutManager.setSpanCount(metrics.widthPixels/350);*/
+        layoutManager.setSpanCount(metrics.widthPixels/350);
+*/
 
 
     }
@@ -316,12 +402,14 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
     void onRefreshSwipeIndicator()
     {
 
+
         swipeContainer.post(new Runnable() {
             @Override
             public void run() {
                 swipeContainer.setRefreshing(true);
 
                 onRefresh();
+
             }
         });
     }
@@ -416,10 +504,6 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
                     return;
                 }
 
-//                showToastMessage("Network Not available !");
-
-//                stopRefreshing();
-
             }
         });
 
@@ -445,6 +529,8 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
         }
     }
 
+
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -462,12 +548,13 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
         Icepick.restoreInstanceState(this,savedInstanceState);
 
         thanksMap.clear();
+
         for(ShopReviewThanks thanks: datasetThanks)
         {
             thanksMap.put(thanks.getShopReviewID(),thanks);
         }
 
-        adapter.notifyDataSetChanged();
+//        adapter.notifyDataSetChanged();
 
 
 

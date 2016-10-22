@@ -65,8 +65,8 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target,
     @Bind(R.id.appbar)
     AppBarLayout appBarLayout;
 
-    @Bind(R.id.itemStats)
-    TextView itemStatsText;
+//    @Bind(R.id.itemStats)
+//    TextView itemStatsText;
 
 
 
@@ -80,7 +80,7 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target,
 
         item = getIntent().getParcelableExtra(ITEM_INTENT_KEY);
 
-        actionBarImage = (ImageView) findViewById(R.id.actionBarImage);
+//        actionBarImage = (ImageView) findViewById(R.id.actionBarImage);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -91,8 +91,8 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target,
             String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
                     + item.getItemImageURL();
 
-            Picasso.with(this).load(imagePath).placeholder(R.drawable.nature_people).into(actionBarImage);
-            Picasso.with(this).load(imagePath).placeholder(R.drawable.nature_people).into(this);
+//            Picasso.with(this).load(imagePath).placeholder(R.drawable.nature_people).into(actionBarImage);
+//            Picasso.with(this).load(imagePath).placeholder(R.drawable.nature_people).into(this);
 
             //toolbar.setTitle("Shops For : \n" + item.getItemName());
             //toolbar.setSubtitle("Available in Shops");
@@ -100,8 +100,8 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target,
 
             ItemStats itemStats = item.getItemStats();
 
-            itemStatsText.setText("Available in " + itemStats.getShopCount() + " Shops" + "\n"
-                                    + "Rs " + itemStats.getMin_price() + " - " + itemStats.getMax_price());
+//            itemStatsText.setText("Available in " + itemStats.getShopCount() + " Shops" + "\n"
+//                                    + "Rs " + itemStats.getMin_price() + " - " + itemStats.getMax_price());
 
         }
 
@@ -124,7 +124,7 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target,
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_shop_item_by_item, menu);
+//        getMenuInflater().inflate(R.menu.menu_shop_item_by_item, menu);
         return true;
     }
 

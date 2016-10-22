@@ -66,16 +66,15 @@
 
         <TextView
             android:layout_marginTop="0dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textSize="25sp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="// D-Mart, Green hills"
             android:id="@+id/shopName"
-            android:layout_marginLeft="10dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_toRightOf="@id/shopImage"
+            android:layout_alignParentTop="true" />
 
 
         <!--
@@ -96,32 +95,15 @@
 -->
 
 
-
-        <TextView
-            android:layout_alignParentEnd="true"
+        <!--
+        android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/shopName"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Shop Rating : 7/10"
-            android:id="@+id/rating"/>
+        -->
 
         <TextView
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/rating"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Distance : 5 Km"
-            android:id="@+id/distance" />
-
-
-        <TextView
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
+            android:layout_alignBottom="@id/shopImage"
+            android:layout_toEndOf="@id/shopImage"
+            android:layout_toRightOf="@id/shopImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delivery : Rs 00"
@@ -129,25 +111,57 @@
             android:layout_marginRight="0dp"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_below="@id/distance"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_marginBottom="0dp" />
 
-<!--
 
-        <ImageView
-            app:srcCompat="@drawable/ic_favorite_border_white_24px"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:id="@+id/favourite"
+
+        <TextView
+            android:layout_toEndOf="@id/shopImage"
+            android:layout_toRightOf="@id/shopImage"
+            android:layout_above="@id/deliveryCharge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distance : 5 Km"
+            android:id="@+id/distance" />
+
+
+        <TextView
+            android:layout_toEndOf="@id/shopImage"
+            android:layout_toRightOf="@id/shopImage"
+            android:layout_above="@id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/gplus_color_2"
+            android:textColor="@color/white"
+            android:padding="3dp"
+            android:text="5.3"
+            android:id="@+id/rating"/>
+
+        <TextView
+            android:id="@+id/ratings_count"
+            android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_alignBottom="@+id/imageView"
-            android:layout_alignParentLeft="true"
+            android:text="(2312 Ratings)"
+            android:layout_toRightOf="@id/rating"
+            android:layout_toEndOf="@id/rating"
+            android:layout_alignBottom="@id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-            android:layout_marginTop="10dp"/>
--->
+        <!--
+
+                <ImageView
+                    app:srcCompat="@drawable/ic_favorite_border_white_24px"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/favourite"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_alignBottom="@+id/imageView"
+                    android:layout_alignParentLeft="true"
+
+                    android:layout_marginTop="10dp"/>
+        -->
 
 </RelativeLayout>
 
@@ -347,7 +361,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginBottom="3dp"

@@ -1,13 +1,16 @@
 package org.nearbyshops.enduser.ModelReview;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.nearbyshops.enduser.ModelRoles.EndUser;
 
 /**
  * Created by sumeet on 21/10/16.
  */
 
-public class ShopReviewThanks {
+public class ShopReviewThanks implements Parcelable{
 
     // Table Name
     public static final String TABLE_NAME = "SHOP_REVIEW_THANKS";
@@ -29,26 +32,56 @@ public class ShopReviewThanks {
             + " PRIMARY KEY (" + ShopReviewThanks.END_USER_ID + ", " + ShopReviewThanks.SHOP_REVIEW_ID + ")"
             + ")";
 
+    public ShopReviewThanks() {
+    }
+
 
     // instance Variables
 
-    private Integer endUserID;
-    private Integer shopReviewID;
+    private int endUserID;
+    private int shopReviewID;
 
+    protected ShopReviewThanks(Parcel in) {
+        endUserID = in.readInt();
+        shopReviewID = in.readInt();
+    }
 
-    public Integer getEndUserID() {
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(endUserID);
+        dest.writeInt(shopReviewID);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<ShopReviewThanks> CREATOR = new Creator<ShopReviewThanks>() {
+        @Override
+        public ShopReviewThanks createFromParcel(Parcel in) {
+            return new ShopReviewThanks(in);
+        }
+
+        @Override
+        public ShopReviewThanks[] newArray(int size) {
+            return new ShopReviewThanks[size];
+        }
+    };
+
+    public int getEndUserID() {
         return endUserID;
     }
 
-    public void setEndUserID(Integer endUserID) {
+    public void setEndUserID(int endUserID) {
         this.endUserID = endUserID;
     }
 
-    public Integer getShopReviewID() {
+    public int getShopReviewID() {
         return shopReviewID;
     }
 
-    public void setShopReviewID(Integer shopReviewID) {
+    public void setShopReviewID(int shopReviewID) {
         this.shopReviewID = shopReviewID;
     }
 }

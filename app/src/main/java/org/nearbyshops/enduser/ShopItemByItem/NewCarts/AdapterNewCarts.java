@@ -114,7 +114,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
             holder.shopName.setText(shop.getShopName());
 
             holder.distance.setText(String.format( "%.2f", shop.getDistance()) + " Km");
-            holder.deliveryCharge.setText("Delivery :\nRs " + String.format( "%.0f", shop.getDeliveryCharges()) + "\nPer Order");
+            holder.deliveryCharge.setText("Delivery :Rs " + String.format( "%.0f", shop.getDeliveryCharges()) + "Per Order");
 
         }
 

@@ -1,6 +1,7 @@
 package org.nearbyshops.enduser.ShopItemByItem.FilledCarts;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -240,8 +241,27 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
         if(shop!=null)
         {
+
+            if(shop.getRt_rating_count()>0)
+            {
+                holder.rating.setText(String.format("%.1f",shop.getRt_rating_avg()));
+            }
+            else
+            {
+                holder.rating.setText("Not yet rated !");
+//                holder.rating.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));
+//                holder.rating.setBackgroundColor(ContextCompat.getColor(context,R.color.light_grey);
+            }
+
+
+            holder.ratingCount.setText("( " + String.format("%.0f",shop.getRt_rating_count()) + " Ratings )");
+
+
+
             String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
                     + shop.getImagePath();
+
+
 
             Picasso.with(context)
                     .load(imagePath)
@@ -274,6 +294,12 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
+
+        @Bind(R.id.rating)
+        TextView rating;
+
+        @Bind(R.id.ratings_count)
+        TextView ratingCount;
 
         @Bind(R.id.textAddToCart)
         TextView addToCartText;
