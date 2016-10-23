@@ -12,24 +12,32 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ShopItem;
+import org.nearbyshops.enduser.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
+import org.nearbyshops.enduser.ModelStats.ItemStats;
+import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
+import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
+import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItems;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -40,12 +48,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NewCartsFragment extends Fragment
-        implements SwipeRefreshLayout.OnRefreshListener, AdapterNewCarts.NotifyCallbacks , NotifyFillCartsChanged, NotifyAboutLogin{
+        implements SwipeRefreshLayout.OnRefreshListener,
+        AdapterNewCarts.NotifyAddToCart, NotifyFillCartsChanged, NotifyAboutLogin,
+        NotifySort{
+
+
 
     Item item;
 
     @Inject
     ShopItemService shopItemService;
+
     RecyclerView recyclerView;
     AdapterNewCarts adapter;
 
@@ -58,6 +71,22 @@ public class NewCartsFragment extends Fragment
 //    NotifyPagerAdapter notifyPagerAdapter;
 
     boolean isDestroyed;
+
+
+
+
+    TextView itemDescription;
+    TextView itemName;
+    ImageView itemImage;
+    TextView priceRange;
+    TextView shopCount;
+
+
+
+    private int limit = 30;
+    @State int offset = 0;
+    @State int item_count = 0;
+
 
 
     public NewCartsFragment() {
@@ -102,8 +131,19 @@ public class NewCartsFragment extends Fragment
         }
 
 
+        // bindings for Item
+        itemDescription = (TextView) rootView.findViewById(R.id.itemDescription);
+        itemName = (TextView) rootView.findViewById(R.id.itemName);
+        itemImage = (ImageView) rootView.findViewById(R.id.itemImage);
+        priceRange = (TextView) rootView.findViewById(R.id.price_range);
+        shopCount = (TextView) rootView.findViewById(R.id.shop_count);
+
+        bindItem();
+
+
         if(savedInstanceState == null)
         {
+
             makeRefreshNetworkCall();
         }
         else
@@ -139,6 +179,31 @@ public class NewCartsFragment extends Fragment
 
         layoutManager.setSpanCount(metrics.widthPixels/400);
 
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if(layoutManager.findLastVisibleItemPosition()==dataset.size()-1)
+                {
+                    // trigger fetch next page
+
+                    if((offset+limit)<=item_count)
+                    {
+                        offset = offset + limit;
+//                        makeRequestRetrofit(false,false);
+                        makeNetworkCall(false);
+                    }
+
+                }
+            }
+
+
+        });
+
+
     }
 
 
@@ -147,6 +212,7 @@ public class NewCartsFragment extends Fragment
     @Override
     public void onRefresh() {
 
+        dataset.clear();
         makeNetworkCall(false);
     }
 
@@ -162,6 +228,7 @@ public class NewCartsFragment extends Fragment
 
                 try {
 
+                    dataset.clear();
                     makeNetworkCall(false);
 
                 } catch (IllegalArgumentException ex)
@@ -191,20 +258,33 @@ public class NewCartsFragment extends Fragment
             }
 
 
-            // Network Available
-            Call<List<ShopItem>> call = shopItemService.getShopItems(
-                    null,item.getItemID(),
+
+
+        String current_sort = "";
+
+        current_sort = UtilitySortShopItems.getSort(getContext())
+                + " " + UtilitySortShopItems.getAscending(getContext());
+
+
+
+        // Network Available
+            Call<ShopItemEndPoint> call = shopItemService.getShopItemEndpoint(
+                    null,null,item.getItemID(),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
                     endUserID,
-                    false);
+                    false,
+                    null,null,null,null,
+                    current_sort,
+                    limit,offset,null
+            );
 
-            call.enqueue(new Callback<List<ShopItem>>() {
+            call.enqueue(new Callback<ShopItemEndPoint>() {
                 @Override
-                public void onResponse(Call<List<ShopItem>> call, Response<List<ShopItem>> response) {
+                public void onResponse(Call<ShopItemEndPoint> call, Response<ShopItemEndPoint> response) {
 
 
                     if(isDestroyed)
@@ -214,10 +294,12 @@ public class NewCartsFragment extends Fragment
 
                     if(response.body()!=null)
                     {
-                        dataset.clear();
-                        dataset.addAll(response.body());
+//                        dataset.clear();
+                        dataset.addAll(response.body().getResults());
                         adapter.notifyDataSetChanged();
 
+
+                        item_count = response.body().getItemCount();
 
 
                         if(notifyChange)
@@ -230,9 +312,11 @@ public class NewCartsFragment extends Fragment
 
 
 
-                    }else
+                    }
+
+                    /*else
                     {
-                        dataset.clear();
+//                        dataset.clear();
                         adapter.notifyDataSetChanged();
 
                         if(notifyChange)
@@ -246,7 +330,7 @@ public class NewCartsFragment extends Fragment
 
 
                     }
-
+*/
 
 
                     notifyTitleChanged();
@@ -256,7 +340,7 @@ public class NewCartsFragment extends Fragment
                 }
 
                 @Override
-                public void onFailure(Call<List<ShopItem>> call, Throwable t) {
+                public void onFailure(Call<ShopItemEndPoint> call, Throwable t) {
 
 
                     if(isDestroyed)
@@ -298,6 +382,8 @@ public class NewCartsFragment extends Fragment
     @Override
     public void notifyAddToCart() {
 
+        // change to true
+        dataset.clear();
         makeNetworkCall(true);
 
     }
@@ -306,7 +392,9 @@ public class NewCartsFragment extends Fragment
     public void notifyFilledCartsChanged() {
 //        onRefresh();
 
-        makeNetworkCall(false);
+//        dataset.clear();
+//        makeNetworkCall(false);
+        makeRefreshNetworkCall();
     }
 
     @Override
@@ -331,11 +419,10 @@ public class NewCartsFragment extends Fragment
             ((NotifyTitleChanged) getActivity())
                     .NotifyTitleChanged(
                             " New Carts ("
-                                    + String.valueOf(dataset.size()) + ")",1
+                                    + String.valueOf(dataset.size()) + "/" + item_count + ")",1
                     );
         }
     }
-
 
 
     @Override
@@ -345,10 +432,58 @@ public class NewCartsFragment extends Fragment
         isDestroyed = true;
     }
 
-
     @Override
     public void NotifyLogin() {
 
         makeRefreshNetworkCall();
     }
+
+    @Override
+    public void notifySortChanged() {
+
+        makeRefreshNetworkCall();
+    }
+
+
+
+
+    void bindItem()
+    {
+        itemName.setText(item.getItemName());
+
+        itemDescription.setText(item.getItemDescription());
+
+        if(item.getItemStats()!=null)
+        {
+            ItemStats itemStats = item.getItemStats();
+
+            String shop = "Shops";
+
+            if(itemStats.getShopCount()==1)
+            {
+                shop = "Shop";
+            }
+
+            shopCount.setText("In " + String.valueOf(itemStats.getShopCount()) + " " + shop);
+            priceRange.setText( "Rs: "
+                    + String.valueOf(itemStats.getMin_price())
+                    + " - "
+                    + String.valueOf(itemStats.getMax_price())
+                    + " per " + item.getQuantityUnit()
+            );
+
+
+//            Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
+        }
+
+
+        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+                + item.getItemImageURL();
+
+        Picasso.with(getActivity())
+                .load(imagePath)
+                .placeholder(R.drawable.nature_people)
+                .into(itemImage);
+    }
+
 }

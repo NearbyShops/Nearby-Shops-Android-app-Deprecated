@@ -29,8 +29,8 @@ import javax.inject.Inject;
 public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.ViewHolder> {
 
 
-    List<CartStats> dataset = null;
-    Context context;
+    private List<CartStats> dataset = null;
+    private Context context;
 
 
     public CartsListAdapter(List<CartStats> dataset, Context context) {
@@ -52,20 +52,25 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
+        String imagePath = "http://example.com";
 
         Shop shop = dataset.get(position).getShop();
 
         holder.itemsInCart.setText(dataset.get(position).getItemsInCart() + " Items in Cart");
         holder.cartTotal.setText("Cart Total : Rs " + dataset.get(position).getCart_Total());
-        holder.deliveryCharge.setText("Delivery\nRs " + shop.getDeliveryCharges() + "\nPer Order");
-        holder.distance.setText(String.format( "%.2f", shop.getDistance())
-                                    + " Km");
-
-        holder.shopName.setText(shop.getShopName());
 
 
-        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                + dataset.get(position).getShop().getImagePath();
+        if(shop!=null)
+        {
+            holder.deliveryCharge.setText("Delivery Rs " + shop.getDeliveryCharges() + " Per Order");
+            holder.distance.setText(String.format( "%.2f", shop.getDistance()) + " Km");
+
+            holder.shopName.setText(shop.getShopName());
+
+            imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+                    + dataset.get(position).getShop().getImagePath();
+
+        }
 
         Picasso.with(context)
                 .load(imagePath)

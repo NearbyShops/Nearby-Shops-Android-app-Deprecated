@@ -185,6 +185,7 @@ public class ItemCategoriesFragment extends Fragment
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         layoutManager.setSpanCount(metrics.widthPixels/350);
+
         itemCategoriesList.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
 

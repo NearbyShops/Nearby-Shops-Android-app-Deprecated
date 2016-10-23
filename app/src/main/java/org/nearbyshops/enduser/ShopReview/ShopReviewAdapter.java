@@ -1,9 +1,12 @@
 package org.nearbyshops.enduser.ShopReview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +20,13 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.ModelReview.ShopReview;
 import org.nearbyshops.enduser.ModelReview.ShopReviewThanks;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewThanksService;
+import org.nearbyshops.enduser.ShopReview.Interfaces.NotifyLoginByAdapter;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 
@@ -47,7 +52,7 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
 
 
     private List<ShopReview> dataset;
-    private Context context;
+    private AppCompatActivity context;
     private Map<Integer,ShopReviewThanks> thanksMap;
 
     @Inject
@@ -55,7 +60,7 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
 
 
 
-    public ShopReviewAdapter(List<ShopReview> dataset, Map<Integer,ShopReviewThanks> thanksMap, Context context) {
+    public ShopReviewAdapter(List<ShopReview> dataset, Map<Integer,ShopReviewThanks> thanksMap, AppCompatActivity context) {
 
         this.dataset = dataset;
         this.context = context;
@@ -176,6 +181,20 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
             final ShopReview shopReview = dataset.get(getAdapterPosition());
             EndUser endUser = UtilityLogin.getEndUser(context);
 
+            if(endUser==null)
+            {
+                showToastMessage("Please Login to use this feature !");
+
+                if(context instanceof NotifyLoginByAdapter)
+                {
+                    ((NotifyLoginByAdapter)context).NotifyLoginAdapter();
+                }
+
+                return;
+            }
+
+
+
             if(thanksMap.containsKey(shopReview.getShopReviewID()))
             {
                 Call<ResponseBody> deleteCall = thanksService.deleteThanks(shopReview.getShopReviewID(),endUser.getEndUserID());
@@ -238,6 +257,7 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
 
 
     }// ViewHolder Class declaration ends
+
 
 
 

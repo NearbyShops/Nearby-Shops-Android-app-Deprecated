@@ -1,6 +1,7 @@
 package org.nearbyshops.enduser.ShopReview;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.apache.commons.collections.ArrayStack;
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.Login.LoginDialog;
+import org.nearbyshops.enduser.Login.NotifyAboutLogin;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelEndPoints.ShopReviewEndPoint;
 import org.nearbyshops.enduser.ModelEndPoints.ShopReviewThanksEndpoint;
@@ -24,9 +27,13 @@ import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewThanksService;
+import org.nearbyshops.enduser.ShopReview.Interfaces.NotifyLoginByAdapter;
+import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.SlidingLayerSortShops;
 import org.nearbyshops.enduser.Utility.DividerItemDecoration;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
+import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItems;
+import org.nearbyshops.enduser.UtilitySort.UtilitySortShopReview;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,7 +51,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener , NotifySort,
+        NotifyLoginByAdapter, NotifyAboutLogin{
 
 
     @State
@@ -409,8 +417,18 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
     private void makeNetworkCall() {
 
+
+
+        String current_sort = "";
+
+        current_sort = UtilitySortShopReview.getSort(this)
+                + " " + UtilitySortShopReview.getAscending(this);
+
+
+
+
         Call<ShopReviewEndPoint> call = shopReviewService.getReviews(shop.getShopID(),null,
-                true,null,limit,offset,false);
+                true,current_sort,limit,offset,false);
 
 
         call.enqueue(new Callback<ShopReviewEndPoint>() {
@@ -458,8 +476,17 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
         EndUser endUser = UtilityLogin.getEndUser(this);
 
+
+        if(endUser==null)
+        {
+            // end user not logged in
+            return;
+        }
+
         Call<ShopReviewThanksEndpoint> endpointCall = thanksService.getShopReviewThanks(null,endUser.getEndUserID(),
                 shop.getShopID(),null,100,0,null);
+
+
 
 
         endpointCall.enqueue(new Callback<ShopReviewThanksEndpoint>() {
@@ -566,8 +593,30 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
 
 
+    private void showLoginDialog()
+    {
+        FragmentManager fm = getSupportFragmentManager();
+        LoginDialog loginDialog = new LoginDialog();
+        loginDialog.show(fm,"serviceUrl");
+    }
 
 
 
+    @Override
+    public void notifySortChanged() {
+        onRefreshSwipeIndicator();
+    }
 
+
+
+    @Override
+    public void NotifyLogin() {
+        onRefreshSwipeIndicator();
+    }
+
+
+    @Override
+    public void NotifyLoginAdapter() {
+        showLoginDialog();
+    }
 }

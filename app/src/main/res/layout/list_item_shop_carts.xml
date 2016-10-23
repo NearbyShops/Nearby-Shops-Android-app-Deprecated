@@ -35,7 +35,8 @@
 
         <ImageView
             android:background="#44000000"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginEnd="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="5dp"
             android:layout_width="100dp"
@@ -44,85 +45,92 @@
             android:src="@drawable/carrots"
             android:id="@+id/shopImage" />
 
+
+        <!--
+        android:background="#99424242"
+        -->
+
         <TextView
             android:layout_marginTop="0dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textSize="25sp"
-            android:textColor="@color/colorWhite"
-            android:background="#99424242"
+            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="// D-Mart, Green hills"
             android:id="@+id/shopName"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_toRightOf="@id/shopImage"
+            android:layout_toEndOf="@id/shopImage"/>
 
 
 
         <TextView
-            android:textColor="@color/colorWhite"
-            android:background="#99424242"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textSize="17sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0/10"
-            android:id="@+id/rating"
-            android:layout_marginLeft="105dp"
-            android:layout_alignBottom="@+id/shopImage"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="30dp" />
-
-        <TextView
-            android:textColor="@color/colorWhite"
-            android:background="#99424242"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textSize="17sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0 Km"
-            android:id="@+id/distance"
-            android:layout_marginLeft="105dp"
-            android:layout_alignBottom="@+id/shopImage"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="0dp" />
-
-
-        <TextView
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
             android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delivery : \nRs 0\nper order"
+            android:text="Delivery Rs 0 per order"
             android:id="@+id/deliveryCharge"
+            android:layout_marginStart="3dp"
+            android:layout_toRightOf="@id/shopImage"
+            android:layout_toEndOf="@id/shopImage"
             android:layout_marginRight="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="2dp"
             android:layout_marginBottom="0dp"
             android:layout_alignBottom="@id/shopImage"
-            android:layout_alignParentRight="true" />
+            android:layout_above="@id/border_two"/>
 
 
-        <ImageView
-            android:src="@drawable/ic_favorite_border_white_24px"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:id="@+id/favourite"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_alignBottom="@+id/imageView"
-            android:layout_alignParentLeft="true"
 
-            android:layout_marginTop="10dp"/>
 
-</RelativeLayout>
+        <TextView
+            android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_above="@id/deliveryCharge"
+            android:textColor="@color/colorWhite"
+            android:background="@color/gplus_color_2"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.3"
+            android:id="@+id/rating"
+            android:layout_toRightOf="@id/shopImage"
+            android:layout_toEndOf="@id/shopImage"/>
+
+        <TextView
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_alignBottom="@id/rating"
+            android:layout_toEndOf="@id/rating"
+            android:layout_toRightOf="@id/rating"
+            android:text="(3232 Ratings)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_toEndOf="@id/shopImage"
+            android:layout_toRightOf="@id/shopImage"
+            android:layout_marginBottom="2dp"
+            android:padding="1dp"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
+            android:textColor="@color/colorWhite"
+            android:background="@color/blueGrey800"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/rating"
+            android:text="0 Km"
+            android:id="@+id/distance" />
+
+
+
+    </RelativeLayout>
 
 
     <LinearLayout

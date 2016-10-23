@@ -5,13 +5,18 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Login.LoginDialog;
@@ -19,6 +24,8 @@ import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
+import org.nearbyshops.enduser.ModelStats.ItemStats;
+import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
@@ -60,6 +67,14 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     SwipeRefreshLayout swipeContainer;
 
     boolean isDestroyed;
+
+
+    TextView itemDescription;
+    TextView itemName;
+    ImageView itemImage;
+    TextView priceRange;
+    TextView shopCount;
+
 
 //    NotifyFillCartsChanged notifyPagerAdapter;
 
@@ -107,20 +122,33 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
         }
 
 
+
+
         if(savedInstanceState==null)
         {
-
+            setupRecyclerView();
             swipeRefresh();
         }
         else
         {
-
             onViewStateRestored(savedInstanceState);
-
+            setupRecyclerView();
+            adapter.makeNetworkCall();
         }
 
 
-        setupRecyclerView();
+
+
+        // bindings for Item
+        itemDescription = (TextView) rootView.findViewById(R.id.itemDescription);
+        itemName = (TextView) rootView.findViewById(R.id.itemName);
+        itemImage = (ImageView) rootView.findViewById(R.id.itemImage);
+        priceRange = (TextView) rootView.findViewById(R.id.price_range);
+        shopCount = (TextView) rootView.findViewById(R.id.shop_count);
+
+
+        bindItem();
+
 
         return rootView;
     }
@@ -162,6 +190,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
                 try {
 
+//                    dataset.clear();
                     makeNetworkCall(false);
 
                 } catch (IllegalArgumentException ex)
@@ -216,7 +245,8 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,0),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,0),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,0),
-                    endUser.getEndUserID(),true,
+                    endUser.getEndUserID(),
+                    true,
                     null,null,null,null,
                     current_sort,null,null,null
             );
@@ -409,5 +439,49 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     public void notifySortChanged() {
         onRefresh();
     }
+
+
+
+    void bindItem()
+    {
+        itemName.setText(item.getItemName());
+
+        itemDescription.setText(item.getItemDescription());
+
+        if(item.getItemStats()!=null)
+        {
+            ItemStats itemStats = item.getItemStats();
+
+            String shop = "Shops";
+
+            if(itemStats.getShopCount()==1)
+            {
+                shop = "Shop";
+            }
+
+            shopCount.setText("In " + String.valueOf(itemStats.getShopCount()) + " " + shop);
+            priceRange.setText( "Rs: "
+                    + String.valueOf(itemStats.getMin_price())
+                    + " - "
+                    + String.valueOf(itemStats.getMax_price())
+                    + " per " + item.getQuantityUnit()
+            );
+
+
+//            Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
+        }
+
+
+        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+                + item.getItemImageURL();
+
+        Picasso.with(getActivity())
+                .load(imagePath)
+                .placeholder(R.drawable.nature_people)
+                .into(itemImage);
+    }
+
+
+
 }
 

@@ -20,7 +20,6 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Login.LoginDialog;
-import org.nearbyshops.enduser.Login.NotifyAboutLogin;
 import org.nearbyshops.enduser.Model.CartItem;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.Shop;
@@ -58,17 +57,17 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
     @Inject
     CartItemService cartItemService;
 
-    NotifyCallbacks notifyCallbacks;
+    private NotifyAddToCart notifyAddToCart;
 
-    Item item;
+    private Item item;
 
-    AppCompatActivity activity;
+    private AppCompatActivity activity;
 
 
-    public AdapterNewCarts(List<ShopItem> dataset, Context context, NotifyCallbacks callbacks, Item item, AppCompatActivity activity) {
+    public AdapterNewCarts(List<ShopItem> dataset, Context context, NotifyAddToCart callbacks, Item item, AppCompatActivity activity) {
         this.dataset = dataset;
         this.context = context;
-        this.notifyCallbacks = callbacks;
+        this.notifyAddToCart = callbacks;
         this.item = item;
         this.activity = activity;
 
@@ -103,6 +102,24 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
 
         if(shop!=null)
         {
+
+
+            if(shop.getRt_rating_count()>0)
+            {
+                holder.rating.setText(String.format("%.1f",shop.getRt_rating_avg()));
+            }
+            else
+            {
+                holder.rating.setText("Not yet rated !");
+//                holder.rating.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));
+//                holder.rating.setBackgroundColor(ContextCompat.getColor(context,R.color.light_grey);
+            }
+
+
+            holder.ratingCount.setText("( " + String.format("%.0f",shop.getRt_rating_count()) + " Ratings )");
+
+
+
             String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
                     + shop.getImagePath();
 
@@ -135,6 +152,13 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
 
 
     class ViewHolder extends RecyclerView.ViewHolder implements Callback<ResponseBody>, TextWatcher {
+
+
+        @Bind(R.id.rating)
+        TextView rating;
+
+        @Bind(R.id.ratings_count)
+        TextView ratingCount;
 
 
         @Bind(R.id.distance)
@@ -348,7 +372,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
             {
                 Toast.makeText(context,"Add to cart. Successful !",Toast.LENGTH_SHORT).show();
 
-                notifyCallbacks.notifyAddToCart();
+                notifyAddToCart.notifyAddToCart();
             }
         }
 
@@ -421,7 +445,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
     }
 
 
-    public interface NotifyCallbacks {
+    public interface NotifyAddToCart {
 
         void notifyAddToCart();
 
