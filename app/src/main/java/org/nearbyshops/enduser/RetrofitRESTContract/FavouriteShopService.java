@@ -1,7 +1,7 @@
 package org.nearbyshops.enduser.RetrofitRESTContract;
 
 import org.nearbyshops.enduser.ModelEndPoints.FavouriteShopEndpoint;
-import org.nearbyshops.enduser.ModelReview.FavouriteShop;
+import org.nearbyshops.enduser.ModelReviewShop.FavouriteShop;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

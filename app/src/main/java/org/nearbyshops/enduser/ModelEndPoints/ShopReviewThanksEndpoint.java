@@ -1,7 +1,7 @@
 package org.nearbyshops.enduser.ModelEndPoints;
 
 
-import org.nearbyshops.enduser.ModelReview.ShopReviewThanks;
+import org.nearbyshops.enduser.ModelReviewShop.ShopReviewThanks;
 
 import java.util.List;
 

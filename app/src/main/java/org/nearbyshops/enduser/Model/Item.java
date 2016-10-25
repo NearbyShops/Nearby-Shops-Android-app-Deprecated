@@ -76,6 +76,10 @@ public class Item implements Parcelable{
 	private Boolean isWaitlisted;
 
 
+	private float rt_rating_avg;
+	private float rt_rating_count;
+
+
 	// Getter and Setter Statements
 
 	//No-args constructor
@@ -92,6 +96,9 @@ public class Item implements Parcelable{
 		itemDescriptionLong = in.readString();
 		itemCategory = in.readParcelable(ItemCategory.class.getClassLoader());
 
+		rt_rating_avg = in.readFloat();
+		rt_rating_count = in.readFloat();
+
 		dateTimeCreated = new Timestamp(in.readLong());
 	}
 
@@ -106,6 +113,9 @@ public class Item implements Parcelable{
 		dest.writeString(quantityUnit);
 		dest.writeString(itemDescriptionLong);
 		dest.writeParcelable(itemCategory, flags);
+
+		dest.writeFloat(rt_rating_avg);
+		dest.writeFloat(rt_rating_count);
 
 		if(dateTimeCreated!=null)
 		{
@@ -217,9 +227,27 @@ public class Item implements Parcelable{
 		this.itemName = itemName;
 	}
 
+	public float getRt_rating_avg() {
+		return rt_rating_avg;
+	}
+
+	public void setRt_rating_avg(float rt_rating_avg) {
+		this.rt_rating_avg = rt_rating_avg;
+	}
+
+	public float getRt_rating_count() {
+		return rt_rating_count;
+	}
+
+	public void setRt_rating_count(float rt_rating_count) {
+		this.rt_rating_count = rt_rating_count;
+	}
 
 
-/*
+
+
+
+	/*
 	if(dateTimeCreated!=null)
 	{
 		dest.writeLong(dateTimeCreated.getTime());

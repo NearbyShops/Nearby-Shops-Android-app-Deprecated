@@ -21,9 +21,12 @@ import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyGeneral;
+import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.DividerItemDecoration;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItems;
+import org.nearbyshops.enduser.UtilitySort.UtilitySortShopsByCategory;
 
 import java.util.ArrayList;
 
@@ -39,7 +42,7 @@ import retrofit2.Response;
  * Created by sumeet on 25/5/16.
  */
 public class FragmentShop extends Fragment implements
-        SwipeRefreshLayout.OnRefreshListener, NotifyCategoryChanged{
+        SwipeRefreshLayout.OnRefreshListener, NotifyCategoryChanged, NotifySort{
 
 
         @State ItemCategory notifiedCurrentCategory;
@@ -110,9 +113,6 @@ public class FragmentShop extends Fragment implements
 //            itemCategory = getArguments().getParcelable("itemCat");
 
             recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-
-
-
             swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
 
 
@@ -251,9 +251,13 @@ public class FragmentShop extends Fragment implements
             if(notifiedCurrentCategory==null)
             {
                 swipeContainer.setRefreshing(false);
-
                 return;
             }
+
+            String current_sort = "";
+
+            current_sort = UtilitySortShopsByCategory.getSort(getContext()) + " " + UtilitySortShopsByCategory.getAscending(getContext());
+
 
             Call<ShopEndPoint> callEndpoint = shopService.filterShopsByItemCategory(
 
@@ -264,7 +268,7 @@ public class FragmentShop extends Fragment implements
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
-                    null,limit,offset,false
+                    current_sort,limit,offset,false
             );
 
 
@@ -396,7 +400,15 @@ public class FragmentShop extends Fragment implements
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
         isDestroyed = true;
     }
+
+
+
+    @Override
+    public void notifySortChanged() {
+        makeRefreshNetworkCall();
+    }
+
+
 }

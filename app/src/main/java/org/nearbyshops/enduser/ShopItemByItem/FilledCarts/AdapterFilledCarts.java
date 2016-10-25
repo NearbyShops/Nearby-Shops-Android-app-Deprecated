@@ -1,7 +1,6 @@
 package org.nearbyshops.enduser.ShopItemByItem.FilledCarts;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -270,7 +269,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
             holder.shopName.setText(shop.getShopName());
 
-            holder.distance.setText("Distance : " + String.format( "%.2f", shop.getDistance()) + " Km");
+            holder.distance.setText(String.format( "%.2f", shop.getDistance()) + " Km");
             holder.deliveryCharge.setText("Delivery : Rs " + String.format( "%.0f", shop.getDeliveryCharges()) + " Per Order");
 
         }

@@ -1,12 +1,11 @@
-package org.nearbyshops.enduser.Utility;
+package org.nearbyshops.enduser.UtilitySort;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-
+import org.nearbyshops.enduser.ItemsByCategory.SlidingLayerSortItems;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.ShopsByCategory.SlidingLayerSortShops;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -14,18 +13,12 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by sumeet on 29/9/16.
  */
 
-public class UtilitySortShops {
+public class UtilitySortItemsByCategory {
 
 
 
     public static void saveSort(Context context, String sort_by)
     {
-
-        if(context==null)
-        {
-            context = MyApplication.getAppContext();
-        }
-
         // get a handle to shared Preference
         SharedPreferences sharedPref;
 
@@ -35,21 +28,15 @@ public class UtilitySortShops {
 
         // write to the shared preference
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("sort_item", sort_by);
+        editor.putString("sort_items_by_category", sort_by);
         editor.apply();
     }
 
 
     public static String getSort(Context context)
     {
-
-        if(context==null)
-        {
-            context = MyApplication.getAppContext();
-        }
-
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String sort_by = sharedPref.getString("sort_item", SlidingLayerSortShops.SORT_BY_NAME);
+        String sort_by = sharedPref.getString("sort_items_by_category", SlidingLayerSortItems.SORT_BY_ITEM_RATING);
 
         return sort_by;
     }
@@ -59,12 +46,6 @@ public class UtilitySortShops {
     public static void saveAscending(Context context, String descending)
     {
 
-        if(context==null)
-        {
-            context = MyApplication.getAppContext();
-        }
-
-
         // get a handle to shared Preference
         SharedPreferences sharedPref;
 
@@ -74,7 +55,7 @@ public class UtilitySortShops {
 
         // write to the shared preference
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("sort_descending_item",descending);
+        editor.putString("sort_descending_items_by_category",descending);
         editor.apply();
     }
 
@@ -89,7 +70,7 @@ public class UtilitySortShops {
         }
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String descending = sharedPref.getString("sort_descending_item", SlidingLayerSortShops.SORT_DESCENDING);
+        String descending = sharedPref.getString("sort_descending_items_by_category", SlidingLayerSortItems.SORT_DESCENDING);
 
         return descending;
     }

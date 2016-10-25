@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content">
 
                 <!--tools:context="com.nearbyshops.android.communitylibrary.BooksActivityBackup.BooksActivityBackup"
-                tools:showIn="@layout/activity_book_reviews"-->
+                tools:showIn="@layout/activity_shop_reviews"-->
 
                 <!--
 
@@ -46,115 +46,22 @@
                     android:layout_height="200dp" />-->
 
 
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:id="@+id/chart"
-                    android:orientation="vertical"
+
+
+                <FrameLayout
+                    android:id="@+id/review_stat_fragment"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                    <LinearLayout
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Five Star   "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <LinearLayout
-                            android:layout_marginEnd="0dp"
-                            android:layout_marginRight="0dp"
-                            android:layout_marginStart="0dp"
-                            android:layout_marginLeft="0dp"
-                            android:background="@color/light_grey"
-                            android:weightSum="10"
-                            android:orientation="horizontal"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:background="@color/buttonColor"
-                                android:layout_weight="1.3"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:layout_weight="1"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content" />
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_marginLeft="10dp"
-                            android:text="3234"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Four Star  "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <LinearLayout
-                            android:layout_marginEnd="0dp"
-                            android:layout_marginRight="0dp"
-                            android:layout_marginStart="0dp"
-                            android:layout_marginLeft="0dp"
-                            android:background="@color/light_grey"
-                            android:weightSum="10"
-                            android:orientation="horizontal"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:background="@color/gplus_color_2"
-                                android:layout_weight="3.3"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:layout_weight="1"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content" />
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_marginLeft="10dp"
-                            android:text="3234"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="wrap_content"/>
 
 
                 <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/review_stat_fragment"
                     android:layout_marginBottom="10dp"
                     android:id="@+id/border"
-                    android:layout_below="@id/chart"
                     android:background="@color/grey800"
                     android:layout_width="match_parent"
                     android:layout_height="1dp" />
-
-
-
 
 
                 <android.support.v7.widget.RecyclerView
@@ -165,7 +72,6 @@
                     android:layout_height="wrap_content" />
 
             </RelativeLayout>
-
 
 
     </android.support.v4.widget.NestedScrollView>

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.nearbyshops.enduser.ItemDetail.ItemDetail;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.ModelStats.ItemStats;
 import org.nearbyshops.enduser.MyApplication;
@@ -57,10 +58,34 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
             return;
         }
 
+        Item item = dataset.get(position);
 
-        holder.itemName.setText(dataset.get(position).getItemName());
+        String imagePath = "http://example.com";
 
-        holder.itemDescription.setText(dataset.get(position).getItemDescription());
+        if(item!=null)
+        {
+            holder.itemName.setText(item.getItemName());
+            holder.itemDescription.setText(item.getItemDescription());
+
+
+            if(item.getRt_rating_count()==0)
+            {
+                holder.itemRating.setText("N/A");
+                holder.ratingCount.setText("(Not yet rated)");
+            }
+            else
+            {
+                holder.itemRating.setText(String.format("%.1f",item.getRt_rating_avg()));
+                holder.ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " ratings )");
+            }
+
+
+
+
+            imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+                    + dataset.get(position).getItemImageURL();
+        }
+
 
         if(dataset.get(position).getItemStats()!=null)
         {
@@ -85,15 +110,11 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
 //            Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
         }
 
-        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                + dataset.get(position).getItemImageURL();
 
         Picasso.with(context)
                 .load(imagePath)
                 .placeholder(R.drawable.nature_people)
                 .into(holder.itemImage);
-
-
     }
 
     @Override
@@ -114,6 +135,9 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
         TextView priceRange;
         TextView shopCount;
 
+        TextView itemRating;
+        TextView ratingCount;
+
         CardView itemsListItem;
 
         public ViewHolder(View itemView) {
@@ -127,7 +151,12 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
             priceRange = (TextView) itemView.findViewById(R.id.price_range);
             shopCount = (TextView) itemView.findViewById(R.id.shop_count);
             itemsListItem = (CardView) itemView.findViewById(R.id.items_list_item);
+
+            itemRating = (TextView) itemView.findViewById(R.id.item_rating);
+            ratingCount = (TextView) itemView.findViewById(R.id.rating_count);
+
             itemsListItem.setOnClickListener(this);
+            itemImage.setOnClickListener(this);
         }
 
         @Override
@@ -145,6 +174,15 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
                         intent.putExtra(ShopsForItemSwipe.ITEM_INTENT_KEY,dataset.get(getLayoutPosition()));
                         context.startActivity(intent);
                     }
+
+                    break;
+
+
+                case R.id.itemImage:
+
+                    Intent intent = new Intent(context, ItemDetail.class);
+                    intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
+                    context.startActivity(intent);
 
                     break;
 

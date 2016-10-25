@@ -2,7 +2,6 @@ package org.nearbyshops.enduser.ShopReview;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,30 +13,26 @@ import android.widget.Toast;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
-import org.apache.commons.collections.ArrayStack;
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelEndPoints.ShopReviewEndPoint;
 import org.nearbyshops.enduser.ModelEndPoints.ShopReviewThanksEndpoint;
-import org.nearbyshops.enduser.ModelReview.ShopReview;
-import org.nearbyshops.enduser.ModelReview.ShopReviewThanks;
+import org.nearbyshops.enduser.ModelReviewShop.ShopReview;
+import org.nearbyshops.enduser.ModelReviewShop.ShopReviewThanks;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewThanksService;
 import org.nearbyshops.enduser.ShopReview.Interfaces.NotifyLoginByAdapter;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduser.ShopsByCategory.SlidingLayerSortShops;
 import org.nearbyshops.enduser.Utility.DividerItemDecoration;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItems;
 import org.nearbyshops.enduser.UtilitySort.UtilitySortShopReview;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -118,7 +113,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_reviews);
+        setContentView(R.layout.activity_shop_reviews);
 
         ButterKnife.bind(this);
 
@@ -166,6 +161,8 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
 
             makeNetworkCallThanks();
+
+            setStatFragment();
         }
         else
         {
@@ -182,9 +179,33 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
         // setup chart
 
-        setupChart();
+//        setupChart();
+
 
     }
+
+
+
+
+
+
+
+    ShopReviewStats fragmentStats = new ShopReviewStats();
+
+    void setStatFragment()
+    {
+
+        Bundle args = new Bundle();
+        args.putParcelable("shopExtra",shop);
+        fragmentStats.setArguments(args);
+
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.review_stat_fragment,fragmentStats)
+                .commit();
+    }
+
 
 
 
@@ -291,7 +312,6 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
         layoutManager.setSpanCount(metrics.widthPixels/350);
 */
 
-
     }
 
 
@@ -377,13 +397,8 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
     protected void onDestroy() {
         super.onDestroy();
 
-
+        activityStopped = true;
         ButterKnife.unbind(this);
-        /*if(unbinder!=null)
-        {
-            unbinder.unbind();
-        }*/
-
     }
 
     @Override
@@ -534,11 +549,13 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
 
 
+
+
+
     @Override
     protected void onStop() {
         super.onStop();
 
-        activityStopped = true;
     }
 
     void stopRefreshing()

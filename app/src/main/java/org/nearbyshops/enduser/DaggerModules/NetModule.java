@@ -16,8 +16,10 @@ import org.nearbyshops.enduser.RetrofitRESTContract.CartService;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.RetrofitRESTContract.DeliveryAddressService;
 import org.nearbyshops.enduser.RetrofitRESTContract.EndUserService;
+import org.nearbyshops.enduser.RetrofitRESTContract.FavouriteItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.FavouriteShopService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemCategoryService;
+import org.nearbyshops.enduser.RetrofitRESTContract.ItemReviewService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ServiceConfigurationService;
@@ -248,6 +250,13 @@ public class NetModule {
     }
 
 
+    @Provides
+    ItemReviewService itemReviewService(Retrofit retrofit)
+    {
+        return retrofit.create(ItemReviewService.class);
+    }
+
+
 
     @Provides
     FavouriteShopService favouriteShopService(Retrofit retrofit)
@@ -256,6 +265,14 @@ public class NetModule {
 //        EndUserService endUserService = ;
         return retrofit.create(FavouriteShopService.class);
     }
+
+
+    @Provides
+    FavouriteItemService favouriteItemService(Retrofit retrofit)
+    {
+        return retrofit.create(FavouriteItemService.class);
+    }
+
 
 
     @Provides

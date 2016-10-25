@@ -10,6 +10,8 @@ import org.nearbyshops.enduser.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduser.DaggerModules.AppModule;
 import org.nearbyshops.enduser.DaggerModules.NetModule;
 import org.nearbyshops.enduser.ItemCategoryOption.FragmentShopOld;
+import org.nearbyshops.enduser.ItemDetail.ItemDetail;
+import org.nearbyshops.enduser.ItemDetail.RateReviewItemDialog;
 import org.nearbyshops.enduser.ItemsByCategory.ItemCategories.ItemCategoriesFragmentItem;
 import org.nearbyshops.enduser.ItemsByCategory.Items.FragmentItem_ItemByCategory;
 import org.nearbyshops.enduser.Login.LoginDialog;
@@ -20,6 +22,7 @@ import org.nearbyshops.enduser.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduser.ShopItemByShop.ItemCategories.ItemCategoriesFragmentShopHome;
 import org.nearbyshops.enduser.ShopItemByShop.ShopItems.FragmentShopItemsByShop;
 import org.nearbyshops.enduser.ShopReview.ShopReviewAdapter;
+import org.nearbyshops.enduser.ShopReview.ShopReviewStats;
 import org.nearbyshops.enduser.ShopReview.ShopReviews;
 import org.nearbyshops.enduser.ShopsByCategory.ItemCategories.ItemCategoriesFragment;
 import org.nearbyshops.enduser.ShopsByCategory.Shops.FragmentShop;
@@ -102,4 +105,10 @@ public interface NetComponent {
     void Inject(FragmentShopItemsByShop fragmentShopItemsByShop);
 
     void Inject(ShopReviewAdapter shopReviewAdapter);
+
+    void Inject(ItemDetail itemDetail);
+
+    void Inject(RateReviewItemDialog rateReviewItemDialog);
+
+    void Inject(ShopReviewStats shopReviewStats);
 }

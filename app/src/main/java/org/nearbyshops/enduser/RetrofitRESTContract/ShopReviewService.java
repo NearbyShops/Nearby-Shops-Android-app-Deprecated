@@ -1,10 +1,13 @@
 package org.nearbyshops.enduser.RetrofitRESTContract;
 
 import org.nearbyshops.enduser.ModelEndPoints.ShopReviewEndPoint;
-import org.nearbyshops.enduser.ModelReview.ShopReview;
+import org.nearbyshops.enduser.ModelReviewShop.ShopReview;
+import org.nearbyshops.enduser.ModelReviewShop.ShopReviewStatRow;
+import org.nearbyshops.enduser.ShopReview.ShopReviewStats;
 
 import java.util.List;
 
+import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -46,5 +49,10 @@ public interface ShopReviewService {
 
     @DELETE("/api/v1/ShopReview/{id}")
     Call<ResponseBody> deleteShopReview(@Path("id") int id);
+
+
+    @GET("/api/v1/ShopReview/Stats/{ShopID}")
+    Call<List<ShopReviewStatRow>> getStats(@Path("ShopID")int shopID);
+
 
 }

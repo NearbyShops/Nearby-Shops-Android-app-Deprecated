@@ -41,6 +41,8 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import icepick.Icepick;
 import icepick.State;
 import retrofit2.Call;
@@ -50,7 +52,7 @@ import retrofit2.Response;
 public class NewCartsFragment extends Fragment
         implements SwipeRefreshLayout.OnRefreshListener,
         AdapterNewCarts.NotifyAddToCart, NotifyFillCartsChanged, NotifyAboutLogin,
-        NotifySort{
+        NotifySort {
 
 
 
@@ -80,6 +82,14 @@ public class NewCartsFragment extends Fragment
     ImageView itemImage;
     TextView priceRange;
     TextView shopCount;
+
+
+
+    @Bind(R.id.item_rating)
+    TextView itemRating;
+
+    @Bind(R.id.rating_count)
+    TextView ratingCount;
 
 
 
@@ -115,6 +125,10 @@ public class NewCartsFragment extends Fragment
 
 
         View rootView = inflater.inflate(R.layout.fragment_new_carts, container, false);
+
+        ButterKnife.bind(this,rootView);
+
+
         item = getArguments().getParcelable("item");
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
 
@@ -428,8 +442,8 @@ public class NewCartsFragment extends Fragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
         isDestroyed = true;
+        ButterKnife.unbind(this);
     }
 
     @Override
@@ -450,8 +464,19 @@ public class NewCartsFragment extends Fragment
     void bindItem()
     {
         itemName.setText(item.getItemName());
-
         itemDescription.setText(item.getItemDescription());
+
+        if(item.getRt_rating_count()==0)
+        {
+            itemRating.setText("N/A");
+            ratingCount.setText("(Not yet rated)");
+        }
+        else
+        {
+            itemRating.setText(String.format("%.1f",item.getRt_rating_avg()));
+            ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " ratings )");
+        }
+
 
         if(item.getItemStats()!=null)
         {
@@ -485,5 +510,7 @@ public class NewCartsFragment extends Fragment
                 .placeholder(R.drawable.nature_people)
                 .into(itemImage);
     }
+
+
 
 }

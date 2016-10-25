@@ -10,7 +10,7 @@
 
     <!--
     tools:context="com.nearbyshops.android.communitylibrary.BookDetails.ShopDetail"
-    tools:showIn="@layout/activity_book_detail"
+    tools:showIn="@layout/activity_shop_detail"
 
     -->
 

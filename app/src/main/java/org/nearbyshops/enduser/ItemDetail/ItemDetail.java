@@ -1,8 +1,6 @@
-package org.nearbyshops.enduser.ShopDetail;
+package org.nearbyshops.enduser.ItemDetail;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -14,9 +12,9 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ShareCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
@@ -29,30 +27,23 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CircleOptions;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
-import org.nearbyshops.enduser.Model.Shop;
-import org.nearbyshops.enduser.ModelEndPoints.FavouriteShopEndpoint;
-import org.nearbyshops.enduser.ModelEndPoints.ShopReviewEndPoint;
-import org.nearbyshops.enduser.ModelReviewShop.FavouriteShop;
-import org.nearbyshops.enduser.ModelReviewShop.ShopReview;
+import org.nearbyshops.enduser.Model.Item;
+import org.nearbyshops.enduser.ModelReviewItem.FavouriteItem;
+import org.nearbyshops.enduser.ModelReviewItem.FavouriteItemEndpoint;
+import org.nearbyshops.enduser.ModelReviewItem.ItemReview;
+import org.nearbyshops.enduser.ModelReviewItem.ItemReviewEndPoint;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.RetrofitRESTContract.FavouriteShopService;
-import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewService;
-import org.nearbyshops.enduser.ShopReview.ShopReviews;
+import org.nearbyshops.enduser.RetrofitRESTContract.FavouriteItemService;
+import org.nearbyshops.enduser.RetrofitRESTContract.ItemReviewService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 
@@ -70,20 +61,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Target, RatingBar.OnRatingBarChangeListener ,NotifyReviewUpdate, OnMapReadyCallback {
+public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
+        Target, RatingBar.OnRatingBarChangeListener, NotifyReviewUpdate{
 
-    public final static String SHOP_DETAIL_INTENT_KEY = "intent_key_shop_detail";
+
+    public final static String ITEM_DETAIL_INTENT_KEY = "intent_key_item_detail";
 
     @Inject
-    ShopReviewService shopReviewService;
+    ItemReviewService itemReviewService;
 
     @Inject
-    FavouriteShopService favouriteShopService;
+    FavouriteItemService favouriteItemService;
 
     private GoogleMap mMap;
     Marker currentMarker;
 
-    Shop shop;
+    Item item;
 
     @Bind(R.id.fab)
     FloatingActionButton fab;
@@ -94,12 +87,12 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     @Bind(R.id.author_name)
     TextView authorName;
 
-    @Bind(R.id.date_of_publish)
-    TextView publishDate;
-
-
-    @Bind(R.id.publisher_name)
-    TextView publisherName;
+//    @Bind(R.id.date_of_publish)
+//    TextView publishDate;
+//
+//
+//    @Bind(R.id.publisher_name)
+//    TextView publisherName;
 
     @Bind(R.id.book_description)
     TextView bookDescription;
@@ -145,7 +138,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 //    Unbinder unbinder;
 
 
-    public ShopDetail() {
+    public ItemDetail() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -155,7 +148,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shop_detail);
+        setContentView(R.layout.activity_item_detail);
 
         ButterKnife.bind(this);
 
@@ -165,21 +158,21 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
         setSupportActionBar(toolbar);
 
 
-        shop = getIntent().getParcelableExtra(SHOP_DETAIL_INTENT_KEY);
-        bindViews(shop);
+        item = getIntent().getParcelableExtra(ITEM_DETAIL_INTENT_KEY);
+        bindViews(item);
 
-        if (shop != null) {
-            getSupportActionBar().setTitle(shop.getShopName());
-            getSupportActionBar().setSubtitle(shop.getShortDescription());
+        if (item != null) {
+            getSupportActionBar().setTitle(item.getItemName());
+//            getSupportActionBar().setSubtitle(item.getItemDescription());
         }
 
 
-        if (shop != null) {
+        if (item != null) {
             checkUserReview();
         }
 
 
-        Log.d("ShopLog",String.valueOf(shop.getRt_rating_avg()) + ":" + String.valueOf(shop.getRt_rating_count()));
+        Log.d("ShopLog",String.valueOf(item.getRt_rating_avg()) + ":" + String.valueOf(item.getRt_rating_count()));
 
         /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -195,74 +188,35 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
 
         checkFavourite();
-        setupMap();
-    }
-
-
-    void setupMap()
-    {
-        SupportMapFragment mapFragment1 = new SupportMapFragment();
-
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.map,mapFragment1).commit();
-
-        mapFragment1.getMapAsync(this);
     }
 
 
 
 
 
-    void bindViews(Shop shop) {
-
-        if (shop != null) {
 
 
-            if (shop.getShopName()==null) {
+
+    void bindViews(Item item) {
+
+        if (item != null) {
+
+
+            if (item.getItemName()==null) {
                 bookTitle.setText("Shop Title");
             } else {
-                bookTitle.setText(shop.getShopName());
+                bookTitle.setText(item.getItemName());
             }
 
-            authorName.setText(shop.getShopAddress() + "\n" + shop.getCity());
+            authorName.setText(item.getItemDescription());
 
-//            publisherName.setText("Published By : " + shop.getShopAddress());
-
-            /*if(shop.getDateOfPublish()!=null)
-            {
-                Log.d("date","Date of Publish binding " + shop.getDateOfPublish().toString());
-
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM ''yyyy");
-
-                //"EEE, MMM d, ''yy"
-                //"yyyy-MM-dd"
-
-                publishDate.setText(dateFormat.format(shop.getDateOfPublish()));
-            }*/
-
-            if(shop.getDateTimeStarted().getTime()==0)
-            {
-                publishDate.setText("Date Started not available !");
-
-            }else
-            {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(shop.getDateTimeStarted().getTime());
-                SimpleDateFormat dateFormat = new SimpleDateFormat(getString(R.string.date_format_simple));
-
-                //"EEEEEEE, MMMMMMMMM dd yyyy"
-                //getString(R.string.date_format_simple)
-
-                //"MMMM d ''yyyy"
-                publishDate.setText("Started : " + dateFormat.format(calendar.getTime()));
-            }
 
 
             // set Book Cover Image
 
 
             String imagePath = UtilityGeneral.getImageEndpointURL(this)
-                    + shop.getImagePath();
+                    + item.getItemImageURL();
 
 //            if (!shop.getBookCoverImageURL().equals("")) {
 
@@ -281,20 +235,20 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
 //            }
 
-            if (shop.getRt_rating_count() == 0) {
+            if (item.getRt_rating_count() == 0) {
 
                 ratingText.setText(R.string.rating_not_available);
                 ratingsCount.setText((getString(R.string.not_yet_rated)));
                 ratingsBar.setVisibility(View.GONE);
 
             } else {
-                ratingText.setText("Rating : " + String.format("%.1f", shop.getRt_rating_avg()));
-                ratingsCount.setText((int) shop.getRt_rating_count() + " Ratings");
-                ratingsBar.setRating(shop.getRt_rating_avg());
+                ratingText.setText("Rating : " + String.format("%.1f", item.getRt_rating_avg()));
+                ratingsCount.setText((int) item.getRt_rating_count() + " Ratings");
+                ratingsBar.setRating(item.getRt_rating_avg());
             }
 
 
-            bookDescription.setText(shop.getLongDescription());
+            bookDescription.setText(item.getItemDescription());
 
             /*if (shop.getLongDescription()!=null && !shop.getLongDescription().equals("null") && !shop.getDe.equals("")) {
 
@@ -320,7 +274,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     @Bind(R.id.review_date)
     TextView review_date;
 
-    ShopReview reviewForUpdate;
+    ItemReview reviewForUpdate;
 
 
     // method to check whether the user has written the review or not if the user is currently logged in.
@@ -335,23 +289,24 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
             // Unhide review dialog
 
 
-            if (shop.getRt_rating_count() == 0) {
+            if (item.getRt_rating_count() == 0) {
 
                 user_review_ratings_block.setVisibility(View.VISIBLE);
                 edit_review_block.setVisibility(View.GONE);
 
                 edit_review_text.setText(R.string.book_review_be_the_first_to_review);
-            } else if (shop.getRt_rating_count() > 0) {
+
+            } else if (item.getRt_rating_count() > 0) {
 
 
-                Call<ShopReviewEndPoint> call = shopReviewService.getReviews(shop.getShopID(),
+                Call<ItemReviewEndPoint> call = itemReviewService.getReviews(item.getItemID(),
                         UtilityLogin.getEndUser(this).getEndUserID(), true, "REVIEW_DATE", null, null, null);
 
 //                Log.d("review_check",String.valueOf(UtilityGeneral.getUserID(this)) + " : " + String.valueOf(shop.getBookID()));
 
-                call.enqueue(new Callback<ShopReviewEndPoint>() {
+                call.enqueue(new Callback<ItemReviewEndPoint>() {
                     @Override
-                    public void onResponse(Call<ShopReviewEndPoint> call, Response<ShopReviewEndPoint> response) {
+                    public void onResponse(Call<ItemReviewEndPoint> call, Response<ItemReviewEndPoint> response) {
 
 
                         if (response.body() != null) {
@@ -386,7 +341,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
                                 EndUser member = response.body().getResults().get(0).getRt_end_user_profile();
                                 member_name.setText(member.getName());
 
-                                String imagePath = UtilityGeneral.getImageEndpointURL(ShopDetail.this)
+                                String imagePath = UtilityGeneral.getImageEndpointURL(ItemDetail.this)
                                         + member.getProfileImageURL();
 
 
@@ -395,7 +350,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
                                         .create(getResources(),
                                                 R.drawable.ic_nature_people_white_48px, getTheme());
 
-                                Picasso.with(ShopDetail.this).load(imagePath)
+                                Picasso.with(ItemDetail.this).load(imagePath)
                                         .placeholder(placeholder)
                                         .into(member_profile_image);
 
@@ -412,7 +367,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
                     }
 
                     @Override
-                    public void onFailure(Call<ShopReviewEndPoint> call, Throwable t) {
+                    public void onFailure(Call<ItemReviewEndPoint> call, Throwable t) {
 
 
 //                        showToastMessage("Network Request Failed. Check your internet connection !");
@@ -501,6 +456,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
             collapsingToolbarLayout.setContentScrimColor(vibrant);
 
+            //ContextCompat.getColor(this,R.color.transparent)
         }
 
     }
@@ -528,9 +484,9 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
         if (reviewForUpdate != null) {
             FragmentManager fm = getSupportFragmentManager();
-            RateReviewDialog dialog = new RateReviewDialog();
+            RateReviewItemDialog dialog = new RateReviewItemDialog();
             dialog.show(fm, "rate");
-            dialog.setMode(reviewForUpdate, true, reviewForUpdate.getShopID());
+            dialog.setMode(reviewForUpdate, true, reviewForUpdate.getItemID());
         }
 
     }
@@ -540,11 +496,11 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     void write_review_click() {
 
         FragmentManager fm = getSupportFragmentManager();
-        RateReviewDialog dialog = new RateReviewDialog();
+        RateReviewItemDialog dialog = new RateReviewItemDialog();
         dialog.show(fm, "rate");
 
-        if (shop != null) {
-            dialog.setMode(null, false, shop.getShopID());
+        if (item != null) {
+            dialog.setMode(null, false, item.getItemID());
         }
     }
 
@@ -558,14 +514,14 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     @Override
     public void notifyReviewDeleted() {
 
-        shop.setRt_rating_count(shop.getRt_rating_count() - 1);
+        item.setRt_rating_count(item.getRt_rating_count() - 1);
         checkUserReview();
     }
 
     @Override
     public void notifyReviewSubmitted() {
 
-        shop.setRt_rating_count(shop.getRt_rating_count() + 1);
+        item.setRt_rating_count(item.getRt_rating_count() + 1);
         checkUserReview();
     }
 
@@ -573,9 +529,9 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     @OnClick(R.id.read_all_reviews_button)
     void readAllReviewsButton() {
 
-        Intent intent = new Intent(this, ShopReviews.class);
-        intent.putExtra(ShopReviews.SHOP_INTENT_KEY, shop);
-        startActivity(intent);
+//        Intent intent = new Intent(this, ShopReviews.class);
+//        intent.putExtra(ShopReviews.SHOP_INTENT_KEY, item);
+//        startActivity(intent);
 
     }
 
@@ -633,18 +589,21 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
 
 
-    void toggleFavourite(){
+    void toggleFavourite()
+    {
 
-        if(shop !=null && UtilityLogin.getEndUser(this)!=null)
+
+        if(item !=null && UtilityLogin.getEndUser(this)!=null)
         {
 
-            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteBooks(shop.getShopID(),UtilityLogin.getEndUser(this).getEndUserID()
+            Call<FavouriteItemEndpoint> call = favouriteItemService
+                    .getFavouriteBooks(item.getItemID(),UtilityLogin.getEndUser(this).getEndUserID()
                     ,null,null,null,null);
 
 
-            call.enqueue(new Callback<FavouriteShopEndpoint>() {
+            call.enqueue(new Callback<FavouriteItemEndpoint>() {
                 @Override
-                public void onResponse(Call<FavouriteShopEndpoint> call, Response<FavouriteShopEndpoint> response) {
+                public void onResponse(Call<FavouriteItemEndpoint> call, Response<FavouriteItemEndpoint> response) {
 
 
                     if(response.body()!=null)
@@ -663,31 +622,34 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
                 }
 
                 @Override
-                public void onFailure(Call<FavouriteShopEndpoint> call, Throwable t) {
+                public void onFailure(Call<FavouriteItemEndpoint> call, Throwable t) {
 
                     showToastMessage("Network Request failed. Check Network Connection !");
                 }
             });
         }
+
+
     }
+
 
 
     void insertFavourite()
     {
 
 
-        if(shop !=null && UtilityLogin.getEndUser(this)!=null)
+        if(item !=null && UtilityLogin.getEndUser(this)!=null)
         {
 
-            FavouriteShop favouriteBook = new FavouriteShop();
-            favouriteBook.setShopID(shop.getShopID());
-            favouriteBook.setEndUserID(UtilityLogin.getEndUser(this).getEndUserID());
+            FavouriteItem favouriteItem = new FavouriteItem();
+            favouriteItem.setItemID(item.getItemID());
+            favouriteItem.setEndUserID(UtilityLogin.getEndUser(this).getEndUserID());
 
-            Call<FavouriteShop> call = favouriteShopService.insertFavouriteBook(favouriteBook);
+            Call<FavouriteItem> call = favouriteItemService.insertFavouriteItem(favouriteItem);
 
-            call.enqueue(new Callback<FavouriteShop>() {
+            call.enqueue(new Callback<FavouriteItem>() {
                 @Override
-                public void onResponse(Call<FavouriteShop> call, Response<FavouriteShop> response) {
+                public void onResponse(Call<FavouriteItem> call, Response<FavouriteItem> response) {
 
                     if(response.code() == 201)
                     {
@@ -698,7 +660,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
                 }
 
                 @Override
-                public void onFailure(Call<FavouriteShop> call, Throwable t) {
+                public void onFailure(Call<FavouriteItem> call, Throwable t) {
 
                     showToastMessage("Network Request failed !");
 
@@ -712,9 +674,9 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     void deleteFavourite()
     {
 
-        if(shop !=null && UtilityLogin.getEndUser(this)!=null)
+        if(item !=null && UtilityLogin.getEndUser(this)!=null)
         {
-            Call<ResponseBody> call = favouriteShopService.deleteFavouriteBook(shop.getShopID(),
+            Call<ResponseBody> call = favouriteItemService.deleteFavouriteItem(item.getItemID(),
                     UtilityLogin.getEndUser(this).getEndUserID());
 
 
@@ -763,26 +725,37 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     }
 
 
+
+
     void checkFavourite()
     {
 
         // make a network call to check the favourite
 
-        if(shop !=null && UtilityLogin.getEndUser(this)!=null)
+        Log.d("Before Check Favourite", "Item ID : EndUser ID" + String.valueOf(item.getItemID()) + " : " + String.valueOf(UtilityLogin.getEndUser(this).getEndUserID()));
+
+        if(item != null && UtilityLogin.getEndUser(this) != null)
         {
 
-            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteBooks(shop.getShopID(),UtilityLogin.getEndUser(this).getEndUserID()
+
+            Log.d("After Favourite", "Item ID : EndUser ID" + String.valueOf(item.getItemID()) + " : " + String.valueOf(UtilityLogin.getEndUser(this).getEndUserID()));
+
+            Call<FavouriteItemEndpoint> call = favouriteItemService.getFavouriteBooks(item.getItemID(),
+                    UtilityLogin.getEndUser(this).getEndUserID()
                     ,null,null,null,null);
 
 
-            call.enqueue(new Callback<FavouriteShopEndpoint>() {
+            call.enqueue(new Callback<FavouriteItemEndpoint>() {
                 @Override
-                public void onResponse(Call<FavouriteShopEndpoint> call, Response<FavouriteShopEndpoint> response) {
-
+                public void onResponse(Call<FavouriteItemEndpoint> call, Response<FavouriteItemEndpoint> response) {
 
 
                     if(response.body()!=null)
                     {
+
+                        Log.d("After Favourite", "Item Count : " + String.valueOf(response.body().getItemCount()));
+
+
                         if(response.body().getItemCount()>=1)
                         {
                             setFavouriteIcon(true);
@@ -797,7 +770,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
                 }
 
                 @Override
-                public void onFailure(Call<FavouriteShopEndpoint> call, Throwable t) {
+                public void onFailure(Call<FavouriteItemEndpoint> call, Throwable t) {
 
                     showToastMessage("Network Request failed. Check Network Connection !");
                 }
@@ -817,7 +790,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
                 .setType("image/jpg")
                 .getIntent();
 
-        String url = UtilityGeneral.getServiceURL(this)+ "/api/Images" + String.valueOf(shop.getImagePath());
+        String url = UtilityGeneral.getServiceURL(this)+ "/api/Images" + String.valueOf(item.getItemImageURL());
 //        intent.putExtra(Intent.EXTRA_TEXT,url);
         intent.putExtra(Intent.EXTRA_TEXT,url);
 //        intent.putExtra(Intent.EXTRA_TITLE,shop.getBookName());
@@ -840,74 +813,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
 
         bookDescription.setMaxLines(Integer.MAX_VALUE);
-
-
         readFullDescription.setVisibility(View.GONE);
-    }
-
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-
-        mMap = googleMap;
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-
-
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},2);
-
-            return;
-        }
-
-        mMap.setMyLocationEnabled(true);
-        mMap.getUiSettings().setMapToolbarEnabled(true);
-//        mMap.getUiSettings().setAllGesturesEnabled(true);
-        mMap.getUiSettings().setZoomControlsEnabled(true);
-
-
-//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(,14));
-
-//        Location currentLocation = UtilityLocation.getCurrentLocation(this);
-
-        if(shop!=null)
-        {
-            LatLng latLng = new LatLng(shop.getLatCenter(),shop.getLonCenter());
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,11));
-            mMap.addCircle(new CircleOptions().center(latLng).radius(shop.getDeliveryRange()*1000).fillColor(R.color.light_grey).strokeWidth(1).strokeColor(R.color.buttonColorDark));
-
-            //
-
-            currentMarker = mMap.addMarker(new MarkerOptions().position(latLng).title(shop.getShopName()));
-//                mMap.moveCamera();
-//            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-            currentMarker.showInfoWindow();
-
-        }
-
-    }
-
-
-
-    @OnClick(R.id.get_directions_button)
-    void getDirections()
-    {
-
-        String str_latitude = String.valueOf(shop.getLatCenter());
-        String str_longitude = String.valueOf(shop.getLonCenter());
-
-        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + str_latitude +  "," + str_longitude);
-        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-        mapIntent.setPackage("com.google.android.apps.maps");
-        startActivity(mapIntent);
-
     }
 
 

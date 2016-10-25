@@ -116,12 +116,21 @@
 
 
         <TextView
+            android:paddingLeft="5dp"
+            android:paddingStart="5dp"
+            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:layout_marginTop="2dp"
             android:layout_toEndOf="@id/shopImage"
             android:layout_toRightOf="@id/shopImage"
             android:layout_above="@id/deliveryCharge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Distance : 5 Km"
+            android:background="@color/blueGrey800"
+            android:textColor="@color/white"
+            android:text="5 Km"
             android:id="@+id/distance" />
 
 
@@ -133,7 +142,7 @@
             android:layout_height="wrap_content"
             android:background="@color/gplus_color_2"
             android:textColor="@color/white"
-            android:padding="3dp"
+            android:padding="2dp"
             android:text="5.3"
             android:id="@+id/rating"/>
 

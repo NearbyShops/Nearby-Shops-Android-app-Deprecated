@@ -9,8 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.nearbyshops.enduser.Model.Item;
-import org.nearbyshops.enduser.ModelReview.ShopReview;
+import org.nearbyshops.enduser.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.UtilitySort.UtilitySortShopReview;

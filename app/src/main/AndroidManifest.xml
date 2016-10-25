@@ -154,6 +154,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
+
         <activity
             android:name=".ShopDetail.ShopDetail"
             android:label="@string/label_items_by_category"
@@ -163,6 +164,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
+
+        <activity
+            android:name=".ItemDetail.ItemDetail"
+            android:label="Item Detail"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
+
+
+
         <activity
             android:name=".ShopReview.ShopReviews"
             android:label="Shop Reviews"

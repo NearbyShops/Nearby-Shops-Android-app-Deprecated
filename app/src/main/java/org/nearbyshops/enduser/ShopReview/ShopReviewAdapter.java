@@ -1,10 +1,7 @@
 package org.nearbyshops.enduser.ShopReview;
 
-import android.app.Activity;
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -20,9 +17,8 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
-import org.nearbyshops.enduser.Login.LoginDialog;
-import org.nearbyshops.enduser.ModelReview.ShopReview;
-import org.nearbyshops.enduser.ModelReview.ShopReviewThanks;
+import org.nearbyshops.enduser.ModelReviewShop.ShopReview;
+import org.nearbyshops.enduser.ModelReviewShop.ShopReviewThanks;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewThanksService;

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopDetail;
+package org.nearbyshops.enduser.ItemDetail;
 
 import android.app.Dialog;
 import android.graphics.drawable.Drawable;
@@ -20,18 +20,17 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
-import org.nearbyshops.enduser.ModelReviewShop.ShopReview;
+import org.nearbyshops.enduser.ModelReviewItem.ItemReview;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.EndUserService;
-import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewService;
+import org.nearbyshops.enduser.RetrofitRESTContract.ItemReviewService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import java.text.SimpleDateFormat;
 
 import javax.inject.Inject;
-
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -45,7 +44,7 @@ import retrofit2.Response;
  * Created by sumeet on 12/8/16.
  */
 
-public class RateReviewDialog extends DialogFragment {
+public class RateReviewItemDialog extends DialogFragment {
 
 
     @Bind(R.id.dialog_dismiss_icon)
@@ -75,19 +74,19 @@ public class RateReviewDialog extends DialogFragment {
     int book_id;
 
 
-    ShopReview review_for_edit;
+    ItemReview review_for_edit;
     boolean isModeEdit = false;
 
 
     @Inject
-    ShopReviewService bookReviewService;
+    ItemReviewService itemReviewService;
 
 
     @Inject
     EndUserService endUserService;
 
 
-    public RateReviewDialog() {
+    public RateReviewItemDialog() {
         super();
 
         DaggerComponentBuilder.getInstance()
@@ -106,7 +105,7 @@ public class RateReviewDialog extends DialogFragment {
 
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View view = inflater.inflate(R.layout.dialog_rate_review, container);
+        View view = inflater.inflate(R.layout.dialog_rate_review_item, container);
 
         ButterKnife.bind(this,view);
 
@@ -201,7 +200,7 @@ public class RateReviewDialog extends DialogFragment {
     }
 
 
-    public void setMode(ShopReview reviewForUpdate,boolean isModeEdit, int book_id)
+    public void setMode(ItemReview reviewForUpdate,boolean isModeEdit, int book_id)
     {
 
         this.book_id = book_id;
@@ -263,7 +262,7 @@ public class RateReviewDialog extends DialogFragment {
         {
             // delete the review
 
-            Call<ResponseBody> call = bookReviewService.deleteShopReview(review_for_edit.getShopReviewID());
+            Call<ResponseBody> call = itemReviewService.deleteItemReview(review_for_edit.getItemReviewID());
 
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
@@ -300,19 +299,19 @@ public class RateReviewDialog extends DialogFragment {
 
     void submitReview()
     {
-        ShopReview bookReview = new ShopReview();
+        ItemReview itemReview = new ItemReview();
 //        bookReview.setReviewDate(new java.sql.Date(System.currentTimeMillis()));
-        bookReview.setRating((int) ratingBar.getRating());
-        bookReview.setReviewTitle(review_title.getText().toString());
-        bookReview.setReviewText(review_text.getText().toString());
-        bookReview.setShopID(book_id);
-        bookReview.setEndUserID(UtilityLogin.getEndUser(getActivity()).getEndUserID());
+        itemReview.setRating((int) ratingBar.getRating());
+        itemReview.setReviewTitle(review_title.getText().toString());
+        itemReview.setReviewText(review_text.getText().toString());
+        itemReview.setItemID(book_id);
+        itemReview.setEndUserID(UtilityLogin.getEndUser(getActivity()).getEndUserID());
 
-        Call<ShopReview> call = bookReviewService.insertShopReview(bookReview);
+        Call<ItemReview> call = itemReviewService.insertItemReview(itemReview);
 
-        call.enqueue(new Callback<ShopReview>() {
+        call.enqueue(new Callback<ItemReview>() {
             @Override
-            public void onResponse(Call<ShopReview> call, Response<ShopReview> response) {
+            public void onResponse(Call<ItemReview> call, Response<ItemReview> response) {
 
                 if(response.code()==201)
                 {
@@ -329,7 +328,7 @@ public class RateReviewDialog extends DialogFragment {
             }
 
             @Override
-            public void onFailure(Call<ShopReview> call, Throwable t) {
+            public void onFailure(Call<ItemReview> call, Throwable t) {
 
 
                 showToastMessage("Failed !");
@@ -358,7 +357,7 @@ public class RateReviewDialog extends DialogFragment {
 
 //            review_for_edit.setReviewDate(new java.sql.Date(date));
 
-            Call<ResponseBody> call = bookReviewService.updateShopReview(review_for_edit,review_for_edit.getShopReviewID());
+            Call<ResponseBody> call = itemReviewService.updateItemReview(review_for_edit,review_for_edit.getItemReviewID());
 
             call.enqueue(new Callback<ResponseBody>() {
                 @Override

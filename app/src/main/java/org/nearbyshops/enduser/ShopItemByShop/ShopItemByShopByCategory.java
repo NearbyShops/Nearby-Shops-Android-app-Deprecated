@@ -23,7 +23,7 @@ import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyGeneral;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduser.ShopsByCategory.SlidingLayerSortShops;
+import org.nearbyshops.enduser.ShopsByCategory.SlidingLayerSortShops_;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -111,7 +111,7 @@ public class ShopItemByShopByCategory extends AppCompatActivity implements Notif
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.slidinglayerfragment,new SlidingLayerSortShops())
+                    .replace(R.id.slidinglayerfragment,new SlidingLayerSortShops_())
                     .commit();
 
         }

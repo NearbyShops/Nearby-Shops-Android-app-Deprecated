@@ -18,4 +18,6 @@
     <dimen name="menu_item_width">150dp</dimen>
     <dimen name="home_menu_options_row_height">150dp</dimen>
     <dimen name="menu_item_height">150dp</dimen>
+    <dimen name="review_stats_bar_height">15dp</dimen>
+    <dimen name="margin_top_bar_height">5dp</dimen>
 </resources>

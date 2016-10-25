@@ -41,6 +41,8 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import icepick.Icepick;
 import icepick.State;
 import retrofit2.Call;
@@ -49,7 +51,6 @@ import retrofit2.Response;
 
 public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
         AdapterFilledCarts.NotifyFilledCart, NotifyNewCartsChanged, NotifySort
-
 {
 
     Item item;
@@ -74,6 +75,13 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     ImageView itemImage;
     TextView priceRange;
     TextView shopCount;
+
+
+    @Bind(R.id.item_rating)
+    TextView itemRating;
+
+    @Bind(R.id.rating_count)
+    TextView ratingCount;
 
 
 //    NotifyFillCartsChanged notifyPagerAdapter;
@@ -106,6 +114,9 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
 
         View rootView = inflater.inflate(R.layout.fragment_filled_carts, container, false);
+
+        ButterKnife.bind(this,rootView);
+
 
         item = getArguments().getParcelable("item");
 
@@ -424,6 +435,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
         super.onDestroyView();
 
         isDestroyed = true;
+        ButterKnife.unbind(this);
     }
 
 
@@ -444,9 +456,20 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
     void bindItem()
     {
-        itemName.setText(item.getItemName());
 
+        itemName.setText(item.getItemName());
         itemDescription.setText(item.getItemDescription());
+
+        if(item.getRt_rating_count()==0)
+        {
+            itemRating.setText("N/A");
+            ratingCount.setText("(Not yet rated)");
+        }
+        else
+        {
+            itemRating.setText(String.format("%.1f",item.getRt_rating_avg()));
+            ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " ratings )");
+        }
 
         if(item.getItemStats()!=null)
         {

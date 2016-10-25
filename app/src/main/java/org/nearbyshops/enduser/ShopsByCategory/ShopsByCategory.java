@@ -111,7 +111,7 @@ public class ShopsByCategory extends AppCompatActivity implements NotifyGeneral,
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.slidinglayerfragment,new SlidingLayerSortShops())
+                    .replace(R.id.slidinglayerfragment,new SlidingLayerSortShopsByCategory())
                     .commit();
 
         }

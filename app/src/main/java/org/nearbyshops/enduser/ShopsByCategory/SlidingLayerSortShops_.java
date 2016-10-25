@@ -12,7 +12,7 @@ import android.widget.TextView;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduser.Utility.UtilitySortShops;
+import org.nearbyshops.enduser.UtilitySort.UtilitySortShops;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -22,7 +22,7 @@ import butterknife.OnClick;
  * Created by sumeet on 15/9/16.
  */
 
-public class SlidingLayerSortShops extends Fragment {
+public class SlidingLayerSortShops_ extends Fragment {
 
     @Bind(R.id.sort_by_name)
     TextView sort_by_name;

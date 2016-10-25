@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ModelReview;
+package org.nearbyshops.enduser.ModelReviewShop;
 
 import android.os.Parcel;
 import android.os.Parcelable;

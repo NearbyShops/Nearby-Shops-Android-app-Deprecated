@@ -21,9 +21,12 @@ import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyGeneral;
+import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.DividerItemDecoration;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.UtilitySort.UtilitySortItemsByCategory;
+import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItems;
 
 import java.util.ArrayList;
 
@@ -39,7 +42,7 @@ import retrofit2.Response;
  * Created by sumeet on 25/5/16.
  */
 public class FragmentItem_ItemByCategory extends Fragment
-        implements SwipeRefreshLayout.OnRefreshListener, NotifyCategoryChanged {
+        implements SwipeRefreshLayout.OnRefreshListener, NotifyCategoryChanged , NotifySort{
 
 
 
@@ -233,12 +236,22 @@ public class FragmentItem_ItemByCategory extends Fragment
     void makeNetworkCall()
     {
 
+
+
+
         if(notifiedCurrentCategory==null)
         {
             swipeContainer.setRefreshing(false);
 
             return;
         }
+
+
+
+
+        String current_sort = "";
+
+        current_sort = UtilitySortItemsByCategory.getSort(getContext()) + " " + UtilitySortItemsByCategory.getAscending(getContext());
 
 
 
@@ -249,7 +262,7 @@ public class FragmentItem_ItemByCategory extends Fragment
                 (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
                 (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
                 (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
-                null, limit,offset,null);
+                current_sort, limit,offset,null);
 
 
 
@@ -310,6 +323,7 @@ public class FragmentItem_ItemByCategory extends Fragment
         });
 
     }
+
 
 
     public static class EndPoint implements Callback<ItemEndPoint>{
@@ -421,5 +435,13 @@ public class FragmentItem_ItemByCategory extends Fragment
 
         isDestroyed = true;
     }
+
+
+
+    @Override
+    public void notifySortChanged() {
+        makeRefreshNetworkCall();
+    }
+
 
 }

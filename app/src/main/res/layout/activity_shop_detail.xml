@@ -49,7 +49,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_book_detail" />
+    <include layout="@layout/content_shop_detail" />
 
     <!---->
 
