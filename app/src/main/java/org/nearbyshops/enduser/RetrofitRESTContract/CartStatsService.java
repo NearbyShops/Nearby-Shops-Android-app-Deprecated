@@ -21,6 +21,9 @@ import retrofit2.http.Query;
 public interface CartStatsService {
 
     @GET("api/CartStats/{EndUserID}")
-    Call<List<CartStats>> getCart(@Path("EndUserID") int endUserID,@Query("CartID") int cartID,
-                                  @Query("latCenter")double latCenter, @Query("lonCenter")double lonCenter);
+    Call<List<CartStats>> getCart(@Path("EndUserID") int endUserID,@Query("CartID") Integer cartID,
+                                  @Query("ShopID") Integer shopID, @Query("GetShopDetails") Boolean getShopDetails,
+                                  @Query("latCenter")Double latCenter, @Query("lonCenter")Double lonCenter);
+
+    //@Query("latCenter")double latCenter, @Query("lonCenter")double lonCenter
 }

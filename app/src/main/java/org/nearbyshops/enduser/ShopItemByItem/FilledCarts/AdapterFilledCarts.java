@@ -86,18 +86,19 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
     void makeNetworkCall()
     {
 
-
         cartItemMap.clear();
         cartStatsMap.clear();
 
         EndUser endUser = UtilityLogin.getEndUser(context);
+
         if(endUser == null)
         {
             return;
         }
 
-        Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(0,item.getItemID(),
-                endUser.getEndUserID(),0);
+
+        Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,item.getItemID(),
+                endUser.getEndUserID(),null);
 
         cartItemCall.enqueue(new Callback<List<CartItem>>() {
             @Override
@@ -136,9 +137,15 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
         });
 
         Call<List<CartStats>> listCall = cartStatsService
-                .getCart(endUser.getEndUserID(), 0,
-                        UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                        UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY));
+                .getCart(endUser.getEndUserID(),null, null, false,null,null);
+
+        /*
+
+        UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
+                        UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY)
+        */
+
+
 
         listCall.enqueue(new Callback<List<CartStats>>() {
 
@@ -156,13 +163,14 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
                     //showToastMessage("Cart Stats Updated !");
 
-                    notifyDataSetChanged();
                 }else
                 {
                     cartStatsMap.clear();
-                    notifyDataSetChanged();
+
                 }
 
+
+                notifyDataSetChanged();
             }
 
             @Override
@@ -237,7 +245,6 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
         }
 
 
-
         if(shop!=null)
         {
 
@@ -287,6 +294,8 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
     public int getItemCount() {
         return dataset.size();
     }
+
+
 
 
 
@@ -470,8 +479,6 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                 @Override
                 public void afterTextChanged(Editable s) {
 
-
-
                 }
             });
 
@@ -490,8 +497,8 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
                 itemQuantity.setFilters(new InputFilter[]{new InputFilterMinMax("0", String.valueOf(availableItems))});
             }
-
         }
+
 
 
         @OnClick(R.id.addToCart)
@@ -729,6 +736,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
         }
 
+
         @OnClick(R.id.increaseQuantity)
         void increaseQuantityClick(View view)
         {
@@ -789,8 +797,6 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                 itemTotal.setText("Total : " + String.format( "%.2f", total));
             }
         }
-
-
 
     }// View Holder Ends
 

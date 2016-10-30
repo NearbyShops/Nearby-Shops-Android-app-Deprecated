@@ -230,11 +230,12 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
             return;
         }
 
-        Call<List<CartStats>> call = cartStatsService.getCart(UtilityLogin.getEndUser(this).getEndUserID(),cartStats.getCartID(),0,0);
+        Call<List<CartStats>> call = cartStatsService.getCart(
+                UtilityLogin.getEndUser(this).getEndUserID(),cartStats.getCartID(), null,false,null,null);
 
         call.enqueue(this);
-
     }
+
 
 
     @Override

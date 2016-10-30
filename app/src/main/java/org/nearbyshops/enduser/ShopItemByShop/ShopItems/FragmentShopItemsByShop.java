@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
@@ -19,6 +20,8 @@ import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduser.R;
+import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
+import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyGeneral;
@@ -30,6 +33,8 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import icepick.Icepick;
 import icepick.State;
 import retrofit2.Call;
@@ -41,6 +46,15 @@ import retrofit2.Response;
  */
 public class FragmentShopItemsByShop extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener, NotifyCategoryChanged{
+
+
+
+        @Inject
+        CartItemService cartItemService;
+
+        @Inject
+        CartStatsService cartStatsService;
+
 
 
         @State ItemCategory notifiedCurrentCategory;
@@ -71,8 +85,14 @@ public class FragmentShopItemsByShop extends Fragment implements
         @State int item_count = 0;
 
 
-
         boolean isDestroyed;
+
+
+        @Bind(R.id.itemsInCart)
+        public TextView itemsInCart;
+
+        @Bind(R.id.cartTotal)
+        public TextView cartTotal;
 
 
 
@@ -113,6 +133,8 @@ public class FragmentShopItemsByShop extends Fragment implements
             //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
 
 //            itemCategory = getArguments().getParcelable("itemCat");
+
+            ButterKnife.bind(this,rootView);
 
             recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
 
@@ -167,7 +189,7 @@ public class FragmentShopItemsByShop extends Fragment implements
         void setupRecyclerView()
         {
 
-            adapter = new AdapterShopItems(dataset,getActivity());
+            adapter = new AdapterShopItems(dataset,getActivity(),this);
 
             recyclerView.setAdapter(adapter);
 
@@ -409,5 +431,7 @@ public class FragmentShopItemsByShop extends Fragment implements
         super.onDestroyView();
 
         isDestroyed = true;
+
+        ButterKnife.unbind(this);
     }
 }

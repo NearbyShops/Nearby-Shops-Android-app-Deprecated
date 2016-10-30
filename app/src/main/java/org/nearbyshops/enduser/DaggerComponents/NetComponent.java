@@ -20,6 +20,7 @@ import org.nearbyshops.enduser.LoginActivity;
 import org.nearbyshops.enduser.ShopDetail.ShopDetail;
 import org.nearbyshops.enduser.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduser.ShopItemByShop.ItemCategories.ItemCategoriesFragmentShopHome;
+import org.nearbyshops.enduser.ShopItemByShop.ShopItems.AdapterShopItems;
 import org.nearbyshops.enduser.ShopItemByShop.ShopItems.FragmentShopItemsByShop;
 import org.nearbyshops.enduser.ShopReview.ShopReviewAdapter;
 import org.nearbyshops.enduser.ShopReview.ShopReviewStats;
@@ -111,4 +112,6 @@ public interface NetComponent {
     void Inject(RateReviewItemDialog rateReviewItemDialog);
 
     void Inject(ShopReviewStats shopReviewStats);
+
+    void Inject(AdapterShopItems adapterShopItems);
 }

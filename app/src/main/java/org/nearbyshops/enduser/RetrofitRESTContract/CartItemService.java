@@ -21,10 +21,10 @@ public interface CartItemService {
 
 
     @GET("/api/CartItem")
-    Call<List<CartItem>> getCartItem(@Query("CartID")int cartID,
-                                     @Query("ItemID")int itemID,
-                                     @Query("EndUserID") int endUserID,
-                                     @Query("ShopID") int shopID);
+    Call<List<CartItem>> getCartItem(@Query("CartID")Integer cartID,
+                                     @Query("ItemID")Integer itemID,
+                                     @Query("EndUserID") Integer endUserID,
+                                     @Query("ShopID") Integer shopID);
 
     @DELETE("/api/CartItem")
     Call<ResponseBody> deleteCartItem(@Query("CartID")int cartID, @Query("ItemID") int itemID,

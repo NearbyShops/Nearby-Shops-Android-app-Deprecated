@@ -139,17 +139,31 @@ public class CartsListActivity extends AppCompatActivity implements SwipeRefresh
             return;
         }
 
+
+
         Call<List<CartStats>> call = cartStatsService.getCart(
-                endUser.getEndUserID(),0,
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY));
+                endUser.getEndUserID(),null,null,true,
+                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
+                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY)
+        );
+
+        /*
+
+        UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY)
+
+
+        */
+
 
         call.enqueue(this);
 
+/*
 
         Log.d("applog",String.valueOf(endUser.getEndUserID()) + " "
         + UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY) + " "
         + UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY));
+*/
 
 
         /*
