@@ -2,12 +2,10 @@ package org.nearbyshops.enduser.Shops;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +14,6 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.Shops.Interfaces.GetDataset;
-import org.nearbyshops.enduser.Shops.Interfaces.NotifyDataset;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduser.Shops.ListFragment.FragmentShopTwo;
 import org.nearbyshops.enduser.Shops.MapsFragment.ShopMapFragment;
@@ -47,9 +44,11 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
     @Bind(R.id.slidingLayer)
     SlidingLayer slidingLayer;
 
-    FragmentShopTwo fragmentShopTwo;
+//    FragmentShopTwo fragmentShopTwo;
+//    private ShopMapFragment shopMapFragment;
 
-    private ShopMapFragment shopMapFragment;
+    public static final String TAG_SHOP_FRAGMENT = "shop_fragment";
+    public static final String TAG_MAP_FRAGMENT = "map_tag";
 
 
     @Override
@@ -74,23 +73,33 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
 
 
 
+        if(getSupportFragmentManager().findFragmentByTag(TAG_SHOP_FRAGMENT)==null)
+        {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.fragment_container, FragmentShopTwo.newInstance(false),TAG_SHOP_FRAGMENT)
+                    .commit();
+
+        }
+
+
 
 
         if(savedInstanceState == null)
         {
-            fragmentShopTwo = FragmentShopTwo.newInstance(false);
 
+            /*fragmentShopTwo = FragmentShopTwo.newInstance(false);
             // first run for the activity
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.fragment_container, fragmentShopTwo,"shop_fragment")
-                    .commit();
+                    .commit();*/
         }
         else
         {
             onRestoreInstanceState(savedInstanceState);
 
-            Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+            Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_SHOP_FRAGMENT);
 
             if(fragment instanceof NotifyDatasetChanged)
             {
@@ -112,16 +121,15 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
         ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
         //slidingLayer.setShadowSizeRes(R.dimen.shadow_size);
 
-        if(slidingLayer!=null)
-        {
+        if(slidingLayer!=null) {
             slidingLayer.setChangeStateOnTap(true);
             slidingLayer.setSlidingEnabled(true);
             slidingLayer.setPreviewOffsetDistance(15);
             slidingLayer.setOffsetDistance(10);
             slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
 
-            DisplayMetrics metrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//            DisplayMetrics metrics = new DisplayMetrics();
+//            getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
             //RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(250, ViewGroup.LayoutParams.MATCH_PARENT);
 
@@ -130,10 +138,13 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
             //slidingContents.setMinimumWidth(metrics.widthPixels-50);
 
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.slidinglayerfragment,new SlidingLayerSortShopsByCategory())
-                    .commit();
+            if (getSupportFragmentManager().findFragmentByTag("sliding_layer")==null)
+            {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.slidinglayerfragment,new SlidingLayerSortShopsByCategory(),"sliding_layer")
+                        .commit();
+            }
 
         }
 
@@ -182,16 +193,28 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
 
 
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .hide(getSupportFragmentManager().findFragmentByTag("map_tag"))
-                    .commit();
+            if(getSupportFragmentManager().findFragmentByTag(TAG_SHOP_FRAGMENT)==null)
+            {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.fragment_container, FragmentShopTwo.newInstance(false),TAG_SHOP_FRAGMENT)
+                        .commit();
+
+            }
+            else
+            {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .hide(getSupportFragmentManager().findFragmentByTag("map_tag"))
+                        .commit();
 
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .show(getSupportFragmentManager().findFragmentByTag("shop_fragment"))
-                    .commit();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .show(getSupportFragmentManager().findFragmentByTag("shop_fragment"))
+                        .commit();
+            }
+
 
 
             isMapView = false;
