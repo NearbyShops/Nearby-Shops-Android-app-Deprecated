@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginLeft="20dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginRight="20dp"
+    android:background="#ffffffff"
+    android:layout_marginBottom="10dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:id="@+id/list_item_shop"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!--android:background="#ffffffff"-->
+
+    <ImageView
+        android:layout_margin="5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/carrots"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:id="@+id/shopImage" />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:textColor="@color/buttonColorDark"
+        android:textSize="15dp"
+        android:text="3. ABC Mart : Shop Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/shopName"
+        android:layout_toRightOf="@+id/shopImage"
+        android:layout_toEndOf="@+id/shopImage" />
+
+
+    <TextView
+        android:layout_marginTop="2dp"
+        android:layout_below="@id/shopName"
+        android:text="Shop Address, City , Pincode"
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/shopImage"
+        android:layout_toRightOf="@id/shopImage"/>
+
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"
+        android:padding="2dp"
+        android:background="@color/gplus_color_2"
+        android:id="@+id/rating"
+        android:text="4.7"
+        android:layout_toEndOf="@id/shopImage"
+        android:layout_toRightOf="@id/shopImage"
+        android:layout_alignBottom="@id/shopImage"
+        android:layout_width= "wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:layout_alignTop="@id/rating"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"
+        android:padding="2dp"
+        android:background="@color/blueGrey800"
+        android:id="@+id/distance"
+        android:text="7.1 Km"
+        android:layout_toRightOf="@id/rating"
+        android:layout_toEndOf="@id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

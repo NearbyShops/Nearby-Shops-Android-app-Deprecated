@@ -133,7 +133,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ratings_count"
-
             android:id="@+id/ratingBar" />
 
 
@@ -340,15 +339,12 @@
             android:layout_height="wrap_content" />
 
 
-
         <TextView
             android:layout_below="@id/read_all_reviews_button"
             android:text="Item Images"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView4" />
-
-
 
 
     </RelativeLayout>

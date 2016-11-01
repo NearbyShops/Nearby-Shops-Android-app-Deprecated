@@ -9,10 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItems;
 import org.nearbyshops.enduser.UtilitySort.UtilitySortShopsByCategory;
 
 import butterknife.Bind;

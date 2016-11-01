@@ -117,7 +117,7 @@ public class RateReviewItemDialog extends DialogFragment {
             review_title.setText(review_for_edit.getReviewTitle());
             review_text.setText(review_for_edit.getReviewText());
 
-            member_name.setText(review_for_edit.getRt_end_user_profile().getName());
+            member_name.setText(" by "  + review_for_edit.getRt_end_user_profile().getName());
 
             ratingBar.setRating(review_for_edit.getRating());
 

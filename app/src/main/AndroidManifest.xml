@@ -154,7 +154,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
-
         <activity
             android:name=".ShopDetail.ShopDetail"
             android:label="@string/label_items_by_category"
@@ -164,7 +163,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
-
         <activity
             android:name=".ItemDetail.ItemDetail"
             android:label="Item Detail"
@@ -174,9 +172,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
-
-
-
         <activity
             android:name=".ShopReview.ShopReviews"
             android:label="Shop Reviews"
@@ -204,13 +199,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
-
         <activity
             android:name=".Carts.OrderResultActivity"
             android:label="@string/title_activity_order_result"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".DeliveryAddress.PickLocationActivity"
             android:label="Pick Location"
@@ -221,8 +213,7 @@
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
 
-
-        <!--Google Maps Key-->
+        <!-- Google Maps Key -->
 
 
         <!--
@@ -237,6 +228,15 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB_BpmVLbrXdFzz1JyaYl21F2EDoU1EreM" />
 
+        <activity
+            android:name=".Shops.ShopsActivity"
+            android:label="@string/title_activity_shops"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
     </application>
 
 </manifest>

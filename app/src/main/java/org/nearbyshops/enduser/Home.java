@@ -57,6 +57,7 @@ import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
 import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduser.SharedPreferences.UtilityLocation;
+import org.nearbyshops.enduser.Shops.ShopsActivity;
 import org.nearbyshops.enduser.ShopsByCategory.ShopsByCategory;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 import org.nearbyshops.enduser.UtilityGeocoding.Constants;
@@ -270,6 +271,14 @@ public class Home extends AppCompatActivity
     public void shopsByCategoryClick() {
 
         Intent intent = new Intent(this, ShopsByCategory.class);
+        startActivity(intent);
+    }
+
+
+    @OnClick(R.id.option_shops_nearby)
+    public void shopsNearby()
+    {
+        Intent intent = new Intent(this, ShopsActivity.class);
         startActivity(intent);
     }
 

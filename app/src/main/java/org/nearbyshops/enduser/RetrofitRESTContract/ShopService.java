@@ -31,6 +31,18 @@ public interface ShopService {
                               @Query("proximity")Double proximity);
 
 
+    @GET ("/api/v1/Shop")
+    Call<ShopEndPoint> getShops(
+            @Query("DistributorID")Integer distributorID,
+            @Query("LeafNodeItemCategoryID")Integer itemCategoryID,
+            @Query("latCenter")Double latCenter, @Query("lonCenter")Double lonCenter,
+            @Query("deliveryRangeMax")Double deliveryRangeMax,
+            @Query("deliveryRangeMin")Double deliveryRangeMin,
+            @Query("proximity")Double proximity,
+            @Query("SortBy") String sortBy,
+            @Query("Limit") Integer limit, @Query("Offset") Integer offset,
+            @Query("metadata_only")Boolean metaonly
+    );
 
 
     @GET("/api/v1/Shop/FilterByItemCat/{ItemCategoryID}")

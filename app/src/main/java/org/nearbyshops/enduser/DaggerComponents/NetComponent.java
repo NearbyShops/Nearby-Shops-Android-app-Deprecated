@@ -25,6 +25,7 @@ import org.nearbyshops.enduser.ShopItemByShop.ShopItems.FragmentShopItemsByShop;
 import org.nearbyshops.enduser.ShopReview.ShopReviewAdapter;
 import org.nearbyshops.enduser.ShopReview.ShopReviewStats;
 import org.nearbyshops.enduser.ShopReview.ShopReviews;
+import org.nearbyshops.enduser.Shops.ListFragment.FragmentShopTwo;
 import org.nearbyshops.enduser.ShopsByCategory.ItemCategories.ItemCategoriesFragment;
 import org.nearbyshops.enduser.ShopsByCategory.Shops.FragmentShop;
 import org.nearbyshops.enduser.ItemCategoryOption.FragmentItemCategories;
@@ -114,4 +115,6 @@ public interface NetComponent {
     void Inject(ShopReviewStats shopReviewStats);
 
     void Inject(AdapterShopItems adapterShopItems);
+
+    void Inject(FragmentShopTwo fragmentShopTwo);
 }

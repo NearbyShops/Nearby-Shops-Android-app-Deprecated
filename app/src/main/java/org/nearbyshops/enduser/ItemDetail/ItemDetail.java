@@ -727,6 +727,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
 
 
+
     void checkFavourite()
     {
 

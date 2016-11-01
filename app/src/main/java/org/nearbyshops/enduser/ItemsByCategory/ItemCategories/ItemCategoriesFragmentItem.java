@@ -277,7 +277,8 @@ public class ItemCategoriesFragmentItem extends Fragment
 
 
         Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
-                null,currentCategory.getItemCategoryID(),
+                null,
+                currentCategory.getItemCategoryID(),
                 null,
                 (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY, 0),
                 (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY, 0),
@@ -337,6 +338,7 @@ public class ItemCategoriesFragmentItem extends Fragment
 
 
                 showToastMessage("Network request failed. Please check your connection !");
+
                 if(swipeContainer!=null)
                 {
                     swipeContainer.setRefreshing(false);
@@ -608,6 +610,16 @@ public class ItemCategoriesFragmentItem extends Fragment
     }
 
 
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        Icepick.restoreInstanceState(this, savedInstanceState);
+        notifyTitleChanged();
+    }
+
+
+
 
     void notifyTitleChanged()
     {
@@ -621,14 +633,6 @@ public class ItemCategoriesFragmentItem extends Fragment
         }
     }
 
-
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-
-        Icepick.restoreInstanceState(this, savedInstanceState);
-        notifyTitleChanged();
-    }
 
 
     @Override

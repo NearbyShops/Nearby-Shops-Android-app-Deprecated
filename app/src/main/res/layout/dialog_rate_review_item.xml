@@ -73,6 +73,26 @@
             android:layout_height="wrap_content" />
 
 
+        <TextView
+            android:layout_marginTop="5dp"
+            android:paddingLeft="3dp"
+            android:paddingStart="3dp"
+            android:paddingRight="3dp"
+            android:paddingEnd="3dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@color/gplus_color_2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/member_profile_image"
+            android:layout_toRightOf="@id/member_profile_image"
+            android:layout_below="@id/member_name"
+            android:layout_alignBottom="@id/member_profile_image"
+            android:text="4.6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
         <RatingBar
             android:id="@+id/rating_bar"
             android:layout_marginTop="10dp"
