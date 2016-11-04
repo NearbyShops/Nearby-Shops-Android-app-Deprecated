@@ -26,6 +26,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.Shops.Interfaces.GetDataset;
+import org.nearbyshops.enduser.Shops.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifyListItemClick;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
@@ -41,7 +42,7 @@ import icepick.State;
  * Created by sumeet on 1/11/16.
  */
 
-public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,NotifyListItemClick{
+public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,NotifyListItemClick, NotifyDatasetChanged{
 
 
     @State
@@ -62,6 +63,12 @@ public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,Not
 
 
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setRetainInstance(true);
+    }
 
     @Nullable
     @Override
@@ -253,11 +260,23 @@ public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,Not
         });
 
 
+        loadMarkers();
+    }
+
+
+
+    void loadMarkers()
+    {
+        markerList.clear();
+        mMap.clear();
+
         for(Shop shop: dataset)
         {
             LatLng latLng = new LatLng(shop.getLatCenter(),shop.getLonCenter());
 
 //            Drawable drawable = VectorDrawableCompat.create(getResources(), R.drawable.ic_low_priority_black_24px, getTheme());
+
+
 
             Marker marker = mMap.addMarker(new MarkerOptions()
                     .position(latLng)
@@ -271,6 +290,15 @@ public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,Not
             markerList.add(marker);
         }
     }
+
+
+
+
+
+
+
+
+
 
     @Override
     public void notifyListItemClick(int position) {
@@ -286,6 +314,12 @@ public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,Not
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 
         if(markerList!=null){
+
+            if(markerList.size()<dataset.size())
+            {
+                loadMarkers();
+            }
+
             markerList.get(position).showInfoWindow();
         }
     }
@@ -296,5 +330,12 @@ public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,Not
         super.onDestroyView();
 
         ButterKnife.unbind(this);
+    }
+
+
+    @Override
+    public void notifyDatasetChanged() {
+        adapter.notifyDataSetChanged();
+        loadMarkers();
     }
 }

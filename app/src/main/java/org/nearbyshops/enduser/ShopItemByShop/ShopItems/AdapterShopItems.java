@@ -83,7 +83,7 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
         DaggerComponentBuilder.getInstance().getNetComponent().Inject(this);
 
 
-        makeNetworkCall(false,0);
+        makeNetworkCall(false,0,true);
     }
 
 
@@ -110,7 +110,7 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
 
 
 
-    void makeNetworkCall(final boolean notifyChange, final int position)
+    void makeNetworkCall(final boolean notifyChange, final int position, final boolean notifyDatasetChanged)
     {
 
         cartItemMap.clear();
@@ -128,7 +128,7 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
 
 
         Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,null,
-                endUser.getEndUserID(),shop.getShopID());
+                endUser.getEndUserID(),shop.getShopID(),false);
 
 
         cartItemCall.enqueue(new Callback<List<CartItem>>() {
@@ -149,6 +149,11 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
                 if(notifyChange)
                 {
                     notifyItemChanged(position);
+                }
+
+                if(notifyDatasetChanged)
+                {
+                    notifyDataSetChanged();
                 }
 
 
@@ -186,6 +191,13 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
                 if(notifyChange)
                 {
                     notifyItemChanged(position);
+                }
+
+
+
+                if(notifyDatasetChanged)
+                {
+                    notifyDataSetChanged();
                 }
             }
 
@@ -257,6 +269,19 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
         {
             holder.itemName.setText(item.getItemName());
             holder.itemPrice.setText("Rs. " + String.format("%.2f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
+
+            if(item.getRt_rating_count()==0)
+            {
+                holder.rating.setText("N/A");
+                holder.ratinCount.setText("( Not yet rated )");
+
+            }
+            else
+            {
+                holder.rating.setText(String.format("%.1f",item.getRt_rating_avg()));
+                holder.ratinCount.setText("( " +  String.valueOf((int)item.getRt_rating_count()) +  " Ratings )");
+            }
+
         }
 
 
@@ -482,7 +507,7 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
 
                                 Toast.makeText(context, "Add to cart successful !", Toast.LENGTH_SHORT).show();
 
-                                makeNetworkCall(true,getLayoutPosition());
+                                makeNetworkCall(true,getLayoutPosition(),false);
                             }
                         }
 
@@ -529,7 +554,7 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
 
                                 addToCartText.setText("Add to Cart");
 
-                                makeNetworkCall(true,getLayoutPosition());
+                                makeNetworkCall(true,getLayoutPosition(),false);
 
                                 //makeNetworkCall();
 
@@ -580,7 +605,7 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
                                 if (response.code() == 200) {
 
                                     Toast.makeText(context, "Update cart successful !", Toast.LENGTH_SHORT).show();
-                                    makeNetworkCall(false,getLayoutPosition());
+                                    makeNetworkCall(false,getLayoutPosition(),false);
                                 }
 
                             }
@@ -665,7 +690,15 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
                         if (cartItem == null) {
 
 
-                            fragment.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                            if(cartStats==null)
+                            {
+                                fragment.itemsInCart.setText(String.valueOf(0) + " " + "Items in Cart");
+                            }
+                            else
+                            {
+                                fragment.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                            }
+
 
                         } else
                         {
@@ -721,9 +754,17 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
 
                 if(cartItem==null)
                 {
-                    if(Integer.parseInt(itemQuantity.getText().toString())>0)
+                    if(Integer.parseInt(itemQuantity.getText().toString())>0 )
                     {
-                        fragment.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+
+                        if(cartStats==null)
+                        {
+                            fragment.itemsInCart.setText(String.valueOf(1) + " " + "Items in Cart");
+                        }
+                        else
+                        {
+                            fragment.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+                        }
 
                     }
 

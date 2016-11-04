@@ -98,7 +98,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
 
         Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,item.getItemID(),
-                endUser.getEndUserID(),null);
+                endUser.getEndUserID(),null,false);
 
         cartItemCall.enqueue(new Callback<List<CartItem>>() {
             @Override

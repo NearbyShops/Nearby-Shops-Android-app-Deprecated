@@ -19,7 +19,6 @@ import org.nearbyshops.enduser.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduser.Shops.Interfaces.GetDataset;
-import org.nearbyshops.enduser.Shops.Interfaces.NotifyDataset;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
@@ -47,7 +46,6 @@ public class FragmentShopTwo extends Fragment implements
         ArrayList<Shop> dataset;
 
         @State boolean isSaved;
-
 
         @Inject ShopService shopService;
 
@@ -102,16 +100,17 @@ public class FragmentShopTwo extends Fragment implements
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setRetainInstance(true);
+        setRetainInstance(true);
     }
+
 
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-
     }
+
+
 
     @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -129,15 +128,12 @@ public class FragmentShopTwo extends Fragment implements
 
                 if(savedInstanceState==null && !switchMade)
                 {
-
                     // ensure that there is no swipe to right on first fetch
 //                    isbackPressed = true;
                     makeRefreshNetworkCall();
                     isSaved = true;
-
-
-
                 }
+
                 else if(savedInstanceState == null && switchMade)
                 {
 
@@ -154,10 +150,9 @@ public class FragmentShopTwo extends Fragment implements
 
 
             setupRecyclerView();
-
-
             setupSwipeContainer();
 //            notifyDataset();
+
 
             return rootView;
         }
@@ -379,6 +374,7 @@ public class FragmentShopTwo extends Fragment implements
                     notifyTitleChanged();
 
                     adapter.notifyDataSetChanged();
+                    notifyMapDataChanged();
                     swipeContainer.setRefreshing(false);
 
                 }
@@ -486,5 +482,18 @@ public class FragmentShopTwo extends Fragment implements
     public void notifySortChanged() {
         makeRefreshNetworkCall();
     }
+
+
+
+    void notifyMapDataChanged()
+    {
+        Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("map_tag");
+
+        if(fragment instanceof NotifyDatasetChanged)
+        {
+            ((NotifyDatasetChanged)fragment).notifyDatasetChanged();
+        }
+    }
+
 
 }

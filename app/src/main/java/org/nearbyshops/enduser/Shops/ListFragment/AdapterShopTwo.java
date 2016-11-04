@@ -50,9 +50,21 @@ public class AdapterShopTwo extends RecyclerView.Adapter<AdapterShopTwo.ViewHold
     public void onBindViewHolder(AdapterShopTwo.ViewHolder holder, int position) {
 
 
+        Shop shop = dataset.get(position);
+
         holder.shopName.setText(dataset.get(position).getShopName());
 
-        holder.rating.setText(String.format( "%.2f", dataset.get(position).getRt_rating_avg()));
+
+        if(shop.getRt_rating_count()==0)
+        {
+            holder.rating.setText("N/A");
+        }
+        else
+        {
+            holder.rating.setText(String.format( "%.2f", dataset.get(position).getRt_rating_avg()));
+        }
+
+
 
         holder.distance.setText(String.format( "%.2f", dataset.get(position).getDistance() )+ " Km");
 

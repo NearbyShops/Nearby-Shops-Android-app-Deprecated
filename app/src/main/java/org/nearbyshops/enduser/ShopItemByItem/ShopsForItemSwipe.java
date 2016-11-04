@@ -73,6 +73,10 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
 //    TextView itemStatsText;
 
 
+    public static final String TAG_SLIDING_LAYER_FRAGMENT = "sliding_layer";
+
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -127,6 +131,7 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
 
 
 
+
     void setupSlidingLayer()
     {
 
@@ -151,10 +156,14 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
             //slidingContents.setMinimumWidth(metrics.widthPixels-50);
 
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.slidinglayerfragment,new SlidingLayerSortShopItem())
-                    .commit();
+            if(getSupportFragmentManager().findFragmentByTag(TAG_SLIDING_LAYER_FRAGMENT)==null)
+            {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.slidinglayerfragment,new SlidingLayerSortShopItem(),TAG_SLIDING_LAYER_FRAGMENT)
+                        .commit();
+            }
+
 
         }
 
@@ -308,6 +317,8 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
     public void NotifyTitleChanged(String title, int tabPosition) {
         pagerAdapter.setTitle(title,tabPosition);
     }
+
+
 
     @Override
     public void notifyNewCartsChanged() {

@@ -2,6 +2,7 @@ package org.nearbyshops.enduser.Shops;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -111,6 +112,14 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupSlidingLayer();
+
+
+        if(isMapView)
+        {
+            appBarLayout.setExpanded(false,true);
+        }
+
+
     }
 
 
@@ -161,6 +170,8 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
     @Bind(R.id.icon_list)
     ImageView mapIcon;
 
+    @Bind(R.id.appbar)
+    AppBarLayout appBarLayout;
 
     @OnClick({R.id.icon_list,R.id.text_list})
     void listMapClick()
@@ -217,6 +228,7 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
 
 
 
+            appBarLayout.setExpanded(true,true);
             isMapView = false;
         }
         else
@@ -268,6 +280,7 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
 
             //.addToBackStack("map")
 
+            appBarLayout.setExpanded(false,true);
             isMapView = true;
         }
 
@@ -294,6 +307,9 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
         {
             ((NotifySort)fragment).notifySortChanged();
         }
+
+
+
 
     }
 

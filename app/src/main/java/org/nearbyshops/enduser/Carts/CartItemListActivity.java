@@ -255,8 +255,8 @@ public class CartItemListActivity extends AppCompatActivity
 
             if(shop!=null)
             {
-                Call<List<CartItem>> call = cartItemService.getCartItem(0,0,
-                        endUser.getEndUserID(),shop.getShopID());
+                Call<List<CartItem>> call = cartItemService.getCartItem(null,null,
+                        endUser.getEndUserID(),shop.getShopID(),true);
 
                 call.enqueue(this);
             }

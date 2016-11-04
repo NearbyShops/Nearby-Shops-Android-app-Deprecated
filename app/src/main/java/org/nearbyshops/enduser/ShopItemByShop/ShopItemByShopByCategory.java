@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
+import org.nearbyshops.enduser.ItemsByCategory.SlidingLayerSortItems;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyBackPressed;
@@ -109,11 +110,14 @@ public class ShopItemByShopByCategory extends AppCompatActivity implements Notif
             //slidingContents.setMinimumWidth(metrics.widthPixels-50);
 
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.slidinglayerfragment,new SlidingLayerSortShops_())
-                    .commit();
 
+            if(getSupportFragmentManager().findFragmentByTag("sliding_layer")==null)
+            {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.slidinglayerfragment,new SlidingLayerSortShopItemsByShop(),"sliding_layer")
+                        .commit();
+            }
         }
 
     }
@@ -213,18 +217,13 @@ public class ShopItemByShopByCategory extends AppCompatActivity implements Notif
     @Override
     public void removeLastTab() {
 
-        if(tabLayout.getTabCount()==0)
+        if(tabLayout.getTabCount()<=1)
         {
             return;
         }
 
         tabLayout.removeTabAt(tabLayout.getTabCount()-1);
         tabLayout.setScrollPosition(tabLayout.getTabCount()-1,0,true);
-
-        if(tabLayout.getTabCount()==0)
-        {
-//            tabLayout.setVisibility(View.GONE);
-        }
     }
 
     @Override

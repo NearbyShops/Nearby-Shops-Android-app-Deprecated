@@ -115,8 +115,19 @@ public class ShopHome extends AppCompatActivity {
             delivery.setText("Delivery : Rs " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
             distance.setText("Distance : " + String.format( "%.2f", shop.getDistance()) + " Km");
 
-            rating.setText(String.valueOf(shop.getRt_rating_avg()));
-            rating_count.setText("( " + String.format( "%.0f", shop.getRt_rating_count()) + " Ratings )");
+
+            if(shop.getRt_rating_count()==0)
+            {
+                rating.setText("N/A");
+                rating_count.setText("( Not Yet Rated )");
+
+            }
+            else
+            {
+                rating.setText(String.valueOf(shop.getRt_rating_avg()));
+                rating_count.setText("( " + String.format( "%.0f", shop.getRt_rating_count()) + " Ratings )");
+            }
+
 
             if(shop.getShortDescription()!=null)
             {

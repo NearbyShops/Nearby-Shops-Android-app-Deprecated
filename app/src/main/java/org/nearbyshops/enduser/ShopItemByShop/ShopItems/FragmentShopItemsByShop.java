@@ -25,9 +25,12 @@ import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyGeneral;
+import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.DividerItemDecoration;
 import org.nearbyshops.enduser.Utility.UtilityShopHome;
+import org.nearbyshops.enduser.UtilitySort.UtilitySortItemsByCategory;
+import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItemsByShop;
 
 import java.util.ArrayList;
 
@@ -45,15 +48,15 @@ import retrofit2.Response;
  * Created by sumeet on 25/5/16.
  */
 public class FragmentShopItemsByShop extends Fragment implements
-        SwipeRefreshLayout.OnRefreshListener, NotifyCategoryChanged{
+        SwipeRefreshLayout.OnRefreshListener, NotifyCategoryChanged, NotifySort{
 
 
 
-        @Inject
-        CartItemService cartItemService;
+//        @Inject
+//        CartItemService cartItemService;
 
-        @Inject
-        CartStatsService cartStatsService;
+//        @Inject
+//        CartStatsService cartStatsService;
 
 
 
@@ -156,6 +159,8 @@ public class FragmentShopItemsByShop extends Fragment implements
                 {
                     Log.d("shopsbycategory","saved State");
                     onViewStateRestored(savedInstanceState);
+//                    adapter.notifyDataSetChanged();
+
                 }
 
 
@@ -282,9 +287,15 @@ public class FragmentShopItemsByShop extends Fragment implements
             if(notifiedCurrentCategory==null)
             {
                 swipeContainer.setRefreshing(false);
-
                 return;
             }
+
+
+
+            String current_sort = "";
+
+            current_sort = UtilitySortShopItemsByShop.getSort(getContext())
+                            + " " + UtilitySortShopItemsByShop.getAscending(getContext());
 
 
 
@@ -294,7 +305,7 @@ public class FragmentShopItemsByShop extends Fragment implements
                     null,null,null,
                     null,null,null,null,
                     null, null,
-                    null,limit,offset,null
+                    current_sort,limit,offset,null
             );
 
 
@@ -429,9 +440,13 @@ public class FragmentShopItemsByShop extends Fragment implements
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
         isDestroyed = true;
-
         ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void notifySortChanged() {
+
+        makeRefreshNetworkCall();
     }
 }
