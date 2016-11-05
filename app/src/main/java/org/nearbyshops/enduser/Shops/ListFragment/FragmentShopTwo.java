@@ -30,7 +30,6 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
 import icepick.Icepick;
 import icepick.State;
 import retrofit2.Call;
@@ -181,6 +180,9 @@ public class FragmentShopTwo extends Fragment implements
 
 
 
+
+
+
        /* void notifyDataset()
         {
             if(getActivity() instanceof NotifyDataset)
@@ -226,20 +228,22 @@ public class FragmentShopTwo extends Fragment implements
             }
 
 
-            adapter = new AdapterShopTwo(dataset,getActivity());
+            adapter = new AdapterShopTwo(dataset,getActivity(),this);
 
             recyclerView.setAdapter(adapter);
 
             layoutManager = new GridLayoutManager(getActivity(),1);
             recyclerView.setLayoutManager(layoutManager);
 
-            recyclerView.addItemDecoration(
+            recyclerView.addItemDecoration(new EqualSpaceItemDecoration(5));
+
+            /*recyclerView.addItemDecoration(
                     new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL_LIST)
             );
 
             recyclerView.addItemDecoration(
                     new DividerItemDecoration(getActivity(),DividerItemDecoration.HORIZONTAL_LIST)
-            );
+            );*/
 
             //itemCategoriesList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
 
@@ -253,20 +257,39 @@ public class FragmentShopTwo extends Fragment implements
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
 
-                    if(layoutManager.findLastVisibleItemPosition()==dataset.size()-1)
+                    if(layoutManager.findLastVisibleItemPosition()==dataset.size())
                     {
                         // trigger fetch next page
+
+                        if(dataset.size()== previous_position)
+                        {
+                            return;
+                        }
+
 
                         if((offset+limit)<=item_count)
                         {
                             offset = offset + limit;
-                            makeNetworkCall();
+                            makeNetworkCall(false);
                         }
+
+                        previous_position = dataset.size();
 
                     }
                 }
             });
         }
+
+
+
+
+    int previous_position = -1;
+
+
+    int getItemCount()
+    {
+        return item_count;
+    }
 
 
 
@@ -309,8 +332,9 @@ public class FragmentShopTwo extends Fragment implements
             }
 
             offset = 0; // reset the offset
-            dataset.clear();
-            makeNetworkCall();
+//            dataset.clear();
+            adapter.notifyDataSetChanged();
+            makeNetworkCall(true);
         }
 
 
@@ -319,7 +343,7 @@ public class FragmentShopTwo extends Fragment implements
 
 
 
-        private void makeNetworkCall()
+        private void makeNetworkCall(final boolean clearDataset)
         {
 
 
@@ -361,7 +385,12 @@ public class FragmentShopTwo extends Fragment implements
 
                     if(response.body()!=null)
                     {
+                        if(clearDataset)
+                        {
+                            dataset.clear();
+                        }
                         dataset.addAll(response.body().getResults());
+                        adapter.notifyDataSetChanged();
 
                         if(response.body().getItemCount()!=null)
                         {
@@ -372,8 +401,6 @@ public class FragmentShopTwo extends Fragment implements
 
 
                     notifyTitleChanged();
-
-                    adapter.notifyDataSetChanged();
                     notifyMapDataChanged();
                     swipeContainer.setRefreshing(false);
 

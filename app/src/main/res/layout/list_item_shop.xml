@@ -8,9 +8,12 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_width="match_parent"
-    android:layout_margin="0dp"
     app:cardCornerRadius="0dp"
     app:contentPadding="10dp"
+    android:layout_marginStart="0dp"
+    android:layout_marginLeft="0dp"
+    android:layout_marginTop="0dp"
+
     android:layout_height="wrap_content">
 
     <android.support.constraint.ConstraintLayout
@@ -143,7 +146,6 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_width="0dp"
             android:layout_height="1dp" />
-
 
 
     </android.support.constraint.ConstraintLayout>

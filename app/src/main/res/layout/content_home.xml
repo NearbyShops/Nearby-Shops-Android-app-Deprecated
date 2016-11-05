@@ -419,98 +419,80 @@
             android:layout_height="1dp"/>
     
 
-        <LinearLayout
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:weightSum="2"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:id="@+id/row_two"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_menu_options_row_height"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:layout_marginRight="5dp"
+            android:id="@+id/option_shops_nearby"
+            android:background="@color/phonographyBlue"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/text_shopsNearby"
+                android:gravity="bottom|right"
+                android:layout_marginRight="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Shops"/>
+
+            <ImageView
+                android:layout_above="@id/text_shopsNearby"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginLeft="5dp"
+            android:background="@color/gplus_color_2"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/itemsNearby"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:gravity="bottom|right"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Items"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 
 
-            <RelativeLayout
-                android:layout_weight="1"
-                android:id="@+id/option_shops_by_category"
-                android:background="@drawable/selector_button"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/home_menu_options_row_height"
-                android:layout_marginLeft="0dp"
-                android:layout_marginStart="0dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_alignParentBottom="true"
-                    android:id="@+id/text_shops_by_category"
-                    android:gravity="bottom|end"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="20sp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Shops by Category"/>
-
-
-                <ImageView
-                    android:padding="10dp"
-                    android:layout_above="@id/text_shops_by_category"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </RelativeLayout>
-
-
-
-
-            <LinearLayout
-                android:layout_weight="0"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"/>
-
-            <RelativeLayout
-                android:layout_weight="1"
-                android:id="@+id/option_item_categories"
-                android:background="@color/gplus_color_1"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/home_menu_options_row_height"
-                android:layout_marginLeft="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_alignParentBottom="true"
-                    android:id="@+id/text_itemCategories"
-                    android:gravity="bottom|end"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="20sp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Items by Category"/>
-
-
-                <ImageView
-                    android:padding="10dp"
-                    android:layout_above="@id/text_itemCategories"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-    
-        <TextView
+    <TextView
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
@@ -520,75 +502,97 @@
             android:layout_width="match_parent"
             android:layout_height="1dp" />
 
-        <LinearLayout
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:id="@+id/row_two"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
+
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:id="@+id/option_shops_by_category"
+            android:background="@drawable/selector_button"
+            android:layout_width="0dp"
             android:layout_height="@dimen/home_menu_options_row_height"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
             android:orientation="horizontal">
-            
-            
-            <RelativeLayout
-                android:layout_marginRight="5dp"
-                android:id="@+id/option_shops_nearby"
-                android:background="@color/phonographyBlue"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
+
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/text_shops_by_category"
+                android:gravity="bottom|end"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Shops by Category"/>
 
 
-                <TextView
-                    android:layout_alignParentBottom="true"
-                    android:id="@+id/text_shopsNearby"
-                    android:gravity="bottom|right"
-                    android:layout_marginRight="5dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorWhite"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Shops"/>
+            <ImageView
+                android:padding="10dp"
+                android:layout_above="@id/text_shops_by_category"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-                <ImageView
-                    android:layout_above="@id/text_shopsNearby"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+        </RelativeLayout>
 
-            </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_marginLeft="5dp"
-                android:background="@color/gplus_color_2"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_alignParentBottom="true"
-                        android:id="@+id/itemsNearby"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:gravity="bottom|right"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorWhite"
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Items"/>
+        <LinearLayout
+            android:layout_weight="0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
 
-            </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:id="@+id/option_item_categories"
+            android:background="@color/gplus_color_1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/home_menu_options_row_height"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
 
-        </LinearLayout>
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/text_itemCategories"
+                android:gravity="bottom|end"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Items by Category"/>
 
+
+            <ImageView
+                android:padding="10dp"
+                android:layout_above="@id/text_itemCategories"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 
     <TextView
