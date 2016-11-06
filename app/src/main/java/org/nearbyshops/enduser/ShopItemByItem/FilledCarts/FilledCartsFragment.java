@@ -1,5 +1,6 @@
 package org.nearbyshops.enduser.ShopItemByItem.FilledCarts;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.ItemDetail.ItemDetail;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ShopItem;
@@ -43,6 +45,7 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import icepick.Icepick;
 import icepick.State;
 import retrofit2.Call;
@@ -60,6 +63,9 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
     @State
     ArrayList<ShopItem> dataset = new ArrayList<>();
+
+//    @Bind(R.id.items_list_item)
+//    CardView itemsListItem;
 
 
     RecyclerView recyclerView;
@@ -452,6 +458,16 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
         onRefresh();
     }
 
+
+
+    @OnClick(R.id.include)
+    void listItemClick()
+    {
+
+        Intent intent = new Intent(getActivity(), ItemDetail.class);
+        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
+        getActivity().startActivity(intent);
+    }
 
 
     void bindItem()

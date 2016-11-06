@@ -230,7 +230,8 @@ public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,Not
         {
             Shop meetup = dataset.get(0);
             LatLng latLng = new LatLng(meetup.getLatCenter(),meetup.getLonCenter());
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,12));
+//            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,12));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,12));
 //            Log.d("dataset","Dataset Size Map Ready : " + String.valueOf(dataset.size()));
 
         }else
@@ -238,7 +239,8 @@ public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,Not
             if(location !=null)
             {
                 LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,12));
+//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,12));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,12));
             }
 
             Log.d("dataset","Dataset null : " + String.valueOf(dataset.size()));
@@ -251,7 +253,7 @@ public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,Not
             @Override
             public boolean onMarkerClick(Marker marker) {
 
-                reviewsList.scrollToPosition(markerList.indexOf(marker));
+                reviewsList.smoothScrollToPosition(markerList.indexOf(marker));
 
                 marker.showInfoWindow();
 
@@ -312,6 +314,7 @@ public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,Not
         LatLng latLng = new LatLng(shop.getLatCenter(),shop.getLonCenter());
 
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
         if(markerList!=null){
 

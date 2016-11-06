@@ -25,6 +25,7 @@ public class EqualSpaceItemDecoration extends RecyclerView.ItemDecoration {
         outRect.top = mSpaceHeight;
         outRect.left = mSpaceHeight;
         outRect.right = mSpaceHeight;
+
     }
 
 }

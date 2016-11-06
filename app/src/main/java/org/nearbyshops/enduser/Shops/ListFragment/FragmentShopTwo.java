@@ -20,6 +20,7 @@ import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduser.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifyDatasetChanged;
+import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.DividerItemDecoration;
@@ -40,7 +41,7 @@ import retrofit2.Response;
  * Created by sumeet on 25/5/16.
  */
 public class FragmentShopTwo extends Fragment implements
-        SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifyDatasetChanged{
+        SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifyDatasetChanged,NotifySearch{
 
         ArrayList<Shop> dataset;
 
@@ -121,8 +122,6 @@ public class FragmentShopTwo extends Fragment implements
 
             recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
             swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
-
-
             switchMade = getArguments().getBoolean("switch");
 
                 if(savedInstanceState==null && !switchMade)
@@ -139,11 +138,8 @@ public class FragmentShopTwo extends Fragment implements
                 }
                 else
                 {
-
-
-
 //                    Log.d("shopsbycategory","saved State");
-//                    onViewStateRestored(savedInstanceState);
+                    onViewStateRestored(savedInstanceState);
 
                 }
 
@@ -235,7 +231,7 @@ public class FragmentShopTwo extends Fragment implements
             layoutManager = new GridLayoutManager(getActivity(),1);
             recyclerView.setLayoutManager(layoutManager);
 
-            recyclerView.addItemDecoration(new EqualSpaceItemDecoration(5));
+//            recyclerView.addItemDecoration(new EqualSpaceItemDecoration(5));
 
             /*recyclerView.addItemDecoration(
                     new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL_LIST)
@@ -367,7 +363,7 @@ public class FragmentShopTwo extends Fragment implements
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
                     (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
-                    current_sort,limit,offset,false
+                    searchQuery,current_sort,limit,offset,false
             );
 
 
@@ -520,6 +516,22 @@ public class FragmentShopTwo extends Fragment implements
         {
             ((NotifyDatasetChanged)fragment).notifyDatasetChanged();
         }
+    }
+
+
+
+    String searchQuery = null;
+
+    @Override
+    public void search(final String searchString) {
+        searchQuery = searchString;
+        makeRefreshNetworkCall();
+    }
+
+    @Override
+    public void endSearchMode() {
+        searchQuery = null;
+        makeRefreshNetworkCall();
     }
 
 

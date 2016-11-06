@@ -39,6 +39,7 @@ public interface ShopService {
             @Query("deliveryRangeMax")Double deliveryRangeMax,
             @Query("deliveryRangeMin")Double deliveryRangeMin,
             @Query("proximity")Double proximity,
+            @Query("SearchString") String searchString,
             @Query("SortBy") String sortBy,
             @Query("Limit") Integer limit, @Query("Offset") Integer offset,
             @Query("metadata_only")Boolean metaonly

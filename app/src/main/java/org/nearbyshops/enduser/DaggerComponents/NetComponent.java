@@ -12,6 +12,7 @@ import org.nearbyshops.enduser.DaggerModules.NetModule;
 import org.nearbyshops.enduser.ItemCategoryOption.FragmentShopOld;
 import org.nearbyshops.enduser.ItemDetail.ItemDetail;
 import org.nearbyshops.enduser.ItemDetail.RateReviewItemDialog;
+import org.nearbyshops.enduser.Items.ItemsList.FragmentItemsList;
 import org.nearbyshops.enduser.ItemsByCategory.ItemCategories.ItemCategoriesFragmentItem;
 import org.nearbyshops.enduser.ItemsByCategory.Items.FragmentItem_ItemByCategory;
 import org.nearbyshops.enduser.Login.LoginDialog;
@@ -117,4 +118,6 @@ public interface NetComponent {
     void Inject(AdapterShopItems adapterShopItems);
 
     void Inject(FragmentShopTwo fragmentShopTwo);
+
+    void Inject(FragmentItemsList fragmentItemsList);
 }

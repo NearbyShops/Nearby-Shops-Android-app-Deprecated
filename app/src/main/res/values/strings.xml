@@ -89,5 +89,7 @@
     <string name="items">Items</string>
     <string name="title_activity_order_result">Order Results</string>
     <string name="title_activity_shops">Shops</string>
+    <string name="search_hint">Search Shops</string>
+    <string name="title_activity_items">Items</string>
 
 </resources>

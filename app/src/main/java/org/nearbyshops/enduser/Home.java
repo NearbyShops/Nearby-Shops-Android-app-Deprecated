@@ -52,6 +52,7 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
 import org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity;
+import org.nearbyshops.enduser.Items.ItemsActivity;
 import org.nearbyshops.enduser.ItemsByCategory.ItemsByCategory;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
@@ -285,6 +286,16 @@ public class Home extends AppCompatActivity
 
 
 
+    @OnClick(R.id.option_items)
+    public void optionItemsClick()
+    {
+        Intent intent = new Intent(this, ItemsActivity.class);
+        startActivity(intent);
+    }
+
+
+
+
 
     boolean visible = false;
 
@@ -398,6 +409,7 @@ public class Home extends AppCompatActivity
             UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,deliveryRangeMin);
             UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,deliveryRangeMax);
         }
+
 
         if(isProximityUpdated)
         {
@@ -821,7 +833,6 @@ public class Home extends AppCompatActivity
 
     protected void stopLocationUpdates() {
 
-
         if(mGoogleApiClient.isConnected())
         {
             LocationServices.FusedLocationApi.removeLocationUpdates(
@@ -833,9 +844,7 @@ public class Home extends AppCompatActivity
 
     @Override
     public void onLocationChanged(Location location) {
-
         saveLocation(location);
-
         stopLocationUpdates();
     }
 

@@ -273,7 +273,7 @@ public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefre
                 (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
                 (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
                 (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
-                null, limit,offset,null);
+                null,null, limit,offset,null);
 
 
 

@@ -10,6 +10,7 @@
     android:layout_width="match_parent"
     app:cardCornerRadius="0dp"
     app:contentPadding="10dp"
+    android:layout_margin="2.5dp"
     android:layout_marginStart="0dp"
     android:layout_marginLeft="0dp"
     android:layout_marginTop="0dp"

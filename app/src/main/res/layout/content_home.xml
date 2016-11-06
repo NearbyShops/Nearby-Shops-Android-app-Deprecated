@@ -458,6 +458,7 @@
                 android:text="Shops"/>
 
             <ImageView
+                app:srcCompat="@drawable/ic_domain_black_24px"
                 android:layout_above="@id/text_shopsNearby"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -465,6 +466,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/option_items"
             android:layout_marginLeft="5dp"
             android:background="@color/gplus_color_2"
             android:layout_weight="1"

@@ -300,12 +300,9 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
             }*/
 //                bookDescription.setText("Book description Not Available.");
-
-
         }
-
-
     }
+
 
 
     @Bind(R.id.edit_review_block)
@@ -838,10 +835,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
         bookDescription.setLayoutParams(layoutParams);
 */
 
-
         bookDescription.setMaxLines(Integer.MAX_VALUE);
-
-
         readFullDescription.setVisibility(View.GONE);
     }
 
@@ -880,7 +874,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
         if(shop!=null)
         {
             LatLng latLng = new LatLng(shop.getLatCenter(),shop.getLonCenter());
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,11));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,11));
             mMap.addCircle(new CircleOptions().center(latLng).radius(shop.getDeliveryRange()*1000).fillColor(R.color.light_grey).strokeWidth(1).strokeColor(R.color.buttonColorDark));
 
             //
@@ -891,7 +885,6 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
             currentMarker.showInfoWindow();
 
         }
-
     }
 
 
@@ -899,7 +892,6 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     @OnClick(R.id.get_directions_button)
     void getDirections()
     {
-
         String str_latitude = String.valueOf(shop.getLatCenter());
         String str_longitude = String.valueOf(shop.getLonCenter());
 
@@ -907,7 +899,6 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
-
     }
 
 

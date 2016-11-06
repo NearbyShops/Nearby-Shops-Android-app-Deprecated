@@ -1,14 +1,23 @@
 package org.nearbyshops.enduser.Shops;
 
+import android.app.SearchManager;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
@@ -16,6 +25,7 @@ import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifyDatasetChanged;
+import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.Shops.ListFragment.FragmentShopTwo;
 import org.nearbyshops.enduser.Shops.MapsFragment.ShopMapFragment;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
@@ -156,7 +166,6 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
             }
 
         }
-
     }
 
 
@@ -348,6 +357,120 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Icepick.saveInstanceState(this,outState);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_shops_screen, menu);
+
+
+        // Associate searchable configuration with the SearchView
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+
+        MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.action_search), new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+
+                Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_SHOP_FRAGMENT);
+
+                if(fragment instanceof NotifySearch)
+                {
+                    ((NotifySearch) fragment).endSearchMode();
+                }
+
+//                Toast.makeText(ShopsActivity.this, "onCollapsed Called ", Toast.LENGTH_SHORT).show();
+
+                return true;
+            }
+        });
+
+
+
+
+
+//        searchView.setSubmitButtonEnabled(true);
+//        searchView.onActionViewCollapsed();
+
+        searchManager.setOnCancelListener(new SearchManager.OnCancelListener() {
+            @Override
+            public void onCancel() {
+
+                Toast.makeText(ShopsActivity.this, "cancelled Called ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        searchManager.setOnDismissListener(new SearchManager.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+
+                Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_SHOP_FRAGMENT);
+
+                if(fragment instanceof NotifySearch)
+                {
+                    ((NotifySearch) fragment).endSearchMode();
+                }
+
+                Toast.makeText(ShopsActivity.this, "onDismiss Called ", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+
+
+                Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_SHOP_FRAGMENT);
+
+                if(fragment instanceof NotifySearch)
+                {
+                    ((NotifySearch) fragment).endSearchMode();
+                }
+
+                Toast.makeText(ShopsActivity.this, "Search Closed", Toast.LENGTH_SHORT).show();
+
+                return false;
+            }
+        });
+
+
+        return true;
+    }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        handleIntent(intent);
+    }
+
+
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //use the query to search your data somehow
+//            Toast.makeText(this,query,Toast.LENGTH_SHORT).show();
+
+            Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_SHOP_FRAGMENT);
+
+            if(fragment instanceof NotifySearch)
+            {
+                ((NotifySearch) fragment).search(query);
+            }
+        }
     }
 
 

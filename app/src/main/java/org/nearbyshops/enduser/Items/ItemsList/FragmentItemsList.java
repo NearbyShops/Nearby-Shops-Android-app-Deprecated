@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ItemsByCategory.Items;
+package org.nearbyshops.enduser.Items.ItemsList;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,18 +15,14 @@ import android.widget.Toast;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.Item;
-import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.ModelEndPoints.ItemEndPoint;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemService;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyCategoryChanged;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyGeneral;
+import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduser.Utility.DividerItemDecoration;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.UtilitySort.UtilitySortItemsByCategory;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItems;
 
 import java.util.ArrayList;
 
@@ -41,14 +37,9 @@ import retrofit2.Response;
 /**
  * Created by sumeet on 25/5/16.
  */
-public class FragmentItem_ItemByCategory extends Fragment
-        implements SwipeRefreshLayout.OnRefreshListener, NotifyCategoryChanged , NotifySort{
+public class FragmentItemsList extends Fragment
+        implements SwipeRefreshLayout.OnRefreshListener, NotifySort,NotifySearch{
 
-
-
-//        ItemCategory itemCategory;
-
-    @State ItemCategory notifiedCurrentCategory;
 
     @State boolean isSaved = false;
 
@@ -73,7 +64,7 @@ public class FragmentItem_ItemByCategory extends Fragment
     @State boolean isbackPressed = false;
 
 
-    private int limit = 30;
+    private int limit = 10;
     @State int offset = 0;
 
     @State int item_count = 0;
@@ -86,7 +77,7 @@ public class FragmentItem_ItemByCategory extends Fragment
     // Interface References Ends
 
 
-    public FragmentItem_ItemByCategory() {
+    public FragmentItemsList() {
         // inject dependencies through dagger
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -98,11 +89,11 @@ public class FragmentItem_ItemByCategory extends Fragment
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static FragmentItem_ItemByCategory newInstance(ItemCategory itemCategory) {
+        public static FragmentItemsList newInstance() {
 
-            FragmentItem_ItemByCategory fragment = new FragmentItem_ItemByCategory();
+            FragmentItemsList fragment = new FragmentItemsList();
             Bundle args = new Bundle();
-            args.putParcelable("itemCat",itemCategory);
+//            args.putParcelable("itemCat",itemCategory);
             fragment.setArguments(args);
             return fragment;
         }
@@ -114,12 +105,13 @@ public class FragmentItem_ItemByCategory extends Fragment
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
-            View rootView = inflater.inflate(R.layout.fragment_items_item_by_category, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_items_list, container, false);
 
 //            itemCategory = getArguments().getParcelable("itemCat");
 
             recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
             swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
+
 
             if(savedInstanceState==null)
             {
@@ -162,7 +154,7 @@ public class FragmentItem_ItemByCategory extends Fragment
     void setupRecyclerView()
     {
 
-        adapter = new AdapterItem(dataset,getActivity());
+        adapter = new AdapterItem(dataset,getActivity(),this);
 
         recyclerView.setAdapter(adapter);
 
@@ -189,21 +181,31 @@ public class FragmentItem_ItemByCategory extends Fragment
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
-                if(layoutManager.findLastVisibleItemPosition()==dataset.size()-1)
+                if(layoutManager.findLastVisibleItemPosition()==dataset.size())
                 {
+                    if(dataset.size()== previous_position)
+                    {
+                        return;
+                    }
+
+
+
                     // trigger fetch next page
 
                     if((offset+limit)<=item_count)
                     {
                         offset = offset + limit;
-                        makeNetworkCall();
+                        makeNetworkCall(false);
                     }
 
+                    previous_position = dataset.size();
                 }
             }
         });
     }
 
+
+    int previous_position = -1;
 
 
 
@@ -217,9 +219,7 @@ public class FragmentItem_ItemByCategory extends Fragment
 
                 try {
 
-                    dataset.clear();
-                    offset = 0 ; // reset offset
-                    makeNetworkCall();
+                    onRefresh();
 
                 } catch (IllegalArgumentException ex)
                 {
@@ -232,37 +232,39 @@ public class FragmentItem_ItemByCategory extends Fragment
 
 
 
+    String searchQuery = null;
 
-    void makeNetworkCall()
+    @Override
+    public void search(final String searchString) {
+        searchQuery = searchString;
+        makeRefreshNetworkCall();
+    }
+
+    @Override
+    public void endSearchMode() {
+        searchQuery = null;
+        makeRefreshNetworkCall();
+    }
+
+
+
+
+    void makeNetworkCall(final boolean clearDataset)
     {
-
-
-
-
-        if(notifiedCurrentCategory==null)
-        {
-            swipeContainer.setRefreshing(false);
-
-            return;
-        }
-
-
 
 
         String current_sort = "";
 
         current_sort = UtilitySortItemsByCategory.getSort(getContext()) + " " + UtilitySortItemsByCategory.getAscending(getContext());
 
-
-
-        Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(notifiedCurrentCategory.getItemCategoryID(),
+        Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(null,
                 null,
                 (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
                 (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
                 (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
                 (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),null,
-                current_sort, limit,offset,null);
+                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
+                searchQuery,current_sort,limit,offset,null);
 
 
 
@@ -276,26 +278,18 @@ public class FragmentItem_ItemByCategory extends Fragment
                 }
 
 
-
                 if(response.body()!=null)
                 {
+
+                    if(clearDataset)
+                    {
+                        dataset.clear();
+                    }
                     dataset.addAll(response.body().getResults());
 
                     if(response.body().getItemCount()!=null)
                     {
                         item_count = response.body().getItemCount();
-                    }
-
-
-                    if(!notifiedCurrentCategory.getAbstractNode() && item_count>0 && !isbackPressed)
-                    {
-                        if(getActivity() instanceof NotifyGeneral)
-                        {
-                            ((NotifyGeneral)getActivity()).notifySwipeToright();
-                        }
-
-                        // reset the flag
-                        isbackPressed = false;
                     }
 
 
@@ -326,19 +320,6 @@ public class FragmentItem_ItemByCategory extends Fragment
 
 
 
-    public static class EndPoint implements Callback<ItemEndPoint>{
-
-        @Override
-        public void onResponse(Call<ItemEndPoint> call, Response<ItemEndPoint> response) {
-
-        }
-
-        @Override
-        public void onFailure(Call<ItemEndPoint> call, Throwable t) {
-
-        }
-    }
-
 
 
 
@@ -349,10 +330,9 @@ public class FragmentItem_ItemByCategory extends Fragment
 
     @Override
     public void onRefresh() {
-
-        dataset.clear();
+//        dataset.clear();
         offset = 0; // reset the offset
-        makeNetworkCall();
+        makeNetworkCall(true);
     }
 
 
@@ -364,10 +344,7 @@ public class FragmentItem_ItemByCategory extends Fragment
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
         Icepick.saveInstanceState(this, outState);
-//        outState.putParcelableArrayList("dataset",dataset);
-
     }
 
 
@@ -375,56 +352,22 @@ public class FragmentItem_ItemByCategory extends Fragment
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
-
-
         Icepick.restoreInstanceState(this, savedInstanceState);
         notifyTitleChanged();
-/*
-        if (savedInstanceState != null) {
-
-            ArrayList<Item> tempList = savedInstanceState.getParcelableArrayList("dataset");
-
-            dataset.clear();
-            dataset.addAll(tempList);
-
-
-
-            adapter.notifyDataSetChanged();
-        }*/
 
     }
 
-
-    @Override
-    public void itemCategoryChanged(ItemCategory currentCategory, Boolean isBackPressed) {
-
-
-        notifiedCurrentCategory = currentCategory;
-        dataset.clear();
-        offset = 0 ; // reset the offset
-        makeRefreshNetworkCall();
-
-        this.isbackPressed = isBackPressed;
-    }
 
 
 
     void notifyTitleChanged()
     {
-        String name = "";
-
-        if(notifiedCurrentCategory!=null)
-        {
-            name = notifiedCurrentCategory.getCategoryName();
-        }
-
-
         if(getActivity() instanceof NotifyTitleChanged)
         {
             ((NotifyTitleChanged)getActivity())
-                    .NotifyTitleChanged( name +
-                            " Items (" + String.valueOf(dataset.size())
-                            + "/" + String.valueOf(item_count) + ")",1);
+                    .NotifyTitleChanged( "Displaying "+
+                            String.valueOf(dataset.size())
+                            + " out of " + String.valueOf(item_count) + " Items",1);
         }
     }
 
@@ -441,6 +384,11 @@ public class FragmentItem_ItemByCategory extends Fragment
     @Override
     public void notifySortChanged() {
         makeRefreshNetworkCall();
+    }
+
+
+    public int getItemCount() {
+        return item_count;
     }
 
 
