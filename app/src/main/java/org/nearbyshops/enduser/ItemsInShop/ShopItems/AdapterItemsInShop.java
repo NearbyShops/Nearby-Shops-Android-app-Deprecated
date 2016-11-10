@@ -1,8 +1,7 @@
-package org.nearbyshops.enduser.ShopItemByShop.ShopItems;
+package org.nearbyshops.enduser.ItemsInShop.ShopItems;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -16,12 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.Items.ItemsList.AdapterItem;
+import org.nearbyshops.enduser.Items.ItemsList.FragmentItemsList;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Model.CartItem;
 import org.nearbyshops.enduser.Model.Item;
@@ -55,7 +57,7 @@ import retrofit2.Response;
 /**
  * Created by sumeet on 25/5/16.
  */
-public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.ViewHolder> {
+public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     private Map<Integer,CartItem> cartItemMap = new HashMap<>();
@@ -74,18 +76,16 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
     private List<ShopItem> dataset = null;
     private Context context;
 
-    private FragmentShopItemsByShop fragment;
+    private FragmentItemsInShop fragment;
 
 
-    AdapterShopItems(List<ShopItem> dataset, Context context, FragmentShopItemsByShop fragment) {
+    AdapterItemsInShop(List<ShopItem> dataset, Context context, FragmentItemsInShop fragment) {
 
         this.dataset = dataset;
         this.context = context;
         this.fragment = fragment;
 
         DaggerComponentBuilder.getInstance().getNetComponent().Inject(this);
-
-
         makeNetworkCall(false,0,true);
     }
 
@@ -217,19 +217,40 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
 
 
     @Override
-    public AdapterShopItems.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_shop_item_by_shop,parent,false);
 
-        return new ViewHolder(view);
+        if(viewType==0)
+        {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item_items_in_shop,parent,false);
+
+            return new ViewHolder(view);
+
+        }
+        else
+        {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item_progress_bar,parent,false);
+
+            return new AdapterItemsInShop.LoadingViewHolder(view);
+        }
+
+
     }
 
     @Override
-    public void onBindViewHolder(AdapterShopItems.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder_given, int position) {
 
-        Item item = dataset.get(position).getItem();
-        ShopItem shopItem = dataset.get(position);
+
+        if(holder_given instanceof AdapterItemsInShop.ViewHolder)
+        {
+            AdapterItemsInShop.ViewHolder holder = (AdapterItemsInShop.ViewHolder)holder_given;
+
+
+
+            Item item = dataset.get(position).getItem();
+            ShopItem shopItem = dataset.get(position);
 
 
 //        holder.shopName.setText(dataset.get(position).getShopName());
@@ -238,54 +259,54 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
 
 
 
-        CartItem cartItem = cartItemMap.get(dataset.get(position).getItemID());
+            CartItem cartItem = cartItemMap.get(dataset.get(position).getItemID());
 
-        if(cartItem!=null)
-        {
-            holder.itemQuantity.setText(String.valueOf(cartItem.getItemQuantity()));
-            holder.shopItemListItem.setBackgroundResource(R.color.gplus_color_2Alpha);
-
-            double total = shopItem.getItemPrice() * cartItem.getItemQuantity();
-
-            holder.itemTotal.setText("Total : " + String.format( "%.2f", total));
-            holder.addToCartText.setText("Update Cart");
-
-        }else
-        {
-
-            holder.shopItemListItem.setBackgroundResource(R.color.colorWhite);
-            //holder.shopItemListItem.setBackgroundColor(22000000);
-            holder.itemQuantity.setText(String.valueOf(0));
-            holder.addToCartText.setText("Add to Cart");
-        }
-
-
-
-        if(shopItem!=null)
-        {
-            holder.available.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()));
-
-        }
-
-
-        if(item!=null)
-        {
-            holder.itemName.setText(item.getItemName());
-            holder.itemPrice.setText("Rs. " + String.format("%.2f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
-
-            if(item.getRt_rating_count()==0)
+            if(cartItem!=null)
             {
-                holder.rating.setText("N/A");
-                holder.ratinCount.setText("( Not yet rated )");
+                holder.itemQuantity.setText(String.valueOf(cartItem.getItemQuantity()));
+                holder.shopItemListItem.setBackgroundResource(R.color.gplus_color_2Alpha);
 
-            }
-            else
+                double total = shopItem.getItemPrice() * cartItem.getItemQuantity();
+
+                holder.itemTotal.setText("Total : " + String.format( "%.2f", total));
+                holder.addToCartText.setText("Update Cart");
+
+            }else
             {
-                holder.rating.setText(String.format("%.1f",item.getRt_rating_avg()));
-                holder.ratinCount.setText("( " +  String.valueOf((int)item.getRt_rating_count()) +  " Ratings )");
+
+                holder.shopItemListItem.setBackgroundResource(R.color.colorWhite);
+                //holder.shopItemListItem.setBackgroundColor(22000000);
+                holder.itemQuantity.setText(String.valueOf(0));
+                holder.addToCartText.setText("Add to Cart");
             }
 
-        }
+
+
+            if(shopItem!=null)
+            {
+                holder.available.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()));
+
+            }
+
+
+            if(item!=null)
+            {
+                holder.itemName.setText(String.valueOf(position + 1) + ". " + item.getItemName());
+                holder.itemPrice.setText("Rs. " + String.format("%.2f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
+
+                if(item.getRt_rating_count()==0)
+                {
+                    holder.rating.setText("N/A");
+                    holder.ratinCount.setText("( Not yet rated )");
+
+                }
+                else
+                {
+                    holder.rating.setText(String.format("%.1f",item.getRt_rating_avg()));
+                    holder.ratinCount.setText("( " +  String.valueOf((int)item.getRt_rating_count()) +  " Ratings )");
+                }
+
+            }
 
 
 //        holder.rating.setText(String.format("%.2f",));
@@ -293,18 +314,51 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
 
 
 
-        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                + item.getItemImageURL();
+            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+                    + item.getItemImageURL();
 
-        Drawable placeholder = VectorDrawableCompat
-                .create(context.getResources(),
-                        R.drawable.ic_nature_people_white_48px, context.getTheme());
+            Drawable placeholder = VectorDrawableCompat
+                    .create(context.getResources(),
+                            R.drawable.ic_nature_people_white_48px, context.getTheme());
 
 
-        Picasso.with(context)
-                .load(imagePath)
-                .placeholder(placeholder)
-                .into(holder.itemImage);
+            Picasso.with(context)
+                    .load(imagePath)
+                    .placeholder(placeholder)
+                    .into(holder.itemImage);
+
+
+
+
+        }
+        else if(holder_given instanceof LoadingViewHolder)
+        {
+            AdapterItemsInShop.LoadingViewHolder viewHolder = (AdapterItemsInShop.LoadingViewHolder) holder_given;
+
+
+
+            int itemCount = 0;
+
+            if(fragment != null)
+            {
+                itemCount = ((FragmentItemsInShop) fragment).getItemCount();
+            }
+
+            if(position == 0 || position == itemCount)
+            {
+                viewHolder.progressBar.setVisibility(View.GONE);
+            }
+            else
+            {
+                viewHolder.progressBar.setVisibility(View.VISIBLE);
+                viewHolder.progressBar.setIndeterminate(true);
+
+            }
+
+
+        }
+
+
     }
 
 
@@ -312,14 +366,36 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
 
     @Override
     public int getItemCount() {
+        return (dataset.size()+1);
+    }
 
-//        Log.d("applog",String.valueOf(dataset.size()));
 
-        return dataset.size();
+    @Override
+    public int getItemViewType(int position) {
+        super.getItemViewType(position);
+
+        if(position==dataset.size())
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
 
 
+    public class LoadingViewHolder extends  RecyclerView.ViewHolder{
+
+        @Bind(R.id.progress_bar)
+        ProgressBar progressBar;
+
+        public LoadingViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+        }
+    }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{

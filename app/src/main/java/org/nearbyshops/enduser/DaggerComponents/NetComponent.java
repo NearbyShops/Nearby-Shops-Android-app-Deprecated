@@ -9,12 +9,17 @@ import org.nearbyshops.enduser.DeliveryAddress.EditAddressActivity;
 import org.nearbyshops.enduser.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduser.DaggerModules.AppModule;
 import org.nearbyshops.enduser.DaggerModules.NetModule;
+import org.nearbyshops.enduser.FilterShopDialog.FilterShopsDialog;
 import org.nearbyshops.enduser.ItemCategoryOption.FragmentShopOld;
 import org.nearbyshops.enduser.ItemDetail.ItemDetail;
 import org.nearbyshops.enduser.ItemDetail.RateReviewItemDialog;
 import org.nearbyshops.enduser.Items.ItemsList.FragmentItemsList;
 import org.nearbyshops.enduser.ItemsByCategory.ItemCategories.ItemCategoriesFragmentItem;
 import org.nearbyshops.enduser.ItemsByCategory.Items.FragmentItem_ItemByCategory;
+import org.nearbyshops.enduser.ItemsByCategoryScreenTwo.ItemCategories.ItemCategoriesHorizontal;
+import org.nearbyshops.enduser.ItemsByCategoryScreenTwo.Items.FragmentItemScreenHorizontal;
+import org.nearbyshops.enduser.ItemsInShop.ShopItems.AdapterItemsInShop;
+import org.nearbyshops.enduser.ItemsInShop.ShopItems.FragmentItemsInShop;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.LoginServiceDialog;
 import org.nearbyshops.enduser.LoginActivity;
@@ -120,4 +125,14 @@ public interface NetComponent {
     void Inject(FragmentShopTwo fragmentShopTwo);
 
     void Inject(FragmentItemsList fragmentItemsList);
+
+    void Inject(FragmentItemsInShop fragmentItemsInShop);
+
+    void Inject(AdapterItemsInShop adapterItemsInShop);
+
+    void Inject(ItemCategoriesHorizontal itemCategoriesHorizontal);
+
+    void Inject(FragmentItemScreenHorizontal fragmentItemScreenHorizontal);
+
+    void Inject(FilterShopsDialog filterShopsDialog);
 }

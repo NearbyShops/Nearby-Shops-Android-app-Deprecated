@@ -97,7 +97,7 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             if(item!=null)
             {
                 holder.itemName.setText(item.getItemName());
-                holder.itemDescription.setText(item.getItemDescription());
+//                holder.itemDescription.setText(item.getItemDescription());
 
 
                 if(item.getRt_rating_count()==0)
@@ -131,13 +131,14 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
 
                 holder.shopCount.setText("Available in " + String.valueOf(itemStats.getShopCount()) + " " + shop);
-                holder.priceRange.setText( "Rs: "
+                holder.priceRange.setText( "Price Range : Rs. "
                         + String.valueOf(itemStats.getMin_price())
                         + " - "
                         + String.valueOf(itemStats.getMax_price())
                         + " per " + dataset.get(position).getQuantityUnit()
                 );
 
+                holder.priceAverage.setText("Price Average : Rs. " + String.format("%.2f",itemStats.getAvg_price()));
 
                 //            Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
             }
@@ -216,10 +217,11 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView itemDescription;
+//        TextView itemDescription;
         TextView itemName;
         ImageView itemImage;
         TextView priceRange;
+        TextView priceAverage;
         TextView shopCount;
 
         TextView itemRating;
@@ -232,10 +234,11 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             itemView.setOnClickListener(this);
 
-            itemDescription = (TextView) itemView.findViewById(R.id.itemDescription);
+//            itemDescription = (TextView) itemView.findViewById(R.id.itemDescription);
             itemName = (TextView) itemView.findViewById(R.id.itemName);
             itemImage = (ImageView) itemView.findViewById(R.id.itemImage);
             priceRange = (TextView) itemView.findViewById(R.id.price_range);
+            priceAverage = (TextView) itemView.findViewById(R.id.price_avg);
             shopCount = (TextView) itemView.findViewById(R.id.shop_count);
             itemsListItem = (CardView) itemView.findViewById(R.id.items_list_item);
 

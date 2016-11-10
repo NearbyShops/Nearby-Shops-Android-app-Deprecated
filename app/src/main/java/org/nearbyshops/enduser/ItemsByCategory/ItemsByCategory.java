@@ -94,8 +94,8 @@ public class ItemsByCategory extends AppCompatActivity implements NotifyGeneral,
         {
             slidingLayer.setChangeStateOnTap(true);
             slidingLayer.setSlidingEnabled(true);
-            slidingLayer.setPreviewOffsetDistance(15);
-            slidingLayer.setOffsetDistance(10);
+//            slidingLayer.setPreviewOffsetDistance(15);
+            slidingLayer.setOffsetDistance(30);
             slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
 
             DisplayMetrics metrics = new DisplayMetrics();
@@ -164,7 +164,8 @@ public class ItemsByCategory extends AppCompatActivity implements NotifyGeneral,
             if(((NotifyBackPressed)fragment).backPressed())
             {
                 super.onBackPressed();
-            }else
+            }
+            else
             {
 //                mViewPager.setCurrentItem(0,true);
                 mViewPager.setCurrentItem(0);

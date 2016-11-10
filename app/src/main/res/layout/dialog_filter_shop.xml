@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shop_filters"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:textColor="@color/colorWhite"
+        android:textSize="15dp"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filter Shops by Proximity"/>
+
+
+    <com.appyvet.rangebar.RangeBar
+        android:layout_marginTop="0dp"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rangebarProximity"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        custom:rangeBar="false"
+        custom:tickStart="0"
+        custom:tickInterval="1"
+        custom:tickEnd="30"
+        custom:pinColor="@color/cyan900"
+        custom:pinRadius="25dp"
+        custom:textColor="@color/colorWhite"
+        custom:barWeight="2dp"
+        custom:connectingLineWeight="5dp"
+        custom:connectingLineColor="@color/blueGrey800"
+        custom:selectorColor="@color/orangeDark"
+        custom:selectorSize="7dp"
+        custom:tickColor="@color/colorWhite"
+        custom:tickHeight="1dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textMin"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:padding="5dp"
+            android:background="@color/deepOrange900"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Min: km's"/>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/textMax"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:padding="5dp"
+            android:background="@color/deepOrange900"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Max: km's"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:textColor="@color/colorWhite"
+        android:textSize="15dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filter Shops by Range of Delivery"/>
+
+    <TextView
+        android:textColor="@color/white"
+        android:background="@color/cyan900"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:text="Why use Range of Delivery Filter ?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <com.appyvet.rangebar.RangeBar
+        android:layout_marginTop="5dp"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rangebarDeliveryRange"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        custom:tickStart="0"
+        custom:tickInterval="1"
+        custom:tickEnd="30"
+        custom:pinColor="@color/cyan900"
+        custom:pinRadius="25dp"
+        custom:textColor="@color/colorWhite"
+        custom:barWeight="2dp"
+        custom:connectingLineWeight="5dp"
+        custom:connectingLineColor="@android:color/holo_green_dark"
+        custom:selectorColor="@android:color/holo_orange_dark"
+        custom:selectorSize="7dp"
+        custom:tickColor="@color/colorWhite"
+        custom:tickHeight="1dp" />
+
+
+    <LinearLayout
+        android:layout_marginTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+
+            android:gravity="center"
+            android:typeface="monospace"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:background="@android:color/holo_blue_dark"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Community"/>
+
+
+        <LinearLayout
+            android:background="@android:color/holo_green_dark"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+
+        <TextView
+
+            android:gravity="center"
+            android:typeface="monospace"
+            android:layout_weight="1"
+            android:padding="9dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:background="@android:color/holo_orange_dark"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="City"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+

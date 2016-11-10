@@ -36,11 +36,8 @@ public class CartsListActivity extends AppCompatActivity implements SwipeRefresh
     CartStatsService cartStatsService;
 
     RecyclerView recyclerView;
-
     CartsListAdapter adapter;
-
     GridLayoutManager layoutManager;
-
     SwipeRefreshLayout swipeContainer;
 
     List<CartStats> dataset = new ArrayList<>();
@@ -136,6 +133,8 @@ public class CartsListActivity extends AppCompatActivity implements SwipeRefresh
         if(endUser==null)
         {
             showLoginDialog();
+
+            swipeContainer.setRefreshing(false);
             return;
         }
 

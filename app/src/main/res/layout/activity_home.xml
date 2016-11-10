@@ -30,7 +30,6 @@
     <include layout="@layout/content_home" />
 
 
-
     <!--
 
     <com.wunderlist.slidinglayer.SlidingLayer

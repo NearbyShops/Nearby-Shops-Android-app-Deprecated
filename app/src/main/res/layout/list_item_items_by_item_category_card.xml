@@ -10,6 +10,7 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="0dp"
+    android:layout_margin="2.5dp"
     android:layout_marginTop="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginStart="5dp"

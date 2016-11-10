@@ -77,23 +77,22 @@ public class NewCartsFragment extends Fragment
 
 
 
-    TextView itemDescription;
-    TextView itemName;
-    ImageView itemImage;
-    TextView priceRange;
-    TextView shopCount;
+//    TextView itemDescription;
+//    TextView itemName;
+//    ImageView itemImage;
+//    TextView priceRange;
+//    TextView shopCount;
+//
+//
+//    @Bind(R.id.item_rating)
+//    TextView itemRating;
+//
+//    @Bind(R.id.rating_count)
+//    TextView ratingCount;
 
 
 
-    @Bind(R.id.item_rating)
-    TextView itemRating;
-
-    @Bind(R.id.rating_count)
-    TextView ratingCount;
-
-
-
-    private int limit = 30;
+    private int limit = 10;
     @State int offset = 0;
     @State int item_count = 0;
 
@@ -146,13 +145,13 @@ public class NewCartsFragment extends Fragment
 
 
         // bindings for Item
-        itemDescription = (TextView) rootView.findViewById(R.id.itemDescription);
-        itemName = (TextView) rootView.findViewById(R.id.itemName);
-        itemImage = (ImageView) rootView.findViewById(R.id.itemImage);
-        priceRange = (TextView) rootView.findViewById(R.id.price_range);
-        shopCount = (TextView) rootView.findViewById(R.id.shop_count);
+//        itemDescription = (TextView) rootView.findViewById(R.id.itemDescription);
+//        itemName = (TextView) rootView.findViewById(R.id.itemName);
+//        itemImage = (ImageView) rootView.findViewById(R.id.itemImage);
+//        priceRange = (TextView) rootView.findViewById(R.id.price_range);
+//        shopCount = (TextView) rootView.findViewById(R.id.shop_count);
 
-        bindItem();
+//        bindItem();
 
 
         if(savedInstanceState == null)
@@ -173,11 +172,12 @@ public class NewCartsFragment extends Fragment
 
     void setupRecyclerView()
     {
-        adapter = new AdapterNewCarts(dataset,getActivity(),this,item,(AppCompatActivity) getActivity());
+        adapter = new AdapterNewCarts(dataset,getActivity(),this,item,(AppCompatActivity) getActivity(),this);
 
         recyclerView.setAdapter(adapter);
 
         layoutManager = new GridLayoutManager(getActivity(),1);
+        layoutManager.setAutoMeasureEnabled(true);
         recyclerView.setLayoutManager(layoutManager);
 
         //recyclerView.addItemDecoration(
@@ -191,43 +191,60 @@ public class NewCartsFragment extends Fragment
         DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        layoutManager.setSpanCount(metrics.widthPixels/400);
+//        layoutManager.setSpanCount(metrics.widthPixels/400);
+
+
+        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
+
+        if(spanCount==0){
+            spanCount = 1;
+        }
+
+        layoutManager.setSpanCount(spanCount);
+
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
-                if(layoutManager.findLastVisibleItemPosition()==dataset.size()-1)
+                if(layoutManager.findLastVisibleItemPosition()==dataset.size())
                 {
+                    // trigger fetch next page
+
+                    if(dataset.size()== previous_position)
+                    {
+                        return;
+                    }
+
+
                     // trigger fetch next page
 
                     if((offset+limit)<=item_count)
                     {
                         offset = offset + limit;
-//                        makeRequestRetrofit(false,false);
-                        makeNetworkCall(false);
+                        makeNetworkCall(false, false);
                     }
+
+                    previous_position = dataset.size();
 
                 }
             }
-
-
         });
-
-
     }
 
+
+    int previous_position = -1;
 
 
 
     @Override
     public void onRefresh() {
 
-        dataset.clear();
-        makeNetworkCall(false);
+//        dataset.clear();
+        offset=0;
+        makeNetworkCall(false, true);
     }
 
 
@@ -242,23 +259,21 @@ public class NewCartsFragment extends Fragment
 
                 try {
 
-                    dataset.clear();
-                    makeNetworkCall(false);
+                    onRefresh();
 
                 } catch (IllegalArgumentException ex)
                 {
                     ex.printStackTrace();
 
                 }
-
-                adapter.notifyDataSetChanged();
             }
         });
+
     }
 
 
 
-    void makeNetworkCall(final boolean notifyChange)
+    void makeNetworkCall(final boolean notifyChange, final boolean clearDataset)
     {
 
             EndUser endUser = UtilityLogin.getEndUser(getActivity());
@@ -308,11 +323,12 @@ public class NewCartsFragment extends Fragment
 
                     if(response.body()!=null)
                     {
-//                        dataset.clear();
+
+                        if(clearDataset)
+                        {
+                            dataset.clear();
+                        }
                         dataset.addAll(response.body().getResults());
-                        adapter.notifyDataSetChanged();
-
-
                         item_count = response.body().getItemCount();
 
 
@@ -346,7 +362,7 @@ public class NewCartsFragment extends Fragment
                     }
 */
 
-
+                    adapter.notifyDataSetChanged();
                     notifyTitleChanged();
                     swipeContainer.setRefreshing(false);
 
@@ -397,8 +413,9 @@ public class NewCartsFragment extends Fragment
     public void notifyAddToCart() {
 
         // change to true
-        dataset.clear();
-        makeNetworkCall(true);
+//        dataset.clear();
+        offset = 0;
+        makeNetworkCall(true,true);
 
     }
 
@@ -458,10 +475,14 @@ public class NewCartsFragment extends Fragment
         makeRefreshNetworkCall();
     }
 
+    public int getItemCount() {
+        return item_count;
+    }
 
 
 
-    void bindItem()
+
+  /*  void bindItem()
     {
         itemName.setText(item.getItemName());
         itemDescription.setText(item.getItemDescription());
@@ -510,7 +531,7 @@ public class NewCartsFragment extends Fragment
                 .placeholder(R.drawable.nature_people)
                 .into(itemImage);
     }
-
+*/
 
 
 }

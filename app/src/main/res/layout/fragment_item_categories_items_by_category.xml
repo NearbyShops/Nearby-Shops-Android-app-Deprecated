@@ -3,9 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="#11000000">
+    android:fitsSystemWindows="true">
 
+
+    <!--android:background="#11000000"-->
     <!--
     android:background="#22000000"
     -->
@@ -140,6 +141,7 @@
 
 
     <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_margin="2.5dp"
         android:layout_marginRight="0dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp"

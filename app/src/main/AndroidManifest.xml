@@ -245,17 +245,15 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-
         <activity
-            android:launchMode="singleTop"
             android:name=".Items.ItemsActivity"
             android:label="@string/title_activity_items"
+            android:launchMode="singleTop"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
-
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -264,8 +262,19 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-
-
+        <activity
+            android:name=".ItemsInShop.ItemsInShop"
+            android:label="@string/title_activity_items_in_shop"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
+        <activity
+            android:name=".ItemsByCategoryScreenTwo.ItemsByCatS2"
+            android:label="@string/title_activity_items_by_cat_s2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

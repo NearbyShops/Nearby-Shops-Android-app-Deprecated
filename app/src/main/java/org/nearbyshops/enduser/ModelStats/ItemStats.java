@@ -8,16 +8,59 @@ import android.os.Parcelable;
  */
 public class ItemStats implements Parcelable {
 
-    int itemID;
-    double min_price;
-    double max_price;
-    int shopCount;
+    private int itemID;
+    private double min_price;
+    private double max_price;
+    private int shopCount;
+    private double avg_price;
 
     /*
         Getter and Setter methods
 
 
      */
+
+    protected ItemStats(Parcel in) {
+        itemID = in.readInt();
+        min_price = in.readDouble();
+        max_price = in.readDouble();
+        shopCount = in.readInt();
+        avg_price = in.readDouble();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(itemID);
+        dest.writeDouble(min_price);
+        dest.writeDouble(max_price);
+        dest.writeInt(shopCount);
+        dest.writeDouble(avg_price);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<ItemStats> CREATOR = new Creator<ItemStats>() {
+        @Override
+        public ItemStats createFromParcel(Parcel in) {
+            return new ItemStats(in);
+        }
+
+        @Override
+        public ItemStats[] newArray(int size) {
+            return new ItemStats[size];
+        }
+    };
+
+    public double getAvg_price() {
+        return avg_price;
+    }
+
+    public void setAvg_price(double avg_price) {
+        this.avg_price = avg_price;
+    }
 
     public int getItemID() {
         return itemID;
@@ -54,41 +97,5 @@ public class ItemStats implements Parcelable {
 
 
     // Parcelable Implementation
-
-
-    protected ItemStats(Parcel in) {
-        itemID = in.readInt();
-        min_price = in.readDouble();
-        max_price = in.readDouble();
-        shopCount = in.readInt();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(itemID);
-        dest.writeDouble(min_price);
-        dest.writeDouble(max_price);
-        dest.writeInt(shopCount);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<ItemStats> CREATOR = new Creator<ItemStats>() {
-        @Override
-        public ItemStats createFromParcel(Parcel in) {
-            return new ItemStats(in);
-        }
-
-        @Override
-        public ItemStats[] newArray(int size) {
-            return new ItemStats[size];
-        }
-    };
-
-
-
 
 }

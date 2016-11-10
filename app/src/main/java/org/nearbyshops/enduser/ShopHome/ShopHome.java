@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.nearbyshops.enduser.ItemsInShop.ItemsInShop;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
@@ -148,6 +149,14 @@ public class ShopHome extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
+    @OnClick(R.id.option_items)
+    void ItemsClick()
+    {
+        Intent intent = new Intent(this, ItemsInShop.class);
+        startActivity(intent);
+    }
 
 
 

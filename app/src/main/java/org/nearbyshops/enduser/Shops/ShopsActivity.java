@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -140,15 +142,18 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
         ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
         //slidingLayer.setShadowSizeRes(R.dimen.shadow_size);
 
+
+
         if(slidingLayer!=null) {
+
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
             slidingLayer.setChangeStateOnTap(true);
             slidingLayer.setSlidingEnabled(true);
-            slidingLayer.setPreviewOffsetDistance(15);
-            slidingLayer.setOffsetDistance(10);
+//            slidingLayer.setPreviewOffsetDistance(55);
+            slidingLayer.setOffsetDistance(30); //(int)(20 * metrics.density)
             slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
-
-//            DisplayMetrics metrics = new DisplayMetrics();
-//            getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
             //RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(250, ViewGroup.LayoutParams.MATCH_PARENT);
 
@@ -167,6 +172,7 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
 
         }
     }
+
 
 
     @OnClick({R.id.icon_sort,R.id.text_sort})

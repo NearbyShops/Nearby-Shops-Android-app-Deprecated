@@ -52,8 +52,10 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
 import org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity;
+import org.nearbyshops.enduser.FilterShopDialog.FilterShopsDialogMain;
 import org.nearbyshops.enduser.Items.ItemsActivity;
 import org.nearbyshops.enduser.ItemsByCategory.ItemsByCategory;
+import org.nearbyshops.enduser.ItemsByCategoryScreenTwo.ItemsByCatS2;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
 import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
@@ -72,7 +74,7 @@ import butterknife.OnClick;
 
 
 public class Home extends AppCompatActivity
-        implements RangeBar.OnRangeBarChangeListener, NavigationView.OnNavigationItemSelectedListener,  GoogleApiClient.ConnectionCallbacks,
+        implements NavigationView.OnNavigationItemSelectedListener,  GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener , NotifyAboutLogin{
 
     // views for navigation drawer
@@ -81,24 +83,12 @@ public class Home extends AppCompatActivity
     DrawerLayout drawer;
     NavigationView navigationView;
 
-    @Bind(R.id.shop_filters)
-    LinearLayout shopFilters;
+//    @Bind(R.id.shop_filters)
+//    LinearLayout shopFilters;
 
     // Views
     @Bind(R.id.option_item_categories)
     RelativeLayout itemCategories;
-
-    @Bind(R.id.rangebarDeliveryRange)
-    RangeBar rangeBarDeliveryRange;
-
-    @Bind(R.id.rangebarProximity)
-    RangeBar rangeBarProximity;
-
-    @Bind(R.id.textMax)
-    TextView textMax;
-
-    @Bind(R.id.textMin)
-    TextView textMin;
 
     @Bind(R.id.serviceURL)
     TextInputEditText serviceURL;
@@ -125,17 +115,6 @@ public class Home extends AppCompatActivity
     int delivery_range_current_max = ServiceConstants.DELIVERY_RANGE_CITY_MAX;
 
 
-    IRangeBarFormatter rangeBarFormatter = new IRangeBarFormatter() {
-
-        @Override
-        public String format(String value) {
-
-            value = value + "" + " Km";
-
-            return value;
-        }
-
-    };
 
 
     @Override
@@ -166,14 +145,7 @@ public class Home extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-        // setup Range Bars
-        rangeBarDeliveryRange.setFormatter(rangeBarFormatter);
-        rangeBarProximity.setFormatter(rangeBarFormatter);
 
-        rangeBarDeliveryRange.setOnRangeBarChangeListener(this);
-        rangeBarProximity.setOnRangeBarChangeListener(this);
-
-        updateRangeBars();
 
 
         // navigation drawer setup
@@ -295,27 +267,14 @@ public class Home extends AppCompatActivity
 
 
 
-
-
-    boolean visible = false;
-
-    @OnClick(R.id.show_hide_filters)
-    public void showHideFilters(View view )
+    @OnClick(R.id.option_items_by_category_format_two)
+    public void optionFormatTwo()
     {
-
-        if(visible)
-        {
-            shopFilters.setVisibility(View.GONE);
-            visible = false;
-
-        }else
-        {
-            shopFilters.setVisibility(View.VISIBLE);
-
-            visible = true;
-        }
-
+        Intent intent = new Intent(this,ItemsByCatS2.class);
+        startActivity(intent);
     }
+
+
 
 
     boolean location_block_visible = false;
@@ -365,112 +324,6 @@ public class Home extends AppCompatActivity
 
 
 
-    float deliveryRangeMax = 0;
-    float deliveryRangeMin= 0;
-    float proximity = 0;
-    boolean isDeliveryRangeUpdated = false;
-    boolean isProximityUpdated = false;
-
-
-    void updateRangeBars()
-    {
-        if(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,30)>30)
-        {
-            return;
-        }
-
-        rangeBarDeliveryRange.setRangePinsByValue(
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,0),
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,30));
-
-
-        if(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,30)>
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,30))
-        {
-            return;
-        }
-
-        rangeBarProximity.setSeekPinByValue(
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,30));
-
-    }
-
-
-
-    void savePreferences()
-    {
-        if(isDeliveryRangeUpdated)
-        {
-            if(deliveryRangeMax > 30 )
-            {
-                deliveryRangeMax = 30;
-            }
-
-            UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,deliveryRangeMin);
-            UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,deliveryRangeMax);
-        }
-
-
-        if(isProximityUpdated)
-        {
-            if(proximity>30)
-            {
-                proximity = 30;
-            }
-
-
-            UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,proximity);
-        }
-    }
-
-
-    @Override
-    public void onRangeChangeListener(
-            RangeBar rangeBar, int leftPinIndex,
-            int rightPinIndex, String leftPinValue, String rightPinValue) {
-
-
-        switch (rangeBar.getId()) {
-            case R.id.rangebarDeliveryRange:
-
-
-                deliveryRangeMax = Float.parseFloat(rightPinValue);
-                deliveryRangeMin = Float.parseFloat(leftPinValue);
-                isDeliveryRangeUpdated = true;
-
-                //Toast.makeText(this,"RangeBarFired",Toast.LENGTH_SHORT).show();
-
-                break;
-
-            case R.id.rangebarProximity:
-
-                proximity = Float.parseFloat(rightPinValue);
-                isProximityUpdated = true;
-
-                //Toast.makeText(this,"RangeBarFired",Toast.LENGTH_SHORT).show();
-
-                break;
-
-            default:
-
-                break;
-
-        }
-
-
-        if (rangeBar.getId() == R.id.rangebarDeliveryRange) {
-            if (rightPinIndex > rangeBarProximity.getTickInterval()) {
-                rangeBarProximity.setTickEnd(rightPinIndex);
-                rangeBarProximity.setFormatter(rangeBarFormatter);
-            }
-
-            //textMax.setText("Max: " + rightPinValue + " Km");
-            //textMin.setText("Min: " + leftPinValue + " Km");
-        } else if (rangeBar.getId() == R.id.rangebarProximity) {
-            textMax.setText("Max: " + rightPinValue + " Km");
-            textMin.setText("Min: " + leftPinValue + " Km");
-        }
-    }
 
 
     @Override
@@ -643,7 +496,7 @@ public class Home extends AppCompatActivity
     protected void onPause() {
         super.onPause();
 
-        savePreferences();
+
         stopLocationUpdates();
     }
 
@@ -983,16 +836,21 @@ public class Home extends AppCompatActivity
                     showToastMessage("Permission denied cant access location !");
                 }
 
-
             default:
 
-                break;
+            break;
+
         }
     }
 
 
 
+    @OnClick(R.id.show_hide_filters)
+    void showHideFilters()
+    {
+        FragmentManager fm = getSupportFragmentManager();
+        FilterShopsDialogMain filterShopsDialog = new FilterShopsDialogMain();
+        filterShopsDialog.show(fm,"serviceUrl");
+    }
+
 }
-
-
-

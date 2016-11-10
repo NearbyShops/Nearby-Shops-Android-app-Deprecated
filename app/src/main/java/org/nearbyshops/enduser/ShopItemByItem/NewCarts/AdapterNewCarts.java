@@ -1,6 +1,7 @@
 package org.nearbyshops.enduser.ShopItemByItem.NewCarts;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,8 @@ import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
+import org.nearbyshops.enduser.Shops.ListFragment.AdapterShopTwo;
+import org.nearbyshops.enduser.Shops.ListFragment.FragmentShopTwo;
 import org.nearbyshops.enduser.Utility.InputFilterMinMax;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
@@ -47,29 +51,27 @@ import retrofit2.Response;
 /**
  * Created by sumeet on 27/5/16.
  */
-public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHolder>{
+public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     private List<ShopItem> dataset;
-
     private Context context;
 
     @Inject
     CartItemService cartItemService;
-
     private NotifyAddToCart notifyAddToCart;
-
     private Item item;
-
     private AppCompatActivity activity;
 
+    private Fragment fragment;
 
-    public AdapterNewCarts(List<ShopItem> dataset, Context context, NotifyAddToCart callbacks, Item item, AppCompatActivity activity) {
+    public AdapterNewCarts(List<ShopItem> dataset, Context context, NotifyAddToCart callbacks, Item item, AppCompatActivity activity, Fragment fragment) {
         this.dataset = dataset;
         this.context = context;
         this.notifyAddToCart = callbacks;
         this.item = item;
         this.activity = activity;
+        this.fragment = fragment;
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -77,76 +79,149 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_shop_item_layout,parent,false);
+        View view;
 
-        return new ViewHolder(view);
+        if(viewType==0)
+        {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item_shop_item_layout,parent,false);
+
+            return new ViewHolder(view);
+        }
+        else
+        {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item_progress_bar,parent,false);
+
+            return new AdapterNewCarts.LoadingViewHolder(view);
+        }
+
+
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-
-        ShopItem shopItem = dataset.get(position);
-
-        Shop shop = null;
-
-        if(shopItem!=null)
-        {
-            shop = shopItem.getShop();
-        }
+    public void onBindViewHolder(RecyclerView.ViewHolder holder_given, int position) {
 
 
+        if(holder_given instanceof ViewHolder) {
 
-        if(shop!=null)
-        {
+            ViewHolder holder = (ViewHolder) holder_given;
 
+            ShopItem shopItem = dataset.get(position);
 
-            if(shop.getRt_rating_count()>0)
+            Shop shop = null;
+
+            if(shopItem!=null)
             {
-                holder.rating.setText(String.format("%.1f",shop.getRt_rating_avg()));
+                shop = shopItem.getShop();
+            }
+
+
+
+            if(shop!=null)
+            {
+
+
+                if(shop.getRt_rating_count()>0)
+                {
+                    holder.rating.setText(String.format("%.1f",shop.getRt_rating_avg()));
+                }
+                else
+                {
+                    holder.rating.setText("Not yet rated !");
+//                holder.rating.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));
+//                holder.rating.setBackgroundColor(ContextCompat.getColor(context,R.color.light_grey);
+                }
+
+
+                holder.ratingCount.setText("( " + String.format("%.0f",shop.getRt_rating_count()) + " Ratings )");
+
+
+
+                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+                        + shop.getImagePath();
+
+                Picasso.with(context)
+                        .load(imagePath)
+                        .placeholder(R.drawable.nature_people)
+                        .into(holder.shopImage);
+
+                holder.shopName.setText(shop.getShopName());
+
+                holder.distance.setText(String.format( "%.2f", shop.getDistance()) + " Km");
+                holder.deliveryCharge.setText("Delivery :Rs " + String.format( "%.0f", shop.getDeliveryCharges()) + "Per Order");
+
+            }
+
+            if(shopItem !=null)
+            {
+                holder.itemsAvailable.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()));
+                holder.itemPrice.setText("Rs " + String.format( "%.2f", shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
+
+            }
+
+
+        }
+        else if(holder_given instanceof LoadingViewHolder)
+        {
+            LoadingViewHolder viewHolder = (LoadingViewHolder) holder_given;
+
+            int itemCount = 0;
+
+            if(fragment instanceof NewCartsFragment)
+            {
+                itemCount = ((NewCartsFragment) fragment).getItemCount();
+            }
+
+
+            if(position == 0 || position == itemCount)
+            {
+                viewHolder.progressBar.setVisibility(View.GONE);
             }
             else
             {
-                holder.rating.setText("Not yet rated !");
-//                holder.rating.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));
-//                holder.rating.setBackgroundColor(ContextCompat.getColor(context,R.color.light_grey);
+                viewHolder.progressBar.setVisibility(View.VISIBLE);
+                viewHolder.progressBar.setIndeterminate(true);
+
             }
-
-
-            holder.ratingCount.setText("( " + String.format("%.0f",shop.getRt_rating_count()) + " Ratings )");
-
-
-
-            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                    + shop.getImagePath();
-
-            Picasso.with(context)
-                    .load(imagePath)
-                    .placeholder(R.drawable.nature_people)
-                    .into(holder.shopImage);
-
-            holder.shopName.setText(shop.getShopName());
-
-            holder.distance.setText(String.format( "%.2f", shop.getDistance()) + " Km");
-            holder.deliveryCharge.setText("Delivery :Rs " + String.format( "%.0f", shop.getDeliveryCharges()) + "Per Order");
-
         }
 
-        if(shopItem !=null)
-        {
-            holder.itemsAvailable.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()));
-            holder.itemPrice.setText("Rs " + String.format( "%.2f", shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
-
-        }
 
     }
 
     @Override
     public int getItemCount() {
-        return dataset.size();
+        return (dataset.size()+ 1);
+    }
+
+
+
+    @Override
+    public int getItemViewType(int position) {
+        super.getItemViewType(position);
+
+        if(position==dataset.size())
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public class LoadingViewHolder extends  RecyclerView.ViewHolder{
+
+        @Bind(R.id.progress_bar)
+        ProgressBar progressBar;
+
+        public LoadingViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+        }
     }
 
 
@@ -339,6 +414,8 @@ public class AdapterNewCarts extends RecyclerView.Adapter<AdapterNewCarts.ViewHo
 
             if(UtilityLogin.getEndUser(activity)==null)
             {
+
+                Toast.makeText(context, "Please Login to continue ...", Toast.LENGTH_SHORT).show();
                 showLoginDialog();
                 return;
             }

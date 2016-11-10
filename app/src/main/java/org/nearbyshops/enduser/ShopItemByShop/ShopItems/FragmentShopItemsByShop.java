@@ -216,7 +216,17 @@ public class FragmentShopItemsByShop extends Fragment implements
             DisplayMetrics metrics = new DisplayMetrics();
             getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-            layoutManager.setSpanCount(metrics.widthPixels/350);
+//            layoutManager.setSpanCount(metrics.widthPixels/350);
+
+
+            int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
+
+            if(spanCount==0){
+                spanCount = 1;
+            }
+
+            layoutManager.setSpanCount(spanCount);
+
 
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override

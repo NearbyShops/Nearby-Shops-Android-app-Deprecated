@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopsByCategory.Shops;
+package org.nearbyshops.enduser.ItemsInShop.ShopItems;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,27 +11,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
-import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.Model.Shop;
-import org.nearbyshops.enduser.ModelEndPoints.ShopEndPoint;
+import org.nearbyshops.enduser.Model.ShopItem;
+import org.nearbyshops.enduser.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyCategoryChanged;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyGeneral;
+import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduser.Utility.DividerItemDecoration;
-import org.nearbyshops.enduser.Utility.UtilityGeneral;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItems;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortShopsByCategory;
+import org.nearbyshops.enduser.Utility.UtilityShopHome;
+import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItemsByShop;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import icepick.Icepick;
 import icepick.State;
 import retrofit2.Call;
@@ -41,21 +40,24 @@ import retrofit2.Response;
 /**
  * Created by sumeet on 25/5/16.
  */
-public class FragmentShop extends Fragment implements
-        SwipeRefreshLayout.OnRefreshListener, NotifyCategoryChanged, NotifySort{
+public class FragmentItemsInShop extends Fragment implements
+        SwipeRefreshLayout.OnRefreshListener, NotifySort{
 
 
-        @State ItemCategory notifiedCurrentCategory;
 
-        @State ArrayList<Shop> dataset = new ArrayList<>();
+        @State
+        Shop shop;
+
+        @State ArrayList<ShopItem> dataset = new ArrayList<>();
 
         @State boolean isSaved;
 
 
-        @Inject ShopService shopService;
+        @Inject
+        ShopItemService shopItemService;
 
         RecyclerView recyclerView;
-        AdapterShop adapter;
+        AdapterItemsInShop adapter;
         GridLayoutManager layoutManager;
 
         SwipeRefreshLayout swipeContainer;
@@ -69,35 +71,30 @@ public class FragmentShop extends Fragment implements
         @State int item_count = 0;
 
 
-
         boolean isDestroyed;
 
 
+        @Bind(R.id.itemsInCart)
+        public TextView itemsInCart;
 
-        public FragmentShop() {
+        @Bind(R.id.cartTotal)
+        public TextView cartTotal;
+
+
+
+        public FragmentItemsInShop() {
             // inject dependencies through dagger
             DaggerComponentBuilder.getInstance()
                     .getNetComponent().Inject(this);
 
-
-            notifiedCurrentCategory = new ItemCategory();
-            notifiedCurrentCategory.setItemCategoryID(1);
-            notifiedCurrentCategory.setCategoryName("");
-            notifiedCurrentCategory.setParentCategoryID(-1);
-
-            Log.d("applog","Shop Fragment Constructor");
-
         }
 
-    /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static FragmentShop newInstance(int sectionNumber, ItemCategory itemCategory) {
 
-            FragmentShop fragment = new FragmentShop();
+        public static FragmentItemsInShop newInstance() {
+
+            FragmentItemsInShop fragment = new FragmentItemsInShop();
             Bundle args = new Bundle();
-            args.putParcelable("itemCat",itemCategory);
+//            args.putParcelable("itemCat",itemCategory);
             fragment.setArguments(args);
 
             return fragment;
@@ -107,10 +104,9 @@ public class FragmentShop extends Fragment implements
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
-            View rootView = inflater.inflate(R.layout.fragment_shops, container, false);
-            //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            View rootView = inflater.inflate(R.layout.fragment_items_in_shop, container, false);
 
-//            itemCategory = getArguments().getParcelable("itemCat");
+            ButterKnife.bind(this,rootView);
 
             recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
             swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
@@ -134,6 +130,8 @@ public class FragmentShop extends Fragment implements
 
             setupRecyclerView();
             setupSwipeContainer();
+
+            shop = UtilityShopHome.getShop(getActivity());
 
             return rootView;
         }
@@ -160,13 +158,14 @@ public class FragmentShop extends Fragment implements
         void setupRecyclerView()
         {
 
-            adapter = new AdapterShop(dataset,getActivity(),this);
+            adapter = new AdapterItemsInShop(dataset,getActivity(),this);
 
             recyclerView.setAdapter(adapter);
 
             layoutManager = new GridLayoutManager(getActivity(),1);
             recyclerView.setLayoutManager(layoutManager);
 
+/*
             recyclerView.addItemDecoration(
                     new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL_LIST)
             );
@@ -174,6 +173,7 @@ public class FragmentShop extends Fragment implements
             recyclerView.addItemDecoration(
                     new DividerItemDecoration(getActivity(),DividerItemDecoration.HORIZONTAL_LIST)
             );
+*/
 
             //itemCategoriesList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
 
@@ -197,10 +197,9 @@ public class FragmentShop extends Fragment implements
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
 
+
                     if(layoutManager.findLastVisibleItemPosition()==dataset.size())
                     {
-
-                        // trigger fetch next page
 
                         if(dataset.size()== previous_position)
                         {
@@ -224,13 +223,15 @@ public class FragmentShop extends Fragment implements
         }
 
 
+
     int previous_position = -1;
 
 
 
 
 
-        private void makeRefreshNetworkCall() {
+
+    private void makeRefreshNetworkCall() {
 
             swipeContainer.post(new Runnable() {
                 @Override
@@ -239,7 +240,9 @@ public class FragmentShop extends Fragment implements
 
                     try {
 
-                        onRefresh();
+                        offset = 0; // reset the offset
+//                        dataset.clear();
+                        makeNetworkCall(true);
 
                     } catch (IllegalArgumentException ex)
                     {
@@ -270,44 +273,35 @@ public class FragmentShop extends Fragment implements
         private void makeNetworkCall(final boolean clearDataset)
         {
 
-            if(notifiedCurrentCategory==null)
-            {
-                swipeContainer.setRefreshing(false);
-                return;
-            }
-
             String current_sort = "";
+            current_sort = UtilitySortShopItemsByShop.getSort(getContext())
+                            + " " + UtilitySortShopItemsByShop.getAscending(getContext());
 
-            current_sort = UtilitySortShopsByCategory.getSort(getContext()) + " " + UtilitySortShopsByCategory.getAscending(getContext());
-
-
-            Call<ShopEndPoint> callEndpoint = shopService.filterShopsByItemCategory(
-
-                    notifiedCurrentCategory.getItemCategoryID(),
-                    null,
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
-                    current_sort,limit,offset,false
+            Call<ShopItemEndPoint> shopItemCall = shopItemService.getShopItemEndpoint(
+                    null,shop.getShopID(),
+                    null,null,null,
+                    null,null,null,
+                    null,null,null,null,
+                    null, null,
+                    current_sort,limit,offset,null
             );
 
 
 
-            callEndpoint.enqueue(new Callback<ShopEndPoint>() {
+            shopItemCall.enqueue(new Callback<ShopItemEndPoint>() {
                 @Override
-                public void onResponse(Call<ShopEndPoint> call, Response<ShopEndPoint> response) {
+                public void onResponse(Call<ShopItemEndPoint> call, Response<ShopItemEndPoint> response) {
 
                     if(isDestroyed)
                     {
                         return;
                     }
 
-    //                dataset.clear();
+                    //                dataset.clear();
 
                     if(response.body()!=null)
                     {
+
                         if(clearDataset)
                         {
                             dataset.clear();
@@ -319,19 +313,6 @@ public class FragmentShop extends Fragment implements
                             item_count = response.body().getItemCount();
                         }
 
-
-
-
-                        if(!notifiedCurrentCategory.getAbstractNode() && item_count>0 && !isbackPressed)
-                        {
-                            if(getActivity() instanceof NotifyGeneral)
-                            {
-                                ((NotifyGeneral)getActivity()).notifySwipeToright();
-                            }
-
-                            // reset the flag
-                            isbackPressed = false;
-                        }
                     }
 
 
@@ -340,10 +321,12 @@ public class FragmentShop extends Fragment implements
                     adapter.notifyDataSetChanged();
                     swipeContainer.setRefreshing(false);
 
+
                 }
 
                 @Override
-                public void onFailure(Call<ShopEndPoint> call, Throwable t) {
+                public void onFailure(Call<ShopItemEndPoint> call, Throwable t) {
+
 
                     if(isDestroyed)
                     {
@@ -352,6 +335,7 @@ public class FragmentShop extends Fragment implements
 
                     showToastMessage(getString(R.string.network_request_failed));
                     swipeContainer.setRefreshing(false);
+
                 }
             });
 
@@ -374,7 +358,6 @@ public class FragmentShop extends Fragment implements
         @Override
         public void onSaveInstanceState(Bundle outState) {
             super.onSaveInstanceState(outState);
-
             Icepick.saveInstanceState(this, outState);
         }
 
@@ -389,37 +372,29 @@ public class FragmentShop extends Fragment implements
         }
 
 
-        @Override
+        /*@Override
         public void itemCategoryChanged(ItemCategory currentCategory, Boolean isBackPressed) {
-
-
-            notifiedCurrentCategory = currentCategory;
 //            dataset.clear();
             offset = 0 ; // reset the offset
             makeNetworkCall(true);
-
             this.isbackPressed = isBackPressed;
         }
-
+*/
 
 
         void notifyTitleChanged()
         {
             String name = "";
 
-            if(notifiedCurrentCategory!=null)
-            {
-                name = notifiedCurrentCategory.getCategoryName();
-            }
-
-
             if(getActivity() instanceof NotifyTitleChanged)
             {
+
                 ((NotifyTitleChanged)getActivity())
-                        .NotifyTitleChanged( name +
-                                " Shops (" + String.valueOf(dataset.size())
-                                + "/" + String.valueOf(item_count) + ")",1);
+                        .NotifyTitleChanged( "Displaying "+
+                                String.valueOf(dataset.size())
+                                + " out of " + String.valueOf(item_count) + " Items",1);
             }
+
         }
 
 
@@ -427,9 +402,8 @@ public class FragmentShop extends Fragment implements
     public void onDestroyView() {
         super.onDestroyView();
         isDestroyed = true;
+        ButterKnife.unbind(this);
     }
-
-
 
     @Override
     public void notifySortChanged() {

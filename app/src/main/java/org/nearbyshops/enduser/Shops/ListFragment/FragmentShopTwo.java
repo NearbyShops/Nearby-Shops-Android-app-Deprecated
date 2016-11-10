@@ -246,7 +246,16 @@ public class FragmentShopTwo extends Fragment implements
             DisplayMetrics metrics = new DisplayMetrics();
             getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-            layoutManager.setSpanCount(metrics.widthPixels/350);
+
+            int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
+
+            if(spanCount==0){
+                spanCount = 1;
+            }
+
+            layoutManager.setSpanCount(spanCount);
+
+//            layoutManager.setSpanCount(metrics.widthPixels/350);
 
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
@@ -282,7 +291,7 @@ public class FragmentShopTwo extends Fragment implements
     int previous_position = -1;
 
 
-    int getItemCount()
+    public int getItemCount()
     {
         return item_count;
     }

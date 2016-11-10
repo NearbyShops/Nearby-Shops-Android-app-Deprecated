@@ -191,7 +191,17 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
         DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        layoutManager.setSpanCount(metrics.widthPixels/350);
+//        layoutManager.setSpanCount(metrics.widthPixels/350);
+
+
+        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
+
+        if(spanCount==0){
+            spanCount = 1;
+        }
+
+        layoutManager.setSpanCount(spanCount);
+
 
     }
 
@@ -237,16 +247,18 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
             if(endUser == null)
             {
 //                showLoginDialog();
-                swipeContainer.setRefreshing(false);
 
+
+                swipeContainer.setRefreshing(false);
 
                 if(getActivity() instanceof NotifySwipeToRight)
                 {
                     ((NotifySwipeToRight)getActivity()).notifySwipeRight();
-                }
 
-                return;
+                    return;
+                }
             }
+
 
 
         String current_sort = "";
@@ -294,6 +306,8 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
                         }
 
 
+
+
                         if(notifyChange)
                         {
                             filledCartsChanged();
@@ -304,6 +318,14 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
                         adapter.notifyDataSetChanged();
                         notifyTitleChanged();
                         swipeContainer.setRefreshing(false);
+                    }
+                    else
+                    {
+
+                        if(getActivity() instanceof NotifySwipeToRight)
+                        {
+                            ((NotifySwipeToRight)getActivity()).notifySwipeRight();
+                        }
                     }
 
                 }

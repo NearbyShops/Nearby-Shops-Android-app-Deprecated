@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ItemsByCategory.Items;
+package org.nearbyshops.enduser.ItemsByCategoryScreenTwo.Items;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,8 +21,6 @@ import org.nearbyshops.enduser.ModelStats.ItemStats;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopItemByItem.ShopsForItemSwipe;
-import org.nearbyshops.enduser.Shops.ListFragment.AdapterShopTwo;
-import org.nearbyshops.enduser.Shops.ListFragment.FragmentShopTwo;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
 import java.util.List;
@@ -33,7 +31,7 @@ import butterknife.ButterKnife;
 /**
  * Created by sumeet on 25/5/16.
  */
-public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AdapterItemHorizontalScreen extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     private List<Item> dataset = null;
@@ -41,7 +39,7 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Fragment fragment;
 
 
-    public AdapterItem(List<Item> dataset, Context context, Fragment fragment) {
+    public AdapterItemHorizontalScreen(List<Item> dataset, Context context, Fragment fragment) {
         this.dataset = dataset;
         this.context = context;
         this.fragment = fragment;
@@ -57,7 +55,7 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if(viewType==0)
         {
             view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_items_by_item_category_card,parent,false);
+                    .inflate(R.layout.list_item_items_horizontal_screen,parent,false);
 
             return new ViewHolder(view);
         }
@@ -67,7 +65,7 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_item_progress_bar,parent,false);
 
-            return new AdapterItem.LoadingViewHolder(view);
+            return new AdapterItemHorizontalScreen.LoadingViewHolder(view);
 
         }
 
@@ -79,9 +77,9 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
-        if(holder_given instanceof AdapterItem.ViewHolder) {
+        if(holder_given instanceof AdapterItemHorizontalScreen.ViewHolder) {
 
-            AdapterItem.ViewHolder holder = (AdapterItem.ViewHolder) holder_given;
+            AdapterItemHorizontalScreen.ViewHolder holder = (AdapterItemHorizontalScreen.ViewHolder) holder_given;
 
             if(position >= dataset.size())
             {
@@ -95,13 +93,13 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             if(item!=null)
             {
                 holder.itemName.setText(item.getItemName());
-                holder.itemDescription.setText(item.getItemDescription());
+//                holder.itemDescription.setText(item.getItemDescription());
 
 
                 if(item.getRt_rating_count()==0)
                 {
-                    holder.itemRating.setText("N/A");
-                    holder.ratingCount.setText("(Not yet rated)");
+                    holder.itemRating.setText("-");
+                    holder.ratingCount.setText("( not yet rated )");
                 }
                 else
                 {
@@ -128,17 +126,17 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     shop = "Shop";
                 }
 
-                holder.shopCount.setText("In " + String.valueOf(itemStats.getShopCount()) + " " + shop);
-                holder.priceRange.setText( "Rs: "
+                holder.shopCount.setText("Available In " + String.valueOf(itemStats.getShopCount()) + " " + shop);
+                holder.priceRange.setText( "Price Range : Rs. "
                         + String.valueOf(itemStats.getMin_price())
                         + " - "
                         + String.valueOf(itemStats.getMax_price())
                         + " per " + dataset.get(position).getQuantityUnit()
                 );
 
-
-//            Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
+                holder.priceAverage.setText("Price Average : Rs. " + String.format("%.2f",itemStats.getAvg_price()));
             }
+
 
 
             Picasso.with(context)
@@ -148,15 +146,15 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
         }
-        else if(holder_given instanceof AdapterItem.LoadingViewHolder)
+        else if(holder_given instanceof AdapterItemHorizontalScreen.LoadingViewHolder)
         {
-            AdapterItem.LoadingViewHolder viewHolder = (AdapterItem.LoadingViewHolder) holder_given;
+            AdapterItemHorizontalScreen.LoadingViewHolder viewHolder = (AdapterItemHorizontalScreen.LoadingViewHolder) holder_given;
 
             int itemCount = 0;
 
-            if(fragment instanceof FragmentItem_ItemByCategory)
+            if(fragment instanceof FragmentItemScreenHorizontal)
             {
-                itemCount = ((FragmentItem_ItemByCategory) fragment).getItemCount();
+                itemCount = ((FragmentItemScreenHorizontal) fragment).getItemCount();
             }
 
 
@@ -219,28 +217,31 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView itemDescription;
+//        TextView itemDescription;
         TextView itemName;
         ImageView itemImage;
         TextView priceRange;
+        TextView priceAverage;
         TextView shopCount;
 
         TextView itemRating;
         TextView ratingCount;
 
-        CardView itemsListItem;
+
+        ConstraintLayout itemsListItem;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             itemView.setOnClickListener(this);
 
-            itemDescription = (TextView) itemView.findViewById(R.id.itemDescription);
+//            itemDescription = (TextView) itemView.findViewById(R.id.itemDescription);
             itemName = (TextView) itemView.findViewById(R.id.itemName);
             itemImage = (ImageView) itemView.findViewById(R.id.itemImage);
             priceRange = (TextView) itemView.findViewById(R.id.price_range);
+            priceAverage = (TextView) itemView.findViewById(R.id.price_average);
             shopCount = (TextView) itemView.findViewById(R.id.shop_count);
-            itemsListItem = (CardView) itemView.findViewById(R.id.items_list_item);
+            itemsListItem = (ConstraintLayout) itemView.findViewById(R.id.items_list_item);
 
             itemRating = (TextView) itemView.findViewById(R.id.item_rating);
             ratingCount = (TextView) itemView.findViewById(R.id.rating_count);

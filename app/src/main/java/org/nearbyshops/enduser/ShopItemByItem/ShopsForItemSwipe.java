@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -28,6 +29,7 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
 import org.nearbyshops.enduser.Model.Item;
+import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.ModelStats.ItemStats;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
@@ -38,6 +40,7 @@ import org.nearbyshops.enduser.ShopReview.SlidingLayerSortReview;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -149,6 +152,8 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
             DisplayMetrics metrics = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
+
+
             //RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(250, ViewGroup.LayoutParams.MATCH_PARENT);
 
             //slidingContents.setLayoutParams(layoutParams);
@@ -182,9 +187,24 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
     @OnClick({R.id.icon_checkout,R.id.text_checkout})
     void checkoutClick()
     {
+
+        EndUser endUser = UtilityLogin.getEndUser(this);
+
+        if(endUser == null)
+        {
+            showToastMessage("Please Login to continue ...");
+
+            return;
+        }
+
         cartsButtonClick();
     }
 
+
+    void showToastMessage(String message)
+    {
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
 
 
 
@@ -299,7 +319,7 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
     @Override
     public void notifySwipeRight() {
 
-        mViewPager.setCurrentItem(1,true);
+        mViewPager.setCurrentItem(1,false);
     }
 
     @Override
@@ -331,6 +351,7 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
                 ((NotifyNewCartsChanged)fragment).notifyNewCartsChanged();
             }
     }
+
 
     @Override
     public void NotifyLogin() {

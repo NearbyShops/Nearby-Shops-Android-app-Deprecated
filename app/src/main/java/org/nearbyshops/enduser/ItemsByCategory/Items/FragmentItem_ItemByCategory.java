@@ -73,7 +73,7 @@ public class FragmentItem_ItemByCategory extends Fragment
     @State boolean isbackPressed = false;
 
 
-    private int limit = 30;
+    private int limit = 10;
     @State int offset = 0;
 
     @State int item_count = 0;
@@ -162,7 +162,7 @@ public class FragmentItem_ItemByCategory extends Fragment
     void setupRecyclerView()
     {
 
-        adapter = new AdapterItem(dataset,getActivity());
+        adapter = new AdapterItem(dataset,getActivity(),this);
 
         recyclerView.setAdapter(adapter);
 
@@ -181,7 +181,17 @@ public class FragmentItem_ItemByCategory extends Fragment
         DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        layoutManager.setSpanCount(metrics.widthPixels/350);
+//        layoutManager.setSpanCount(metrics.widthPixels/350);
+
+
+        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
+
+        if(spanCount==0){
+            spanCount = 1;
+        }
+
+        layoutManager.setSpanCount(spanCount);
+
 
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -189,15 +199,26 @@ public class FragmentItem_ItemByCategory extends Fragment
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
-                if(layoutManager.findLastVisibleItemPosition()==dataset.size()-1)
+                if(layoutManager.findLastVisibleItemPosition()==dataset.size())
                 {
+
+                    // trigger fetch next page
+
+                    if(dataset.size()== previous_position)
+                    {
+                        return;
+                    }
+
+
                     // trigger fetch next page
 
                     if((offset+limit)<=item_count)
                     {
                         offset = offset + limit;
-                        makeNetworkCall();
+                        makeNetworkCall(false);
                     }
+
+                    previous_position = dataset.size();
 
                 }
             }
@@ -205,6 +226,7 @@ public class FragmentItem_ItemByCategory extends Fragment
     }
 
 
+    int previous_position = -1;
 
 
 
@@ -217,9 +239,7 @@ public class FragmentItem_ItemByCategory extends Fragment
 
                 try {
 
-                    dataset.clear();
-                    offset = 0 ; // reset offset
-                    makeNetworkCall();
+                    onRefresh();
 
                 } catch (IllegalArgumentException ex)
                 {
@@ -233,7 +253,7 @@ public class FragmentItem_ItemByCategory extends Fragment
 
 
 
-    void makeNetworkCall()
+    void makeNetworkCall(final boolean clearDataset)
     {
 
 
@@ -279,7 +299,12 @@ public class FragmentItem_ItemByCategory extends Fragment
 
                 if(response.body()!=null)
                 {
+                    if(clearDataset)
+                    {
+                        dataset.clear();
+                    }
                     dataset.addAll(response.body().getResults());
+                    adapter.notifyDataSetChanged();
 
                     if(response.body().getItemCount()!=null)
                     {
@@ -302,7 +327,7 @@ public class FragmentItem_ItemByCategory extends Fragment
                     notifyTitleChanged();
                 }
 
-                adapter.notifyDataSetChanged();
+
                 swipeContainer.setRefreshing(false);
 
             }
@@ -324,6 +349,9 @@ public class FragmentItem_ItemByCategory extends Fragment
 
     }
 
+    public int getItemCount() {
+        return item_count;
+    }
 
 
     public static class EndPoint implements Callback<ItemEndPoint>{
@@ -350,9 +378,9 @@ public class FragmentItem_ItemByCategory extends Fragment
     @Override
     public void onRefresh() {
 
-        dataset.clear();
+//        dataset.clear();
         offset = 0; // reset the offset
-        makeNetworkCall();
+        makeNetworkCall(true);
     }
 
 
@@ -400,8 +428,9 @@ public class FragmentItem_ItemByCategory extends Fragment
 
 
         notifiedCurrentCategory = currentCategory;
-        dataset.clear();
-        offset = 0 ; // reset the offset
+//        dataset.clear();
+//        offset = 0 ; // reset the offset
+//        onRefresh();
         makeRefreshNetworkCall();
 
         this.isbackPressed = isBackPressed;

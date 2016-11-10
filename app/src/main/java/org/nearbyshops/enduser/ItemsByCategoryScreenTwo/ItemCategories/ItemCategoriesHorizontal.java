@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopsByCategory.ItemCategories;
+package org.nearbyshops.enduser.ItemsByCategoryScreenTwo.ItemCategories;
 
 
 import android.os.Bundle;
@@ -15,19 +15,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-
-import org.nearbyshops.enduser.Application.ApplicationState;
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.Model.ItemCategory;
+import org.nearbyshops.enduser.ModelEndPoints.ItemCategoryEndPoint;
+import org.nearbyshops.enduser.R;
+import org.nearbyshops.enduser.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyGeneral;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.ToggleFab;
-import org.nearbyshops.enduser.Model.ItemCategory;
-import org.nearbyshops.enduser.Model.Shop;
-import org.nearbyshops.enduser.ModelEndPoints.ItemCategoryEndPoint;
-import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
 import java.util.ArrayList;
@@ -42,8 +39,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ItemCategoriesFragment extends Fragment
-        implements ItemCategoriesAdapter.ReceiveNotificationsFromAdapter,
+public class ItemCategoriesHorizontal extends Fragment
+        implements AdapterHorizontal.ReceiveNotificationsFromAdapter,
         SwipeRefreshLayout.OnRefreshListener,
         NotifyBackPressed {
 
@@ -53,7 +50,7 @@ public class ItemCategoriesFragment extends Fragment
     ArrayList<ItemCategory> dataset = new ArrayList<>();
 
     RecyclerView itemCategoriesList;
-    ItemCategoriesAdapter listAdapter;
+    AdapterHorizontal listAdapter;
     GridLayoutManager layoutManager;
 
     @State boolean show = true;
@@ -71,8 +68,8 @@ public class ItemCategoriesFragment extends Fragment
     @State int item_count = 0;
 
 
-    @Bind(R.id.swipeContainer)
-    SwipeRefreshLayout swipeContainer;
+//    @Bind(R.id.swipeContainer)
+//    SwipeRefreshLayout swipeContainer;
 
 
     boolean isDestroyed;
@@ -81,7 +78,7 @@ public class ItemCategoriesFragment extends Fragment
 
 
 
-    public ItemCategoriesFragment() {
+    public ItemCategoriesHorizontal() {
         super();
 
         // Inject the dependencies using Dependency Injection
@@ -104,7 +101,7 @@ public class ItemCategoriesFragment extends Fragment
         super.onCreateView(inflater, container, savedInstanceState);
 
 
-        View rootView = inflater.inflate(R.layout.fragment_item_category_shop_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_item_categories_horizontal, container, false);
 
         ButterKnife.bind(this,rootView);
 
@@ -122,7 +119,7 @@ public class ItemCategoriesFragment extends Fragment
             // reset the offset before making request
 
 
-            swipeContainer.post(new Runnable() {
+           /* swipeContainer.post(new Runnable() {
                 @Override
                 public void run() {
                     swipeContainer.setRefreshing(true);
@@ -131,9 +128,6 @@ public class ItemCategoriesFragment extends Fragment
 
 
                         // make a network call
-                        offset = 0;
-                        dataset.clear();
-                        makeRequestRetrofit(false,false);
 
 
                     } catch (IllegalArgumentException ex)
@@ -142,8 +136,13 @@ public class ItemCategoriesFragment extends Fragment
 
                     }
                 }
-            });
+            });*/
 
+
+
+            offset = 0;
+            dataset.clear();
+            makeRequestRetrofit(false,false);
 
         }
         else
@@ -165,10 +164,15 @@ public class ItemCategoriesFragment extends Fragment
     void setupRecyclerView()
     {
 
-        listAdapter = new ItemCategoriesAdapter(dataset,getActivity(),this,this);
+        listAdapter = new AdapterHorizontal(dataset,getActivity(),this,this);
         itemCategoriesList.setAdapter(listAdapter);
-        layoutManager = new GridLayoutManager(getActivity(),1, LinearLayoutManager.VERTICAL,false);
+        layoutManager = new GridLayoutManager(getActivity(),1, LinearLayoutManager.HORIZONTAL,false);
+
+
         itemCategoriesList.setLayoutManager(layoutManager);
+
+
+
 
 
         // Code for Staggered Grid Layout
@@ -193,7 +197,9 @@ public class ItemCategoriesFragment extends Fragment
             spanCount = 1;
         }
 
-        layoutManager.setSpanCount(spanCount);
+//        layoutManager.setSpanCount(spanCount);
+        layoutManager.setSpanCount(1);
+
 
 
         itemCategoriesList.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -269,16 +275,16 @@ public class ItemCategoriesFragment extends Fragment
 
     void setupSwipeContainer()
     {
-
-        if(swipeContainer!=null) {
-
-            swipeContainer.setOnRefreshListener(this);
-            swipeContainer.setColorSchemeResources(
-                    android.R.color.holo_blue_bright,
-                    android.R.color.holo_green_light,
-                    android.R.color.holo_orange_light,
-                    android.R.color.holo_red_light);
-        }
+//
+//        if(swipeContainer!=null) {
+//
+//            swipeContainer.setOnRefreshListener(this);
+//            swipeContainer.setColorSchemeResources(
+//                    android.R.color.holo_blue_bright,
+//                    android.R.color.holo_green_light,
+//                    android.R.color.holo_orange_light,
+//                    android.R.color.holo_red_light);
+//        }
 
     }
 
@@ -291,7 +297,8 @@ public class ItemCategoriesFragment extends Fragment
 
 
         Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
-                null,currentCategory.getItemCategoryID(),
+                null,
+                currentCategory.getItemCategoryID(),
                 null,
                 (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY, 0),
                 (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY, 0),
@@ -336,7 +343,7 @@ public class ItemCategoriesFragment extends Fragment
 
                 }
 
-                swipeContainer.setRefreshing(false);
+//                swipeContainer.setRefreshing(false);
 
             }
 
@@ -351,10 +358,11 @@ public class ItemCategoriesFragment extends Fragment
 
 
                 showToastMessage("Network request failed. Please check your connection !");
-                if(swipeContainer!=null)
-                {
-                    swipeContainer.setRefreshing(false);
-                }
+
+//                if(swipeContainer!=null)
+//                {
+//                    swipeContainer.setRefreshing(false);
+//                }
             }
         });
 
@@ -622,6 +630,16 @@ public class ItemCategoriesFragment extends Fragment
     }
 
 
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        Icepick.restoreInstanceState(this, savedInstanceState);
+        notifyTitleChanged();
+    }
+
+
+
 
     void notifyTitleChanged()
     {
@@ -635,14 +653,6 @@ public class ItemCategoriesFragment extends Fragment
         }
     }
 
-
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-
-        Icepick.restoreInstanceState(this, savedInstanceState);
-        notifyTitleChanged();
-    }
 
 
     @Override
