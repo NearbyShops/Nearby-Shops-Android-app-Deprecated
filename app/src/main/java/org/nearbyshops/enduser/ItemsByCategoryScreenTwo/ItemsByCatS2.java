@@ -2,8 +2,6 @@ package org.nearbyshops.enduser.ItemsByCategoryScreenTwo;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
@@ -11,16 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
-
-import org.nearbyshops.enduser.ItemsByCategory.ItemCategories.ItemCategoriesFragmentItem;
-import org.nearbyshops.enduser.ItemsByCategory.Items.FragmentItem_ItemByCategory;
 import org.nearbyshops.enduser.ItemsByCategory.SlidingLayerSortItems;
 import org.nearbyshops.enduser.ItemsByCategoryScreenTwo.ItemCategories.ItemCategoriesHorizontal;
 import org.nearbyshops.enduser.ItemsByCategoryScreenTwo.Items.FragmentItemScreenHorizontal;
@@ -143,11 +137,6 @@ public class ItemsByCatS2 extends AppCompatActivity implements NotifyCategoryCha
             if(((NotifyBackPressed)fragment).backPressed())
             {
                 super.onBackPressed();
-            }
-            else
-            {
-//                mViewPager.setCurrentItem(0,true);
-//                mViewPager.setCurrentItem(0);
             }
 
         }

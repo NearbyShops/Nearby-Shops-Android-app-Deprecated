@@ -20,16 +20,12 @@ import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
-import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyGeneral;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduser.Utility.DividerItemDecoration;
 import org.nearbyshops.enduser.Utility.UtilityShopHome;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortItemsByCategory;
 import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItemsByShop;
 
 import java.util.ArrayList;
@@ -240,7 +236,7 @@ public class FragmentShopItemsByShop extends Fragment implements
                         if((offset+limit)<=item_count)
                         {
                             offset = offset + limit;
-                            makeNetworkCall();
+                            makeNetworkCall(false);
                         }
 
                     }
@@ -262,8 +258,8 @@ public class FragmentShopItemsByShop extends Fragment implements
                     try {
 
                         offset = 0; // reset the offset
-                        dataset.clear();
-                        makeNetworkCall();
+//                        dataset.clear();
+                        makeNetworkCall(true);
 
                     } catch (IllegalArgumentException ex)
                     {
@@ -281,8 +277,8 @@ public class FragmentShopItemsByShop extends Fragment implements
         public void onRefresh() {
 
             offset = 0; // reset the offset
-            dataset.clear();
-            makeNetworkCall();
+//            dataset.clear();
+            makeNetworkCall(true);
         }
 
 
@@ -291,7 +287,7 @@ public class FragmentShopItemsByShop extends Fragment implements
 
 
 
-        private void makeNetworkCall()
+        private void makeNetworkCall(final boolean clearDataset)
         {
 
             if(notifiedCurrentCategory==null)
@@ -333,6 +329,10 @@ public class FragmentShopItemsByShop extends Fragment implements
 
                     if(response.body()!=null)
                     {
+                        if(clearDataset)
+                        {
+                            dataset.clear();
+                        }
                         dataset.addAll(response.body().getResults());
 
                         if(response.body().getItemCount()!=null)
@@ -418,9 +418,9 @@ public class FragmentShopItemsByShop extends Fragment implements
 
 
             notifiedCurrentCategory = currentCategory;
-            dataset.clear();
+//            dataset.clear();
             offset = 0 ; // reset the offset
-            makeNetworkCall();
+            makeNetworkCall(true);
 
             this.isbackPressed = isBackPressed;
         }

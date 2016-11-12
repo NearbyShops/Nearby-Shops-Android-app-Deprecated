@@ -65,7 +65,7 @@ public class NewCartsFragment extends Fragment
     AdapterNewCarts adapter;
 
     @State
-    ArrayList<ShopItem> dataset = new ArrayList<>();
+    ArrayList<Object> dataset = new ArrayList<>();
 
     GridLayoutManager layoutManager;
     SwipeRefreshLayout swipeContainer;
@@ -129,6 +129,8 @@ public class NewCartsFragment extends Fragment
 
 
         item = getArguments().getParcelable("item");
+        dataset.add(0,item);
+
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
 
 
@@ -163,7 +165,6 @@ public class NewCartsFragment extends Fragment
         {
             onViewStateRestored(savedInstanceState);
         }
-
 
         setupRecyclerView();
         return rootView;
@@ -327,6 +328,7 @@ public class NewCartsFragment extends Fragment
                         if(clearDataset)
                         {
                             dataset.clear();
+                            dataset.add(0,item);
                         }
                         dataset.addAll(response.body().getResults());
                         item_count = response.body().getItemCount();
@@ -414,9 +416,18 @@ public class NewCartsFragment extends Fragment
 
         // change to true
 //        dataset.clear();
-        offset = 0;
-        makeNetworkCall(true,true);
 
+        swipeContainer.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeContainer.setRefreshing(true);
+
+
+                offset = 0;
+                makeNetworkCall(true,true);
+
+            }
+        });
     }
 
     @Override
@@ -450,7 +461,7 @@ public class NewCartsFragment extends Fragment
             ((NotifyTitleChanged) getActivity())
                     .NotifyTitleChanged(
                             " New Carts ("
-                                    + String.valueOf(dataset.size()) + "/" + item_count + ")",1
+                                    + String.valueOf(dataset.size()-1) + "/" + item_count + ")",1
                     );
         }
     }
@@ -482,56 +493,6 @@ public class NewCartsFragment extends Fragment
 
 
 
-  /*  void bindItem()
-    {
-        itemName.setText(item.getItemName());
-        itemDescription.setText(item.getItemDescription());
-
-        if(item.getRt_rating_count()==0)
-        {
-            itemRating.setText("N/A");
-            ratingCount.setText("(Not yet rated)");
-        }
-        else
-        {
-            itemRating.setText(String.format("%.1f",item.getRt_rating_avg()));
-            ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " ratings )");
-        }
-
-
-        if(item.getItemStats()!=null)
-        {
-            ItemStats itemStats = item.getItemStats();
-
-            String shop = "Shops";
-
-            if(itemStats.getShopCount()==1)
-            {
-                shop = "Shop";
-            }
-
-            shopCount.setText("In " + String.valueOf(itemStats.getShopCount()) + " " + shop);
-            priceRange.setText( "Rs: "
-                    + String.valueOf(itemStats.getMin_price())
-                    + " - "
-                    + String.valueOf(itemStats.getMax_price())
-                    + " per " + item.getQuantityUnit()
-            );
-
-
-//            Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
-        }
-
-
-        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                + item.getItemImageURL();
-
-        Picasso.with(getActivity())
-                .load(imagePath)
-                .placeholder(R.drawable.nature_people)
-                .into(itemImage);
-    }
-*/
 
 
 }

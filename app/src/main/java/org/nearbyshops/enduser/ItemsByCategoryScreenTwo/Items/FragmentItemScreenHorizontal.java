@@ -47,9 +47,10 @@ public class FragmentItemScreenHorizontal extends Fragment
 
 //        ItemCategory itemCategory;
 
-    @State ItemCategory notifiedCurrentCategory;
+    @State
+    ItemCategory notifiedCurrentCategory;
 
-    @State boolean isSaved = false;
+//    @State boolean isSaved = false;
 
     @Inject
     ItemService itemService;
@@ -57,7 +58,8 @@ public class FragmentItemScreenHorizontal extends Fragment
     RecyclerView recyclerView;
     AdapterItemHorizontalScreen adapter;
 
-    @State ArrayList<Item> dataset = new ArrayList<>();
+    @State
+    ArrayList<Item> dataset = new ArrayList<>();
 
     GridLayoutManager layoutManager;
     SwipeRefreshLayout swipeContainer;
@@ -69,14 +71,20 @@ public class FragmentItemScreenHorizontal extends Fragment
 
 
 
-    @State boolean isbackPressed = false;
+    @State
+    boolean isbackPressed = false;
 
 
     private int limit = 10;
-    @State int offset = 0;
 
-    @State int item_count = 0;
+    @State
+    int offset = 0;
 
+    @State
+    int item_count = 0;
+
+    @State
+    int previous_position = -1;
 
     // Interface References
 
@@ -108,12 +116,12 @@ public class FragmentItemScreenHorizontal extends Fragment
 
 
 
-
-        @Override
+    @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
             View rootView = inflater.inflate(R.layout.fragment_items_item_by_category, container, false);
+
 
 //            itemCategory = getArguments().getParcelable("itemCat");
 
@@ -122,24 +130,16 @@ public class FragmentItemScreenHorizontal extends Fragment
 
             if(savedInstanceState==null)
             {
-
                 makeRefreshNetworkCall();
-                isSaved = true;
             }
             else
             {
                 onViewStateRestored(savedInstanceState);
             }
 
-
-
-
             setupRecyclerView();
             setupSwipeContainer();
-
-
             return rootView;
-
         }
 
 
@@ -225,7 +225,7 @@ public class FragmentItemScreenHorizontal extends Fragment
     }
 
 
-    int previous_position = -1;
+
 
 
 

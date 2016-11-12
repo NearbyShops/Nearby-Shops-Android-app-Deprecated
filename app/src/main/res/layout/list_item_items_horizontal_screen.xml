@@ -54,7 +54,7 @@
     <TextView
         android:textColor="#000000"
         android:layout_marginTop="2dp"
-        android:textSize="13sp"
+        android:textSize="15sp"
         android:textStyle="normal"
         android:id="@+id/price_range"
         app:layout_constraintLeft_toLeftOf="@+id/itemName"
@@ -67,7 +67,7 @@
     <TextView
         android:textColor="#000000"
         android:layout_marginTop="2dp"
-        android:textSize="13sp"
+        android:textSize="15sp"
         android:textStyle="normal"
         android:id="@+id/price_average"
         app:layout_constraintLeft_toLeftOf="@+id/itemName"
@@ -82,7 +82,7 @@
         android:textColor="#000000"
         android:layout_marginTop="2dp"
         android:id="@+id/shop_count"
-        android:textSize="13sp"
+        android:textSize="15sp"
         android:text="Available In 23 Shops"
         app:layout_constraintLeft_toLeftOf="@+id/itemName"
         app:layout_constraintRight_toRightOf="@+id/itemName"

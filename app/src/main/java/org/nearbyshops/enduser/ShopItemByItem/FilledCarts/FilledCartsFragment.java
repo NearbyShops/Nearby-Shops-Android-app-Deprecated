@@ -215,18 +215,8 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
             public void run() {
                 swipeContainer.setRefreshing(true);
 
-                try {
-
 //                    dataset.clear();
                     makeNetworkCall(false);
-
-                } catch (IllegalArgumentException ex)
-                {
-                    ex.printStackTrace();
-
-                }
-
-                //adapter.notifyDataSetChanged();
             }
         });
     }
@@ -344,59 +334,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
                 }
             });
-
-
-
-/*
-            // Network Available
-
-            Call<List<ShopItem>> call = shopItemService.getShopItems(
-                    null,item.getItemID(),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,0),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,0),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,0),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,0),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,0),
-                    endUser.getEndUserID(),
-                    true);
-
-
-
-            call.enqueue(new Callback<List<ShopItem>>() {
-                @Override
-                public void onResponse(Call<List<ShopItem>> call, Response<List<ShopItem>> response) {
-
-
-
-
-
-                }
-
-                @Override
-                public void onFailure(Call<List<ShopItem>> call, Throwable t) {
-
-
-                    if(isDestroyed)
-                    {
-                        return;
-                    }
-
-
-                }
-            });*/
-
-
     }
-
-
-
-    private void showLoginDialog()
-    {
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        LoginDialog loginDialog = new LoginDialog();
-        loginDialog.show(fm,"serviceUrl");
-    }
-
 
 
     void showToastMessage(String message)
@@ -424,7 +362,18 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
     @Override
     public void notifyCartDataChanged() {
-        makeNetworkCall(true);
+
+
+        swipeContainer.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeContainer.setRefreshing(true);
+
+                makeNetworkCall(true);
+            }
+        });
+
+
     }
 
 
@@ -472,6 +421,8 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 //        swipeRefresh();
 
         makeNetworkCall(false);
+
+
     }
 
 

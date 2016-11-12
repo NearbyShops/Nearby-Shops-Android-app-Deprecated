@@ -192,7 +192,7 @@ public class ItemsActivity extends AppCompatActivity implements NotifySort, Noti
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             //use the query to search your data somehow
-            Toast.makeText(this,query,Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this,query,Toast.LENGTH_SHORT).show();
 
             Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_ITEM_FRAGMENT);
 

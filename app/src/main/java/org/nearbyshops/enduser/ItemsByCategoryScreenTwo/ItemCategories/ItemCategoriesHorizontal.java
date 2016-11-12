@@ -92,6 +92,12 @@ public class ItemCategoriesHorizontal extends Fragment
     }
 
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        setRetainInstance(true);
+    }
+
 
 
     @Nullable
@@ -99,7 +105,6 @@ public class ItemCategoriesHorizontal extends Fragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-
 
         View rootView = inflater.inflate(R.layout.fragment_item_categories_horizontal, container, false);
 
@@ -328,7 +333,7 @@ public class ItemCategoriesHorizontal extends Fragment
                     dataset.addAll(endPoint.getResults());
                     listAdapter.notifyDataSetChanged();
 
-                    if(notifyItemCategoryChanged)
+                    /*if(notifyItemCategoryChanged)
                     {
                         if(currentCategory!=null)
                         {
@@ -336,7 +341,7 @@ public class ItemCategoriesHorizontal extends Fragment
                             ((NotifyCategoryChanged)getActivity())
                                     .itemCategoryChanged(currentCategory,backPressed);
                         }
-                    }
+                    }*/
 
                     notifyTitleChanged();
 
@@ -562,16 +567,29 @@ public class ItemCategoriesHorizontal extends Fragment
         currentCategory = itemCategory;
         currentCategory.setParentCategory(temp);
 
+        notifyCategoryChanged(false);
 
-        if(getActivity() instanceof NotifyGeneral)
-        {
-            ((NotifyGeneral)getActivity()).insertTab(currentCategory.getCategoryName());
+        if (getActivity() instanceof NotifyGeneral) {
+            ((NotifyGeneral) getActivity()).insertTab(currentCategory.getCategoryName());
         }
 
         dataset.clear();
-        offset = 0 ; // reset the offset
-        makeRequestRetrofit(true,false);
+        offset = 0; // reset the offset
+        makeRequestRetrofit(true, false);
     }
+
+
+    void notifyCategoryChanged(boolean backPressed)
+    {
+        // notify the change in category
+        if (currentCategory != null) {
+
+            ((NotifyCategoryChanged) getActivity())
+                    .itemCategoryChanged(currentCategory, false);
+        }
+    }
+
+
 
 
     @Override
@@ -600,6 +618,9 @@ public class ItemCategoriesHorizontal extends Fragment
                 currentCategoryID = currentCategory.getParentCategoryID();
             }
 
+
+            // notify change in category
+            notifyCategoryChanged(true);
 
             if (currentCategoryID != -1) {
 

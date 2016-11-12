@@ -98,13 +98,13 @@ public class AdapterItemHorizontalScreen extends RecyclerView.Adapter<RecyclerVi
 
                 if(item.getRt_rating_count()==0)
                 {
-                    holder.itemRating.setText("-");
+                    holder.itemRating.setText(" - ");
                     holder.ratingCount.setText("( not yet rated )");
                 }
                 else
                 {
                     holder.itemRating.setText(String.format("%.1f",item.getRt_rating_avg()));
-                    holder.ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " ratings )");
+                    holder.ratingCount.setText("( " + String.valueOf((int)item.getRt_rating_count()) + " ratings )");
                 }
 
 
@@ -127,7 +127,7 @@ public class AdapterItemHorizontalScreen extends RecyclerView.Adapter<RecyclerVi
                 }
 
                 holder.shopCount.setText("Available In " + String.valueOf(itemStats.getShopCount()) + " " + shop);
-                holder.priceRange.setText( "Price Range : Rs. "
+                holder.priceRange.setText( "Price Range :\nRs. "
                         + String.valueOf(itemStats.getMin_price())
                         + " - "
                         + String.valueOf(itemStats.getMax_price())
@@ -200,6 +200,9 @@ public class AdapterItemHorizontalScreen extends RecyclerView.Adapter<RecyclerVi
             return 0;
         }
     }
+
+
+
 
     public class LoadingViewHolder extends  RecyclerView.ViewHolder{
 

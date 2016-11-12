@@ -214,12 +214,15 @@ public class CartItemListActivity extends AppCompatActivity
         DisplayMetrics metrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        int spanCount = (metrics.widthPixels/350);
 
-        if(spanCount > 0)
-        {
-            layoutManager.setSpanCount(spanCount);
+        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
+
+        if(spanCount==0){
+            spanCount = 1;
         }
+
+        layoutManager.setSpanCount(spanCount);
+
 
 
     }

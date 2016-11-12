@@ -22,6 +22,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         <android.support.design.widget.TabLayout
+            app:layout_scrollFlags = "scroll|enterAlways"
             android:visibility="visible"
             android:layout_below="@id/appbar"
             app:tabTextColor="@color/white"
@@ -36,6 +37,7 @@
 
 
         <LinearLayout
+            app:layout_scrollFlags = "scroll|enterAlways"
             android:background="@color/blueGrey800"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
@@ -83,6 +85,16 @@
         </LinearLayout>
 
 
+        <FrameLayout
+            app:layout_scrollFlags = "scroll|enterAlways"
+            android:background="#ffffff"
+            android:elevation="5dp"
+            android:id="@+id/item_categories_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
     </android.support.design.widget.AppBarLayout>
 
     <!--<include layout="@layout/content_items_by_cat_s2" />-->
@@ -107,11 +119,6 @@
             android:layout_height="match_parent"
             android:padding="0dp">
 
-            <FrameLayout
-                android:elevation="5dp"
-                android:id="@+id/item_categories_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
 
             <!--
                 android:layout_marginTop="2dp"
@@ -125,7 +132,7 @@
                 android:textColor="@color/white"
                 android:background="@color/cyan900"
                 android:elevation="5dp"
-                android:layout_below="@id/item_categories_container"
+                android:layout_alignParentTop="true"
                 app:layout_scrollFlags = "scroll|enterAlways"
                 android:id="@+id/shop_count_indicator"
                 android:paddingLeft="10dp"

@@ -1,6 +1,8 @@
 package org.nearbyshops.enduser.ShopItemByItem.NewCarts;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -21,15 +23,19 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.ItemDetail.ItemDetail;
+import org.nearbyshops.enduser.ItemsByCategoryScreenTwo.Items.AdapterItemHorizontalScreen;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Model.CartItem;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
+import org.nearbyshops.enduser.ModelStats.ItemStats;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
+import org.nearbyshops.enduser.ShopItemByItem.ShopsForItemSwipe;
 import org.nearbyshops.enduser.Shops.ListFragment.AdapterShopTwo;
 import org.nearbyshops.enduser.Shops.ListFragment.FragmentShopTwo;
 import org.nearbyshops.enduser.Utility.InputFilterMinMax;
@@ -54,7 +60,7 @@ import retrofit2.Response;
 public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
-    private List<ShopItem> dataset;
+    private List<Object> dataset;
     private Context context;
 
     @Inject
@@ -65,7 +71,11 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private Fragment fragment;
 
-    public AdapterNewCarts(List<ShopItem> dataset, Context context, NotifyAddToCart callbacks, Item item, AppCompatActivity activity, Fragment fragment) {
+    private final int VIEW_TYPE_ITEM_HEADER = 5;
+    private final int VIEW_TYPE_SHOP_ITEMS = 6;
+
+
+    public AdapterNewCarts(List<Object> dataset, Context context, NotifyAddToCart callbacks, Item item, AppCompatActivity activity, Fragment fragment) {
         this.dataset = dataset;
         this.context = context;
         this.notifyAddToCart = callbacks;
@@ -84,12 +94,26 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         View view;
 
-        if(viewType==0)
+        if(viewType == VIEW_TYPE_SHOP_ITEMS)
         {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_item_shop_item_layout,parent,false);
 
             return new ViewHolder(view);
+        }
+        else if(viewType == VIEW_TYPE_ITEM_HEADER)
+        {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item_item_header,parent,false);
+
+            return new ViewHolderItem(view);
+        }
+        else if(viewType == 1)
+        {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item_progress_bar,parent,false);
+
+            return new AdapterNewCarts.LoadingViewHolder(view);
         }
         else
         {
@@ -98,9 +122,8 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             return new AdapterNewCarts.LoadingViewHolder(view);
         }
-
-
     }
+
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder_given, int position) {
@@ -110,7 +133,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             ViewHolder holder = (ViewHolder) holder_given;
 
-            ShopItem shopItem = dataset.get(position);
+            ShopItem shopItem = (ShopItem) dataset.get(position);
 
             Shop shop = null;
 
@@ -177,7 +200,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
 
 
-            if(position == 0 || position == itemCount)
+            if(position == 0 || position == itemCount+1)
             {
                 viewHolder.progressBar.setVisibility(View.GONE);
             }
@@ -188,8 +211,10 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             }
         }
-
-
+        else if(holder_given instanceof ViewHolderItem)
+        {
+            bindItemHolder((ViewHolderItem) holder_given,position);
+        }
     }
 
     @Override
@@ -203,14 +228,28 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public int getItemViewType(int position) {
         super.getItemViewType(position);
 
-        if(position==dataset.size())
+        if(position == dataset.size())
         {
             return 1;
         }
+        else if (dataset.get(position) instanceof ShopItem) {
+
+            return VIEW_TYPE_SHOP_ITEMS;
+        }
+        else if (dataset.get(position) instanceof Item) {
+
+            return VIEW_TYPE_ITEM_HEADER;
+        }
         else
         {
-            return 0;
+            return  -1;
         }
+
+        /*else if(position == dataset.size())
+        {
+            return 1;
+        }*/
+
     }
 
     public class LoadingViewHolder extends  RecyclerView.ViewHolder{
@@ -223,6 +262,142 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ButterKnife.bind(this,itemView);
         }
     }
+
+
+
+
+    public class ViewHolderItem extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        //        TextView itemDescription;
+        TextView itemName;
+        ImageView itemImage;
+        TextView priceRange;
+        TextView priceAverage;
+        TextView shopCount;
+
+        TextView itemRating;
+        TextView ratingCount;
+
+
+        ConstraintLayout itemsListItem;
+
+        public ViewHolderItem(View itemView) {
+            super(itemView);
+
+            itemView.setOnClickListener(this);
+
+//            itemDescription = (TextView) itemView.findViewById(R.id.itemDescription);
+            itemName = (TextView) itemView.findViewById(R.id.itemName);
+            itemImage = (ImageView) itemView.findViewById(R.id.itemImage);
+            priceRange = (TextView) itemView.findViewById(R.id.price_range);
+            priceAverage = (TextView) itemView.findViewById(R.id.price_average);
+            shopCount = (TextView) itemView.findViewById(R.id.shop_count);
+            itemsListItem = (ConstraintLayout) itemView.findViewById(R.id.items_list_item);
+
+            itemRating = (TextView) itemView.findViewById(R.id.item_rating);
+            ratingCount = (TextView) itemView.findViewById(R.id.rating_count);
+
+            itemsListItem.setOnClickListener(this);
+            itemImage.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+
+            //   Toast.makeText(context,"Item Click : " + String.valueOf(getLayoutPosition()),Toast.LENGTH_SHORT).show();
+
+            switch(view.getId())
+            {
+                case R.id.items_list_item:
+
+                    if(dataset!=null)
+                    {
+//                        Intent intent = new Intent(context, ShopsForItemSwipe.class);
+//                        intent.putExtra(ShopsForItemSwipe.ITEM_INTENT_KEY,dataset.get(getLayoutPosition()));
+//                        context.startActivity(intent);
+                    }
+
+                    break;
+
+
+                default:
+
+                    break;
+            }
+
+        }
+    }
+
+
+
+    void bindItemHolder(ViewHolderItem holder,int position)
+    {
+
+        if(position >= dataset.size())
+        {
+            return;
+        }
+
+        Item item = (Item) dataset.get(position);
+
+        String imagePath = "http://example.com";
+
+        if(item!=null)
+        {
+            holder.itemName.setText(item.getItemName());
+//                holder.itemDescription.setText(item.getItemDescription());
+
+
+            if(item.getRt_rating_count()==0)
+            {
+                holder.itemRating.setText(" - ");
+                holder.ratingCount.setText("( not yet rated )");
+            }
+            else
+            {
+                holder.itemRating.setText(String.format("%.1f",item.getRt_rating_avg()));
+                holder.ratingCount.setText("( " + String.valueOf((int)item.getRt_rating_count()) + " ratings )");
+            }
+
+
+
+
+            imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+                    + ((Item)dataset.get(position)).getItemImageURL();
+        }
+
+
+        if(((Item)dataset.get(position)).getItemStats()!=null)
+        {
+            ItemStats itemStats = ((Item)dataset.get(position)).getItemStats();
+
+            String shop = "Shops";
+
+            if(itemStats.getShopCount()==1)
+            {
+                shop = "Shop";
+            }
+
+            holder.shopCount.setText("Available In " + String.valueOf(itemStats.getShopCount()) + " " + shop);
+            holder.priceRange.setText( "Price Range :\nRs. "
+                    + String.valueOf(itemStats.getMin_price())
+                    + " - "
+                    + String.valueOf(itemStats.getMax_price())
+                    + " per " + ((Item)dataset.get(position)).getQuantityUnit()
+            );
+
+            holder.priceAverage.setText("Price Average : Rs. " + String.format("%.2f",itemStats.getAvg_price()));
+        }
+
+
+
+        Picasso.with(context)
+                .load(imagePath)
+                .placeholder(R.drawable.nature_people)
+                .into(holder.itemImage);
+
+    }
+
 
 
 
@@ -295,7 +470,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             if (getLayoutPosition() != -1) {
 
-                shopItem = dataset.get(getLayoutPosition());
+                shopItem = (ShopItem) dataset.get(getLayoutPosition());
             }
 
             if (shopItem != null) {
@@ -313,7 +488,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
         {
             setFilter();
 
-            shopItem = dataset.get(getLayoutPosition());
+            shopItem = (ShopItem) dataset.get(getLayoutPosition());
 
             double total = 0;
 
@@ -364,7 +539,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
         {
             setFilter();
 
-            shopItem = dataset.get(getLayoutPosition());
+            shopItem = (ShopItem) dataset.get(getLayoutPosition());
 
 
             int availableItems = shopItem.getAvailableItemQuantity();
@@ -425,13 +600,13 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             CartItem cartItem = new CartItem();
 
-            cartItem.setItemID(dataset.get(getLayoutPosition()).getItemID());
+            cartItem.setItemID(((ShopItem)dataset.get(getLayoutPosition())).getItemID());
             cartItem.setItemQuantity(Integer.parseInt(itemQuantity.getText().toString()));
 
             Call<ResponseBody> call = cartItemService.createCartItem(
                     cartItem,
                     endUser.getEndUserID(),
-                    dataset.get(getLayoutPosition()).getShopID()
+                    ((ShopItem)dataset.get(getLayoutPosition())).getShopID()
             );
 
             //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
@@ -470,7 +645,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            shopItem = dataset.get(getLayoutPosition());
+            shopItem = (ShopItem) dataset.get(getLayoutPosition());
 
 
 

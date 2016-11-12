@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <include
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/include"
-        layout="@layout/list_item_items_by_item_category_card"/>
+        layout="@layout/list_item_items_horizontal_screen"/>
 
     <TextView
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="0dp"
         android:id="@+id/border_one"
         android:layout_below="@id/include"
         android:background="@color/grey800"
