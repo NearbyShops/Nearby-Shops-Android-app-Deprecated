@@ -2,7 +2,6 @@ package org.nearbyshops.enduser.ItemCategoryOption;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,12 +48,12 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ViewHolder> {
         holder.shopName.setText(dataset.get(position).getShopName());
 
 
-        holder.distance.setText(String.format( "%.2f", dataset.get(position).getDistance() )+ " Km");
+        holder.distance.setText(String.format( "%.2f", dataset.get(position).getRt_distance() )+ " Km");
 
 //        Log.d("applog","on BInd()");
 
         String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                + dataset.get(position).getImagePath();
+                + dataset.get(position).getLogoImagePath();
 
         Picasso.with(context)
                 .load(imagePath)

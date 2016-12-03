@@ -1,5 +1,7 @@
 package org.nearbyshops.enduser.DeliveryAddress;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -57,6 +59,13 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
     EditText landMark;
 
 
+    @Bind(R.id.latitude)
+    EditText latitude;
+
+    @Bind(R.id.longitude)
+    EditText longitude;
+
+
     public EditAddressActivity() {
 
         DaggerComponentBuilder.getInstance()
@@ -95,6 +104,12 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
             deliveryAddress.setLandmark(landMark.getText().toString());
             deliveryAddress.setPhoneNumber(Long.parseLong(receiversPhoneNumber.getText().toString()));
 
+
+            deliveryAddress.setLatitude(Double.parseDouble(latitude.getText().toString()));
+            deliveryAddress.setLongitude(Double.parseDouble(longitude.getText().toString()));
+
+
+
         }
     }
 
@@ -109,6 +124,9 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
             pincode.setText(String.valueOf(deliveryAddress.getPincode()));
             landMark.setText(deliveryAddress.getLandmark());
             receiversPhoneNumber.setText(String.valueOf(deliveryAddress.getPhoneNumber()));
+
+            latitude.setText(String.valueOf(deliveryAddress.getLatitude()));
+            longitude.setText(String.valueOf(deliveryAddress.getLongitude()));
 
         }
     }
@@ -161,6 +179,48 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
 
         ButterKnife.unbind(this);
     }
+
+
+
+
+    private int REQUEST_CODE_PICK_LAT_LON = 23;
+
+    @OnClick(R.id.pick_location_button)
+    void pickLocationClick()
+    {
+        Intent intent = new Intent(this,PickLocationActivity.class);
+        startActivityForResult(intent,REQUEST_CODE_PICK_LAT_LON);
+    }
+
+
+    @OnClick(R.id.navigate_button)
+    void navigateButton()
+    {
+        String str_latitude = latitude.getText().toString();
+        String str_longitude = longitude.getText().toString();
+
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + str_latitude +  "," + str_longitude);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
+    }
+
+
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if(resultCode == RESULT_OK && requestCode == REQUEST_CODE_PICK_LAT_LON)
+        {
+            latitude.setText(String.valueOf(data.getDoubleExtra("latitude",0)));
+            longitude.setText(String.valueOf(data.getDoubleExtra("longitude",0)));
+        }
+    }
+
 
 
 

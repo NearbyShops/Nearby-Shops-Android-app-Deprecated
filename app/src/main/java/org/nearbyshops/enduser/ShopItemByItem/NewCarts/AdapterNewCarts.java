@@ -1,7 +1,6 @@
 package org.nearbyshops.enduser.ShopItemByItem.NewCarts;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -23,8 +22,6 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
-import org.nearbyshops.enduser.ItemDetail.ItemDetail;
-import org.nearbyshops.enduser.ItemsByCategoryScreenTwo.Items.AdapterItemHorizontalScreen;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Model.CartItem;
 import org.nearbyshops.enduser.Model.Item;
@@ -35,9 +32,6 @@ import org.nearbyshops.enduser.ModelStats.ItemStats;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
-import org.nearbyshops.enduser.ShopItemByItem.ShopsForItemSwipe;
-import org.nearbyshops.enduser.Shops.ListFragment.AdapterShopTwo;
-import org.nearbyshops.enduser.Shops.ListFragment.FragmentShopTwo;
 import org.nearbyshops.enduser.Utility.InputFilterMinMax;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
@@ -165,7 +159,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
                 String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                        + shop.getImagePath();
+                        + shop.getLogoImagePath();
 
                 Picasso.with(context)
                         .load(imagePath)
@@ -174,7 +168,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                 holder.shopName.setText(shop.getShopName());
 
-                holder.distance.setText(String.format( "%.2f", shop.getDistance()) + " Km");
+                holder.distance.setText(String.format( "%.2f", shop.getRt_distance()) + " Km");
                 holder.deliveryCharge.setText("Delivery :Rs " + String.format( "%.0f", shop.getDeliveryCharges()) + "Per Order");
 
             }

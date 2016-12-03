@@ -22,6 +22,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import clojure.lang.IFn;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -106,6 +107,9 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
 
         deliveryAddress.setLandmark(landMark.getText().toString());
         deliveryAddress.setPhoneNumber(Long.parseLong(receiversPhoneNumber.getText().toString()));
+
+        deliveryAddress.setLatitude(Double.parseDouble(latitude.getText().toString()));
+        deliveryAddress.setLongitude(Double.parseDouble(longitude.getText().toString()));
 
         deliveryAddress.setEndUserID(UtilityLogin.getEndUser(this).getEndUserID());
 

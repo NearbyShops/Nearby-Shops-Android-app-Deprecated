@@ -38,6 +38,10 @@ public class AdapterItemHorizontalScreen extends RecyclerView.Adapter<RecyclerVi
     private Context context;
     private Fragment fragment;
 
+    private static final int VIEW_TYPE_ITEMS = 1;
+    private static final int VIEW_TYPE_LOADING = 2;
+
+
 
     public AdapterItemHorizontalScreen(List<Item> dataset, Context context, Fragment fragment) {
         this.dataset = dataset;
@@ -50,25 +54,26 @@ public class AdapterItemHorizontalScreen extends RecyclerView.Adapter<RecyclerVi
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view;
+        View view = null;
 
-        if(viewType==0)
+        if(viewType==VIEW_TYPE_ITEMS)
         {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_item_items_horizontal_screen,parent,false);
 
             return new ViewHolder(view);
         }
-        else
+        else if(viewType == VIEW_TYPE_LOADING)
         {
 
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_item_progress_bar,parent,false);
 
             return new AdapterItemHorizontalScreen.LoadingViewHolder(view);
-
         }
 
+        return new AdapterItemHorizontalScreen.LoadingViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_item_progress_bar,parent,false));
 
     }
 
@@ -110,8 +115,12 @@ public class AdapterItemHorizontalScreen extends RecyclerView.Adapter<RecyclerVi
 
 
 
-                imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                        + dataset.get(position).getItemImageURL();
+//                imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                        + dataset.get(position).getItemImageURL();
+
+                imagePath = UtilityGeneral.getServiceURL(context)
+                        + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
+
             }
 
 
@@ -136,6 +145,7 @@ public class AdapterItemHorizontalScreen extends RecyclerView.Adapter<RecyclerVi
 
                 holder.priceAverage.setText("Price Average : Rs. " + String.format("%.2f",itemStats.getAvg_price()));
             }
+
 
 
 
@@ -193,12 +203,13 @@ public class AdapterItemHorizontalScreen extends RecyclerView.Adapter<RecyclerVi
 
         if(position==dataset.size())
         {
-            return 1;
+            return VIEW_TYPE_LOADING;
         }
         else
         {
-            return 0;
+            return VIEW_TYPE_ITEMS;
         }
+
     }
 
 

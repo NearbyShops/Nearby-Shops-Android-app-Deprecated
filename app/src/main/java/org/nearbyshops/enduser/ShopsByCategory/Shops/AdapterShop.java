@@ -19,8 +19,6 @@ import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopDetail.ShopDetail;
 import org.nearbyshops.enduser.ShopHome.ShopHome;
-import org.nearbyshops.enduser.Shops.ListFragment.AdapterShopTwo;
-import org.nearbyshops.enduser.Shops.ListFragment.FragmentShopTwo;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityShopHome;
 
@@ -79,12 +77,12 @@ public class AdapterShop extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             holder.rating.setText(String.format( "%.2f", dataset.get(position).getRt_rating_avg()));
 
-            holder.distance.setText(String.format( "%.2f", dataset.get(position).getDistance() )+ " Km");
+            holder.distance.setText(String.format( "%.2f", dataset.get(position).getRt_distance() )+ " Km");
 
 //        Log.d("applog","on BInd()");
 
             String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                    + dataset.get(position).getImagePath();
+                    + dataset.get(position).getLogoImagePath();
 
             Picasso.with(context)
                     .load(imagePath)

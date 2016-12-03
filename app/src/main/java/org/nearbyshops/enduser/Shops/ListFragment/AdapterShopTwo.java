@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -118,7 +117,7 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
 
                 String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                        + shop.getImagePath();
+                        + shop.getLogoImagePath();
 
                 Drawable placeholder = VectorDrawableCompat
                         .create(context.getResources(),
@@ -130,7 +129,7 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         .into(holder.shopLogo);
 
                 holder.delivery.setText("Delivery : Rs " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
-                holder.distance.setText("Distance : " + String.format( "%.2f", shop.getDistance()) + " Km");
+                holder.distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
 
 
                 if(shop.getRt_rating_count()==0)

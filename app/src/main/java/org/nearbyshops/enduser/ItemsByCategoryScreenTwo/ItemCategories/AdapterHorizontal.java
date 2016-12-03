@@ -50,7 +50,8 @@ public class AdapterHorizontal extends RecyclerView.Adapter<AdapterHorizontal.Vi
     private ReceiveNotificationsFromAdapter notificationReceiver;
 
 
-    final String IMAGE_ENDPOINT_URL = "/api/Images";
+//    final String IMAGE_ENDPOINT_URL = "/api/Images";
+
 
     public AdapterHorizontal(List<ItemCategory> dataset, Context context, ItemCategoriesHorizontal activity,
                              ReceiveNotificationsFromAdapter notificationReceiver) {
@@ -61,10 +62,11 @@ public class AdapterHorizontal extends RecyclerView.Adapter<AdapterHorizontal.Vi
         this.context = context;
         this.activity = activity;
 
-        if(this.dataset == null)
-        {
-            this.dataset = new ArrayList<ItemCategory>();
-        }
+//        if(this.dataset == null)
+//        {
+//            this.dataset = new ArrayList<ItemCategory>();
+//        }
+
 
     }
 
@@ -96,8 +98,11 @@ public class AdapterHorizontal extends RecyclerView.Adapter<AdapterHorizontal.Vi
 
 
 
-        String imagePath = UtilityGeneral.getImageEndpointURL(context)
-                + dataset.get(position).getImagePath();
+//        String imagePath = UtilityGeneral.getImageEndpointURL(context)
+//                + dataset.get(position).getImagePath();
+
+        String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/ItemCategory/Image/five_hundred_"
+                + dataset.get(position).getImagePath() + ".jpg";
 
         Drawable placeholder = VectorDrawableCompat
                 .create(context.getResources(),

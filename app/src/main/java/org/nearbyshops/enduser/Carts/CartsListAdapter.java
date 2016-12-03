@@ -18,10 +18,7 @@ import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 
 /**
  * Created by sumeet on 5/6/16.
@@ -63,12 +60,12 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
         if(shop!=null)
         {
             holder.deliveryCharge.setText("Delivery Rs " + shop.getDeliveryCharges() + " Per Order");
-            holder.distance.setText(String.format( "%.2f", shop.getDistance()) + " Km");
+            holder.distance.setText(String.format( "%.2f", shop.getRt_distance()) + " Km");
 
             holder.shopName.setText(shop.getShopName());
 
             imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                    + dataset.get(position).getShop().getImagePath();
+                    + dataset.get(position).getShop().getLogoImagePath();
 
         }
 

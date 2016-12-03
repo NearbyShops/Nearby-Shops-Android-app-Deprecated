@@ -53,6 +53,7 @@ import org.apache.commons.validator.routines.UrlValidator;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
 import org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduser.FilterShopDialog.FilterShopsDialogMain;
+import org.nearbyshops.enduser.ItemCategoriesTypeSimple.ItemCategoriesSimple;
 import org.nearbyshops.enduser.Items.ItemsActivity;
 import org.nearbyshops.enduser.ItemsByCategory.ItemsByCategory;
 import org.nearbyshops.enduser.ItemsByCategoryScreenTwo.ItemsByCatS2;
@@ -271,6 +272,14 @@ public class Home extends AppCompatActivity
     public void optionFormatTwo()
     {
         Intent intent = new Intent(this,ItemsByCatS2.class);
+        startActivity(intent);
+    }
+
+
+    @OnClick(R.id.option_items_by_category)
+    void optionItemCatSimple()
+    {
+        Intent intent = new Intent(this, ItemCategoriesSimple.class);
         startActivity(intent);
     }
 

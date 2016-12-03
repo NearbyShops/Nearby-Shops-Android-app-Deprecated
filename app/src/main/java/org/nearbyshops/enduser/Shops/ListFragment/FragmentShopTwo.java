@@ -338,7 +338,7 @@ public class FragmentShopTwo extends Fragment implements
 
             offset = 0; // reset the offset
 //            dataset.clear();
-            adapter.notifyDataSetChanged();
+//            adapter.notifyDataSetChanged();
             makeNetworkCall(true);
         }
 

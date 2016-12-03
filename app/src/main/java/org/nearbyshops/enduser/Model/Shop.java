@@ -1,12 +1,15 @@
 package org.nearbyshops.enduser.Model;
 
 
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.sql.Timestamp;
 
 public class Shop implements Parcelable{
+
+
 
 
 	// Shop Table Name
@@ -20,15 +23,12 @@ public class Shop implements Parcelable{
 	public static final String LAT_CENTER = "LAT_CENTER";
 	public static final String LON_CENTER = "LON_CENTER";
 
-	public static final String LAT_MAX = "LAT_MAX";
-	public static final String LON_MAX = "LON_MAX";
-	public static final String LAT_MIN = "LAT_MIN";
-	public static final String LON_MIN = "LON_MIN";
-
 	public static final String DELIVERY_CHARGES = "DELIVERY_CHARGES";
-	public static final String DISTRIBUTOR_ID = "Distributor";
-	public static final String IMAGE_PATH = "IMAGE_PATH";
-	public static final String BACKDROP_IMAGE_PATH = "BACKDROP_IMAGE_PATH";
+	public static final String BILL_AMOUNT_FOR_FREE_DELIVERY = "BILL_AMOUNT_FOR_FREE_DELIVERY";
+	// to be added
+	public static final String PICK_FROM_SHOP_AVAILABLE = "PICK_FROM_SHOP_AVAILABLE";
+	public static final String HOME_DELIVERY_AVAILABLE = "HOME_DELIVERY_AVAILABLE";
+
 	public static final String LOGO_IMAGE_PATH = "LOGO_IMAGE_PATH";
 
 	// recently Added
@@ -36,7 +36,7 @@ public class Shop implements Parcelable{
 	public static final String CITY = "CITY";
 	public static final String PINCODE = "PINCODE";
 	public static final String LANDMARK = "LANDMARK";
-	public static final String BILL_AMOUNT_FOR_FREE_DELIVERY = "BILL_AMOUNT_FOR_FREE_DELIVERY";
+
 	public static final String CUSTOMER_HELPLINE_NUMBER = "CUSTOMER_HELPLINE_NUMBER";
 	public static final String DELIVERY_HELPLINE_NUMBER = "DELIVERY_HELPLINE_NUMBER";
 	public static final String SHORT_DESCRIPTION = "SHORT_DESCRIPTION";
@@ -45,47 +45,86 @@ public class Shop implements Parcelable{
 	public static final String IS_OPEN = "IS_SHOP_OPEN";
 
 	// to be added
-	public static final String PICK_FROM_SHOP_AVAILABLE = "PICK_FROM_SHOP_AVAILABLE";
-	public static final String HOME_DELIVERY_AVAILABLE = "HOME_DELIVERY_AVAILABLE";
+	public static final String SHOP_ENABLED = "SHOP_ENABLED";
+	public static final String SHOP_WAITLISTED = "SHOP_WAITLISTED";
+
+	// deprecated columns
+//	public static final String LAT_MAX = "LAT_MAX";
+//	public static final String LON_MAX = "LON_MAX";
+//	public static final String LAT_MIN = "LAT_MIN";
+//	public static final String LON_MIN = "LON_MIN";
+//	public static final String DISTRIBUTOR_ID = "Distributor";
+
+
+	// deleted columns
+
+//	+ " " + Shop.DISTRIBUTOR_ID + " INT,"
+
+//			+ " " + Shop.LON_MAX + " FLOAT,"
+//			+ " " + Shop.LAT_MAX + " FLOAT,"
+//			+ " " + Shop.LON_MIN + " FLOAT,"
+//			+ " " + Shop.LAT_MIN + " FLOAT,"
+
+	//	public static final String IMAGE_PATH = "IMAGE_PATH";
+//	public static final String BACKDROP_IMAGE_PATH = "BACKDROP_IMAGE_PATH";
 
 
 
 
 	// query postgres
 
-	public static final String createTableShopPostgres =  "CREATE TABLE IF NOT EXISTS " + Shop.TABLE_NAME + "("
+	public static final String createTableShopPostgres =
+			"CREATE TABLE IF NOT EXISTS " + Shop.TABLE_NAME + "("
 			+ " " + Shop.SHOP_ID + " SERIAL PRIMARY KEY,"
-			+ " " + Shop.SHOP_NAME + " VARCHAR(40),"
+			+ " " + Shop.SHOP_NAME + " text,"
+
 			+ " " + Shop.DELIVERY_RANGE + " FLOAT,"
 			+ " " + Shop.LON_CENTER + " FLOAT,"
 			+ " " + Shop.LAT_CENTER + " FLOAT,"
-			+ " " + Shop.LON_MAX + " FLOAT,"
-			+ " " + Shop.LAT_MAX + " FLOAT,"
-			+ " " + Shop.LON_MIN + " FLOAT,"
-			+ " " + Shop.LAT_MIN + " FLOAT,"
+
 			+ " " + Shop.DELIVERY_CHARGES + " FLOAT,"
-			+ " " + Shop.DISTRIBUTOR_ID + " INT,"
-			+ " " + Shop.IMAGE_PATH + " VARCHAR(60),"
-			+ " " + Shop.SHOP_ADDRESS + " VARCHAR(100),"
-			+ " " + Shop.CITY + " VARCHAR(20),"
-			+ " " + Shop.PINCODE + " INT,"
-			+ " " + Shop.LANDMARK + " VARCHAR(100),"
 			+ " " + Shop.BILL_AMOUNT_FOR_FREE_DELIVERY + " INT,"
-			+ " " + Shop.CUSTOMER_HELPLINE_NUMBER + " VARCHAR(30),"
-			+ " " + Shop.DELIVERY_HELPLINE_NUMBER + " VARCHAR(30),"
-			+ " " + Shop.SHORT_DESCRIPTION + " VARCHAR(40),"
-			+ " " + Shop.LONG_DESCRIPTION + " VARCHAR(500),"
+			+ " " + Shop.PICK_FROM_SHOP_AVAILABLE + " boolean,"
+			+ " " + Shop.HOME_DELIVERY_AVAILABLE + " boolean,"
+
+			+ " " + Shop.SHOP_ENABLED + " boolean,"
+			+ " " + Shop.SHOP_WAITLISTED + " boolean,"
+
+			+ " " + Shop.LOGO_IMAGE_PATH + " text,"
+
+			+ " " + Shop.SHOP_ADDRESS + " text,"
+			+ " " + Shop.CITY + " text,"
+			+ " " + Shop.PINCODE + " INT,"
+			+ " " + Shop.LANDMARK + " text,"
+
+			+ " " + Shop.CUSTOMER_HELPLINE_NUMBER + " text,"
+			+ " " + Shop.DELIVERY_HELPLINE_NUMBER + " text,"
+
+			+ " " + Shop.SHORT_DESCRIPTION + " text,"
+			+ " " + Shop.LONG_DESCRIPTION + " text,"
+
 			+ " " + Shop.DATE_TIME_STARTED + " timestamp with time zone NOT NULL DEFAULT now(),"
 			+ " " + Shop.IS_OPEN + " boolean,"
-			+ " FOREIGN KEY(" + Shop.DISTRIBUTOR_ID +") REFERENCES DISTRIBUTOR(ID))";
+
+			// shop admin fields / columns
+			+ " " + ShopAdmin.NAME + " text,"
+			+ " " + ShopAdmin.USERNAME + " text,"
+			+ " " + ShopAdmin.PASSWORD + " text,"
+			+ " " + ShopAdmin.PROFILE_IMAGE_URL + " text,"
+			+ " " + ShopAdmin.PHONE_NUMBER + " text,"
+			+ " " + ShopAdmin.ADMIN_ENABLED + " boolean,"
+			+ " " + ShopAdmin.ADMIN_WAITLISTED + " boolean" + ")";
 
 
+//			+ " FOREIGN KEY(" + Shop.DISTRIBUTOR_ID +") REFERENCES " + Distributor.TABLE_NAME + "(" + Distributor.DISTRIBUTOR_ID + ")"
+//			+ ")"
 
 
+	public Shop() {
+		super();
+	}
 
 
-	// real time variables
-	private double distance;
 
 	// normal variables
 	private int shopID;
@@ -100,19 +139,18 @@ public class Shop implements Parcelable{
 	private double latCenter;
 	private double lonCenter;
 
-	// bounding coordinates for the shop generated using shop center coordinates and delivery range.
-	private double latMax;
-	private double lonMax;
-	private double latMin;
-	private double lonMin;
-
-
 	// delivery charger per order
 	private double deliveryCharges;
+	private int billAmountForFreeDelivery;
+	private Boolean pickFromShopAvailable;
+	private Boolean homeDeliveryAvailable;
 
-	private int distributorID;
+	private Boolean shopEnabled;
+	private Boolean shopWaitlisted;
+
+
 	
-	private String imagePath;
+	private String logoImagePath;
 
 
 	// added recently
@@ -120,44 +158,51 @@ public class Shop implements Parcelable{
 	private String city;
 	private long pincode;
 	private String landmark;
-	private int billAmountForFreeDelivery;
+
 	private String customerHelplineNumber;
 	private String deliveryHelplineNumber;
+
 	private String shortDescription;
 	private String longDescription;
+
 	private Timestamp dateTimeStarted;
 	private boolean isOpen;
 
 
-
+	// real time variables
+	private double rt_distance;
 	private float rt_rating_avg;
 	private float rt_rating_count;
 
 
+
+	// deleted columns
+	// bounding coordinates for the shop generated using shop center coordinates and delivery range.
+//	private double latMax;
+//	private double lonMax;
+//	private double latMin;
+//	private double lonMin;
+
+
 	protected Shop(Parcel in) {
-		distance = in.readDouble();
 		shopID = in.readInt();
 		shopName = in.readString();
 		deliveryRange = in.readDouble();
 		latCenter = in.readDouble();
 		lonCenter = in.readDouble();
-		latMax = in.readDouble();
-		lonMax = in.readDouble();
-		latMin = in.readDouble();
-		lonMin = in.readDouble();
 		deliveryCharges = in.readDouble();
-		distributorID = in.readInt();
-		imagePath = in.readString();
+		billAmountForFreeDelivery = in.readInt();
+		logoImagePath = in.readString();
 		shopAddress = in.readString();
 		city = in.readString();
 		pincode = in.readLong();
 		landmark = in.readString();
-		billAmountForFreeDelivery = in.readInt();
 		customerHelplineNumber = in.readString();
 		deliveryHelplineNumber = in.readString();
 		shortDescription = in.readString();
 		longDescription = in.readString();
 		isOpen = in.readByte() != 0;
+		rt_distance = in.readDouble();
 		rt_rating_avg = in.readFloat();
 		rt_rating_count = in.readFloat();
 
@@ -166,32 +211,26 @@ public class Shop implements Parcelable{
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeDouble(distance);
 		dest.writeInt(shopID);
 		dest.writeString(shopName);
 		dest.writeDouble(deliveryRange);
 		dest.writeDouble(latCenter);
 		dest.writeDouble(lonCenter);
-		dest.writeDouble(latMax);
-		dest.writeDouble(lonMax);
-		dest.writeDouble(latMin);
-		dest.writeDouble(lonMin);
 		dest.writeDouble(deliveryCharges);
-		dest.writeInt(distributorID);
-		dest.writeString(imagePath);
+		dest.writeInt(billAmountForFreeDelivery);
+		dest.writeString(logoImagePath);
 		dest.writeString(shopAddress);
 		dest.writeString(city);
 		dest.writeLong(pincode);
 		dest.writeString(landmark);
-		dest.writeInt(billAmountForFreeDelivery);
 		dest.writeString(customerHelplineNumber);
 		dest.writeString(deliveryHelplineNumber);
 		dest.writeString(shortDescription);
 		dest.writeString(longDescription);
 		dest.writeByte((byte) (isOpen ? 1 : 0));
+		dest.writeDouble(rt_distance);
 		dest.writeFloat(rt_rating_avg);
 		dest.writeFloat(rt_rating_count);
-
 
 		if(dateTimeStarted!=null)
 		{
@@ -220,39 +259,21 @@ public class Shop implements Parcelable{
 		}
 	};
 
-	public boolean isOpen() {
-		return isOpen;
+	public int getShopID() {
+		return shopID;
 	}
 
-	public void setOpen(boolean open) {
-		isOpen = open;
+	public void setShopID(int shopID) {
+		this.shopID = shopID;
 	}
 
-	public float getRt_rating_avg() {
-		return rt_rating_avg;
+	public String getShopName() {
+		return shopName;
 	}
 
-	public void setRt_rating_avg(float rt_rating_avg) {
-		this.rt_rating_avg = rt_rating_avg;
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
 	}
-
-	public float getRt_rating_count() {
-		return rt_rating_count;
-	}
-
-	public void setRt_rating_count(float rt_rating_count) {
-		this.rt_rating_count = rt_rating_count;
-	}
-
-	public double getDistance() {
-		return distance;
-	}
-
-	public void setDistance(double distance) {
-		this.distance = distance;
-	}
-
-
 
 	public double getDeliveryRange() {
 		return deliveryRange;
@@ -278,50 +299,6 @@ public class Shop implements Parcelable{
 		this.lonCenter = lonCenter;
 	}
 
-	public double getLatMax() {
-		return latMax;
-	}
-
-	public void setLatMax(double latMax) {
-		this.latMax = latMax;
-	}
-
-	public double getLonMax() {
-		return lonMax;
-	}
-
-	public void setLonMax(double lonMax) {
-		this.lonMax = lonMax;
-	}
-
-	public double getLatMin() {
-		return latMin;
-	}
-
-	public void setLatMin(double latMin) {
-		this.latMin = latMin;
-	}
-
-	public double getLonMin() {
-		return lonMin;
-	}
-
-	public void setLonMin(double lonMin) {
-		this.lonMin = lonMin;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-
-	public int getDistributorID() {
-		return distributorID;
-	}
-
 	public double getDeliveryCharges() {
 		return deliveryCharges;
 	}
@@ -330,33 +307,53 @@ public class Shop implements Parcelable{
 		this.deliveryCharges = deliveryCharges;
 	}
 
-	public void setDistributorID(int distributorID) {
-		this.distributorID = distributorID;
-	}
-	
-
-
-	public Shop() {
-		super();
-		// TODO Auto-generated constructor stub
+	public int getBillAmountForFreeDelivery() {
+		return billAmountForFreeDelivery;
 	}
 
-	public int getShopID() {
-		return shopID;
+	public void setBillAmountForFreeDelivery(int billAmountForFreeDelivery) {
+		this.billAmountForFreeDelivery = billAmountForFreeDelivery;
 	}
 
-	public void setShopID(int shopID) {
-		this.shopID = shopID;
+	public Boolean getPickFromShopAvailable() {
+		return pickFromShopAvailable;
 	}
 
-	public String getShopName() {
-		return shopName;
+	public void setPickFromShopAvailable(Boolean pickFromShopAvailable) {
+		this.pickFromShopAvailable = pickFromShopAvailable;
 	}
 
-	public void setShopName(String shopName) {
-		this.shopName = shopName;
+	public Boolean getHomeDeliveryAvailable() {
+		return homeDeliveryAvailable;
 	}
 
+	public void setHomeDeliveryAvailable(Boolean homeDeliveryAvailable) {
+		this.homeDeliveryAvailable = homeDeliveryAvailable;
+	}
+
+	public Boolean getShopEnabled() {
+		return shopEnabled;
+	}
+
+	public void setShopEnabled(Boolean shopEnabled) {
+		this.shopEnabled = shopEnabled;
+	}
+
+	public Boolean getShopWaitlisted() {
+		return shopWaitlisted;
+	}
+
+	public void setShopWaitlisted(Boolean shopWaitlisted) {
+		this.shopWaitlisted = shopWaitlisted;
+	}
+
+	public String getLogoImagePath() {
+		return logoImagePath;
+	}
+
+	public void setLogoImagePath(String logoImagePath) {
+		this.logoImagePath = logoImagePath;
+	}
 
 	public String getShopAddress() {
 		return shopAddress;
@@ -388,14 +385,6 @@ public class Shop implements Parcelable{
 
 	public void setLandmark(String landmark) {
 		this.landmark = landmark;
-	}
-
-	public int getBillAmountForFreeDelivery() {
-		return billAmountForFreeDelivery;
-	}
-
-	public void setBillAmountForFreeDelivery(int billAmountForFreeDelivery) {
-		this.billAmountForFreeDelivery = billAmountForFreeDelivery;
 	}
 
 	public String getCustomerHelplineNumber() {
@@ -438,11 +427,35 @@ public class Shop implements Parcelable{
 		this.dateTimeStarted = dateTimeStarted;
 	}
 
-	public boolean getisOpen() {
+	public boolean isOpen() {
 		return isOpen;
 	}
 
-	public void setisOpen(boolean open) {
+	public void setOpen(boolean open) {
 		isOpen = open;
+	}
+
+	public double getRt_distance() {
+		return rt_distance;
+	}
+
+	public void setRt_distance(double rt_distance) {
+		this.rt_distance = rt_distance;
+	}
+
+	public float getRt_rating_avg() {
+		return rt_rating_avg;
+	}
+
+	public void setRt_rating_avg(float rt_rating_avg) {
+		this.rt_rating_avg = rt_rating_avg;
+	}
+
+	public float getRt_rating_count() {
+		return rt_rating_count;
+	}
+
+	public void setRt_rating_count(float rt_rating_count) {
+		this.rt_rating_count = rt_rating_count;
 	}
 }

@@ -274,7 +274,16 @@
         <activity
             android:name=".ItemsByCategoryScreenTwo.ItemsByCatS2"
             android:label="@string/title_activity_items_by_cat_s2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ItemCategoriesTypeSimple.ItemCategoriesSimple"
+            android:label="@string/title_activity_item_categories_simple"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
     </application>
 
 </manifest>

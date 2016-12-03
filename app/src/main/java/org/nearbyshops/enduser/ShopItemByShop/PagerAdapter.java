@@ -28,7 +28,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     }
 
 
-//    private ItemCategoriesFragment itemCategoriesFragment = new ItemCategoriesFragment();
+//    private ItemCategoriesFragmentSimple itemCategoriesFragment = new ItemCategoriesFragmentSimple();
 //    private FragmentItemsEditor fragmentItemsEditor = FragmentItemsEditor.newInstance(FragmentItemsEditor.MODE_RECENTLY_ADDED);
 
 //    private FragmentShopTwo fragmentShop = new FragmentShopTwo();

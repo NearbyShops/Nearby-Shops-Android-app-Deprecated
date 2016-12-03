@@ -314,8 +314,12 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
 
-            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                    + item.getItemImageURL();
+//            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                    + item.getItemImageURL();
+
+            String imagePath = UtilityGeneral.getServiceURL(context)
+                    + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
+
 
             Drawable placeholder = VectorDrawableCompat
                     .create(context.getResources(),

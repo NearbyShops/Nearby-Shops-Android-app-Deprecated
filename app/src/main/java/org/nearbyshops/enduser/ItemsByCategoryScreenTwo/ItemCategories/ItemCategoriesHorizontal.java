@@ -31,9 +31,7 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
-import icepick.Icepick;
 import icepick.State;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -103,8 +101,9 @@ public class ItemCategoriesHorizontal extends Fragment
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         super.onCreateView(inflater, container, savedInstanceState);
+
+        setRetainInstance(true);
 
         View rootView = inflater.inflate(R.layout.fragment_item_categories_horizontal, container, false);
 
@@ -150,10 +149,10 @@ public class ItemCategoriesHorizontal extends Fragment
             makeRequestRetrofit(false,false);
 
         }
-        else
-        {
-            onViewStateRestored(savedInstanceState);
-        }
+//        else
+//        {
+//            onViewStateRestored(savedInstanceState);
+//        }
 
 
 
@@ -386,150 +385,6 @@ public class ItemCategoriesHorizontal extends Fragment
 
 
 
-
-/*
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == 1)
-        {
-            if(resultCode == Activity.RESULT_OK)
-            {
-                ItemCategory parentCategory = data.getParcelableExtra("result");
-
-                if(parentCategory!=null)
-                {
-
-                    listAdapter.getRequestedChangeParent().setParentCategoryID(parentCategory.getItemCategoryID());
-
-                    makeRequestUpdate(listAdapter.getRequestedChangeParent());
-                }
-            }
-        }
-
-        if(requestCode == 2)
-        {
-            if(resultCode == Activity.RESULT_OK)
-            {
-                ItemCategory parentCategory = data.getParcelableExtra("result");
-
-                if(parentCategory!=null)
-                {
-
-                    List<ItemCategory> tempList = new ArrayList<>();
-
-                    for(Map.Entry<Integer,ItemCategory> entry : listAdapter.selectedItems.entrySet())
-                    {
-                        entry.getValue().setParentCategoryID(parentCategory.getItemCategoryID());
-                        tempList.add(entry.getValue());
-                    }
-
-                    makeRequestUpdateBulk(tempList);
-                }
-
-            }
-        }
-    }
-*/
-
-
-
-/*
-    void makeRequestUpdate(ItemCategory itemCategory)
-    {
-        Call<ResponseBody> call = itemCategoryService.updateItemCategory(itemCategory,itemCategory.getItemCategoryID());
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                if(response.code() == 200)
-                {
-                    showToastMessage("Change Parent Successful !");
-
-                    dataset.clear();
-                    offset = 0 ; // reset the offset
-                    makeRequestRetrofit(false,false);
-
-                }else
-                {
-                    showToastMessage("Change Parent Failed !");
-                }
-
-                listAdapter.setRequestedChangeParent(null);
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                showToastMessage("Network request failed. Please check your connection !");
-
-                listAdapter.setRequestedChangeParent(null);
-            }
-        });
-    }
-*/
-
-
-
-/*
-    void makeRequestUpdateBulk(final List<ItemCategory> list)
-    {
-        Call<ResponseBody> call = itemCategoryService.updateItemCategoryBulk(list);
-
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.code() == 200)
-                {
-                    showToastMessage("Update Successful !");
-
-                    clearSelectedItems();
-
-                }else if (response.code() == 206)
-                {
-                    showToastMessage("Partially Updated. Check for data changes !");
-
-                    clearSelectedItems();
-
-                }else if(response.code() == 304)
-                {
-
-                    showToastMessage("No item updated !");
-
-                }else
-                {
-                    showToastMessage("Unknown server error or response !");
-                }
-
-
-                onRefresh();
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-
-                showToastMessage("Network Request failed. Check your internet / network connection !");
-
-            }
-        });
-
-    }*/
-
-
-    void clearSelectedItems()
-    {
-        // clear the selected items
-        listAdapter.selectedItems.clear();
-    }
-
-
-
-
     @Override
     public void notifyItemCategorySelected() {
 
@@ -644,20 +499,20 @@ public class ItemCategoriesHorizontal extends Fragment
     }
 
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Icepick.saveInstanceState(this, outState);
-    }
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        Icepick.saveInstanceState(this, outState);
+//    }
 
 
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-
-        Icepick.restoreInstanceState(this, savedInstanceState);
-        notifyTitleChanged();
-    }
+//    @Override
+//    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+//        super.onViewStateRestored(savedInstanceState);
+//
+//        Icepick.restoreInstanceState(this, savedInstanceState);
+//        notifyTitleChanged();
+//    }
 
 
 
@@ -666,9 +521,10 @@ public class ItemCategoriesHorizontal extends Fragment
     {
         if(getActivity() instanceof NotifyTitleChanged)
         {
+            //currentCategory.getCategoryName(
+
             ((NotifyTitleChanged) getActivity())
-                    .NotifyTitleChanged(currentCategory.getCategoryName()
-                             + " Subcategories ("
+                    .NotifyTitleChanged("Subcategories ("
                             + String.valueOf(dataset.size()) + ")",0
                     );
         }
@@ -684,4 +540,10 @@ public class ItemCategoriesHorizontal extends Fragment
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        isDestroyed = false;
+    }
 }

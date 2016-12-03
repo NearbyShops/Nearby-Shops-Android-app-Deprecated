@@ -265,7 +265,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
 
             String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                    + shop.getImagePath();
+                    + shop.getLogoImagePath();
 
 
 
@@ -276,7 +276,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
             holder.shopName.setText(shop.getShopName());
 
-            holder.distance.setText(String.format( "%.2f", shop.getDistance()) + " Km");
+            holder.distance.setText(String.format( "%.2f", shop.getRt_distance()) + " Km");
             holder.deliveryCharge.setText("Delivery : Rs " + String.format( "%.0f", shop.getDeliveryCharges()) + " Per Order");
 
         }

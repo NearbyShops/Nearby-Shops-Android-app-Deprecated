@@ -3,12 +3,9 @@ package org.nearbyshops.enduser.ShopHome;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -102,7 +99,7 @@ public class ShopHome extends AppCompatActivity {
             }
 
             String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                    + shop.getImagePath();
+                    + shop.getLogoImagePath();
 
             Drawable placeholder = VectorDrawableCompat
                     .create(getResources(),
@@ -114,7 +111,7 @@ public class ShopHome extends AppCompatActivity {
                     .into(shopLogo);
 
             delivery.setText("Delivery : Rs " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
-            distance.setText("Distance : " + String.format( "%.2f", shop.getDistance()) + " Km");
+            distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
 
 
             if(shop.getRt_rating_count()==0)

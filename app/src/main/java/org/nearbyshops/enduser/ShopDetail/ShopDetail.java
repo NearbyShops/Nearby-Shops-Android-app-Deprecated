@@ -262,7 +262,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
 
             String imagePath = UtilityGeneral.getImageEndpointURL(this)
-                    + shop.getImagePath();
+                    + shop.getLogoImagePath();
 
 //            if (!shop.getBookCoverImageURL().equals("")) {
 
@@ -814,7 +814,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
                 .setType("image/jpg")
                 .getIntent();
 
-        String url = UtilityGeneral.getServiceURL(this)+ "/api/Images" + String.valueOf(shop.getImagePath());
+        String url = UtilityGeneral.getServiceURL(this)+ "/api/Images" + String.valueOf(shop.getLogoImagePath());
 //        intent.putExtra(Intent.EXTRA_TEXT,url);
         intent.putExtra(Intent.EXTRA_TEXT,url);
 //        intent.putExtra(Intent.EXTRA_TITLE,shop.getBookName());

@@ -19,11 +19,9 @@ import java.util.List;
 public class DeliveryAddressAdapter extends RecyclerView.Adapter<DeliveryAddressAdapter.ViewHolder>{
 
 
-    List<DeliveryAddress> dataset = null;
-
-
-    Context context;
-    NotifyDeliveryAddress notifyDeliveryAddress;
+    private List<DeliveryAddress> dataset = null;
+    private Context context;
+    private NotifyDeliveryAddress notifyDeliveryAddress;
 
 
 

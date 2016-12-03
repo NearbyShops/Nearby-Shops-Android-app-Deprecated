@@ -5,7 +5,7 @@ apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "org.nearbyshops.enduser"
@@ -13,7 +13,6 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
-
 
         // Enabling multidex support.
         multiDexEnabled true
@@ -37,7 +36,7 @@ android {
 
 
     repositories {
-        maven {url "https://clojars.org/repo/"}
+        maven { url "https://clojars.org/repo/" }
     }
 
 }
@@ -46,53 +45,48 @@ android {
 dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
 
     // butterknife dependencies
     //compile 'com.jakewharton:butterknife:8.0.1'
     //apt 'com.jakewharton:butterknife-compiler:8.0.1'
-    
 
     // card view
 
-
     // for implementing pull to refresh
     // android support Libraries
-    
 
     // dependencies for Dagger 2
     //apt command comes from the android-apt plugin
-    apt 'com.google.dagger:dagger-compiler:2.2'
-    provided 'javax.annotation:jsr250-api:1.0'
-    compile 'com.google.dagger:dagger:2.2'
-
-
 
     // range bar
-    
 
     // Material Intro
-    
 
     // Volley
-    
-
 
     // retrofit dependencies
-    
 
     // picasso dependencies
-    
+
     // palette
-    
-
-
 
     // leak canary dependencies
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
-    testCompile  'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 
+    //    compile 'com.mcxiaoke.volley:library:1.0.19'
+
+    // apache commons dependency for URL Validation
+    // https://mvnrepository.com/artifact/commons-validator/commons-validator
+    compile group: 'commons-validator', name: 'commons-validator', version: '1.4.0'
+
+    // goolge play services for location and other facilities.
+
+    //compile 'com.google.android.gms:play-services:9.0.2'
+
+    // ice pack dependencies
+
+    //    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
+
+    compile 'com.google.dagger:dagger:2.2'
     compile 'com.wunderlist:sliding-layer:1.2.5'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:support-v4:24.2.1'
@@ -101,39 +95,23 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support:palette-v7:24.2.1'
-
     compile 'com.appyvet:materialrangebar:1.3'
     compile 'com.heinrichreimersoftware:material-intro:1.2.1'
-//    compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.okhttp3:okhttp:3.1.2'
     compile 'com.squareup.picasso:picasso:2.5.2'
-
-
-
-    // apache commons dependency for URL Validation
-    // https://mvnrepository.com/artifact/commons-validator/commons-validator
-    compile group: 'commons-validator', name: 'commons-validator', version: '1.4.0'
-
-
-    // goolge play services for location and other facilities.
-
-    //compile 'com.google.android.gms:play-services:9.0.2'
-
     compile 'com.google.android.gms:play-services-location:9.8.0'
     compile 'com.google.android.gms:play-services-maps:9.8.0'
     compile 'com.android.support:multidex:1.0.1'
-
-
-
-    // ice pack dependencies
-
     compile 'frankiesardo:icepick:3.2.0'
-    provided 'frankiesardo:icepick-processor:3.2.0'
-
-    //    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta3'
-
+    testCompile 'junit:junit:4.12'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    apt 'com.google.dagger:dagger-compiler:2.2'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    provided 'javax.annotation:jsr250-api:1.0'
+    provided 'frankiesardo:icepick-processor:3.2.0'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 }

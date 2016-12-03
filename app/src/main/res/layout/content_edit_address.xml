@@ -163,16 +163,99 @@
 
 
 
+    <TextView
+        android:layout_marginTop="15dp"
+        android:id="@+id/location_header"
+        android:layout_below="@id/landmarkContainer"
+        android:padding="5dp"
+        android:text="Enter Location Coordinates"
+        android:background="@color/light_grey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/instructions"
+        android:layout_below="@id/location_header"
+        android:text="Giving accurate location coordinates will help the delivery person to easily find your address and deliver your order in less time. "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@id/instructions"
+        android:padding="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_vertical"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/latitude_container">
+
+        <EditText
+            android:inputType="number"
+            android:id="@+id/latitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Latitude"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@id/latitude_container"
+        android:padding="0dp"
+        android:layout_gravity="center_vertical"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/longitude_container">
+
+        <EditText
+            android:inputType="number"
+            android:id="@+id/longitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Longitude"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/pick_location_button"
+        android:layout_below="@id/longitude_container"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:text="Pick Location From Map"
+        android:background="@color/blueGrey800"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <TextView
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:id="@+id/navigate_button"
+        android:layout_below="@id/pick_location_button"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:text="Navigate"
+        android:background="@color/blueGrey800"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/updateAddress"
-        android:gravity="right"
-        android:textSize="20dp"
+        android:gravity="center"
+        android:textSize="20sp"
         android:textColor="#ffffff"
         android:background="@color/phonographyBlue"
         android:layout_marginTop="20dp"
         android:padding="10dp"
-        android:layout_below="@id/landmarkContainer"
+        android:layout_below="@id/navigate_button"
         android:text="Update Address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

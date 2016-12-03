@@ -31,17 +31,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DeliveryAddressActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, DeliveryAddressAdapter.NotifyDeliveryAddress, Callback<List<DeliveryAddress>>, View.OnClickListener {
+public class DeliveryAddressActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, DeliveryAddressAdapter.NotifyDeliveryAddress,
+        Callback<List<DeliveryAddress>>, View.OnClickListener {
 
     @Inject
     DeliveryAddressService deliveryAddressService;
 
     RecyclerView recyclerView;
-
     DeliveryAddressAdapter adapter;
-
     GridLayoutManager layoutManager;
-
     SwipeRefreshLayout swipeContainer;
 
     List<DeliveryAddress> dataset = new ArrayList<>();
@@ -83,6 +81,12 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
         addNewAddress.setOnClickListener(this);
 
 
+        if(savedInstanceState==null)
+        {
+            makeRefreshNetworkCall();
+        }
+
+
         setupSwipeContainer();
         setupRecyclerView();
     }
@@ -109,30 +113,21 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
 
         adapter = new DeliveryAddressAdapter(dataset,this,this);
-
         recyclerView.setAdapter(adapter);
-
         layoutManager = new GridLayoutManager(this,1);
-
         recyclerView.setLayoutManager(layoutManager);
 
-        //recyclerView.addItemDecoration(
-        //        new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST)
-        //);
-
-        //recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL_LIST));
-
-        //itemCategoriesList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
 
         DisplayMetrics metrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        int spanCount = (metrics.widthPixels/350);
 
-        if(spanCount > 0)
-        {
-            layoutManager.setSpanCount(spanCount);
+        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
+
+        if(spanCount==0){
+            spanCount = 1;
         }
+
 
     }
 
@@ -148,6 +143,22 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
         makeNetworkCall();
     }
 
+
+
+    void makeRefreshNetworkCall()
+    {
+
+
+        swipeContainer.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeContainer.setRefreshing(true);
+
+                onRefresh();
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
 
 
     void makeNetworkCall()
@@ -213,30 +224,10 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
 
 
+
     @Override
     protected void onResume() {
         super.onResume();
-
-
-
-        swipeContainer.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeContainer.setRefreshing(true);
-
-                try {
-
-                    makeNetworkCall();
-
-                } catch (IllegalArgumentException ex)
-                {
-                    ex.printStackTrace();
-
-                }
-
-                adapter.notifyDataSetChanged();
-            }
-        });
 
     }
 
@@ -305,29 +296,9 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
     void addNewAddressClick(View view)
     {
-
         Intent intent = new Intent(this,AddAddressActivity.class);
         startActivity(intent);
-
     }
 
-
-
-
-
-    /*
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-
-     */
 
 }

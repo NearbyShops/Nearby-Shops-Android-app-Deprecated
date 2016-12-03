@@ -14,11 +14,16 @@ public class ItemStats implements Parcelable {
     private int shopCount;
     private double avg_price;
 
+    private double rating_avg;
+    private int ratingCount;
+
+
     /*
         Getter and Setter methods
 
 
      */
+
 
     protected ItemStats(Parcel in) {
         itemID = in.readInt();
@@ -26,6 +31,8 @@ public class ItemStats implements Parcelable {
         max_price = in.readDouble();
         shopCount = in.readInt();
         avg_price = in.readDouble();
+        rating_avg = in.readDouble();
+        ratingCount = in.readInt();
     }
 
     @Override
@@ -35,6 +42,8 @@ public class ItemStats implements Parcelable {
         dest.writeDouble(max_price);
         dest.writeInt(shopCount);
         dest.writeDouble(avg_price);
+        dest.writeDouble(rating_avg);
+        dest.writeInt(ratingCount);
     }
 
     @Override
@@ -53,6 +62,22 @@ public class ItemStats implements Parcelable {
             return new ItemStats[size];
         }
     };
+
+    public double getRating_avg() {
+        return rating_avg;
+    }
+
+    public void setRating_avg(double rating_avg) {
+        this.rating_avg = rating_avg;
+    }
+
+    public int getRatingCount() {
+        return ratingCount;
+    }
+
+    public void setRatingCount(int ratingCount) {
+        this.ratingCount = ratingCount;
+    }
 
     public double getAvg_price() {
         return avg_price;

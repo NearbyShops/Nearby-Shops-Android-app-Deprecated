@@ -1,7 +1,6 @@
 package org.nearbyshops.enduser.Shops.MapsFragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,11 +15,8 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.ShopDetail.ShopDetail;
-import org.nearbyshops.enduser.ShopHome.ShopHome;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifyListItemClick;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
-import org.nearbyshops.enduser.Utility.UtilityShopHome;
 
 import java.util.List;
 
@@ -57,13 +53,13 @@ public class AdapterHorizontal extends RecyclerView.Adapter<AdapterHorizontal.Vi
         holder.shopName.setText(String.valueOf(position + 1) + ". " + dataset.get(position).getShopName());
 
         holder.rating.setText(String.format( "%.1f", dataset.get(position).getRt_rating_avg()));
-        holder.distance.setText(String.format( "%.2f", dataset.get(position).getDistance() )+ " Km");
+        holder.distance.setText(String.format( "%.2f", dataset.get(position).getRt_distance())+ " Km");
         holder.address.setText(dataset.get(position).getShopAddress());
 
 //        Log.d("applog","on BInd()");
 
         String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                + dataset.get(position).getImagePath();
+                + dataset.get(position).getLogoImagePath();
 
         Picasso.with(context)
                 .load(imagePath)

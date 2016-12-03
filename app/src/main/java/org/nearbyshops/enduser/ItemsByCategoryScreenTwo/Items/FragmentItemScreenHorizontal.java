@@ -64,27 +64,21 @@ public class FragmentItemScreenHorizontal extends Fragment
     GridLayoutManager layoutManager;
     SwipeRefreshLayout swipeContainer;
 
-    boolean isDestroyed;
+    boolean isDestroyed = false;
 
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
+//    private static final String ARG_SECTION_NUMBER = "section_number";
 
 
 
     @State
     boolean isbackPressed = false;
 
-
     private int limit = 10;
+    @State int offset = 0;
+    @State int item_count = 0;
 
-    @State
-    int offset = 0;
-
-    @State
-    int item_count = 0;
-
-    @State
-    int previous_position = -1;
+    @State int previous_position = -1;
 
     // Interface References
 
@@ -97,22 +91,17 @@ public class FragmentItemScreenHorizontal extends Fragment
         // inject dependencies through dagger
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
-
-        Log.d("applog","Item Fragment Constructor");
     }
 
-    /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static FragmentItemScreenHorizontal newInstance(ItemCategory itemCategory) {
 
-            FragmentItemScreenHorizontal fragment = new FragmentItemScreenHorizontal();
-            Bundle args = new Bundle();
-            args.putParcelable("itemCat",itemCategory);
-            fragment.setArguments(args);
-            return fragment;
-        }
+    public static FragmentItemScreenHorizontal newInstance(ItemCategory itemCategory) {
+
+        FragmentItemScreenHorizontal fragment = new FragmentItemScreenHorizontal();
+        Bundle args = new Bundle();
+        args.putParcelable("itemCat",itemCategory);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 
 
@@ -121,7 +110,7 @@ public class FragmentItemScreenHorizontal extends Fragment
                                  Bundle savedInstanceState) {
 
             View rootView = inflater.inflate(R.layout.fragment_items_item_by_category, container, false);
-
+            setRetainInstance(true);
 
 //            itemCategory = getArguments().getParcelable("itemCat");
 
@@ -132,13 +121,14 @@ public class FragmentItemScreenHorizontal extends Fragment
             {
                 makeRefreshNetworkCall();
             }
-            else
-            {
-                onViewStateRestored(savedInstanceState);
-            }
+//            else
+//            {
+//                onViewStateRestored(savedInstanceState);
+//            }
 
             setupRecyclerView();
             setupSwipeContainer();
+            notifyTitleChanged();
             return rootView;
         }
 
@@ -203,7 +193,7 @@ public class FragmentItemScreenHorizontal extends Fragment
 
                     // trigger fetch next page
 
-                    if(dataset.size()== previous_position)
+                    if(layoutManager.findLastVisibleItemPosition()== previous_position)
                     {
                         return;
                     }
@@ -217,7 +207,7 @@ public class FragmentItemScreenHorizontal extends Fragment
                         makeNetworkCall(false);
                     }
 
-                    previous_position = dataset.size();
+                    previous_position = layoutManager.findLastVisibleItemPosition();
 
                 }
             }
@@ -313,10 +303,10 @@ public class FragmentItemScreenHorizontal extends Fragment
 
                     if(!notifiedCurrentCategory.getAbstractNode() && item_count>0 && !isbackPressed)
                     {
-                        if(getActivity() instanceof NotifyGeneral)
-                        {
-                            ((NotifyGeneral)getActivity()).notifySwipeToright();
-                        }
+//                        if(getActivity() instanceof NotifyGeneral)
+//                        {
+//                            ((NotifyGeneral)getActivity()).notifySwipeToright();
+//                        }
 
                         // reset the flag
                         isbackPressed = false;
@@ -372,24 +362,24 @@ public class FragmentItemScreenHorizontal extends Fragment
 
 
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        Icepick.saveInstanceState(this, outState);
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//
+//        Icepick.saveInstanceState(this, outState);
 //        outState.putParcelableArrayList("dataset",dataset);
-
-    }
-
-
-
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
+//
+//    }
 
 
-        Icepick.restoreInstanceState(this, savedInstanceState);
-        notifyTitleChanged();
+
+//    @Override
+//    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+//        super.onViewStateRestored(savedInstanceState);
+
+
+//        Icepick.restoreInstanceState(this, savedInstanceState);
+//        notifyTitleChanged();
 /*
         if (savedInstanceState != null) {
 
@@ -403,19 +393,14 @@ public class FragmentItemScreenHorizontal extends Fragment
             adapter.notifyDataSetChanged();
         }*/
 
-    }
+//    }
 
 
     @Override
     public void itemCategoryChanged(ItemCategory currentCategory, Boolean isBackPressed) {
 
-
         notifiedCurrentCategory = currentCategory;
-//        dataset.clear();
-//        offset = 0 ; // reset the offset
-//        onRefresh();
         makeRefreshNetworkCall();
-
         this.isbackPressed = isBackPressed;
     }
 
@@ -443,11 +428,15 @@ public class FragmentItemScreenHorizontal extends Fragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
         isDestroyed = true;
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        isDestroyed = false;
+    }
 
     @Override
     public void notifySortChanged() {
