@@ -318,8 +318,8 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
 
     @Override
     public void notifySwipeRight() {
-
         mViewPager.setCurrentItem(1,false);
+
     }
 
     @Override

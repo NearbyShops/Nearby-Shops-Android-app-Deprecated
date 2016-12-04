@@ -93,6 +93,6 @@
     <string name="title_activity_items">Items</string>
     <string name="title_activity_items_in_shop">Items In Shop</string>
     <string name="title_activity_items_by_cat_s2">Items By Category</string>
-    <string name="title_activity_item_categories_simple">ItemCategoriesSimple</string>
+    <string name="title_activity_item_categories_simple">Items By Category</string>
 
 </resources>

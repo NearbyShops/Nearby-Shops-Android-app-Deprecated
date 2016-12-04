@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.ItemCategoriesTypeSimple.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduser.ItemCategoriesTypeSimple.Interfaces.NotifyHeaderChanged;
+import org.nearbyshops.enduser.ItemCategoriesTypeSimple.Utility.HeaderItemsList;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.ModelEndPoints.ItemCategoryEndPoint;
@@ -24,6 +26,7 @@ import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyGeneral;
+import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.UtilitySort.UtilitySortItemsByCategory;
 
@@ -42,19 +45,25 @@ import retrofit2.Response;
  * Created by sumeet on 2/12/16.
  */
 
-public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed {
+public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort{
 
     boolean isDestroyed = false;
 
+    int item_count_item_category = 0;
+
     private int limit_item = 10;
     int offset_item = 0;
-    int item_count_item_category = 0;
     int item_count_item;
+    int fetched_items_count = 0;
 
     @Bind(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
     @Bind(R.id.recycler_view) RecyclerView itemCategoriesList;
 
     ArrayList<Object> dataset = new ArrayList<>();
+    ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
+    ArrayList<Item> datasetItems = new ArrayList<>();
+
+
     GridLayoutManager layoutManager;
 
     AdapterSimple listAdapter;
@@ -111,6 +120,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
         setupRecyclerView();
         setupSwipeContainer();
+        notifyItemHeaderChanged();
         return rootView;
     }
 
@@ -154,13 +164,19 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
                 if(dataset.get(position) instanceof ItemCategory)
                 {
                     return 2;
+
                 }
                 else if(dataset.get(position) instanceof Item)
+                {
+
+                    return 4;
+                }
+                else if(dataset.get(position) instanceof HeaderItemsList)
                 {
                     return 4;
                 }
 
-                return 2;
+                return 3;
             }
         });
 
@@ -180,6 +196,18 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 //        layoutManager.setSpanCount(spanCount);
 
 
+        /*final DisplayMetrics metrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        int spanCount = (int) (metrics.widthPixels/(180 * metrics.density));
+
+        if(spanCount==0){
+            spanCount = 1;
+        }
+
+        return (3/spanCount);*/
+
+
         itemCategoriesList.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
 
@@ -194,10 +222,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
                     if((offset_item + limit_item)<=item_count_item)
                     {
                         offset_item = offset_item + limit_item;
-//                        makeRequestRetrofit(false,false,false);
 
                         makeRequestItem(false,false);
-
                     }
 
                 }
@@ -210,7 +236,9 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
     @Override
     public void onRefresh() {
-        makeRequestItemCategory(true);
+
+        makeRequestItemCategory();
+        makeRequestItem(true,true);
     }
 
 
@@ -242,8 +270,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     boolean isFirst = true;
 
 
-    void makeRequestItemCategory(final boolean clearDataset)
+    void makeRequestItemCategory()
     {
+
+
 
 
         Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
@@ -260,8 +290,6 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
             @Override
             public void onResponse(Call<ItemCategoryEndPoint> call, Response<ItemCategoryEndPoint> response) {
 
-
-
                 if(isDestroyed)
                 {
                     return;
@@ -269,41 +297,28 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
                 if(response.body()!=null)
                 {
+
                     ItemCategoryEndPoint endPoint = response.body();
                     item_count_item_category = endPoint.getItemCount();
 
-
-                    if(isFirst)
-                    {
-                        isFirst = false;
-
-
-                        if(clearDataset)
-                        {
-                            dataset.clear();
-                        }
-
-                    }
-                    else
-                    {
-                        isFirst = true;// reset the flag
-                    }
-
-
-
-                    dataset.addAll(endPoint.getResults());
-                    listAdapter.notifyDataSetChanged();
-
-//                    notifyTitleChanged();
-
-
+                    datasetCategory.clear();
+                    datasetCategory.addAll(endPoint.getResults());
                 }
 
 
-                makeRequestItem(true,true);
+                if(isFirst)
+                {
+                    isFirst = false;
+                }
+                else
+                {
+                    // is last
+                    refreshAdapter();
+                    isFirst = true;// reset the flag
+                }
 
-                swipeContainer.setRefreshing(false);
 
+//                swipeContainer.setRefreshing(false);
             }
 
             @Override
@@ -316,15 +331,51 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
                 }
 
                 showToastMessage("Network request failed. Please check your connection !");
-                if(swipeContainer!=null)
+
+
+                if(isFirst)
                 {
-                    swipeContainer.setRefreshing(false);
+                    isFirst = false;
+                }
+                else
+                {
+                    // is last
+                    refreshAdapter();
+                    isFirst = true;// reset the flag
                 }
 
-                makeRequestItem(true,true);
+
+
+//                if(swipeContainer!=null)
+//                {
+//                    swipeContainer.setRefreshing(false);
+//                }
 
             }
         });
+    }
+
+
+
+    void refreshAdapter()
+    {
+        dataset.clear();
+
+        HeaderItemsList headerItemCategory = new HeaderItemsList();
+        headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
+        dataset.add(headerItemCategory);
+
+        dataset.addAll(datasetCategory);
+
+        HeaderItemsList headerItem = new HeaderItemsList();
+        headerItem.setHeading(currentCategory.getCategoryName() + " Items");
+        dataset.add(headerItem);
+
+        dataset.addAll(datasetItems);
+
+        listAdapter.notifyDataSetChanged();
+
+        swipeContainer.setRefreshing(false);
     }
 
 
@@ -362,36 +413,53 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
                 }
 
 
-
-                if(response.body()!=null)
+                if(clearDataset)
                 {
+
+                    if(response.body()!=null)
+                    {
+
+                        datasetItems.clear();
+                        datasetItems.addAll(response.body().getResults());
+                        item_count_item = response.body().getItemCount();
+                        fetched_items_count = datasetItems.size();
+
+//                        if(response.body().getItemCount()!=null)
+//                        {
+//
+//                        }
+                    }
+
 
                     if(isFirst)
                     {
                         isFirst = false;
-                        if(clearDataset)
-                        {
-                            dataset.clear();
-                        }
                     }
                     else
                     {
+                        // is last
+                        refreshAdapter();
                         isFirst = true;// reset the flag
                     }
 
-                    dataset.addAll(response.body().getResults());
-                    listAdapter.notifyDataSetChanged();
-
-                    if(response.body().getItemCount()!=null)
+                }
+                else
+                {
+                    if(response.body()!=null)
                     {
+
+                        dataset.addAll(response.body().getResults());
+                        fetched_items_count = fetched_items_count + response.body().getResults().size();
                         item_count_item = response.body().getItemCount();
+                        listAdapter.notifyDataSetChanged();
                     }
 
-//                    notifyTitleChanged();
+                    swipeContainer.setRefreshing(false);
                 }
 
 
-                swipeContainer.setRefreshing(false);
+                notifyItemHeaderChanged();
+
 
             }
 
@@ -403,9 +471,28 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
                     return;
                 }
 
-                swipeContainer.setRefreshing(false);
 
-                showToastMessage("Network request failed. Please check your connection !");
+                if(clearDataset)
+                {
+
+                    if(isFirst)
+                    {
+                        isFirst = false;
+                    }
+                    else
+                    {
+                        // is last
+                        refreshAdapter();
+                        isFirst = true;// reset the flag
+                    }
+                }
+                else
+                {
+                    swipeContainer.setRefreshing(false);
+                }
+
+
+                showToastMessage("Items: Network request failed. Please check your connection !");
 
             }
         });
@@ -470,5 +557,29 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
         return currentCategoryID == -1;
     }
+
+
+    void notifyItemHeaderChanged()
+    {
+        if(getActivity() instanceof NotifyHeaderChanged)
+        {
+            ((NotifyHeaderChanged) getActivity()).notifyItemHeaderChanged(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items");
+        }
+    }
+
+
+    @Override
+    public void notifySortChanged() {
+
+        swipeContainer.post(new Runnable() {
+            @Override
+            public void run() {
+
+                swipeContainer.setRefreshing(true);
+                onRefresh();
+            }
+        });
+    }
+
 
 }

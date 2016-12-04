@@ -80,6 +80,7 @@
 
 
         <ImageView
+            android:visibility="gone"
             android:background="#55000000"
             android:id="@+id/more_options"
             android:padding="10dp"
@@ -95,6 +96,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             app:layout_constraintRight_toLeftOf="@id/more_options"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/more_options"
