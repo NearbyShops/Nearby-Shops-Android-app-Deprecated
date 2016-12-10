@@ -1,8 +1,10 @@
-package org.nearbyshops.enduser.ItemsInShop.ShopItems;
+package org.nearbyshops.enduser.ItemsInShopByCat;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -22,11 +24,11 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
-import org.nearbyshops.enduser.Items.ItemsList.AdapterItem;
-import org.nearbyshops.enduser.Items.ItemsList.FragmentItemsList;
+import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Model.CartItem;
 import org.nearbyshops.enduser.Model.Item;
+import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
@@ -35,6 +37,8 @@ import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
+import org.nearbyshops.enduser.ShopItemByShop.ShopItems.AdapterShopItems;
+import org.nearbyshops.enduser.ShopItemByShop.ShopItems.FragmentShopItemsByShop;
 import org.nearbyshops.enduser.Utility.InputFilterMinMax;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
@@ -55,10 +59,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by sumeet on 25/5/16.
+ * Created by sumeet on 19/12/15.
  */
-public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+
+public class AdapterItemsInStock extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+
+//    Map<Integer,ShopItem> shopItemMap = new HashMap<>();
+//    Map<Integer,Item> selectedItems = new HashMap<>();
 
     private Map<Integer,CartItem> cartItemMap = new HashMap<>();
     private Map<Integer,CartStats> cartStatsMap = new HashMap<>();
@@ -71,45 +79,38 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
     CartStatsService cartStatsService;
 
 
-
-
-    private List<ShopItem> dataset = null;
+    private List<Object> dataset;
     private Context context;
+    private NotificationsFromAdapter notificationReceiver;
 
-    private FragmentItemsInShop fragment;
+    public static final int VIEW_TYPE_ITEM_CATEGORY = 1;
+    public static final int VIEW_TYPE_SHOP_ITEM = 2;
+    public static final int VIEW_TYPE_HEADER = 3;
+    public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 4;
 
 
-    AdapterItemsInShop(List<ShopItem> dataset, Context context, FragmentItemsInShop fragment) {
+    private Fragment fragment;
 
+
+
+    public AdapterItemsInStock(List<Object> dataset,
+                               Context context,
+                               NotificationsFromAdapter notificationReceiver,
+                               Fragment fragment
+    )
+    {
+
+
+        DaggerComponentBuilder.getInstance()
+                .getNetComponent().Inject(this);
+
+        this.notificationReceiver = notificationReceiver;
         this.dataset = dataset;
         this.context = context;
         this.fragment = fragment;
 
-        DaggerComponentBuilder.getInstance().getNetComponent().Inject(this);
         makeNetworkCall(false,0,true);
     }
-
-
-    /*public void setStats(List<CartItem> cartItemList, List<CartStats> cartStatsList)
-    {
-        cartStatsMap.clear();
-
-        for(CartStats cartStats: cartStatsList)
-        {
-            cartStatsMap.put(cartStats.getShopID(),cartStats);
-        }
-
-        cartItemList.clear();
-
-        for(CartItem cartItem: cartItemList)
-        {
-            cartItemMap.put(cartItem.getCart().getShopID(),cartItem);
-        }
-
-
-        notifyDataSetChanged();
-    }*/
-
 
 
 
@@ -216,42 +217,239 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
 
+
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
+        View view = null;
 
-        if(viewType==0)
+        if(viewType == VIEW_TYPE_ITEM_CATEGORY)
         {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_items_in_shop,parent,false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category,parent,false);
+            return new ViewHolderItemCategory(view);
+        }
+        else if(viewType == VIEW_TYPE_SHOP_ITEM)
+        {
+//            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_item_experimental,parent,false);
+//            return new ViewHolderShopItems(view);
 
-            return new ViewHolder(view);
+
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item_shop_item_by_shop,parent,false);
+
+            return new ViewHolderShopItem(view);
 
         }
-        else
+        else if(viewType == VIEW_TYPE_HEADER)
         {
-            View view = LayoutInflater.from(parent.getContext())
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_header_type_simple,parent,false);
+            return new ViewHolderHeader(view);
+        }
+        else if(viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR)
+        {
+
+            view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_item_progress_bar,parent,false);
 
-            return new AdapterItemsInShop.LoadingViewHolder(view);
+            return new LoadingViewHolder(view);
+
+        }
+
+
+//        else
+//        {
+//            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_guide,parent,false);
+//            return new ViewHolderItemSimple(view);
+//        }
+
+        return null;
+    }
+
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+
+        if(holder instanceof ViewHolderItemCategory)
+        {
+            bindItemCategory((ViewHolderItemCategory) holder,position);
+        }
+        else if(holder instanceof ViewHolderShopItem)
+        {
+            bindShopItems((ViewHolderShopItem) holder,position);
+        }
+        else if(holder instanceof ViewHolderHeader)
+        {
+            if(dataset.get(position) instanceof HeaderItemsList)
+            {
+                HeaderItemsList header = (HeaderItemsList) dataset.get(position);
+
+                ((ViewHolderHeader) holder).header.setText(header.getHeading());
+            }
+
+        }
+        else if(holder instanceof LoadingViewHolder)
+        {
+
+
+            LoadingViewHolder viewHolder = (LoadingViewHolder) holder;
+
+            if(fragment instanceof ItemsInStockByCatFragment)
+            {
+                int fetched_count  = ((ItemsInStockByCatFragment) fragment).fetched_items_count;
+                int items_count = ((ItemsInStockByCatFragment) fragment).item_count_item;
+
+                if(fetched_count == items_count)
+                {
+                    viewHolder.progressBar.setVisibility(View.GONE);
+                }
+                else
+                {
+                    viewHolder.progressBar.setVisibility(View.VISIBLE);
+                    viewHolder.progressBar.setIndeterminate(true);
+
+                }
+            }
         }
 
 
     }
 
+
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder_given, int position) {
+    public int getItemViewType(int position) {
 
+        super.getItemViewType(position);
 
-        if(holder_given instanceof AdapterItemsInShop.ViewHolder)
+        if(position == dataset.size())
         {
-            AdapterItemsInShop.ViewHolder holder = (AdapterItemsInShop.ViewHolder)holder_given;
+            return VIEW_TYPE_SCROLL_PROGRESS_BAR;
+        }
+        else if(dataset.get(position) instanceof ItemCategory)
+        {
+            return VIEW_TYPE_ITEM_CATEGORY;
+        }
+        else if (dataset.get(position) instanceof ShopItem)
+        {
+            return VIEW_TYPE_SHOP_ITEM;
+        }
+        else if(dataset.get(position) instanceof HeaderItemsList)
+        {
+            return VIEW_TYPE_HEADER;
+        }
+
+
+        return -1;
+    }
+
+    @Override
+    public int getItemCount() {
+
+        return (dataset.size()+1);
+    }
 
 
 
-            Item item = dataset.get(position).getItem();
-            ShopItem shopItem = dataset.get(position);
 
+    public class LoadingViewHolder extends  RecyclerView.ViewHolder{
+
+        @Bind(R.id.progress_bar)
+        ProgressBar progressBar;
+
+        public LoadingViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+        }
+    }
+
+
+
+
+
+    class ViewHolderHeader extends RecyclerView.ViewHolder{
+
+
+        @Bind(R.id.header)
+        TextView header;
+
+        public ViewHolderHeader(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+        }
+
+    }// ViewHolderShopItem Class declaration ends
+
+
+
+    void bindItemCategory(ViewHolderItemCategory holder,int position)
+    {
+
+        if(dataset.get(position) instanceof ItemCategory)
+        {
+            ItemCategory itemCategory = (ItemCategory) dataset.get(position);
+
+            holder.categoryName.setText(String.valueOf(itemCategory.getCategoryName()));
+
+
+            String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/ItemCategory/Image/five_hundred_"
+                    + itemCategory.getImagePath() + ".jpg";
+
+
+
+            Drawable placeholder = VectorDrawableCompat
+                    .create(context.getResources(),
+                            R.drawable.ic_nature_people_white_48px, context.getTheme());
+
+            Picasso.with(context).load(imagePath)
+                    .placeholder(placeholder)
+                    .into(holder.categoryImage);
+
+        }
+    }
+
+
+
+    class ViewHolderItemCategory extends RecyclerView.ViewHolder{
+
+
+        @Bind(R.id.name)
+        TextView categoryName;
+        @Bind(R.id.itemCategoryListItem)
+        ConstraintLayout itemCategoryListItem;
+        @Bind(R.id.categoryImage)
+        ImageView categoryImage;
+        @Bind(R.id.cardview)
+        CardView cardView;
+
+        public ViewHolderItemCategory(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+        }
+
+
+        @OnClick(R.id.itemCategoryListItem)
+        public void itemCategoryListItemClick()
+        {
+            notificationReceiver.notifyRequestSubCategory(
+                    (ItemCategory) dataset.get(getLayoutPosition()));
+
+//            selectedItems.clear();
+        }
+
+
+    }// ViewHolderShopItem Class declaration ends
+
+
+
+
+
+    void bindShopItems(ViewHolderShopItem holder,int position)
+    {
+        if(dataset.get(position) instanceof ShopItem)
+        {
+            ShopItem shopItem = (ShopItem) dataset.get(position);
+
+            Item item = shopItem.getItem();
 
 //        holder.shopName.setText(dataset.get(position).getShopName());
 //        holder.rating.setText(String.format( "%.2f", dataset.get(position).getRt_rating_avg()));
@@ -259,7 +457,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
 
-            CartItem cartItem = cartItemMap.get(dataset.get(position).getItemID());
+            CartItem cartItem = cartItemMap.get(shopItem.getItemID());
 
             if(cartItem!=null)
             {
@@ -281,17 +479,13 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
             }
 
 
+            holder.available.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()));
 
-            if(shopItem!=null)
-            {
-                holder.available.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()));
-
-            }
-
+            String imagePath = null;
 
             if(item!=null)
             {
-                holder.itemName.setText(String.valueOf(position + 1) + ". " + item.getItemName());
+                holder.itemName.setText(item.getItemName());
                 holder.itemPrice.setText("Rs. " + String.format("%.2f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
 
                 if(item.getRt_rating_count()==0)
@@ -307,105 +501,33 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                 }
 
 
-                String imagePath = UtilityGeneral.getServiceURL(context)
+
+//                imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                        + item.getItemImageURL();
+
+                imagePath = UtilityGeneral.getServiceURL(context)
                         + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
 
-
-                Drawable placeholder = VectorDrawableCompat
-                        .create(context.getResources(),
-                                R.drawable.ic_nature_people_white_48px, context.getTheme());
-
-
-                Picasso.with(context)
-                        .load(imagePath)
-                        .placeholder(placeholder)
-                        .into(holder.itemImage);
-
-
             }
 
 
-//        holder.rating.setText(String.format("%.2f",));
+            Drawable placeholder = VectorDrawableCompat
+                    .create(context.getResources(),
+                            R.drawable.ic_nature_people_white_48px, context.getTheme());
 
 
-
-
-//            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-//                    + item.getItemImageURL();
-
-
-
-
-
+            Picasso.with(context)
+                    .load(imagePath)
+                    .placeholder(placeholder)
+                    .into(holder.itemImage);
         }
-        else if(holder_given instanceof LoadingViewHolder)
-        {
-            AdapterItemsInShop.LoadingViewHolder viewHolder = (AdapterItemsInShop.LoadingViewHolder) holder_given;
-
-
-
-            int itemCount = 0;
-
-            if(fragment != null)
-            {
-                itemCount = ((FragmentItemsInShop) fragment).getItemCount();
-            }
-
-            if(position == 0 || position == itemCount)
-            {
-                viewHolder.progressBar.setVisibility(View.GONE);
-            }
-            else
-            {
-                viewHolder.progressBar.setVisibility(View.VISIBLE);
-                viewHolder.progressBar.setIndeterminate(true);
-
-            }
-
-
-        }
-
 
     }
 
 
 
 
-    @Override
-    public int getItemCount() {
-        return (dataset.size()+1);
-    }
-
-
-    @Override
-    public int getItemViewType(int position) {
-        super.getItemViewType(position);
-
-        if(position==dataset.size())
-        {
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
-    }
-
-
-
-    public class LoadingViewHolder extends  RecyclerView.ViewHolder{
-
-        @Bind(R.id.progress_bar)
-        ProgressBar progressBar;
-
-        public LoadingViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this,itemView);
-        }
-    }
-
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
         @Bind(R.id.add_to_cart_text)
@@ -453,7 +575,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         CartStats cartStats;
 
 
-        public ViewHolder(View itemView) {
+        public ViewHolderShopItem(View itemView) {
             super(itemView);
 
             ButterKnife.bind(this,itemView);
@@ -467,9 +589,10 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                    shopItem = dataset.get(getLayoutPosition());
-                    cartItem = cartItemMap.get(dataset.get(getLayoutPosition()).getItemID());
-                    cartStats = cartStatsMap.get(dataset.get(getLayoutPosition()).getShopID());
+
+                    shopItem = (ShopItem) dataset.get(getLayoutPosition());
+                    cartItem = cartItemMap.get(shopItem.getItemID());
+                    cartStats = cartStatsMap.get(shopItem.getShopID());
 
                     double total = 0;
                     int availableItems = shopItem.getAvailableItemQuantity();
@@ -495,13 +618,20 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                                 if(cartItem==null)
                                 {
 
-                                    fragment.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+
+                                    if(fragment instanceof ItemsInStockByCatFragment)
+                                    {
+                                        ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                                    }
 
                                 }else
                                 {
-                                    fragment.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
-                                    addToCartText.setText("Remove Item");
 
+                                    if(fragment instanceof ItemsInStockByCatFragment)
+                                    {
+                                        ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
+                                        addToCartText.setText("Remove Item");
+                                    }
                                 }
 
                             }else
@@ -510,13 +640,20 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                                 {
                                     // no shop exist
 
-                                    fragment.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+                                    if(fragment instanceof ItemsInStockByCatFragment)
+                                    {
+                                        ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+                                    }
+
 
                                 }else
                                 {
                                     // shop Exist
 
-                                    fragment.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                                    if(fragment instanceof ItemsInStockByCatFragment)
+                                    {
+                                        ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                                    }
 
                                     addToCartText.setText("Update Cart");
                                 }
@@ -531,7 +668,13 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                     }
 
                     itemTotal.setText("Total : " + String.format( "%.2f", total));
-                    fragment.cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
+
+                    if(fragment instanceof ItemsInStockByCatFragment)
+                    {
+                        ((ItemsInStockByCatFragment)fragment).cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
+                    }
+
+
                 }
 
                 @Override
@@ -548,16 +691,17 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         @OnClick(R.id.add_to_cart_text)
         void addToCartClick(View view) {
 
+            ShopItem shopItem = (ShopItem) dataset.get(getLayoutPosition());
 
             CartItem cartItem = new CartItem();
-            cartItem.setItemID(dataset.get(getLayoutPosition()).getItemID());
+            cartItem.setItemID(shopItem.getItemID());
 
             if (!itemQuantity.getText().toString().equals("")) {
 
                 cartItem.setItemQuantity(Integer.parseInt(itemQuantity.getText().toString()));
             }
 
-            if (!cartItemMap.containsKey(dataset.get(getLayoutPosition()).getItemID()))
+            if (!cartItemMap.containsKey(shopItem.getItemID()))
             {
 
                 if (Integer.parseInt(itemQuantity.getText().toString()) == 0) {
@@ -627,7 +771,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                     Call<ResponseBody> callDelete = cartItemService.deleteCartItem(0,cartItem.getItemID(),
                             endUser.getEndUserID(),
-                            dataset.get(getLayoutPosition()).getShopID()
+                            shopItem.getShopID()
                     );
 
                     callDelete.enqueue(new Callback<ResponseBody>() {
@@ -679,7 +823,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                     if(getLayoutPosition() < dataset.size())
                     {
-                        ShopItem shop = dataset.get(getLayoutPosition());
+                        ShopItem shop = (ShopItem) dataset.get(getLayoutPosition());
 
                         Call<ResponseBody> callUpdate = cartItemService.updateCartItem(
                                 cartItem,
@@ -718,7 +862,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             if (getLayoutPosition() != -1) {
 
-                shopItem = dataset.get(getLayoutPosition());
+                shopItem = (ShopItem) dataset.get(getLayoutPosition());
             }
 
             if (shopItem != null) {
@@ -761,8 +905,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         {
             Shop shop = UtilityShopHome.getShop(context);
 
-            shopItem = dataset.get(getLayoutPosition());
-            cartItem = cartItemMap.get(dataset.get(getLayoutPosition()).getItemID());
+            shopItem = (ShopItem) dataset.get(getLayoutPosition());
+            cartItem = cartItemMap.get(shopItem.getItemID());
             cartStats = cartStatsMap.get(shop.getShopID());
 
 
@@ -782,18 +926,31 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                             if(cartStats==null)
                             {
-                                fragment.itemsInCart.setText(String.valueOf(0) + " " + "Items in Cart");
+
+
+                                if(fragment instanceof ItemsInStockByCatFragment)
+                                {
+                                    ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(0) + " " + "Items in Cart");
+                                }
                             }
                             else
                             {
-                                fragment.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+
+                                if(fragment instanceof ItemsInStockByCatFragment)
+                                {
+                                    ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");;
+                                }
+
+
                             }
 
 
                         } else
                         {
-                            fragment.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() - 1) + " " + "Items in Cart");
-
+                            if(fragment instanceof ItemsInStockByCatFragment)
+                            {
+                                ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() - 1) + " " + "Items in Cart");
+                            }
                         }
 
                         return;
@@ -809,7 +966,16 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 }
 
-                fragment.cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
+
+
+
+                if(fragment instanceof ItemsInStockByCatFragment)
+                {
+                    ((ItemsInStockByCatFragment)fragment).cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
+                }
+
+
+
                 itemTotal.setText("Total : " + String.format( "%.2f", total));
 
             }else
@@ -828,8 +994,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         {
             Shop shop = UtilityShopHome.getShop(context);
 
-            shopItem = dataset.get(getLayoutPosition());
-            cartItem = cartItemMap.get(dataset.get(getLayoutPosition()).getItemID());
+            shopItem = (ShopItem) dataset.get(getLayoutPosition());
+            cartItem = cartItemMap.get(shopItem.getItemID());
             cartStats = cartStatsMap.get(shop.getShopID());
 
             //dataset.get(getLayoutPosition()).getShopID()
@@ -849,11 +1015,21 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                         if(cartStats==null)
                         {
-                            fragment.itemsInCart.setText(String.valueOf(1) + " " + "Items in Cart");
+                            if(fragment instanceof ItemsInStockByCatFragment)
+                            {
+                                ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(1) + " " + "Items in Cart");
+                            }
                         }
                         else
                         {
-                            fragment.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+
+                            if(fragment instanceof ItemsInStockByCatFragment) {
+
+                                ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+                            }
+
+
+
                         }
 
                     }
@@ -862,7 +1038,11 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                 else
                 {
 
-                    fragment.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+
+                    if(fragment instanceof ItemsInStockByCatFragment) {
+
+                        ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                    }
                 }
 
 
@@ -883,7 +1063,12 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 itemTotal.setText("Total : " + String.format("%.2f", total));
 
-                fragment.cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
+
+                if(fragment instanceof ItemsInStockByCatFragment)
+                {
+                    ((ItemsInStockByCatFragment)fragment).cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
+                }
+
 
 
             }else
@@ -898,9 +1083,22 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
 
-    void showToastMessage(String message)
+
+
+
+
+
+    interface NotificationsFromAdapter
     {
-        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
+        // method for notifying the list object to request sub category
+        void notifyRequestSubCategory(ItemCategory itemCategory);
+    }
+
+
+
+    private void showToastMessage(String message)
+    {
+        Toast.makeText(context,message, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -917,6 +1115,5 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
 
     }
-
 
 }

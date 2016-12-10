@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ItemCategoriesTypeSimple.Utility;
+package org.nearbyshops.enduser.ItemsByCategoryTypeSimple.Utility;
 
 /**
  * Created by sumeet on 4/12/16.

@@ -67,24 +67,12 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_shops);
         ButterKnife.bind(this);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-
 
         if(getSupportFragmentManager().findFragmentByTag(TAG_SHOP_FRAGMENT)==null)
         {
@@ -98,17 +86,7 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
 
 
 
-        if(savedInstanceState == null)
-        {
-
-            /*fragmentShopTwo = FragmentShopTwo.newInstance(false);
-            // first run for the activity
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.fragment_container, fragmentShopTwo,"shop_fragment")
-                    .commit();*/
-        }
-        else
+        if(savedInstanceState != null)
         {
             onRestoreInstanceState(savedInstanceState);
 
@@ -119,6 +97,7 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
                 ((NotifyDatasetChanged)fragment).notifyDatasetChanged();
             }
         }
+
 
 
 

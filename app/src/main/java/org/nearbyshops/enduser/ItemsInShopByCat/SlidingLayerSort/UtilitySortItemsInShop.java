@@ -1,12 +1,10 @@
-package org.nearbyshops.enduser.UtilitySort;
+package org.nearbyshops.enduser.ItemsInShopByCat.SlidingLayerSort;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import org.nearbyshops.enduser.ItemsByCategory.SlidingLayerSortItems;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.ShopItemByShop.SlidingLayerSortShopItemsByShop;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -14,7 +12,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by sumeet on 29/9/16.
  */
 
-public class UtilitySortShopItemsByShop {
+public class UtilitySortItemsInShop {
 
 
 
@@ -37,7 +35,7 @@ public class UtilitySortShopItemsByShop {
     public static String getSort(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String sort_by = sharedPref.getString("sort_shop_items_by_shop", SlidingLayerSortShopItemsByShop.SORT_BY_SHOP_COUNT);
+        String sort_by = sharedPref.getString("sort_shop_items_by_shop", SlidingLayerSortItemsInShop.SORT_BY_SHOP_COUNT);
 
         return sort_by;
     }
@@ -71,7 +69,7 @@ public class UtilitySortShopItemsByShop {
         }
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String descending = sharedPref.getString("sort_descending_shop_items_by_shop", SlidingLayerSortShopItemsByShop.SORT_ASCENDING);
+        String descending = sharedPref.getString("sort_descending_shop_items_by_shop", SlidingLayerSortItemsInShop.SORT_ASCENDING);
 
         return descending;
     }

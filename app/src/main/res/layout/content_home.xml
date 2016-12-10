@@ -37,6 +37,7 @@
             -->
 
             <RelativeLayout
+                android:background="@color/light_grey"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="0dp"
                 android:orientation="vertical"
@@ -83,7 +84,7 @@
                         android:id="@+id/serviceURL"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter Market URL"/>
+                        android:hint="Enter Service URL"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -109,7 +110,7 @@
                         android:paddingLeft="20dp"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
-                        android:text="Discover\nMarkets"
+                        android:text="Discover\nServices"
                         android:textSize="@dimen/appbar_label_size"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
@@ -129,7 +130,7 @@
                         android:paddingLeft="20dp"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
-                        android:text="Paste\nMarket URL"
+                        android:text="Paste\nService URL"
                         android:textSize="@dimen/appbar_label_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -164,7 +165,7 @@
 
             <TextView
                 android:textColor="@color/white"
-                android:text="Market Information"
+                android:text="About Service"
                 android:background="@color/blueGrey800"
                 android:padding="5dp"
                 android:layout_weight="1"

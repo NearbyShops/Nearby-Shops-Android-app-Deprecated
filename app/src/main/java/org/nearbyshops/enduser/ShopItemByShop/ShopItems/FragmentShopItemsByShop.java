@@ -26,7 +26,7 @@ import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyGeneral;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityShopHome;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItemsByShop;
+import org.nearbyshops.enduser.ItemsInShopByCat.SlidingLayerSort.UtilitySortItemsInShop;
 
 import java.util.ArrayList;
 
@@ -300,8 +300,8 @@ public class FragmentShopItemsByShop extends Fragment implements
 
             String current_sort = "";
 
-            current_sort = UtilitySortShopItemsByShop.getSort(getContext())
-                            + " " + UtilitySortShopItemsByShop.getAscending(getContext());
+            current_sort = UtilitySortItemsInShop.getSort(getContext())
+                            + " " + UtilitySortItemsInShop.getAscending(getContext());
 
 
 
@@ -311,7 +311,9 @@ public class FragmentShopItemsByShop extends Fragment implements
                     null,null,null,
                     null,null,null,null,
                     null, null,
-                    current_sort,limit,offset,null
+                    null,current_sort,
+                    limit,offset,null,
+                    true
             );
 
 

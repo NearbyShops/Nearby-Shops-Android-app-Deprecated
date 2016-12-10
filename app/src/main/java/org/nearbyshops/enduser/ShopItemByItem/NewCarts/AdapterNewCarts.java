@@ -158,8 +158,15 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                        + shop.getLogoImagePath();
+
+                String imagePath = UtilityGeneral.getServiceURL(context)
+                        + "/api/v1/Shop/Image/"
                         + shop.getLogoImagePath();
+
+                System.out.println(imagePath);
+
 
                 Picasso.with(context)
                         .load(imagePath)
@@ -358,6 +365,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
                     + ((Item)dataset.get(position)).getItemImageURL();
+
         }
 
 

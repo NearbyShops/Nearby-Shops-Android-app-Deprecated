@@ -264,15 +264,21 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
 
 
-            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                    + shop.getLogoImagePath();
+
+
+            String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/"
                     + shop.getLogoImagePath();
 
-
+            System.out.println(imagePath);
 
             Picasso.with(context)
                     .load(imagePath)
                     .placeholder(R.drawable.nature_people)
                     .into(holder.shopImage);
+
+
 
             holder.shopName.setText(shop.getShopName());
 

@@ -16,21 +16,20 @@ import android.widget.FrameLayout;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
-import org.nearbyshops.enduser.ItemsByCategory.SlidingLayerSortItems;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.R;
+import org.nearbyshops.enduser.ItemsInShopByCat.SlidingLayerSort.SlidingLayerSortItemsInShop;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyGeneral;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduser.ShopsByCategory.SlidingLayerSortShops_;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ShopItemByShopByCategory extends AppCompatActivity implements NotifyGeneral,
+public class ShopItemsInShopByCat extends AppCompatActivity implements NotifyGeneral,
         NotifyTitleChanged, ViewPager.OnPageChangeListener, NotifyCategoryChanged, NotifySort {
 
 
@@ -115,7 +114,7 @@ public class ShopItemByShopByCategory extends AppCompatActivity implements Notif
             {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.slidinglayerfragment,new SlidingLayerSortShopItemsByShop(),"sliding_layer")
+                        .add(R.id.slidinglayerfragment,new SlidingLayerSortItemsInShop(),"sliding_layer")
                         .commit();
             }
         }

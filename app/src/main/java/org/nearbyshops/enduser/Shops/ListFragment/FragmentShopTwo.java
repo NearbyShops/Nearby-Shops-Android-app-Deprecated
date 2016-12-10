@@ -46,7 +46,6 @@ public class FragmentShopTwo extends Fragment implements
         ArrayList<Shop> dataset;
 
         @State boolean isSaved;
-
         @Inject ShopService shopService;
 
         RecyclerView recyclerView;
@@ -55,22 +54,12 @@ public class FragmentShopTwo extends Fragment implements
 
         SwipeRefreshLayout swipeContainer;
 
-
-//        @State boolean isbackPressed = false;
-
-
         final private int limit = 10;
         @State int offset = 0;
         @State int item_count = 0;
 
-
-
         boolean switchMade = false;
-
-
         boolean isDestroyed;
-
-
 
         public FragmentShopTwo() {
             // inject dependencies through dagger
@@ -253,7 +242,7 @@ public class FragmentShopTwo extends Fragment implements
                 spanCount = 1;
             }
 
-            layoutManager.setSpanCount(spanCount);
+            layoutManager.setSpanCount(1);
 
 //            layoutManager.setSpanCount(metrics.widthPixels/350);
 

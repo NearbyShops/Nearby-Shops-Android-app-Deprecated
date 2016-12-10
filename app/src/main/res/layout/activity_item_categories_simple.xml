@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.nearbyshops.enduser.ItemCategoriesTypeSimple.ItemCategoriesSimple">
+    tools:context="org.nearbyshops.enduser.ItemsByCategoryTypeSimple.ItemCategoriesSimple">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
 
-        <LinearLayout
+        <!--<LinearLayout
             android:background="@color/cyan900"
             android:paddingBottom="1dp"
             android:paddingTop="1dp"
@@ -68,7 +68,102 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-        </LinearLayout>
+        </LinearLayout>-->
+
+        <android.support.constraint.ConstraintLayout
+            android:padding="1dp"
+            android:layout_width="match_parent"
+            android:background="@color/cyan900"
+            android:layout_height="wrap_content">
+
+            <!--<TextView-->
+                <!--android:id="@+id/border_top"-->
+                <!--android:background="#aaffffff"-->
+                <!--app:layout_constraintTop_toBottomOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="1dp" />-->
+
+
+
+
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginEnd="5dp"-->
+            <!--android:layout_marginStart="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--<TextView-->
+                <!--android:id="@+id/border_middle"-->
+                <!--android:background="#aaffffff"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/text_sub"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="1dp" />-->
+
+
+            <TextView
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_sub"
+                app:layout_constraintBottom_toBottomOf="@+id/text_sub"
+                android:id="@+id/text_sort"
+                android:padding="5dp"
+                android:text="Sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <ImageView
+                app:layout_constraintRight_toLeftOf="@+id/text_sort"
+                app:layout_constraintTop_toTopOf="@+id/text_sort"
+                app:layout_constraintBottom_toBottomOf="@+id/text_sort"
+                android:id="@+id/icon_sort"
+                app:srcCompat="@drawable/ic_sort_black_24px"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintRight_toLeftOf="@+id/icon_sort"
+                app:layout_constraintTop_toTopOf="@+id/text_sub"
+                app:layout_constraintBottom_toBottomOf="@+id/text_sub"
+                android:id="@+id/text_filter"
+                android:padding="5dp"
+                android:text="Filter |"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <ImageView
+                android:paddingLeft="5dp"
+                android:paddingStart="5dp"
+                app:layout_constraintRight_toLeftOf="@+id/text_filter"
+                app:layout_constraintTop_toTopOf="@+id/text_sort"
+                app:layout_constraintBottom_toBottomOf="@+id/text_sort"
+                android:id="@+id/icon_filter"
+                app:srcCompat="@drawable/ic_filter_list_black_24px"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+
+            <TextView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/icon_filter"
+                android:id="@+id/text_sub"
+                android:padding="5dp"
+                android:text="4 out of 46 Grocery Items"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+
+        </android.support.constraint.ConstraintLayout>
 
 
     </android.support.design.widget.AppBarLayout>

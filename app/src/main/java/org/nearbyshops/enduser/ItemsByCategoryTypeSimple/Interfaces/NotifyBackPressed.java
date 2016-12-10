@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ItemCategoriesTypeSimple.Interfaces;
+package org.nearbyshops.enduser.ItemsByCategoryTypeSimple.Interfaces;
 
 /**
  * Created by sumeet on 22/9/16.

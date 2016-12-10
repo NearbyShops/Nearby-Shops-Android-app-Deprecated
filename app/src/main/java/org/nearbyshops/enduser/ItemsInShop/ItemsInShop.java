@@ -1,21 +1,17 @@
 package org.nearbyshops.enduser.ItemsInShop;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.view.View;
 import android.widget.TextView;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
-import org.nearbyshops.enduser.Items.ItemsList.FragmentItemsList;
 import org.nearbyshops.enduser.ItemsInShop.ShopItems.FragmentItemsInShop;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.ShopItemByShop.SlidingLayerSortShopItemsByShop;
+import org.nearbyshops.enduser.ItemsInShopByCat.SlidingLayerSort.SlidingLayerSortItemsInShop;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
 
@@ -104,7 +100,7 @@ public class ItemsInShop extends AppCompatActivity implements NotifyTitleChanged
             {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.slidinglayerfragment,new SlidingLayerSortShopItemsByShop(),TAG_SLIDING_LAYER)
+                        .add(R.id.slidinglayerfragment,new SlidingLayerSortItemsInShop(),TAG_SLIDING_LAYER)
                         .commit();
             }
         }

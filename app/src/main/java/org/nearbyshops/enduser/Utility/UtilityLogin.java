@@ -105,6 +105,17 @@ public class UtilityLogin {
     }
 
 
+
+    public static String getAuthorizationHeaders(Context context)
+    {
+        return UtilityLogin.baseEncoding(
+                UtilityLogin.getUsername(context),
+                UtilityLogin.getPassword(context));
+
+    }
+
+
+
     public static void saveEndUser(EndUser endUser, Context context)
     {
 

@@ -1,29 +1,20 @@
-package org.nearbyshops.enduser.ItemCategoriesTypeSimple;
+package org.nearbyshops.enduser.ItemsByCategoryTypeSimple;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduser.Carts.CartItemAdapter;
-import org.nearbyshops.enduser.DaggerComponentBuilder;
-import org.nearbyshops.enduser.ItemCategoriesTypeSimple.Utility.HeaderItemsList;
+import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.ModelStats.ItemStats;
@@ -35,10 +26,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by sumeet on 19/12/15.
@@ -61,8 +48,8 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public AdapterSimple(List<Object> dataset, Context context, NotificationsFromAdapter notificationReceiver) {
 
 
-        DaggerComponentBuilder.getInstance()
-                .getNetComponent().Inject(this);
+//        DaggerComponentBuilder.getInstance()
+//                .getNetComponent().Inject(this);
 
         this.notificationReceiver = notificationReceiver;
         this.dataset = dataset;

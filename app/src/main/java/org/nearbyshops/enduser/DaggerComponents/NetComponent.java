@@ -10,8 +10,8 @@ import org.nearbyshops.enduser.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduser.DaggerModules.AppModule;
 import org.nearbyshops.enduser.DaggerModules.NetModule;
 import org.nearbyshops.enduser.FilterShopDialog.FilterShopsDialog;
-import org.nearbyshops.enduser.ItemCategoriesTypeSimple.AdapterSimple;
-import org.nearbyshops.enduser.ItemCategoriesTypeSimple.ItemCategoriesFragmentSimple;
+import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.AdapterSimple;
+import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduser.ItemCategoryOption.FragmentShopOld;
 import org.nearbyshops.enduser.ItemDetail.ItemDetail;
 import org.nearbyshops.enduser.ItemDetail.RateReviewItemDialog;
@@ -22,6 +22,8 @@ import org.nearbyshops.enduser.ItemsByCategoryScreenTwo.ItemCategories.ItemCateg
 import org.nearbyshops.enduser.ItemsByCategoryScreenTwo.Items.FragmentItemScreenHorizontal;
 import org.nearbyshops.enduser.ItemsInShop.ShopItems.AdapterItemsInShop;
 import org.nearbyshops.enduser.ItemsInShop.ShopItems.FragmentItemsInShop;
+import org.nearbyshops.enduser.ItemsInShopByCat.AdapterItemsInStock;
+import org.nearbyshops.enduser.ItemsInShopByCat.ItemsInStockByCatFragment;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.LoginServiceDialog;
 import org.nearbyshops.enduser.LoginActivity;
@@ -141,4 +143,8 @@ public interface NetComponent {
     void Inject(ItemCategoriesFragmentSimple itemCategoriesFragmentSimple);
 
     void Inject(AdapterSimple adapterSimple);
+
+    void Inject(ItemsInStockByCatFragment itemsInStockByCatFragment);
+
+    void Inject(AdapterItemsInStock adapterItemsInStock);
 }

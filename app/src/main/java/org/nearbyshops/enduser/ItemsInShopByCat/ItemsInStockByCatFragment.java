@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ItemCategoriesTypeSimple;
+package org.nearbyshops.enduser.ItemsInShopByCat;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,27 +8,29 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
-import org.nearbyshops.enduser.ItemCategoriesTypeSimple.Interfaces.NotifyBackPressed;
-import org.nearbyshops.enduser.ItemCategoriesTypeSimple.Interfaces.NotifyHeaderChanged;
-import org.nearbyshops.enduser.ItemCategoriesTypeSimple.Utility.HeaderItemsList;
+import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
+import org.nearbyshops.enduser.ItemsInShopByCat.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ItemCategory;
+import org.nearbyshops.enduser.Model.Shop;
+import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.ModelEndPoints.ItemCategoryEndPoint;
-import org.nearbyshops.enduser.ModelEndPoints.ItemEndPoint;
+import org.nearbyshops.enduser.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemCategoryService;
-import org.nearbyshops.enduser.RetrofitRESTContract.ItemService;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyGeneral;
+import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
+import org.nearbyshops.enduser.ItemsInShopByCat.SlidingLayerSort.UtilitySortItemsInShop;
+import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduser.Utility.UtilityGeneral;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortItemsByCategory;
+import org.nearbyshops.enduser.Utility.UtilityShopHome;
 
 import java.util.ArrayList;
 
@@ -45,9 +47,13 @@ import retrofit2.Response;
  * Created by sumeet on 2/12/16.
  */
 
-public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort{
+public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterItemsInStock.NotificationsFromAdapter , NotifyBackPressed, NotifySort, NotifySearch {
+
+
+//    Map<Integer,ShopItem> shopItemMapTemp = new HashMap<>();
 
     boolean isDestroyed = false;
+    @State boolean show = true;
 
     int item_count_item_category = 0;
 
@@ -56,34 +62,41 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     int item_count_item;
     int fetched_items_count = 0;
 
-    @Bind(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
-    @Bind(R.id.recycler_view) RecyclerView itemCategoriesList;
+    @Bind(R.id.swipe_container)
+    SwipeRefreshLayout swipeContainer;
+    @Bind(R.id.recycler_view)
+    RecyclerView itemCategoriesList;
 
     ArrayList<Object> dataset = new ArrayList<>();
     ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
-    ArrayList<Item> datasetItems = new ArrayList<>();
+    ArrayList<ShopItem> datasetShopItems = new ArrayList<>();
+
+
+
+    @Bind(R.id.itemsInCart) public TextView itemsInCart;
+    @Bind(R.id.cartTotal) public TextView cartTotal;
 
 
     GridLayoutManager layoutManager;
 
-    AdapterSimple listAdapter;
+    AdapterItemsInStock listAdapter;
 
 
     @Inject
     ItemCategoryService itemCategoryService;
 
-
     @Inject
-    ItemService itemService;
+    ShopItemService shopItemService;
+
+//    @Inject
+//    ItemService itemService;
 
 
     ItemCategory currentCategory = null;
 
 
-    public ItemCategoriesFragmentSimple() {
-
+    public ItemsInStockByCatFragment() {
         super();
-
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
 
@@ -99,28 +112,28 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
         super.onCreateView(inflater, container, savedInstanceState);
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_item_categories_simple, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_items_in_stock_by_cat, container, false);
 
         ButterKnife.bind(this,rootView);
 
 
+        setupRecyclerView();
+        setupSwipeContainer();
+
+
         if(savedInstanceState ==null)
         {
-            swipeContainer.post(new Runnable() {
-                @Override
-                public void run() {
-
-                    swipeContainer.setRefreshing(true);
-
-                    onRefresh();
-                }
-            });
+            makeRefreshNetworkCall();
+        }
+        else
+        {
+            // add this at every rotation
+//            listAdapter.shopItemMap.putAll(shopItemMapTemp);
         }
 
 
-        setupRecyclerView();
-        setupSwipeContainer();
-        notifyItemHeaderChanged();
+        notifyItemIndicatorChanged();
+
         return rootView;
     }
 
@@ -146,10 +159,11 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     void setupRecyclerView()
     {
 
-        listAdapter = new AdapterSimple(dataset,getActivity(),this);
+
+        listAdapter = new AdapterItemsInStock(dataset,getActivity(),this,this);
         itemCategoriesList.setAdapter(listAdapter);
 
-        layoutManager = new GridLayoutManager(getActivity(),4, LinearLayoutManager.VERTICAL,false);
+        layoutManager = new GridLayoutManager(getActivity(),6, LinearLayoutManager.VERTICAL,false);
         itemCategoriesList.setLayoutManager(layoutManager);
 
 
@@ -161,51 +175,41 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
             @Override
             public int getSpanSize(int position) {
 
-                if(dataset.get(position) instanceof ItemCategory)
+                if(position == dataset.size())
                 {
-                    return 2;
+                    return 6;
+                }
+                else if(dataset.get(position) instanceof ItemCategory)
+                {
+                       final DisplayMetrics metrics = new DisplayMetrics();
+                    getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+                    int spanCount = (int) (metrics.widthPixels/(180 * metrics.density));
+
+                    if(spanCount==0){
+                        spanCount = 1;
+                    }
+
+                    return (6/spanCount);
 
                 }
                 else if(dataset.get(position) instanceof Item)
                 {
 
-                    return 4;
+                    return 6;
                 }
                 else if(dataset.get(position) instanceof HeaderItemsList)
                 {
-                    return 4;
+                    return 6;
                 }
 
-                return 3;
+                return 6;
             }
         });
 
 
         final DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-//        layoutManager.setSpanCount(metrics.widthPixels/350);
-
-
-//        int spanCount = (int) (metrics.widthPixels/(150 * metrics.density));
-//
-//        if(spanCount==0){
-//            spanCount = 1;
-//        }
-
-//        layoutManager.setSpanCount(spanCount);
-
-
-        /*final DisplayMetrics metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        int spanCount = (int) (metrics.widthPixels/(180 * metrics.density));
-
-        if(spanCount==0){
-            spanCount = 1;
-        }
-
-        return (3/spanCount);*/
 
 
         itemCategoriesList.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -215,15 +219,20 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
-                if(layoutManager.findLastVisibleItemPosition()==dataset.size()-1)
+                if(offset_item + limit_item > layoutManager.findLastVisibleItemPosition())
                 {
+                    return;
+                }
+
+                if(layoutManager.findLastVisibleItemPosition()==dataset.size())
+                {
+
                     // trigger fetch next page
 
-                    if((offset_item + limit_item)<=item_count_item)
+                    if((offset_item+limit_item)<=item_count_item)
                     {
                         offset_item = offset_item + limit_item;
-
-                        makeRequestItem(false,false);
+                        makeRequestShopItem(false,false);
                     }
 
                 }
@@ -234,11 +243,30 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     }
 
 
+//    @State int previous_position = -1;
+
+
+
     @Override
     public void onRefresh() {
 
         makeRequestItemCategory();
-        makeRequestItem(true,true);
+        makeRequestShopItem(true,true);
+    }
+
+
+
+    void makeRefreshNetworkCall()
+    {
+        swipeContainer.post(new Runnable() {
+            @Override
+            public void run() {
+
+                swipeContainer.setRefreshing(true);
+                onRefresh();
+            }
+        });
+
     }
 
 
@@ -257,11 +285,13 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
         isDestroyed=false;
     }
 
+
+
     private void showToastMessage(String message)
     {
         if(getActivity()!=null)
         {
-            Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -273,17 +303,45 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     void makeRequestItemCategory()
     {
 
-
-
-
-        Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
+        /*Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
                 null,
                 currentCategory.getItemCategoryID(),
                 null,
-                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY, 0),
-                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY, 0),
+                null,
+                null,
                 null,null,null,
-                "id",null,null,false);
+                "ITEM_CATEGORY_NAME",null,null,false);*/
+
+        Call<ItemCategoryEndPoint> endPointCall = null;
+
+        Shop currentShop = UtilityShopHome.getShop(getContext());
+
+        if(searchQuery == null)
+        {
+           endPointCall = itemCategoryService.getItemCategoriesEndPoint(
+                    currentShop.getShopID(),currentCategory.getItemCategoryID(),
+                    null,
+                    null,null,
+                    null,null,
+                    null,
+                    "id",null,null,false);
+
+
+        }
+        else
+        {
+
+
+            endPointCall = itemCategoryService.getItemCategoriesEndPoint(
+                    currentShop.getShopID(),currentCategory.getItemCategoryID(),
+                    null,
+                    null,null,
+                    null,null,
+                    null,
+                    "id",null,null,false);
+
+        }
+
 
 
         endPointCall.enqueue(new Callback<ItemCategoryEndPoint>() {
@@ -362,26 +420,58 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
         dataset.clear();
 
         HeaderItemsList headerItemCategory = new HeaderItemsList();
-        headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
+
+        if(searchQuery==null)
+        {
+            headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
+        }
+        else
+        {
+            headerItemCategory.setHeading( "Search Results (Subcategories)");
+        }
+
         dataset.add(headerItemCategory);
 
         dataset.addAll(datasetCategory);
 
         HeaderItemsList headerItem = new HeaderItemsList();
-        headerItem.setHeading(currentCategory.getCategoryName() + " Items");
+
+        if(searchQuery==null)
+        {
+            headerItem.setHeading(currentCategory.getCategoryName() + " Items In Shop");
+        }
+        else
+        {
+            headerItem.setHeading("Search Results (Items In Shop)");
+        }
+
+
         dataset.add(headerItem);
-
-        dataset.addAll(datasetItems);
-
+        dataset.addAll(datasetShopItems);
         listAdapter.notifyDataSetChanged();
-
         swipeContainer.setRefreshing(false);
     }
 
 
 
+    String searchQuery = null;
 
-    void makeRequestItem(final boolean clearDataset, boolean resetOffset)
+    @Override
+    public void search(final String searchString) {
+        searchQuery = searchString;
+        makeRefreshNetworkCall();
+    }
+
+    @Override
+    public void endSearchMode() {
+        searchQuery = null;
+        makeRefreshNetworkCall();
+    }
+
+
+
+
+    void makeRequestShopItem(final boolean clearDataset, boolean resetOffset)
     {
 
         if(resetOffset)
@@ -392,19 +482,48 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
         String current_sort = "";
 
-        current_sort = UtilitySortItemsByCategory.getSort(getContext()) + " " + UtilitySortItemsByCategory.getAscending(getContext());
-
-        Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(currentCategory.getItemCategoryID(),
-                null,
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
-                null,null, null, null,
-                current_sort, limit_item,offset_item,null);
+        current_sort = UtilitySortItemsInShop.getSort(getContext()) + " " + UtilitySortItemsInShop.getAscending(getContext());
 
 
-        endPointCall.enqueue(new Callback<ItemEndPoint>() {
+        Call<ShopItemEndPoint> endPointCall = null;
+
+        Shop currentShop = UtilityShopHome.getShop(getContext());
+
+
+        if(searchQuery==null)
+        {
+
+
+
+            endPointCall = shopItemService.getShopItemEndpoint(
+                    currentCategory.getItemCategoryID(),
+                    currentShop.getShopID(),
+                    null,null,null,null,null,null,null,
+                    null,null,
+                    null,null,null,
+                    null,current_sort,
+                    limit_item,offset_item,false,
+                    true);
+
+        }
+        else
+        {
+
+
+            endPointCall = shopItemService.getShopItemEndpoint(
+                    null,
+                    currentShop.getShopID(),
+                    null,null,null,null,null,null,null,null,null,
+                    null,null,null,
+                    searchQuery,current_sort,
+                    limit_item,offset_item,false,
+                    true);
+        }
+
+
+        endPointCall.enqueue(new Callback<ShopItemEndPoint>() {
             @Override
-            public void onResponse(Call<ItemEndPoint> call, Response<ItemEndPoint> response) {
+            public void onResponse(Call<ShopItemEndPoint> call, Response<ShopItemEndPoint> response) {
 
 
                 if(isDestroyed)
@@ -419,10 +538,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
                     if(response.body()!=null)
                     {
 
-                        datasetItems.clear();
-                        datasetItems.addAll(response.body().getResults());
+                        datasetShopItems.clear();
+                        datasetShopItems.addAll(response.body().getResults());
                         item_count_item = response.body().getItemCount();
-                        fetched_items_count = datasetItems.size();
+                        fetched_items_count = datasetShopItems.size();
 
 //                        if(response.body().getItemCount()!=null)
 //                        {
@@ -458,13 +577,13 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
                 }
 
 
-                notifyItemHeaderChanged();
+                notifyItemIndicatorChanged();
 
 
             }
 
             @Override
-            public void onFailure(Call<ItemEndPoint> call, Throwable t) {
+            public void onFailure(Call<ShopItemEndPoint> call, Throwable t) {
 
                 if(isDestroyed)
                 {
@@ -494,10 +613,12 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
                 showToastMessage("Items: Network request failed. Please check your connection !");
 
+
             }
         });
 
     }
+
 
 
 
@@ -510,16 +631,20 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
         currentCategory = itemCategory;
         currentCategory.setParentCategory(temp);
 
+        makeRefreshNetworkCall();
 
-        swipeContainer.post(new Runnable() {
-            @Override
-            public void run() {
+        // End Search Mode
+        searchQuery = null;
 
-                swipeContainer.setRefreshing(true);
-                onRefresh();
-            }
-        });
+        // reset previous flag
+
     }
+
+
+
+
+
+
 
 
 
@@ -527,7 +652,12 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     @Override
     public boolean backPressed() {
 
+        // reset previous flag
+
         int currentCategoryID = 1; // the ID of root category is always supposed to be 1
+
+        // clear selected items
+//        listAdapter.selectedItems.clear();
 
         if(currentCategory!=null) {
 
@@ -543,15 +673,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
             if (currentCategoryID != -1) {
-
-                swipeContainer.post(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        swipeContainer.setRefreshing(true);
-                        onRefresh();
-                    }
-                });
+                makeRefreshNetworkCall();
             }
         }
 
@@ -559,11 +681,11 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     }
 
 
-    void notifyItemHeaderChanged()
+    void notifyItemIndicatorChanged()
     {
-        if(getActivity() instanceof NotifyHeaderChanged)
+        if(getActivity() instanceof NotifyIndicatorChanged)
         {
-            ((NotifyHeaderChanged) getActivity()).notifyItemHeaderChanged(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items");
+            ((NotifyIndicatorChanged) getActivity()).notifyItemIndicatorChanged(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items in Shop");
         }
     }
 
@@ -571,15 +693,12 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     @Override
     public void notifySortChanged() {
 
-        swipeContainer.post(new Runnable() {
-            @Override
-            public void run() {
-
-                swipeContainer.setRefreshing(true);
-                onRefresh();
-            }
-        });
+        System.out.println("Notify Sort Clicked !");
+        makeRefreshNetworkCall();
     }
 
+
+
+    // display shop Item Status
 
 }

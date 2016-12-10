@@ -43,9 +43,11 @@ public interface ShopItemService {
             @Query("EndUserID") Integer endUserID,@Query("IsFilledCart") Boolean isFilledCart,
             @Query("IsOutOfStock") Boolean isOutOfStock,@Query("PriceEqualsZero")Boolean priceEqualsZero,
             @Query("MinPrice")Integer minPrice,@Query("MaxPrice")Integer maxPrice,
+            @Query("SearchString") String searchString,
             @Query("SortBy") String sortBy,
             @Query("Limit") Integer limit, @Query("Offset") Integer offset,
-            @Query("metadata_only")Boolean metaonly
+            @Query("metadata_only")Boolean metaonly,
+            @Query("GetExtras")Boolean getExtras
     );
 
 

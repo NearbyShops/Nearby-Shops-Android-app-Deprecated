@@ -1,19 +1,16 @@
-package org.nearbyshops.enduser.ItemCategoriesTypeSimple;
+package org.nearbyshops.enduser.ItemsByCategoryTypeSimple;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.view.View;
 import android.widget.TextView;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
-import org.nearbyshops.enduser.ItemCategoriesTypeSimple.Interfaces.NotifyBackPressed;
-import org.nearbyshops.enduser.ItemCategoriesTypeSimple.Interfaces.NotifyHeaderChanged;
+import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.Interfaces.NotifyHeaderChanged;
 import org.nearbyshops.enduser.ItemsByCategory.SlidingLayerSortItems;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
@@ -94,6 +91,7 @@ public class ItemCategoriesSimple extends AppCompatActivity implements NotifyHea
 
             if(getSupportFragmentManager().findFragmentByTag(TAG_SLIDING)==null)
             {
+                System.out.println("Item Cat Simple : New Sliding Layer Loaded !");
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.slidinglayerfragment,new SlidingLayerSortItems(),TAG_SLIDING)
@@ -108,6 +106,7 @@ public class ItemCategoriesSimple extends AppCompatActivity implements NotifyHea
 
 
 
+//    Fragment fragment = null;
 
 
     @Override

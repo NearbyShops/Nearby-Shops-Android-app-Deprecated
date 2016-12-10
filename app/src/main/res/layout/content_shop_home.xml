@@ -96,7 +96,7 @@
             app:layout_constraintLeft_toLeftOf="@+id/option_items"
             app:layout_constraintRight_toRightOf="@+id/option_items"
             app:layout_constraintBottom_toBottomOf="@+id/option_items"
-            android:text="@string/items"
+            android:text="Items In Shop"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -115,7 +115,7 @@
             android:background="@color/backgroundTinted"
             android:layout_width="0dp"
             android:layout_height="150dp"
-            android:contentDescription="Items By Category" />
+            android:contentDescription="Items In Shop By Category" />
 
 
         <TextView
@@ -125,7 +125,7 @@
             android:padding="10dp"
             android:textSize="20sp"
             android:textColor="@color/white"
-            android:text="Items By Category"
+            android:text="Items In Shop By Category"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 

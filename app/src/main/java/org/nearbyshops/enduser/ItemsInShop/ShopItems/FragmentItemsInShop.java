@@ -23,7 +23,7 @@ import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityShopHome;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItemsByShop;
+import org.nearbyshops.enduser.ItemsInShopByCat.SlidingLayerSort.UtilitySortItemsInShop;
 
 import java.util.ArrayList;
 
@@ -201,7 +201,13 @@ public class FragmentItemsInShop extends Fragment implements
                     if(layoutManager.findLastVisibleItemPosition()==dataset.size())
                     {
 
-                        if(dataset.size()== previous_position)
+//                        if(dataset.size()== previous_position)
+//                        {
+//                            return;
+//                        }
+
+
+                        if(offset + limit > layoutManager.findLastVisibleItemPosition())
                         {
                             return;
                         }
@@ -215,7 +221,7 @@ public class FragmentItemsInShop extends Fragment implements
                             makeNetworkCall(false);
                         }
 
-                        previous_position = dataset.size();
+//                        previous_position = dataset.size();
 
                     }
                 }
@@ -224,7 +230,7 @@ public class FragmentItemsInShop extends Fragment implements
 
 
 
-    int previous_position = -1;
+//    int previous_position = -1;
 
 
 
@@ -274,8 +280,8 @@ public class FragmentItemsInShop extends Fragment implements
         {
 
             String current_sort = "";
-            current_sort = UtilitySortShopItemsByShop.getSort(getContext())
-                            + " " + UtilitySortShopItemsByShop.getAscending(getContext());
+            current_sort = UtilitySortItemsInShop.getSort(getContext())
+                            + " " + UtilitySortItemsInShop.getAscending(getContext());
 
             Call<ShopItemEndPoint> shopItemCall = shopItemService.getShopItemEndpoint(
                     null,shop.getShopID(),
@@ -283,7 +289,9 @@ public class FragmentItemsInShop extends Fragment implements
                     null,null,null,
                     null,null,null,null,
                     null, null,
-                    current_sort,limit,offset,null
+                    null,current_sort,
+                    limit,offset,null,
+                    true
             );
 
 

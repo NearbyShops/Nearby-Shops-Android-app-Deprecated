@@ -267,7 +267,9 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
                     endUser.getEndUserID(),
                     true,
                     null,null,null,null,
-                    current_sort,null,null,null
+                    null,current_sort,
+                    null,null,null,
+                    true
             );
 
 

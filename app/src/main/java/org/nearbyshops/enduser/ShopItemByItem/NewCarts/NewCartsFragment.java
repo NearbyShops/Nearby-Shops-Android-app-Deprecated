@@ -308,8 +308,8 @@ public class NewCartsFragment extends Fragment
                     endUserID,
                     false,
                     null,null,null,null,
-                    current_sort,
-                    limit,offset,null
+                    null,current_sort,
+                    limit,offset,null,true
             );
 
             call.enqueue(new Callback<ShopItemEndPoint>() {

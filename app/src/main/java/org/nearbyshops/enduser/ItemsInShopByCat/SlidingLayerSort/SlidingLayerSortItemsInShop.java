@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopItemByShop;
+package org.nearbyshops.enduser.ItemsInShopByCat.SlidingLayerSort;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,8 +13,6 @@ import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortItemsByCategory;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItemsByShop;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,7 +22,7 @@ import butterknife.OnClick;
  * Created by sumeet on 15/9/16.
  */
 
-public class SlidingLayerSortShopItemsByShop extends Fragment {
+public class SlidingLayerSortItemsInShop extends Fragment {
 
     @Bind(R.id.sort_rating)
     TextView sort_by_rating;
@@ -51,7 +49,7 @@ public class SlidingLayerSortShopItemsByShop extends Fragment {
     String currentAscending = SORT_DESCENDING;
 
     int colorSelected = R.color.blueGrey800;
-    int colorSelectedAscending = R.color.colorAccent;
+    int colorSelectedAscending = R.color.gplus_color_2;
 
 
     public static String SORT_BY_ITEM_RATING = "avg_rating";
@@ -86,8 +84,8 @@ public class SlidingLayerSortShopItemsByShop extends Fragment {
     void loadDefaultSort() {
 //        String[] sort_options = UtilitySortShops.getSort(getActivity());
 
-        currentSort = UtilitySortShopItemsByShop.getSort(getActivity());
-        currentAscending = UtilitySortShopItemsByShop.getAscending(getActivity());
+        currentSort = UtilitySortItemsInShop.getSort(getActivity());
+        currentAscending = UtilitySortItemsInShop.getAscending(getActivity());
 
         clearSelectionSort();
         clearSelectionAscending();
@@ -138,7 +136,7 @@ public class SlidingLayerSortShopItemsByShop extends Fragment {
         sort_by_rating.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
         sort_by_rating.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
-        UtilitySortShopItemsByShop.saveSort(getActivity(),SORT_BY_ITEM_RATING);
+        UtilitySortItemsInShop.saveSort(getActivity(),SORT_BY_ITEM_RATING);
 
         if(getActivity() instanceof NotifySort)
         {
@@ -156,7 +154,7 @@ public class SlidingLayerSortShopItemsByShop extends Fragment {
         sort_by_popularity.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
         sort_by_popularity.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
-        UtilitySortShopItemsByShop.saveSort(getActivity(),SORT_BY_POPULARITY);
+        UtilitySortItemsInShop.saveSort(getActivity(),SORT_BY_POPULARITY);
 
         if(getActivity() instanceof NotifySort)
         {
@@ -174,7 +172,7 @@ public class SlidingLayerSortShopItemsByShop extends Fragment {
         sort_by_shop_count.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
         sort_by_shop_count.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
-        UtilitySortShopItemsByShop.saveSort(getActivity(),SORT_BY_SHOP_COUNT);
+        UtilitySortItemsInShop.saveSort(getActivity(),SORT_BY_SHOP_COUNT);
 
         if(getActivity() instanceof NotifySort)
         {
@@ -191,7 +189,7 @@ public class SlidingLayerSortShopItemsByShop extends Fragment {
         sort_by_price_avg.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
         sort_by_price_avg.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
-        UtilitySortShopItemsByShop.saveSort(getActivity(),SORT_BY_AVG_PRICE);
+        UtilitySortItemsInShop.saveSort(getActivity(),SORT_BY_AVG_PRICE);
 
         if(getActivity() instanceof NotifySort)
         {
@@ -212,7 +210,7 @@ public class SlidingLayerSortShopItemsByShop extends Fragment {
         sort_ascending.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelectedAscending));
 
 
-        UtilitySortShopItemsByShop.saveAscending(getActivity(),SORT_ASCENDING);
+        UtilitySortItemsInShop.saveAscending(getActivity(),SORT_ASCENDING);
 
         if(getActivity() instanceof NotifySort)
         {
@@ -230,7 +228,7 @@ public class SlidingLayerSortShopItemsByShop extends Fragment {
         sort_descending.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelectedAscending));
 
 
-        UtilitySortShopItemsByShop.saveAscending(getActivity(),SORT_DESCENDING);
+        UtilitySortItemsInShop.saveAscending(getActivity(),SORT_DESCENDING);
 
         if(getActivity() instanceof NotifySort)
         {

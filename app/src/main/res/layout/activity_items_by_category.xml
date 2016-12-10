@@ -95,11 +95,11 @@
         android:layout_height="match_parent">
 
 
+        <!--android:layout_marginLeft="@dimen/slidinglayerwidth"-->
+        <!--android:layout_marginStart="@dimen/slidinglayerwidth"-->
         <FrameLayout
             android:background="@color/white"
             android:layout_gravity="end"
-            android:layout_marginLeft="@dimen/slidinglayerwidth"
-            android:layout_marginStart="@dimen/slidinglayerwidth"
             android:id="@+id/slidinglayerfragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

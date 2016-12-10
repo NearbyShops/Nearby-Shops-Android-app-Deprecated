@@ -2,7 +2,6 @@ package org.nearbyshops.enduser.ShopItemByShop.ShopItems;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -267,6 +266,7 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
 
         }
 
+        String imagePath = null;
 
         if(item!=null)
         {
@@ -285,16 +285,14 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
                 holder.ratinCount.setText("( " +  String.valueOf((int)item.getRt_rating_count()) +  " Ratings )");
             }
 
+
+
+            imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+                    + item.getItemImageURL();
+
+
         }
 
-
-//        holder.rating.setText(String.format("%.2f",));
-
-
-
-
-        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                + item.getItemImageURL();
 
         Drawable placeholder = VectorDrawableCompat
                 .create(context.getResources(),
@@ -305,6 +303,11 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
                 .load(imagePath)
                 .placeholder(placeholder)
                 .into(holder.itemImage);
+
+//        holder.rating.setText(String.format("%.2f",));
+
+
+
     }
 
 
