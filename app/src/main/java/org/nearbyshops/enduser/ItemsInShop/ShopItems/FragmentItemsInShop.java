@@ -104,6 +104,8 @@ public class FragmentItemsInShop extends Fragment implements
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
+            setRetainInstance(true);
+
             View rootView = inflater.inflate(R.layout.fragment_items_in_shop, container, false);
 
             ButterKnife.bind(this,rootView);
@@ -121,17 +123,21 @@ public class FragmentItemsInShop extends Fragment implements
                     isSaved = true;
 
                 }
-                else
-                {
-                    Log.d("shopsbycategory","saved State");
-                    onViewStateRestored(savedInstanceState);
-                }
+//                else
+//                {
+//                    Log.d("shopsbycategory","saved State");
+//                    onViewStateRestored(savedInstanceState);
+//                }
 
 
             setupRecyclerView();
             setupSwipeContainer();
+            notifyTitleChanged();
 
-            shop = UtilityShopHome.getShop(getActivity());
+            if(shop==null)
+            {
+                shop = UtilityShopHome.getShop(getActivity());
+            }
 
             return rootView;
         }
@@ -218,7 +224,7 @@ public class FragmentItemsInShop extends Fragment implements
                         if((offset+limit)<=item_count)
                         {
                             offset = offset + limit;
-                            makeNetworkCall(false);
+                            makeNetworkCall(false,false);
                         }
 
 //                        previous_position = dataset.size();
@@ -246,9 +252,9 @@ public class FragmentItemsInShop extends Fragment implements
 
                     try {
 
-                        offset = 0; // reset the offset
-//                        dataset.clear();
-                        makeNetworkCall(true);
+//                        offset = 0; // reset the offset
+//                        dataset.clear();2
+                        makeNetworkCall(true,true);
 
                     } catch (IllegalArgumentException ex)
                     {
@@ -265,9 +271,9 @@ public class FragmentItemsInShop extends Fragment implements
         @Override
         public void onRefresh() {
 
-            offset = 0; // reset the offset
+//            offset = 0; // reset the offset
 //            dataset.clear();
-            makeNetworkCall(true);
+            makeNetworkCall(true,true);
         }
 
 
@@ -276,8 +282,13 @@ public class FragmentItemsInShop extends Fragment implements
 
 
 
-        private void makeNetworkCall(final boolean clearDataset)
+        private void makeNetworkCall(final boolean clearDataset, boolean resetOffset)
         {
+
+            if(resetOffset)
+            {
+                offset = 0;
+            }
 
             String current_sort = "";
             current_sort = UtilitySortItemsInShop.getSort(getContext())
@@ -363,21 +374,21 @@ public class FragmentItemsInShop extends Fragment implements
     // apply ice pack
 
 
-        @Override
-        public void onSaveInstanceState(Bundle outState) {
-            super.onSaveInstanceState(outState);
-            Icepick.saveInstanceState(this, outState);
-        }
+//        @Override
+//        public void onSaveInstanceState(Bundle outState) {
+//            super.onSaveInstanceState(outState);
+//            Icepick.saveInstanceState(this, outState);
+//        }
 
 
 
-        @Override
-        public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-            super.onViewStateRestored(savedInstanceState);
-
-            Icepick.restoreInstanceState(this, savedInstanceState);
-            notifyTitleChanged();
-        }
+//        @Override
+//        public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+//            super.onViewStateRestored(savedInstanceState);
+//
+//            Icepick.restoreInstanceState(this, savedInstanceState);
+//            notifyTitleChanged();
+//        }
 
 
         /*@Override
@@ -412,6 +423,15 @@ public class FragmentItemsInShop extends Fragment implements
         isDestroyed = true;
         ButterKnife.unbind(this);
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isDestroyed = false;
+    }
+
+
 
     @Override
     public void notifySortChanged() {

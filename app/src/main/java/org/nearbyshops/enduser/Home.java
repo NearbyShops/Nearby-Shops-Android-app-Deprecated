@@ -50,10 +50,10 @@ import org.apache.commons.validator.routines.UrlValidator;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
 import org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduser.FilterShopDialog.FilterShopsDialogMain;
+import org.nearbyshops.enduser.FilterShops.FilterShops;
 import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.ItemCategoriesSimple;
 import org.nearbyshops.enduser.Items.ItemsActivity;
 import org.nearbyshops.enduser.ItemsByCategory.ItemsByCategory;
-import org.nearbyshops.enduser.ItemsByCategoryScreenTwo.ItemsByCatS2;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
 import org.nearbyshops.enduser.SharedPreferences.UtilityLocation;
@@ -84,8 +84,8 @@ public class Home extends AppCompatActivity
 //    LinearLayout shopFilters;
 
     // Views
-    @Bind(R.id.option_item_categories)
-    RelativeLayout itemCategories;
+//    @Bind(R.id.option_item_categories)
+//    RelativeLayout itemCategories;
 
     @Bind(R.id.serviceURL)
     TextInputEditText serviceURL;
@@ -215,6 +215,7 @@ public class Home extends AppCompatActivity
 
 
 
+    @SuppressWarnings("RestrictedApi")
     void setupNavigationDrawer()
     {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -227,14 +228,14 @@ public class Home extends AppCompatActivity
 
 
 
-    @OnClick(R.id.option_item_categories)
-    public void itemCategoriesClick() {
-
+//    @OnClick(R.id.option_item_categories)
+//    public void itemCategoriesClick() {
+//
 //        Intent intent = new Intent(this, ShopItemSwipeView.class);
-
-        Intent intent = new Intent(this, ItemsByCategory.class);
-        startActivity(intent);
-    }
+//
+//        Intent intent = new Intent(this, ItemsByCategory.class);
+//        startActivity(intent);
+//    }
 
 
     @OnClick(R.id.option_shops_by_category)
@@ -264,12 +265,12 @@ public class Home extends AppCompatActivity
 
 
 
-    @OnClick(R.id.option_items_by_category_format_two)
-    public void optionFormatTwo()
-    {
-        Intent intent = new Intent(this,ItemsByCatS2.class);
-        startActivity(intent);
-    }
+//    @OnClick(R.id.option_items_by_category_format_two)
+//    public void optionFormatTwo()
+//    {
+//        Intent intent = new Intent(this,ItemsByCatS2.class);
+//        startActivity(intent);
+//    }
 
 
     @OnClick(R.id.option_items_by_category)
@@ -412,7 +413,7 @@ public class Home extends AppCompatActivity
     }
 
 
-
+    @SuppressWarnings("RestrictedApi")
     void setlabelLogin()
     {
         if(UtilityLogin.getEndUser(this)==null)
@@ -428,6 +429,7 @@ public class Home extends AppCompatActivity
 
 
     @Override
+    @SuppressWarnings("RestrictedApi")
     public void NotifyLogin() {
 
         navigationView.getMenu().getItem(0).setTitle("Logout");
@@ -703,6 +705,8 @@ public class Home extends AppCompatActivity
     @Override
     public void onLocationChanged(Location location) {
         saveLocation(location);
+
+
         stopLocationUpdates();
     }
 
@@ -720,6 +724,8 @@ public class Home extends AppCompatActivity
         UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,(float)location.getLatitude());
         UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,(float)location.getLongitude());
 
+        org.nearbyshops.enduser.Shops.UtilityLocation.saveLatitude((float) location.getLatitude(),this);
+        org.nearbyshops.enduser.Shops.UtilityLocation.saveLongitude((float) location.getLongitude(),this);
 
         UtilityLocation.saveCurrentLocation(this,location);
 
@@ -763,6 +769,7 @@ public class Home extends AppCompatActivity
 
 
     @SuppressLint("ParcelCreator")
+    @SuppressWarnings("RestrictedApi")
     class AddressResultReceiver extends ResultReceiver {
 
         public AddressResultReceiver() {
@@ -850,12 +857,15 @@ public class Home extends AppCompatActivity
 
 
 
-    @OnClick(R.id.show_hide_filters)
+    @OnClick(R.id.filter_shops)
     void showHideFilters()
     {
-        FragmentManager fm = getSupportFragmentManager();
-        FilterShopsDialogMain filterShopsDialog = new FilterShopsDialogMain();
-        filterShopsDialog.show(fm,"serviceUrl");
+//        FragmentManager fm = getSupportFragmentManager();
+//        FilterShopsDialogMain filterShopsDialog = new FilterShopsDialogMain();
+//        filterShopsDialog.show(fm,"serviceUrl");
+
+        Intent intent = new Intent(this, FilterShops.class);
+        startActivity(intent);
     }
 
 }

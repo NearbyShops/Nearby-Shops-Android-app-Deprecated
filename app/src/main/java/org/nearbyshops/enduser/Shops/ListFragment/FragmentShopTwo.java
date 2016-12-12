@@ -21,6 +21,7 @@ import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduser.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
+import org.nearbyshops.enduser.Shops.UtilityLocation;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.DividerItemDecoration;
@@ -128,7 +129,7 @@ public class FragmentShopTwo extends Fragment implements
                 else
                 {
 //                    Log.d("shopsbycategory","saved State");
-                    onViewStateRestored(savedInstanceState);
+//                    onViewStateRestored(savedInstanceState);
 
                 }
 
@@ -136,6 +137,7 @@ public class FragmentShopTwo extends Fragment implements
             setupRecyclerView();
             setupSwipeContainer();
 //            notifyDataset();
+            notifyTitleChanged();
 
 
             return rootView;
@@ -242,7 +244,7 @@ public class FragmentShopTwo extends Fragment implements
                 spanCount = 1;
             }
 
-            layoutManager.setSpanCount(1);
+            layoutManager.setSpanCount(spanCount);
 
 //            layoutManager.setSpanCount(metrics.widthPixels/350);
 
@@ -255,7 +257,13 @@ public class FragmentShopTwo extends Fragment implements
                     {
                         // trigger fetch next page
 
-                        if(dataset.size()== previous_position)
+//                        if(dataset.size()== previous_position)
+//                        {
+//                            return;
+//                        }
+
+
+                        if(offset + limit > layoutManager.findLastVisibleItemPosition())
                         {
                             return;
                         }
@@ -264,10 +272,10 @@ public class FragmentShopTwo extends Fragment implements
                         if((offset+limit)<=item_count)
                         {
                             offset = offset + limit;
-                            makeNetworkCall(false);
+                            makeNetworkCall(false,false);
                         }
 
-                        previous_position = dataset.size();
+//                        previous_position = dataset.size();
 
                     }
                 }
@@ -277,7 +285,7 @@ public class FragmentShopTwo extends Fragment implements
 
 
 
-    int previous_position = -1;
+//    int previous_position = -1;
 
 
     public int getItemCount()
@@ -325,10 +333,10 @@ public class FragmentShopTwo extends Fragment implements
                 }
             }
 
-            offset = 0; // reset the offset
+//            offset = 0; // reset the offset
 //            dataset.clear();
 //            adapter.notifyDataSetChanged();
-            makeNetworkCall(true);
+            makeNetworkCall(true,true);
         }
 
 
@@ -337,9 +345,13 @@ public class FragmentShopTwo extends Fragment implements
 
 
 
-        private void makeNetworkCall(final boolean clearDataset)
+        private void makeNetworkCall(final boolean clearDataset, boolean resetOffset)
         {
 
+            if(resetOffset)
+            {
+                offset = 0;
+            }
 
             if(dataset == null)
             {
@@ -350,19 +362,27 @@ public class FragmentShopTwo extends Fragment implements
             }
 
 
+//            (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY)
+//            (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
+//                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
+
+
             String current_sort = "";
             current_sort = UtilitySortShopsByCategory.getSort(getContext()) + " " + UtilitySortShopsByCategory.getAscending(getContext());
 
             Call<ShopEndPoint> callEndpoint = shopService.getShops(
                     null,
                     null,
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
+                    UtilityLocation.getLatitude(getActivity()),
+                    UtilityLocation.getLongitude(getActivity()),
+                    null, null, null,
                     searchQuery,current_sort,limit,offset,false
             );
+
+
+
+            System.out.println("Lat : " + UtilityLocation.getLatitude(getActivity())
+                                + "\nLon : " + UtilityLocation.getLongitude(getActivity()));
 
 
 
@@ -429,21 +449,21 @@ public class FragmentShopTwo extends Fragment implements
     // apply ice pack
 
 
-        @Override
-        public void onSaveInstanceState(Bundle outState) {
-            super.onSaveInstanceState(outState);
-            Icepick.saveInstanceState(this, outState);
-        }
+//        @Override
+//        public void onSaveInstanceState(Bundle outState) {
+//            super.onSaveInstanceState(outState);
+//            Icepick.saveInstanceState(this, outState);
+//        }
+//
+//
 
-
-
-        @Override
-        public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-            super.onViewStateRestored(savedInstanceState);
-
-            Icepick.restoreInstanceState(this, savedInstanceState);
-            notifyTitleChanged();
-        }
+//        @Override
+//        public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+//            super.onViewStateRestored(savedInstanceState);
+//
+//            Icepick.restoreInstanceState(this, savedInstanceState);
+//            notifyTitleChanged();
+//        }
 
 
         /*@Override
@@ -495,8 +515,14 @@ public class FragmentShopTwo extends Fragment implements
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         isDestroyed = true;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isDestroyed = false;
     }
 
     @Override

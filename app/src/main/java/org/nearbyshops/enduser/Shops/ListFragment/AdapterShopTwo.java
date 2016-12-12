@@ -119,8 +119,8 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
 //                        + shop.getLogoImagePath();
 
-                String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/"
-                        + shop.getLogoImagePath();
+                String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
+                        + shop.getLogoImagePath() + ".jpg";
 
                 Drawable placeholder = VectorDrawableCompat
                         .create(context.getResources(),

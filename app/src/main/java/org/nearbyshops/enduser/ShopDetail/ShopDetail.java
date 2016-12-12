@@ -261,7 +261,11 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
             // set Book Cover Image
 
 
-            String imagePath = UtilityGeneral.getImageEndpointURL(this)
+//            String imagePath = UtilityGeneral.getImageEndpointURL(this)
+//                    + shop.getLogoImagePath();
+
+
+            String imagePath = UtilityGeneral.getServiceURL(this) + "/api/v1/Shop/Image/"
                     + shop.getLogoImagePath();
 
 //            if (!shop.getBookCoverImageURL().equals("")) {

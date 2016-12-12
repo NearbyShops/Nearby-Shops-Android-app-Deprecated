@@ -215,8 +215,13 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
             // set Book Cover Image
 
 
-            String imagePath = UtilityGeneral.getImageEndpointURL(this)
-                    + item.getItemImageURL();
+//            String imagePath = UtilityGeneral.getImageEndpointURL(this)
+//                    + item.getItemImageURL();
+
+
+            String imagePath = UtilityGeneral.getServiceURL(this)
+                    + "/api/v1/Item/Image/five_hundred_" + item.getItemImageURL() + ".jpg";
+
 
 //            if (!shop.getBookCoverImageURL().equals("")) {
 

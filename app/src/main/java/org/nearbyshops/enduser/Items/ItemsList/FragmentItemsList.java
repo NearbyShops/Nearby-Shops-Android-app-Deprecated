@@ -105,6 +105,7 @@ public class FragmentItemsList extends Fragment
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
+            setRetainInstance(true);
             View rootView = inflater.inflate(R.layout.fragment_items_list, container, false);
 
 //            itemCategory = getArguments().getParcelable("itemCat");
@@ -119,17 +120,17 @@ public class FragmentItemsList extends Fragment
                 makeRefreshNetworkCall();
                 isSaved = true;
             }
-            else
-            {
-                onViewStateRestored(savedInstanceState);
-            }
+//            else
+//            {
+//                onViewStateRestored(savedInstanceState);
+//            }
 
 
 
 
             setupRecyclerView();
             setupSwipeContainer();
-
+            notifyTitleChanged();
 
             return rootView;
 
@@ -192,7 +193,13 @@ public class FragmentItemsList extends Fragment
 
                 if(layoutManager.findLastVisibleItemPosition()==dataset.size())
                 {
-                    if(dataset.size()== previous_position)
+//                    if(dataset.size()== previous_position)
+//                    {
+//                        return;
+//                    }
+
+
+                    if(offset + limit > layoutManager.findLastVisibleItemPosition())
                     {
                         return;
                     }
@@ -205,14 +212,14 @@ public class FragmentItemsList extends Fragment
                         makeNetworkCall(false);
                     }
 
-                    previous_position = dataset.size();
+//                    previous_position = dataset.size();
                 }
             }
         });
     }
 
 
-    int previous_position = -1;
+//    int previous_position = -1;
 
 
 
@@ -348,21 +355,21 @@ public class FragmentItemsList extends Fragment
 
 
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Icepick.saveInstanceState(this, outState);
-    }
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        Icepick.saveInstanceState(this, outState);
+//    }
 
 
 
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        Icepick.restoreInstanceState(this, savedInstanceState);
-        notifyTitleChanged();
-
-    }
+//    @Override
+//    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+//        super.onViewStateRestored(savedInstanceState);
+//        Icepick.restoreInstanceState(this, savedInstanceState);
+//        notifyTitleChanged();
+//
+//    }
 
 
 
@@ -386,6 +393,12 @@ public class FragmentItemsList extends Fragment
         isDestroyed = true;
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isDestroyed = false;
+    }
 
     @Override
     public void notifySortChanged() {

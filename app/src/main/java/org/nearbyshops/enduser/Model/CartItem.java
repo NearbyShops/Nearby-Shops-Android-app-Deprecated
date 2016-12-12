@@ -8,22 +8,16 @@ import android.os.Parcelable;
  */
 public class CartItem implements Parcelable{
 
-    int cartID;
+    private int cartID;
+    private int itemID;
 
-    int itemID;
+    private Cart cart;
+    private Item item;
 
-    Cart cart;
-
-    Item item;
-
-    int itemQuantity;
-
-
-    int rt_availableItemQuantity;
-
-    double rt_itemPrice;
-
-    String rt_quantityUnit;
+    private int itemQuantity;
+    private int rt_availableItemQuantity;
+    private double rt_itemPrice;
+    private String rt_quantityUnit;
 
     public CartItem() {
     }

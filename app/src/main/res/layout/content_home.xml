@@ -26,18 +26,31 @@
 
 
 
-        <android.support.v7.widget.CardView
+        <!--<android.support.v7.widget.CardView
             android:layout_margin="10dp"
             app:cardCornerRadius="0dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content">-->
 
             <!--
             android:background="@color/light_grey"
             -->
 
-            <RelativeLayout
-                android:background="@color/light_grey"
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:background="#88000000"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+
+        <RelativeLayout
+                android:background="@color/white"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="0dp"
                 android:orientation="vertical"
@@ -72,7 +85,6 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-
                     android:id="@+id/text_input_service_url"
                     app:layout_scrollFlags="scroll|enterAlways"
                     android:layout_gravity="center_vertical"
@@ -89,62 +101,83 @@
                 </android.support.design.widget.TextInputLayout>
 
 
-                <LinearLayout
-                    android:layout_below="@id/text_input_service_url"
+
+            <!--<TextView-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_marginEnd="10dp"-->
+                <!--android:layout_marginStart="10dp"-->
+                <!--android:id="@+id/border_text_input"-->
+                <!--android:layout_below="@id/text_input_service_url"-->
+                <!--android:background="#88000000"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp" />-->
+
+
+            <!--android:layout_below="@id/border_text_input"-->
+            <LinearLayout
+                android:layout_below="@id/text_input_service_url"
+
                     android:layout_marginTop="5dp"
                     app:layout_scrollFlags="scroll|enterAlways"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="0dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-
                     <TextView
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
                         android:textColor="@color/white"
-                        android:gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/colorPrimaryDark"
-                        android:layout_gravity="end"
-                        android:paddingRight="20dp"
-                        android:paddingLeft="20dp"
+                        android:background="@color/buttonColor"
+                        android:padding="10dp"
+                        android:paddingRight="1dp"
+                        android:paddingLeft="10dp"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
-                        android:text="Discover\nServices"
-                        android:textSize="@dimen/appbar_label_size"
-                        android:layout_width="wrap_content"
+                        android:text="Discover Services"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent" />
 
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"/>
-
                     <TextView
+                        android:layout_marginBottom="10dp"
                         android:textColor="@color/white"
                         android:layout_marginRight="10dp"
                         android:layout_marginEnd="10dp"
-                        android:background="@color/colorPrimaryDark"
-                        android:layout_gravity="end"
+                        android:background="@color/cyan900"
+                        android:padding="10dp"
                         android:paddingRight="20dp"
                         android:paddingLeft="20dp"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
-                        android:text="Paste\nService URL"
-                        android:textSize="@dimen/appbar_label_size"
-                        android:layout_width="wrap_content"
+                        android:text="Paste Service URL"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content" />
-
 
                 </LinearLayout>
 
             </RelativeLayout>
 
-        </android.support.v7.widget.CardView>
+        <!--</android.support.v7.widget.CardView>-->
 
+        
+        <TextView
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:background="#88000000"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
 
 
         <LinearLayout
+            android:layout_marginTop="0dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
@@ -155,27 +188,56 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:visibility="gone"
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginStart="0dp"
                 android:background="@color/gplus_color_1"
-                android:layout_width="25dp"
+                android:layout_width="28dp"
                 android:layout_height="match_parent" />
 
             <TextView
+                android:padding="10dp"
                 android:textColor="@color/white"
                 android:text="About Service"
-                android:background="@color/blueGrey800"
-                android:padding="5dp"
+                android:background="@color/backgroundTinted"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:visibility="gone"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/gplus_color_2"
+                android:layout_width="28dp"
+                android:layout_height="match_parent" />
+
+
+            <!--android:paddingStart="7dp"-->
+            <!--android:paddingLeft="7dp"-->
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:background="@color/buttonColorDark"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/show_hide_location_settings"
+                android:text="Current Location"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
 
+
         <android.support.v7.widget.CardView
+            android:visibility="gone"
             app:cardCornerRadius="0dp"
             app:contentPadding="10dp"
             android:clickable="true"
@@ -186,7 +248,6 @@
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -221,12 +282,13 @@
                     <ImageView
                         android:id="@+id/market_logo"
                         android:background="@color/backgroundTinted"
-                        android:layout_alignParentLeft="true"
                         android:layout_marginTop="0dp"
                         android:layout_width="100dp"
                         android:layout_height="100dp" />
 
 
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_alignParentEnd="true"-->
                     <TextView
                         android:gravity="end"
                         android:layout_alignParentTop="true"
@@ -236,8 +298,6 @@
                         android:layout_alignTop="@id/market_logo"
                         android:layout_toRightOf="@id/market_logo"
                         android:layout_toEndOf="@id/market_logo"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
                         android:text="Market Rating : 4.5 / 10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -252,8 +312,6 @@
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/market_logo"
                         android:layout_toEndOf="@id/market_logo"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
                         android:text="2194 Ratings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -268,15 +326,12 @@
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/market_logo"
                         android:layout_toEndOf="@id/market_logo"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
                         android:text="Distance : 5 Km"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
 
                     <TextView
-                        android:gravity="end"
                         android:layout_marginTop="5dp"
                         android:id="@+id/market_description"
                         android:layout_below="@id/market_distance"
@@ -284,14 +339,13 @@
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/market_logo"
                         android:layout_toEndOf="@id/market_logo"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
                         android:text="Fruits, Vegetables, Groceries and food Delivery"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
 
                 <TextView
+                    android:visibility="gone"
                     android:layout_marginTop="5dp"
                     android:background="#88000000"
                     android:layout_width="match_parent"
@@ -299,6 +353,7 @@
 
 
                 <TextView
+                    android:visibility="gone"
                     android:layout_marginTop="5dp"
                     android:layout_marginStart="0dp"
                     android:layout_marginLeft="0dp"
@@ -312,7 +367,7 @@
         </android.support.v7.widget.CardView>
 
 
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
@@ -320,7 +375,7 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="28dp">
 
 
             <ImageView
@@ -329,22 +384,22 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@color/gplus_color_2"
-                android:layout_width="25dp"
+                android:layout_width="28dp"
                 android:layout_height="match_parent" />
 
-
             <TextView
-                android:padding="5dp"
+                android:gravity="center_vertical"
+                android:paddingStart="5dp"
+                android:paddingLeft="5dp"
                 android:background="@color/blueGrey800"
                 android:textColor="@color/colorWhite"
                 android:id="@+id/show_hide_location_settings"
                 android:text="Current Location"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="match_parent" />
         </LinearLayout>
-
+-->
 
 
         <RelativeLayout
@@ -381,6 +436,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_alignLeft="@id/text_update"
                 android:text="Latitude    : 00.0000\nLongitude : 00.0000"
                 android:layout_width="wrap_content"
@@ -420,6 +476,19 @@
                 android:layout_height="1dp"/>
 
 
+        <TextView
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:text="Shops Nearby"
+            android:background="#22000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
 
 
         <LinearLayout
@@ -434,6 +503,8 @@
             android:orientation="horizontal">
 
 
+
+
             <RelativeLayout
                 android:layout_marginRight="5dp"
                 android:id="@+id/option_shops_nearby"
@@ -444,15 +515,17 @@
 
 
                 <TextView
+                    android:gravity="center_horizontal"
                     android:layout_alignParentBottom="true"
                     android:id="@+id/text_shopsNearby"
-                    android:gravity="bottom|right"
                     android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:padding="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:textSize="20sp"
+                    android:textSize="17sp"
                     android:textColor="@color/colorWhite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -475,16 +548,16 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:gravity="center_horizontal"
                     android:layout_alignParentBottom="true"
                     android:id="@+id/itemsNearby"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:gravity="bottom|right"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:textSize="20sp"
+                    android:padding="5dp"
+                    android:textSize="17sp"
                     android:textColor="@color/colorWhite"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Items"/>
@@ -496,6 +569,7 @@
 
 
         <TextView
+            android:visibility="gone"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginEnd="10dp"
@@ -505,6 +579,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp" />
 
+        <TextView
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:text="Items Nearby"
+            android:background="#22000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
         <LinearLayout
@@ -531,9 +616,9 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:gravity="center_horizontal"
                     android:layout_alignParentBottom="true"
                     android:id="@+id/text_shops_by_category"
-                    android:gravity="bottom|end"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:textColor="@color/colorWhite"
@@ -542,7 +627,7 @@
                     android:paddingBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Shops by Category (Format One)"/>
+                    android:text="Shops by Category"/>
 
 
                 <ImageView
@@ -563,7 +648,7 @@
 
             <RelativeLayout
                 android:layout_weight="1"
-                android:id="@+id/option_item_categories"
+                android:id="@+id/option_items_by_category"
                 android:background="@color/gplus_color_1"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/home_menu_options_row_height"
@@ -571,9 +656,9 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:gravity="center_horizontal"
                     android:layout_alignParentBottom="true"
                     android:id="@+id/text_itemCategories"
-                    android:gravity="bottom|end"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:textColor="@color/colorWhite"
@@ -582,7 +667,7 @@
                     android:paddingBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Shops by Category (Format Two)"/>
+                    android:text="Items by Category"/>
 
 
                 <ImageView
@@ -597,113 +682,58 @@
 
         </LinearLayout>
 
-
-        <LinearLayout
-            android:layout_marginLeft="10dp"
+        
+        <TextView
             android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:weightSum="2"
+            android:background="#88000000"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        
+        
+
+        <LinearLayout
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-
-            <RelativeLayout
-                android:layout_weight="1"
-                android:id="@+id/option_items_by_category"
-                android:background="@drawable/selector_button"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/home_menu_options_row_height"
-                android:layout_marginLeft="0dp"
-                android:layout_marginStart="0dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_alignParentBottom="true"
-                    android:id="@+id/text_items_by_category"
-                    android:gravity="bottom|end"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="17sp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Items by category (Format One)"/>
-
-
-                <ImageView
-                    android:padding="10dp"
-                    android:layout_above="@id/text_items_by_category"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </RelativeLayout>
-
-
-
-
-            <LinearLayout
-                android:layout_weight="0"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"/>
-
-            <RelativeLayout
-                android:layout_weight="1"
-                android:id="@+id/option_items_by_category_format_two"
-                android:background="@color/deepOrange900"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/home_menu_options_row_height"
+            <TextView
+                android:layout_marginRight="0dp"
+                android:layout_marginEnd="0dp"
                 android:layout_marginLeft="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_alignParentBottom="true"
-                    android:id="@+id/text_items_by_category_2"
-                    android:gravity="bottom|end"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="17sp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Items by Category (Format Two)"/>
+                android:layout_marginStart="10dp"
+                android:id="@+id/filter_shops"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:textColor="#ffffff"
+                android:background="@color/blueGrey800Transparent"
+                android:text="Filter Shops"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
 
 
-                <ImageView
-                    android:padding="10dp"
-                    android:layout_above="@id/text_items_by_category_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-
-
-            </RelativeLayout>
-
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:id="@+id/experimental_features"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:textColor="#ffffff"
+                android:background="@color/cyan900"
+                android:text="Experimental Features"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
 
-
-        <TextView
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:id="@+id/show_hide_filters"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:textColor="#ffffff"
-            android:background="@color/phonographyBlue"
-            android:text="Filter Shops"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
 
     </LinearLayout>

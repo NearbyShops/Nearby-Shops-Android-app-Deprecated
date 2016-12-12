@@ -98,8 +98,11 @@ public class ShopHome extends AppCompatActivity {
                 shopAddress.setText(shop.getShopAddress() + "\n" + String.valueOf(shop.getPincode()));
             }
 
-            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                    + shop.getLogoImagePath();
+//            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                    + shop.getLogoImagePath();
+
+            String imagePath = UtilityGeneral.getServiceURL(this) + "/api/v1/Shop/Image/"
+                    + "five_hundred_" + shop.getLogoImagePath() + ".jpg";
 
             Drawable placeholder = VectorDrawableCompat
                     .create(getResources(),

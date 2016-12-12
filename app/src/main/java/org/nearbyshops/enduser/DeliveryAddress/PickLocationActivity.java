@@ -122,7 +122,7 @@ public class PickLocationActivity extends FragmentActivity implements OnMapReady
             @Override
             public void onMapLongClick(LatLng latLng) {
 
-//                Toast.makeText(PickLocationActivity.this,"Long Click : " + latLng.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(FilterShops.this,"Long Click : " + latLng.toString(), Toast.LENGTH_SHORT).show();
 
 
                 if(currentMarker!=null)

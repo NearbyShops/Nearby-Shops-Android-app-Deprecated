@@ -3,6 +3,7 @@ package org.nearbyshops.enduser.RetrofitRESTContract;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduser.ModelEndPoints.ShopItemEndPoint;
+import org.nearbyshops.enduser.Shops.UtilityLocation;
 
 import java.util.List;
 
@@ -21,14 +22,27 @@ import retrofit2.http.Query;
  */
 public interface ShopService {
 
-    @GET("/api/v1/Shop/Deprecated")
-    Call<List<Shop>> getShops(@Query("DistributorID") Integer distributorID,
-                              @Query("LeafNodeItemCategoryID")Integer itemCategoryID,
-                              @Query("latCenter")Double latCenter,
-                              @Query("lonCenter")Double lonCenter,
-                              @Query("deliveryRangeMax")Double deliveryRangeMax,
-                              @Query("deliveryRangeMin")Double deliveryRangeMin,
-                              @Query("proximity")Double proximity);
+
+    @POST("/api/v1/Shop")
+    Call<Shop> postShop(@Body Shop shop);
+
+    @PUT("/api/v1/Shop/{id}")
+    Call<ResponseBody> putShop(@Body Shop shop, @Path("id") int id);
+
+    @DELETE("/api/v1/Shop/{id}")
+    Call<ResponseBody> deleteShop(@Path("id") int id);
+
+
+
+    @GET("/api/v1/Shop/ForShopFilters")
+    Call<ShopEndPoint> getShopForFilters(
+            @Query("latCenter")Double latCenter, @Query("lonCenter")Double lonCenter,
+            @Query("deliveryRangeMax")Double deliveryRangeMax,
+            @Query("deliveryRangeMin")Double deliveryRangeMin,
+            @Query("proximity")Double proximity,
+            @Query("metadata_only")Boolean metaonly
+    );
+
 
 
     @GET ("/api/v1/Shop")
@@ -62,13 +76,32 @@ public interface ShopService {
     @GET("/api/v1/Shop/{id}")
     Call<Shop> getShop(@Path("id") int id);
 
-    @POST("/api/v1/Shop")
-    Call<Shop> postShop(@Body Shop shop);
 
-    @PUT("/api/v1/Shop/{id}")
-    Call<ResponseBody> putShop(@Body Shop shop, @Path("id") int id);
 
-    @DELETE("/api/v1/Shop/{id}")
-    Call<ResponseBody> deleteShop(@Path("id") int id);
+
+    // Deprecated
+
+    @GET("/api/v1/Shop/Deprecated")
+    Call<List<Shop>> getShops(@Query("DistributorID") Integer distributorID,
+                              @Query("LeafNodeItemCategoryID")Integer itemCategoryID,
+                              @Query("latCenter")Double latCenter,
+                              @Query("lonCenter")Double lonCenter,
+                              @Query("deliveryRangeMax")Double deliveryRangeMax,
+                              @Query("deliveryRangeMin")Double deliveryRangeMin,
+                              @Query("proximity")Double proximity);
+
 
 }
+
+
+
+/*
+    Call<ShopEndPoint> callEndpoint = shopService.getShopForFilters(
+            UtilityLocation.getLatitude(this),
+            UtilityLocation.getLongitude(this),
+            null, null,
+            UtilityLocation.getProximity(this),
+            null
+    );
+
+*/

@@ -285,12 +285,10 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
                     {
 
                         dataset.clear();
-
                         dataset.addAll(response.body().getResults());
 
                         if(response.body().getItemCount()==0)
                         {
-
                             if(getActivity() instanceof NotifySwipeToRight)
                             {
                                 ((NotifySwipeToRight)getActivity()).notifySwipeRight();
@@ -352,10 +350,8 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
     void filledCartsChanged()
     {
-
         if(getActivity() instanceof NotifyFillCartsChanged)
         {
-
             ((NotifyFillCartsChanged)getActivity()).notifyFilledCartsChanged();
         }
     }

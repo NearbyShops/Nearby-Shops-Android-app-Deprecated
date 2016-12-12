@@ -16,6 +16,7 @@
     <!--android:background="#ffffffff"-->
 
     <ImageView
+        android:background="#33000000"
         android:layout_margin="5dp"
         android:scaleType="centerCrop"
         android:src="@drawable/carrots"

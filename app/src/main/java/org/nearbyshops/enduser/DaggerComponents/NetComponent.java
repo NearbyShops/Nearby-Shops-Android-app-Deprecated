@@ -10,6 +10,7 @@ import org.nearbyshops.enduser.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduser.DaggerModules.AppModule;
 import org.nearbyshops.enduser.DaggerModules.NetModule;
 import org.nearbyshops.enduser.FilterShopDialog.FilterShopsDialog;
+import org.nearbyshops.enduser.FilterShops.FilterShops;
 import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.AdapterSimple;
 import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduser.ItemCategoryOption.FragmentShopOld;
@@ -147,4 +148,6 @@ public interface NetComponent {
     void Inject(ItemsInStockByCatFragment itemsInStockByCatFragment);
 
     void Inject(AdapterItemsInStock adapterItemsInStock);
+
+    void Inject(FilterShops filterShops);
 }

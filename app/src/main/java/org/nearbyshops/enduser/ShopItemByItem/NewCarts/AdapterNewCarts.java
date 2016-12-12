@@ -1,10 +1,13 @@
 package org.nearbyshops.enduser.ShopItemByItem.NewCarts;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -22,6 +25,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.AdapterSimple;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Model.CartItem;
 import org.nearbyshops.enduser.Model.Item;
@@ -100,7 +104,10 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_item_item_header,parent,false);
 
-            return new ViewHolderItem(view);
+            return new ViewHolderItemSimple(view);
+
+
+
         }
         else if(viewType == 1)
         {
@@ -212,9 +219,9 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             }
         }
-        else if(holder_given instanceof ViewHolderItem)
+        else if(holder_given instanceof ViewHolderItemSimple)
         {
-            bindItemHolder((ViewHolderItem) holder_given,position);
+            bindItem((ViewHolderItemSimple) holder_given,position);
         }
     }
 
@@ -329,6 +336,70 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+
+
+    void bindItem(ViewHolderItemSimple holder, int position)
+    {
+
+        Item item = (Item) dataset.get(position);
+
+        holder.categoryName.setText(item.getItemName());
+
+        ItemStats itemStats = item.getItemStats();
+
+        holder.priceRange.setText("Price Range :\nRs." + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
+        holder.priceAverage.setText("Price Average :\nRs." + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
+        holder.shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
+        holder.itemRating.setText(String.format("%.2f",itemStats.getRating_avg()));
+        holder.ratingCount.setText("( " + String.valueOf(itemStats.getRatingCount()) + " Ratings )");
+
+
+        String imagePath = UtilityGeneral.getServiceURL(context)
+                + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
+
+
+        Drawable drawable = VectorDrawableCompat
+                .create(context.getResources(),
+                        R.drawable.ic_nature_people_white_48px, context.getTheme());
+
+        Picasso.with(context).load(imagePath)
+                .placeholder(drawable)
+                .into(holder.categoryImage);
+
+    }
+
+
+    class ViewHolderItemSimple extends RecyclerView.ViewHolder {
+
+
+        @Bind(R.id.itemName) TextView categoryName;
+//        TextView categoryDescription;
+
+        @Bind(R.id.items_list_item)
+        CardView itemCategoryListItem;
+        @Bind(R.id.itemImage) ImageView categoryImage;
+        @Bind(R.id.price_range) TextView priceRange;
+        @Bind(R.id.price_average) TextView priceAverage;
+        @Bind(R.id.shop_count) TextView shopCount;
+        @Bind(R.id.item_rating) TextView itemRating;
+        @Bind(R.id.rating_count) TextView ratingCount;
+
+
+
+        public ViewHolderItemSimple(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+        }
+
+
+
+        @OnClick(R.id.items_list_item)
+        public void listItemClick()
+        {
+
+        }
+
+    }// ViewHolder Class declaration ends
 
 
     void bindItemHolder(ViewHolderItem holder,int position)

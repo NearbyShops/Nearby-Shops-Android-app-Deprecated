@@ -704,7 +704,12 @@ public class AdapterItemsInStock extends RecyclerView.Adapter<RecyclerView.ViewH
             if (!cartItemMap.containsKey(shopItem.getItemID()))
             {
 
-                if (Integer.parseInt(itemQuantity.getText().toString()) == 0) {
+
+                if (itemQuantity.getText().toString().equals("")){
+
+                    showToastMessage("Please select quantity !");
+                }
+                else if (Integer.parseInt(itemQuantity.getText().toString()) == 0) {
                     showToastMessage("Please select quantity greater than Zero !");
 
                 } else {
@@ -753,8 +758,14 @@ public class AdapterItemsInStock extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
 
 
-            } else {
+            }
+            else
+            {
 
+                if(itemQuantity.getText().toString().equals(""))
+                {
+                    return;
+                }
 
                 int quantity = Integer.parseInt(itemQuantity.getText().toString());
 

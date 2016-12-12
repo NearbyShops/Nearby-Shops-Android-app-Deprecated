@@ -291,7 +291,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             if(item!=null)
             {
-                holder.itemName.setText(String.valueOf(position + 1) + ". " + item.getItemName());
+                //String.valueOf(position + 1) + ". " +
+                holder.itemName.setText(item.getItemName());
                 holder.itemPrice.setText("Rs. " + String.format("%.2f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
 
                 if(item.getRt_rating_count()==0)
@@ -557,13 +558,19 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                 cartItem.setItemQuantity(Integer.parseInt(itemQuantity.getText().toString()));
             }
 
-            if (!cartItemMap.containsKey(dataset.get(getLayoutPosition()).getItemID()))
-            {
+            if (!cartItemMap.containsKey(dataset.get(getLayoutPosition()).getItemID())) {
 
-                if (Integer.parseInt(itemQuantity.getText().toString()) == 0) {
+                if (itemQuantity.getText().toString().equals("")){
+
+                    showToastMessage("Please select quantity !");
+                }
+                else if (!itemQuantity.getText().toString().equals("") && Integer.parseInt(itemQuantity.getText().toString()) == 0)
+                {
                     showToastMessage("Please select quantity greater than Zero !");
 
-                } else {
+                }
+                else
+                {
 
                     //showToastMessage("Add to cart! : " + dataset.get(getLayoutPosition()).getShopID());
 
@@ -609,8 +616,14 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                 }
 
 
-            } else {
+            }
+            else
+            {
 
+                if(itemQuantity.getText().toString().equals(""))
+                {
+                    return;
+                }
 
                 int quantity = Integer.parseInt(itemQuantity.getText().toString());
 

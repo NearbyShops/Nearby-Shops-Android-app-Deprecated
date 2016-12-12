@@ -7,7 +7,7 @@
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/list_item_items_horizontal_screen"/>
+        layout="@layout/list_item_item_guide"/>
 
     <TextView
         android:layout_marginLeft="5dp"

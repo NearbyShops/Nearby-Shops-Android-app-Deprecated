@@ -27,6 +27,7 @@
             android:layout_marginTop="0dp"
             android:textSize="20sp"
             android:id="@+id/shop_name"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

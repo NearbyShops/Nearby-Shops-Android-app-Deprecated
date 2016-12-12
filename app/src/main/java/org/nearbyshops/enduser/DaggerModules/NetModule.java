@@ -108,7 +108,6 @@ public class NetModule {
 
 
     @Provides
-    @Singleton
     Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
 
         Log.d("applog","Retrofit: " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
