@@ -22,17 +22,14 @@ import org.nearbyshops.enduser.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.Shops.UtilityLocation;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduser.Utility.DividerItemDecoration;
-import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.UtilitySort.UtilitySortShopsByCategory;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import icepick.Icepick;
 import icepick.State;
 import retrofit2.Call;
 import retrofit2.Callback;

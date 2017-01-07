@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import org.nearbyshops.enduser.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.UtilitySort.UtilitySortShopReview;
 
 import butterknife.Bind;

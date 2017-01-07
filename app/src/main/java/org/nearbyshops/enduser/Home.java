@@ -49,16 +49,15 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
 import org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity;
-import org.nearbyshops.enduser.FilterShopDialog.FilterShopsDialogMain;
 import org.nearbyshops.enduser.FilterShops.FilterShops;
 import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.ItemCategoriesSimple;
 import org.nearbyshops.enduser.Items.ItemsActivity;
-import org.nearbyshops.enduser.ItemsByCategory.ItemsByCategory;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
-import org.nearbyshops.enduser.SharedPreferences.UtilityLocation;
+import org.nearbyshops.enduser.SharedPreferences.UtilityLocationOld;
 import org.nearbyshops.enduser.Shops.ShopsActivity;
-import org.nearbyshops.enduser.ShopsByCategory.ShopsByCategory;
+import org.nearbyshops.enduser.ShopsByCatSimple.ShopsByCat;
+import org.nearbyshops.enduser.ShopsByCategoryOld.ShopsByCategory;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 import org.nearbyshops.enduser.UtilityGeocoding.Constants;
 import org.nearbyshops.enduser.UtilityGeocoding.FetchAddressIntentService;
@@ -241,8 +240,10 @@ public class Home extends AppCompatActivity
     @OnClick(R.id.option_shops_by_category)
     public void shopsByCategoryClick() {
 
-        Intent intent = new Intent(this, ShopsByCategory.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, ShopsByCategory.class);
+//        startActivity(intent);
+
+        startActivity(new Intent(this, ShopsByCat.class));
     }
 
 
@@ -727,7 +728,7 @@ public class Home extends AppCompatActivity
         org.nearbyshops.enduser.Shops.UtilityLocation.saveLatitude((float) location.getLatitude(),this);
         org.nearbyshops.enduser.Shops.UtilityLocation.saveLongitude((float) location.getLongitude(),this);
 
-        UtilityLocation.saveCurrentLocation(this,location);
+        UtilityLocationOld.saveCurrentLocation(this,location);
 
     }
 

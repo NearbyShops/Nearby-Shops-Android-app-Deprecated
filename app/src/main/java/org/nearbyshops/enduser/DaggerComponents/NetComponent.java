@@ -17,10 +17,10 @@ import org.nearbyshops.enduser.ItemCategoryOption.FragmentShopOld;
 import org.nearbyshops.enduser.ItemDetail.ItemDetail;
 import org.nearbyshops.enduser.ItemDetail.RateReviewItemDialog;
 import org.nearbyshops.enduser.Items.ItemsList.FragmentItemsList;
-import org.nearbyshops.enduser.ItemsByCategory.ItemCategories.ItemCategoriesFragmentItem;
-import org.nearbyshops.enduser.ItemsByCategory.Items.FragmentItem_ItemByCategory;
-import org.nearbyshops.enduser.ItemsByCategoryScreenTwo.ItemCategories.ItemCategoriesHorizontal;
-import org.nearbyshops.enduser.ItemsByCategoryScreenTwo.Items.FragmentItemScreenHorizontal;
+import org.nearbyshops.enduser.ItemsByCategorySwipe.ItemCategories.ItemCategoriesFragmentItem;
+import org.nearbyshops.enduser.ItemsByCategorySwipe.Items.FragmentItem_ItemByCategory;
+import org.nearbyshops.enduser.ItemsByCategoryHorizontal.ItemCategories.ItemCategoriesHorizontal;
+import org.nearbyshops.enduser.ItemsByCategoryHorizontal.Items.FragmentItemScreenHorizontal;
 import org.nearbyshops.enduser.ItemsInShop.ShopItems.AdapterItemsInShop;
 import org.nearbyshops.enduser.ItemsInShop.ShopItems.FragmentItemsInShop;
 import org.nearbyshops.enduser.ItemsInShopByCat.AdapterItemsInStock;
@@ -37,8 +37,9 @@ import org.nearbyshops.enduser.ShopReview.ShopReviewAdapter;
 import org.nearbyshops.enduser.ShopReview.ShopReviewStats;
 import org.nearbyshops.enduser.ShopReview.ShopReviews;
 import org.nearbyshops.enduser.Shops.ListFragment.FragmentShopTwo;
-import org.nearbyshops.enduser.ShopsByCategory.ItemCategories.ItemCategoriesFragment;
-import org.nearbyshops.enduser.ShopsByCategory.Shops.FragmentShop;
+import org.nearbyshops.enduser.ShopsByCatSimple.ShopsByCatFragment;
+import org.nearbyshops.enduser.ShopsByCategoryOld.ItemCategories.ItemCategoriesFragment;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Shops.FragmentShop;
 import org.nearbyshops.enduser.ItemCategoryOption.FragmentItemCategories;
 import org.nearbyshops.enduser.ItemCategoryOption.FragmentItem;
 import org.nearbyshops.enduser.ShopItemByItem.FilledCarts.AdapterFilledCarts;
@@ -150,4 +151,6 @@ public interface NetComponent {
     void Inject(AdapterItemsInStock adapterItemsInStock);
 
     void Inject(FilterShops filterShops);
+
+    void Inject(ShopsByCatFragment shopsByCatFragment);
 }

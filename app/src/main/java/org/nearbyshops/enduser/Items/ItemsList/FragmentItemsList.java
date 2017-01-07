@@ -1,7 +1,10 @@
 package org.nearbyshops.enduser.Items.ItemsList;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.widget.SwipeRefreshLayout;
+//import android.support.v7.widget.GridLayoutManager;
+//import android.support.v7.widget.RecyclerView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,8 +22,9 @@ import org.nearbyshops.enduser.ModelEndPoints.ItemEndPoint;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduser.Shops.UtilityLocation;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.UtilitySort.UtilitySortItemsByCategory;
 
@@ -28,7 +32,6 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import icepick.Icepick;
 import icepick.State;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -266,20 +269,18 @@ public class FragmentItemsList extends Fragment
     void makeNetworkCall(final boolean clearDataset)
     {
 
-
         String current_sort = "";
 
         current_sort = UtilitySortItemsByCategory.getSort(getContext()) + " " + UtilitySortItemsByCategory.getAscending(getContext());
 
         Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(null,
                 null,
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
+                UtilityLocation.getLatitude(getActivity()),
+                UtilityLocation.getLongitude(getActivity()),
+                null,
+                null,
+                null,
                 searchQuery,current_sort,limit,offset,null);
-
 
 
         endPointCall.enqueue(new Callback<ItemEndPoint>() {

@@ -11,11 +11,13 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.nearbyshops.enduser.Carts.CartItemListActivity;
 import org.nearbyshops.enduser.ItemsInShop.ItemsInShop;
 import org.nearbyshops.enduser.ItemsInShopByCat.ItemsInStockByCat;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
+import org.nearbyshops.enduser.ShopDetail.ShopDetail;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityShopHome;
 
@@ -153,6 +155,16 @@ public class ShopHome extends AppCompatActivity {
     }
 
 
+    @OnClick(R.id.option_cart)
+    void shopCart()
+    {
+        Intent intent = new Intent(this,CartItemListActivity.class);
+        intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,shop);
+        startActivity(intent);
+    }
+
+
+
 
     @OnClick(R.id.option_items)
     void ItemsClick()
@@ -161,6 +173,14 @@ public class ShopHome extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    @OnClick(R.id.shop_card)
+    void shopCardClick()
+    {
+            Intent intent = new Intent(this, ShopDetail.class);
+            intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
+            startActivity(intent);
+    }
 
 
     @Override

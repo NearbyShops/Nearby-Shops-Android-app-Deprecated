@@ -23,6 +23,7 @@ import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.ModelStats.CartStats;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
+import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 
@@ -39,13 +40,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CartItemListActivity extends AppCompatActivity
-        implements SwipeRefreshLayout.OnRefreshListener, Callback<List<CartItem>>,CartItemAdapter.NotifyCartItem {
+        implements SwipeRefreshLayout.OnRefreshListener, CartItemAdapter.NotifyCartItem {
 
 
     TextView confirmItems;
 
     @Inject
     CartItemService cartItemService;
+
+    @Inject
+    CartStatsService cartStatsService;
 
     RecyclerView recyclerView;
 
@@ -122,17 +126,86 @@ public class CartItemListActivity extends AppCompatActivity
         shop = getIntent().getParcelableExtra(SHOP_INTENT_KEY);
         cartStats = getIntent().getParcelableExtra(CART_STATS_INTENT_KEY);
 
-        if(cartStats!=null)
+        if(cartStats==null)
         {
-            cartTotal = cartStats.getCart_Total();
-            totalValue.setText(" : Rs " + String.format("%.2f", cartTotal));
+            fetchCartStats();
         }
+
+
 
 //        setupHeader();
         setupSwipeContainer();
         setupRecyclerView();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+
+        if(savedInstanceState==null)
+        {
+            swipeRefresh();
+        }
+
+
+        displayCartStats();
+    }
+
+
+
+    void fetchCartStats()
+    {
+
+        EndUser endUser = UtilityLogin.getEndUser(this);
+
+        if(endUser==null || shop==null)
+        {
+//            showLoginDialog();
+            return;
+        }
+
+
+        Call<List<CartStats>> call = cartStatsService.getCart(endUser.getEndUserID(),null,shop.getShopID(),false,null,null);
+
+        call.enqueue(new Callback<List<CartStats>>() {
+
+            @Override
+            public void onResponse(Call<List<CartStats>> call, Response<List<CartStats>> response) {
+
+                if(response.code()==200 && response.body()!=null)
+                {
+                    if(response.body().size()>0)
+                    {
+                        cartStats = response.body().get(0);
+                        displayCartStats();
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<CartStats>> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+
+
+
+    void displayCartStats()
+    {
+
+        if(cartStats!=null)
+        {
+            cartTotal = cartStats.getCart_Total();
+            totalValue.setText(" : Rs " + String.format("%.2f", cartTotal));
+
+            adapter.setCartStats(cartStats);
+        }
     }
 
 
@@ -196,7 +269,7 @@ public class CartItemListActivity extends AppCompatActivity
     {
 
 
-        adapter = new CartItemAdapter(dataset,this,this,cartStats);
+        adapter = new CartItemAdapter(dataset,this,this);
 
         recyclerView.setAdapter(adapter);
 
@@ -244,92 +317,94 @@ public class CartItemListActivity extends AppCompatActivity
     void makeNetworkCall()
     {
 
-        if(UtilityGeneral.isNetworkAvailable(this))
+        EndUser endUser = UtilityLogin.getEndUser(this);
+
+        if(endUser==null)
         {
-
-            EndUser endUser = UtilityLogin.getEndUser(this);
-
-            if(endUser==null)
-            {
-                showLoginDialog();
-                return;
-            }
-
-
-            if(shop!=null)
-            {
-                Call<List<CartItem>> call = cartItemService.getCartItem(null,null,
-                        endUser.getEndUserID(),shop.getShopID(),true);
-
-                call.enqueue(this);
-            }
-
-        }
-        else
-        {
-            showToastMessage("No network. Application is Offline !");
+            showLoginDialog();
             swipeContainer.setRefreshing(false);
+            return;
         }
 
-    }
-
-
-    @Override
-    public void onResponse(Call<List<CartItem>> call, Response<List<CartItem>> response) {
-
-        if(response.body()!=null)
+        if(shop==null)
         {
-            dataset.clear();
-            dataset.addAll(response.body());
-
-            adapter.notifyDataSetChanged();
-
-
-
-        }else
-        {
-            dataset.clear();
-            adapter.notifyDataSetChanged();
+            swipeContainer.setRefreshing(false);
+            showToastMessage("Shop null !");
+            return;
         }
 
-        swipeContainer.setRefreshing(false);
+        Call<List<CartItem>> call = cartItemService.getCartItem(null,null,
+                endUser.getEndUserID(),shop.getShopID(),true);
+
+        call.enqueue(new Callback<List<CartItem>>() {
+            @Override
+            public void onResponse(Call<List<CartItem>> call, Response<List<CartItem>> response) {
+
+                if(response.body()!=null)
+                {
+                    dataset.clear();
+                    dataset.addAll(response.body());
+
+                    adapter.notifyDataSetChanged();
+
+
+
+                }else
+                {
+                    dataset.clear();
+                    adapter.notifyDataSetChanged();
+                }
+
+                swipeContainer.setRefreshing(false);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<CartItem>> call, Throwable t) {
+
+
+                showToastMessage("Network Request failed !");
+                swipeContainer.setRefreshing(false);
+
+            }
+        });
+
+
+
+
+//        if(UtilityGeneral.isNetworkAvailable(this))
+//        {
+//
+//
+//
+//        }
+//        else
+//        {
+//            showToastMessage("No network. Application is Offline !");
+//            swipeContainer.setRefreshing(false);
+//        }
 
     }
 
-    @Override
-    public void onFailure(Call<List<CartItem>> call, Throwable t) {
-
-        showToastMessage("Network Request failed !");
-        swipeContainer.setRefreshing(false);
-    }
 
 
 
     @Override
     protected void onResume() {
         super.onResume();
+    }
 
 
+    void swipeRefresh()
+    {
 
         swipeContainer.post(new Runnable() {
             @Override
             public void run() {
                 swipeContainer.setRefreshing(true);
-
-                try {
-
-                    makeNetworkCall();
-
-                } catch (IllegalArgumentException ex)
-                {
-                    ex.printStackTrace();
-
-                }
-
-                adapter.notifyDataSetChanged();
+                onRefresh();
             }
         });
-
     }
 
 
@@ -401,9 +476,7 @@ public class CartItemListActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         ButterKnife.unbind(this);
-
     }
 
 

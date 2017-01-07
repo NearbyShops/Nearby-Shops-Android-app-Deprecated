@@ -64,10 +64,20 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
 
             holder.shopName.setText(shop.getShopName());
 
-            imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                    + dataset.get(position).getShop().getLogoImagePath();
+//            imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                    + dataset.get(position).getShop().getLogoImagePath();
+
+//            imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
+//                    + shop.getLogoImagePath() + ".jpg";
+
+            imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
+                    + shop.getLogoImagePath() + ".jpg";
 
         }
+
+
+        System.out.println(imagePath);
+
 
         Picasso.with(context)
                 .load(imagePath)

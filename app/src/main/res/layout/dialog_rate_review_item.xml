@@ -74,6 +74,7 @@
 
 
         <TextView
+            android:id="@+id/item_rating_text"
             android:layout_marginTop="5dp"
             android:paddingLeft="3dp"
             android:paddingStart="3dp"

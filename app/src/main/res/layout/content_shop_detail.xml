@@ -79,13 +79,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:text="Publisher Name"
-            android:id="@+id/publisher_name"
-            android:layout_below="@id/read_full_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <!--<TextView-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:text="Publisher Name"-->
+            <!--android:id="@+id/publisher_name"-->
+            <!--android:layout_below="@id/read_full_button"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
 
 
         <TextView
@@ -93,7 +93,7 @@
             android:layout_marginTop="0dp"
             android:text="Date of Publish : "
             android:id="@+id/date_of_publish"
-            android:layout_below="@id/publisher_name"
+            android:layout_below="@id/read_full_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -145,8 +145,6 @@
 
         <RatingBar
             android:rating="4.3"
-            android:scaleX="1.4"
-            android:scaleY="1.4"
             android:numStars="10"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_marginTop="10dp"
@@ -154,7 +152,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ratings_count"
-
             android:id="@+id/ratingBar" />
 
 
@@ -181,7 +178,7 @@
             <TextView
                 android:gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="Rate this book"
+                android:text="Rate this Shop"
                 android:layout_below="@id/border_one"
                 android:id="@+id/edit_review_text"
                 android:layout_width="match_parent"
@@ -241,6 +238,7 @@
                 android:layout_height="wrap_content" />
 
             <RatingBar
+                android:numStars="10"
                 android:rating="4"
                 android:id="@+id/member_rating"
                 android:layout_marginLeft="10dp"
@@ -328,24 +326,21 @@
 
 
 
-        <TextView
-            android:text="Contact and Support"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <!--<TextView-->
+            <!--android:text="Contact and Support"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
 
-        <TextView
-            android:text="Staff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <!--<TextView-->
+            <!--android:text="Staff"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
 
-
-
-
-        <TextView
-            android:text="Shop Images"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView4" />
+        <!--<TextView-->
+            <!--android:text="Shop Images"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/textView4" />-->
 
 
 
@@ -367,6 +362,7 @@
             android:text="The circle represents the range of delivery for the shop."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
 
 
 
@@ -419,7 +415,7 @@
             android:layout_below="@id/delivery_information"
             android:padding="5dp"
             android:background="@color/light_grey"
-            android:text="Shop Reviews"
+            android:text="Contact and Support Information"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -427,8 +423,8 @@
         <!--
         android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-
         -->
+
 
         <TextView
             android:layout_marginTop="10dp"

@@ -26,7 +26,7 @@ import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewThanksService;
 import org.nearbyshops.enduser.ShopReview.Interfaces.NotifyLoginByAdapter;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.Utility.DividerItemDecoration;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 import org.nearbyshops.enduser.UtilitySort.UtilitySortShopReview;

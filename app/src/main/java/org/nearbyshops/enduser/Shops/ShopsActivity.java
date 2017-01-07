@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MenuCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -30,9 +28,9 @@ import org.nearbyshops.enduser.Shops.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.Shops.ListFragment.FragmentShopTwo;
 import org.nearbyshops.enduser.Shops.MapsFragment.ShopMapFragment;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduser.ShopsByCategory.SlidingLayerSortShopsByCategory;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduser.ShopsByCategoryOld.SlidingLayerSortShops;
 
 import java.util.ArrayList;
 
@@ -145,7 +143,7 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
             {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.slidinglayerfragment,new SlidingLayerSortShopsByCategory(),"sliding_layer")
+                        .add(R.id.slidinglayerfragment,new SlidingLayerSortShops(),"sliding_layer")
                         .commit();
             }
 

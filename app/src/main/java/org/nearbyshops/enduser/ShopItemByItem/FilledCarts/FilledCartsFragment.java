@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -21,7 +19,6 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.ItemDetail.ItemDetail;
-import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.ModelEndPoints.ShopItemEndPoint;
@@ -33,8 +30,9 @@ import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifySwipeToRight;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduser.Shops.UtilityLocation;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItems;
@@ -259,11 +257,10 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
         Call<ShopItemEndPoint> callEndpoint = shopItemService.getShopItemEndpoint(
                     null,null,item.getItemID(),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,0),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,0),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,0),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,0),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,0),
+                    UtilityLocation.getLatitude(getActivity()),
+                    UtilityLocation.getLongitude(getActivity()),
+                    null, null,
+                    null,
                     endUser.getEndUserID(),
                     true,
                     null,null,null,null,

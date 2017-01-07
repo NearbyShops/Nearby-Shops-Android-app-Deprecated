@@ -98,8 +98,8 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     TextView publishDate;
 
 
-    @Bind(R.id.publisher_name)
-    TextView publisherName;
+//    @Bind(R.id.publisher_name)
+//    TextView publisherName;
 
     @Bind(R.id.book_description)
     TextView bookDescription;
@@ -191,7 +191,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
             }
         });*/
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         checkFavourite();
@@ -341,7 +341,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
                 user_review_ratings_block.setVisibility(View.VISIBLE);
                 edit_review_block.setVisibility(View.GONE);
 
-                edit_review_text.setText(R.string.book_review_be_the_first_to_review);
+                edit_review_text.setText(R.string.shop_review_be_the_first_to_review);
             } else if (shop.getRt_rating_count() > 0) {
 
 
@@ -873,7 +873,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
 //        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(,14));
 
-//        Location currentLocation = UtilityLocation.getCurrentLocation(this);
+//        Location currentLocation = UtilityLocationOld.getCurrentLocation(this);
 
         if(shop!=null)
         {

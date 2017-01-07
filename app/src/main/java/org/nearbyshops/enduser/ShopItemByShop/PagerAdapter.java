@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import org.nearbyshops.enduser.ShopItemByShop.ItemCategories.ItemCategoriesFragmentShopHome;
 import org.nearbyshops.enduser.ShopItemByShop.ShopItems.FragmentShopItemsByShop;
-import org.nearbyshops.enduser.ShopsByCategory.ShopsByCategory;
 
 /**
  * Created by sumeet on 27/6/16.

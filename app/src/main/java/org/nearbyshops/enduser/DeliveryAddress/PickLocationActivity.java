@@ -19,8 +19,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.SharedPreferences.UtilityLocation;
-import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.SharedPreferences.UtilityLocationOld;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -108,7 +107,7 @@ public class PickLocationActivity extends FragmentActivity implements OnMapReady
 
 //        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(,14));
 
-        Location currentLocation = UtilityLocation.getCurrentLocation(this);
+        Location currentLocation = UtilityLocationOld.getCurrentLocation(this);
 
         if(currentLocation!=null)
         {

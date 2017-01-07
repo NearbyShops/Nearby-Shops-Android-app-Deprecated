@@ -193,7 +193,7 @@
                     android:layout_marginLeft="1dp"
                     android:layout_above="@id/total"
                     android:id="@+id/estimatedTotal"
-                    android:text="Estimated Total (Before Update) : Rs 231.00"
+                    android:text="Estimated Total (Before Update) : Rs 00.00"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

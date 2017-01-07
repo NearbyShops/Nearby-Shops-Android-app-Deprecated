@@ -40,6 +40,7 @@
 
 
             <TextView
+                android:visibility="gone"
                 android:paddingRight="5dp"
                 android:paddingLeft="5dp"
                 android:layout_marginRight="5dp"

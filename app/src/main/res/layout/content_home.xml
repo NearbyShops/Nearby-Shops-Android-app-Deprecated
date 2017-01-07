@@ -140,7 +140,7 @@
                         android:paddingTop="10dp"
                         android:text="Discover Services"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent" />
+                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_marginBottom="10dp"
@@ -198,7 +198,7 @@
                 android:layout_height="match_parent" />
 
             <TextView
-                android:padding="10dp"
+                android:padding="5dp"
                 android:textColor="@color/white"
                 android:text="About Service"
                 android:background="@color/backgroundTinted"
@@ -223,7 +223,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
                 android:gravity="center_vertical"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:background="@color/buttonColorDark"
                 android:textColor="@color/colorWhite"
                 android:id="@+id/show_hide_location_settings"
@@ -507,6 +507,7 @@
 
             <RelativeLayout
                 android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:id="@+id/option_shops_nearby"
                 android:background="@color/phonographyBlue"
                 android:layout_weight="1"
@@ -539,30 +540,42 @@
 
             </RelativeLayout>
 
+
+
             <RelativeLayout
-                android:id="@+id/option_items"
-                android:layout_marginLeft="5dp"
-                android:background="@color/gplus_color_2"
                 android:layout_weight="1"
+                android:id="@+id/option_shops_by_category"
+                android:background="@color/gplus_color_2"
                 android:layout_width="0dp"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/home_menu_options_row_height"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:gravity="center_horizontal"
                     android:layout_alignParentBottom="true"
-                    android:id="@+id/itemsNearby"
+                    android:id="@+id/text_shops_by_category"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="17sp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:padding="5dp"
-                    android:textSize="17sp"
-                    android:textColor="@color/colorWhite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Items"/>
+                    android:text="Shops by Category"/>
+
+
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_above="@id/text_shops_by_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </RelativeLayout>
+
+
 
         </LinearLayout>
 
@@ -606,39 +619,28 @@
 
 
             <RelativeLayout
-                android:layout_weight="1"
-                android:id="@+id/option_shops_by_category"
+                android:id="@+id/option_items"
                 android:background="@drawable/selector_button"
+                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/home_menu_options_row_height"
-                android:layout_marginLeft="0dp"
-                android:layout_marginStart="0dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:gravity="center_horizontal"
                     android:layout_alignParentBottom="true"
-                    android:id="@+id/text_shops_by_category"
+                    android:id="@+id/itemsNearby"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="17sp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
+                    android:padding="5dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/colorWhite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Shops by Category"/>
-
-
-                <ImageView
-                    android:padding="10dp"
-                    android:layout_above="@id/text_shops_by_category"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:text="Items"/>
 
             </RelativeLayout>
-
-
 
 
             <LinearLayout

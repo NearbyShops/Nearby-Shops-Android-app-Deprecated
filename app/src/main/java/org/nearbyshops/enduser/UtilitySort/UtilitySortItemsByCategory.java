@@ -3,7 +3,7 @@ package org.nearbyshops.enduser.UtilitySort;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import org.nearbyshops.enduser.ItemsByCategory.SlidingLayerSortItems;
+import org.nearbyshops.enduser.ItemsByCategorySwipe.SlidingLayerSortItems;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 

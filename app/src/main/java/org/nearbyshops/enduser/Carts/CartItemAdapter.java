@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +17,10 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduser.Model.CartItem;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.ModelStats.CartStats;
-import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.Utility.InputFilterMinMax;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,16 +40,25 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
     double cartTotal = 0;
 
 
-    public CartItemAdapter(List<CartItem> dataset, Context context, NotifyCartItem notifyCartItem,CartStats cartStats) {
+    public CartItemAdapter(List<CartItem> dataset, Context context, NotifyCartItem notifyCartItem) {
 
         this.dataset = dataset;
         this.context = context;
         this.notifyCartItem = notifyCartItem;
-        this.cartStats = cartStats;
+//        this.cartStats = cartStats;
 
-        cartTotal = cartStats.getCart_Total();
+
+
 
     }
+
+
+    void setCartStats(CartStats cartStats)
+    {
+        this.cartStats = cartStats;
+        cartTotal = cartStats.getCart_Total();
+    }
+
 
 
     @Override
@@ -70,7 +76,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
         CartItem cartItem = dataset.get(position);
 
-        String imagePath = null;
+//        String imagePath = null;
 
         Item item = null;
 
@@ -97,8 +103,13 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
 
 
-            imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                    + item.getItemImageURL();
+//            imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                    + item.getItemImageURL();
+
+            String imagePath = UtilityGeneral.getServiceURL(context)
+                    + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
+
+
 
             Picasso.with(context)
                     .load(imagePath)

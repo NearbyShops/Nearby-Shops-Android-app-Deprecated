@@ -137,7 +137,7 @@
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
         <activity
-            android:name=".ShopsByCategory.ShopsByCategory"
+            android:name=".ShopsByCategoryOld.ShopsByCategory"
             android:label="@string/label_shops_by_category"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
@@ -146,7 +146,7 @@
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
         <activity
-            android:name=".ItemsByCategory.ItemsByCategory"
+            android:name=".ItemsByCategorySwipe.ItemsByCategory"
             android:label="@string/label_items_by_category"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
@@ -274,7 +274,7 @@
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
         <activity
-            android:name=".ItemsByCategoryScreenTwo.ItemsByCatS2"
+            android:name=".ItemsByCategoryHorizontal.ItemsByCatS2"
             android:label="@string/title_activity_items_by_cat_s2"
             android:theme="@style/AppTheme.NoActionBar" />
 
@@ -322,6 +322,27 @@
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
 
+
+
+        <activity
+            android:name=".ShopsByCatSimple.ShopsByCat"
+            android:label="Shops By Category"
+            android:launchMode="singleTop"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+        </activity>
 
 
 

@@ -97,10 +97,10 @@ public interface ShopService {
 
 /*
     Call<ShopEndPoint> callEndpoint = shopService.getShopForFilters(
-            UtilityLocation.getLatitude(this),
-            UtilityLocation.getLongitude(this),
+            UtilityLocationOld.getLatitude(this),
+            UtilityLocationOld.getLongitude(this),
             null, null,
-            UtilityLocation.getProximity(this),
+            UtilityLocationOld.getProximity(this),
             null
     );
 

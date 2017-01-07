@@ -71,6 +71,9 @@ public class RateReviewItemDialog extends DialogFragment {
     @Bind(R.id.member_profile_image)
     ImageView member_profile_image;
 
+    @Bind(R.id.item_rating_text)
+    TextView itemRatingText;
+
     int book_id;
 
 
@@ -117,9 +120,11 @@ public class RateReviewItemDialog extends DialogFragment {
             review_title.setText(review_for_edit.getReviewTitle());
             review_text.setText(review_for_edit.getReviewText());
 
-            member_name.setText(" by "  + review_for_edit.getRt_end_user_profile().getName());
+            member_name.setText(" by : "  + review_for_edit.getRt_end_user_profile().getName());
 
             ratingBar.setRating(review_for_edit.getRating());
+//            itemRatingText.setText(String.format("%.0f",review_for_edit.getRating()));
+            itemRatingText.setText(String.valueOf((float)review_for_edit.getRating()));
 
             String imagePath = UtilityGeneral.getImageEndpointURL(getActivity())
                     + review_for_edit.getRt_end_user_profile().getProfileImageURL();
@@ -136,6 +141,14 @@ public class RateReviewItemDialog extends DialogFragment {
 
         }
 
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+//                itemRatingText.setText(String.format("%.0f",rating));
+                itemRatingText.setText(String.valueOf(rating));
+            }
+        });
 
 
         if(!isModeEdit)

@@ -12,18 +12,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduser.Items.ItemsList.FragmentItemsList;
-import org.nearbyshops.enduser.ItemsByCategory.SlidingLayerSortItems;
+import org.nearbyshops.enduser.ItemsByCategorySwipe.SlidingLayerSortItems;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
-import org.nearbyshops.enduser.Shops.ShopsActivity;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduser.ShopsByCategory.SlidingLayerSortShopsByCategory;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

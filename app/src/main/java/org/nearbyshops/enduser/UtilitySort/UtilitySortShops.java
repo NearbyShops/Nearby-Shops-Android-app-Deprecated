@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.ShopsByCategory.SlidingLayerSortShops_;
+import org.nearbyshops.enduser.ShopsByCategoryOld.SlidingLayerSortShops_;
 
 import static android.content.Context.MODE_PRIVATE;
 

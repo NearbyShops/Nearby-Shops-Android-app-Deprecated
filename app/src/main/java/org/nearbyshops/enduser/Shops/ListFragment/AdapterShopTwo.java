@@ -78,34 +78,6 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             Shop shop = dataset.get(position);
 
-/*
-            holder.shopName.setText(dataset.get(position).getShopName());
-
-
-            if(shop.getRt_rating_count()==0)
-            {
-                holder.rating.setText("N/A");
-            }
-            else
-            {
-                holder.rating.setText(String.format( "%.2f", dataset.get(position).getRt_rating_avg()));
-            }
-
-
-
-            holder.distance.setText(String.format( "%.2f", dataset.get(position).getDistance() )+ " Km");
-
-//        Log.d("applog","on BInd()");
-
-            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                    + dataset.get(position).getImagePath();
-
-            Picasso.with(context)
-                    .load(imagePath)
-                    .placeholder(R.drawable.nature_people)
-                    .into(holder.shopImage);
-*/
-
 
             if(shop!=null)
             {
@@ -286,12 +258,12 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
 
 
-        @OnClick(R.id.shop_logo)
+//        @OnClick(R.id.shop_logo)
         void shopLogoClick()
         {
-            Intent intent = new Intent(context, ShopDetail.class);
-            intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
-            context.startActivity(intent);
+//            Intent intent = new Intent(context, ShopDetail.class);
+//            intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
+//            context.startActivity(intent);
         }
 
 

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

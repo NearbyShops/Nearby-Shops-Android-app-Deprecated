@@ -219,6 +219,7 @@
                 android:layout_height="wrap_content" />
 
             <RatingBar
+                android:numStars="10"
                 android:rating="4"
                 android:id="@+id/member_rating"
                 android:layout_marginLeft="10dp"

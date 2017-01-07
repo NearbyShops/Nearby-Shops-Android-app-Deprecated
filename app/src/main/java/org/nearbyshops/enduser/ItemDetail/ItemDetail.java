@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -14,7 +13,6 @@ import android.support.design.widget.Snackbar;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ShareCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
@@ -46,9 +44,6 @@ import org.nearbyshops.enduser.RetrofitRESTContract.FavouriteItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemReviewService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -299,7 +294,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
                 user_review_ratings_block.setVisibility(View.VISIBLE);
                 edit_review_block.setVisibility(View.GONE);
 
-                edit_review_text.setText(R.string.book_review_be_the_first_to_review);
+                edit_review_text.setText(R.string.item_review_be_the_first_to_review);
 
             } else if (item.getRt_rating_count() > 0) {
 

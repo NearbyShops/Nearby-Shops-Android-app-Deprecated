@@ -512,10 +512,10 @@ public class FilterShops extends FragmentActivity implements OnMapReadyCallback,
 //        Call<ShopEndPoint> callEndpoint = shopService.getShops(
 //                null,
 //                null,
-//                UtilityLocation.getLatitude(this),
-//                UtilityLocation.getLongitude(this),
+//                UtilityLocationOld.getLatitude(this),
+//                UtilityLocationOld.getLongitude(this),
 //                null, null,
-//                UtilityLocation.getProximity(this),
+//                UtilityLocationOld.getProximity(this),
 //                null, null,120,0,false
 //        );
 

@@ -106,7 +106,7 @@
         map:layout_constraintLeft_toLeftOf="@id/checkbox_delivery_range"
         android:textColor="@color/white"
         android:background="#88000000"
-        android:text="Shop Count : 32"
+        android:text="Shop Count : 0"
         android:layout_width="0dp"
         android:minWidth="114dp"
         android:layout_height="wrap_content" />
@@ -125,7 +125,7 @@
         map:layout_constraintBottom_toBottomOf="@id/shop_count"
         android:textColor="@color/white"
         android:background="#88000000"
-        android:text="Item Count : 432"
+        android:text="Item Count : 0"
         android:layout_width="0dp"
         android:minWidth="114dp"
         android:layout_height="wrap_content" />

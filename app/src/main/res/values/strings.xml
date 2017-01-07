@@ -16,8 +16,8 @@
     <string name="api_response_partially_updated">Partially Updated. Check data changes !</string>
     <string name="api_response_no_item_updated">No item updated !</string>
 
-    <string name="rate_and_review">Book Review</string>
-    <string name="title_activity_book_reviews">Book Reviews</string>
+    <string name="rate_and_review">Shop Review</string>
+    <string name="title_activity_book_reviews">Shop Reviews</string>
     <string name="favourite_book_message">You need to login to mark this book as favourite !</string>
 
 
@@ -27,8 +27,8 @@
     <string name="date_of_publish">"Date of Publish : "</string>
     <string name="rating_not_available">Rating : N/A</string>
     <string name="not_yet_rated">Not Yet Rated !</string>
-    <string name="book_review_be_the_first_to_review">"Be the first to review and rate this book. "</string>
-
+    <string name="shop_review_be_the_first_to_review">"Be the first to review and rate this Shop. "</string>
+    <string name="item_review_be_the_first_to_review">"Be the first to review and rate this Item. "</string>
 
     <string name="app_name">Nearby Shops</string>
     <string name="title_activity_scrolling">Scrolling</string>
