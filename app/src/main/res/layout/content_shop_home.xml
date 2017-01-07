@@ -34,6 +34,38 @@
             tools:layout_editor_absoluteX="0dp" />
 
 
+
+        <!--<TextView-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:layout_marginEnd="10dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="#88000000"-->
+            <!--android:id="@+id/border_shop_card"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_width="0dp" />-->
+
+
+
+        <!--<TextView-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/border_shop_card"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--android:padding="5dp"-->
+            <!--android:id="@+id/header_shop_card"-->
+            <!--android:text="About Shop"-->
+            <!--android:textSize="17sp"-->
+            <!--android:background="@color/light_grey"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="10dp" />-->
+
+
+        <!--app:layout_constraintTop_toBottomOf="@id/header_shop_card"-->
         <include
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -66,6 +98,21 @@
             android:layout_height="2dp"
             android:layout_width="0dp" />
 
+
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/border_two"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:padding="5dp"
+            android:id="@+id/header_items_in_shop"
+            android:text="Items In Shop"
+            android:textSize="17sp"
+            android:background="@color/light_grey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
         <ImageView
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
@@ -75,7 +122,7 @@
             android:contentDescription="@string/address_found"
             app:srcCompat="@drawable/colored_shopfront"
             android:id="@+id/option_items"
-            app:layout_constraintTop_toBottomOf="@+id/border_two"
+            app:layout_constraintTop_toBottomOf="@+id/header_items_in_shop"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
             android:background="@color/blueGrey800"
@@ -109,7 +156,7 @@
             android:id="@+id/option_items_by_category"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/border_two"
+            app:layout_constraintTop_toBottomOf="@+id/header_items_in_shop"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/guideline"
             android:background="@color/backgroundTinted"
@@ -132,6 +179,36 @@
 
 
 
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#88000000"
+            android:id="@+id/border_cart"
+            app:layout_constraintTop_toBottomOf="@+id/option_items"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_height="2dp"
+            android:layout_width="0dp" />
+
+
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/border_cart"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:padding="5dp"
+            android:id="@+id/header_cart"
+            android:text="Cart and Orders"
+            android:textSize="17sp"
+            android:background="@color/light_grey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+
         <ImageView
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
@@ -144,7 +221,7 @@
             android:layout_marginEnd="5dp"
             app:layout_constraintRight_toLeftOf="@+id/guideline"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/option_items_by_category"
+            app:layout_constraintTop_toBottomOf="@+id/header_cart"
             android:background="@color/gplus_color_2"
             android:layout_width="0dp"
             android:layout_height="150dp" />
@@ -178,7 +255,7 @@
             android:layout_width="0dp"
             android:layout_height="150dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/option_items_by_category"
+            app:layout_constraintTop_toBottomOf="@+id/header_cart"
             app:layout_constraintLeft_toLeftOf="@+id/guideline" />
 
 
@@ -211,6 +288,22 @@
             android:layout_height="2dp" />
 
 
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/border_one"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:padding="5dp"
+            android:id="@+id/header_shop_info"
+            android:text="Shop Information"
+            android:textSize="17sp"
+            android:background="@color/light_grey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+
+
         <ImageView
             android:layout_marginRight="5dp"
             android:layout_marginEnd="5dp"
@@ -221,7 +314,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/border_one"
+            app:layout_constraintTop_toBottomOf="@+id/header_shop_info"
             app:layout_constraintRight_toLeftOf="@+id/guideline"
             app:layout_constraintLeft_toLeftOf="parent"
             android:background="@color/blueGrey800"
@@ -244,21 +337,16 @@
 
         <ImageView
             android:visibility="gone"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="5dp"
             android:id="@+id/option_about_shop"
             android:paddingTop="10dp"
             android:paddingBottom="60dp"
             app:srcCompat="@drawable/ic_sort_black_24px"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
             app:layout_constraintTop_toBottomOf="@+id/option_shop_staff"
             app:layout_constraintRight_toLeftOf="@+id/guideline"
             app:layout_constraintLeft_toLeftOf="parent"
             android:background="@color/blueGrey800"
             android:layout_width="0dp"
-            android:layout_height="150dp" />
+            android:layout_height="0dp" />
 
 
         <TextView
@@ -290,7 +378,7 @@
             android:layout_width="0dp"
             android:layout_height="150dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/border_one"
+            app:layout_constraintTop_toBottomOf="@+id/header_shop_info"
             app:layout_constraintLeft_toLeftOf="@+id/guideline" />
 
 

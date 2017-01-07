@@ -315,15 +315,15 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
 
 
-        @OnClick(R.id.shop_logo)
+//        @OnClick(R.id.shop_logo)
         void shopLogoClick()
         {
             if (dataset.get(getLayoutPosition()) instanceof Shop) {
-                Shop shop = (Shop) dataset.get(getLayoutPosition());
+//                Shop shop = (Shop) dataset.get(getLayoutPosition());
 
-                Intent intent = new Intent(context, ShopDetail.class);
-                intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY, shop);
-                context.startActivity(intent);
+//                Intent intent = new Intent(context, ShopDetail.class);
+//                intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY, shop);
+//                context.startActivity(intent);
             }
         }
 

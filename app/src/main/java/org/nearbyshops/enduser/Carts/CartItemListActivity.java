@@ -178,6 +178,7 @@ public class CartItemListActivity extends AppCompatActivity
                     if(response.body().size()>0)
                     {
                         cartStats = response.body().get(0);
+                        cartStats.setShop(shop);
                         displayCartStats();
                     }
                 }
