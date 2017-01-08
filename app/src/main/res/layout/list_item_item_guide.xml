@@ -5,6 +5,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
     app:contentPadding="0dp"
     app:cardCornerRadius="0dp"
     android:layout_margin="2.5dp"

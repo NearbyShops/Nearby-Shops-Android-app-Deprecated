@@ -1,6 +1,7 @@
 package org.nearbyshops.enduser.ShopItemByItem.NewCarts;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.ItemDetail.ItemDetail;
 import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.AdapterSimple;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Model.CartItem;
@@ -396,6 +398,12 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @OnClick(R.id.items_list_item)
         public void listItemClick()
         {
+
+            if(dataset.get(getLayoutPosition())instanceof Item)
+            {
+                notifyAddToCart.listItemHeaderClick((Item) dataset.get(getLayoutPosition()));
+            }
+
 
         }
 
@@ -773,6 +781,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public interface NotifyAddToCart {
 
         void notifyAddToCart();
+        void listItemHeaderClick(Item item);
 
     }
 

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopItemByShop.ItemCategories;
+package org.nearbyshops.enduser.ShopItemByShopOld.ItemCategories;
 
 
 import android.os.Bundle;

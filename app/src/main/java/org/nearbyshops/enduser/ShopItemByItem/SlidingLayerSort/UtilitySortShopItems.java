@@ -1,13 +1,10 @@
-package org.nearbyshops.enduser.UtilitySort;
+package org.nearbyshops.enduser.ShopItemByItem.SlidingLayerSort;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v4.app.FragmentManager;
 
-import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.ShopItemByItem.SlidingLayerSortShopItem;
-import org.nearbyshops.enduser.ShopReview.SlidingLayerSortReview;
+import org.nearbyshops.enduser.ShopItemByItem.SlidingLayerSort.SlidingLayerSortShopItem;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -15,7 +12,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by sumeet on 29/9/16.
  */
 
-public class UtilitySortShopReview {
+public class UtilitySortShopItems {
 
 
 
@@ -31,7 +28,7 @@ public class UtilitySortShopReview {
 
         // write to the shared preference
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("sort_shop_reviews", sort_by);
+        editor.putString("sort_shop_item_by_item", sort_by);
         editor.apply();
     }
 
@@ -40,7 +37,7 @@ public class UtilitySortShopReview {
     {
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String sort_by = sharedPref.getString("sort_shop_reviews", SlidingLayerSortReview.SORT_BY_DATE);
+        String sort_by = sharedPref.getString("sort_shop_item_by_item", SlidingLayerSortShopItem.SORT_BY_DISTANCE);
 
         return sort_by;
     }
@@ -60,7 +57,7 @@ public class UtilitySortShopReview {
 
         // write to the shared preference
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("sort_descending_sort_shop_review",descending);
+        editor.putString("sort_descending_sort_item_by_item",descending);
         editor.apply();
     }
 
@@ -70,13 +67,9 @@ public class UtilitySortShopReview {
     {
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String descending = sharedPref.getString("sort_descending_sort_shop_review", SlidingLayerSortReview.SORT_DESCENDING);
+        String descending = sharedPref.getString("sort_descending_sort_item_by_item", SlidingLayerSortShopItem.SORT_DESCENDING);
 
         return descending;
     }
-
-
-
-
 
 }

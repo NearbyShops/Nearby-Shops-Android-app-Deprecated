@@ -191,7 +191,7 @@
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
         <activity
-            android:name=".ShopItemByShop.ShopItemsInShopByCat"
+            android:name=".ShopItemByShopOld.ShopItemsInShopByCat"
             android:label="@string/title_activity_shop_home"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">

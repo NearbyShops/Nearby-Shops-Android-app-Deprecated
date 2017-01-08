@@ -179,7 +179,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
             }
         });*/
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         checkFavourite();

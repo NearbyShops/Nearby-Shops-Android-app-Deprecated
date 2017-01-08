@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/include"
-                layout="@layout/list_item_items_by_item_category_card"/>
+                layout="@layout/list_item_item_guide"/>
 
             <TextView
                 android:layout_marginLeft="5dp"

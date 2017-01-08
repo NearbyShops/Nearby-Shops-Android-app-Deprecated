@@ -22,7 +22,7 @@ import org.nearbyshops.enduser.ItemsInShopByCat.Interfaces.NotifyIndicatorChange
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduser.ShopsByCategoryOld.SlidingLayerSortShops;
+import org.nearbyshops.enduser.Shops.SlidingLayerSort.SlidingLayerSortShops;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

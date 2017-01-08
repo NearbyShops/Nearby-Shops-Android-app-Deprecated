@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopItemByShop.ShopItems;
+package org.nearbyshops.enduser.ShopItemByShopOld.ShopItems;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

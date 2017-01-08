@@ -35,6 +35,7 @@ import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifySwipeToRight;
+import org.nearbyshops.enduser.ShopItemByItem.SlidingLayerSort.SlidingLayerSortShopItem;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;

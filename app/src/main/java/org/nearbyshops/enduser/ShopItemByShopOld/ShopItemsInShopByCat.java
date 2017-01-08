@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopItemByShop;
+package org.nearbyshops.enduser.ShopItemByShopOld;
 
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;

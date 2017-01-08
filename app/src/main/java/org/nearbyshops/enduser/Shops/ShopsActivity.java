@@ -30,7 +30,7 @@ import org.nearbyshops.enduser.Shops.ListFragment.FragmentShopTwo;
 import org.nearbyshops.enduser.Shops.MapsFragment.ShopMapFragment;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduser.ShopsByCategoryOld.SlidingLayerSortShops;
+import org.nearbyshops.enduser.Shops.SlidingLayerSort.SlidingLayerSortShops;
 
 import java.util.ArrayList;
 

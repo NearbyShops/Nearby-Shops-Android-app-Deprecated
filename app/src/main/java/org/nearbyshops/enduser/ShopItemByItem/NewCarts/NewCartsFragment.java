@@ -1,5 +1,6 @@
 package org.nearbyshops.enduser.ShopItemByItem.NewCarts;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.ItemDetail.ItemDetail;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
 import org.nearbyshops.enduser.Model.Item;
@@ -27,9 +29,8 @@ import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
 import org.nearbyshops.enduser.Shops.UtilityLocation;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItems;
+import org.nearbyshops.enduser.ShopItemByItem.SlidingLayerSort.UtilitySortShopItems;
 
 import java.util.ArrayList;
 
@@ -419,6 +420,14 @@ public class NewCartsFragment extends Fragment
 
             }
         });
+    }
+
+    @Override
+    public void listItemHeaderClick(Item item) {
+
+        Intent intent = new Intent(getActivity(), ItemDetail.class);
+        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
+        getActivity().startActivity(intent);
     }
 
     @Override

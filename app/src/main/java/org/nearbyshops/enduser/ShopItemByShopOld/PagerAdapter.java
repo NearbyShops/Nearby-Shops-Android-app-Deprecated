@@ -1,12 +1,12 @@
-package org.nearbyshops.enduser.ShopItemByShop;
+package org.nearbyshops.enduser.ShopItemByShopOld;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import org.nearbyshops.enduser.ShopItemByShop.ItemCategories.ItemCategoriesFragmentShopHome;
-import org.nearbyshops.enduser.ShopItemByShop.ShopItems.FragmentShopItemsByShop;
+import org.nearbyshops.enduser.ShopItemByShopOld.ItemCategories.ItemCategoriesFragmentShopHome;
+import org.nearbyshops.enduser.ShopItemByShopOld.ShopItems.FragmentShopItemsByShop;
 
 /**
  * Created by sumeet on 27/6/16.

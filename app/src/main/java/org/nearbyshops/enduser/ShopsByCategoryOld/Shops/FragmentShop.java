@@ -25,7 +25,7 @@ import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.DividerItemDecoration;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortShopsByCategory;
+import org.nearbyshops.enduser.Shops.SlidingLayerSort.UtilitySortShopsByCategory;
 
 import java.util.ArrayList;
 

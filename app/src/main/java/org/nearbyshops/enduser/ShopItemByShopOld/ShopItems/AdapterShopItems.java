@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopItemByShop.ShopItems;
+package org.nearbyshops.enduser.ShopItemByShopOld.ShopItems;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

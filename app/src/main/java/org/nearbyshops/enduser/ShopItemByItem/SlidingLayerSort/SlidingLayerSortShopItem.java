@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.ShopItemByItem;
+package org.nearbyshops.enduser.ShopItemByItem.SlidingLayerSort;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItems;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

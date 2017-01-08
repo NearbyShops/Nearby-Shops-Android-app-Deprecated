@@ -1,6 +1,7 @@
 package org.nearbyshops.enduser.ItemsByCategoryTypeSimple;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
@@ -19,6 +20,7 @@ import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.ModelStats.ItemStats;
 import org.nearbyshops.enduser.R;
+import org.nearbyshops.enduser.ShopItemByItem.ShopsForItemSwipe;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
 import java.util.List;
@@ -270,7 +272,12 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             @OnClick(R.id.items_list_item)
             public void listItemClick()
             {
-
+                if(dataset.get(getLayoutPosition()) instanceof Item)
+                {
+                    Intent intent = new Intent(context, ShopsForItemSwipe.class);
+                    intent.putExtra(ShopsForItemSwipe.ITEM_INTENT_KEY,(Item)dataset.get(getLayoutPosition()));
+                    context.startActivity(intent);
+                }
             }
 
     }// ViewHolder Class declaration ends

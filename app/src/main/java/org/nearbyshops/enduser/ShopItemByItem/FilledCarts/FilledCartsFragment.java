@@ -1,8 +1,10 @@
 package org.nearbyshops.enduser.ShopItemByItem.FilledCarts;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,12 +21,12 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.ItemDetail.ItemDetail;
+//import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.AdapterSimple;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ShopItem;
 import org.nearbyshops.enduser.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.ModelStats.ItemStats;
-import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
@@ -35,7 +37,7 @@ import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortShopItems;
+import org.nearbyshops.enduser.ShopItemByItem.SlidingLayerSort.UtilitySortShopItems;
 
 import java.util.ArrayList;
 
@@ -74,18 +76,16 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     boolean isDestroyed;
 
 
-    TextView itemDescription;
-    TextView itemName;
-    ImageView itemImage;
-    TextView priceRange;
-    TextView shopCount;
+//    TextView itemDescription;
+//    TextView itemName;
+//    ImageView itemImage;
 
 
-    @Bind(R.id.item_rating)
-    TextView itemRating;
 
-    @Bind(R.id.rating_count)
-    TextView ratingCount;
+//    TextView priceRange;
+//    TextView shopCount;
+//    @Bind(R.id.item_rating) TextView itemRating;
+//    @Bind(R.id.rating_count) TextView ratingCount;
 
 
 //    NotifyFillCartsChanged notifyPagerAdapter;
@@ -155,11 +155,11 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
 
         // bindings for Item
-        itemDescription = (TextView) rootView.findViewById(R.id.itemDescription);
-        itemName = (TextView) rootView.findViewById(R.id.itemName);
-        itemImage = (ImageView) rootView.findViewById(R.id.itemImage);
-        priceRange = (TextView) rootView.findViewById(R.id.price_range);
-        shopCount = (TextView) rootView.findViewById(R.id.shop_count);
+//        itemDescription = (TextView) rootView.findViewById(R.id.itemDescription);
+//        itemName = (TextView) rootView.findViewById(R.id.itemName);
+//        itemImage = (ImageView) rootView.findViewById(R.id.itemImage);
+//        priceRange = (TextView) rootView.findViewById(R.id.price_range);
+//        shopCount = (TextView) rootView.findViewById(R.id.shop_count);
 
 
         bindItem();
@@ -438,55 +438,99 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     }
 
 
+//    void bindItemOld()
+//    {
+//
+////        itemName.setText(item.getItemName());
+////        itemDescription.setText(item.getItemDescription());
+//
+//        if(item.getRt_rating_count()==0)
+//        {
+//            itemRating.setText("N/A");
+//            ratingCount.setText("(Not yet rated)");
+//        }
+//        else
+//        {
+//            itemRating.setText(String.format("%.1f",item.getRt_rating_avg()));
+//            ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " ratings )");
+//        }
+//
+//        if(item.getItemStats()!=null)
+//        {
+//            ItemStats itemStats = item.getItemStats();
+//
+//            String shop = "Shops";
+//
+//            if(itemStats.getShopCount()==1)
+//            {
+//                shop = "Shop";
+//            }
+//
+//            shopCount.setText("In " + String.valueOf(itemStats.getShopCount()) + " " + shop);
+//            priceRange.setText( "Rs: "
+//                    + String.valueOf(itemStats.getMin_price())
+//                    + " - "
+//                    + String.valueOf(itemStats.getMax_price())
+//                    + " per " + item.getQuantityUnit()
+//            );
+//
+//
+////            Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
+//        }
+//
+//
+//        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                + item.getItemImageURL();
+//
+//        Picasso.with(getActivity())
+//                .load(imagePath)
+//                .placeholder(R.drawable.nature_people)
+//                .into(itemImage);
+//    }
+
+
+
+
+    @Bind(R.id.itemName) TextView categoryName;
+//        TextView categoryDescription;
+
+//    @Bind(R.id.items_list_item) CardView itemCategoryListItem;
+    @Bind(R.id.itemImage) ImageView categoryImage;
+    @Bind(R.id.price_range) TextView priceRange;
+    @Bind(R.id.price_average) TextView priceAverage;
+    @Bind(R.id.shop_count) TextView shopCount;
+    @Bind(R.id.item_rating) TextView itemRating;
+    @Bind(R.id.rating_count) TextView ratingCount;
+
+
     void bindItem()
     {
 
-        itemName.setText(item.getItemName());
-        itemDescription.setText(item.getItemDescription());
+        categoryName.setText(item.getItemName());
 
-        if(item.getRt_rating_count()==0)
-        {
-            itemRating.setText("N/A");
-            ratingCount.setText("(Not yet rated)");
-        }
-        else
-        {
-            itemRating.setText(String.format("%.1f",item.getRt_rating_avg()));
-            ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " ratings )");
-        }
+        ItemStats itemStats = item.getItemStats();
 
-        if(item.getItemStats()!=null)
-        {
-            ItemStats itemStats = item.getItemStats();
-
-            String shop = "Shops";
-
-            if(itemStats.getShopCount()==1)
-            {
-                shop = "Shop";
-            }
-
-            shopCount.setText("In " + String.valueOf(itemStats.getShopCount()) + " " + shop);
-            priceRange.setText( "Rs: "
-                    + String.valueOf(itemStats.getMin_price())
-                    + " - "
-                    + String.valueOf(itemStats.getMax_price())
-                    + " per " + item.getQuantityUnit()
-            );
+        priceRange.setText("Price Range :\nRs." + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
+        priceAverage.setText("Price Average :\nRs." + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
+        shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
+        itemRating.setText(String.format("%.2f",itemStats.getRating_avg()));
+        ratingCount.setText("( " + String.valueOf(itemStats.getRatingCount()) + " Ratings )");
 
 
-//            Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
-        }
+        String imagePath = UtilityGeneral.getServiceURL(getActivity())
+                + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
 
 
-        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                + item.getItemImageURL();
+        Drawable drawable = VectorDrawableCompat
+                .create(getActivity().getResources(),
+                        R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
-        Picasso.with(getActivity())
-                .load(imagePath)
-                .placeholder(R.drawable.nature_people)
-                .into(itemImage);
+        Picasso.with(getActivity()).load(imagePath)
+                .placeholder(drawable)
+                .into(categoryImage);
+
     }
+
 
 
 

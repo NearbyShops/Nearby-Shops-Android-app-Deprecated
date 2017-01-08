@@ -27,7 +27,7 @@ import org.nearbyshops.enduser.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
-import org.nearbyshops.enduser.UtilitySort.UtilitySortItemsByCategory;
+import org.nearbyshops.enduser.Items.SlidingLayerSort.UtilitySortItemsByCategory;
 
 import java.util.ArrayList;
 

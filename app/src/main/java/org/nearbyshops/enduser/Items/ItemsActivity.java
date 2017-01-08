@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduser.Items.ItemsList.FragmentItemsList;
-import org.nearbyshops.enduser.ItemsByCategorySwipe.SlidingLayerSortItems;
+import org.nearbyshops.enduser.Items.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
