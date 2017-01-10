@@ -311,7 +311,10 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
         shopsCount.setText(title);
     }
 
+    @Override
+    public void titleChanged(int i, int size, int item_count) {
 
+    }
 
 
     @Override

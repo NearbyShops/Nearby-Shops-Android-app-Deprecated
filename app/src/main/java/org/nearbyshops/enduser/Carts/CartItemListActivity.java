@@ -17,14 +17,13 @@ import android.widget.Toast;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Login.LoginDialog;
-import org.nearbyshops.enduser.Model.CartItem;
+import org.nearbyshops.enduser.ModelCartOrder.CartItem;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.ModelStats.CartStats;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
-import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import java.util.ArrayList;

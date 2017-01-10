@@ -26,7 +26,7 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
 import org.nearbyshops.enduser.Login.LoginDialog;
-import org.nearbyshops.enduser.Model.CartItem;
+import org.nearbyshops.enduser.ModelCartOrder.CartItem;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.Model.Shop;

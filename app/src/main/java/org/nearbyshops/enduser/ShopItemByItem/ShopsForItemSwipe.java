@@ -337,6 +337,10 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
         pagerAdapter.setTitle(title,tabPosition);
     }
 
+    @Override
+    public void titleChanged(int i, int size, int item_count) {
+
+    }
 
 
     @Override

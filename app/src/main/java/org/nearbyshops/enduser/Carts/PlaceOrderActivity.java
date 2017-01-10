@@ -13,7 +13,7 @@ import android.widget.Toast;
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduser.Home;
-import org.nearbyshops.enduser.Model.Order;
+import org.nearbyshops.enduser.ModelCartOrder.Order;
 import org.nearbyshops.enduser.ModelStats.CartStats;
 import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduser.R;
@@ -317,7 +317,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
             order.setPickFromShop(false);
         }
 
-        order.setOrderStatus(1);
+//        order.setOrderStatus(1);
 
         if(cartStatsFromNetworkCall==null)
         {

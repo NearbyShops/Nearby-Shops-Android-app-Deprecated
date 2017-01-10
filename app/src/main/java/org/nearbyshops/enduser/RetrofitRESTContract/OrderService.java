@@ -1,18 +1,13 @@
 package org.nearbyshops.enduser.RetrofitRESTContract;
 
-import org.nearbyshops.enduser.Model.Cart;
-import org.nearbyshops.enduser.Model.Order;
+import org.nearbyshops.enduser.ModelCartOrder.Endpoints.OrderEndPoint;
+import org.nearbyshops.enduser.ModelCartOrder.Order;
 
-import java.util.List;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -20,16 +15,24 @@ import retrofit2.http.Query;
  */
 public interface OrderService {
 
-    @GET("/api/Order")
-    Call<List<Order>> getOrders(@Query("EndUserID") int endUserID, @Query("ShopID") int shopID);
-
-    @GET("/api/Order/{OrderID}")
-    Call<Order> getOrder(@Path("OrderID") int orderID);
-
     @POST("/api/Order")
     Call<Order> postOrder(@Body Order order,@Query("CartID") int cartID);
 
-    @PUT("/api/Order/{OrderID}")
-    Call<ResponseBody> putOrder(@Body Order order, @Path("OrderID") int orderID);
 
+    @GET("/api/Order")
+    Call<OrderEndPoint> getOrders(@Header("Authorization") String headers,
+                                  @Query("OrderID")Integer orderID,
+                                  @Query("ShopID")Integer shopID,
+                                  @Query("PickFromShop") Boolean pickFromShop,
+                                  @Query("StatusHomeDelivery")Integer homeDeliveryStatus,
+                                  @Query("StatusPickFromShopStatus")Integer pickFromShopStatus,
+                                  @Query("DeliveryGuyID")Integer deliveryGuyID,
+                                  @Query("PaymentsReceived") Boolean paymentsReceived,
+                                  @Query("DeliveryReceived") Boolean deliveryReceived,
+                                  @Query("latCenter")Double latCenter, @Query("lonCenter")Double lonCenter,
+                                  @Query("PendingOrders") Boolean pendingOrders,
+                                  @Query("SearchString") String searchString,
+                                  @Query("SortBy") String sortBy,
+                                  @Query("Limit")Integer limit, @Query("Offset")Integer offset,
+                                  @Query("metadata_only")Boolean metaonly);
 }

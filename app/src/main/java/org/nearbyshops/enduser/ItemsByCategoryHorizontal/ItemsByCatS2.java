@@ -291,4 +291,9 @@ public class ItemsByCatS2 extends AppCompatActivity implements NotifyCategoryCha
         }
 
     }
+
+    @Override
+    public void titleChanged(int i, int size, int item_count) {
+
+    }
 }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.LoginActivity;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.EndUserService;
@@ -132,6 +133,8 @@ public class LoginDialog extends DialogFragment implements View.OnClickListener 
                 if(response.body()!=null && response.code()==200)
                 {
                     UtilityLogin.saveEndUser(response.body(),LoginDialog.this.getActivity());
+
+                    UtilityLogin.saveCredentials(getActivity(),username.getText().toString(),password.getText().toString());
 
                     if(getActivity() instanceof NotifyAboutLogin)
                     {

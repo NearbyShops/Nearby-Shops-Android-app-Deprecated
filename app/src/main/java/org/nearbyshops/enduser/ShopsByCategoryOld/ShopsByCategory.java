@@ -149,9 +149,10 @@ public class ShopsByCategory extends AppCompatActivity implements NotifyGeneral,
         mPagerAdapter.setTitle(title,tabPosition);
     }
 
+    @Override
+    public void titleChanged(int i, int size, int item_count) {
 
-
-
+    }
 
 
     @Override

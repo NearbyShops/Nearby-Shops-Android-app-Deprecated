@@ -28,6 +28,8 @@ import org.nearbyshops.enduser.ItemsInShopByCat.ItemsInStockByCatFragment;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.LoginServiceDialog;
 import org.nearbyshops.enduser.LoginActivity;
+import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Complete.CompleteOrdersFragment;
+import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Pending.PendingOrdersFragment;
 import org.nearbyshops.enduser.ShopDetail.ShopDetail;
 import org.nearbyshops.enduser.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduser.ShopItemByShopOld.ItemCategories.ItemCategoriesFragmentShopHome;
@@ -153,4 +155,8 @@ public interface NetComponent {
     void Inject(FilterShops filterShops);
 
     void Inject(ShopsByCatFragment shopsByCatFragment);
+
+    void Inject(CompleteOrdersFragment completeOrdersFragment);
+
+    void Inject(PendingOrdersFragment pendingOrdersFragment);
 }

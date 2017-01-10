@@ -1,6 +1,6 @@
 package org.nearbyshops.enduser.RetrofitRESTContract;
 
-import org.nearbyshops.enduser.Model.Cart;
+import org.nearbyshops.enduser.ModelCartOrder.Cart;
 
 import java.util.List;
 

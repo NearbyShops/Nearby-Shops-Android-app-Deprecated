@@ -1,7 +1,9 @@
-package org.nearbyshops.enduser.Model;
+package org.nearbyshops.enduser.ModelCartOrder;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import org.nearbyshops.enduser.Model.Item;
 
 /**
  * Created by sumeet on 30/5/16.

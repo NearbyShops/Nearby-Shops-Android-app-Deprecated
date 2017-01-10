@@ -29,7 +29,11 @@
 
             <item
                 android:id="@+id/nav_orders"
-                android:title="Orders" />
+                android:title="Orders : Home Delivery" />
+
+            <item
+                android:id="@+id/nav_orders_pick_from_shop"
+                android:title="Orders : Pick from Shop" />
 
 
             <item

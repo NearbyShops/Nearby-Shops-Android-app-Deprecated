@@ -57,11 +57,10 @@ import org.nearbyshops.enduser.Login.NotifyAboutLogin;
 import org.nearbyshops.enduser.SharedPreferences.UtilityLocationOld;
 import org.nearbyshops.enduser.Shops.ShopsActivity;
 import org.nearbyshops.enduser.ShopsByCatSimple.ShopsByCat;
-import org.nearbyshops.enduser.ShopsByCategoryOld.ShopsByCategory;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 import org.nearbyshops.enduser.UtilityGeocoding.Constants;
 import org.nearbyshops.enduser.UtilityGeocoding.FetchAddressIntentService;
-import org.nearbyshops.enduser.Orders.OrderHome;
+import org.nearbyshops.enduser.OrdersHomeDelivery.OrderHome;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
 import butterknife.Bind;

@@ -14,13 +14,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyCategoryChanged;
-import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.ModelEndPoints.ItemEndPoint;
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemService;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.DividerItemDecoration;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 

@@ -22,7 +22,6 @@
 
         <TextView
             android:id="@+id/border_top"
-            android:layout_marginTop="0dp"
             android:background="#88000000"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -51,7 +50,9 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5"
             android:layout_width="0dp"
-            android:layout_height="0dp" />
+            android:layout_height="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp" />
 
 
 
@@ -62,18 +63,18 @@
             android:background="@color/buttonColor"
             android:id="@+id/pending_approvals"
             android:layout_marginTop="10dp"
-            app:layout_constraintRight_toLeftOf="@id/vertical_guide"
-            app:layout_constraintTop_toBottomOf="@id/header_home_delivery_orders"
+            app:layout_constraintRight_toLeftOf="@+id/vertical_guide"
+            app:layout_constraintTop_toBottomOf="@+id/header_home_delivery_orders"
             app:layout_constraintLeft_toLeftOf="parent"
             app:srcCompat="@drawable/ic_add_white_24px"
             android:layout_width="0dp"
-            android:layout_height="@dimen/menu_item_width" />
+            android:layout_height="150dp" />
 
 
         <TextView
-            app:layout_constraintLeft_toLeftOf="@id/pending_approvals"
-            app:layout_constraintRight_toRightOf="@id/pending_approvals"
-            app:layout_constraintBottom_toBottomOf="@id/pending_approvals"
+            app:layout_constraintLeft_toLeftOf="@+id/pending_approvals"
+            app:layout_constraintRight_toRightOf="@+id/pending_approvals"
+            app:layout_constraintBottom_toBottomOf="@+id/pending_approvals"
             android:padding="10dp"
             android:id="@+id/text_pending_approvals"
             android:textSize="@dimen/menu_item_text_size"
@@ -90,23 +91,23 @@
             android:background="@color/cyan900"
             android:id="@+id/home_delivery"
             android:layout_marginTop="10dp"
-            app:layout_constraintRight_toLeftOf="@id/vertical_guide"
-            app:layout_constraintTop_toBottomOf="@id/pending_approvals"
+            app:layout_constraintRight_toLeftOf="@+id/vertical_guide"
+            app:layout_constraintTop_toBottomOf="@+id/pending_approvals"
             app:layout_constraintLeft_toLeftOf="parent"
             app:srcCompat="@drawable/ic_search_white_24px"
             android:layout_width="0dp"
-            android:layout_height="@dimen/menu_item_width" />
+            android:layout_height="150dp" />
 
 
         <TextView
-            app:layout_constraintLeft_toLeftOf="@id/home_delivery"
-            app:layout_constraintRight_toRightOf="@id/home_delivery"
-            app:layout_constraintBottom_toBottomOf="@id/home_delivery"
+            app:layout_constraintLeft_toLeftOf="@+id/home_delivery"
+            app:layout_constraintRight_toRightOf="@+id/home_delivery"
+            app:layout_constraintBottom_toBottomOf="@+id/home_delivery"
             android:padding="10dp"
             android:id="@+id/text_home_delivery"
             android:textSize="@dimen/menu_item_text_size"
             android:textColor="#ffffff"
-            android:text="Order History : Home Delivery"
+            android:text="Order History"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -119,23 +120,23 @@
             android:background="@color/deepOrange900"
             android:id="@+id/cancelled_hd"
             android:layout_marginTop="10dp"
-            app:layout_constraintLeft_toRightOf="@id/vertical_guide"
-            app:layout_constraintTop_toBottomOf="@id/pending_approvals"
+            app:layout_constraintTop_toBottomOf="@+id/pending_approvals"
             app:layout_constraintRight_toRightOf="parent"
             app:srcCompat="@drawable/ic_delete_black_48px"
             android:layout_width="0dp"
-            android:layout_height="@dimen/menu_item_width" />
+            android:layout_height="150dp"
+            app:layout_constraintLeft_toLeftOf="@+id/vertical_guide" />
 
 
         <TextView
-            app:layout_constraintLeft_toLeftOf="@id/cancelled_hd"
-            app:layout_constraintRight_toRightOf="@id/cancelled_hd"
-            app:layout_constraintBottom_toBottomOf="@id/cancelled_hd"
+            app:layout_constraintLeft_toLeftOf="@+id/cancelled_hd"
+            app:layout_constraintRight_toRightOf="@+id/cancelled_hd"
+            app:layout_constraintBottom_toBottomOf="@+id/cancelled_hd"
             android:padding="10dp"
             android:id="@+id/text_cancelled"
             android:textSize="@dimen/menu_item_text_size"
             android:textColor="#ffffff"
-            android:text="Cancelled : Home Delivery"
+            android:text="Cancelled Orders"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -148,7 +149,7 @@
             android:layout_marginBottom="20dp"
             android:background="#88000000"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cancelled_hd"
+            app:layout_constraintTop_toBottomOf="@+id/cancelled_hd"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="0dp"

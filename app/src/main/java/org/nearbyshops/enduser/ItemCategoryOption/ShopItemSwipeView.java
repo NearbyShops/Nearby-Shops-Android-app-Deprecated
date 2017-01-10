@@ -20,19 +20,15 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyCategoryChanged;
-import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.R;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import icepick.Icepick;
-import icepick.State;
 
-public class ShopItemSwipeView extends AppCompatActivity implements NotifyCategoryChanged, NotifyTitleChanged{
+public class ShopItemSwipeView extends AppCompatActivity implements NotifyCategoryChanged, NotifyTitleChanged {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -329,6 +325,11 @@ public class ShopItemSwipeView extends AppCompatActivity implements NotifyCatego
         mViewPager.setCurrentItem(1);
     }
 
+
+    @Override
+    public void NotifyTitleChanged(String title, int tabPosition) {
+
+    }
 
     @Override
     public void titleChanged(int tabPosition, int currentItemCount, int totalItemCount) {

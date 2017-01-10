@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.Model;
+package org.nearbyshops.enduser.ModelCartOrder;
 
 /**
  * Created by sumeet on 30/5/16.

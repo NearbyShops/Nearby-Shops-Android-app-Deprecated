@@ -16,13 +16,13 @@ import android.widget.Toast;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyCategoryChanged;
-import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.ItemCategory;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.DividerItemDecoration;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 

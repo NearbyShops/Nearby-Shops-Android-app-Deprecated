@@ -128,7 +128,7 @@
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
         <activity
-            android:name=".Orders.OrderHome"
+            android:name=".OrdersHomeDelivery.OrderHome"
             android:label="@string/title_activity_order_home"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
@@ -342,6 +342,26 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
 
+        </activity>
+
+
+        <activity
+            android:launchMode="singleTop"
+            android:name=".OrderHistoryHD.OrderHistoryHD.OrderHistoryHD"
+            android:label="Order History"
+            android:parentActivityName=".OrdersHomeDelivery.OrderHome"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OrdersHomeDelivery.OrderHome" />
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
         </activity>
 
 

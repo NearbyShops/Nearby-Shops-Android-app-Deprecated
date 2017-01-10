@@ -5,8 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyCategoryChanged;
-import org.nearbyshops.enduser.ItemCategoryOption.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Model.ItemCategory;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 
 /**
  * Created by sumeet on 25/5/16.
@@ -104,6 +104,10 @@ public class PagerAdapter extends FragmentPagerAdapter implements NotifyTitleCha
     String categoryName = "";
 
 
+    @Override
+    public void NotifyTitleChanged(String title, int tabPosition) {
+
+    }
 
     @Override
     public void titleChanged(int tabPosition, int currentItemCount, int totalItemCount) {

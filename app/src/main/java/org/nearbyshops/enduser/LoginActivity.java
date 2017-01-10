@@ -373,8 +373,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         EndUserService service = retrofit.create(EndUserService.class);
 
 
-        String username = distributorIDEditText.getText().toString();
-        String passwordstr = password.getText().toString();
+        final String username = distributorIDEditText.getText().toString();
+        final String passwordstr = password.getText().toString();
 
 
         if (!username.equals("") && !passwordstr.equals("")) {
@@ -393,6 +393,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                         if (response.body() != null) {
 
+
+                            UtilityLogin.saveCredentials(LoginActivity.this,username,passwordstr);
 //                            UtilityGeneral.saveEndUserID(response.body().getEndUserID());
 
 //                            showToastMessage(response.body().getEndUserName() + " : " + response.body().getEndUserID());

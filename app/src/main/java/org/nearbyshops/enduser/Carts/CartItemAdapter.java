@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduser.Model.CartItem;
+import org.nearbyshops.enduser.ModelCartOrder.CartItem;
 import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.ModelStats.CartStats;
 import org.nearbyshops.enduser.R;
