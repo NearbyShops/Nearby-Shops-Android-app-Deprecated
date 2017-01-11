@@ -1,5 +1,6 @@
 package org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Complete;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.ModelCartOrder.Endpoints.OrderEndPoint;
 import org.nearbyshops.enduser.ModelCartOrder.Order;
+import org.nearbyshops.enduser.OrderDetail.OrderDetail;
+import org.nearbyshops.enduser.OrderDetail.UtilityOrderDetail;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.SlidingLayerSort.UtilitySortOrdersHD;
 import org.nearbyshops.enduser.R;
@@ -342,8 +345,8 @@ public class CompleteOrdersFragment extends Fragment implements AdapterComplete.
 
     @Override
     public void notifyOrderSelected(Order order) {
-//        UtilityOrderDetail.saveOrder(order,getActivity());
-//        getActivity().startActivity(new Intent(getActivity(),OrderDetail.class));
+        UtilityOrderDetail.saveOrder(order,getActivity());
+        getActivity().startActivity(new Intent(getActivity(),OrderDetail.class));
     }
 
     @Override

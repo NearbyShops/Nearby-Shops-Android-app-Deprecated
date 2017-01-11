@@ -365,6 +365,17 @@
         </activity>
 
 
+        <activity
+            android:name=".OrderDetail.OrderDetail"
+            android:label="Order Details"
+            android:parentActivityName=".OrdersHomeDelivery.OrderHome"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OrdersHomeDelivery.OrderHome" />
+        </activity>
+
+
 
     </application>
 
