@@ -64,23 +64,14 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
     GridLayoutManager layoutManager;
-
     AdapterSimple listAdapter;
 
-
-    @Inject
-    ItemCategoryService itemCategoryService;
-
-
-    @Inject
-    ItemService itemService;
-
+    @Inject ItemCategoryService itemCategoryService;
+    @Inject ItemService itemService;
 
     ItemCategory currentCategory = null;
 
-
     public ItemCategoriesFragmentSimple() {
-
         super();
 
         DaggerComponentBuilder.getInstance()
@@ -154,7 +145,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
                 if(dataset.get(position) instanceof ItemCategory)
                 {
-                       final DisplayMetrics metrics = new DisplayMetrics();
+                    final DisplayMetrics metrics = new DisplayMetrics();
                     getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
                     int spanCount = (int) (metrics.widthPixels/(180 * metrics.density));
@@ -235,17 +226,16 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
                     // trigger fetch next page
 
+//
+//                    String log = "Dataset Size : " + String.valueOf(dataset.size()) + "\n"
+//                            + "Last Visible Item Position : " + layoutManager.findLastVisibleItemPosition() + "\n"
+//                            + "Previous Position : " + previous_position + "\n"
+//                            + "Offset Item : " + offset_item + "\n"
+//                            + "Limit Item : " + limit_item + "\n"
+//                            + "Item Count Item : " + item_count_item;
 
-                    String log = "Dataset Size : " + String.valueOf(dataset.size()) + "\n"
-                            + "Last Visible Item Position : " + layoutManager.findLastVisibleItemPosition() + "\n"
-                            + "Previous Position : " + previous_position + "\n"
-                            + "Offset Item : " + offset_item + "\n"
-                            + "Limit Item : " + limit_item + "\n"
-                            + "Item Count Item : " + item_count_item;
-
-                    System.out.println(log);
-
-                    Log.d("log_scroll",log);
+//                    System.out.println(log);
+//                    Log.d("log_scroll",log);
 
 
 
@@ -338,9 +328,6 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
     void makeRequestItemCategory()
     {
-
-
-
 
         Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
                 null,
@@ -440,7 +427,6 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
         dataset.addAll(datasetItems);
 
         listAdapter.notifyDataSetChanged();
-
         swipeContainer.setRefreshing(false);
     }
 

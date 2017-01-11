@@ -405,7 +405,7 @@ public class CompleteOrdersFragment extends Fragment implements AdapterComplete.
 //
 ////        Call<ResponseBody> call = orderService.cancelOrderByShop(order.getOrderID());
 //
-//        Call<ResponseBody> call = orderServiceShopStaff.cancelledByShop(
+//        Call<ResponseBody> call = orderServiceShopStaff.cancelledByEndUser(
 //                UtilityLogin.getAuthorizationHeaders(getActivity()),
 //                order.getOrderID()
 //        );

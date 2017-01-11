@@ -510,11 +510,15 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
         ItemStats itemStats = item.getItemStats();
 
-        priceRange.setText("Price Range :\nRs." + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
-        priceAverage.setText("Price Average :\nRs." + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
-        shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
-        itemRating.setText(String.format("%.2f",itemStats.getRating_avg()));
-        ratingCount.setText("( " + String.valueOf(itemStats.getRatingCount()) + " Ratings )");
+        if(itemStats!=null)
+        {
+            priceRange.setText("Price Range :\nRs." + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
+            priceAverage.setText("Price Average :\nRs." + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
+            shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
+        }
+
+        itemRating.setText(String.format("%.2f",item.getRt_rating_avg()));
+        ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " Ratings )");
 
 
         String imagePath = UtilityGeneral.getServiceURL(getActivity())

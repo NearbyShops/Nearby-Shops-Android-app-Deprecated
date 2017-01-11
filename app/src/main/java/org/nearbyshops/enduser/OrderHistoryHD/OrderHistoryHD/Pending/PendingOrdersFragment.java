@@ -48,7 +48,7 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
 //    OrderService orderService;
 
     @Inject
-    OrderService orderServiceShopStaff;
+    OrderService orderService;
 
     RecyclerView recyclerView;
     AdapterOrdersPending adapter;
@@ -225,7 +225,7 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
         current_sort = UtilitySortOrdersHD.getSort(getContext()) + " " + UtilitySortOrdersHD.getAscending(getContext());
 
 
-        Call<OrderEndPoint> call = orderServiceShopStaff.getOrders(
+        Call<OrderEndPoint> call = orderService.getOrders(
                     UtilityLogin.getAuthorizationHeaders(getActivity()),
                     null,null,false,
                     null,null,null,
@@ -388,37 +388,37 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
 
 //        Call<ResponseBody> call = orderService.cancelOrderByShop(order.getOrderID());
 
-//        Call<ResponseBody> call = orderServiceShopStaff.cancelledByShop(
-//                UtilityLogin.getAuthorizationHeaders(getActivity()),
-//                order.getOrderID()
-//        );
-//
-//
-//        call.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//
-//                if(response.code() == 200 )
-//                {
-//                    showToastMessage("Successful");
-//                    makeRefreshNetworkCall();
-//                }
-//                else if(response.code() == 304)
-//                {
-//                    showToastMessage("Not Cancelled !");
-//                }
-//                else
-//                {
-//                    showToastMessage("Server Error");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//                showToastMessage("Network Request Failed. Check your internet connection !");
-//            }
-//        });
+        Call<ResponseBody> call = orderService.cancelledByEndUser(
+                UtilityLogin.getAuthorizationHeaders(getActivity()),
+                order.getOrderID()
+        );
+
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if(response.code() == 200 )
+                {
+                    showToastMessage("Successful");
+                    makeRefreshNetworkCall();
+                }
+                else if(response.code() == 304)
+                {
+                    showToastMessage("Not Cancelled !");
+                }
+                else
+                {
+                    showToastMessage("Server Error");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                showToastMessage("Network Request Failed. Check your internet connection !");
+            }
+        });
 
     }
 

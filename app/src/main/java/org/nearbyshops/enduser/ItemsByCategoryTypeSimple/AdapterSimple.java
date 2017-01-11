@@ -223,11 +223,16 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         ItemStats itemStats = item.getItemStats();
 
-        holder.priceRange.setText("Price Range :\nRs." + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
-        holder.priceAverage.setText("Price Average :\nRs." + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
-        holder.shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
-        holder.itemRating.setText(String.format("%.2f",itemStats.getRating_avg()));
-        holder.ratingCount.setText("( " + String.valueOf(itemStats.getRatingCount()) + " Ratings )");
+        if(itemStats!=null)
+        {
+            holder.priceRange.setText("Price Range :\nRs." + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
+            holder.priceAverage.setText("Price Average :\nRs." + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
+            holder.shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
+//            System.out.println("Rating : " + itemStats.getRating_avg() + " : Ratings Count " + itemStats.getRatingCount());
+        }
+
+        holder.itemRating.setText(String.format("%.2f",item.getRt_rating_avg()));
+        holder.ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " Ratings )");
 
 
         String imagePath = UtilityGeneral.getServiceURL(context)
