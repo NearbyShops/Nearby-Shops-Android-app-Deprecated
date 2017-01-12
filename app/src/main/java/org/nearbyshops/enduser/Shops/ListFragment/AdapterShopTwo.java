@@ -202,32 +202,15 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
 
-        @Bind(R.id.shop_name)
-        TextView shopName;
-
-        @Bind(R.id.shop_address)
-        TextView shopAddress;
-
-        @Bind(R.id.shop_logo)
-        ImageView shopLogo;
-
-        @Bind(R.id.delivery)
-        TextView delivery;
-
-        @Bind(R.id.distance)
-        TextView distance;
-
-        @Bind(R.id.rating)
-        TextView rating;
-
-        @Bind(R.id.rating_count)
-        TextView rating_count;
-
-        @Bind(R.id.description)
-        TextView description;
-
-        @Bind(R.id.shop_info_card)
-        CardView list_item;
+        @Bind(R.id.shop_name) TextView shopName;
+        @Bind(R.id.shop_address) TextView shopAddress;
+        @Bind(R.id.shop_logo) ImageView shopLogo;
+        @Bind(R.id.delivery) TextView delivery;
+        @Bind(R.id.distance) TextView distance;
+        @Bind(R.id.rating) TextView rating;
+        @Bind(R.id.rating_count) TextView rating_count;
+        @Bind(R.id.description) TextView description;
+        @Bind(R.id.shop_info_card) CardView list_item;
 
         public ViewHolder(View itemView) {
             super(itemView);

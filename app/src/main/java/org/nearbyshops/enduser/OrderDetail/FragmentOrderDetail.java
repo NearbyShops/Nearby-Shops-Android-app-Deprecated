@@ -20,8 +20,11 @@ import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelCartOrder.Endpoints.OrderItemEndPoint;
 import org.nearbyshops.enduser.ModelCartOrder.Order;
 import org.nearbyshops.enduser.ModelCartOrder.OrderItem;
+import org.nearbyshops.enduser.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.OrderItemService;
+import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
+import org.nearbyshops.enduser.Shops.UtilityLocation;
 import org.nearbyshops.enduser.Utility.UtilityShopHome;
 
 import java.util.ArrayList;
@@ -251,6 +254,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
         offset = 0;
         makeNetworkCall(true);
+        makeNetworkCallShop();
     }
 
 
@@ -269,6 +273,9 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
     }
 
+
+    @Inject
+    ShopService shopService;
 
     void makeNetworkCall(final boolean clearDataset)
     {
@@ -321,6 +328,34 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
             }
         });
 
+    }
+
+
+    void makeNetworkCallShop()
+    {
+        Call<Shop> call = shopService.getShop(
+          order.getShopID(),
+                UtilityLocation.getLatitude(getActivity()),
+                UtilityLocation.getLongitude(getActivity())
+        );
+
+
+        call.enqueue(new Callback<Shop>() {
+            @Override
+            public void onResponse(Call<Shop> call, Response<Shop> response) {
+
+                if(response.code()==200 && response.body()!=null)
+                {
+                    order.setShop(response.body());
+                    adapter.notifyItemChanged(0);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Shop> call, Throwable t) {
+
+            }
+        });
     }
 
 

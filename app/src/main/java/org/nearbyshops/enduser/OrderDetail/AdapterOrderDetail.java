@@ -1,8 +1,10 @@
 package org.nearbyshops.enduser.OrderDetail;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +16,23 @@ import com.squareup.picasso.Picasso;
 
 
 import org.nearbyshops.enduser.Model.Item;
+import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelCartOrder.Order;
 import org.nearbyshops.enduser.ModelCartOrder.OrderItem;
 import org.nearbyshops.enduser.ModelCartOrder.OrderStats;
 import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Utility.UtilityOrderStatus;
 import org.nearbyshops.enduser.R;
+import org.nearbyshops.enduser.ShopDetail.ShopDetail;
+import org.nearbyshops.enduser.ShopHome.ShopHome;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.Utility.UtilityShopHome;
 
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by sumeet on 13/6/16.
@@ -113,34 +120,29 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     class ViewHolderOrder extends RecyclerView.ViewHolder{
 
-
-        @Bind(R.id.order_id)
-        TextView orderID;
-
-        @Bind(R.id.dateTimePlaced)
-        TextView dateTimePlaced;
-
-        @Bind(R.id.deliveryAddressName)
-        TextView deliveryAddressName;
-
-        @Bind(R.id.deliveryAddress)
-        TextView deliveryAddress;
-
-        @Bind(R.id.deliveryAddressPhone)
-        TextView deliveryAddressPhone;
-
-
-        @Bind(R.id.numberOfItems)
-        TextView numberOfItems;
-
-        @Bind(R.id.orderTotal)
-        TextView orderTotal;
-
-        @Bind(R.id.currentStatus)
-        TextView currentStatus;
+        @Bind(R.id.order_id) TextView orderID;
+        @Bind(R.id.dateTimePlaced) TextView dateTimePlaced;
+        @Bind(R.id.deliveryAddressName) TextView deliveryAddressName;
+        @Bind(R.id.deliveryAddress) TextView deliveryAddress;
+        @Bind(R.id.deliveryAddressPhone) TextView deliveryAddressPhone;
+        @Bind(R.id.numberOfItems) TextView numberOfItems;
+        @Bind(R.id.orderTotal) TextView orderTotal;
+        @Bind(R.id.currentStatus) TextView currentStatus;
 
 //        @Bind(R.id.confirmOrderButton)
 //        TextView confirmOrderButton;
+
+
+        @Bind(R.id.shop_name) TextView shopName;
+        @Bind(R.id.shop_address) TextView shopAddress;
+        @Bind(R.id.shop_logo) ImageView shopLogo;
+        @Bind(R.id.delivery) TextView delivery;
+        @Bind(R.id.distance) TextView distance;
+        @Bind(R.id.rating) TextView rating;
+        @Bind(R.id.rating_count) TextView rating_count;
+        @Bind(R.id.description) TextView description;
+        @Bind(R.id.shop_info_card) CardView list_item;
+
 
 
         public ViewHolderOrder(View itemView) {
@@ -151,6 +153,27 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         }
 
+
+        @OnClick(R.id.shop_info_card)
+        void shopDetailsClick()
+        {
+            if(dataset.get(getLayoutPosition()) instanceof Order)
+            {
+                Order order = (Order)dataset.get(getLayoutPosition());
+                Shop shop = order.getShop();
+
+//                Intent shopHomeIntent = new Intent(context, ShopHome.class);
+//                UtilityShopHome.saveShop(shop,context);
+//                context.startActivity(shopHomeIntent);
+
+
+                Intent intent = new Intent(context, ShopDetail.class);
+                intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
+                context.startActivity(intent);
+            }
+
+
+        }
 
 /*
         @OnClick(R.id.confirmOrderButton)
@@ -175,14 +198,16 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     {
         if(dataset!=null)
         {
-            if(dataset.size() <= position)
-            {
-                return;
-            }
+//            if(dataset.size() <= position)
+//            {
+//                return;
+//            }
+
 
             Order order = (Order)dataset.get(position);
             DeliveryAddress deliveryAddress = order.getDeliveryAddress();
             OrderStats orderStats = order.getOrderStats();
+            Shop shop = order.getShop();
 
             holder.orderID.setText("Order ID : " + order.getOrderID());
             holder.dateTimePlaced.setText("" + order.getDateTimePlaced().toLocaleString());
@@ -203,8 +228,58 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             String status = UtilityOrderStatus.getStatus(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
             holder.currentStatus.setText("Current Status : " + status);
 
+
+            if(shop!=null)
+            {
+                holder.shopName.setText(shop.getShopName());
+
+                if(shop.getShopAddress()!=null)
+                {
+                    holder.shopAddress.setText(shop.getShopAddress() + "\n" + String.valueOf(shop.getPincode()));
+                }
+
+//                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                        + shop.getLogoImagePath();
+
+                String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
+                        + shop.getLogoImagePath() + ".jpg";
+
+                Drawable placeholder = VectorDrawableCompat
+                        .create(context.getResources(),
+                                R.drawable.ic_nature_people_white_48px, context.getTheme());
+
+                Picasso.with(context)
+                        .load(imagePath)
+                        .placeholder(placeholder)
+                        .into(holder.shopLogo);
+
+                holder.delivery.setText("Delivery : Rs " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
+                holder.distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
+
+
+                if(shop.getRt_rating_count()==0)
+                {
+                    holder.rating.setText("N/A");
+                    holder.rating_count.setText(" - ");
+
+                }
+                else
+                {
+                    holder.rating.setText(String.valueOf(shop.getRt_rating_avg()));
+                    holder.rating_count.setText("( " + String.format( "%.0f", shop.getRt_rating_count()) + " Ratings )");
+                }
+
+
+                if(shop.getShortDescription()!=null)
+                {
+                    holder.description.setText(shop.getShortDescription());
+                }
+
+            }
         }
     }
+
+
 
 
 

@@ -74,22 +74,37 @@ public interface ShopService {
 
 
     @GET("/api/v1/Shop/{id}")
-    Call<Shop> getShop(@Path("id") int id);
+    Call<Shop> getShop(@Path("id") int id,
+                       @Query("latCenter")Double latCenter, @Query("lonCenter")Double lonCenter);
 
 
+
+
+    @GET("/api/v1/Shop/QuerySimple")
+    Call<ShopEndPoint> getShopListSimple(
+            @Query("Enabled")Boolean enabled,
+            @Query("Waitlisted") Boolean waitlisted,
+            @Query("latCenter")Double latCenter, @Query("lonCenter")Double lonCenter,
+            @Query("deliveryRangeMax")Double deliveryRangeMax,
+            @Query("deliveryRangeMin")Double deliveryRangeMin,
+            @Query("proximity")Double proximity,
+            @Query("SearchString") String searchString,
+            @Query("SortBy") String sortBy,
+            @Query("Limit") Integer limit, @Query("Offset") int offset
+    );
 
 
     // Deprecated
-
-    @GET("/api/v1/Shop/Deprecated")
-    Call<List<Shop>> getShops(@Query("DistributorID") Integer distributorID,
-                              @Query("LeafNodeItemCategoryID")Integer itemCategoryID,
-                              @Query("latCenter")Double latCenter,
-                              @Query("lonCenter")Double lonCenter,
-                              @Query("deliveryRangeMax")Double deliveryRangeMax,
-                              @Query("deliveryRangeMin")Double deliveryRangeMin,
-                              @Query("proximity")Double proximity);
-
+//
+//    @GET("/api/v1/Shop/Deprecated")
+//    Call<List<Shop>> getShops(@Query("DistributorID") Integer distributorID,
+//                              @Query("LeafNodeItemCategoryID")Integer itemCategoryID,
+//                              @Query("latCenter")Double latCenter,
+//                              @Query("lonCenter")Double lonCenter,
+//                              @Query("deliveryRangeMax")Double deliveryRangeMax,
+//                              @Query("deliveryRangeMin")Double deliveryRangeMin,
+//                              @Query("proximity")Double proximity);
+//
 
 }
 
