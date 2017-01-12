@@ -1,6 +1,9 @@
 package org.nearbyshops.enduser.DaggerComponents;
 
 
+import org.nearbyshops.enduser.CancelledOrders.CancelledByEndUser.FragmentCancelledByUser;
+import org.nearbyshops.enduser.CancelledOrders.CancelledByShop.FragmentCancelledByShop;
+import org.nearbyshops.enduser.CancelledOrders.ReturnedByDeliveryGuy.FragmentReturnedByDG;
 import org.nearbyshops.enduser.DeliveryAddress.AddAddressActivity;
 import org.nearbyshops.enduser.Carts.CartItemListActivity;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
@@ -162,4 +165,10 @@ public interface NetComponent {
     void Inject(PendingOrdersFragment pendingOrdersFragment);
 
     void Inject(FragmentOrderDetail fragmentOrderDetail);
+
+    void Inject(FragmentCancelledByUser fragmentCancelledByUser);
+
+    void Inject(FragmentCancelledByShop fragmentCancelledByShop);
+
+    void Inject(FragmentReturnedByDG fragmentReturnedByDG);
 }

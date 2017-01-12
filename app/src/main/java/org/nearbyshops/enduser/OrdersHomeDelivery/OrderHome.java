@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import org.nearbyshops.enduser.CancelledOrders.CancelledOrdersHomeDelivery;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
 import org.nearbyshops.enduser.R;
 
@@ -30,6 +31,13 @@ public class OrderHome extends AppCompatActivity {
     void orderHistoryClick()
     {
         startActivity(new Intent(this, OrderHistoryHD.class));
+    }
+
+
+    @OnClick(R.id.cancelled_hd)
+    void cancelledOrders()
+    {
+        startActivity(new Intent(this, CancelledOrdersHomeDelivery.class));
     }
 
 

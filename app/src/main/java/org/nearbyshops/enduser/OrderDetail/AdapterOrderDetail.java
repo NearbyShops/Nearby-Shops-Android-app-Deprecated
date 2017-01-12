@@ -39,11 +39,13 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public static final int TAG_VIEW_HOLDER_ORDER_ITEM = 2;
 
     private Context context;
+    NotifyItemClick notifyItemClick;
 
 
-    AdapterOrderDetail(List<Object> dataset, Context context) {
+    AdapterOrderDetail(List<Object> dataset, Context context,NotifyItemClick notifyItemClick) {
         this.dataset = dataset;
         this.context = context;
+        this.notifyItemClick = notifyItemClick;
 //        this.notifyConfirmOrder = notifyConfirmOrder;
     }
 
@@ -206,8 +208,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 
-    class ViewHolderOrderItem extends RecyclerView.ViewHolder
-    {
+    class ViewHolderOrderItem extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @Bind(R.id.itemImage)
         ImageView itemImage;
@@ -238,6 +239,18 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         ViewHolderOrderItem(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            if(dataset.get(getLayoutPosition()) instanceof OrderItem)
+            {
+                OrderItem orderItem = (OrderItem) dataset.get(getLayoutPosition());
+                Item item = orderItem.getItem();
+                notifyItemClick.notifyItemClicked(item);
+            }
         }
     }
 
@@ -289,10 +302,8 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 
-/*
-    interface NotifyConfirmOrder{
-        void notifyConfirmOrder(Order order);
-        void notifyCancelOrder(Order order);
-    }*/
+    interface NotifyItemClick{
+        void notifyItemClicked(Item item);
+    }
 
 }

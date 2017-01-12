@@ -1,5 +1,6 @@
 package org.nearbyshops.enduser.OrderDetail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,9 +14,12 @@ import android.widget.Toast;
 
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.ItemDetail.ItemDetail;
+import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelCartOrder.Endpoints.OrderItemEndPoint;
 import org.nearbyshops.enduser.ModelCartOrder.Order;
+import org.nearbyshops.enduser.ModelCartOrder.OrderItem;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.OrderItemService;
 import org.nearbyshops.enduser.Utility.UtilityShopHome;
@@ -34,7 +38,7 @@ import retrofit2.Response;
  * Created by sumeet on 15/11/16.
  */
 
-public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.OnRefreshListener ,AdapterOrderDetail.NotifyItemClick{
 
 
     Order order;
@@ -116,8 +120,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     void setupRecyclerView()
     {
 
-        adapter = new AdapterOrderDetail(dataset,getActivity());
-
+        adapter = new AdapterOrderDetail(dataset,getActivity(),this);
         layoutManager = new GridLayoutManager(getActivity(),1);
 
 
@@ -336,5 +339,12 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     public void onDestroy() {
         super.onDestroy();
         isDestroyed=true;
+    }
+
+    @Override
+    public void notifyItemClicked(Item item) {
+        Intent intent = new Intent(getActivity(), ItemDetail.class);
+        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
+        getActivity().startActivity(intent);
     }
 }
