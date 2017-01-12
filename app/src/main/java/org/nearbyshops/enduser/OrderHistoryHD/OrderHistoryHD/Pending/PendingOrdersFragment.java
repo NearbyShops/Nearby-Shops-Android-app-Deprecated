@@ -16,18 +16,22 @@ import android.widget.Toast;
 
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelCartOrder.Endpoints.OrderEndPoint;
 import org.nearbyshops.enduser.ModelCartOrder.Order;
 import org.nearbyshops.enduser.OrderDetail.OrderDetail;
 import org.nearbyshops.enduser.OrderDetail.UtilityOrderDetail;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
+import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.SlidingLayerSort.UtilitySortOrdersHD;
+import org.nearbyshops.enduser.OrdersHomeDelivery.OrderHome;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
+import org.nearbyshops.enduser.Utility.UtilityShopHome;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -224,10 +228,21 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
         String current_sort = "";
         current_sort = UtilitySortOrdersHD.getSort(getContext()) + " " + UtilitySortOrdersHD.getAscending(getContext());
 
+        Integer shopID = null;
+
+        if(getActivity().getIntent().getBooleanExtra(OrderHistoryHD.IS_FILTER_BY_SHOP,false))
+        {
+            Shop shop = UtilityShopHome.getShop(getActivity());
+
+            if(shop!=null)
+            {
+                shopID = shop.getShopID();
+            }
+        }
 
         Call<OrderEndPoint> call = orderService.getOrders(
                     UtilityLogin.getAuthorizationHeaders(getActivity()),
-                    null,null,false,
+                    null,shopID,false,
                     null,null,null,
                     null,null,
                     null,null,

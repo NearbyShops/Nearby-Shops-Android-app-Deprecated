@@ -16,6 +16,7 @@ import org.nearbyshops.enduser.ItemsInShop.ItemsInShop;
 import org.nearbyshops.enduser.ItemsInShopByCat.ItemsInStockByCat;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.MyApplication;
+import org.nearbyshops.enduser.OrdersHomeDelivery.OrderHome;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopDetail.ShopDetail;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
@@ -29,32 +30,15 @@ public class ShopHome extends AppCompatActivity {
 
     private Shop shop;
 
-    @Bind(R.id.shop_name)
-    TextView shopName;
-
-    @Bind(R.id.shop_address)
-    TextView shopAddress;
-
-    @Bind(R.id.shop_logo)
-    ImageView shopLogo;
-
-    @Bind(R.id.delivery)
-    TextView delivery;
-
-    @Bind(R.id.distance)
-    TextView distance;
-
-    @Bind(R.id.rating)
-    TextView rating;
-
-    @Bind(R.id.rating_count)
-    TextView rating_count;
-
-    @Bind(R.id.description)
-    TextView description;
-
-    @Bind(R.id.option_items_by_category)
-    ImageView optionItemsByCategory;
+    @Bind(R.id.shop_name) TextView shopName;
+    @Bind(R.id.shop_address) TextView shopAddress;
+    @Bind(R.id.shop_logo) ImageView shopLogo;
+    @Bind(R.id.delivery) TextView delivery;
+    @Bind(R.id.distance) TextView distance;
+    @Bind(R.id.rating) TextView rating;
+    @Bind(R.id.rating_count) TextView rating_count;
+    @Bind(R.id.description) TextView description;
+    @Bind(R.id.option_items_by_category) ImageView optionItemsByCategory;
 
 
 
@@ -163,7 +147,13 @@ public class ShopHome extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    @OnClick(R.id.option_orders)
+    void ordersClick()
+    {
+        Intent intent = new Intent(this,OrderHome.class);
+        intent.putExtra(OrderHome.IS_FILTER_BY_SHOP,true);
+        startActivity(intent);
+    }
 
 
     @OnClick(R.id.option_items)

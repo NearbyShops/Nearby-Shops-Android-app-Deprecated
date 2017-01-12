@@ -43,11 +43,9 @@ import retrofit2.Response;
 
 public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.OnRefreshListener ,AdapterOrderDetail.NotifyItemClick{
 
-
     Order order;
 
-    @Inject
-    OrderItemService orderItemService;
+    @Inject OrderItemService orderItemService;
 
     RecyclerView recyclerView;
     AdapterOrderDetail adapter;
