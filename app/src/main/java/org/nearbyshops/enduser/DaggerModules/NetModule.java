@@ -26,8 +26,10 @@ import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewThanksService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
+import org.nearbyshops.enduser.RetrofitRESTContractSDS.ServiceConfigService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -115,6 +117,23 @@ public class NetModule {
                 .baseUrl(UtilityGeneral.getServiceURL(MyApplication.getAppContext()))
                 .client(okHttpClient)
                 .build();
+
+        return retrofit;
+    }
+
+
+    @Provides @Named("sds")
+    Retrofit provideRetrofitGIDB(Gson gson, OkHttpClient okHttpClient) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(UtilityGeneral.getServiceURL_SDS(MyApplication.getAppContext()))
+                .build();
+
+        //        .client(okHttpClient)
+
+        Log.d("applog","Retrofit : " + UtilityGeneral.getServiceURL_SDS(MyApplication.getAppContext()));
+
 
         return retrofit;
     }
@@ -286,5 +305,15 @@ public class NetModule {
 //        EndUserService endUserService = ;
         return retrofit.create(ShopReviewThanksService.class);
     }
+
+
+
+
+    @Provides
+    ServiceConfigService provideServiceConfig(@Named("sds")Retrofit retrofit)
+    {
+        return retrofit.create(ServiceConfigService.class);
+    }
+
 
 }

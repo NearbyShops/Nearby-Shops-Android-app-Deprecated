@@ -321,7 +321,7 @@ public class FragmentShop extends Fragment implements
 
 
 
-                        if(!notifiedCurrentCategory.getAbstractNode() && item_count>0 && !isbackPressed)
+                        if(!notifiedCurrentCategory.getisAbstractNode() && item_count>0 && !isbackPressed)
                         {
                             if(getActivity() instanceof NotifyGeneral)
                             {

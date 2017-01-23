@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <android.support.constraint.ConstraintLayout
+        android:padding="10dp"
+        android:minWidth="250dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:contentDescription="@string/content_description_close_dialog"
+            android:id="@+id/dialog_dismiss_icon"
+            app:srcCompat="@drawable/ic_clear_black_24px"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+
+
+        <LinearLayout
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/dialog_dismiss_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/dialog_dismiss_icon"
+            android:background="#000000"
+            android:layout_width="1dp"
+            android:layout_height="0dp"/>
+
+
+        <TextView
+            app:layout_constraintTop_toTopOf="@+id/dialog_dismiss_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/dialog_dismiss_icon"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/dialog_dismiss_icon"
+            android:id="@+id/header_title_submit"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:textSize="25dp"
+            android:text="Submit Service"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+        <ProgressBar
+            android:visibility="invisible"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/header_title_submit"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/progress_bar"
+            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/buttonColorDark" />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/header_title_submit"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/text_input_username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/service_url"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Service URL"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+
+                <!--<android.support.design.widget.TextInputLayout-->
+                    <!--android:layout_below="@id/text_input_username"-->
+                    <!--android:id="@+id/text_input_password"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<EditText-->
+                        <!--android:id="@+id/password"-->
+                        <!--android:inputType="textPassword"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:hint="Enter Password"/>-->
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+        <android.support.constraint.Guideline
+            android:id="@+id/vertical_guide"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="135dp" />
+
+
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/text_input_username"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/cancel_button"
+            android:textColor="@color/white"
+            android:background="@color/blueGrey800"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:text="Paste URL"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toLeftOf="@+id/vertical_guide" />
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/text_input_username"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/submit_button"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/white"
+            android:background="@color/gplus_color_1"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:text="Submit"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/vertical_guide" />
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v4.widget.NestedScrollView>

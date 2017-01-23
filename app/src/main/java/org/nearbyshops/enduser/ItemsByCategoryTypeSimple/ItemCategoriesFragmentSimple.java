@@ -336,7 +336,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
                 (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY, 0),
                 (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY, 0),
                 null,null,null,
-                "ITEM_CATEGORY_NAME",null,null,false);
+                ItemCategory.CATEGORY_ORDER,null,null,false);
 
 
         endPointCall.enqueue(new Callback<ItemCategoryEndPoint>() {

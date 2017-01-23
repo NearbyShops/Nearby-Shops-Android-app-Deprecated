@@ -387,6 +387,26 @@
         </activity>
 
 
+        <activity
+            android:name=".Settings.SettingsCustom"
+            android:label="Settings"
+            android:parentActivityName=".Home">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+        </activity>
+
+
+        <activity
+            android:name=".Services.ServicesActivity"
+            android:label="Services"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+        </activity>
+
     </application>
 
 </manifest>

@@ -34,6 +34,8 @@ import org.nearbyshops.enduser.LoginActivity;
 import org.nearbyshops.enduser.OrderDetail.FragmentOrderDetail;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Complete.CompleteOrdersFragment;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Pending.PendingOrdersFragment;
+import org.nearbyshops.enduser.Services.ServiceFragment.ServicesFragment;
+import org.nearbyshops.enduser.Services.SubmitURLDialog.SubmitURLDialog;
 import org.nearbyshops.enduser.ShopDetail.ShopDetail;
 import org.nearbyshops.enduser.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduser.ShopItemByShopOld.ItemCategories.ItemCategoriesFragmentShopHome;
@@ -171,4 +173,8 @@ public interface NetComponent {
     void Inject(FragmentCancelledByShop fragmentCancelledByShop);
 
     void Inject(FragmentReturnedByDG fragmentReturnedByDG);
+
+    void Inject(ServicesFragment servicesFragment);
+
+    void Inject(SubmitURLDialog submitURLDialog);
 }

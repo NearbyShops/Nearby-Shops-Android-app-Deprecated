@@ -74,16 +74,16 @@
 
 
 
-    <item android:title="Reviews">
-        <menu>
-            <item
-                android:id="@+id/nav_shop_reviews"
-                android:title="Shop Reviews" />
-            <item
-                android:id="@+id/nav_item_reviews"
-                android:title="Item Reviews" />
-        </menu>
-    </item>
+    <!--<item android:title="Reviews">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_shop_reviews"-->
+                <!--android:title="Shop Reviews" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_item_reviews"-->
+                <!--android:title="Item Reviews" />-->
+        <!--</menu>-->
+    <!--</item>-->
 
 
 

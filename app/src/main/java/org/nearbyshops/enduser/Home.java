@@ -3,6 +3,8 @@ package org.nearbyshops.enduser;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
@@ -54,6 +56,8 @@ import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.ItemCategoriesSimple;
 import org.nearbyshops.enduser.Items.ItemsActivity;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
+import org.nearbyshops.enduser.Services.ServicesActivity;
+import org.nearbyshops.enduser.Settings.SettingsCustom;
 import org.nearbyshops.enduser.SharedPreferences.UtilityLocationOld;
 import org.nearbyshops.enduser.Shops.ShopsActivity;
 import org.nearbyshops.enduser.ShopsByCatSimple.ShopsByCat;
@@ -361,6 +365,7 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_settings) {
 
             showToastMessage("Settings");
+            startActivity(new Intent(this, SettingsCustom.class));
 
         } else if (id == R.id.nav_carts) {
 
@@ -375,17 +380,14 @@ public class Home extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
-        }else if(id == R.id.nav_login)
-        {
+        }else if(id == R.id.nav_login) {
 
             loginClick(item);
         }
-
         else if(id == R.id.nav_delivery_address)
         {
             startActivity(new Intent(this, DeliveryAddressActivity.class));
         }
-
 
         //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -867,5 +869,28 @@ public class Home extends AppCompatActivity
         Intent intent = new Intent(this, FilterShops.class);
         startActivity(intent);
     }
+
+
+
+    @OnClick(R.id.discover_services_button)
+    void discoverServicesClick()
+    {
+        startActivity(new Intent(this, ServicesActivity.class));
+    }
+
+
+    @OnClick(R.id.paste_url_button)
+    void pasteURLClick()
+    {
+
+
+        ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+
+        if(clipboard.getPrimaryClip()!=null)
+        {
+            serviceURL.setText(clipboard.getPrimaryClip().getItemAt(0).getText());
+        }
+    }
+
 
 }

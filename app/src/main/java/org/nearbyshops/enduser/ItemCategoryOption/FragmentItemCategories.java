@@ -310,7 +310,7 @@ public class FragmentItemCategories extends Fragment implements  AdapterItemCate
 
 
 
-        if (!currentCategory.getAbstractNode()) {
+        if (!currentCategory.getisAbstractNode()) {
 
             notifyCategoryChanged.notifySwipeToRight();
         }

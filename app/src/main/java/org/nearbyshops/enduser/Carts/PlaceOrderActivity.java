@@ -28,6 +28,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,19 +38,14 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
     Order order = new Order();
 
-    @Inject
-    CartStatsService cartStatsService;
-
-    @Inject
-    OrderService orderService;
+    @Inject CartStatsService cartStatsService;
+    @Inject OrderService orderService;
 
 
     CartStats cartStats;
-
     CartStats cartStatsFromNetworkCall;
 
     TextView addPickAddress;
-
     DeliveryAddress selectedAddress;
 
 
@@ -58,14 +54,9 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     TextView deliveryCharges;
     TextView total;
 
-    @Bind(R.id.radioPickFromShop)
-    RadioButton pickFromShopCheck;
-
-    @Bind(R.id.radioHomeDelivery)
-    RadioButton homeDelieryCheck;
-
-    @Bind(R.id.placeOrder)
-    TextView placeOrder;
+    @Bind(R.id.radioPickFromShop) RadioButton pickFromShopCheck;
+    @Bind(R.id.radioHomeDelivery) RadioButton homeDelieryCheck;
+    @Bind(R.id.placeOrder) TextView placeOrder;
 
 
     // address views
@@ -325,11 +316,11 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
             return;
         }
 
-        Call<Order> call = orderService.postOrder(order,cartStatsFromNetworkCall.getCartID());
+        Call<ResponseBody> call = orderService.postOrder(order,cartStatsFromNetworkCall.getCartID());
 
-        call.enqueue(new Callback<Order>() {
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<Order> call, Response<Order> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 if(response!=null)
                 {
@@ -346,8 +337,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
                     }else
                     {
-
-                        showToastMessage("failed !");
+                        showToastMessage("failed Code : !" + String.valueOf(response.code()));
                     }
 
                 }else
@@ -358,7 +348,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
             }
 
             @Override
-            public void onFailure(Call<Order> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
 
                 showToastMessage("Network connection Failed !");
 

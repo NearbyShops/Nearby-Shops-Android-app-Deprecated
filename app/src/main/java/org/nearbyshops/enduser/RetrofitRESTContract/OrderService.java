@@ -19,7 +19,7 @@ import retrofit2.http.Query;
 public interface OrderService {
 
     @POST("/api/Order")
-    Call<Order> postOrder(@Body Order order,@Query("CartID") int cartID);
+    Call<ResponseBody> postOrder(@Body Order order,@Query("CartID") int cartID);
 
 
     @GET("/api/Order")

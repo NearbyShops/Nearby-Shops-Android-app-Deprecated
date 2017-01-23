@@ -158,6 +158,35 @@ public class UtilityGeneral {
 
 
 
+
+
+
+    public static void saveServiceURL_SDS(String service_url,Context context)
+    {
+//        Context context = MyApplication.getAppContext();
+        // get a handle to shared Preference
+        SharedPreferences sharedPref;
+
+        sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), Context.MODE_PRIVATE);
+
+        // write to the shared preference
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putString(context.getString(R.string.preference_service_url_sds_key), service_url);
+        editor.apply();
+    }
+
+    public static String getServiceURL_SDS(Context context) {
+
+//        context = MyApplication.getAppContext();
+
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), Context.MODE_PRIVATE);
+        return sharedPref.getString(context.getString(R.string.preference_service_url_sds_key), "http://sds.nearbyshops.org");
+    }
+
+
+
+
     /*
 
 

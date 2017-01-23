@@ -180,7 +180,8 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
         }
 
 
-        Log.d("ShopLog",String.valueOf(shop.getRt_rating_avg()) + ":" + String.valueOf(shop.getRt_rating_count()));
+
+//        Log.d("ShopLog",String.valueOf(shop.getRt_rating_avg()) + ":" + String.valueOf(shop.getRt_rating_count()));
 
         /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

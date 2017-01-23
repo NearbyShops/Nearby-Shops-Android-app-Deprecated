@@ -324,7 +324,7 @@ public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshL
                     null,null,
                     null,null,
                     null,
-                    "id",null,null,false);
+                    ItemCategory.CATEGORY_ORDER,null,null,false);
 
 
         }
@@ -338,7 +338,7 @@ public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshL
                     null,null,
                     null,null,
                     null,
-                    "id",null,null,false);
+                    ItemCategory.CATEGORY_ORDER,null,null,false);
 
         }
 
