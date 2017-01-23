@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +21,17 @@ import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContractSDS.ServiceConfigService;
 import org.nearbyshops.enduser.Services.SlidingLayerSort.UtilitySortServices;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
+import org.nearbyshops.enduser.Shops.UtilityLocation;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.ToggleFab;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import icepick.State;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,6 +54,8 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
     GridLayoutManager layoutManager;
     SwipeRefreshLayout swipeContainer;
 
+
+    boolean show = true;
 
     final private int limit = 5;
     int offset = 0;
@@ -145,6 +151,49 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
 
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if(dy > 20)
+                {
+
+                    boolean previous = show;
+
+                    show = false ;
+
+                    if(show!=previous)
+                    {
+                        // changed
+                        Log.d("scrolllog","show");
+
+                        if(getActivity() instanceof ToggleFab)
+                        {
+                            ((ToggleFab)getActivity()).hideFab();
+                        }
+                    }
+
+                }else if(dy < -20)
+                {
+
+                    boolean previous = show;
+
+                    show = true;
+
+                    if(show!=previous)
+                    {
+                        Log.d("scrolllog","hide");
+
+                        if(getActivity() instanceof ToggleFab)
+                        {
+                            ((ToggleFab)getActivity()).showFab();
+                        }
+                    }
+                }
+
+            }
+
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -241,7 +290,9 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
 
 
         Call<ServiceConfigurationEndPoint> call = serviceConfigService.getShopListSimple(
-                    null,null,null,null,
+                    UtilityLocation.getLatitude(getActivity()),
+                    UtilityLocation.getLongitude(getActivity()),
+                    null,null,
                     searchQuery,
                     filterOfficial,filterVerified,
                     serviceType,

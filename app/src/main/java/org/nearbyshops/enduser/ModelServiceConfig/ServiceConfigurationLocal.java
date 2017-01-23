@@ -118,8 +118,8 @@ public class ServiceConfigurationLocal {
     private Integer serviceType;
     private Integer serviceLevel;
 
-    private Double latCenter;
-    private Double lonCenter;
+    private double latCenter;
+    private double lonCenter;
 
     private Integer serviceRange;
 //    private Integer shopDeliveryRangeMax;

@@ -304,7 +304,7 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(serviceType==3)
         {
-            return "Commertial";
+            return "Commercial";
         }
 
         return "";

@@ -24,18 +24,21 @@ import org.nearbyshops.enduser.Services.SlidingLayerSort.SlidingLayerSortService
 import org.nearbyshops.enduser.Services.SubmitURLDialog.SubmitURLDialog;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
+import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.ToggleFab;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ServicesActivity extends AppCompatActivity implements NotifySort {
+public class ServicesActivity extends AppCompatActivity implements NotifySort , ToggleFab{
 
     @Bind(R.id.slidingLayer)
     SlidingLayer slidingLayer;
     public static final String TAG_SLIDING_LAYER = "sliding_layer";
 
     public static final String TAG_FRAGMENT = "tag_fragment";
+
+    @Bind(R.id.fab) FloatingActionButton fab;
 
 
     @Override
@@ -46,17 +49,18 @@ public class ServicesActivity extends AppCompatActivity implements NotifySort {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-                showDialogSubmitURL();
-
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//
+//
+////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+////                        .setAction("Action", null).show();
+//            }
+//        });
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -71,6 +75,12 @@ public class ServicesActivity extends AppCompatActivity implements NotifySort {
         setupSlidingLayer();
     }
 
+
+    @OnClick(R.id.fab)
+    void fabClick()
+    {
+        showDialogSubmitURL();
+    }
 
 
     void setupSlidingLayer()
@@ -221,4 +231,13 @@ public class ServicesActivity extends AppCompatActivity implements NotifySort {
     }
 
 
+    @Override
+    public void showFab() {
+        fab.animate().translationY(0);
+    }
+
+    @Override
+    public void hideFab() {
+        fab.animate().translationY(fab.getHeight()+50);
+    }
 }

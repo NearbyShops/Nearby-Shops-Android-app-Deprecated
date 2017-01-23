@@ -63,6 +63,18 @@
 
 
 
+    <!--android:layout_margin="@dimen/fab_margin"-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        app:srcCompat="@drawable/ic_add_white_24px" />
+
 
     <com.wunderlist.slidinglayer.SlidingLayer
         android:id="@+id/slidingLayer"
@@ -84,12 +96,5 @@
     </com.wunderlist.slidinglayer.SlidingLayer>
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_add_white_24px" />
 
 </android.support.design.widget.CoordinatorLayout>

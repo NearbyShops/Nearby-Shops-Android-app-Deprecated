@@ -47,6 +47,7 @@ import com.squareup.picasso.Target;
 
 import org.apache.commons.validator.routines.UrlValidator;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
+import org.nearbyshops.enduser.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 import org.nearbyshops.enduser.UtilityGeocoding.Constants;
 import org.nearbyshops.enduser.UtilityGeocoding.FetchAddressIntentService;
@@ -157,7 +158,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         urlValidator = new UrlValidator(schemes);
 
 
-        makeServiceConfigCall();
+//        makeServiceConfigCall();
 
 
         serviceUrlEditText.addTextChangedListener(new TextWatcher() {
@@ -186,7 +187,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //inputLayoutServiceURL.setError(null);
                     //inputLayoutServiceURL.setErrorEnabled(false);
                     urlValidText.setVisibility(View.GONE);
-                    makeServiceConfigCall();
+//                    makeServiceConfigCall();
 
                 } else {
                     //showToastMessage("Invalid URL");
@@ -208,7 +209,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }// onCreate Ends
 
 
-    void makeServiceConfigCall() {
+    /*void makeServiceConfigCall() {
 
 
         if (!urlValidator.isValid(UtilityGeneral.getServiceURL(MyApplication.getAppContext()))) {
@@ -225,9 +226,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
 
 
-        Call<Service> call = service.getService(1);
+        Call<ServiceConfigurationLocal> call = service.getServiceConfiguration();
 
-        call.enqueue(new Callback<Service>() {
+        call.enqueue(new Callback<ServiceConfigurationLocal>() {
             @Override
             public void onResponse(Call<Service> call, Response<Service> response) {
 
@@ -245,9 +246,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             }
         });
-
-
-    }
+    }*/
 
 
     void loadImage(String serviceImagePath) {

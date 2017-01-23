@@ -399,7 +399,7 @@
 
         <activity
             android:name=".Services.ServicesActivity"
-            android:label="Services"
+            android:label="Discover Services"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

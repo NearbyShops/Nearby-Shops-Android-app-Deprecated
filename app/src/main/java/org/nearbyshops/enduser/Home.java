@@ -14,10 +14,10 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.os.ResultReceiver;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -25,11 +25,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +45,8 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.gson.GsonBuilder;
+import com.jakewharton.rxbinding.widget.RxTextView;
 
 
 import org.apache.commons.validator.routines.UrlValidator;
@@ -56,10 +57,13 @@ import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.ItemCategoriesSimple;
 import org.nearbyshops.enduser.Items.ItemsActivity;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
+import org.nearbyshops.enduser.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduser.RetrofitRESTContract.ServiceConfigurationService;
 import org.nearbyshops.enduser.Services.ServicesActivity;
 import org.nearbyshops.enduser.Settings.SettingsCustom;
 import org.nearbyshops.enduser.SharedPreferences.UtilityLocationOld;
 import org.nearbyshops.enduser.Shops.ShopsActivity;
+import org.nearbyshops.enduser.Shops.UtilityLocation;
 import org.nearbyshops.enduser.ShopsByCatSimple.ShopsByCat;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 import org.nearbyshops.enduser.UtilityGeocoding.Constants;
@@ -67,9 +71,19 @@ import org.nearbyshops.enduser.UtilityGeocoding.FetchAddressIntentService;
 import org.nearbyshops.enduser.OrdersHomeDelivery.OrderHome;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 
 public class Home extends AppCompatActivity
@@ -90,7 +104,7 @@ public class Home extends AppCompatActivity
 //    RelativeLayout itemCategories;
 
     @Bind(R.id.serviceURL)
-    TextInputEditText serviceURL;
+    EditText serviceURL;
 
     @Bind(R.id.text_input_service_url)
     TextInputLayout textInputServiceURL;
@@ -114,6 +128,7 @@ public class Home extends AppCompatActivity
     int delivery_range_current_max = ServiceConstants.DELIVERY_RANGE_CITY_MAX;
 
 
+    Subscription editTextSub;
 
 
     @Override
@@ -166,6 +181,7 @@ public class Home extends AppCompatActivity
 
         serviceURL.setText(UtilityGeneral.getServiceURL(this));
 
+/*
         serviceURL.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -180,28 +196,179 @@ public class Home extends AppCompatActivity
             @Override
             public void afterTextChanged(Editable s) {
 
-                if (urlValidator.isValid(s.toString())) {
-                    UtilityGeneral.saveServiceURL(s.toString());
-                    textInputServiceURL.setError(null);
-                    textInputServiceURL.setErrorEnabled(false);
-                }
-                else
-                {
-//                    serviceURL.setError("URL Invalid");
-                    textInputServiceURL.setErrorEnabled(true);
-                    textInputServiceURL.setError("Invalid URL");
-                }
             }
         });
+*/
 
 
 
 //        setlabelLogin();
 
 
+        setStatusLight();
+
+
     } // onCreate() Ends
 
 
+
+    void bindEditTextServiceURL()
+    {
+
+        editTextSub = RxTextView
+                .textChanges(serviceURL)
+                .debounce(700, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<CharSequence>() {
+                    @Override
+                    public void call(CharSequence value) {
+
+                        // do some work with new text
+
+
+                        if (urlValidator.isValid(value.toString())) {
+                            UtilityGeneral.saveServiceURL(value.toString());
+                            textInputServiceURL.setError(null);
+                            textInputServiceURL.setErrorEnabled(false);
+                            updateStatusLight();
+                        }
+                        else
+                        {
+//                    serviceURL.setError("URL Invalid");
+                            textInputServiceURL.setErrorEnabled(true);
+                            textInputServiceURL.setError("Invalid URL");
+
+                            UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_RED);
+                            setStatusLight();
+                        }
+
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+
+                        System.out.println(throwable.toString());
+
+                    }
+                });
+
+
+    }
+
+
+
+
+
+    void updateStatusLight()
+    {
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+                .baseUrl(UtilityGeneral.getServiceURL(MyApplication.getAppContext()))
+                .build();
+
+        ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
+
+        Call<ServiceConfigurationLocal> call = service.getServiceConfiguration();
+
+        call.enqueue(new Callback<ServiceConfigurationLocal>() {
+            @Override
+            public void onResponse(Call<ServiceConfigurationLocal> call, Response<ServiceConfigurationLocal> response) {
+
+                if(response.code()==200)
+                {
+                    if(response.body()!=null)
+                    {
+                        ServiceConfigurationLocal configurationLocal = response.body();
+                        UtilityGeneral.saveConfiguration(configurationLocal,Home.this);
+
+
+                        if(UtilityLocation.getLongitude(Home.this)!=null && UtilityLocation.getLatitude(Home.this)!=null)
+                        {
+                            Location locationUser = new Location("user");
+                            locationUser.setLongitude(UtilityLocation.getLongitude(Home.this));
+                            locationUser.setLatitude(UtilityLocation.getLatitude(Home.this));
+
+                            Location locationProvider = new Location("provider");
+                            locationProvider.setLatitude(configurationLocal.getLatCenter());
+                            locationProvider.setLongitude(configurationLocal.getLonCenter());
+
+
+                            float distance  = locationProvider.distanceTo(locationUser);
+
+                            if(distance<=configurationLocal.getServiceRange())
+                            {
+                                UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_GREEN);
+                                setStatusLight();
+                            }
+                            else
+                            {
+                                UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_YELLOW);
+                                setStatusLight();
+                            }
+                        }
+                        else
+                        {
+                            UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_YELLOW);
+                            setStatusLight();
+                        }
+
+
+                    }
+                    else
+                    {
+                        UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_RED);
+                        setStatusLight();
+                    }
+                }
+                else
+                {
+                    UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_RED);
+                    setStatusLight();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ServiceConfigurationLocal> call, Throwable t) {
+
+
+                UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_RED);
+                setStatusLight();
+
+            }
+        });
+
+    }
+
+
+    @Bind(R.id.status_indicator_one) TextView statusLight;
+    public static final int STATUS_LIGHT_GREEN = 1;
+    public static final int STATUS_LIGHT_YELLOW = 2;
+    public static final int STATUS_LIGHT_RED = 3;
+
+
+    void setStatusLight()
+    {
+        int status = UtilityGeneral.getServiceLightStatus(this);
+
+        if(status == STATUS_LIGHT_GREEN)
+        {
+            statusLight.setBackgroundColor(ContextCompat.getColor(this,R.color.gplus_color_1));
+        }
+        else if(status == STATUS_LIGHT_YELLOW)
+        {
+            statusLight.setBackgroundColor(ContextCompat.getColor(this,R.color.gplus_color_2));
+        }
+        else if(status == STATUS_LIGHT_RED)
+        {
+            statusLight.setBackgroundColor(ContextCompat.getColor(this,R.color.deepOrange900));
+        }
+
+    }
 
 
     private void showLoginDialog()
@@ -342,6 +509,12 @@ public class Home extends AppCompatActivity
 
         //unbinder.unbind();
         ButterKnife.unbind(this);
+
+
+        if(editTextSub!=null && !editTextSub.isUnsubscribed())
+        {
+            editTextSub.unsubscribe();
+        }
     }
 
 
@@ -358,13 +531,10 @@ public class Home extends AppCompatActivity
 
         if (id == R.id.nav_about_service) {
             // Handle the camera action
-
             showToastMessage("about");
-
 
         } else if (id == R.id.nav_settings) {
 
-            showToastMessage("Settings");
             startActivity(new Intent(this, SettingsCustom.class));
 
         } else if (id == R.id.nav_carts) {
@@ -483,14 +653,16 @@ public class Home extends AppCompatActivity
     @Override
     protected void onStop() {
 
+        super.onStop();
+
         if (mGoogleApiClient != null) {
 
             mGoogleApiClient.disconnect();
         }
 
-
-        super.onStop();
     }
+
+
 
 
     @Override
@@ -498,6 +670,7 @@ public class Home extends AppCompatActivity
         super.onResume();
 
         setlabelLogin();
+        bindEditTextServiceURL();
     }
 
 

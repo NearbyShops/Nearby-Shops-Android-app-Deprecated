@@ -59,7 +59,7 @@
 
 
                 <TextView
-                    android:id="@+id/market_indicator_one"
+                    android:id="@+id/status_indicator_one"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="end"
@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <android.support.design.widget.TextInputEditText
+                    <EditText
                         android:inputType="textUri"
                         android:id="@+id/serviceURL"
                         android:layout_width="match_parent"

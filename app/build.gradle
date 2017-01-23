@@ -115,6 +115,11 @@ dependencies {
     compile 'com.android.support:multidex:1.0.1'
     compile 'frankiesardo:icepick:3.2.0'
 
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.2.3'
+    compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
+
+
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
     apt 'com.google.dagger:dagger-compiler:2.2'
