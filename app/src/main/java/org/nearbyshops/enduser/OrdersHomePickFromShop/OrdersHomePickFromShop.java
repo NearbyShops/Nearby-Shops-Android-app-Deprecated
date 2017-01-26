@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.OrdersHomeDelivery;
+package org.nearbyshops.enduser.OrdersHomePickFromShop;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -10,12 +10,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduser.CancelledOrders.CancelledOrdersHomeDelivery;
 import org.nearbyshops.enduser.Model.Shop;
-import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
+import org.nearbyshops.enduser.OrderHistoryPFS.OrderHistoryPFS;
+import org.nearbyshops.enduser.OrdersCancelledPFS.CancelledOrdersPFS;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopDetail.ShopDetail;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
@@ -25,7 +26,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class OrderHome extends AppCompatActivity {
+public class OrdersHomePickFromShop extends AppCompatActivity {
 
     private Shop shop;
 
@@ -49,7 +50,7 @@ public class OrderHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_home);
+        setContentView(R.layout.activity_order_home_pfs);
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -74,16 +75,28 @@ public class OrderHome extends AppCompatActivity {
     @OnClick(R.id.order_history)
     void orderHistoryClick()
     {
-        Intent intent = new Intent(this, OrderHistoryHD.class);
-        intent.putExtra(OrderHistoryHD.IS_FILTER_BY_SHOP,getIntent().getBooleanExtra(IS_FILTER_BY_SHOP,false));
+        Intent intent = new Intent(this, OrderHistoryPFS.class);
+//        intent.putExtra(OrderHistoryHD.IS_FILTER_BY_SHOP,getIntent().getBooleanExtra(IS_FILTER_BY_SHOP,false));
         startActivity(intent);
+
+
+//        showToastMessage("Order History Click !");
+
+
+    }
+
+
+    void showToastMessage(String message)
+    {
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
 
     @OnClick(R.id.cancelled_hd)
     void cancelledOrders()
     {
-        startActivity(new Intent(this, CancelledOrdersHomeDelivery.class));
+        startActivity(new Intent(this, CancelledOrdersPFS.class));
+//        showToastMessage("Cancelled Orders Click !");
     }
 
 

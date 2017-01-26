@@ -14,11 +14,13 @@ import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduser.Home;
 import org.nearbyshops.enduser.ModelCartOrder.Order;
+import org.nearbyshops.enduser.ModelPickFromShop.OrderPFS;
 import org.nearbyshops.enduser.ModelStats.CartStats;
 import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
+import org.nearbyshops.enduser.RetrofitRESTContractPFS.OrderServicePFS;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import java.util.List;
@@ -37,9 +39,11 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
 
     Order order = new Order();
+    OrderPFS orderPFS = new OrderPFS();
 
     @Inject CartStatsService cartStatsService;
     @Inject OrderService orderService;
+    @Inject OrderServicePFS orderServicePFS;
 
 
     CartStats cartStats;
@@ -279,6 +283,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     }
 
 
+
     @OnClick(R.id.placeOrder)
     void placeOrderClick()
     {
@@ -296,26 +301,76 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
         }
 
 
-
-        order.setDeliveryAddressID(selectedAddress.getId());
-
-        if(pickFromShopCheck.isChecked())
-        {
-            order.setPickFromShop(true);
-        }
-        else if(homeDelieryCheck.isChecked())
-        {
-            order.setPickFromShop(false);
-        }
-
-//        order.setOrderStatus(1);
-
         if(cartStatsFromNetworkCall==null)
         {
             showToastMessage("Network problem. Try again !");
             return;
         }
 
+
+
+        order.setDeliveryAddressID(selectedAddress.getId());
+        orderPFS.setDeliveryAddressID(selectedAddress.getId());
+
+        if(pickFromShopCheck.isChecked())
+        {
+//            order.setPickFromShop(true);
+            placeOrderPFS();
+        }
+        else if(homeDelieryCheck.isChecked())
+        {
+            order.setPickFromShop(false);
+            placeOrderHD();
+        }
+
+//        order.setOrderStatus(1);
+
+    }
+
+    void placeOrderPFS()
+    {
+        Call<ResponseBody> call = orderServicePFS.postOrder(orderPFS,cartStatsFromNetworkCall.getCartID());
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+                if(response!=null)
+                {
+                    if(response.code() == 201)
+                    {
+                        showToastMessage("Successful !");
+
+
+                        Intent i = new Intent(PlaceOrderActivity.this,Home.class);
+
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                        startActivity(i);
+
+                    }else
+                    {
+                        showToastMessage("failed Code : !" + String.valueOf(response.code()));
+                    }
+
+                }else
+                {
+                    showToastMessage("failed !");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                showToastMessage("Network connection Failed !");
+            }
+        });
+    }
+
+
+    void placeOrderHD()
+    {
         Call<ResponseBody> call = orderService.postOrder(order,cartStatsFromNetworkCall.getCartID());
 
         call.enqueue(new Callback<ResponseBody>() {
@@ -354,7 +409,6 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
             }
         });
-
 
     }
 

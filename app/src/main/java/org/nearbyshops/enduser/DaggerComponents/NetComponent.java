@@ -32,8 +32,13 @@ import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.LoginServiceDialog;
 import org.nearbyshops.enduser.LoginActivity;
 import org.nearbyshops.enduser.OrderDetail.FragmentOrderDetail;
+import org.nearbyshops.enduser.OrderDetailPFS.FragmentOrderDetailPFS;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Complete.CompleteOrdersFragment;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Pending.PendingOrdersFragment;
+import org.nearbyshops.enduser.OrderHistoryPFS.Complete.CompleteOrdersFragmentPFS;
+import org.nearbyshops.enduser.OrderHistoryPFS.Pending.PendingOrdersFragmentPFS;
+import org.nearbyshops.enduser.OrdersCancelledPFS.CancelledByShop.CancelledByShopFragmentPFS;
+import org.nearbyshops.enduser.OrdersCancelledPFS.CancelledByUser.CancelledByUserFragmentPFS;
 import org.nearbyshops.enduser.Services.ServiceFragment.ServicesFragment;
 import org.nearbyshops.enduser.Services.SubmitURLDialog.SubmitURLDialog;
 import org.nearbyshops.enduser.ShopDetail.ShopDetail;
@@ -177,4 +182,14 @@ public interface NetComponent {
     void Inject(ServicesFragment servicesFragment);
 
     void Inject(SubmitURLDialog submitURLDialog);
+
+    void Inject(CompleteOrdersFragmentPFS completeOrdersFragmentPFS);
+
+    void Inject(FragmentOrderDetailPFS fragmentOrderDetailPFS);
+
+    void Inject(PendingOrdersFragmentPFS pendingOrdersFragmentPFS);
+
+    void Inject(CancelledByShopFragmentPFS cancelledByShopFragmentPFS);
+
+    void Inject(CancelledByUserFragmentPFS cancelledByUserFragmentPFS);
 }

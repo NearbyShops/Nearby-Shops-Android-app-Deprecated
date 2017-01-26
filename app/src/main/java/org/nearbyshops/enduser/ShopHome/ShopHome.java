@@ -17,8 +17,10 @@ import org.nearbyshops.enduser.ItemsInShopByCat.ItemsInStockByCat;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.MyApplication;
 import org.nearbyshops.enduser.OrdersHomeDelivery.OrderHome;
+import org.nearbyshops.enduser.OrdersHomePickFromShop.OrdersHomePickFromShop;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ShopDetail.ShopDetail;
+import org.nearbyshops.enduser.ShopReview.ShopReviews;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 import org.nearbyshops.enduser.Utility.UtilityShopHome;
 
@@ -156,6 +158,16 @@ public class ShopHome extends AppCompatActivity {
     }
 
 
+    @OnClick(R.id.option_orders_pfs)
+    void ordersPFSClick()
+    {
+        Intent intent = new Intent(this,OrdersHomePickFromShop.class);
+        intent.putExtra(OrdersHomePickFromShop.IS_FILTER_BY_SHOP,true);
+        startActivity(intent);
+    }
+
+
+
     @OnClick(R.id.option_items)
     void ItemsClick()
     {
@@ -170,6 +182,16 @@ public class ShopHome extends AppCompatActivity {
             Intent intent = new Intent(this, ShopDetail.class);
             intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
             startActivity(intent);
+    }
+
+
+
+    @OnClick(R.id.option_shop_reviews)
+    void shopReviews()
+    {
+        Intent intent = new Intent(this, ShopReviews.class);
+        intent.putExtra(ShopReviews.SHOP_INTENT_KEY, shop);
+        startActivity(intent);
     }
 
 

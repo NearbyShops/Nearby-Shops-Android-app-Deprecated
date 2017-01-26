@@ -62,7 +62,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="title_activity_order_home">Orders Home</string>
+    <string name="title_activity_order_home">Orders : Home Delivery</string>
     <string name="service_not_available">Geocoding service not available</string>
     <string name="invalid_lat_long_used">invalid_lat_long_used</string>
     <string name="no_address_found">no_address_found</string>

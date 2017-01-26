@@ -41,7 +41,7 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
 
 
 //    @Inject
-//    OrderService orderService;
+//    OrderServicePFS orderService;
 
     @Inject
     ServiceConfigService serviceConfigService;

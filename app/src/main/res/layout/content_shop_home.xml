@@ -201,7 +201,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:padding="5dp"
             android:id="@+id/header_cart"
-            android:text="Cart and Orders"
+            android:text="Items in Cart"
             android:textSize="17sp"
             android:background="@color/light_grey"
             android:layout_width="0dp"
@@ -210,16 +210,16 @@
 
 
         <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:id="@+id/option_cart"
             android:paddingTop="10dp"
             android:paddingBottom="60dp"
             app:srcCompat="@drawable/ic_shopping_basket_white_24px"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="5dp"
-            app:layout_constraintRight_toLeftOf="@+id/guideline"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/header_cart"
             android:background="@color/gplus_color_2"
@@ -240,34 +240,94 @@
             android:layout_height="wrap_content" />
 
 
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#88000000"
+            android:id="@+id/border_orders"
+            app:layout_constraintTop_toBottomOf="@+id/option_cart"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_height="1dp"
+            android:layout_width="0dp" />
+
+
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/border_orders"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:padding="5dp"
+            android:id="@+id/header_orders"
+            android:text="Orders Information"
+            android:textSize="17sp"
+            android:background="@color/light_grey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
 
         <ImageView
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:id="@+id/option_orders"
             android:paddingTop="10dp"
             android:paddingBottom="60dp"
             app:srcCompat="@drawable/ic_add_shopping_cart_white_24px"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
             android:background="@color/phonographyBlue"
             android:layout_width="0dp"
             android:layout_height="150dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header_cart"
-            app:layout_constraintLeft_toLeftOf="@+id/guideline" />
-
+            app:layout_constraintRight_toLeftOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/header_orders"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
 
         <TextView
-            android:text="Orders"
+            android:text="Orders : Home Delivery"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/option_orders"
             app:layout_constraintRight_toRightOf="@+id/option_orders"
             app:layout_constraintLeft_toLeftOf="@+id/option_orders"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/option_orders_pfs"
+            android:paddingTop="10dp"
+            android:paddingBottom="60dp"
+            app:srcCompat="@drawable/ic_sort_black_24px"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:background="@color/gplus_color_1"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_orders"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline" />
+
+
+
+        <TextView
+            android:text="Orders : Pick From Shop"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/option_orders_pfs"
+            app:layout_constraintRight_toRightOf="@+id/option_orders_pfs"
+            app:layout_constraintLeft_toLeftOf="@+id/option_orders_pfs"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -283,7 +343,7 @@
             android:background="#88000000"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/option_cart"
+            app:layout_constraintTop_toBottomOf="@+id/option_orders"
             android:layout_width="0dp"
             android:layout_height="2dp" />
 
@@ -295,7 +355,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:padding="5dp"
             android:id="@+id/header_shop_info"
-            android:text="Shop Information"
+            android:text="Shop Information : About Shop"
             android:textSize="17sp"
             android:background="@color/light_grey"
             android:layout_width="0dp"

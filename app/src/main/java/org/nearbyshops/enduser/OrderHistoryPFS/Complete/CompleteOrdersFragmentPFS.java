@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Complete;
+package org.nearbyshops.enduser.OrderHistoryPFS.Complete;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,23 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-
 import org.nearbyshops.enduser.DaggerComponentBuilder;
-import org.nearbyshops.enduser.Model.Shop;
-import org.nearbyshops.enduser.ModelCartOrder.Endpoints.OrderEndPoint;
-import org.nearbyshops.enduser.ModelCartOrder.Order;
-import org.nearbyshops.enduser.OrderDetail.OrderDetail;
-import org.nearbyshops.enduser.OrderDetail.UtilityOrderDetail;
+import org.nearbyshops.enduser.ModelPickFromShop.OrderEndPointPFS;
+import org.nearbyshops.enduser.ModelPickFromShop.OrderPFS;
+import org.nearbyshops.enduser.OrderDetailPFS.OrderDetailPFS;
+import org.nearbyshops.enduser.OrderDetailPFS.UtilityOrderDetailPFS;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
-import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
-import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.SlidingLayerSort.UtilitySortOrdersHD;
+import org.nearbyshops.enduser.OrderHistoryPFS.SlidingLayerSort.UtilitySortOrdersPFS;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
+import org.nearbyshops.enduser.RetrofitRESTContractPFS.OrderServicePFS;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
-import org.nearbyshops.enduser.Utility.UtilityShopHome;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,19 +37,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class CompleteOrdersFragment extends Fragment implements AdapterComplete.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener ,NotifySort,NotifySearch {
+public class CompleteOrdersFragmentPFS extends Fragment implements AdapterCompletePFS.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener ,NotifySort,NotifySearch {
 
 
 //    @Inject
-//    OrderServicePFS orderService;
+//    OrderService orderService;
 
     @Inject
-    OrderService orderServiceShopStaff;
+    OrderServicePFS orderServiceShopStaff;
 
     RecyclerView recyclerView;
-    AdapterComplete adapter;
+    AdapterCompletePFS adapter;
 
-    public List<Order> dataset = new ArrayList<>();
+    public List<OrderPFS> dataset = new ArrayList<>();
 
     GridLayoutManager layoutManager;
     SwipeRefreshLayout swipeContainer;
@@ -62,11 +58,12 @@ public class CompleteOrdersFragment extends Fragment implements AdapterComplete.
     final private int limit = 5;
     @State int offset = 0;
     @State int item_count = 0;
+
     boolean isDestroyed;
 
 
 
-    public CompleteOrdersFragment() {
+    public CompleteOrdersFragmentPFS() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -75,8 +72,8 @@ public class CompleteOrdersFragment extends Fragment implements AdapterComplete.
     }
 
 
-    public static CompleteOrdersFragment newInstance() {
-        CompleteOrdersFragment fragment = new CompleteOrdersFragment();
+    public static CompleteOrdersFragmentPFS newInstance() {
+        CompleteOrdersFragmentPFS fragment = new CompleteOrdersFragmentPFS();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -91,7 +88,7 @@ public class CompleteOrdersFragment extends Fragment implements AdapterComplete.
 
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_home_delivery_placed_orders, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_pick_from_shop_complete_orders, container, false);
 
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
@@ -129,7 +126,7 @@ public class CompleteOrdersFragment extends Fragment implements AdapterComplete.
     void setupRecyclerView()
     {
 
-        adapter = new AdapterComplete(dataset,this,this);
+        adapter = new AdapterCompletePFS(dataset,this,this);
 
         recyclerView.setAdapter(adapter);
 
@@ -223,37 +220,21 @@ public class CompleteOrdersFragment extends Fragment implements AdapterComplete.
 //            Shop currentShop = UtilityShopHome.getShop(getContext());
 
         String current_sort = "";
-        current_sort = UtilitySortOrdersHD.getSort(getContext()) + " " + UtilitySortOrdersHD.getAscending(getContext());
+        current_sort = UtilitySortOrdersPFS.getSort(getContext()) + " " + UtilitySortOrdersPFS.getAscending(getContext());
 
-//        showToastMessage(UtilityLogin.getAuthorizationHeaders(getActivity()));
-
-
-        Integer shopID = null;
-
-        if(getActivity().getIntent().getBooleanExtra(OrderHistoryHD.IS_FILTER_BY_SHOP,false))
-        {
-            Shop shop = UtilityShopHome.getShop(getActivity());
-
-            if(shop!=null)
-            {
-                shopID = shop.getShopID();
-            }
-        }
-
-
-        Call<OrderEndPoint> call = orderServiceShopStaff.getOrders(
+        Call<OrderEndPointPFS> call = orderServiceShopStaff.getOrders(
                     UtilityLogin.getAuthorizationHeaders(getActivity()),
-                    null,shopID,false,
-                    null,null,null,
+                    null,null,
+                    null,
                     null,null,
                     null,null,
-                    false,searchQuery,
+                    false, searchQuery,
                     current_sort,limit,offset,null);
 
 
-            call.enqueue(new Callback<OrderEndPoint>() {
+            call.enqueue(new Callback<OrderEndPointPFS>() {
                 @Override
-                public void onResponse(Call<OrderEndPoint> call, Response<OrderEndPoint> response) {
+                public void onResponse(Call<OrderEndPointPFS> call, Response<OrderEndPointPFS> response) {
 
                     if(isDestroyed)
                     {
@@ -280,7 +261,7 @@ public class CompleteOrdersFragment extends Fragment implements AdapterComplete.
                 }
 
                 @Override
-                public void onFailure(Call<OrderEndPoint> call, Throwable t) {
+                public void onFailure(Call<OrderEndPointPFS> call, Throwable t) {
                     if(isDestroyed)
                     {
                         return;
@@ -360,9 +341,11 @@ public class CompleteOrdersFragment extends Fragment implements AdapterComplete.
     }
 
     @Override
-    public void notifyOrderSelected(Order order) {
-        UtilityOrderDetail.saveOrder(order,getActivity());
-        getActivity().startActivity(new Intent(getActivity(),OrderDetail.class));
+    public void notifyOrderSelected(OrderPFS order) {
+
+        UtilityOrderDetailPFS.saveOrder(order,getActivity());
+        getActivity().startActivity(new Intent(getActivity(),OrderDetailPFS.class));
+
     }
 
     @Override
@@ -421,7 +404,7 @@ public class CompleteOrdersFragment extends Fragment implements AdapterComplete.
 //
 ////        Call<ResponseBody> call = orderService.cancelOrderByShop(order.getOrderID());
 //
-//        Call<ResponseBody> call = orderServiceShopStaff.cancelledByEndUser(
+//        Call<ResponseBody> call = orderServiceShopStaff.cancelledByShop(
 //                UtilityLogin.getAuthorizationHeaders(getActivity()),
 //                order.getOrderID()
 //        );

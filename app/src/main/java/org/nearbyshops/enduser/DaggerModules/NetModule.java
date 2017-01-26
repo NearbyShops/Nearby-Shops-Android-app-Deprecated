@@ -26,6 +26,7 @@ import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopReviewThanksService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
+import org.nearbyshops.enduser.RetrofitRESTContractPFS.OrderServicePFS;
 import org.nearbyshops.enduser.RetrofitRESTContractSDS.ServiceConfigService;
 import org.nearbyshops.enduser.Utility.UtilityGeneral;
 
@@ -92,16 +93,14 @@ public class NetModule {
     @Singleton
     OkHttpClient provideOkHttpClient() {
 
-        OkHttpClient client = new OkHttpClient()
-                .newBuilder()
-                .build();
-
         // cache is commented out ... you can add cache by putting it back in the builder options
         //.cache(cache)
 
         //Cache cache
 
-        return client;
+        return new OkHttpClient()
+                .newBuilder()
+                .build();
     }
 
 
@@ -112,30 +111,26 @@ public class NetModule {
         Log.d("applog","Retrofit: " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
 
 
-        Retrofit retrofit = new Retrofit.Builder()
+        return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(UtilityGeneral.getServiceURL(MyApplication.getAppContext()))
                 .client(okHttpClient)
                 .build();
-
-        return retrofit;
     }
 
 
     @Provides @Named("sds")
     Retrofit provideRetrofitGIDB(Gson gson, OkHttpClient okHttpClient) {
 
-        Retrofit retrofit = new Retrofit.Builder()
+        //        .client(okHttpClient)
+
+//        Log.d("applog","Retrofit : " + UtilityGeneral.getServiceURL_SDS(MyApplication.getAppContext()));
+
+
+        return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(UtilityGeneral.getServiceURL_SDS(MyApplication.getAppContext()))
                 .build();
-
-        //        .client(okHttpClient)
-
-        Log.d("applog","Retrofit : " + UtilityGeneral.getServiceURL_SDS(MyApplication.getAppContext()));
-
-
-        return retrofit;
     }
 
 
@@ -202,7 +197,7 @@ public class NetModule {
     {
         OrderService service = retrofit.create(OrderService.class);
 
-        Log.d("applog","OrderService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+        Log.d("applog","OrderServicePFS : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
 
         return service;
     }
@@ -306,7 +301,11 @@ public class NetModule {
         return retrofit.create(ShopReviewThanksService.class);
     }
 
-
+    @Provides
+    OrderServicePFS orderServicePFS(Retrofit retrofit)
+    {
+        return retrofit.create(OrderServicePFS.class);
+    }
 
 
     @Provides
@@ -314,6 +313,5 @@ public class NetModule {
     {
         return retrofit.create(ServiceConfigService.class);
     }
-
 
 }

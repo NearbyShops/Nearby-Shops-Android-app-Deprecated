@@ -407,6 +407,73 @@
                 android:value=".Home" />
         </activity>
 
+
+        <activity
+            android:name=".OrdersHomePickFromShop.OrdersHomePickFromShop"
+            android:label="Orders : Pick From Shop"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+        </activity>
+
+
+
+
+        <activity
+            android:name=".OrderDetailPFS.OrderDetailPFS"
+            android:label="Order Details"
+            android:parentActivityName=".OrdersHomePickFromShop.OrdersHomePickFromShop"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OrdersHomeDelivery.OrderHome" />
+        </activity>
+
+
+
+        <activity
+            android:launchMode="singleTop"
+            android:name=".OrderHistoryPFS.OrderHistoryPFS"
+            android:label="Order History"
+            android:parentActivityName=".OrdersHomePickFromShop.OrdersHomePickFromShop"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OrdersHomePickFromShop.OrdersHomePickFromShop" />
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+        <activity
+            android:launchMode="singleTop"
+            android:name=".OrdersCancelledPFS.CancelledOrdersPFS"
+            android:label="Order History"
+            android:parentActivityName=".OrdersHomePickFromShop.OrdersHomePickFromShop"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OrdersHomePickFromShop.OrdersHomePickFromShop" />
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
     </application>
 
 </manifest>

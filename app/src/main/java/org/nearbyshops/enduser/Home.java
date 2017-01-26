@@ -25,6 +25,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,6 +60,7 @@ import org.nearbyshops.enduser.Items.ItemsActivity;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.NotifyAboutLogin;
 import org.nearbyshops.enduser.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduser.OrdersHomePickFromShop.OrdersHomePickFromShop;
 import org.nearbyshops.enduser.RetrofitRESTContract.ServiceConfigurationService;
 import org.nearbyshops.enduser.Services.ServicesActivity;
 import org.nearbyshops.enduser.Settings.SettingsCustom;
@@ -181,7 +184,6 @@ public class Home extends AppCompatActivity
 
         serviceURL.setText(UtilityGeneral.getServiceURL(this));
 
-/*
         serviceURL.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -196,9 +198,24 @@ public class Home extends AppCompatActivity
             @Override
             public void afterTextChanged(Editable s) {
 
+                if (urlValidator.isValid(s.toString())) {
+                    UtilityGeneral.saveServiceURL(s.toString());
+                    textInputServiceURL.setError(null);
+                    textInputServiceURL.setErrorEnabled(false);
+                    updateStatusLight();
+                }
+                else
+                {
+//                    serviceURL.setError("URL Invalid");
+                    textInputServiceURL.setErrorEnabled(true);
+                    textInputServiceURL.setError("Invalid URL");
+
+                    UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_RED);
+                    setStatusLight();
+                }
+
             }
         });
-*/
 
 
 
@@ -212,7 +229,7 @@ public class Home extends AppCompatActivity
 
 
 
-    void bindEditTextServiceURL()
+    /*void bindEditTextServiceURL()
     {
 
         editTextSub = RxTextView
@@ -226,22 +243,6 @@ public class Home extends AppCompatActivity
                         // do some work with new text
 
 
-                        if (urlValidator.isValid(value.toString())) {
-                            UtilityGeneral.saveServiceURL(value.toString());
-                            textInputServiceURL.setError(null);
-                            textInputServiceURL.setErrorEnabled(false);
-                            updateStatusLight();
-                        }
-                        else
-                        {
-//                    serviceURL.setError("URL Invalid");
-                            textInputServiceURL.setErrorEnabled(true);
-                            textInputServiceURL.setError("Invalid URL");
-
-                            UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_RED);
-                            setStatusLight();
-                        }
-
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -251,9 +252,7 @@ public class Home extends AppCompatActivity
 
                     }
                 });
-
-
-    }
+    }*/
 
 
 
@@ -546,7 +545,12 @@ public class Home extends AppCompatActivity
 
             startActivity(new Intent(this, OrderHome.class));
 
-        } else if (id == R.id.nav_share) {
+        }
+        else if(id == R.id.nav_orders_pick_from_shop)
+        {
+            startActivity(new Intent(this, OrdersHomePickFromShop.class));
+        }
+        else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
@@ -576,6 +580,7 @@ public class Home extends AppCompatActivity
         else
         {
             UtilityLogin.saveEndUser(null,this);
+            UtilityLogin.saveCredentials(this,null,null);
 
             item.setTitle("Login");
 
@@ -670,7 +675,7 @@ public class Home extends AppCompatActivity
         super.onResume();
 
         setlabelLogin();
-        bindEditTextServiceURL();
+//        bindEditTextServiceURL();
     }
 
 

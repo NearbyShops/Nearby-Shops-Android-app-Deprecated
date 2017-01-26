@@ -49,6 +49,7 @@
 
 
                 <FrameLayout
+                    android:visibility="gone"
                     android:id="@+id/review_stat_fragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -59,7 +60,7 @@
                     android:layout_below="@id/review_stat_fragment"
                     android:layout_marginBottom="10dp"
                     android:id="@+id/border"
-                    android:background="@color/grey800"
+                    android:background="@color/light_grey"
                     android:layout_width="match_parent"
                     android:layout_height="1dp" />
 

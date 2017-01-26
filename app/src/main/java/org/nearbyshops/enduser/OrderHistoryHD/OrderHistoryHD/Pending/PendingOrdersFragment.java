@@ -49,7 +49,7 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
 
 
 //    @Inject
-//    OrderService orderService;
+//    OrderServicePFS orderService;
 
     @Inject
     OrderService orderService;
