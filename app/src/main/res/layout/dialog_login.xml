@@ -87,6 +87,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_below="@id/text_input_username"
                     android:id="@+id/text_input_password"
+                    app:passwordToggleEnabled="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 

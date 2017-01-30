@@ -302,7 +302,7 @@ public class ItemCategoriesFragmentShopHome extends Fragment
                 null,
                 null,null,
                 null,null,
-                null,
+                null,true,
                 "id",limit,offset,false);
 
         Log.d("applog","DetachedTabs: Network call made !");

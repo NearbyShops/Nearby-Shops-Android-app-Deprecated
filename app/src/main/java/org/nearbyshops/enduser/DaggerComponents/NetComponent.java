@@ -12,6 +12,7 @@ import org.nearbyshops.enduser.DeliveryAddress.EditAddressActivity;
 import org.nearbyshops.enduser.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduser.DaggerModules.AppModule;
 import org.nearbyshops.enduser.DaggerModules.NetModule;
+import org.nearbyshops.enduser.EditProfileEndUser.EditEndUserFragment;
 import org.nearbyshops.enduser.FilterShopDialog.FilterShopsDialog;
 import org.nearbyshops.enduser.FilterShops.FilterShops;
 import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.AdapterSimple;
@@ -24,9 +25,8 @@ import org.nearbyshops.enduser.ItemsByCategorySwipe.ItemCategories.ItemCategorie
 import org.nearbyshops.enduser.ItemsByCategorySwipe.Items.FragmentItem_ItemByCategory;
 import org.nearbyshops.enduser.ItemsByCategoryHorizontal.ItemCategories.ItemCategoriesHorizontal;
 import org.nearbyshops.enduser.ItemsByCategoryHorizontal.Items.FragmentItemScreenHorizontal;
-import org.nearbyshops.enduser.ItemsInShop.ShopItems.AdapterItemsInShop;
 import org.nearbyshops.enduser.ItemsInShop.ShopItems.FragmentItemsInShop;
-import org.nearbyshops.enduser.ItemsInShopByCat.AdapterItemsInStock;
+import org.nearbyshops.enduser.ItemsInShopByCat.AdapterItemsInShop;
 import org.nearbyshops.enduser.ItemsInShopByCat.ItemsInStockByCatFragment;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Login.LoginServiceDialog;
@@ -147,7 +147,7 @@ public interface NetComponent {
 
     void Inject(FragmentItemsInShop fragmentItemsInShop);
 
-    void Inject(AdapterItemsInShop adapterItemsInShop);
+    void Inject(org.nearbyshops.enduser.ItemsInShop.ShopItems.AdapterItemsInShop adapterItemsInShop);
 
     void Inject(ItemCategoriesHorizontal itemCategoriesHorizontal);
 
@@ -161,7 +161,7 @@ public interface NetComponent {
 
     void Inject(ItemsInStockByCatFragment itemsInStockByCatFragment);
 
-    void Inject(AdapterItemsInStock adapterItemsInStock);
+    void Inject(AdapterItemsInShop adapterItemsInShop);
 
     void Inject(FilterShops filterShops);
 
@@ -192,4 +192,6 @@ public interface NetComponent {
     void Inject(CancelledByShopFragmentPFS cancelledByShopFragmentPFS);
 
     void Inject(CancelledByUserFragmentPFS cancelledByUserFragmentPFS);
+
+    void Inject(EditEndUserFragment editEndUserFragment);
 }

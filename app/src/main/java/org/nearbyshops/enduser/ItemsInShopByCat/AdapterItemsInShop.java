@@ -60,7 +60,7 @@ import retrofit2.Response;
  */
 
 
-public class AdapterItemsInStock extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 //    Map<Integer,ShopItem> shopItemMap = new HashMap<>();
 //    Map<Integer,Item> selectedItems = new HashMap<>();
@@ -90,10 +90,10 @@ public class AdapterItemsInStock extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
 
-    public AdapterItemsInStock(List<Object> dataset,
-                               Context context,
-                               NotificationsFromAdapter notificationReceiver,
-                               Fragment fragment
+    public AdapterItemsInShop(List<Object> dataset,
+                              Context context,
+                              NotificationsFromAdapter notificationReceiver,
+                              Fragment fragment
     )
     {
 

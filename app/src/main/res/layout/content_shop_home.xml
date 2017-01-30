@@ -289,7 +289,7 @@
 
 
         <TextView
-            android:text="Orders : Home Delivery"
+            android:text="Orders\nHome Delivery"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:padding="10dp"
@@ -321,7 +321,7 @@
 
 
         <TextView
-            android:text="Orders : Pick From Shop"
+            android:text="Orders\nPick From Shop"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:padding="10dp"

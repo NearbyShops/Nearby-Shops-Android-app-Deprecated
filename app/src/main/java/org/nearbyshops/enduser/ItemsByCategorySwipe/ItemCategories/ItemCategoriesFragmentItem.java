@@ -296,7 +296,7 @@ public class ItemCategoriesFragmentItem extends Fragment
                 (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY, 0),
                 (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY, 0),
                 (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY, 0),
-                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY, 0),
+                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY, 0),true,
                 "id",limit,offset,false);
 
         Log.d("applog","DetachedTabs: Network call made !");

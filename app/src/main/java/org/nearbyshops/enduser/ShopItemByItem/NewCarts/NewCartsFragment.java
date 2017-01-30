@@ -300,7 +300,7 @@ public class NewCartsFragment extends Fragment
                     endUserID,
                     false,
                     null,null,null,null,
-                    null,current_sort,
+                    null,true,current_sort,
                     limit,offset,null,true
             );
 

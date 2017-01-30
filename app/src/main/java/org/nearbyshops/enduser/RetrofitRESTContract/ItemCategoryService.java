@@ -22,15 +22,15 @@ import retrofit2.http.Query;
 
 public interface ItemCategoryService {
 
-    @GET("/api/v1/ItemCategory/Deprecated")
-    Call<List<ItemCategory>> getItemCategories(
-            @Query("ParentID") Integer parentID,
-            @Query("ShopID") Integer shopID,
-            @Query("latCenter")Double latCenter,@Query("lonCenter")Double lonCenter,
-            @Query("deliveryRangeMax")Double deliveryRangeMax,
-            @Query("deliveryRangeMin")Double deliveryRangeMin,
-            @Query("proximity")Double proximity
-    );
+//    @GET("/api/v1/ItemCategory/Deprecated")
+//    Call<List<ItemCategory>> getItemCategories(
+//            @Query("ParentID") Integer parentID,
+//            @Query("ShopID") Integer shopID,
+//            @Query("latCenter")Double latCenter,@Query("lonCenter")Double lonCenter,
+//            @Query("deliveryRangeMax")Double deliveryRangeMax,
+//            @Query("deliveryRangeMin")Double deliveryRangeMin,
+//            @Query("proximity")Double proximity
+//    );
 
 
 
@@ -42,22 +42,26 @@ public interface ItemCategoryService {
             @Query("deliveryRangeMax")Double deliveryRangeMax,
             @Query("deliveryRangeMin")Double deliveryRangeMin,
             @Query("proximity")Double proximity,
+            @Query("ShopEnabled")Boolean shopEnabled,
             @Query("SortBy") String sortBy,
             @Query("Limit") Integer limit, @Query("Offset") Integer offset,
             @Query("metadata_only")Boolean metaonly
     );
 
 
-    @GET("/api/v1/ItemCategory/{id}")
-    Call<ItemCategory> getItemCategory(@Path("id") Integer ItemCategoryID);
 
-    @POST("/api/v1/ItemCategory")
-    Call<ItemCategory> insertItemCategory(@Body ItemCategory itemCategory);
 
-    @PUT("/api/v1/ItemCategory/{id}")
-    Call<ResponseBody> updateItemCategory(@Body ItemCategory itemCategory, @Path("id") int id);
-
-    @DELETE("/api/v1/ItemCategory/{id}")
-    Call<ResponseBody> deleteItemCategory(@Path("id") int id);
+//
+//    @GET("/api/v1/ItemCategory/{id}")
+//    Call<ItemCategory> getItemCategory(@Path("id") Integer ItemCategoryID);
+//
+//    @POST("/api/v1/ItemCategory")
+//    Call<ItemCategory> insertItemCategory(@Body ItemCategory itemCategory);
+//
+//    @PUT("/api/v1/ItemCategory/{id}")
+//    Call<ResponseBody> updateItemCategory(@Body ItemCategory itemCategory, @Path("id") int id);
+//
+//    @DELETE("/api/v1/ItemCategory/{id}")
+//    Call<ResponseBody> deleteItemCategory(@Path("id") int id);
 
 }

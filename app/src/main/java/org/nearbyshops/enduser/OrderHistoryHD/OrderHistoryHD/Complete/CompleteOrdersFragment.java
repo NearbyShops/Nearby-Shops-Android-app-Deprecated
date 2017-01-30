@@ -24,7 +24,7 @@ import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.SlidingLayerSort.UtilitySortOrdersHD;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
-import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
+import org.nearbyshops.enduser.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityLogin;

@@ -122,7 +122,7 @@ public class LoginServiceDialog extends DialogFragment implements View.OnClickLi
         String header = UtilityLogin.baseEncoding(username.getText().toString(),password.getText().toString());
 
 
-        Call<EndUser> endUserCall = endUserService.EndUserLogin(header);
+        Call<EndUser> endUserCall = endUserService.getEndUserLogin(header);
 
         endUserCall.enqueue(new Callback<EndUser>() {
             @Override

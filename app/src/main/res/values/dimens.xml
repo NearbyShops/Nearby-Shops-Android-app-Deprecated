@@ -21,4 +21,5 @@
     <dimen name="review_stats_bar_height">15dp</dimen>
     <dimen name="margin_top_bar_height">5dp</dimen>
     <dimen name="menu_item_text_size">20sp</dimen>
+    <dimen name="image_view_height">300dp</dimen>
 </resources>

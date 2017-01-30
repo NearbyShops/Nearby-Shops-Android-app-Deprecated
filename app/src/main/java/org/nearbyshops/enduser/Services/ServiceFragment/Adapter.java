@@ -116,7 +116,10 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 holder.helplineNumber.setText("Helpline Number : " + service.getHelplineNumber());
                 holder.serviceRange.setText("Service Range : " + String.valueOf(service.getServiceRange()) + " Kms");
 
-                holder.serviceType.setText("Service Type : " + getServiceType(service.getServiceType()));
+//                holder.serviceType.setText("Distance : " + getServiceType(service.getServiceType()));
+
+                holder.serviceType.setText("Distance : " + String.format("%.2f",service.getRt_distance()) + " Km");
+
 
                 if(service.getOfficial())
                 {

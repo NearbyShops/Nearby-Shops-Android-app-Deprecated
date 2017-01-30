@@ -28,7 +28,7 @@ import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduser.ItemsInShopByCat.SlidingLayerSort.UtilitySortItemsInShop;
-import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
+import org.nearbyshops.enduser.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.Utility.UtilityShopHome;
 
@@ -47,7 +47,7 @@ import retrofit2.Response;
  * Created by sumeet on 2/12/16.
  */
 
-public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterItemsInStock.NotificationsFromAdapter , NotifyBackPressed, NotifySort, NotifySearch {
+public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterItemsInShop.NotificationsFromAdapter , NotifyBackPressed, NotifySort, NotifySearch {
 
 
 //    Map<Integer,ShopItem> shopItemMapTemp = new HashMap<>();
@@ -79,7 +79,7 @@ public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshL
 
     GridLayoutManager layoutManager;
 
-    AdapterItemsInStock listAdapter;
+    AdapterItemsInShop listAdapter;
 
 
     @Inject
@@ -160,7 +160,7 @@ public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshL
     {
 
 
-        listAdapter = new AdapterItemsInStock(dataset,getActivity(),this,this);
+        listAdapter = new AdapterItemsInShop(dataset,getActivity(),this,this);
         itemCategoriesList.setAdapter(listAdapter);
 
         layoutManager = new GridLayoutManager(getActivity(),6, LinearLayoutManager.VERTICAL,false);
@@ -323,7 +323,7 @@ public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshL
                     null,
                     null,null,
                     null,null,
-                    null,
+                    null,true,
                     ItemCategory.CATEGORY_ORDER,null,null,false);
 
 
@@ -337,7 +337,7 @@ public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshL
                     null,
                     null,null,
                     null,null,
-                    null,
+                    null,true,
                     ItemCategory.CATEGORY_ORDER,null,null,false);
 
         }
@@ -501,7 +501,7 @@ public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshL
                     null,null,null,null,null,null,null,
                     null,null,
                     null,null,null,
-                    null,current_sort,
+                    null,true,current_sort,
                     limit_item,offset_item,false,
                     true);
 
@@ -515,7 +515,8 @@ public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshL
                     currentShop.getShopID(),
                     null,null,null,null,null,null,null,null,null,
                     null,null,null,
-                    searchQuery,current_sort,
+                    searchQuery,
+                    true,current_sort,
                     limit_item,offset_item,false,
                     true);
         }

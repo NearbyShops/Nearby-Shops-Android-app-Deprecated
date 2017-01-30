@@ -222,7 +222,7 @@ public class FragmentItemCategories extends Fragment implements  AdapterItemCate
                 (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY, 0),
                 (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY, 0),
                 (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY, 0),
-                "id",limit,offset,false);
+                true, "id",limit,offset,false);
 
         /*Call<List<ItemCategory>> call = itemCategoryService.getItemCategories(currentCategory.getItemCategoryID(), null,
                 (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY, 0),

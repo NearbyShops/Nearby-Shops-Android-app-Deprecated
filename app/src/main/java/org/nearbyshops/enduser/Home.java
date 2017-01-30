@@ -54,6 +54,8 @@ import com.jakewharton.rxbinding.widget.RxTextView;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
 import org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity;
+import org.nearbyshops.enduser.EditProfileEndUser.EditEndUserFragment;
+import org.nearbyshops.enduser.EditProfileEndUser.EditProfileEndUser;
 import org.nearbyshops.enduser.FilterShops.FilterShops;
 import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.ItemCategoriesSimple;
 import org.nearbyshops.enduser.Items.ItemsActivity;
@@ -224,7 +226,6 @@ public class Home extends AppCompatActivity
 
         setStatusLight();
 
-
     } // onCreate() Ends
 
 
@@ -270,7 +271,11 @@ public class Home extends AppCompatActivity
 
         ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
 
-        Call<ServiceConfigurationLocal> call = service.getServiceConfiguration();
+        Call<ServiceConfigurationLocal> call = service.getServiceConfiguration(
+                UtilityLocation.getLatitude(this),
+                UtilityLocation.getLongitude(this)
+        );
+
 
         call.enqueue(new Callback<ServiceConfigurationLocal>() {
             @Override
@@ -284,20 +289,22 @@ public class Home extends AppCompatActivity
                         UtilityGeneral.saveConfiguration(configurationLocal,Home.this);
 
 
-                        if(UtilityLocation.getLongitude(Home.this)!=null && UtilityLocation.getLatitude(Home.this)!=null)
-                        {
-                            Location locationUser = new Location("user");
-                            locationUser.setLongitude(UtilityLocation.getLongitude(Home.this));
-                            locationUser.setLatitude(UtilityLocation.getLatitude(Home.this));
+//                        if(UtilityLocation.getLongitude(Home.this)!=null && UtilityLocation.getLatitude(Home.this)!=null)
+//                        {
 
-                            Location locationProvider = new Location("provider");
-                            locationProvider.setLatitude(configurationLocal.getLatCenter());
-                            locationProvider.setLongitude(configurationLocal.getLonCenter());
+//                            Location locationUser = new Location("user");
+//                            locationUser.setLongitude(UtilityLocation.getLongitude(Home.this));
+//                            locationUser.setLatitude(UtilityLocation.getLatitude(Home.this));
+//
+//                            Location locationProvider = new Location("provider");
+//                            locationProvider.setLatitude(configurationLocal.getLatCenter());
+//                            locationProvider.setLongitude(configurationLocal.getLonCenter());
 
 
-                            float distance  = locationProvider.distanceTo(locationUser);
+//                            float distance  = locationProvider.distanceTo(locationUser);
 
-                            if(distance<=configurationLocal.getServiceRange())
+
+                            if(configurationLocal.getRt_distance()<=configurationLocal.getServiceRange())
                             {
                                 UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_GREEN);
                                 setStatusLight();
@@ -307,12 +314,12 @@ public class Home extends AppCompatActivity
                                 UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_YELLOW);
                                 setStatusLight();
                             }
-                        }
-                        else
-                        {
-                            UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_YELLOW);
-                            setStatusLight();
-                        }
+//                        }
+//                        else
+//                        {
+//                            UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_YELLOW);
+//                            setStatusLight();
+//                        }
 
 
                     }
@@ -327,8 +334,6 @@ public class Home extends AppCompatActivity
                     UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_RED);
                     setStatusLight();
                 }
-
-
             }
 
             @Override
@@ -392,6 +397,7 @@ public class Home extends AppCompatActivity
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
 
@@ -518,6 +524,18 @@ public class Home extends AppCompatActivity
 
 
 
+    void updateLoginMenuVisibility()
+    {
+        if(UtilityLogin.getEndUser(this)==null)
+        {
+            // logged out
+            navigationView.getMenu().findItem(R.id.nav_edit_profile).setVisible(false);
+        }
+        else
+        {
+            navigationView.getMenu().findItem(R.id.nav_edit_profile).setVisible(true);
+        }
+    }
 
 
 
@@ -554,7 +572,16 @@ public class Home extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
-        }else if(id == R.id.nav_login) {
+        }
+        else if(id==R.id.nav_edit_profile)
+        {
+
+            Intent intent = new Intent(this, EditProfileEndUser.class);
+            intent.putExtra(EditEndUserFragment.EDIT_MODE_INTENT_KEY,EditEndUserFragment.MODE_UPDATE);
+            startActivity(intent);
+
+        }
+        else if(id == R.id.nav_login) {
 
             loginClick(item);
         }
@@ -576,6 +603,7 @@ public class Home extends AppCompatActivity
         if(UtilityLogin.getEndUser(this)==null)
         {
             showLoginDialog();
+            navigationView.getMenu().findItem(R.id.nav_edit_profile).setVisible(true);
         }
         else
         {
@@ -585,6 +613,7 @@ public class Home extends AppCompatActivity
             item.setTitle("Login");
 
             showToastMessage("You are logged out !");
+            navigationView.getMenu().findItem(R.id.nav_edit_profile).setVisible(false);
         }
 
     }
@@ -675,6 +704,7 @@ public class Home extends AppCompatActivity
         super.onResume();
 
         setlabelLogin();
+        updateLoginMenuVisibility();
 //        bindEditTextServiceURL();
     }
 
@@ -884,9 +914,8 @@ public class Home extends AppCompatActivity
 
     @Override
     public void onLocationChanged(Location location) {
+
         saveLocation(location);
-
-
         stopLocationUpdates();
     }
 
@@ -1060,8 +1089,6 @@ public class Home extends AppCompatActivity
     @OnClick(R.id.paste_url_button)
     void pasteURLClick()
     {
-
-
         ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
 
         if(clipboard.getPrimaryClip()!=null)

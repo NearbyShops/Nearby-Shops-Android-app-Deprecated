@@ -107,8 +107,11 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
         }
 
 
-        String imagePath = UtilityGeneral.getImageEndpointURL(context)
-                + dataset.get(position).getRt_end_user_profile().getProfileImageURL();
+//        String imagePath = UtilityGeneral.getImageEndpointURL(context)
+//                + dataset.get(position).getRt_end_user_profile().getProfileImageURL();
+
+
+        String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/EndUser/Image/" + dataset.get(position).getRt_end_user_profile().getProfileImageURL();
 
 
 

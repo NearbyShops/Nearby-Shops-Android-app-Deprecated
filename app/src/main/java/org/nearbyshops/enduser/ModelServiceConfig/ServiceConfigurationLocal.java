@@ -128,7 +128,7 @@ public class ServiceConfigurationLocal {
     private Timestamp updated;
 
     // real time variables : the values of these variables are generated in real time.
-    private Double rt_distance;
+    private double rt_distance;
 
 
     public String getDescriptionShort() {

@@ -236,7 +236,7 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 
         String imagePath = UtilityGeneral.getServiceURL(context)
-                + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
+                + "/api/v1/Item/Image/five_hundred_" + item.getItemImageURL() + ".jpg";
 
 
         Drawable drawable = VectorDrawableCompat

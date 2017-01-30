@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
@@ -21,7 +22,7 @@ import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPr
 import org.nearbyshops.enduser.ItemsInShopByCat.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.ItemsInShopByCat.SlidingLayerSort.SlidingLayerSortItemsInShop;
-import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
+import org.nearbyshops.enduser.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 
 import butterknife.Bind;
@@ -89,16 +90,27 @@ public class ItemsInStockByCat extends AppCompatActivity implements NotifyIndica
         ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
         //slidingLayer.setShadowSizeRes(R.dimen.shadow_size);
 
+        final DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+
         if(slidingLayer!=null)
         {
             slidingLayer.setChangeStateOnTap(true);
             slidingLayer.setSlidingEnabled(true);
 //            slidingLayer.setPreviewOffsetDistance(15);
-            slidingLayer.setOffsetDistance(30);
+//            slidingLayer.setOffsetDistance((int)(10*metrics.density));
+            slidingLayer.setOffsetDistance((int)(5*metrics.density));
             slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
 
-            DisplayMetrics metrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            showToastMessage("Offset Distance : " + String.valueOf((int)(5*metrics.density)));
+
+
+
+//            slidingLayer.setOffsetDistance((int)(30*metrics.density));
+
+//            DisplayMetrics metrics = new DisplayMetrics();
+//            getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
             //RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(250, ViewGroup.LayoutParams.MATCH_PARENT);
 
@@ -121,6 +133,10 @@ public class ItemsInStockByCat extends AppCompatActivity implements NotifyIndica
 
 
 
+    void showToastMessage(String message)
+    {
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
 
 
 

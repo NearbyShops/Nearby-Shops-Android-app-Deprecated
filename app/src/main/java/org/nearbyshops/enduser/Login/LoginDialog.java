@@ -1,6 +1,7 @@
 package org.nearbyshops.enduser.Login;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,7 +17,8 @@ import android.widget.Toast;
 
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
-import org.nearbyshops.enduser.LoginActivity;
+import org.nearbyshops.enduser.EditProfileEndUser.EditEndUserFragment;
+import org.nearbyshops.enduser.EditProfileEndUser.EditProfileEndUser;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.EndUserService;
@@ -124,7 +126,7 @@ public class LoginDialog extends DialogFragment implements View.OnClickListener 
         String header = UtilityLogin.baseEncoding(username.getText().toString(),password.getText().toString());
 
 
-        Call<EndUser> endUserCall = endUserService.EndUserLogin(header);
+        Call<EndUser> endUserCall = endUserService.getEndUserLogin(header);
 
         endUserCall.enqueue(new Callback<EndUser>() {
             @Override
@@ -171,6 +173,11 @@ public class LoginDialog extends DialogFragment implements View.OnClickListener 
     {
 //        Intent intent = new Intent(getContext(),SignUp.class);
 //        startActivity(intent);
+
+        Intent intent = new Intent(getActivity(), EditProfileEndUser.class);
+        intent.putExtra(EditEndUserFragment.EDIT_MODE_INTENT_KEY,EditEndUserFragment.MODE_ADD);
+        startActivity(intent);
+
     }
 
 }

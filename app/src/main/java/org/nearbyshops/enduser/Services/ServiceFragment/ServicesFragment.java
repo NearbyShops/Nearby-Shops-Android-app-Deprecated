@@ -1,6 +1,5 @@
 package org.nearbyshops.enduser.Services.ServiceFragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -20,7 +19,7 @@ import org.nearbyshops.enduser.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContractSDS.ServiceConfigService;
 import org.nearbyshops.enduser.Services.SlidingLayerSort.UtilitySortServices;
-import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
+import org.nearbyshops.enduser.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.Shops.UtilityLocation;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
@@ -31,7 +30,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import icepick.State;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -287,6 +285,7 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
         {
             serviceType = UtilitySortServices.getServiceType(getActivity());
         }
+
 
 
         Call<ServiceConfigurationEndPoint> call = serviceConfigService.getShopListSimple(

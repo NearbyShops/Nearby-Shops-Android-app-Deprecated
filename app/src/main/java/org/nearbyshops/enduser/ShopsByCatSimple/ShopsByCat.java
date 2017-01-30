@@ -20,7 +20,7 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduser.ItemsInShopByCat.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduser.R;
-import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
+import org.nearbyshops.enduser.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.Shops.SlidingLayerSort.SlidingLayerSortShops;
 

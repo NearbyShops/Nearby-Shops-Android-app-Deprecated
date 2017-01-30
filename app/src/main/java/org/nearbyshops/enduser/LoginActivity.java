@@ -378,7 +378,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (!username.equals("") && !passwordstr.equals("")) {
 
-            Call<EndUser> call = service.EndUserLogin(UtilityLogin.baseEncoding(username,passwordstr));
+            Call<EndUser> call = service.getEndUserLogin(UtilityLogin.baseEncoding(username,passwordstr));
 
 
             call.enqueue(new Callback<EndUser>() {

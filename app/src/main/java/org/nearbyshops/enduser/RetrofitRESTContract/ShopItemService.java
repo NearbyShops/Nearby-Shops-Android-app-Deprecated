@@ -20,15 +20,15 @@ import retrofit2.http.Query;
 public interface ShopItemService {
 
 
-    @GET("/api/v1/ShopItem/Deprecated")
-    Call<List<ShopItem>> getShopItems(
-            @Query("ShopID")Integer ShopID, @Query("ItemID") Integer itemID,
-            @Query("latCenter")Double latCenter,@Query("lonCenter")Double lonCenter,
-            @Query("deliveryRangeMax")Double deliveryRangeMax,
-            @Query("deliveryRangeMin")Double deliveryRangeMin,
-            @Query("proximity")Double proximity,
-            @Query("EndUserID")Integer endUserID,@Query("IsFilledCart")Boolean isFilledCart
-    );
+//    @GET("/api/v1/ShopItem/Deprecated")
+//    Call<List<ShopItem>> getShopItems(
+//            @Query("ShopID")Integer ShopID, @Query("ItemID") Integer itemID,
+//            @Query("latCenter")Double latCenter,@Query("lonCenter")Double lonCenter,
+//            @Query("deliveryRangeMax")Double deliveryRangeMax,
+//            @Query("deliveryRangeMin")Double deliveryRangeMin,
+//            @Query("proximity")Double proximity,
+//            @Query("EndUserID")Integer endUserID,@Query("IsFilledCart")Boolean isFilledCart
+//    );
 
     
 
@@ -44,6 +44,7 @@ public interface ShopItemService {
             @Query("IsOutOfStock") Boolean isOutOfStock,@Query("PriceEqualsZero")Boolean priceEqualsZero,
             @Query("MinPrice")Integer minPrice,@Query("MaxPrice")Integer maxPrice,
             @Query("SearchString") String searchString,
+            @Query("ShopEnabled")Boolean shopEnabled,
             @Query("SortBy") String sortBy,
             @Query("Limit") Integer limit, @Query("Offset") Integer offset,
             @Query("metadata_only")Boolean metaonly,
@@ -51,13 +52,15 @@ public interface ShopItemService {
     );
 
 
-    @POST("/api/v1/ShopItem")
-    Call<ResponseBody> postShopItem(@Body ShopItem shopItem);
 
-    @PUT("/api/v1/ShopItem")
-    Call<ResponseBody> putShopItem(@Body ShopItem shopItem);
-
-    @DELETE("/api/v1/ShopItem")
-    Call<ResponseBody> deleteShopItem(@Query("ShopID") int ShopID, @Query("ItemID") int itemID);
+//
+//    @POST("/api/v1/ShopItem")
+//    Call<ResponseBody> postShopItem(@Body ShopItem shopItem);
+//
+//    @PUT("/api/v1/ShopItem")
+//    Call<ResponseBody> putShopItem(@Body ShopItem shopItem);
+//
+//    @DELETE("/api/v1/ShopItem")
+//    Call<ResponseBody> deleteShopItem(@Query("ShopID") int ShopID, @Query("ItemID") int itemID);
 
 }

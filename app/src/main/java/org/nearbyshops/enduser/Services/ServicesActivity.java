@@ -13,7 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
@@ -22,7 +21,7 @@ import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.Services.ServiceFragment.ServicesFragment;
 import org.nearbyshops.enduser.Services.SlidingLayerSort.SlidingLayerSortServices;
 import org.nearbyshops.enduser.Services.SubmitURLDialog.SubmitURLDialog;
-import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
+import org.nearbyshops.enduser.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.ToggleFab;
 

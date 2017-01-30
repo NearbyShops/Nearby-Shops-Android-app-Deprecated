@@ -21,7 +21,7 @@ import org.nearbyshops.enduser.Model.Item;
 import org.nearbyshops.enduser.ModelEndPoints.ItemEndPoint;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemService;
-import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
+import org.nearbyshops.enduser.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.Shops.UtilityLocation;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;

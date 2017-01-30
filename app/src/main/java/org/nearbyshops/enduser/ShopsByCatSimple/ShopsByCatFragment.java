@@ -26,7 +26,7 @@ import org.nearbyshops.enduser.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
-import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
+import org.nearbyshops.enduser.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.Shops.UtilityLocation;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.Shops.SlidingLayerSort.UtilitySortShopsByCategory;
@@ -322,7 +322,7 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
                     UtilityLocation.getLongitude(getActivity()),
                     UtilityLocation.getDeliveryRangeMax(getActivity()),
                     0.00,
-                    UtilityLocation.getProximity(getActivity()),
+                    UtilityLocation.getProximity(getActivity()),true,
                     "id",null,null,false);
 
         }
@@ -352,7 +352,7 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
                     UtilityLocation.getLongitude(getActivity()),
                     UtilityLocation.getDeliveryRangeMax(getActivity()),
                     0.00,
-                    UtilityLocation.getProximity(getActivity()),
+                    UtilityLocation.getProximity(getActivity()),true,
                     "id",null,null,false);
         }
 

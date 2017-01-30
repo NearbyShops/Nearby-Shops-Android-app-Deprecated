@@ -297,7 +297,7 @@ public class FragmentItemsInShop extends Fragment implements
                     null,null,null,
                     null,null,null,null,
                     null, null,
-                    null,current_sort,
+                    null,true,current_sort,
                     limit,offset,null,
                     true
             );

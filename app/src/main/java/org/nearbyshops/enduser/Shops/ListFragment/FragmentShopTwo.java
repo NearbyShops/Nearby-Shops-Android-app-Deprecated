@@ -20,7 +20,7 @@ import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduser.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifyDatasetChanged;
-import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
+import org.nearbyshops.enduser.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.Shops.UtilityLocation;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;

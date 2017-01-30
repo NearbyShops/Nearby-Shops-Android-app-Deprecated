@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.Shops.Interfaces;
+package org.nearbyshops.enduser.Interfaces;
 
 import org.nearbyshops.enduser.Model.Shop;
 

@@ -25,7 +25,7 @@ import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduser.Shops.Interfaces.NotifyDatasetChanged;
-import org.nearbyshops.enduser.Shops.Interfaces.NotifySearch;
+import org.nearbyshops.enduser.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.Shops.ListFragment.FragmentShopTwo;
 import org.nearbyshops.enduser.Shops.MapsFragment.ShopMapFragment;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
