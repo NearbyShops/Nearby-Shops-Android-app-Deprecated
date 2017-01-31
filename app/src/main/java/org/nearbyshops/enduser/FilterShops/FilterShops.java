@@ -277,6 +277,7 @@ public class FilterShops extends FragmentActivity implements OnMapReadyCallback,
         deliveryRangeHeader.setText("Delivery Range Max : " + String.valueOf(delivery) + " Km");
         UtilityLocation.saveDeliveryRangeMax(delivery,this);
 
+
         Double lat = UtilityLocation.getLatitude(this);
         Double lon = UtilityLocation.getLongitude(this);
         LatLng latLng = new LatLng(lat,lon);
