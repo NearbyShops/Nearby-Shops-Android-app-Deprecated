@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<android.support.v4.widget.NestedScrollView
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,258 +9,276 @@
 
 
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="org.nearbyshops.enduser.DeliveryAddress.EditAddressActivity"
-    tools:showIn="@layout/activity_edit_address">
-
-
-    <android.support.design.widget.TextInputLayout
-        android:padding="0dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:id="@+id/receiversNameContainer"
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:inputType="textPersonName"
-            android:id="@+id/receiversName"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Receivers Name"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/phoneNumberContainer"
-        android:layout_below="@id/receiversNameContainer"
-        android:padding="0dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-
-        android:layout_gravity="center_vertical"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:inputType="number"
-            android:id="@+id/receiversPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Phone Number"/>
-
-    </android.support.design.widget.TextInputLayout>
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            tools:context="org.nearbyshops.enduser.DeliveryAddress.Previous.EditAddressActivity"
+            tools:showIn="@layout/activity_edit_address">
 
 
+            <android.support.design.widget.TextInputLayout
+                android:padding="0dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:id="@+id/receiversNameContainer"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <EditText
+                    android:inputType="textPersonName"
+                    android:id="@+id/receiversName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Receivers Name"/>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_below="@id/phoneNumberContainer"
-        android:padding="0dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+            </android.support.design.widget.TextInputLayout>
 
-        android:layout_gravity="center_vertical"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/phoneNumberContainer"
+                android:layout_below="@id/receiversNameContainer"
+                android:padding="0dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/deliveryAddressContainer">
+                android:layout_gravity="center_vertical"
 
-        <EditText
-            android:inputType="textMultiLine"
-            android:id="@+id/deliveryAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Delivery Address"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/receiversPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Phone Number"/>
 
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_below="@id/deliveryAddressContainer"
-        android:padding="0dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-
-        android:layout_gravity="center_vertical"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cityContainer">
-
-        <EditText
-            android:inputType="textMultiLine"
-            android:id="@+id/addressCity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter City"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_below="@id/cityContainer"
-        android:padding="0dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-
-        android:layout_gravity="center_vertical"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/pincodeContainer">
-
-        <EditText
-            android:inputType="number"
-            android:id="@+id/pincode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Pincode"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_below="@id/pincodeContainer"
-        android:padding="0dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-
-        android:layout_gravity="center_vertical"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/landmarkContainer">
-
-        <EditText
-            android:inputType="text"
-            android:id="@+id/landmark"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Landmark (Optional)"/>
-
-    </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
 
 
-    <TextView
-        android:layout_marginTop="15dp"
-        android:id="@+id/location_header"
-        android:layout_below="@id/landmarkContainer"
-        android:padding="5dp"
-        android:text="Enter Location Coordinates"
-        android:background="@color/light_grey"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_below="@id/phoneNumberContainer"
+                android:padding="0dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+
+                android:layout_gravity="center_vertical"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/deliveryAddressContainer">
+
+                <EditText
+                    android:inputType="textMultiLine"
+                    android:id="@+id/deliveryAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Delivery Address"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
-    <TextView
-        android:layout_marginTop="5dp"
-        android:id="@+id/instructions"
-        android:layout_below="@id/location_header"
-        android:text="Giving accurate location coordinates will help the delivery person to easily find your address and deliver your order in less time. "
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_below="@id/deliveryAddressContainer"
+                android:padding="0dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+
+                android:layout_gravity="center_vertical"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cityContainer">
+
+                <EditText
+                    android:inputType="textMultiLine"
+                    android:id="@+id/addressCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter City"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_below="@id/cityContainer"
+                android:padding="0dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+
+                android:layout_gravity="center_vertical"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pincodeContainer">
+
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/pincode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Pincode"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_below="@id/pincodeContainer"
+                android:padding="0dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+
+                android:layout_gravity="center_vertical"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/landmarkContainer">
+
+                <EditText
+                    android:inputType="text"
+                    android:id="@+id/landmark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Landmark (Optional)"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_below="@id/instructions"
-        android:padding="0dp"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center_vertical"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/latitude_container">
-
-        <EditText
-            android:inputType="number"
-            android:id="@+id/latitude"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Latitude"/>
-
-    </android.support.design.widget.TextInputLayout>
+            <TextView
+                android:layout_marginTop="15dp"
+                android:id="@+id/location_header"
+                android:layout_below="@id/landmarkContainer"
+                android:padding="5dp"
+                android:text="Enter Location Coordinates"
+                android:background="@color/light_grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_below="@id/latitude_container"
-        android:padding="0dp"
-        android:layout_gravity="center_vertical"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/longitude_container">
-
-        <EditText
-            android:inputType="number"
-            android:id="@+id/longitude"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Longitude"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-
-    <TextView
-        android:id="@+id/pick_location_button"
-        android:layout_below="@id/longitude_container"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:text="Pick Location From Map"
-        android:background="@color/blueGrey800"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/instructions"
+                android:layout_below="@id/location_header"
+                android:text="@string/delivery_coordinates_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
 
 
-    <TextView
-        android:visibility="gone"
-        android:layout_marginTop="10dp"
-        android:id="@+id/navigate_button"
-        android:layout_below="@id/pick_location_button"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:text="Navigate"
-        android:background="@color/blueGrey800"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_below="@id/instructions"
+                android:padding="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_vertical"
 
-    <TextView
-        android:id="@+id/updateAddress"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textColor="#ffffff"
-        android:background="@color/phonographyBlue"
-        android:layout_marginTop="20dp"
-        android:padding="10dp"
-        android:layout_below="@id/navigate_button"
-        android:text="Update Address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/latitude_container">
 
-</RelativeLayout>
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/latitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Latitude"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
-</ScrollView>
+            <android.support.design.widget.TextInputLayout
+                android:layout_below="@id/latitude_container"
+                android:padding="0dp"
+                android:layout_gravity="center_vertical"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/longitude_container">
+
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/longitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Longitude"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/pick_location_button"
+                android:layout_below="@id/longitude_container"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:text="Pick Location From Map"
+                android:background="@color/blueGrey800"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+            <TextView
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                android:id="@+id/navigate_button"
+                android:layout_below="@id/pick_location_button"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:text="Navigate"
+                android:background="@color/blueGrey800"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/updateAddress"-->
+                <!--android:gravity="center"-->
+                <!--android:textSize="20sp"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:background="@color/phonographyBlue"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:padding="10dp"-->
+                <!--android:layout_below="@id/navigate_button"-->
+                <!--android:text="Update Address"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+
+            <Button
+                android:layout_below="@id/navigate_button"
+                android:id="@+id/updateAddress"
+                android:layout_marginBottom="10dp"
+                android:elevation="10dp"
+                android:textSize="20sp"
+                android:textAllCaps="true"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blueGrey800"
+                android:textColor="@color/white"
+                android:text="Save"/>
+
+
+        </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

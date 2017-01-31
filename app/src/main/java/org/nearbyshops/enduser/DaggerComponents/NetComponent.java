@@ -4,11 +4,12 @@ package org.nearbyshops.enduser.DaggerComponents;
 import org.nearbyshops.enduser.CancelledOrders.CancelledByEndUser.FragmentCancelledByUser;
 import org.nearbyshops.enduser.CancelledOrders.CancelledByShop.FragmentCancelledByShop;
 import org.nearbyshops.enduser.CancelledOrders.ReturnedByDeliveryGuy.FragmentReturnedByDG;
-import org.nearbyshops.enduser.DeliveryAddress.AddAddressActivity;
+import org.nearbyshops.enduser.DeliveryAddress.EditAddress.EditAddressFragment;
+import org.nearbyshops.enduser.DeliveryAddress.Previous.AddAddressActivity;
 import org.nearbyshops.enduser.Carts.CartItemListActivity;
 import org.nearbyshops.enduser.Carts.CartsListActivity;
 import org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity;
-import org.nearbyshops.enduser.DeliveryAddress.EditAddressActivity;
+import org.nearbyshops.enduser.DeliveryAddress.Previous.EditAddressActivity;
 import org.nearbyshops.enduser.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduser.DaggerModules.AppModule;
 import org.nearbyshops.enduser.DaggerModules.NetModule;
@@ -194,4 +195,6 @@ public interface NetComponent {
     void Inject(CancelledByUserFragmentPFS cancelledByUserFragmentPFS);
 
     void Inject(EditEndUserFragment editEndUserFragment);
+
+    void Inject(EditAddressFragment editAddressFragment);
 }

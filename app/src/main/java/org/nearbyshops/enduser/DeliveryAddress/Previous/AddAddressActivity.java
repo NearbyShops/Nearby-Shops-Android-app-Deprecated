@@ -1,4 +1,4 @@
-package org.nearbyshops.enduser.DeliveryAddress;
+package org.nearbyshops.enduser.DeliveryAddress.Previous;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,32 +11,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.DeliveryAddress.PickLocationActivity;
 import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.DeliveryAddressService;
+import org.nearbyshops.enduser.Utility.UtilityGeneral;
+import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.ResponseBody;
+import clojure.lang.IFn;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EditAddressActivity extends AppCompatActivity implements Callback<ResponseBody> {
+public class AddAddressActivity extends AppCompatActivity implements View.OnClickListener, Callback<DeliveryAddress> {
 
     DeliveryAddress deliveryAddress;
-
-    static final String DELIVERY_ADDRESS_INTENT_KEY = "edit_delivery_address_intent_key";
-
 
     @Inject
     DeliveryAddressService deliveryAddressService;
 
-    @Bind(R.id.updateAddress)
-    TextView updateDeliveryAddress;
+    TextView addDeliveryAddress;
 
     // address Fields
 
@@ -58,7 +57,6 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
     @Bind(R.id.landmark)
     EditText landMark;
 
-
     @Bind(R.id.latitude)
     EditText latitude;
 
@@ -66,7 +64,8 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
     EditText longitude;
 
 
-    public EditAddressActivity() {
+
+    public AddAddressActivity() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -75,7 +74,7 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_address);
+        setContentView(R.layout.activity_add_address);
 
         ButterKnife.bind(this);
 
@@ -84,10 +83,10 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Bind Views
 
-        deliveryAddress = getIntent().getParcelableExtra(DELIVERY_ADDRESS_INTENT_KEY);
-
-        bindDataToViews();
+        addDeliveryAddress = (TextView) findViewById(R.id.addDeliveryAddress);
+        addDeliveryAddress.setOnClickListener(this);
 
     }
 
@@ -95,91 +94,74 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
 
     void getDataFromViews()
     {
-        if(deliveryAddress!=null)
+
+        deliveryAddress = new DeliveryAddress();
+
+        deliveryAddress.setName(receiversName.getText().toString());
+        deliveryAddress.setDeliveryAddress(deliveryAddressView.getText().toString());
+        deliveryAddress.setCity(city.getText().toString());
+
+        if(pincode.getText().toString()!="")
         {
-            deliveryAddress.setName(receiversName.getText().toString());
-            deliveryAddress.setDeliveryAddress(deliveryAddressView.getText().toString());
-            deliveryAddress.setCity(city.getText().toString());
             deliveryAddress.setPincode(Long.parseLong(pincode.getText().toString()));
-            deliveryAddress.setLandmark(landMark.getText().toString());
-            deliveryAddress.setPhoneNumber(Long.parseLong(receiversPhoneNumber.getText().toString()));
-
-
-            deliveryAddress.setLatitude(Double.parseDouble(latitude.getText().toString()));
-            deliveryAddress.setLongitude(Double.parseDouble(longitude.getText().toString()));
-
-
-
         }
+
+        deliveryAddress.setLandmark(landMark.getText().toString());
+        deliveryAddress.setPhoneNumber(Long.parseLong(receiversPhoneNumber.getText().toString()));
+
+        deliveryAddress.setLatitude(Double.parseDouble(latitude.getText().toString()));
+        deliveryAddress.setLongitude(Double.parseDouble(longitude.getText().toString()));
+
+        deliveryAddress.setEndUserID(UtilityLogin.getEndUser(this).getEndUserID());
+
     }
 
 
-    void bindDataToViews()
-    {
-        if(deliveryAddress!=null)
-        {
-            receiversName.setText(deliveryAddress.getName());
-            deliveryAddressView.setText(deliveryAddress.getDeliveryAddress());
-            city.setText(deliveryAddress.getCity());
-            pincode.setText(String.valueOf(deliveryAddress.getPincode()));
-            landMark.setText(deliveryAddress.getLandmark());
-            receiversPhoneNumber.setText(String.valueOf(deliveryAddress.getPhoneNumber()));
-
-            latitude.setText(String.valueOf(deliveryAddress.getLatitude()));
-            longitude.setText(String.valueOf(deliveryAddress.getLongitude()));
-
-        }
-    }
-
-
-
-    @OnClick(R.id.updateAddress)
-    void updateAddressClick(View view)
-    {
+    @Override
+    public void onClick(View v) {
 
         getDataFromViews();
 
-        Call<ResponseBody> call = deliveryAddressService.putAddress(deliveryAddress,deliveryAddress.getId());
-        call.enqueue(this);
-
-    }
-
-
-    @Override
-    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-        if(response.code()==200)
+        if(deliveryAddress!=null)
         {
-            showToastMessage("Update Successful !");
-        }
-        else
-        {
-            showToastMessage("failed to update !");
+            Call<DeliveryAddress> call = deliveryAddressService.postAddress(deliveryAddress);
+            call.enqueue(this);
         }
 
     }
-
-    @Override
-    public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-        showToastMessage("Network connection failed !");
-
-    }
-
-    void showToastMessage(String message)
-    {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
-    }
-
-
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
         ButterKnife.unbind(this);
+
     }
 
+    @Override
+    public void onResponse(Call<DeliveryAddress> call, Response<DeliveryAddress> response) {
+
+        if (response != null && response.code() == 201) {
+            showToastMessage("Added Successfully !");
+        }
+        else
+        {
+            showToastMessage("Unsuccessful !");
+        }
+    }
+
+    @Override
+    public void onFailure(Call<DeliveryAddress> call, Throwable t) {
+
+        showToastMessage("Addition failed. Try again !");
+    }
+
+
+
+    void showToastMessage(String message)
+    {
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
 
 
 
@@ -220,7 +202,6 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
             longitude.setText(String.valueOf(data.getDoubleExtra("longitude",0)));
         }
     }
-
 
 
 

@@ -14,6 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.DeliveryAddress.EditAddress.EditAddressFragment;
+import org.nearbyshops.enduser.DeliveryAddress.EditAddress.EditDeliveryAddress;
+import org.nearbyshops.enduser.DeliveryAddress.Previous.AddAddressActivity;
+import org.nearbyshops.enduser.DeliveryAddress.Previous.EditAddressActivity;
 import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
@@ -249,8 +253,13 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
     public void notifyEdit(DeliveryAddress deliveryAddress) {
 
 
-        Intent intent = new Intent(this,EditAddressActivity.class);
-        intent.putExtra(EditAddressActivity.DELIVERY_ADDRESS_INTENT_KEY,deliveryAddress);
+//        Intent intent = new Intent(this,EditAddressActivity.class);
+//        intent.putExtra(EditAddressActivity.DELIVERY_ADDRESS_INTENT_KEY,deliveryAddress);
+//        startActivity(intent);
+
+        Intent intent = new Intent(this,EditDeliveryAddress.class);
+        intent.putExtra(EditAddressFragment.EDIT_MODE_INTENT_KEY,EditAddressFragment.MODE_UPDATE);
+        intent.putExtra(EditAddressFragment.DELIVERY_ADDRESS_INTENT_KEY,deliveryAddress);
         startActivity(intent);
 
     }
@@ -296,8 +305,13 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
     void addNewAddressClick(View view)
     {
-        Intent intent = new Intent(this,AddAddressActivity.class);
+//        Intent intent = new Intent(this,AddAddressActivity.class);
+//        startActivity(intent);
+
+        Intent intent = new Intent(this,EditDeliveryAddress.class);
+        intent.putExtra(EditAddressFragment.EDIT_MODE_INTENT_KEY,EditAddressFragment.MODE_ADD);
         startActivity(intent);
+
     }
 
 

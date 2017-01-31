@@ -95,5 +95,7 @@
     <string name="title_activity_items_by_cat_s2">Items By Category</string>
     <string name="title_activity_item_categories_simple">Items By Category</string>
     <string name="preference_service_url_sds_key">pref_service_url_sds_key</string>
+    <string name="title_activity_edit_delivery_address">Edit Delivery Address</string>
+    <string name="delivery_coordinates_message">Giving accurate location coordinates will help the delivery person to locate your address easily and deliver your order in less amount of time.</string>
 
 </resources>

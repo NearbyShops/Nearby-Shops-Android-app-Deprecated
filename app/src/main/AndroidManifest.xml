@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--android:icon="@mipmap/ic_launcher"-->
+        <!-- android:icon="@mipmap/ic_launcher" -->
 
         <service
             android:name=".UtilityGeocoding.FetchAddressIntentService"
@@ -104,7 +104,7 @@
                 android:value="org.nearbyshops.enduser.Carts.PlaceOrderActivity" />
         </activity>
         <activity
-            android:name=".DeliveryAddress.EditAddressActivity"
+            android:name=".DeliveryAddress.Previous.EditAddressActivity"
             android:label="@string/title_activity_edit_address"
             android:parentActivityName=".DeliveryAddress.DeliveryAddressActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -113,7 +113,7 @@
                 android:value="org.nearbyshops.enduser.DeliveryAddress.DeliveryAddressActivity" />
         </activity>
         <activity
-            android:name=".DeliveryAddress.AddAddressActivity"
+            android:name=".DeliveryAddress.Previous.AddAddressActivity"
             android:label="@string/title_activity_add_address"
             android:parentActivityName=".DeliveryAddress.DeliveryAddressActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -265,8 +265,6 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".ItemsInShop.ItemsInShop"
             android:label="@string/title_activity_items_in_shop"
@@ -280,8 +278,6 @@
             android:name=".ItemsByCategoryHorizontal.ItemsByCatS2"
             android:label="@string/title_activity_items_by_cat_s2"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
         <activity
             android:name=".ItemsByCategoryTypeSimple.ItemCategoriesSimple"
             android:label="@string/title_activity_item_categories_simple"
@@ -291,8 +287,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
-
-
         <activity
             android:name=".ItemsInShopByCat.ItemsInStockByCat"
             android:label="Items In Shop"
@@ -302,7 +296,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ShopHome.ShopHome" />
-
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -310,10 +303,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-
         </activity>
-
-
         <activity
             android:name=".FilterShops.FilterShops"
             android:label="@string/title_activity_item_categories_simple"
@@ -323,9 +313,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduser.Home" />
         </activity>
-
-
-
         <activity
             android:name=".ShopsByCatSimple.ShopsByCat"
             android:label="Shops By Category"
@@ -335,7 +322,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Home" />
-
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -343,20 +329,16 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-
         </activity>
-
-
         <activity
-            android:launchMode="singleTop"
             android:name=".OrderHistoryHD.OrderHistoryHD.OrderHistoryHD"
             android:label="Order History"
+            android:launchMode="singleTop"
             android:parentActivityName=".OrdersHomeDelivery.OrderHome"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OrdersHomeDelivery.OrderHome" />
-
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -365,8 +347,6 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".OrderDetail.OrderDetail"
             android:label="Order Details"
@@ -376,8 +356,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OrdersHomeDelivery.OrderHome" />
         </activity>
-
-
         <activity
             android:name=".CancelledOrders.CancelledOrdersHomeDelivery"
             android:label="Order Details"
@@ -387,8 +365,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OrdersHomeDelivery.OrderHome" />
         </activity>
-
-
         <activity
             android:name=".Settings.SettingsCustom"
             android:label="Settings"
@@ -398,29 +374,25 @@
                 android:value=".Home" />
         </activity>
 
-
-        <!--<activity-->
-            <!--android:name=".Services.ServicesActivity"-->
-            <!--android:label="Discover Services"-->
-            <!--android:parentActivityName=".Home"-->
-            <!--android:theme="@style/AppTheme.NoActionBar">-->
-            <!--<meta-data-->
-                <!--android:name="android.support.PARENT_ACTIVITY"-->
-                <!--android:value=".Home" />-->
-        <!--</activity>-->
-
-
+        <!-- <activity -->
+        <!-- android:name=".Services.ServicesActivity" -->
+        <!-- android:label="Discover Services" -->
+        <!-- android:parentActivityName=".Home" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar"> -->
+        <!-- <meta-data -->
+        <!-- android:name="android.support.PARENT_ACTIVITY" -->
+        <!-- android:value=".Home" /> -->
+        <!-- </activity> -->
 
         <activity
-            android:launchMode="singleTop"
             android:name=".Services.ServicesActivity"
             android:label="Discover Services"
+            android:launchMode="singleTop"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Home" />
-
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -429,10 +401,6 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-
-
-
-
         <activity
             android:name=".OrdersHomePickFromShop.OrdersHomePickFromShop"
             android:label="Orders : Pick From Shop"
@@ -442,10 +410,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Home" />
         </activity>
-
-
-
-
         <activity
             android:name=".OrderDetailPFS.OrderDetailPFS"
             android:label="Order Details"
@@ -455,19 +419,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OrdersHomeDelivery.OrderHome" />
         </activity>
-
-
-
         <activity
-            android:launchMode="singleTop"
             android:name=".OrderHistoryPFS.OrderHistoryPFS"
             android:label="Order History"
+            android:launchMode="singleTop"
             android:parentActivityName=".OrdersHomePickFromShop.OrdersHomePickFromShop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OrdersHomePickFromShop.OrdersHomePickFromShop" />
-
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -476,19 +436,15 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-
-
-
         <activity
-            android:launchMode="singleTop"
             android:name=".OrdersCancelledPFS.CancelledOrdersPFS"
             android:label="Order History"
+            android:launchMode="singleTop"
             android:parentActivityName=".OrdersHomePickFromShop.OrdersHomePickFromShop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OrdersHomePickFromShop.OrdersHomePickFromShop" />
-
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -497,9 +453,6 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-
-
-
         <activity
             android:name=".EditProfileEndUser.EditProfileEndUser"
             android:label="Edit Profile"
@@ -509,13 +462,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Home" />
         </activity>
-
-
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
+        <activity
+            android:name=".DeliveryAddress.EditAddress.EditDeliveryAddress"
+            android:label="@string/title_activity_edit_delivery_address"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduser.Home" />
+        </activity>
     </application>
 
 </manifest>
