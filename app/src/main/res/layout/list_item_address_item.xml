@@ -11,8 +11,8 @@
 
     <TextView
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         android:id="@+id/name"
-        android:padding="5dp"
         android:textSize="25dp"
         android:text="Sumeet Moray"
         android:layout_width="match_parent"
@@ -34,8 +34,9 @@
     <TextView
         android:layout_below="@id/border"
         android:id="@+id/deliveryAddress"
-        android:padding="5dp"
-        android:textSize="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="20dp"
         android:text="K-53, BEL Colony, Koramangla"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -45,8 +46,9 @@
     <TextView
         android:layout_below="@id/deliveryAddress"
         android:id="@+id/city"
-        android:padding="5dp"
-        android:textSize="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="20dp"
         android:text="Hyderabad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -55,9 +57,11 @@
     <TextView
         android:layout_below="@id/deliveryAddress"
         android:layout_toRightOf="@id/city"
+        android:layout_toEndOf="@id/city"
         android:id="@+id/pincode"
-        android:padding="5dp"
-        android:textSize="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="20dp"
         android:text="- 500042"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -66,8 +70,9 @@
     <TextView
         android:layout_below="@id/city"
         android:id="@+id/landmark"
-        android:padding="5dp"
-        android:textSize="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="20dp"
         android:text="Near Vimal Cinema"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -86,8 +91,9 @@
     <TextView
         android:layout_below="@id/borderTwo"
         android:id="@+id/phoneNumber"
-        android:padding="5dp"
-        android:textSize="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="20dp"
         android:text="9490523891"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -113,9 +119,9 @@
         <TextView
             android:id="@+id/editButton"
             android:padding="10dp"
-            android:textSize="20dp"
+            android:textSize="17dp"
             android:textColor="#ffffff"
-            android:background="@color/teal"
+            android:background="@color/blueGrey800"
             android:gravity="center"
             android:layout_weight="1"
             android:text="Edit"
@@ -127,7 +133,7 @@
             android:id="@+id/removeButton"
             android:layout_marginLeft="5dp"
             android:padding="10dp"
-            android:textSize="20dp"
+            android:textSize="17dp"
             android:textColor="#ffffff"
             android:background="@color/gplus_color_4"
             android:gravity="center"

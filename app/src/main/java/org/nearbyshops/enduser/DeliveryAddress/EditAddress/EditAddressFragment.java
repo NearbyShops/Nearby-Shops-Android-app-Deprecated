@@ -19,6 +19,7 @@ import org.nearbyshops.enduser.DeliveryAddress.PickLocationActivity;
 import org.nearbyshops.enduser.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.DeliveryAddressService;
+import org.nearbyshops.enduser.Utility.UtilityLogin;
 
 import javax.inject.Inject;
 
@@ -160,23 +161,6 @@ public class EditAddressFragment extends Fragment{
         boolean isValid = true;
 
 
-        if(latitude.getText().toString().length()==0)
-        {
-            latitude.setError("Latitude cant be empty !");
-            latitude.requestFocus();
-            isValid = false;
-        }
-        else
-        {
-            double lat = Double.parseDouble(latitude.getText().toString());
-
-            if(lat >90 || lat <- 90)
-            {
-                latitude.setError("Invalid Latitude !");
-                isValid  = false;
-            }
-        }
-
 
         if(longitude.getText().toString().length()==0)
         {
@@ -196,6 +180,42 @@ public class EditAddressFragment extends Fragment{
 
         }
 
+
+        if(latitude.getText().toString().length()==0)
+        {
+            latitude.setError("Latitude cant be empty !");
+            latitude.requestFocus();
+            isValid = false;
+        }
+        else
+        {
+            double lat = Double.parseDouble(latitude.getText().toString());
+
+            if(lat >90 || lat <- 90)
+            {
+                latitude.setError("Invalid Latitude !");
+                isValid  = false;
+            }
+        }
+
+
+
+
+        if(pincode.getText().toString().length()==0)
+        {
+            pincode.setError("Pincode cannot be empty !");
+            pincode.requestFocus();
+            isValid = false;
+        }
+
+        if(receiversPhoneNumber.getText().toString().length()==0)
+        {
+            receiversPhoneNumber.setError("Phone number cannot be empty !");
+            receiversPhoneNumber.requestFocus();
+            isValid = false;
+        }
+
+
         return isValid;
     }
 
@@ -204,12 +224,20 @@ public class EditAddressFragment extends Fragment{
 
     void addDeliveryAddress()
     {
+        if(UtilityLogin.getEndUser(getActivity())==null)
+        {
+            showToastMessage("Please login to use this feature !");
+            return;
+        }
+
+
         if(deliveryAddress==null)
         {
             deliveryAddress = new DeliveryAddress();
         }
 
         getDataFromViews();
+        deliveryAddress.setEndUserID(UtilityLogin.getEndUser(getActivity()).getEndUserID());
 
         Call<DeliveryAddress> call = deliveryAddressService.postAddress(deliveryAddress);
         call.enqueue(new Callback<DeliveryAddress>() {

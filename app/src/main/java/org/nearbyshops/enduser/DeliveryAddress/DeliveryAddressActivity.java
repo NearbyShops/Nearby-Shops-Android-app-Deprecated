@@ -1,9 +1,11 @@
 package org.nearbyshops.enduser.DeliveryAddress;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,6 +33,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -265,11 +268,64 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
     }
 
     @Override
-    public void notifyRemove(DeliveryAddress deliveryAddress) {
+    public void notifyRemove(final DeliveryAddress deliveryAddress, final int position) {
 
-        showToastMessage("Remove");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Confirm Delete Address !")
+                .setMessage("Are you sure you want to delete this address !")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        deleteAddress(deliveryAddress,position);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        showToastMessage(" Not Deleted !");
+                    }
+                })
+                .show();
+
+
 
     }
+
+
+    void deleteAddress(DeliveryAddress deliveryAddress, final int position)
+    {
+
+        Call<ResponseBody> call = deliveryAddressService.deleteAddress(deliveryAddress.getId());
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if(response.code()==200)
+                {
+                    showToastMessage("Successful !");
+                    dataset.remove(position);
+                    adapter.notifyItemRemoved(position);
+                }
+                else
+                {
+                    showToastMessage("Failed Code : " + String.valueOf(response.code()));
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                showToastMessage("Network Failed !");
+            }
+        });
+    }
+
+
 
     @Override
     public void notifyListItemClick(DeliveryAddress deliveryAddress) {

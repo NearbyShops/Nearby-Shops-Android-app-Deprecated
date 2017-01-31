@@ -142,7 +142,7 @@ public class DeliveryAddressAdapter extends RecyclerView.Adapter<DeliveryAddress
         public void removeClick()
         {
 
-            notifyDeliveryAddress.notifyRemove(dataset.get(getLayoutPosition()));
+            notifyDeliveryAddress.notifyRemove(dataset.get(getLayoutPosition()), getLayoutPosition());
 
         }
 
@@ -162,11 +162,8 @@ public class DeliveryAddressAdapter extends RecyclerView.Adapter<DeliveryAddress
     public interface NotifyDeliveryAddress{
 
         void notifyEdit(DeliveryAddress deliveryAddress);
-
-        void notifyRemove(DeliveryAddress deliveryAddress);
-
+        void notifyRemove(DeliveryAddress deliveryAddress,int position);
         void notifyListItemClick(DeliveryAddress deliveryAddress);
-
     }
 
 }
