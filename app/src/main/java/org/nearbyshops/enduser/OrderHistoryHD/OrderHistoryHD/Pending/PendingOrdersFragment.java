@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,9 +17,11 @@ import android.widget.Toast;
 
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelCartOrder.Endpoints.OrderEndPoint;
 import org.nearbyshops.enduser.ModelCartOrder.Order;
+import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.OrderDetail.OrderDetail;
 import org.nearbyshops.enduser.OrderDetail.UtilityOrderDetail;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
@@ -32,6 +35,7 @@ import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
 import org.nearbyshops.enduser.Utility.UtilityShopHome;
 
+import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +48,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class PendingOrdersFragment extends Fragment implements AdapterOrdersPending.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener ,NotifySort,NotifySearch {
+public class PendingOrdersFragment extends Fragment implements AdapterOrdersPending.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener ,NotifySort,NotifySearch ,RefreshFragment{
 
 
 //    @Inject
@@ -223,6 +227,19 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
     {
 
 //            Shop currentShop = UtilityShopHome.getShop(getContext());
+
+
+        EndUser endUser = UtilityLogin.getEndUser(getActivity());
+        if(endUser==null)
+        {
+            showLoginDialog();
+
+            swipeContainer.setRefreshing(false);
+            return;
+        }
+
+
+
 
         String current_sort = "";
         current_sort = UtilitySortOrdersHD.getSort(getContext()) + " " + UtilitySortOrdersHD.getAscending(getContext());
@@ -456,4 +473,30 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
         searchQuery = null;
         makeRefreshNetworkCall();
     }
+
+
+
+
+
+    public static final String TAG_LOGIN_DIALOG = "tag_login_dialog";
+
+    private void showLoginDialog()
+    {
+        Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_DIALOG);
+
+        if(getActivity().getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_DIALOG)==null)
+        {
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            LoginDialog loginDialog = new LoginDialog();
+            loginDialog.show(fm,TAG_LOGIN_DIALOG);
+        }
+    }
+
+
+
+    @Override
+    public void refreshFragment() {
+        makeRefreshNetworkCall();
+    }
+
 }

@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 
+import org.nearbyshops.enduser.Login.NotifyAboutLogin;
+import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.SlidingLayerSort.SlidingLayerSortOrdersHD;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.Interfaces.NotifySearch;
@@ -27,7 +29,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class OrderHistoryHD extends AppCompatActivity implements NotifyTitleChanged, NotifySort {
+public class OrderHistoryHD extends AppCompatActivity implements NotifyTitleChanged, NotifySort ,NotifyAboutLogin{
 
 
     private PagerAdapter mPagerAdapter;
@@ -259,6 +261,22 @@ public class OrderHistoryHD extends AppCompatActivity implements NotifyTitleChan
             {
                 ((NotifySearch) fragment).search(query);
             }
+        }
+    }
+
+
+
+    @Override
+    public void NotifyLogin() {
+
+        Fragment fragment = getSupportFragmentManager()
+                .findFragmentByTag(
+                        makeFragmentName(mViewPager.getId(),mViewPager.getCurrentItem())
+                );
+
+        if(fragment instanceof RefreshFragment)
+        {
+            ((RefreshFragment) fragment).refreshFragment();
         }
     }
 

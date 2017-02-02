@@ -3,6 +3,7 @@ package org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Complete;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,9 +15,11 @@ import android.widget.Toast;
 
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.Login.LoginDialog;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelCartOrder.Endpoints.OrderEndPoint;
 import org.nearbyshops.enduser.ModelCartOrder.Order;
+import org.nearbyshops.enduser.ModelRoles.EndUser;
 import org.nearbyshops.enduser.OrderDetail.OrderDetail;
 import org.nearbyshops.enduser.OrderDetail.UtilityOrderDetail;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
@@ -41,7 +44,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class CompleteOrdersFragment extends Fragment implements AdapterComplete.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener ,NotifySort,NotifySearch {
+public class CompleteOrdersFragment extends Fragment implements AdapterComplete.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener ,NotifySort,NotifySearch ,RefreshFragment{
 
 
 //    @Inject
@@ -220,12 +223,19 @@ public class CompleteOrdersFragment extends Fragment implements AdapterComplete.
     void makeNetworkCall(final boolean clearDataset)
     {
 
-//            Shop currentShop = UtilityShopHome.getShop(getContext());
-
         String current_sort = "";
         current_sort = UtilitySortOrdersHD.getSort(getContext()) + " " + UtilitySortOrdersHD.getAscending(getContext());
 
-//        showToastMessage(UtilityLogin.getAuthorizationHeaders(getActivity()));
+
+        EndUser endUser = UtilityLogin.getEndUser(getActivity());
+        if(endUser==null)
+        {
+            showLoginDialog();
+
+            swipeContainer.setRefreshing(false);
+            return;
+        }
+
 
 
         Integer shopID = null;
@@ -454,6 +464,30 @@ public class CompleteOrdersFragment extends Fragment implements AdapterComplete.
 //        });
 //
 //    }
+
+
+
+    public static final String TAG_LOGIN_DIALOG = "tag_login_dialog";
+
+    private void showLoginDialog()
+    {
+        Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_DIALOG);
+
+        if(getActivity().getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_DIALOG)==null)
+        {
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            LoginDialog loginDialog = new LoginDialog();
+            loginDialog.show(fm,TAG_LOGIN_DIALOG);
+        }
+    }
+
+
+
+    @Override
+    public void refreshFragment() {
+        makeRefreshNetworkCall();
+    }
+
 
 
 

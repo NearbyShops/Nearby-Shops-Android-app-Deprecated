@@ -64,8 +64,8 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
 
     private String titleReturnedByDG = "Returned (0/0)";
-    private String titleCancelledByShop = "Cancelled By Shop (0/0)";
-    private String titleCancelledByEndUser = "Cancelled By User (0/0)";
+    private String titleCancelledByShop = "Cancelled (0/0)";
+    private String titleCancelledByEndUser = "Cancelled (0/0)";
 
 
     public void setTitle(String title, int tabPosition)

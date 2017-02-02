@@ -332,7 +332,7 @@ public class CancelledByShopFragmentPFS extends Fragment implements AdapterCance
         {
             ((NotifyTitleChanged)getActivity())
                     .NotifyTitleChanged(
-                            "Cancelled By Shop (" + String.valueOf(dataset.size())
+                            "Cancelled (" + String.valueOf(dataset.size())
                                     + "/" + String.valueOf(item_count) + ")",0);
 
 

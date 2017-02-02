@@ -93,7 +93,7 @@ public class FragmentCancelledByUser extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home_delivery_cancelled_by_shop, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_home_delivery_cancelled_by_user, container, false);
 
 
         setRetainInstance(true);
@@ -396,7 +396,7 @@ public class FragmentCancelledByUser extends Fragment
         {
             ((NotifyTitleChanged)getActivity())
                     .NotifyTitleChanged(
-                            "Cancelled By User (" + String.valueOf(dataset.size())
+                            "Cancelled (" + String.valueOf(dataset.size())
                                     + "/" + String.valueOf(item_count) + ")",2);
 
 

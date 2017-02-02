@@ -393,7 +393,7 @@ public class FragmentCancelledByShop extends Fragment
         {
             ((NotifyTitleChanged)getActivity())
                     .NotifyTitleChanged(
-                            "Cancelled By Shop (" + String.valueOf(dataset.size())
+                            "Cancelled (" + String.valueOf(dataset.size())
                                     + "/" + String.valueOf(item_count) + ")",1);
 
 
