@@ -13,11 +13,14 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import org.nearbyshops.enduser.DaggerComponentBuilder;
+import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelPickFromShop.OrderEndPointPFS;
 import org.nearbyshops.enduser.ModelPickFromShop.OrderPFS;
 import org.nearbyshops.enduser.OrderDetailPFS.OrderDetailPFS;
 import org.nearbyshops.enduser.OrderDetailPFS.UtilityOrderDetailPFS;
 import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
+import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
+import org.nearbyshops.enduser.OrderHistoryPFS.OrderHistoryPFS;
 import org.nearbyshops.enduser.OrderHistoryPFS.SlidingLayerSort.UtilitySortOrdersPFS;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContractPFS.OrderServicePFS;
@@ -25,6 +28,7 @@ import org.nearbyshops.enduser.Interfaces.NotifySearch;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduser.Utility.UtilityLogin;
+import org.nearbyshops.enduser.Utility.UtilityShopHome;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -217,19 +221,31 @@ public class CompleteOrdersFragmentPFS extends Fragment implements AdapterComple
     void makeNetworkCall(final boolean clearDataset)
     {
 
-//            Shop currentShop = UtilityShopHome.getShop(getContext());
+        Integer shopID = null;
+
+        if(getActivity().getIntent().getBooleanExtra(OrderHistoryPFS.IS_FILTER_BY_SHOP,false))
+        {
+            Shop shop = UtilityShopHome.getShop(getActivity());
+
+            if(shop!=null)
+            {
+                shopID = shop.getShopID();
+            }
+        }
+
 
         String current_sort = "";
         current_sort = UtilitySortOrdersPFS.getSort(getContext()) + " " + UtilitySortOrdersPFS.getAscending(getContext());
 
         Call<OrderEndPointPFS> call = orderServiceShopStaff.getOrders(
                     UtilityLogin.getAuthorizationHeaders(getActivity()),
-                    null,null,
+                    null,shopID,
                     null,
                     null,null,
                     null,null,
                     false, searchQuery,
                     current_sort,limit,offset,null);
+
 
 
             call.enqueue(new Callback<OrderEndPointPFS>() {

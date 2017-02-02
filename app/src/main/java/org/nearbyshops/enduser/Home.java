@@ -111,8 +111,7 @@ public class Home extends AppCompatActivity
     @Bind(R.id.serviceURL)
     EditText serviceURL;
 
-    @Bind(R.id.text_input_service_url)
-    TextInputLayout textInputServiceURL;
+    @Bind(R.id.text_input_service_url) TextInputLayout textInputServiceURL;
 
     UrlValidator urlValidator;
 

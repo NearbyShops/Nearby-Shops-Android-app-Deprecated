@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.nearbyshops.enduser.CancelledOrders.CancelledOrdersHomeDelivery;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.OrderHistoryPFS.OrderHistoryPFS;
 import org.nearbyshops.enduser.OrdersCancelledPFS.CancelledOrdersPFS;
@@ -72,16 +73,13 @@ public class OrdersHomePickFromShop extends AppCompatActivity {
 
 
 
+
     @OnClick(R.id.order_history)
     void orderHistoryClick()
     {
         Intent intent = new Intent(this, OrderHistoryPFS.class);
-//        intent.putExtra(OrderHistoryHD.IS_FILTER_BY_SHOP,getIntent().getBooleanExtra(IS_FILTER_BY_SHOP,false));
+        intent.putExtra(OrderHistoryPFS.IS_FILTER_BY_SHOP,getIntent().getBooleanExtra(IS_FILTER_BY_SHOP,false));
         startActivity(intent);
-
-
-//        showToastMessage("Order History Click !");
-
 
     }
 
@@ -95,8 +93,9 @@ public class OrdersHomePickFromShop extends AppCompatActivity {
     @OnClick(R.id.cancelled_hd)
     void cancelledOrders()
     {
-        startActivity(new Intent(this, CancelledOrdersPFS.class));
-//        showToastMessage("Cancelled Orders Click !");
+        Intent intent = new Intent(this, CancelledOrdersPFS.class);
+        intent.putExtra(CancelledOrdersPFS.IS_FILTER_BY_SHOP,getIntent().getBooleanExtra(IS_FILTER_BY_SHOP,false));
+        startActivity(intent);
     }
 
 

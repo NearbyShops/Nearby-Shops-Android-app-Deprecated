@@ -39,6 +39,9 @@ public class OrderHistoryPFS extends AppCompatActivity implements NotifyTitleCha
     public static final String TAG_SLIDING_LAYER = "sliding_layer";
 
 
+    public static final String IS_FILTER_BY_SHOP = "IS_FILTER_BY_SHOP";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

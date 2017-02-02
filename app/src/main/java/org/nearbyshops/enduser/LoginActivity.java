@@ -70,38 +70,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
 
-    @Bind(R.id.serviceURLEditText)
-    EditText serviceUrlEditText;
-
-    @Bind(R.id.distributorIDEdittext)
-    EditText distributorIDEditText;
-
-    @Bind(R.id.distributorPassword)
-    EditText password;
-
-    @Bind(R.id.loginButton)
-    Button loginButton;
-
-    @Bind(R.id.signUpButton)
-    Button signUpButton;
-
-
-    @Bind(R.id.inputLayoutServiceURL)
-    TextInputLayout inputLayoutServiceURL;
-
-
-    @Bind(R.id.urlValidText)
-    TextView urlValidText;
-
-
-    @Bind(R.id.login_backdrop)
-    ImageView loginBackdrop;
-
-    @Bind(R.id.collapsingToolbar)
-    CollapsingToolbarLayout collapsingToolbarLayout;
-
-    @Bind(R.id.serviceURLBar)
-    LinearLayout serviceBar;
+    @Bind(R.id.serviceURLEditText) EditText serviceUrlEditText;
+    @Bind(R.id.distributorIDEdittext) EditText distributorIDEditText;
+    @Bind(R.id.distributorPassword) EditText password;
+    @Bind(R.id.loginButton) Button loginButton;
+    @Bind(R.id.signUpButton) Button signUpButton;
+    @Bind(R.id.inputLayoutServiceURL) TextInputLayout inputLayoutServiceURL;
+    @Bind(R.id.urlValidText) TextView urlValidText;
+    @Bind(R.id.login_backdrop) ImageView loginBackdrop;
+    @Bind(R.id.collapsingToolbar) CollapsingToolbarLayout collapsingToolbarLayout;
+    @Bind(R.id.serviceURLBar) LinearLayout serviceBar;
 
 
     // location variables

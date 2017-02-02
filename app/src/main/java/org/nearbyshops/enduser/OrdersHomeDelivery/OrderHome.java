@@ -83,7 +83,9 @@ public class OrderHome extends AppCompatActivity {
     @OnClick(R.id.cancelled_hd)
     void cancelledOrders()
     {
-        startActivity(new Intent(this, CancelledOrdersHomeDelivery.class));
+        Intent intent = new Intent(this, CancelledOrdersHomeDelivery.class);
+        intent.putExtra(CancelledOrdersHomeDelivery.IS_FILTER_BY_SHOP,getIntent().getBooleanExtra(IS_FILTER_BY_SHOP,false));
+        startActivity(intent);
     }
 
 

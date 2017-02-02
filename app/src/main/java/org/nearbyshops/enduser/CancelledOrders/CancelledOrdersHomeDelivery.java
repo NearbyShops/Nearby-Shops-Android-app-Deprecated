@@ -18,6 +18,8 @@ public class CancelledOrdersHomeDelivery extends AppCompatActivity implements No
     private PagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
+    public static final String IS_FILTER_BY_SHOP = "IS_FILTER_BY_SHOP";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

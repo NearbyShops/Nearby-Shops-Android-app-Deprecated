@@ -103,7 +103,7 @@ public class ItemsInStockByCat extends AppCompatActivity implements NotifyIndica
             slidingLayer.setOffsetDistance((int)(5*metrics.density));
             slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
 
-            showToastMessage("Offset Distance : " + String.valueOf((int)(5*metrics.density)));
+//            showToastMessage("Offset Distance : " + String.valueOf((int)(5*metrics.density)));
 
 
 

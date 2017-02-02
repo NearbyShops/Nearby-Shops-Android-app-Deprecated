@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
+import org.nearbyshops.enduser.CancelledOrders.CancelledOrdersHomeDelivery;
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelCartOrder.Endpoints.OrderEndPoint;
@@ -241,12 +242,26 @@ public class FragmentCancelledByShop extends Fragment
 //            return;
 //        }
 
-        Shop currentShop = UtilityShopHome.getShop(getContext());
+//        Shop currentShop = UtilityShopHome.getShop(getContext());
 
-            Call<OrderEndPoint> call = orderService
+        Integer shopID = null;
+
+        if(getActivity().getIntent().getBooleanExtra(CancelledOrdersHomeDelivery.IS_FILTER_BY_SHOP,false))
+        {
+            Shop shop = UtilityShopHome.getShop(getActivity());
+
+            if(shop!=null)
+            {
+                shopID = shop.getShopID();
+            }
+        }
+
+
+        Call<OrderEndPoint> call = orderService
                     .getOrders(
                             UtilityLogin.getAuthorizationHeaders(getActivity()),
-                            null,null,false, OrderStatusHomeDelivery.CANCELLED_BY_SHOP,
+                            null,
+                            shopID,false, OrderStatusHomeDelivery.CANCELLED_BY_SHOP,
                             null,null,null,null,null,null,null,null,null,
                             limit,offset,null
                     );

@@ -12,11 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
+import org.nearbyshops.enduser.CancelledOrders.CancelledOrdersHomeDelivery;
 import org.nearbyshops.enduser.DaggerComponentBuilder;
 import org.nearbyshops.enduser.Model.Shop;
 import org.nearbyshops.enduser.ModelCartOrder.Endpoints.OrderEndPoint;
 import org.nearbyshops.enduser.ModelCartOrder.Order;
 import org.nearbyshops.enduser.ModelStatusCodes.OrderStatusHomeDelivery;
+import org.nearbyshops.enduser.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
 import org.nearbyshops.enduser.R;
 import org.nearbyshops.enduser.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduser.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
@@ -241,12 +243,28 @@ public class FragmentCancelledByUser extends Fragment
 //            return;
 //        }
 
-        Shop currentShop = UtilityShopHome.getShop(getContext());
+
+        Integer shopID = null;
+
+        if(getActivity().getIntent().getBooleanExtra(CancelledOrdersHomeDelivery.IS_FILTER_BY_SHOP,false))
+        {
+            Shop shop = UtilityShopHome.getShop(getActivity());
+
+            if(shop!=null)
+            {
+                shopID = shop.getShopID();
+            }
+        }
+
+
+//        Shop currentShop = UtilityShopHome.getShop(getContext());
+
 
             Call<OrderEndPoint> call = orderService
                     .getOrders(
                             UtilityLogin.getAuthorizationHeaders(getActivity()),
-                            null,null,false, OrderStatusHomeDelivery.CANCELLED_BY_USER,
+                            null,
+                            shopID,false, OrderStatusHomeDelivery.CANCELLED_BY_USER,
                             null,null,null,null,null,null,null,null,null,
                             limit,offset,null
                     );
