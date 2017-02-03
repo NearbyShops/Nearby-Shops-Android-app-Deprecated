@@ -22,8 +22,9 @@
             app:expandedTitleMarginStart="20dp"
             app:expandedTitleMarginEnd="0dp"
             app:contentScrim="@color/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
 
+            <!--//app:layout_scrollFlags="scroll|exitUntilCollapsed"-->
 
             <ImageView
                 android:adjustViewBounds="true"
@@ -37,7 +38,7 @@
             <!--android:maxHeight="300dp"-->
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:background="#00000000"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:layout_collapseMode="pin"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"

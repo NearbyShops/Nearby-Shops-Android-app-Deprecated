@@ -341,6 +341,7 @@
 
 
         <TextView
+            android:visibility="gone"
             android:layout_below="@id/read_all_reviews_button"
             android:text="Item Images"
             android:layout_width="wrap_content"

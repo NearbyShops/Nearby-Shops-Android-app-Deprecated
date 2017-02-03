@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
+//apply plugin: 'android-apt'
 
 
 
@@ -9,11 +9,11 @@ android {
     buildToolsVersion '25.0.2'
 
     defaultConfig {
-        applicationId "org.nearbyshops.enduser"
+        applicationId "org.nearbyshops.enduserapp"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
 
         // Enabling multidex support.
         multiDexEnabled true
@@ -43,58 +43,32 @@ android {
 }
 
 
+configurations{
+//    all*.exclude module: 'javax.inject.Inject'
+    all*.exclude group: 'javax.inject', module: 'javax.inject'
+}
+
+
+
 dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    // butterknife dependencies
-    //compile 'com.jakewharton:butterknife:8.0.1'
-    //apt 'com.jakewharton:butterknife-compiler:8.0.1'
 
-    // card view
-
-    // for implementing pull to refresh
-    // android support Libraries
-
-    // dependencies for Dagger 2
-    //apt command comes from the android-apt plugin
-
-    // range bar
-
-    // Material Intro
-
-    // Volley
-
-    // retrofit dependencies
-
-    // picasso dependencies
-
-    // palette
-
-    // leak canary dependencies
-
-    //    compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile ('org.glassfish.jersey.media:jersey-media-sse:2.24')
+            {
+//                exclude group: 'javax.inject', module: 'javax.inject'
+            }
+    compile ('org.glassfish.jersey.core:jersey-client:2.24')
+            {
+//                    exclude group: 'javax.inject', module: 'javax.inject'
+            }
 
     // apache commons dependency for URL Validation
     // https://mvnrepository.com/artifact/commons-validator/commons-validator
     compile group: 'commons-validator', name: 'commons-validator', version: '1.4.0'
 
-    // goolge play services for location and other facilities.
 
-    //compile 'com.google.android.gms:play-services:9.0.2'
-
-    // ice pack dependencies
-
-    //    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
-
-//    compile 'com.android.support:support-v4:25.0.1'
-//    compile 'com.android.support:recyclerview-v7:25.0.1'
-//    compile 'com.android.support:cardview-v7:25.0.1'
-//    compile 'com.android.support:appcompat-v7:25.0.1'
-//    compile 'com.android.support:design:25.0.1'
-//    compile 'com.android.support:palette-v7:25.0.1'
-
-    compile 'com.google.dagger:dagger:2.2'
     compile 'com.wunderlist:sliding-layer:1.2.5'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:support-v4:25.1.0'
@@ -122,12 +96,21 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
-    apt 'com.google.dagger:dagger-compiler:2.2'
+
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
-    provided 'javax.annotation:jsr250-api:1.0'
     provided 'frankiesardo:icepick-processor:3.2.0'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile 'com.yalantis:ucrop:2.2.0'
+
+
+//    provided 'javax.annotation:jsr250-api:1.0'
+//    apt 'com.google.dagger:dagger-compiler:2.2'
+//    compile 'com.google.dagger:dagger:2.2'
+
+
+    compile 'com.google.dagger:dagger:2.8'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
+
 }
