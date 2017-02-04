@@ -570,6 +570,7 @@
 
 
                 <ImageView
+                    app:srcCompat="@drawable/ic_domain_black_24px"
                     android:padding="10dp"
                     android:layout_above="@id/text_shops_by_category"
                     android:layout_width="match_parent"
@@ -642,6 +643,16 @@
                     android:layout_height="wrap_content"
                     android:text="Items"/>
 
+
+
+                <ImageView
+                    app:srcCompat="@drawable/ic_dns_black_24px"
+                    android:padding="10dp"
+                    android:layout_above="@id/itemsNearby"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
             </RelativeLayout>
 
 
@@ -675,6 +686,7 @@
 
 
                 <ImageView
+                    app:srcCompat="@drawable/ic_view_module_black_24px"
                     android:padding="10dp"
                     android:layout_above="@id/text_itemCategories"
                     android:layout_width="match_parent"
