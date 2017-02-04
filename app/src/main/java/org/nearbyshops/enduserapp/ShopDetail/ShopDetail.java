@@ -225,7 +225,10 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
                 bookTitle.setText(shop.getShopName());
             }
 
-            authorName.setText(shop.getShopAddress() + "\n" + shop.getCity());
+            authorName.setText(shop.getShopAddress() + "\n" + shop.getCity()
+                    + "\n\n" + "Phone : " + shop.getCustomerHelplineNumber()
+                    + "\n" + "Delivery Support : " + shop.getDeliveryHelplineNumber()
+            );
 
 //            publisherName.setText("Published By : " + shop.getShopAddress());
 
@@ -255,7 +258,8 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
                 //getString(R.string.date_format_simple)
 
                 //"MMMM d ''yyyy"
-                publishDate.setText("Started : " + dateFormat.format(calendar.getTime()));
+//                publishDate.setText("Started : " + dateFormat.format(calendar.getTime()));
+                publishDate.setText("Started : " + shop.getDateTimeStarted().toLocaleString());
             }
 
 
@@ -266,8 +270,8 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 //                    + shop.getLogoImagePath();
 
 
-            String imagePath = UtilityGeneral.getServiceURL(this) + "/api/v1/Shop/Image/"
-                    + shop.getLogoImagePath();
+            String imagePath = UtilityGeneral.getServiceURL(this) + "/api/v1/Shop/Image/five_hundred_"
+                    + shop.getLogoImagePath() + ".jpg";
 
 //            if (!shop.getBookCoverImageURL().equals("")) {
 

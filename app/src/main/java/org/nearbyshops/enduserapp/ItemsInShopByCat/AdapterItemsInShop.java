@@ -68,7 +68,6 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
     private Map<Integer,CartItem> cartItemMap = new HashMap<>();
     private Map<Integer,CartStats> cartStatsMap = new HashMap<>();
 
-
     @Inject
     CartItemService cartItemService;
 
@@ -487,8 +486,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 if(item.getRt_rating_count()==0)
                 {
-                    holder.rating.setText("N/A");
-                    holder.ratinCount.setText("( Not yet rated )");
+                    holder.rating.setText(" - ");
+                    holder.ratinCount.setText("(0 Ratings)");
 
                 }
                 else
@@ -570,6 +569,29 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         ShopItem shopItem;
         CartItem cartItem;
         CartStats cartStats;
+
+
+
+
+
+        @OnClick(R.id.item_image)
+        void itemImageClick()
+        {
+            if(dataset.get(getLayoutPosition()) instanceof ShopItem)
+            {
+                ShopItem shopItem = (ShopItem) dataset.get(getLayoutPosition());
+                Item item = shopItem.getItem();
+
+                if(item!=null)
+                {
+                    notificationReceiver.notifyItemImageClick(item);
+                }
+            }
+
+        }
+
+
+
 
 
         public ViewHolderShopItem(View itemView) {
@@ -1096,11 +1118,6 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
 
-    interface NotificationsFromAdapter
-    {
-        // method for notifying the list object to request sub category
-        void notifyRequestSubCategory(ItemCategory itemCategory);
-    }
 
 
 
@@ -1123,5 +1140,17 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
 
     }
+
+
+
+
+    interface NotificationsFromAdapter
+    {
+        // method for notifying the list object to request sub category
+        void notifyRequestSubCategory(ItemCategory itemCategory);
+        void notifyItemImageClick(Item item);
+    }
+
+
 
 }

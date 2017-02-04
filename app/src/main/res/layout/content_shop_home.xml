@@ -119,7 +119,6 @@
             android:layout_marginTop="10dp"
             android:paddingBottom="40dp"
             android:paddingTop="10dp"
-            android:contentDescription="@string/address_found"
             app:srcCompat="@drawable/ic_local_mall_white_24px"
             android:id="@+id/option_items"
             app:layout_constraintTop_toBottomOf="@+id/header_items_in_shop"

@@ -122,9 +122,9 @@ public class SSEIntentServiceUser extends IntentService{
                     new NotificationCompat.Builder(SSEIntentServiceUser.this)
                             .setContentTitle(eventName)
                             .setContentText(message)
+                            .setContentInfo(message)
                             .setSmallIcon(R.drawable.ic_shopping_basket_white_24px)
                             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-
 
 //            .setStyle(new NotificationCompat.BigTextStyle().bigText("Order Received !"))
 

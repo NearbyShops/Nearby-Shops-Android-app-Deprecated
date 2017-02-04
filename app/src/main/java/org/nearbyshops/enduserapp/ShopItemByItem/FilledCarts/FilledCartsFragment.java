@@ -23,12 +23,14 @@ import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.ItemDetail.ItemDetail;
 //import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.AdapterSimple;
 import org.nearbyshops.enduserapp.Model.Item;
+import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.Model.ShopItem;
 import org.nearbyshops.enduserapp.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
 import org.nearbyshops.enduserapp.ModelStats.ItemStats;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopItemService;
+import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
 import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
 import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifySwipeToRight;
@@ -370,6 +372,14 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
         });
 
 
+    }
+
+    @Override
+    public void notifyShopLogoClick(Shop shop) {
+
+        Intent intent = new Intent(getActivity(), ShopDetail.class);
+        intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
+        startActivity(intent);
     }
 
 

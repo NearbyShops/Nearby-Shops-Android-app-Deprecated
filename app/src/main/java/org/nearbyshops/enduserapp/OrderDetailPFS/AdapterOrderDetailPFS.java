@@ -318,7 +318,7 @@ class AdapterOrderDetailPFS extends RecyclerView.Adapter<RecyclerView.ViewHolder
         @Override
         public void onClick(View v) {
 
-            if(dataset.get(getLayoutPosition()) instanceof OrderItem)
+            if(dataset.get(getLayoutPosition()) instanceof OrderItemPFS)
             {
                 OrderItemPFS orderItem = (OrderItemPFS) dataset.get(getLayoutPosition());
                 Item item = orderItem.getItem();

@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserapp.ItemsInShopByCat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
+import org.nearbyshops.enduserapp.ItemDetail.ItemDetail;
 import org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
 import org.nearbyshops.enduserapp.ItemsInShopByCat.Interfaces.NotifyIndicatorChanged;
@@ -643,13 +645,6 @@ public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshL
 
 
 
-
-
-
-
-
-
-
     @Override
     public boolean backPressed() {
 
@@ -701,5 +696,16 @@ public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshL
 
 
     // display shop Item Status
+
+
+
+
+    @Override
+    public void notifyItemImageClick(Item item) {
+
+        Intent intent = new Intent(getActivity(), ItemDetail.class);
+        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
+        getActivity().startActivity(intent);
+    }
 
 }

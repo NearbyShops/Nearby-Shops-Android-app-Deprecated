@@ -1,6 +1,7 @@
 package org.nearbyshops.enduserapp.ShopItemByItem.NewCarts;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
@@ -35,6 +36,7 @@ import org.nearbyshops.enduserapp.ModelStats.ItemStats;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.CartItemService;
+import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserapp.Utility.InputFilterMinMax;
 import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
 import org.nearbyshops.enduserapp.Utility.UtilityLogin;
@@ -154,7 +156,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
                 else
                 {
-                    holder.rating.setText("Not yet rated !");
+                    holder.rating.setText(" - ");
 //                holder.rating.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));
 //                holder.rating.setBackgroundColor(ContextCompat.getColor(context,R.color.light_grey);
                 }
@@ -169,7 +171,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                 String imagePath = UtilityGeneral.getServiceURL(context)
                         + "/api/v1/Shop/Image/"
-                        + shop.getLogoImagePath();
+                        + "five_hundred_" + shop.getLogoImagePath() + ".jpg";
 
                 System.out.println(imagePath);
 
@@ -182,7 +184,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 holder.shopName.setText(shop.getShopName());
 
                 holder.distance.setText(String.format( "%.2f", shop.getRt_distance()) + " Km");
-                holder.deliveryCharge.setText("Delivery :Rs " + String.format( "%.0f", shop.getDeliveryCharges()) + "Per Order");
+                holder.deliveryCharge.setText("Delivery :Rs " + String.format( "%.0f", shop.getDeliveryCharges()) + " Per Order");
 
             }
 
@@ -777,6 +779,20 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
         public void afterTextChanged(Editable s) {
 
         }
+
+
+        @OnClick(R.id.shopImage)
+        void shopImageClick()
+        {
+            if(dataset.get(getLayoutPosition()) instanceof ShopItem)
+            {
+                notifyAddToCart.notifyShopLogoClick(((ShopItem) dataset.get(getLayoutPosition())).getShop());
+            }
+
+        }
+
+
+
     }
 
 
@@ -784,6 +800,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         void notifyAddToCart();
         void listItemHeaderClick(Item item);
+        void notifyShopLogoClick(Shop shop);
 
     }
 

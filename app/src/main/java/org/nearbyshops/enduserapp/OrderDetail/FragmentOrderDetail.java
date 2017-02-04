@@ -219,7 +219,12 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
                 {
                     // trigger fetch next page
 
-                    if(layoutManager.findLastVisibleItemPosition() == previous_position)
+//                    if(layoutManager.findLastVisibleItemPosition() == previous_position)
+//                    {
+//                        return;
+//                    }
+
+                    if(offset + limit > layoutManager.findLastVisibleItemPosition()+1-1)
                     {
                         return;
                     }
@@ -231,7 +236,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
                         makeNetworkCall(false);
                     }
 
-                    previous_position = layoutManager.findLastVisibleItemPosition();
+//                    previous_position = layoutManager.findLastVisibleItemPosition();
 
                 }
 
@@ -241,7 +246,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
 
 
-    int previous_position = -1;
+//    int previous_position = -1;
 
 
 

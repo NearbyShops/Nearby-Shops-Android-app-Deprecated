@@ -253,7 +253,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
             }
             else
             {
-                holder.rating.setText("Not yet rated !");
+                holder.rating.setText(" - ");
 //                holder.rating.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));
 //                holder.rating.setBackgroundColor(ContextCompat.getColor(context,R.color.light_grey);
             }
@@ -268,7 +268,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
 
             String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/"
-                    + shop.getLogoImagePath();
+                    + "five_hundred_" + shop.getLogoImagePath() + ".jpg";
 
             System.out.println(imagePath);
 
@@ -501,6 +501,18 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                 int availableItems = shopItem.getAvailableItemQuantity();
 
                 itemQuantity.setFilters(new InputFilter[]{new InputFilterMinMax("0", String.valueOf(availableItems))});
+            }
+        }
+
+
+        @OnClick(R.id.shopImage)
+        void shopLogoClick()
+        {
+            Shop shop = dataset.get(getLayoutPosition()).getShop();
+
+            if(shop !=null)
+            {
+                notifyFilledCart.notifyShopLogoClick(shop);
             }
         }
 
@@ -818,6 +830,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
     public interface NotifyFilledCart
     {
         void notifyCartDataChanged();
+        void notifyShopLogoClick(Shop shop);
     }
 
 }

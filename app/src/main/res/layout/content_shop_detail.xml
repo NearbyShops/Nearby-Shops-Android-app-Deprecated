@@ -89,9 +89,9 @@
 
 
         <TextView
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_marginTop="0dp"
-            android:text="Date of Publish : "
+            android:text="Date Started : "
             android:id="@+id/date_of_publish"
             android:layout_below="@id/read_full_button"
             android:layout_width="wrap_content"

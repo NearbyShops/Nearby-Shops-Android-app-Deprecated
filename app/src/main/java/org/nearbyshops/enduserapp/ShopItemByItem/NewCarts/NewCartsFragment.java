@@ -20,10 +20,12 @@ import org.nearbyshops.enduserapp.ItemDetail.ItemDetail;
 import org.nearbyshops.enduserapp.Login.LoginDialog;
 import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserapp.Model.Item;
+import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopItemService;
+import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
 import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
 import org.nearbyshops.enduserapp.Shops.UtilityLocation;
@@ -422,12 +424,24 @@ public class NewCartsFragment extends Fragment
         });
     }
 
+
+
     @Override
     public void listItemHeaderClick(Item item) {
 
         Intent intent = new Intent(getActivity(), ItemDetail.class);
         intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
         getActivity().startActivity(intent);
+
+    }
+
+
+
+    @Override
+    public void notifyShopLogoClick(Shop shop) {
+        Intent intent = new Intent(getActivity(), ShopDetail.class);
+        intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
+        startActivity(intent);
     }
 
     @Override
@@ -460,8 +474,7 @@ public class NewCartsFragment extends Fragment
         {
             ((NotifyTitleChanged) getActivity())
                     .NotifyTitleChanged(
-                            " New Carts ("
-                                    + String.valueOf(dataset.size()-1) + "/" + item_count + ")",1
+                            " New Carts (" + String.valueOf(dataset.size()-1) + "/" + item_count + ")",1
                     );
         }
     }

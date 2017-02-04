@@ -51,7 +51,7 @@ public class SlidingLayerSortReview extends Fragment {
     String currentAscending = SORT_ASCENDING;
 
     int colorSelected = R.color.blueGrey800;
-    int colorSelectedAscending = R.color.colorAccent;
+    int colorSelectedAscending = R.color.gplus_color_2;
 
 
     public static String SORT_BY_DATE = ShopReview.REVIEW_DATE;

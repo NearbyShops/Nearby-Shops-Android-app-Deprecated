@@ -12,7 +12,7 @@
     <application
         android:name="org.nearbyshops.enduserapp.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_logo_image"
+        android:icon="@mipmap/blue_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

@@ -374,8 +374,14 @@ public class FragmentOrderDetailPFS extends Fragment implements SwipeRefreshLayo
 
     @Override
     public void notifyItemClicked(Item item) {
+
         Intent intent = new Intent(getActivity(), ItemDetail.class);
         intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
         getActivity().startActivity(intent);
+
     }
+
+
+
+
 }

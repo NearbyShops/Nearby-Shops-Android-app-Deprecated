@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserapp.ItemsInShop.ShopItems;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
+import org.nearbyshops.enduserapp.ItemDetail.ItemDetail;
+import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.Model.ShopItem;
 import org.nearbyshops.enduserapp.ModelEndPoints.ShopItemEndPoint;
@@ -38,7 +41,7 @@ import retrofit2.Response;
  * Created by sumeet on 25/5/16.
  */
 public class FragmentItemsInShop extends Fragment implements
-        SwipeRefreshLayout.OnRefreshListener, NotifySort{
+        SwipeRefreshLayout.OnRefreshListener, NotifySort,AdapterItemsInShop.NotifyItemsInShopFragment{
 
 
 
@@ -161,7 +164,7 @@ public class FragmentItemsInShop extends Fragment implements
         void setupRecyclerView()
         {
 
-            adapter = new AdapterItemsInShop(dataset,getActivity(),this);
+            adapter = new AdapterItemsInShop(dataset,getActivity(),this,this);
 
             recyclerView.setAdapter(adapter);
 
@@ -439,4 +442,16 @@ public class FragmentItemsInShop extends Fragment implements
     public int getItemCount() {
         return item_count;
     }
+
+
+
+    @Override
+    public void notifyItemImageClick(Item item) {
+
+        Intent intent = new Intent(getActivity(), ItemDetail.class);
+        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
+        getActivity().startActivity(intent);
+    }
+
+
 }

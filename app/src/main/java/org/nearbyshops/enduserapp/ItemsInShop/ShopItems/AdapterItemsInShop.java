@@ -68,6 +68,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
     CartStatsService cartStatsService;
 
 
+    NotifyItemsInShopFragment notifications;
+
+
 
 
     private List<ShopItem> dataset = null;
@@ -76,11 +79,12 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
     private FragmentItemsInShop fragment;
 
 
-    AdapterItemsInShop(List<ShopItem> dataset, Context context, FragmentItemsInShop fragment) {
+    AdapterItemsInShop(List<ShopItem> dataset, Context context, FragmentItemsInShop fragment, NotifyItemsInShopFragment notifications) {
 
         this.dataset = dataset;
         this.context = context;
         this.fragment = fragment;
+        this.notifications = notifications;
 
         DaggerComponentBuilder.getInstance().getNetComponent().Inject(this);
         makeNetworkCall(false,0,true);
@@ -294,8 +298,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 if(item.getRt_rating_count()==0)
                 {
-                    holder.rating.setText("N/A");
-                    holder.ratinCount.setText("( Not yet rated )");
+                    holder.rating.setText(" - ");
+                    holder.ratinCount.setText("( 0 Ratings )");
 
                 }
                 else
@@ -306,7 +310,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
                 String imagePath = UtilityGeneral.getServiceURL(context)
-                        + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
+                        + "/api/v1/Item/Image/five_hundred_" + item.getItemImageURL() + ".jpg";
 
 
                 Drawable placeholder = VectorDrawableCompat
@@ -538,6 +542,22 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                 }
 
             });
+        }
+
+
+
+        @OnClick(R.id.item_image)
+        void notifyItemImageClick()
+        {
+
+            ShopItem shopItem = dataset.get(getLayoutPosition());
+            Item item = shopItem.getItem();
+
+            if(item!=null)
+            {
+                notifications.notifyItemImageClick(item);
+            }
+
         }
 
 
@@ -928,5 +948,10 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     }
 
+
+    interface NotifyItemsInShopFragment
+    {
+        void notifyItemImageClick(Item item);
+    }
 
 }
