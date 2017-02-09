@@ -232,7 +232,7 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
 
         holder.itemRating.setText(String.format("%.2f",item.getRt_rating_avg()));
-        holder.ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " Ratings )");
+        holder.ratingCount.setText("( " + String.valueOf((int)item.getRt_rating_count()) + " Ratings )");
 
 
         String imagePath = UtilityGeneral.getServiceURL(context)

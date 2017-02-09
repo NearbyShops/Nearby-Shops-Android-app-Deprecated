@@ -488,13 +488,13 @@ public class Home extends AppCompatActivity
         if(market_information_visible)
         {
 
-            market_information_block.setVisibility(View.GONE);
-            market_information_visible = false;
+//            market_information_block.setVisibility(View.GONE);
+//            market_information_visible = false;
         }
         else
         {
-            market_information_block.setVisibility(View.VISIBLE);
-            market_information_visible = true;
+//            market_information_block.setVisibility(View.VISIBLE);
+//            market_information_visible = true;
         }
     }
 

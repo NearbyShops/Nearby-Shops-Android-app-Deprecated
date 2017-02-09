@@ -31,6 +31,7 @@ import org.nearbyshops.enduserapp.ModelStats.ItemStats;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
+import org.nearbyshops.enduserapp.ShopHome.ShopHome;
 import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
 import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
 import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifySwipeToRight;
@@ -40,6 +41,7 @@ import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChang
 import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
 import org.nearbyshops.enduserapp.Utility.UtilityLogin;
 import org.nearbyshops.enduserapp.ShopItemByItem.SlidingLayerSort.UtilitySortShopItems;
+import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
 import java.util.ArrayList;
 
@@ -377,9 +379,16 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     @Override
     public void notifyShopLogoClick(Shop shop) {
 
-        Intent intent = new Intent(getActivity(), ShopDetail.class);
-        intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
-        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), ShopDetail.class);
+//        intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
+//        startActivity(intent);
+
+
+        Intent shopHomeIntent = new Intent(getActivity(), ShopHome.class);
+        UtilityShopHome.saveShop(shop,getActivity());
+        startActivity(shopHomeIntent);
+
+
     }
 
 
@@ -422,13 +431,12 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     }
 
 
+
+
     @Override
     public void notifyNewCartsChanged() {
 //        swipeRefresh();
-
         makeNetworkCall(false);
-
-
     }
 
 
@@ -446,58 +454,12 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
         Intent intent = new Intent(getActivity(), ItemDetail.class);
         intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
         getActivity().startActivity(intent);
+
+
     }
 
 
-//    void bindItemOld()
-//    {
-//
-////        itemName.setText(item.getItemName());
-////        itemDescription.setText(item.getItemDescription());
-//
-//        if(item.getRt_rating_count()==0)
-//        {
-//            itemRating.setText("N/A");
-//            ratingCount.setText("(Not yet rated)");
-//        }
-//        else
-//        {
-//            itemRating.setText(String.format("%.1f",item.getRt_rating_avg()));
-//            ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " ratings )");
-//        }
-//
-//        if(item.getItemStats()!=null)
-//        {
-//            ItemStats itemStats = item.getItemStats();
-//
-//            String shop = "Shops";
-//
-//            if(itemStats.getShopCount()==1)
-//            {
-//                shop = "Shop";
-//            }
-//
-//            shopCount.setText("In " + String.valueOf(itemStats.getShopCount()) + " " + shop);
-//            priceRange.setText( "Rs: "
-//                    + String.valueOf(itemStats.getMin_price())
-//                    + " - "
-//                    + String.valueOf(itemStats.getMax_price())
-//                    + " per " + item.getQuantityUnit()
-//            );
-//
-//
-////            Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
-//        }
-//
-//
-//        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-//                + item.getItemImageURL();
-//
-//        Picasso.with(getActivity())
-//                .load(imagePath)
-//                .placeholder(R.drawable.nature_people)
-//                .into(itemImage);
-//    }
+
 
 
 
