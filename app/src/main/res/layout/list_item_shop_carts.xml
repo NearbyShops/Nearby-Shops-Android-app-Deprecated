@@ -94,7 +94,7 @@
             android:paddingRight="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4.3"
+            android:text="0.0"
             android:id="@+id/rating"
             android:layout_toRightOf="@id/shopImage"
             android:layout_toEndOf="@id/shopImage"/>
@@ -105,7 +105,7 @@
             android:layout_alignBottom="@id/rating"
             android:layout_toEndOf="@id/rating"
             android:layout_toRightOf="@id/rating"
-            android:text="(3232 Ratings)"
+            android:text="(0 Ratings)"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

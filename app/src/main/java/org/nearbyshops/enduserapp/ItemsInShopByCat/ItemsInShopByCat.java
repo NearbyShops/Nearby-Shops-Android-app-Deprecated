@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class ItemsInStockByCat extends AppCompatActivity implements NotifyIndicatorChanged,NotifySort {
+public class ItemsInShopByCat extends AppCompatActivity implements NotifyIndicatorChanged,NotifySort {
 
     public static final String TAG_FRAGMENT = "items_in_stock_simple";
     public static final String TAG_SLIDING = "sort_items_in_stock";
@@ -74,7 +74,7 @@ public class ItemsInStockByCat extends AppCompatActivity implements NotifyIndica
         {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragment_container,new ItemsInStockByCatFragment(),TAG_FRAGMENT)
+                    .add(R.id.fragment_container,new ItemsInShopByCatFragment(),TAG_FRAGMENT)
                     .commit();
         }
 

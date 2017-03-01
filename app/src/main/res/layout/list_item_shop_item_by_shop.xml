@@ -25,6 +25,9 @@
         android:layout_height="wrap_content">
 
 
+
+
+
         <TextView
             android:textStyle="bold"
             android:id="@+id/item_title"
@@ -36,6 +39,20 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
+
+
+        <ProgressBar
+            app:layout_constraintTop_toBottomOf="@id/item_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:visibility="invisible"
+            android:id="@+id/progress_bar"
+            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/buttonColorDark" />
+
 
 
         <TextView
@@ -67,7 +84,9 @@
             app:layout_constraintGuide_percent="0.45"
             android:orientation="vertical"
             android:layout_width="0dp"
-            android:layout_height="0dp" />
+            android:layout_height="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp" />
 
 
         <TextView
@@ -78,10 +97,10 @@
             android:text="Rs. 43 per Dozen"
             android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@+id/border_one"
-            app:layout_constraintLeft_toRightOf="@id/vertical_guide"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/vertical_guide" />
 
 
         <TextView
@@ -123,12 +142,15 @@
         <ImageView
             android:scaleType="centerCrop"
             android:id="@+id/item_image"
-            app:layout_constraintRight_toRightOf="@id/vertical_guide"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="@id/item_price"
+            app:layout_constraintTop_toTopOf="@+id/item_price"
             android:background="@color/backgroundTinted"
             android:layout_width="0dp"
-            android:layout_height="120dp" />
+            android:layout_height="120dp"
+            app:layout_constraintRight_toLeftOf="@+id/vertical_guide" />
+
+
+
 
 
 
@@ -201,7 +223,6 @@
             android:text="Total : 34.00"
             android:layout_width="0dp"
             android:layout_height="0dp" />
-
 
 
 

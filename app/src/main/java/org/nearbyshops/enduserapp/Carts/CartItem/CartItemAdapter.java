@@ -1,6 +1,8 @@
-package org.nearbyshops.enduserapp.Carts;
+package org.nearbyshops.enduserapp.Carts.CartItem;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -110,10 +112,15 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
                     + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
 
 
+            Drawable placeholder = VectorDrawableCompat
+                    .create(context.getResources(),
+                            R.drawable.ic_nature_people_white_48px, context.getTheme());
+
+
 
             Picasso.with(context)
                     .load(imagePath)
-                    .placeholder(R.drawable.nature_people)
+                    .placeholder(placeholder)
                     .into(holder.shopImage);
         }
     }

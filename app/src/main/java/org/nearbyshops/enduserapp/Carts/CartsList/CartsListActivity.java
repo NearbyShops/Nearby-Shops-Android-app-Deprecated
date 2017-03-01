@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserapp.Carts;
+package org.nearbyshops.enduserapp.Carts.CartsList;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;

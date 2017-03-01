@@ -150,7 +150,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/ic_view_module_black_24px"
+            app:srcCompat="@drawable/ic_items_24px"
             android:paddingBottom="60dp"
             android:id="@+id/option_items_by_category"
             android:layout_marginLeft="5dp"

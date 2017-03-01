@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduserapp.Carts.CartItemListActivity;
+import org.nearbyshops.enduserapp.Carts.CartItem.CartItemListActivity;
 import org.nearbyshops.enduserapp.ItemsInShop.ItemsInShop;
-import org.nearbyshops.enduserapp.ItemsInShopByCat.ItemsInStockByCat;
+import org.nearbyshops.enduserapp.ItemsInShopByCat.ItemsInShopByCat;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.OrdersHomeDelivery.OrderHome;
 import org.nearbyshops.enduserapp.OrdersHomePickFromShop.OrdersHomePickFromShop;
@@ -134,7 +134,7 @@ public class ShopHome extends AppCompatActivity {
 
 //        Intent intent = new Intent(this, ShopItemsInShopByCat.class);
 
-        Intent intent = new Intent(this,ItemsInStockByCat.class);
+        Intent intent = new Intent(this,ItemsInShopByCat.class);
         startActivity(intent);
 
     }

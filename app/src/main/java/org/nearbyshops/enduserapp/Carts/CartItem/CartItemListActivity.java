@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserapp.Carts;
+package org.nearbyshops.enduserapp.Carts.CartItem;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.nearbyshops.enduserapp.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.Login.LoginDialog;
 import org.nearbyshops.enduserapp.ModelCartOrder.CartItem;

@@ -2,6 +2,7 @@ package org.nearbyshops.enduserapp.Shops.MapsFragment;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -65,8 +66,12 @@ public class AdapterHorizontal extends RecyclerView.Adapter<AdapterHorizontal.Vi
         String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
                 + dataset.get(position).getLogoImagePath() + ".jpg";
 
-        Drawable placeholder = ContextCompat.getDrawable(context,R.drawable.ic_domain_black_24px);
 
+//        Drawable placeholder = ContextCompat.getDrawable(context,R.drawable.ic_domain_black_24px);
+
+        Drawable placeholder = VectorDrawableCompat
+                .create(context.getResources(),
+                        R.drawable.ic_domain_black_24px, context.getTheme());
 
         Picasso.with(context)
                 .load(imagePath)

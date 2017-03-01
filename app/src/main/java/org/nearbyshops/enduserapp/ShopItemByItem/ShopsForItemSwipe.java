@@ -25,7 +25,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
-import org.nearbyshops.enduserapp.Carts.CartsListActivity;
+import org.nearbyshops.enduserapp.Carts.CartsList.CartsListActivity;
 import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;

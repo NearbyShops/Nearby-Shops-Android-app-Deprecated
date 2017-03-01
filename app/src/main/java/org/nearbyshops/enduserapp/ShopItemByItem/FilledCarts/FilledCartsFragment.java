@@ -495,7 +495,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
 
         String imagePath = UtilityGeneral.getServiceURL(getActivity())
-                + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
+                + "/api/v1/Item/Image/five_hundred_" + item.getItemImageURL() + ".jpg";
 
 
         Drawable drawable = VectorDrawableCompat

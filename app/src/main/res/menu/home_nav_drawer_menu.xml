@@ -129,6 +129,10 @@
         <menu>
 
             <item
+                android:id="@+id/nav_staff"
+                android:title="Staff" />
+
+            <item
                 android:id="@+id/nav_about_service"
                 android:title="About Service" />
 

@@ -24,6 +24,7 @@ import org.nearbyshops.enduserapp.ModelEndPoints.ItemEndPoint;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemService;
+import org.nearbyshops.enduserapp.Shops.UtilityLocation;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
 import org.nearbyshops.enduserapp.Items.SlidingLayerSort.UtilitySortItemsByCategory;
@@ -327,13 +328,15 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
     void makeRequestItemCategory()
     {
+//        (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY, 0),
+//                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY, 0),
 
-        Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
+         Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
                 null,
                 currentCategory.getItemCategoryID(),
                 null,
-                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY, 0),
-                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY, 0),
+                UtilityLocation.getLatitude(getActivity()),
+                UtilityLocation.getLongitude(getActivity()),
                 null,null,null,
                 true,
                 ItemCategory.CATEGORY_ORDER,null,null,false);
@@ -442,14 +445,19 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
         }
 
 
+
+//        (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
+//                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
+
+
         String current_sort = "";
 
         current_sort = UtilitySortItemsByCategory.getSort(getContext()) + " " + UtilitySortItemsByCategory.getAscending(getContext());
 
         Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(currentCategory.getItemCategoryID(),
                 null,
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
+                UtilityLocation.getLatitude(getActivity()),
+                UtilityLocation.getLongitude(getActivity()),
                 null,null, null, null,
                 current_sort, limit_item,offset_item,null);
 

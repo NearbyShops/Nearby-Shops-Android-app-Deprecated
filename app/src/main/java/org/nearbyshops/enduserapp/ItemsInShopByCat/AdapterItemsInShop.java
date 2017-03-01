@@ -6,6 +6,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -290,10 +291,10 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             LoadingViewHolder viewHolder = (LoadingViewHolder) holder;
 
-            if(fragment instanceof ItemsInStockByCatFragment)
+            if(fragment instanceof ItemsInShopByCatFragment)
             {
-                int fetched_count  = ((ItemsInStockByCatFragment) fragment).fetched_items_count;
-                int items_count = ((ItemsInStockByCatFragment) fragment).item_count_item;
+                int fetched_count  = ((ItemsInShopByCatFragment) fragment).fetched_items_count;
+                int items_count = ((ItemsInShopByCatFragment) fragment).item_count_item;
 
                 if(fetched_count == items_count)
                 {
@@ -566,6 +567,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         CardView shopItemListItem;
 
 
+        @Bind(R.id.progress_bar) ProgressBar progressBar;
+
+
         ShopItem shopItem;
         CartItem cartItem;
         CartStats cartStats;
@@ -638,18 +642,20 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                                 {
 
 
-                                    if(fragment instanceof ItemsInStockByCatFragment)
+                                    if(fragment instanceof ItemsInShopByCatFragment)
                                     {
-                                        ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                                        ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
                                     }
 
                                 }else
                                 {
 
-                                    if(fragment instanceof ItemsInStockByCatFragment)
+                                    if(fragment instanceof ItemsInShopByCatFragment)
                                     {
-                                        ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
+                                        ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
                                         addToCartText.setText("Remove Item");
+
+//                                        addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.deepOrange900));
                                     }
                                 }
 
@@ -659,9 +665,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                                 {
                                     // no shop exist
 
-                                    if(fragment instanceof ItemsInStockByCatFragment)
+                                    if(fragment instanceof ItemsInShopByCatFragment)
                                     {
-                                        ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+                                        ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
                                     }
 
 
@@ -669,9 +675,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                                 {
                                     // shop Exist
 
-                                    if(fragment instanceof ItemsInStockByCatFragment)
+                                    if(fragment instanceof ItemsInShopByCatFragment)
                                     {
-                                        ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                                        ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
                                     }
 
                                     addToCartText.setText("Update Cart");
@@ -688,9 +694,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                     itemTotal.setText("Total : " + String.format( "%.2f", total));
 
-                    if(fragment instanceof ItemsInStockByCatFragment)
+                    if(fragment instanceof ItemsInShopByCatFragment)
                     {
-                        ((ItemsInStockByCatFragment)fragment).cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
+                        ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
                     }
 
 
@@ -756,6 +762,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                     //dataset.get(getLayoutPosition()).getShopID()
 
+                    progressBar.setVisibility(View.VISIBLE);
+
                     call.enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -766,12 +774,19 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                                 Toast.makeText(context, "Add to cart successful !", Toast.LENGTH_SHORT).show();
 
                                 makeNetworkCall(true,getLayoutPosition(),false);
+
+                                addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
+                                itemTotal.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
                             }
+
+
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     });
                 }
@@ -804,6 +819,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                             shopItem.getShopID()
                     );
 
+                    progressBar.setVisibility(View.VISIBLE);
+
                     callDelete.enqueue(new Callback<ResponseBody>() {
 
                         @Override
@@ -824,16 +841,22 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 //                                notifyFilledCart.notifyCartDataChanged();
 
+                                addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
+                                itemTotal.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
+
                             }else
                             {
 
                             }
+
+                            progressBar.setVisibility(View.INVISIBLE);
 
                         }
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     });
 
@@ -861,6 +884,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                                 shop.getShopID()
                         );
 
+                        progressBar.setVisibility(View.VISIBLE);
+
                         callUpdate.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -870,13 +895,18 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                                     Toast.makeText(context, "Update cart successful !", Toast.LENGTH_SHORT).show();
                                     makeNetworkCall(false,getLayoutPosition(),false);
+
+                                    addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
+                                    itemTotal.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
                                 }
 
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
 
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
                         });
 
@@ -939,6 +969,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
             cartItem = cartItemMap.get(shopItem.getItemID());
             cartStats = cartStatsMap.get(shop.getShopID());
 
+            addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_1));
+//            itemTotal.setBackgroundColor(ContextCompat.getColor(context,R.color.colorPrimary));
 
 
             double total = 0;
@@ -958,17 +990,17 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                             {
 
 
-                                if(fragment instanceof ItemsInStockByCatFragment)
+                                if(fragment instanceof ItemsInShopByCatFragment)
                                 {
-                                    ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(0) + " " + "Items in Cart");
+                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(0) + " " + "Items in Cart");
                                 }
                             }
                             else
                             {
 
-                                if(fragment instanceof ItemsInStockByCatFragment)
+                                if(fragment instanceof ItemsInShopByCatFragment)
                                 {
-                                    ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");;
+                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");;
                                 }
 
 
@@ -977,9 +1009,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                         } else
                         {
-                            if(fragment instanceof ItemsInStockByCatFragment)
+                            if(fragment instanceof ItemsInShopByCatFragment)
                             {
-                                ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() - 1) + " " + "Items in Cart");
+                                ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() - 1) + " " + "Items in Cart");
                             }
                         }
 
@@ -999,9 +1031,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
 
-                if(fragment instanceof ItemsInStockByCatFragment)
+                if(fragment instanceof ItemsInShopByCatFragment)
                 {
-                    ((ItemsInStockByCatFragment)fragment).cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
+                    ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
                 }
 
 
@@ -1030,6 +1062,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             //dataset.get(getLayoutPosition()).getShopID()
 
+            addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_1));
+//            itemTotal.setBackgroundColor(ContextCompat.getColor(context,R.color.colorPrimary));
+
 
             int availableItems = shopItem.getAvailableItemQuantity();
             double total = 0;
@@ -1045,17 +1080,17 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                         if(cartStats==null)
                         {
-                            if(fragment instanceof ItemsInStockByCatFragment)
+                            if(fragment instanceof ItemsInShopByCatFragment)
                             {
-                                ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(1) + " " + "Items in Cart");
+                                ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(1) + " " + "Items in Cart");
                             }
                         }
                         else
                         {
 
-                            if(fragment instanceof ItemsInStockByCatFragment) {
+                            if(fragment instanceof ItemsInShopByCatFragment) {
 
-                                ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+                                ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
                             }
 
 
@@ -1069,9 +1104,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                 {
 
 
-                    if(fragment instanceof ItemsInStockByCatFragment) {
+                    if(fragment instanceof ItemsInShopByCatFragment) {
 
-                        ((ItemsInStockByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                        ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
                     }
                 }
 
@@ -1094,9 +1129,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                 itemTotal.setText("Total : " + String.format("%.2f", total));
 
 
-                if(fragment instanceof ItemsInStockByCatFragment)
+                if(fragment instanceof ItemsInShopByCatFragment)
                 {
-                    ((ItemsInStockByCatFragment)fragment).cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
+                    ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
                 }
 
 

@@ -140,12 +140,14 @@ public class UtilityGeneral {
         UtilityLogin.saveCredentials(context,null,null);
     }
 
+    public static final String DEFAULT_SERVICE_URL = "http://nearbyshops.org";
+
     public static String getServiceURL(Context context) {
 
         context = MyApplication.getAppContext();
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), context.MODE_PRIVATE);
-        String service_url = sharedPref.getString(context.getString(R.string.preference_service_url_key), "http://nearbyshops.org");
+        String service_url = sharedPref.getString(context.getString(R.string.preference_service_url_key), DEFAULT_SERVICE_URL);
 
         //service_url = "http://localareademo-env.ap-southeast-1.elasticbeanstalk.com";
 

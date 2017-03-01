@@ -127,6 +127,14 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         @Bind(R.id.orderTotal) TextView orderTotal;
         @Bind(R.id.currentStatus) TextView currentStatus;
 
+
+        // order Summary Views
+
+        @Bind(R.id.item_total) TextView itemTotal;
+        @Bind(R.id.delivery_charges) TextView deliveryCharges;
+        @Bind(R.id.order_total_summary) TextView orderTotalSummary;
+
+
 //        @Bind(R.id.confirmOrderButton)
 //        TextView confirmOrderButton;
 
@@ -219,12 +227,20 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             holder.deliveryAddressPhone.setText("Phone : " + deliveryAddress.getPhoneNumber());
 
             holder.numberOfItems.setText(orderStats.getItemCount() + " Items");
-            holder.orderTotal.setText("| Total : " + (orderStats.getItemTotal() + order.getDeliveryCharges()));
+            holder.orderTotal.setText("| Total : " + String.valueOf(orderStats.getItemTotal() + order.getDeliveryCharges()));
             //holder.currentStatus.setText();
 
 
             String status = UtilityOrderStatus.getStatus(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
             holder.currentStatus.setText("Current Status : " + status);
+
+
+
+            // bind shop Summary Views
+
+            holder.itemTotal.setText("Item Total : " + String.valueOf(orderStats.getItemTotal()));
+            holder.deliveryCharges.setText("Delivery Charges : " + String.valueOf(order.getDeliveryCharges()));
+            holder.orderTotalSummary.setText("Total : " + String.valueOf(orderStats.getItemTotal() + order.getDeliveryCharges()));
 
 
             if(shop!=null)

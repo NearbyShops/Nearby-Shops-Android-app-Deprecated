@@ -156,10 +156,10 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
         item = getIntent().getParcelableExtra(ITEM_DETAIL_INTENT_KEY);
         bindViews(item);
 
-        if (item != null) {
-            getSupportActionBar().setTitle(item.getItemName());
+//        if (item != null) {
+//            getSupportActionBar().setTitle(item.getItemName());
 //            getSupportActionBar().setSubtitle(item.getItemDescription());
-        }
+//        }
 
 
         if (item != null) {
@@ -215,8 +215,9 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
 
             String imagePath = UtilityGeneral.getServiceURL(this)
-                    + "/api/v1/Item/Image/five_hundred_" + item.getItemImageURL() + ".jpg";
+                    + "/api/v1/Item/Image/seven_hundred_" + item.getItemImageURL() + ".jpg";
 
+            //five_hundred_  + ".jpg"
 
 //            if (!shop.getBookCoverImageURL().equals("")) {
 

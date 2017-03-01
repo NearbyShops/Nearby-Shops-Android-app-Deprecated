@@ -2,6 +2,8 @@ package org.nearbyshops.enduserapp.Items.ItemsList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -96,8 +98,8 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
                 if(item.getRt_rating_count()==0)
                 {
-                    holder.itemRating.setText("N/A");
-                    holder.ratingCount.setText("( not yet rated )");
+                    holder.itemRating.setText(" - ");
+                    holder.ratingCount.setText("( 0 Ratings )");
                 }
                 else
                 {
@@ -141,10 +143,14 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 //            Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
             }
 
+            Drawable placeholder = VectorDrawableCompat
+                    .create(context.getResources(),
+                            R.drawable.ic_nature_people_white_48px, context.getTheme());
+
 
             Picasso.with(context)
                     .load(imagePath)
-                    .placeholder(R.drawable.nature_people)
+                    .placeholder(placeholder)
                     .into(holder.itemImage);
 
 

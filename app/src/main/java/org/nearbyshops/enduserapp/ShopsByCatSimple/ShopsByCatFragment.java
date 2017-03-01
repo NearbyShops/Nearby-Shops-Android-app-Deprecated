@@ -323,7 +323,7 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
                     UtilityLocation.getDeliveryRangeMax(getActivity()),
                     0.00,
                     UtilityLocation.getProximity(getActivity()),true,
-                    "id",null,null,false);
+                    ItemCategory.CATEGORY_ORDER,null,null,false);
 
         }
         else
@@ -353,7 +353,7 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
                     UtilityLocation.getDeliveryRangeMax(getActivity()),
                     0.00,
                     UtilityLocation.getProximity(getActivity()),true,
-                    "id",null,null,false);
+                    ItemCategory.CATEGORY_ORDER,null,null,false);
         }
 
 

@@ -4,14 +4,17 @@ import android.app.IntentService;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.RingtoneManager;
 import android.support.annotation.Nullable;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import org.glassfish.jersey.media.sse.EventInput;
 import org.glassfish.jersey.media.sse.InboundEvent;
 import org.glassfish.jersey.media.sse.SseFeature;
+import org.nearbyshops.enduserapp.Model.Service;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
@@ -47,6 +50,14 @@ public class SSEIntentServiceUser extends IntentService{
         Log.d("notification_log",message);
     }
 
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        super.onStartCommand(intent, flags, startId);
+
+        return START_STICKY;
+    }
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
@@ -118,12 +129,15 @@ public class SSEIntentServiceUser extends IntentService{
             String eventName = inboundEvent.getName();
             String message = inboundEvent.readData(String.class);
 
+
+//            Drawable drawable = VectorDrawableCompat.create(getResources(),R.drawable.ic_shopping_basket_white_24px,getTheme());
+
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(SSEIntentServiceUser.this)
                             .setContentTitle(eventName)
                             .setContentText(message)
                             .setContentInfo(message)
-                            .setSmallIcon(R.drawable.ic_shopping_basket_white_24px)
+                            .setSmallIcon(R.mipmap.shopping_basket_png)
                             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
 
 //            .setStyle(new NotificationCompat.BigTextStyle().bigText("Order Received !"))

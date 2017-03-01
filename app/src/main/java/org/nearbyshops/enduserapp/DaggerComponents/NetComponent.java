@@ -6,8 +6,8 @@ import org.nearbyshops.enduserapp.CancelledOrders.CancelledByShop.FragmentCancel
 import org.nearbyshops.enduserapp.CancelledOrders.ReturnedByDeliveryGuy.FragmentReturnedByDG;
 import org.nearbyshops.enduserapp.DeliveryAddress.EditAddress.EditAddressFragment;
 import org.nearbyshops.enduserapp.DeliveryAddress.Previous.AddAddressActivity;
-import org.nearbyshops.enduserapp.Carts.CartItemListActivity;
-import org.nearbyshops.enduserapp.Carts.CartsListActivity;
+import org.nearbyshops.enduserapp.Carts.CartItem.CartItemListActivity;
+import org.nearbyshops.enduserapp.Carts.CartsList.CartsListActivity;
 import org.nearbyshops.enduserapp.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserapp.DeliveryAddress.Previous.EditAddressActivity;
 import org.nearbyshops.enduserapp.Carts.PlaceOrderActivity;
@@ -16,6 +16,7 @@ import org.nearbyshops.enduserapp.DaggerModules.NetModule;
 import org.nearbyshops.enduserapp.EditProfileEndUser.EditEndUserFragment;
 import org.nearbyshops.enduserapp.FilterShopDialog.FilterShopsDialog;
 import org.nearbyshops.enduserapp.FilterShops.FilterShops;
+import org.nearbyshops.enduserapp.Home;
 import org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.AdapterSimple;
 import org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduserapp.ItemCategoryOption.FragmentShopOld;
@@ -28,7 +29,7 @@ import org.nearbyshops.enduserapp.ItemsByCategoryHorizontal.ItemCategories.ItemC
 import org.nearbyshops.enduserapp.ItemsByCategoryHorizontal.Items.FragmentItemScreenHorizontal;
 import org.nearbyshops.enduserapp.ItemsInShop.ShopItems.FragmentItemsInShop;
 import org.nearbyshops.enduserapp.ItemsInShopByCat.AdapterItemsInShop;
-import org.nearbyshops.enduserapp.ItemsInShopByCat.ItemsInStockByCatFragment;
+import org.nearbyshops.enduserapp.ItemsInShopByCat.ItemsInShopByCatFragment;
 import org.nearbyshops.enduserapp.Login.LoginDialog;
 import org.nearbyshops.enduserapp.Login.LoginServiceDialog;
 import org.nearbyshops.enduserapp.LoginActivity;
@@ -160,7 +161,7 @@ public interface NetComponent {
 
     void Inject(AdapterSimple adapterSimple);
 
-    void Inject(ItemsInStockByCatFragment itemsInStockByCatFragment);
+    void Inject(ItemsInShopByCatFragment itemsInShopByCatFragment);
 
     void Inject(AdapterItemsInShop adapterItemsInShop);
 
@@ -197,4 +198,6 @@ public interface NetComponent {
     void Inject(EditEndUserFragment editEndUserFragment);
 
     void Inject(EditAddressFragment editAddressFragment);
+
+    void Inject(Home home);
 }

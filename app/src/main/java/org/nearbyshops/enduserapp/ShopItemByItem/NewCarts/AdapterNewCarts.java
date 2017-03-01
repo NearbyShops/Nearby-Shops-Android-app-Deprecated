@@ -175,10 +175,14 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                 System.out.println(imagePath);
 
+                Drawable placeholder = VectorDrawableCompat
+                        .create(context.getResources(),
+                                R.drawable.ic_nature_people_white_48px, context.getTheme());
+
 
                 Picasso.with(context)
                         .load(imagePath)
-                        .placeholder(R.drawable.nature_people)
+                        .placeholder(placeholder)
                         .into(holder.shopImage);
 
                 holder.shopName.setText(shop.getShopName());
@@ -361,7 +365,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
         String imagePath = UtilityGeneral.getServiceURL(context)
-                + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
+                + "/api/v1/Item/Image/five_hundred_" + item.getItemImageURL() + ".jpg";
 
 
         Drawable drawable = VectorDrawableCompat

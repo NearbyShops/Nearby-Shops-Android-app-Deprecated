@@ -1,7 +1,9 @@
-package org.nearbyshops.enduserapp.Carts;
+package org.nearbyshops.enduserapp.Carts.CartsList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.nearbyshops.enduserapp.Carts.CartItem.CartItemListActivity;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelStats.CartStats;
 import org.nearbyshops.enduserapp.R;
@@ -77,10 +80,15 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
 
         System.out.println(imagePath);
 
+        Drawable placeholder = VectorDrawableCompat
+                .create(context.getResources(),
+                        R.drawable.ic_nature_people_white_48px, context.getTheme());
+
+
 
         Picasso.with(context)
                 .load(imagePath)
-                .placeholder(R.drawable.nature_people)
+                .placeholder(placeholder)
                 .into(holder.shopImage);
 
     }

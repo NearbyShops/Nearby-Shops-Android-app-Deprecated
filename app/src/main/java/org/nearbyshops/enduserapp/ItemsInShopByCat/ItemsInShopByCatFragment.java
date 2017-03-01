@@ -49,7 +49,7 @@ import retrofit2.Response;
  * Created by sumeet on 2/12/16.
  */
 
-public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterItemsInShop.NotificationsFromAdapter , NotifyBackPressed, NotifySort, NotifySearch {
+public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterItemsInShop.NotificationsFromAdapter , NotifyBackPressed, NotifySort, NotifySearch {
 
 
 //    Map<Integer,ShopItem> shopItemMapTemp = new HashMap<>();
@@ -97,7 +97,7 @@ public class ItemsInStockByCatFragment extends Fragment implements SwipeRefreshL
     ItemCategory currentCategory = null;
 
 
-    public ItemsInStockByCatFragment() {
+    public ItemsInShopByCatFragment() {
         super();
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);

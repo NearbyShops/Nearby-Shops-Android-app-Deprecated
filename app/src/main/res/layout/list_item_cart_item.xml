@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    android:background="#22000000"
+<LinearLayout android:background="#22000000"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/shopItem_list_item"
     android:paddingBottom="2dp"
@@ -14,7 +13,8 @@
     android:layout_marginRight="3dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <LinearLayout
@@ -138,7 +138,7 @@
             android:id="@+id/reduceQuantity"
             android:layout_gravity="center_vertical"
             android:background="@color/grey800"
-            android:src="@drawable/ic_remove_white_24px"
+            app:srcCompat="@drawable/ic_remove_white_24px"
             android:layout_width="40dp"
             android:layout_height="40dp" />
 
@@ -157,7 +157,7 @@
             android:id="@+id/increaseQuantity"
             android:layout_gravity="center_vertical"
             android:background="@color/grey800"
-            android:src="@drawable/ic_add_white_24px"
+            app:srcCompat="@drawable/ic_add_white_24px"
             android:layout_width="40dp"
             android:layout_height="40dp" />
 

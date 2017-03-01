@@ -13,6 +13,7 @@ import android.widget.Toast;
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserapp.Home;
+import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelCartOrder.Order;
 import org.nearbyshops.enduserapp.ModelPickFromShop.OrderPFS;
 import org.nearbyshops.enduserapp.ModelStats.CartStats;
@@ -35,7 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlaceOrderActivity extends AppCompatActivity implements View.OnClickListener, Callback<List<CartStats>> {
+public class PlaceOrderActivity extends AppCompatActivity implements View.OnClickListener{
 
 
     Order order = new Order();
@@ -57,6 +58,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     TextView subTotal;
     TextView deliveryCharges;
     TextView total;
+    @Bind(R.id.free_delivery_info) TextView freeDeliveryInfo;
 
     @Bind(R.id.radioPickFromShop) RadioButton pickFromShopCheck;
     @Bind(R.id.radioHomeDelivery) RadioButton homeDelieryCheck;
@@ -228,27 +230,46 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
         Call<List<CartStats>> call = cartStatsService.getCart(
                 UtilityLogin.getEndUser(this).getEndUserID(),cartStats.getCartID(), null,true,null,null);
 
-        call.enqueue(this);
+
+        call.enqueue(new Callback<List<CartStats>>() {
+            @Override
+            public void onResponse(Call<List<CartStats>> call, Response<List<CartStats>> response) {
+
+
+                if(response!=null)
+                {
+                    cartStatsFromNetworkCall = response.body().get(0);
+                    setTotal();
+                    setRadioCheck();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CartStats>> call, Throwable t) {
+
+                showToastMessage("Network connection failed. Check Internet connectivity !");
+            }
+        });
     }
 
 
 
-    @Override
-    public void onResponse(Call<List<CartStats>> call, Response<List<CartStats>> response) {
 
-        if(response!=null)
+    void setRadioCheck()
+    {
+        if(cartStatsFromNetworkCall!=null)
         {
-            cartStatsFromNetworkCall = response.body().get(0);
-            setTotal();
+            Shop shop = cartStatsFromNetworkCall.getShop();
+
+            if(shop!=null)
+            {
+                homeDelieryCheck.setEnabled(shop.getHomeDeliveryAvailable());
+                pickFromShopCheck.setEnabled(shop.getPickFromShopAvailable());
+            }
         }
     }
 
-    @Override
-    public void onFailure(Call<List<CartStats>> call, Throwable t) {
 
-
-        showToastMessage("Network connection failed. Check Internet connectivity !");
-    }
 
 
 
@@ -256,6 +277,9 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     {
         if(cartStatsFromNetworkCall!=null)
         {
+
+            freeDeliveryInfo.setText("Free delivery is offered above the order of " + String.valueOf(cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery()));
+
             subTotal.setText("Subtotal: " + cartStats.getCart_Total());
             deliveryCharges.setText("Delivery Charges : N/A");
 
@@ -269,11 +293,25 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
             if(homeDelieryCheck.isChecked())
             {
-                total.setText("Total : " + String.format( "%.2f", cartStats.getCart_Total() + cartStats.getShop().getDeliveryCharges()));
-                deliveryCharges.setText("Delivery Charges : " + cartStats.getShop().getDeliveryCharges());
+
+
+                if(cartStatsFromNetworkCall.getCart_Total() < cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery())
+                {
+
+                    total.setText("Total : " + String.format( "%.2f", cartStats.getCart_Total() + cartStats.getShop().getDeliveryCharges()));
+                    deliveryCharges.setText("Delivery Charges : " + cartStats.getShop().getDeliveryCharges());
+                }
+                else
+                {
+
+                    deliveryCharges.setText("Delivery Charges : Zero " + "(Delivery is free above the order of : " + String.valueOf(cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery()) + " )");
+                    total.setText("Total : " + String.format( "%.2f", cartStats.getCart_Total()));
+                }
+
             }
         }
     }
+
 
 
     @OnClick({R.id.radioPickFromShop,R.id.radioHomeDelivery})

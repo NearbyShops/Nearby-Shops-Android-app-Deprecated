@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -51,7 +53,7 @@ import com.google.gson.GsonBuilder;
 
 
 import org.apache.commons.validator.routines.UrlValidator;
-import org.nearbyshops.enduserapp.Carts.CartsListActivity;
+import org.nearbyshops.enduserapp.Carts.CartsList.CartsListActivity;
 import org.nearbyshops.enduserapp.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserapp.EditProfileEndUser.EditEndUserFragment;
 import org.nearbyshops.enduserapp.EditProfileEndUser.EditProfileEndUser;
@@ -61,10 +63,12 @@ import org.nearbyshops.enduserapp.Items.ItemsActivity;
 import org.nearbyshops.enduserapp.Login.LoginDialog;
 import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserapp.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserapp.Notifications.SSEIntentServiceUser;
 import org.nearbyshops.enduserapp.OrdersHomePickFromShop.OrdersHomePickFromShop;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ServiceConfigurationService;
+import org.nearbyshops.enduserapp.RetrofitRESTContractSDS.ServiceConfigService;
 import org.nearbyshops.enduserapp.Services.ServicesActivity;
 import org.nearbyshops.enduserapp.Settings.SettingsCustom;
 import org.nearbyshops.enduserapp.SharedPreferences.UtilityLocationOld;
@@ -76,6 +80,8 @@ import org.nearbyshops.enduserapp.UtilityGeocoding.Constants;
 import org.nearbyshops.enduserapp.UtilityGeocoding.FetchAddressIntentService;
 import org.nearbyshops.enduserapp.OrdersHomeDelivery.OrderHome;
 import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -131,6 +137,11 @@ public class Home extends AppCompatActivity
 
     Subscription editTextSub;
 
+
+    public Home() {
+        DaggerComponentBuilder.getInstance().getNetComponent()
+                .Inject(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -220,6 +231,7 @@ public class Home extends AppCompatActivity
 //        setlabelLogin();
 
         setStatusLight();
+
 
     } // onCreate() Ends
 
@@ -543,7 +555,7 @@ public class Home extends AppCompatActivity
 
         if (id == R.id.nav_about_service) {
             // Handle the camera action
-            showToastMessage("about");
+            showToastMessage("Feature coming soon !");
 
         } else if (id == R.id.nav_settings) {
 
@@ -563,11 +575,6 @@ public class Home extends AppCompatActivity
         {
             startActivity(new Intent(this, OrdersHomePickFromShop.class));
         }
-        else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
         else if(id==R.id.nav_edit_profile)
         {
 
@@ -584,6 +591,37 @@ public class Home extends AppCompatActivity
         {
             startActivity(new Intent(this, DeliveryAddressActivity.class));
         }
+        else if(id == R.id.nav_item_wishlist)
+        {
+            showToastMessage("Feature coming soon !");
+
+        }
+        else if(id == R.id.nav_favourite_shops)
+        {
+            showToastMessage("Feature coming soon !");
+
+        }
+        else if(id == R.id.nav_item_list)
+        {
+            showToastMessage("Feature coming soon !");
+
+        }
+        else if(id == R.id.nav_staff)
+        {
+            showToastMessage("Feature coming soon !");
+        }
+        else if(id == R.id.nav_about_application)
+        {
+            Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("https://nearbyshops.org/about/"));
+            startActivity(intent);
+        }
+        else if(id == R.id.nav_faqs)
+        {
+            Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("https://nearbyshops.org/frequently-asked-questions-faqs/"));
+            startActivity(intent);
+        }
+
+
 
         //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -684,6 +722,8 @@ public class Home extends AppCompatActivity
 
         super.onStop();
 
+        isDestroyed = true;
+
         if (mGoogleApiClient != null) {
 
             mGoogleApiClient.disconnect();
@@ -702,6 +742,10 @@ public class Home extends AppCompatActivity
 
         setlabelLogin();
         updateLoginMenuVisibility();
+
+        isDestroyed = false;
+
+
 //        bindEditTextServiceURL();
     }
 
@@ -935,7 +979,97 @@ public class Home extends AppCompatActivity
 
         UtilityLocationOld.saveCurrentLocation(this,location);
 
+
+        setupURLAuto();
+
     }
+
+    @Inject
+    ServiceConfigService serviceConfigService;
+    boolean isDestroyed;
+
+
+    void setupURLAuto()
+    {
+
+        if(!UtilityGeneral.getServiceURL(this).equals(UtilityGeneral.DEFAULT_SERVICE_URL))
+        {
+            // do not proceed if user has already set the URL
+            return;
+        }
+
+
+        String current_sort = "IS_OFFICIAL_SERVICE_PROVIDER desc,distance asc";
+
+        Call<ServiceConfigurationEndPoint> call = serviceConfigService.getShopListSimple(
+                UtilityLocation.getLatitude(this),
+                UtilityLocation.getLongitude(this),
+                null,null,
+                null,
+                null,null,
+                null,
+                current_sort,10,0);
+
+
+        call.enqueue(new Callback<ServiceConfigurationEndPoint>() {
+            @Override
+            public void onResponse(Call<ServiceConfigurationEndPoint> call, Response<ServiceConfigurationEndPoint> response) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+                if(response.body()!= null)
+                {
+                    response.body().getItemCount();
+
+
+                    if(response.body().getResults()!=null && response.body().getResults().size()>=1)
+                    {
+//                        UtilityGeneral.saveServiceURL(
+//                                response.body().getResults().get(0).getServiceURL(),
+//                                Home.this
+//                        );
+
+                        String serviceURLString = response.body().getResults().get(0).getServiceURL();
+
+                        if (urlValidator.isValid(serviceURLString)) {
+                            UtilityGeneral.saveServiceURL(serviceURLString,Home.this);
+                            textInputServiceURL.setError(null);
+                            textInputServiceURL.setErrorEnabled(false);
+                            serviceURL.setText(serviceURLString);
+                            updateStatusLight();
+                        }
+
+
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ServiceConfigurationEndPoint> call, Throwable t) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+//                showToastMessage("Network Request failed !");
+
+            }
+        });
+
+    }
+
+
+
+
+
+
+
 
 
     @OnClick(R.id.text_update)
@@ -1114,9 +1248,12 @@ public class Home extends AppCompatActivity
         {
             System.out.println("Setup Notifications : End USER ID : " + String.valueOf(endUser.getEndUserID()));
 
-            Intent intent = new Intent(this, SSEIntentServiceUser.class);
-            intent.putExtra(SSEIntentServiceUser.END_USER_ID, endUser.getEndUserID());
-            startService(intent);
+            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT)
+            {
+                Intent intent = new Intent(this, SSEIntentServiceUser.class);
+                intent.putExtra(SSEIntentServiceUser.END_USER_ID, endUser.getEndUserID());
+                startService(intent);
+            }
         }
     }
 

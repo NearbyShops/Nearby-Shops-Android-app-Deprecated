@@ -69,7 +69,7 @@
                 android:value="org.nearbyshops.enduserapp.ItemCategoryOption.ShopItemSwipeView" />
         </activity>
         <activity
-            android:name="org.nearbyshops.enduserapp.Carts.CartsListActivity"
+            android:name="org.nearbyshops.enduserapp.Carts.CartsList.CartsListActivity"
             android:label="@string/title_activity_carts_list"
             android:parentActivityName="org.nearbyshops.enduserapp.Home"
             android:theme="@style/AppTheme.NoActionBar">
@@ -78,22 +78,22 @@
                 android:value="org.nearbyshops.enduserapp.Home" />
         </activity>
         <activity
-            android:name="org.nearbyshops.enduserapp.Carts.CartItemListActivity"
+            android:name="org.nearbyshops.enduserapp.Carts.CartItem.CartItemListActivity"
             android:label="@string/title_activity_cart_item_list"
-            android:parentActivityName="org.nearbyshops.enduserapp.Carts.CartsListActivity"
+            android:parentActivityName="org.nearbyshops.enduserapp.Carts.CartsList.CartsListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Carts.CartsListActivity" />
+                android:value="org.nearbyshops.enduserapp.Carts.CartsList.CartsListActivity" />
         </activity>
         <activity
             android:name="org.nearbyshops.enduserapp.Carts.PlaceOrderActivity"
             android:label="@string/title_activity_place_order"
-            android:parentActivityName="org.nearbyshops.enduserapp.Carts.CartItemListActivity"
+            android:parentActivityName="org.nearbyshops.enduserapp.Carts.CartItem.CartItemListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Carts.CartItemListActivity" />
+                android:value="org.nearbyshops.enduserapp.Carts.CartItem.CartItemListActivity" />
         </activity>
         <activity
             android:name="org.nearbyshops.enduserapp.DeliveryAddress.DeliveryAddressActivity"
@@ -289,7 +289,7 @@
                 android:value="org.nearbyshops.enduserapp.Home" />
         </activity>
         <activity
-            android:name="org.nearbyshops.enduserapp.ItemsInShopByCat.ItemsInStockByCat"
+            android:name="org.nearbyshops.enduserapp.ItemsInShopByCat.ItemsInShopByCat"
             android:label="Items In Shop"
             android:launchMode="singleTop"
             android:parentActivityName="org.nearbyshops.enduserapp.ShopHome.ShopHome"
