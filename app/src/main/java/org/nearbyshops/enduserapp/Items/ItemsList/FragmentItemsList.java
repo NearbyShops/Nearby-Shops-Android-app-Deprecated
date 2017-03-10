@@ -210,7 +210,6 @@ public class FragmentItemsList extends Fragment
                         makeNetworkCall(false);
                     }
 
-//                    previous_position = dataset.size();
                 }
             }
         });
@@ -405,6 +404,5 @@ public class FragmentItemsList extends Fragment
     public int getItemCount() {
         return item_count;
     }
-
 
 }

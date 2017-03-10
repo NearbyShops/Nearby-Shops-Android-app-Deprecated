@@ -1,21 +1,16 @@
-package org.nearbyshops.enduserapp.Notifications;
+package org.nearbyshops.enduserapp.Notifications.NonStopService;
 
-import android.app.IntentService;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.media.RingtoneManager;
-import android.support.annotation.Nullable;
-import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import org.glassfish.jersey.media.sse.EventInput;
 import org.glassfish.jersey.media.sse.InboundEvent;
 import org.glassfish.jersey.media.sse.SseFeature;
-import org.nearbyshops.enduserapp.Model.Service;
 import org.nearbyshops.enduserapp.MyApplication;
+import org.nearbyshops.enduserapp.Notifications.SSEIntentServiceUser;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
 import org.nearbyshops.enduserapp.Utility.UtilityLogin;
@@ -25,60 +20,29 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
 /**
- * Created by sumeet on 17/11/16.
+ * Created by sumeet on 9/3/17.
  */
 
-public class SSEIntentServiceUser extends IntentService{
+public class IntentServiceSSE extends NonStopIntentService {
 
-    public static final String END_USER_ID = "END_USER_ID";
 
-    /**
-     * Creates an IntentService.  Invoked by your subclass's constructor.
-     *
-     * @param name Used to name the worker thread, important only for debugging.
-     */
-    public SSEIntentServiceUser(String name) {
+    public IntentServiceSSE(String name) {
         super(name);
     }
 
-    public SSEIntentServiceUser() {
-        super("service_end_user");
+
+    public IntentServiceSSE() {
+        super("name");
     }
-
-
-    void logMessage(String message)
-    {
-        Log.d("notification_log",message);
-    }
-
-
-//    @Override
-//    public int onStartCommand(Intent intent, int flags, int startId) {
-//        super.onStartCommand(intent, flags, startId);
-//        return START_REDELIVER_INTENT;
-//    }
 
 
 
     @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
+    protected void onHandleIntent(Intent intent) {
 
-//        System.out.println("Inside Notification Intent Service");
-
-        logMessage("Inside Notification Intent Service !");
-        System.out.println("On Handle Intent !");
-
-
-        try{
-
-            handleNotification();
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Exception : " + ex.toString());
-        }
-
+        handleNotification();
     }
+
 
 
 
@@ -90,7 +54,7 @@ public class SSEIntentServiceUser extends IntentService{
         int endUserID = -1;
 
 //        System.out.println("Inside Before Shop Fetch!");
-        logMessage("Inside Before EndUser Fetch !");
+//        logMessage("Inside Before EndUser Fetch !");
         System.out.println("On Handle Intent : Handle Notification !");
 
 //        if (intent != null) {
@@ -115,7 +79,7 @@ public class SSEIntentServiceUser extends IntentService{
 
 
         System.out.println("URL : " + url);
-        logMessage("URL : " + url);
+//        logMessage("URL : " + url);
 
 
         WebTarget target = client.target(url);
@@ -140,7 +104,7 @@ public class SSEIntentServiceUser extends IntentService{
 //            Drawable drawable = VectorDrawableCompat.create(getResources(),R.drawable.ic_shopping_basket_white_24px,getTheme());
 
             NotificationCompat.Builder mBuilder =
-                    new NotificationCompat.Builder(SSEIntentServiceUser.this)
+                    new NotificationCompat.Builder(IntentServiceSSE.this)
                             .setContentTitle(eventName)
                             .setContentText(message)
                             .setContentInfo(message)
@@ -170,6 +134,8 @@ public class SSEIntentServiceUser extends IntentService{
             mNotificationManager.notify(2, mBuilder.build());
         }
     }
+
+
 
 
 }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
+import org.nearbyshops.enduserapp.FilterItemsBySpecifications.FilterItemsActivity;
 import org.nearbyshops.enduserapp.Items.ItemsList.FragmentItemsList;
 import org.nearbyshops.enduserapp.Items.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserapp.R;
@@ -38,6 +39,8 @@ public class ItemsActivity extends AppCompatActivity implements NotifySort, Noti
 
     @Bind(R.id.shop_count_indicator)
     TextView shopsCount;
+
+
 
 
     @Override
@@ -118,6 +121,14 @@ public class ItemsActivity extends AppCompatActivity implements NotifySort, Noti
     void sortClick()
     {
         slidingLayer.openLayer(true);
+    }
+
+
+    @OnClick({R.id.icon_filter,R.id.text_filter})
+    void filterClick()
+    {
+        Intent intent = new Intent(this, FilterItemsActivity.class);
+        startActivity(intent);
     }
 
 

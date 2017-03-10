@@ -59,9 +59,24 @@
             android:layout_height="wrap_content" />
 
 
-        <TextView
+        <android.support.v7.widget.RecyclerView
+            android:nestedScrollingEnabled="false"
+            android:scrollbarStyle="outsideInset"
+            android:fadeScrollbars="false"
+            android:scrollbars="horizontal"
             android:layout_marginTop="10dp"
+            android:isScrollContainer="false"
             android:layout_below="@id/author_name"
+            android:id="@+id/recyclerview_item_images"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <TextView
+            android:textSize="17sp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/recyclerview_item_images"
             android:text="Item Description not available"
             android:id="@+id/book_description"
             android:layout_width="match_parent"
@@ -73,17 +88,48 @@
             android:textColor="@color/buttonColorDark"
             android:id="@+id/read_full_button"
             android:text="Read Full Description"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_below="@id/book_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
 
-        <ImageView
-            android:layout_marginTop="5dp"
-            android:id="@+id/share_buttons"
+
+        <TextView
+            android:layout_marginTop="10dp"
             android:layout_below="@id/read_full_button"
+            android:id="@+id/item_specifications"
+            android:textSize="15sp"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@color/buttonColorDark"
+            android:text="Item Specifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/item_specifications"
+            android:id="@+id/recyclerview_item_specifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:background="@color/blueGrey800"
+            android:layout_below="@id/recyclerview_item_specifications"
+            android:id="@+id/border_specs"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        
+
+        <ImageView
+            android:layout_marginTop="15dp"
+            android:id="@+id/share_buttons"
+            android:layout_below="@id/border_specs"
             app:srcCompat="@drawable/ic_share_black_24px"
             android:layout_width="50dp"
             android:layout_height="50dp" />

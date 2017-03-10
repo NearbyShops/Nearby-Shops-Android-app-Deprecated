@@ -65,6 +65,7 @@ import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
 import org.nearbyshops.enduserapp.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserapp.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserapp.Notifications.NonStopService.IntentServiceSSE;
 import org.nearbyshops.enduserapp.Notifications.SSEIntentServiceUser;
 import org.nearbyshops.enduserapp.OrdersHomePickFromShop.OrdersHomePickFromShop;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ServiceConfigurationService;
@@ -1250,9 +1251,12 @@ public class Home extends AppCompatActivity
 
             if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT)
             {
-                Intent intent = new Intent(this, SSEIntentServiceUser.class);
-                intent.putExtra(SSEIntentServiceUser.END_USER_ID, endUser.getEndUserID());
+//                Intent intent = new Intent(this, SSEIntentServiceUser.class);
+//                intent.putExtra(SSEIntentServiceUser.END_USER_ID, endUser.getEndUserID());
+
+                Intent intent = new Intent(this, IntentServiceSSE.class);
                 startService(intent);
+
             }
         }
     }

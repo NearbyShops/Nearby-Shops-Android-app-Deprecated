@@ -2,23 +2,21 @@ package org.nearbyshops.enduserapp.Notifications;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.media.RingtoneManager;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import org.glassfish.jersey.media.sse.EventInput;
 import org.glassfish.jersey.media.sse.InboundEvent;
 import org.glassfish.jersey.media.sse.SseFeature;
-import org.nearbyshops.enduserapp.Model.Service;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -28,7 +26,7 @@ import javax.ws.rs.client.WebTarget;
  * Created by sumeet on 17/11/16.
  */
 
-public class SSEIntentServiceUser extends IntentService{
+public class SSEServiceUser extends Service {
 
     public static final String END_USER_ID = "END_USER_ID";
 
@@ -37,13 +35,8 @@ public class SSEIntentServiceUser extends IntentService{
      *
      * @param name Used to name the worker thread, important only for debugging.
      */
-    public SSEIntentServiceUser(String name) {
-        super(name);
-    }
 
-    public SSEIntentServiceUser() {
-        super("service_end_user");
-    }
+
 
 
     void logMessage(String message)
@@ -52,18 +45,19 @@ public class SSEIntentServiceUser extends IntentService{
     }
 
 
-//    @Override
-//    public int onStartCommand(Intent intent, int flags, int startId) {
-//        super.onStartCommand(intent, flags, startId);
-//        return START_REDELIVER_INTENT;
-//    }
-
-
-
     @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
+    public int onStartCommand(Intent intent, int flags, int startId) {
 
-//        System.out.println("Inside Notification Intent Service");
+        super.onStartCommand(intent, flags, startId);
+
+        return START_STICKY;
+    }
+
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+
 
         logMessage("Inside Notification Intent Service !");
         System.out.println("On Handle Intent !");
@@ -71,18 +65,22 @@ public class SSEIntentServiceUser extends IntentService{
 
         try{
 
-            handleNotification();
+            handleNotification(intent);
         }
         catch (Exception ex)
         {
             System.out.println("Exception : " + ex.toString());
         }
 
+        return null;
     }
 
 
 
-    void handleNotification()
+
+
+
+    void handleNotification(Intent intent)
     {
         Client client = ClientBuilder.newBuilder()
                 .register(SseFeature.class).build();
@@ -93,14 +91,8 @@ public class SSEIntentServiceUser extends IntentService{
         logMessage("Inside Before EndUser Fetch !");
         System.out.println("On Handle Intent : Handle Notification !");
 
-//        if (intent != null) {
-//            endUserID = intent.getIntExtra(END_USER_ID,-1);
-//        }
-
-
-        if(UtilityLogin.getEndUser(getBaseContext())!=null)
-        {
-            endUserID = UtilityLogin.getEndUser(getBaseContext()).getEndUserID();
+        if (intent != null) {
+            endUserID = intent.getIntExtra(END_USER_ID,-1);
         }
 
         if(endUserID==-1)
@@ -140,7 +132,7 @@ public class SSEIntentServiceUser extends IntentService{
 //            Drawable drawable = VectorDrawableCompat.create(getResources(),R.drawable.ic_shopping_basket_white_24px,getTheme());
 
             NotificationCompat.Builder mBuilder =
-                    new NotificationCompat.Builder(SSEIntentServiceUser.this)
+                    new NotificationCompat.Builder(SSEServiceUser.this)
                             .setContentTitle(eventName)
                             .setContentText(message)
                             .setContentInfo(message)

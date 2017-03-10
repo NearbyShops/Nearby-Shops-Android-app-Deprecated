@@ -15,6 +15,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +36,10 @@ import com.squareup.picasso.Target;
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.Login.LoginDialog;
 import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
+import org.nearbyshops.enduserapp.Model.Endpoints.ItemImageEndPoint;
 import org.nearbyshops.enduserapp.Model.Item;
+import org.nearbyshops.enduserapp.Model.ItemImage;
+import org.nearbyshops.enduserapp.ModelItemSpecs.ItemSpecificationName;
 import org.nearbyshops.enduserapp.ModelReviewItem.FavouriteItem;
 import org.nearbyshops.enduserapp.ModelReviewItem.FavouriteItemEndpoint;
 import org.nearbyshops.enduserapp.ModelReviewItem.ItemReview;
@@ -41,9 +47,14 @@ import org.nearbyshops.enduserapp.ModelReviewItem.ItemReviewEndPoint;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.FavouriteItemService;
+import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemImageService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemReviewService;
+import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemSpecNameService;
 import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
 import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -67,6 +78,12 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
     @Inject
     FavouriteItemService favouriteItemService;
+
+    @Inject
+    ItemImageService itemImageService;
+
+    @Inject
+    ItemSpecNameService itemSpecNameService;
 
     private GoogleMap mMap;
     Marker currentMarker;
@@ -182,8 +199,169 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+        setupRecyclerView();
+        setupRecyclerViewSpecs();
+
         checkFavourite();
     }
+
+
+
+
+
+    ArrayList<ItemImage> dataset = new ArrayList<>();
+    @Bind(R.id.recyclerview_item_images)
+    RecyclerView itemImagesList;
+    AdapterItemImages adapterItemImages;
+    GridLayoutManager layoutManager;
+
+
+    void setupRecyclerView() {
+
+        adapterItemImages = new AdapterItemImages(dataset,this);
+        itemImagesList.setAdapter(adapterItemImages);
+        layoutManager = new GridLayoutManager(this, 1, LinearLayoutManager.HORIZONTAL, false);
+        itemImagesList.setLayoutManager(layoutManager);
+
+        makeNetworkCallItemImages(true);
+    }
+
+
+
+    void makeNetworkCallItemImages(final boolean clearDataset)
+    {
+
+            Call<ItemImageEndPoint> call = itemImageService.getItemImages(
+                    item.getItemID(),ItemImage.IMAGE_ORDER,null,null,null
+            );
+
+
+            call.enqueue(new Callback<ItemImageEndPoint>() {
+                @Override
+                public void onResponse(Call<ItemImageEndPoint> call, Response<ItemImageEndPoint> response) {
+
+                    if(isDestroyed)
+                    {
+                        return;
+                    }
+
+                    if(response.body()!=null)
+                    {
+                        if(response.body().getResults()!=null)
+                        {
+                            if(clearDataset)
+                            {
+                                dataset.clear();
+                            }
+
+                            dataset.addAll(response.body().getResults());
+                            adapterItemImages.notifyDataSetChanged();
+
+
+//                            showToastMessage("Dataset Changed : Item ID : " + String.valueOf(item.getItemID()) +
+//                            "\nDataset Count" + String.valueOf(response.body().getResults().size())
+//                            );
+
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ItemImageEndPoint> call, Throwable t) {
+
+
+                    if(isDestroyed)
+                    {
+                        return;
+                    }
+
+
+                    showToastMessage("Loading Images Failed !");
+                }
+            });
+    }
+
+
+
+    ArrayList<ItemSpecificationName> datasetSpecs = new ArrayList<>();
+    @Bind(R.id.recyclerview_item_specifications)
+    RecyclerView itemSpecsList;
+    AdapterItemSpecifications adapterItemSpecs;
+    GridLayoutManager layoutManagerItemSpecs;
+
+
+    void setupRecyclerViewSpecs()
+    {
+        adapterItemSpecs = new AdapterItemSpecifications(datasetSpecs,this);
+        itemSpecsList.setAdapter(adapterItemSpecs);
+        layoutManagerItemSpecs = new GridLayoutManager(this, 1, LinearLayoutManager.VERTICAL, false);
+        itemSpecsList.setLayoutManager(layoutManagerItemSpecs);
+
+        makeNetworkCallSpecs(true);
+
+    }
+
+
+    void makeNetworkCallSpecs(final boolean clearDataset)
+    {
+        Call<List<ItemSpecificationName>> call = itemSpecNameService.getItemSpecName(
+                item.getItemID(),null
+        );
+
+
+        call.enqueue(new Callback<List<ItemSpecificationName>>() {
+            @Override
+            public void onResponse(Call<List<ItemSpecificationName>> call, Response<List<ItemSpecificationName>> response) {
+
+                if(response.code()==200)
+                {
+                    if(clearDataset)
+                    {
+                        datasetSpecs.clear();
+                    }
+
+                    datasetSpecs.addAll(response.body());
+
+                    adapterItemSpecs.notifyDataSetChanged();
+                }
+                else if(response.code() == 401 || response.code() == 403)
+                {
+                    showToastMessage("Not Permitted");
+                }
+                else
+                {
+                    showToastMessage("Failed to load specs : code " + String.valueOf(response.code()));
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ItemSpecificationName>> call, Throwable t) {
+
+                showToastMessage("Failed !");
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+    boolean isDestroyed = false;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        isDestroyed = false;
+    }
+
 
 
 
@@ -258,7 +436,6 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
 
         }
-
 
     }
 
@@ -405,6 +582,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
         super.onDestroy();
 
 
+        isDestroyed = true;
         ButterKnife.unbind(this);
 
         /*if (unbinder != null) {

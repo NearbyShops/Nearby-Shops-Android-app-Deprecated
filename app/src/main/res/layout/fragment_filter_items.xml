@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/vertical_guide"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.40" />
+
+
+
+    <Button
+        android:id="@+id/clear_all"
+        android:textColor="@color/white"
+        android:background="@color/colorAccent"
+        android:text="Clear ALL "
+        app:layout_constraintRight_toLeftOf="@id/vertical_guide"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:textColor="@color/white"
+        android:background="@color/blueGrey800"
+        android:text="Apply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/vertical_guide"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/clear_all"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/cyan900"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/clear_all"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/vertical_guide"
+        android:id="@+id/recycler_view_names"
+        android:scrollbars="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/vertical_guide"
+        android:id="@+id/recycler_view_values"
+        android:scrollbars="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+
+</android.support.constraint.ConstraintLayout>

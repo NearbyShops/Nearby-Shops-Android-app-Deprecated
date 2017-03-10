@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/vertical_guide"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.50" />
+
+
+
+
+    <TextView
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/vertical_guide"
+        android:id="@+id/title_name"
+        android:padding="10dp"
+        android:text="Ingredients"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:padding="10dp"
+        android:text="Black pepper, Asefotida, ginger, onion powder, chilli, "
+        android:id="@+id/values"
+        app:layout_constraintLeft_toRightOf="@id/vertical_guide"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+
+
+
+    <!--<TextView-->
+        <!--android:background="@color/blueGrey800"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/values"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="1dp" />-->
+
+
+</android.support.constraint.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.nearbyshops.enduserapp.ModelItemSpecs.ItemSpecificationName;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.CartService;
@@ -17,8 +18,12 @@ import org.nearbyshops.enduserapp.RetrofitRESTContract.EndUserService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.FavouriteItemService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.FavouriteShopService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemCategoryService;
+import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemImageService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemReviewService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemService;
+import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemSpecItemService;
+import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemSpecNameService;
+import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemSpecValueService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.OrderItemService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ServiceConfigurationService;
@@ -238,9 +243,36 @@ public class NetModule {
     ItemService itemService(Retrofit retrofit)
     {
 
-        ItemService itemService = retrofit.create(ItemService.class);
-        return itemService;
+        return retrofit.create(ItemService.class);
     }
+
+
+    @Provides
+    ItemImageService itemImageService(Retrofit retrofit)
+    {
+        return retrofit.create(ItemImageService.class);
+    }
+
+    @Provides
+    ItemSpecNameService itemSpecNameService(Retrofit retrofit)
+    {
+        return retrofit.create(ItemSpecNameService.class);
+    }
+
+
+    @Provides
+    ItemSpecValueService itemSpecValueService(Retrofit retrofit)
+    {
+        return retrofit.create(ItemSpecValueService.class);
+    }
+
+
+    @Provides
+    ItemSpecItemService itemSpecItemService(Retrofit retrofit)
+    {
+        return retrofit.create(ItemSpecItemService.class);
+    }
+
 
 
 

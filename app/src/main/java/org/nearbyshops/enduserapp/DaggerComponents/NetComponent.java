@@ -14,6 +14,7 @@ import org.nearbyshops.enduserapp.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduserapp.DaggerModules.AppModule;
 import org.nearbyshops.enduserapp.DaggerModules.NetModule;
 import org.nearbyshops.enduserapp.EditProfileEndUser.EditEndUserFragment;
+import org.nearbyshops.enduserapp.FilterItemsBySpecifications.FilterItemsFragment;
 import org.nearbyshops.enduserapp.FilterShopDialog.FilterShopsDialog;
 import org.nearbyshops.enduserapp.FilterShops.FilterShops;
 import org.nearbyshops.enduserapp.Home;
@@ -200,4 +201,6 @@ public interface NetComponent {
     void Inject(EditAddressFragment editAddressFragment);
 
     void Inject(Home home);
+
+    void Inject(FilterItemsFragment filterItemsFragment);
 }

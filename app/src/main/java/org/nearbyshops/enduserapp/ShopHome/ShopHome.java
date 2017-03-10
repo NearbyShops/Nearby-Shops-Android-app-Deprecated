@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -191,6 +192,19 @@ public class ShopHome extends AppCompatActivity {
         Intent intent = new Intent(this, ShopReviews.class);
         intent.putExtra(ShopReviews.SHOP_INTENT_KEY, shop);
         startActivity(intent);
+    }
+
+
+    @OnClick(R.id.option_shop_staff)
+    void shopStaffClick()
+    {
+        showToastMessage("Feature coming soon !");
+    }
+
+
+    void showToastMessage(String message)
+    {
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
 

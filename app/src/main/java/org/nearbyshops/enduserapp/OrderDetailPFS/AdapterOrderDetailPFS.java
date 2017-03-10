@@ -62,7 +62,7 @@ class AdapterOrderDetailPFS extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if(viewType==TAG_VIEW_HOLDER_ORDER)
         {
             view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_order_order_detail,parent,false);
+                    .inflate(R.layout.list_item_order_detail_pfs,parent,false);
 
             return new ViewHolderOrder(view);
         }
