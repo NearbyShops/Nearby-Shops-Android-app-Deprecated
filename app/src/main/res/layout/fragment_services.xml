@@ -14,8 +14,19 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     -->
 
+    <TextView
+        android:textColor="@color/white"
+        android:background="@color/cyan900"
+        android:padding="5dp"
+        android:id="@+id/banner"
+        android:text="Become a Service Provider and Start Service In your city. Visit http://nearbyshops.org for more Information."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
 
     <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_below="@id/banner"
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -235,8 +235,13 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
                     .placeholder(placeholder)
                     .into(holder.shopLogo);
 
-            holder.delivery.setText("Delivery : Rs " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
+
+            String currency = "";
+            currency = UtilityGeneral.getCurrencySymbol(context);
+
+            holder.delivery.setText("Delivery : " + currency + ". " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
             holder.distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
+
 
 
             if(shop.getRt_rating_count()==0)

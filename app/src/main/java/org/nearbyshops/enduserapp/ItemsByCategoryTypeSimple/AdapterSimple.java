@@ -225,8 +225,11 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         if(itemStats!=null)
         {
-            holder.priceRange.setText("Price Range :\nRs." + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
-            holder.priceAverage.setText("Price Average :\nRs." + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
+            String currency = "";
+            currency = UtilityGeneral.getCurrencySymbol(context);
+
+            holder.priceRange.setText("Price Range :\n" + currency + ". " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
+            holder.priceAverage.setText("Price Average :\n" + currency + ". " + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
             holder.shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
 //            System.out.println("Rating : " + itemStats.getRating_avg() + " : Ratings Count " + itemStats.getRatingCount());
         }

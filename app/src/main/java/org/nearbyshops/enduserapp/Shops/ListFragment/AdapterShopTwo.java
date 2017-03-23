@@ -101,7 +101,11 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         .placeholder(placeholder)
                         .into(holder.shopLogo);
 
-                holder.delivery.setText("Delivery : Rs " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
+
+                String currency = "";
+                currency = UtilityGeneral.getCurrencySymbol(context);
+
+                holder.delivery.setText("Delivery : " + currency + ". " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
                 holder.distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
 
 

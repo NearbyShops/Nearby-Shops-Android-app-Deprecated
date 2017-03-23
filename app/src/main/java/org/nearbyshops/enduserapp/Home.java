@@ -64,12 +64,14 @@ import org.nearbyshops.enduserapp.Login.LoginDialog;
 import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
 import org.nearbyshops.enduserapp.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
+import org.nearbyshops.enduserapp.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserapp.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserapp.Notifications.NonStopService.IntentServiceSSE;
 import org.nearbyshops.enduserapp.Notifications.SSEIntentServiceUser;
 import org.nearbyshops.enduserapp.OrdersHomePickFromShop.OrdersHomePickFromShop;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ServiceConfigurationService;
 import org.nearbyshops.enduserapp.RetrofitRESTContractSDS.ServiceConfigService;
+import org.nearbyshops.enduserapp.SelectService.SelectService;
 import org.nearbyshops.enduserapp.Services.ServicesActivity;
 import org.nearbyshops.enduserapp.Settings.SettingsCustom;
 import org.nearbyshops.enduserapp.SharedPreferences.UtilityLocationOld;
@@ -81,6 +83,9 @@ import org.nearbyshops.enduserapp.UtilityGeocoding.Constants;
 import org.nearbyshops.enduserapp.UtilityGeocoding.FetchAddressIntentService;
 import org.nearbyshops.enduserapp.OrdersHomeDelivery.OrderHome;
 import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+
+import java.util.Currency;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -112,12 +117,6 @@ public class Home extends AppCompatActivity
 //    @Bind(R.id.option_item_categories)
 //    RelativeLayout itemCategories;
 
-    @Bind(R.id.serviceURL)
-    EditText serviceURL;
-
-    @Bind(R.id.text_input_service_url) TextInputLayout textInputServiceURL;
-
-    UrlValidator urlValidator;
 
 
     // location variables
@@ -188,50 +187,12 @@ public class Home extends AppCompatActivity
         }
 
 
-        String[] schemes = {"http", "https"};
-
-        urlValidator = new UrlValidator(schemes);
-
-        serviceURL.setText(UtilityGeneral.getServiceURL(this));
-
-        serviceURL.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                if (urlValidator.isValid(s.toString())) {
-                    UtilityGeneral.saveServiceURL(s.toString(),Home.this);
-                    textInputServiceURL.setError(null);
-                    textInputServiceURL.setErrorEnabled(false);
-                    updateStatusLight();
-                }
-                else
-                {
-//                    serviceURL.setError("URL Invalid");
-                    textInputServiceURL.setErrorEnabled(true);
-                    textInputServiceURL.setError("Invalid URL");
-
-                    UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_RED);
-                    setStatusLight();
-                }
-
-            }
-        });
 
 
 
 //        setlabelLogin();
 
-        setStatusLight();
+
 
 
     } // onCreate() Ends
@@ -267,120 +228,6 @@ public class Home extends AppCompatActivity
 
 
 
-    void updateStatusLight()
-    {
-
-        GsonBuilder gsonBuilder = new GsonBuilder();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
-                .baseUrl(UtilityGeneral.getServiceURL(MyApplication.getAppContext()))
-                .build();
-
-        ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
-
-        Call<ServiceConfigurationLocal> call = service.getServiceConfiguration(
-                UtilityLocation.getLatitude(this),
-                UtilityLocation.getLongitude(this)
-        );
-
-
-        call.enqueue(new Callback<ServiceConfigurationLocal>() {
-            @Override
-            public void onResponse(Call<ServiceConfigurationLocal> call, Response<ServiceConfigurationLocal> response) {
-
-                if(response.code()==200)
-                {
-                    if(response.body()!=null)
-                    {
-                        ServiceConfigurationLocal configurationLocal = response.body();
-                        UtilityGeneral.saveConfiguration(configurationLocal,Home.this);
-
-
-//                        if(UtilityLocation.getLongitude(Home.this)!=null && UtilityLocation.getLatitude(Home.this)!=null)
-//                        {
-
-//                            Location locationUser = new Location("user");
-//                            locationUser.setLongitude(UtilityLocation.getLongitude(Home.this));
-//                            locationUser.setLatitude(UtilityLocation.getLatitude(Home.this));
-//
-//                            Location locationProvider = new Location("provider");
-//                            locationProvider.setLatitude(configurationLocal.getLatCenter());
-//                            locationProvider.setLongitude(configurationLocal.getLonCenter());
-
-
-//                            float distance  = locationProvider.distanceTo(locationUser);
-
-
-                            if(configurationLocal.getRt_distance()<=configurationLocal.getServiceRange())
-                            {
-                                UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_GREEN);
-                                setStatusLight();
-                            }
-                            else
-                            {
-                                UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_YELLOW);
-                                setStatusLight();
-                            }
-//                        }
-//                        else
-//                        {
-//                            UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_YELLOW);
-//                            setStatusLight();
-//                        }
-
-
-                    }
-                    else
-                    {
-                        UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_RED);
-                        setStatusLight();
-                    }
-                }
-                else
-                {
-                    UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_RED);
-                    setStatusLight();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ServiceConfigurationLocal> call, Throwable t) {
-
-
-                UtilityGeneral.saveServiceLightStatus(Home.this,STATUS_LIGHT_RED);
-                setStatusLight();
-
-            }
-        });
-
-    }
-
-
-    @Bind(R.id.status_indicator_one) TextView statusLight;
-    public static final int STATUS_LIGHT_GREEN = 1;
-    public static final int STATUS_LIGHT_YELLOW = 2;
-    public static final int STATUS_LIGHT_RED = 3;
-
-
-    void setStatusLight()
-    {
-        int status = UtilityGeneral.getServiceLightStatus(this);
-
-        if(status == STATUS_LIGHT_GREEN)
-        {
-            statusLight.setBackgroundColor(ContextCompat.getColor(this,R.color.gplus_color_1));
-        }
-        else if(status == STATUS_LIGHT_YELLOW)
-        {
-            statusLight.setBackgroundColor(ContextCompat.getColor(this,R.color.gplus_color_2));
-        }
-        else if(status == STATUS_LIGHT_RED)
-        {
-            statusLight.setBackgroundColor(ContextCompat.getColor(this,R.color.deepOrange900));
-        }
-
-    }
 
 
     private void showLoginDialog()
@@ -520,6 +367,8 @@ public class Home extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
 
+        isDestroyed = true;
+
         //unbinder.unbind();
         ButterKnife.unbind(this);
 
@@ -619,6 +468,11 @@ public class Home extends AppCompatActivity
         else if(id == R.id.nav_faqs)
         {
             Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("https://nearbyshops.org/frequently-asked-questions-faqs/"));
+            startActivity(intent);
+        }
+        else if(id == R.id.nav_select_service)
+        {
+            Intent intent = new Intent(this, SelectService.class);
             startActivity(intent);
         }
 
@@ -1009,7 +863,7 @@ public class Home extends AppCompatActivity
                 null,
                 null,null,
                 null,
-                current_sort,10,0);
+                current_sort,1,0);
 
 
         call.enqueue(new Callback<ServiceConfigurationEndPoint>() {
@@ -1035,20 +889,32 @@ public class Home extends AppCompatActivity
 
                         String serviceURLString = response.body().getResults().get(0).getServiceURL();
 
-                        if (urlValidator.isValid(serviceURLString)) {
-                            UtilityGeneral.saveServiceURL(serviceURLString,Home.this);
-                            textInputServiceURL.setError(null);
-                            textInputServiceURL.setErrorEnabled(false);
-                            serviceURL.setText(serviceURLString);
-                            updateStatusLight();
-                        }
+                        UtilityGeneral.saveServiceURL(serviceURLString,Home.this);
+                        UtilityGeneral.saveConfigurationGlobal(response.body().getResults().get(0),Home.this);
 
+
+                        ServiceConfigurationGlobal serviceConfigGlobal = response.body().getResults().get(0);
+                        saveCurrency(serviceConfigGlobal.getISOCountryCode(),serviceConfigGlobal.getISOLanguageCode());
+
+
+//                        if (urlValidator.isValid(serviceURLString)) {
+//
+//                            textInputServiceURL.setError(null);
+//                            textInputServiceURL.setErrorEnabled(false);
+//                            serviceURL.setText(serviceURLString);
+//                            updateStatusLight();
+//                        }
+//
+//
 
                     }
-
                 }
-
             }
+
+
+
+
+
 
             @Override
             public void onFailure(Call<ServiceConfigurationEndPoint> call, Throwable t) {
@@ -1062,6 +928,23 @@ public class Home extends AppCompatActivity
 
             }
         });
+
+    }
+
+
+
+
+    void saveCurrency(String countryCode, String languageCode)
+    {
+        try {
+            Locale locale = new Locale(languageCode,countryCode);
+            Currency currency = Currency.getInstance(locale);
+            UtilityGeneral.saveCurrencySymbol(currency.getSymbol(),Home.this);
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
 
     }
 
@@ -1211,23 +1094,6 @@ public class Home extends AppCompatActivity
 
 
 
-    @OnClick(R.id.discover_services_button)
-    void discoverServicesClick()
-    {
-        startActivity(new Intent(this, ServicesActivity.class));
-    }
-
-
-    @OnClick(R.id.paste_url_button)
-    void pasteURLClick()
-    {
-        ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
-
-        if(clipboard.getPrimaryClip()!=null)
-        {
-            serviceURL.setText(clipboard.getPrimaryClip().getItemAt(0).getText());
-        }
-    }
 
 
 

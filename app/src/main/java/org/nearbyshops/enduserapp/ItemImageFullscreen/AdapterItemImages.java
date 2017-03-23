@@ -1,23 +1,22 @@
-package org.nearbyshops.enduserapp.ItemDetail;
+package org.nearbyshops.enduserapp.ItemImageFullscreen;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alexvasilkov.gestures.Settings;
+import com.alexvasilkov.gestures.views.GestureImageView;
 import com.squareup.picasso.Picasso;
-
 
 import org.nearbyshops.enduserapp.Model.ItemImage;
 import org.nearbyshops.enduserapp.R;
@@ -46,7 +45,7 @@ public class AdapterItemImages extends RecyclerView.Adapter<RecyclerView.ViewHol
 //    final String IMAGE_ENDPOINT_URL = "/api/Images";
 
 
-    public AdapterItemImages(List<ItemImage> dataset, Context context,notificationsFromAdapter notificationReceiver) {
+    public AdapterItemImages(List<ItemImage> dataset, Context context) {
 
 
         this.notificationReceiver = notificationReceiver;
@@ -62,7 +61,7 @@ public class AdapterItemImages extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         if(viewType==VIEW_TYPE_IMAGE)
         {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_image,parent,false);
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_image_fullscreen,parent,false);
             return new ViewHolderItemImage(v);
         }
 
@@ -85,8 +84,9 @@ public class AdapterItemImages extends RecyclerView.Adapter<RecyclerView.ViewHol
 //            holder.copyrights.setText(dataset.get(position).getImageCopyrights());
 
 
-            String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/five_hundred_"
-                    + dataset.get(position).getImageFilename() + ".jpg";
+//            nine_hundred_   + ".jpg"
+            String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/"
+                    + dataset.get(position).getImageFilename();
 
             Drawable placeholder = VectorDrawableCompat
                     .create(context.getResources(),
@@ -125,7 +125,7 @@ public class AdapterItemImages extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
         @Bind(R.id.list_item) RelativeLayout listItem;
-        @Bind(R.id.item_image) ImageView itemImage;
+        @Bind(R.id.item_image) GestureImageView itemImage;
         @Bind(R.id.indicator) TextView indicator;
 //        @Bind(R.id.copyright_info) TextView copyrights;
 
@@ -133,6 +133,23 @@ public class AdapterItemImages extends RecyclerView.Adapter<RecyclerView.ViewHol
         public ViewHolderItemImage(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+
+            itemImage.getController().getSettings().enableGestures();
+
+            itemImage.getController().getSettings()
+                    .setMaxZoom(2f)
+                    .setPanEnabled(true)
+                    .setZoomEnabled(true)
+                    .setDoubleTapEnabled(true)
+                    .setRotationEnabled(false)
+                    .setRestrictRotation(false)
+                    .setOverscrollDistance(0f, 0f)
+                    .setOverzoomFactor(2f)
+                    .setFillViewport(false)
+                    .setFitMethod(Settings.Fit.INSIDE)
+                    .setGravity(Gravity.CENTER);
+
+
         }
 
 
@@ -140,8 +157,12 @@ public class AdapterItemImages extends RecyclerView.Adapter<RecyclerView.ViewHol
         @OnClick(R.id.list_item)
         public void itemCategoryListItemClick()
         {
-            notificationReceiver.listItemClick();
+
         }
+
+
+
+
 
     }// ViewHolder Class declaration ends
 
@@ -158,6 +179,6 @@ public class AdapterItemImages extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public interface notificationsFromAdapter
     {
-        void listItemClick();
+
     }
 }

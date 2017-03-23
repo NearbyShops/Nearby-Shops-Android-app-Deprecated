@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 
 import com.google.gson.Gson;
 
+import org.nearbyshops.enduserapp.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserapp.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.R;
@@ -222,6 +223,78 @@ public class UtilityGeneral {
             return gson.fromJson(json, ServiceConfigurationLocal.class);
         }
     }
+
+    private static final String TAG_PREF_CONFIG_GLOBAL = "configuration_global";
+
+    public static void saveConfigurationGlobal(ServiceConfigurationGlobal configuration, Context context)
+    {
+
+        //Creating a shared preference
+
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+
+        SharedPreferences.Editor prefsEditor = sharedPref.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(configuration);
+        prefsEditor.putString(TAG_PREF_CONFIG_GLOBAL, json);
+        prefsEditor.apply();
+    }
+
+
+    public static ServiceConfigurationGlobal getConfigurationGlobal(Context context)
+    {
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+
+        Gson gson = new Gson();
+        String json = sharedPref.getString(TAG_PREF_CONFIG_GLOBAL, "null");
+
+        if(json.equals("null"))
+        {
+
+            return null;
+
+        }else
+        {
+            return gson.fromJson(json, ServiceConfigurationGlobal.class);
+        }
+    }
+
+
+    private static final String TAG_PREF_CURRENCY = "currency_symbol";
+
+    public static void saveCurrencySymbol(String symbol, Context context)
+    {
+
+        //Creating a shared preference
+
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+
+        SharedPreferences.Editor prefsEditor = sharedPref.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(symbol);
+        prefsEditor.putString(TAG_PREF_CURRENCY, json);
+        prefsEditor.apply();
+    }
+
+
+    public static String getCurrencySymbol(Context context)
+    {
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+
+        Gson gson = new Gson();
+        String json = sharedPref.getString(TAG_PREF_CURRENCY, "null");
+
+        if(json.equals("null"))
+        {
+
+            return null;
+
+        }else
+        {
+            return gson.fromJson(json, String.class);
+        }
+    }
+
 
 
 

@@ -30,10 +30,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
+import org.nearbyshops.enduserapp.ItemImageFullscreen.ItemImageFullscreenFragment;
+import org.nearbyshops.enduserapp.ItemImageFullscreen.ItemImagesFullscreen;
 import org.nearbyshops.enduserapp.Login.LoginDialog;
 import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserapp.Model.Endpoints.ItemImageEndPoint;
@@ -67,8 +70,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
+
 public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
-        Target, RatingBar.OnRatingBarChangeListener, NotifyReviewUpdate{
+        Target, RatingBar.OnRatingBarChangeListener, NotifyReviewUpdate, AdapterItemImages.notificationsFromAdapter {
+
 
 
     public final static String ITEM_DETAIL_INTENT_KEY = "intent_key_item_detail";
@@ -208,17 +214,19 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
 
 
-
     ArrayList<ItemImage> dataset = new ArrayList<>();
+
     @Bind(R.id.recyclerview_item_images)
+
     RecyclerView itemImagesList;
     AdapterItemImages adapterItemImages;
     GridLayoutManager layoutManager;
 
 
+
     void setupRecyclerView() {
 
-        adapterItemImages = new AdapterItemImages(dataset,this);
+        adapterItemImages = new AdapterItemImages(dataset,this,this);
         itemImagesList.setAdapter(adapterItemImages);
         layoutManager = new GridLayoutManager(this, 1, LinearLayoutManager.HORIZONTAL, false);
         itemImagesList.setLayoutManager(layoutManager);
@@ -283,11 +291,14 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
 
 
+
     ArrayList<ItemSpecificationName> datasetSpecs = new ArrayList<>();
+
     @Bind(R.id.recyclerview_item_specifications)
     RecyclerView itemSpecsList;
     AdapterItemSpecifications adapterItemSpecs;
     GridLayoutManager layoutManagerItemSpecs;
+
 
 
     void setupRecyclerViewSpecs()
@@ -298,7 +309,6 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
         itemSpecsList.setLayoutManager(layoutManagerItemSpecs);
 
         makeNetworkCallSpecs(true);
-
     }
 
 
@@ -971,6 +981,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
 
 
+
     @OnClick(R.id.share_buttons)
     void shareButtonClick()
     {
@@ -985,6 +996,9 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 //        intent.putExtra(Intent.EXTRA_TITLE,shop.getBookName());
         startActivity(Intent.createChooser(intent,"Share Link"));
     }
+
+
+
 
 
     @Bind(R.id.read_full_button)
@@ -1004,6 +1018,39 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
         bookDescription.setMaxLines(Integer.MAX_VALUE);
         readFullDescription.setVisibility(View.GONE);
     }
+
+
+
+
+
+    @OnClick(R.id.book_cover)
+    void profileImageClick()
+    {
+        listItemClick();
+    }
+
+
+
+    @Override
+    public void listItemClick() {
+
+
+        ItemImage itemImage = new ItemImage();
+        itemImage.setImageFilename(item.getItemImageURL());
+
+        List<ItemImage> list = new ArrayList<>();
+
+        list.addAll(dataset);
+        list.add(0,itemImage);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+
+        Intent intent = new Intent(this, ItemImagesFullscreen.class);
+        intent.putExtra(ItemImageFullscreenFragment.ITEM_IMAGES_INTENT_KEY,json);
+        startActivity(intent);
+    }
+
 
 
 }

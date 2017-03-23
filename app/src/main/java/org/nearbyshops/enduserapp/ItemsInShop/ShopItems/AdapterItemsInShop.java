@@ -286,15 +286,17 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
             if(shopItem!=null)
             {
                 holder.available.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()));
-
             }
 
 
             if(item!=null)
             {
+                String currency = "";
+                currency = UtilityGeneral.getCurrencySymbol(context);
+
                 //String.valueOf(position + 1) + ". " +
                 holder.itemName.setText(item.getItemName());
-                holder.itemPrice.setText("Rs. " + String.format("%.2f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
+                holder.itemPrice.setText(currency + ". " + String.format("%.2f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
 
                 if(item.getRt_rating_count()==0)
                 {

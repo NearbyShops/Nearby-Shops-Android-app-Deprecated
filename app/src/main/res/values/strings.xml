@@ -97,5 +97,6 @@
     <string name="preference_service_url_sds_key">pref_service_url_sds_key</string>
     <string name="title_activity_edit_delivery_address">Edit Delivery Address</string>
     <string name="delivery_coordinates_message">Giving accurate location coordinates will help the delivery person to locate your address easily and deliver your order in less amount of time.</string>
+    <string name="title_activity_item_images_fullscreen">ItemImagesFullscreen</string>
 
 </resources>

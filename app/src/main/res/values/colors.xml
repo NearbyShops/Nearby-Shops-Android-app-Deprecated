@@ -40,7 +40,7 @@
     <!-- colors -->
 
 
-    <color name="backgroundClean">#00000000</color>
+    <color name="backgroundClean">#000000</color>
     <color name="backgroundTinted">#88006064</color>
     <color name="gplus_color_2Alpha">#88f4b400</color>
 

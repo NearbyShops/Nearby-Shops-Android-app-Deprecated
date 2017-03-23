@@ -63,7 +63,6 @@
             android:nestedScrollingEnabled="false"
             android:scrollbarStyle="outsideInset"
             android:fadeScrollbars="false"
-            android:scrollbars="horizontal"
             android:layout_marginTop="10dp"
             android:isScrollContainer="false"
             android:layout_below="@id/author_name"
@@ -110,6 +109,7 @@
 
         <android.support.v7.widget.RecyclerView
             android:layout_marginTop="10dp"
+
             android:layout_below="@id/item_specifications"
             android:id="@+id/recyclerview_item_specifications"
             android:layout_width="match_parent"
@@ -205,7 +205,7 @@
             <TextView
                 android:gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="Rate this book"
+                android:text="Rate this Item"
                 android:layout_below="@id/border_one"
                 android:id="@+id/edit_review_text"
                 android:layout_width="match_parent"

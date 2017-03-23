@@ -130,15 +130,18 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     shop = "Shop";
                 }
 
+                String currency = "";
+                currency = UtilityGeneral.getCurrencySymbol(context);
+
                 holder.shopCount.setText("Available in " + String.valueOf(itemStats.getShopCount()) + " " + shop);
-                holder.priceRange.setText( "Price Range : Rs. "
+                holder.priceRange.setText( "Price Range : " + currency + ". "
                         + String.valueOf(itemStats.getMin_price())
                         + " - "
                         + String.valueOf(itemStats.getMax_price())
                         + " per " + dataset.get(position).getQuantityUnit()
                 );
 
-                holder.priceAverage.setText("Price Average : Rs. " + String.format("%.2f",itemStats.getAvg_price()));
+                holder.priceAverage.setText("Price Average : " + currency + ". " + String.format("%.2f",itemStats.getAvg_price()));
 
                 //            Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
             }

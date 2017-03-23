@@ -485,8 +485,11 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
         if(itemStats!=null)
         {
-            priceRange.setText("Price Range :\nRs." + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
-            priceAverage.setText("Price Average :\nRs." + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
+            String currency = "";
+            currency = UtilityGeneral.getCurrencySymbol(getActivity());
+
+            priceRange.setText("Price Range :\n" + currency + ". " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
+            priceAverage.setText("Price Average :\n" + currency + ". " + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
             shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
         }
 

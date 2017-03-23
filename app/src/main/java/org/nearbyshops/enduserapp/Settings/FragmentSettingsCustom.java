@@ -39,7 +39,7 @@ public class FragmentSettingsCustom extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
 
         ButterKnife.bind(this,rootView);
-        setRetainInstance(false);
+        setRetainInstance(true);
 
         bindDataToViews();
 
