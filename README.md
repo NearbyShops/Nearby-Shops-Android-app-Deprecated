@@ -1,7 +1,7 @@
 Nearby Shops End-User android app
 ====================================
 
-Build your own self-hosted e-commerce marketplace similar to Instacart, Bigbasket and grofers. With location based features and  three native mobile app each for each for Customers, Shop Owners, and Administrator.
+Build your own self-hosted e-commerce marketplace for local bussiness in a Single City. With location based features and  three native mobile app each for each for Customers, Shop Owners, and Administrator.
 
 **Features**
 
