@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.nearbyshops.enduserapp.ItemImageFullscreen.ItemImagesFullscreen">
+    tools:context="org.nearbyshops.enduserapp.ItemImageSlider.ItemImagesFullscreen">
 
     <!--<android.support.design.widget.AppBarLayout-->
         <!--android:background="#00000000"-->
@@ -21,6 +21,20 @@
 
     <!--</android.support.design.widget.AppBarLayout>-->
 
+
+
+    <!--<ProgressBar-->
+        <!--android:layout_marginTop="-6dp"-->
+        <!--android:layout_gravity="top"-->
+        <!--android:visibility="visible"-->
+        <!--android:id="@+id/progress_bar"-->
+        <!--style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:indeterminate="true"-->
+        <!--android:indeterminateTint="@color/buttonColorDark" />-->
+
+
     <FrameLayout
         android:id="@id/fragment_container"
         android:layout_width="match_parent"
@@ -33,5 +47,7 @@
         <!--android:layout_gravity="bottom|end"-->
         <!--android:layout_margin="@dimen/fab_margin"-->
         <!--app:srcCompat="@android:drawable/ic_dialog_email" />-->
+
+
 
 </android.support.design.widget.CoordinatorLayout>

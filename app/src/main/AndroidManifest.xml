@@ -509,7 +509,7 @@
                 android:value=".Home" />
         </activity>
         <activity
-            android:name=".ItemImageFullscreen.ItemImagesFullscreen"
+            android:name=".ItemImageSlider.ItemImagesFullscreen"
             android:label="@string/title_activity_item_images_fullscreen"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">

@@ -61,10 +61,8 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
     int item_count_item;
     int fetched_items_count = 0;
 
-    @Bind(R.id.swipe_container)
-    SwipeRefreshLayout swipeContainer;
-    @Bind(R.id.recycler_view)
-    RecyclerView itemCategoriesList;
+    @Bind(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
+    @Bind(R.id.recycler_view) RecyclerView itemCategoriesList;
 
     ArrayList<Object> dataset = new ArrayList<>();
     ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
@@ -505,6 +503,25 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
         Call<ShopEndPoint> endPointCall = null;
 
 //        Shop currentShop = UtilityShopHome.getShop(getContext());
+
+
+        if(currentCategory.getItemCategoryID()==1)
+        {
+            datasetShops.clear();
+
+            if(isFirst)
+            {
+                isFirst = false;
+            }
+            else
+            {
+                // is last
+                refreshAdapter();
+                isFirst = true;// reset the flag
+            }
+
+            return;
+        }
 
 
         if(searchQuery==null)

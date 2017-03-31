@@ -1,14 +1,9 @@
-package org.nearbyshops.enduserapp.ItemImageFullscreen;
+package org.nearbyshops.enduserapp.ItemImageSlider;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +12,6 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.nearbyshops.enduserapp.ItemDetail.*;
 import org.nearbyshops.enduserapp.Model.ItemImage;
 import org.nearbyshops.enduserapp.R;
 

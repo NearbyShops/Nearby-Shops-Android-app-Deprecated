@@ -94,7 +94,7 @@ class AdapterItemSpecName extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             }
             else
             {
-                holder.titleName.setBackgroundColor(ContextCompat.getColor(context,R.color.cyan900));
+                holder.titleName.setBackgroundColor(ContextCompat.getColor(context,R.color.transparent));
             }
 
         }

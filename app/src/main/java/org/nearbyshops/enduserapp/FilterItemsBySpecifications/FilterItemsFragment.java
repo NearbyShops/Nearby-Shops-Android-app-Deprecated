@@ -8,6 +8,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
@@ -75,6 +76,8 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
     public List<ItemSpecificationValue> datasetValues = new ArrayList<>();
 
     GridLayoutManager layoutManagerValues;
+
+    @Bind(R.id.progress_bar) ProgressBar progressBar;
 
 
 
@@ -368,6 +371,8 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
 
 //        itemSpecNameID = getActivity().getIntent().getIntExtra(ITEM_SPEC_NAME_INTENT_KEY,0);
 
+        progressBar.setVisibility(View.VISIBLE);
+
         Call<List<ItemSpecificationValue>> call = itemSpecValueService.getItemSpecsForFilters(
                 selectedItemNameID,null,null,
                 UtilityLocation.getLatitude(getActivity()),
@@ -409,6 +414,8 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
                     showToastMessage("Failed Code : " + String.valueOf(response.code()));
                 }
 
+                progressBar.setVisibility(View.GONE);
+
             }
 
             @Override
@@ -419,6 +426,8 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
                 {
                     return;
                 }
+
+                progressBar.setVisibility(View.GONE);
 
                 showToastMessage("Failed !");
             }
@@ -462,6 +471,8 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
         itemSpecName.getId(), itemID
         );
 
+        progressBar.setVisibility(View.VISIBLE);
+
 
         call.enqueue(new Callback<List<ItemSpecificationItem>>() {
 
@@ -482,11 +493,14 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
                     adapterValues.notifyDataSetChanged();
                 }
 
+
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<List<ItemSpecificationItem>> call, Throwable t) {
 
+                progressBar.setVisibility(View.GONE);
             }
         });
 

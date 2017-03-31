@@ -1,11 +1,10 @@
-package org.nearbyshops.enduserapp.ItemImageFullscreen;
+package org.nearbyshops.enduserapp.ItemImageSlider;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
