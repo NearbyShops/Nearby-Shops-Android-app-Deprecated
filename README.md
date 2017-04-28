@@ -1,3 +1,7 @@
+The project is currently under development. Please come back later.
+=======================================================================
+It is expected to take some more time to get the documentation and user guide ready and also make a formal public release.
+
 Nearby Shops End-User android app
 ====================================
 
