@@ -1,12 +1,16 @@
 package org.nearbyshops.enduserapp.Shops;
 
 import android.app.SearchManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -22,6 +26,7 @@ import android.widget.Toast;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduserapp.Model.Shop;
+import org.nearbyshops.enduserapp.Notifications.NonStopService.LocationUpdateService;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduserapp.Shops.Interfaces.NotifyDatasetChanged;
@@ -107,6 +112,9 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
         {
             appBarLayout.setExpanded(false,true);
         }
+
+
+        startService(new Intent(this, LocationUpdateService.class));
 
 
     }
@@ -317,12 +325,6 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
-
 
 
     /*@Override
@@ -465,4 +467,52 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
         super.onRestoreInstanceState(savedInstanceState);
         Icepick.restoreInstanceState(this,savedInstanceState);
     }
+
+
+
+
+    // broadcast location service
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        stopService(new Intent(this, LocationUpdateService.class));
+        ButterKnife.unbind(this);
+    }
+
+
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        IntentFilter filter = new IntentFilter(LocationUpdateService.ACTION);
+        LocalBroadcastManager.getInstance(this).registerReceiver(testReceiver, filter);
+
+    }
+
+    // Define the callback for what to do when data is received
+    private BroadcastReceiver testReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+//            int resultCode = intent.getIntExtra("resultCode", RESULT_CANCELED);
+//            if (resultCode == RESULT_OK) {
+//                String resultValue = intent.getStringExtra("resultValue");
+//                Toast.makeText(getActivity(), "Location Updated ", Toast.LENGTH_SHORT).show();
+//            }
+
+//            if(isDestroyed)
+//            {
+//                return;
+//            }
+
+            Toast.makeText(ShopsActivity.this, "Location Updated ", Toast.LENGTH_SHORT).show();
+        }
+    };
+
 }

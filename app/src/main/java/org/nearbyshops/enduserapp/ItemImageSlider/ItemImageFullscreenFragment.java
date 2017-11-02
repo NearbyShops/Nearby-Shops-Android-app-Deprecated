@@ -64,6 +64,10 @@ public class ItemImageFullscreenFragment extends Fragment implements ViewPager.O
 
 
         Type listType = new TypeToken<ArrayList<ItemImage>>(){}.getType();
+
+
+
+
         Gson gson = new Gson();
         dataset = gson.fromJson(itemJson, listType);
 

@@ -98,5 +98,6 @@
     <string name="title_activity_edit_delivery_address">Edit Delivery Address</string>
     <string name="delivery_coordinates_message">Giving accurate location coordinates will help the delivery person to locate your address easily and deliver your order in less amount of time.</string>
     <string name="title_activity_item_images_fullscreen">ItemImagesFullscreen</string>
+    <string name="server_client_id">233869423731-91g7ck97bgsbi2hn4n6rrctorij5568v.apps.googleusercontent.com</string>
 
 </resources>

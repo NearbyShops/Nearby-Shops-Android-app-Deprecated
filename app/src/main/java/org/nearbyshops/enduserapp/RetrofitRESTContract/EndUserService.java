@@ -3,6 +3,12 @@ package org.nearbyshops.enduserapp.RetrofitRESTContract;
 import org.nearbyshops.enduserapp.Model.Image;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -22,6 +28,11 @@ public interface EndUserService {
 
     @POST("/api/v1/EndUser")
     Call<EndUser> postEndUser(@Body EndUser endUser);
+
+
+    @POST("/api/v1/EndUser/{IDToken}")
+    Call<EndUser> googleSignIn(@Path("IDToken")String idTokenString);
+
 
 
     @PUT ("/api/v1/EndUser/UpdateBySelf/{EndUserID}")
@@ -46,6 +57,9 @@ public interface EndUserService {
     Call<EndUser> getEndUserLogin(@Header("Authorization") String headers);
 
 
+
+
+
     // Image Calls
 
     @POST("api/v1/EndUser/Image")
@@ -58,25 +72,4 @@ public interface EndUserService {
     @DELETE("/api/v1/EndUser/Image/{name}")
     Call<ResponseBody> deleteImage(@Header("Authorization") String headers,
                                    @Path("name") String fileName);
-
-
-
-
-
-
-    //---------------------------------------------------------
-
-//
-//
-//    @PUT("/api/v1/EndUser/{id}")
-//    Call<ResponseBody> putEndUser(@Body EndUser endUser, @Path("id") int id);
-//
-//    @DELETE("/api/v1/EndUser/{id}")
-//    Call<ResponseBody> deleteShop(@Path("id") int id);
-//
-//
-//
-//    @GET("/api/v1/EndUser/Login")
-//    Call<EndUser> EndUserLogin(@Header("Authorization") String headers);
-
 }

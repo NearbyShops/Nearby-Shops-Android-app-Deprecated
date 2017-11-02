@@ -1,8 +1,13 @@
 package org.nearbyshops.enduserapp.Shops.ListFragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,11 +21,13 @@ import android.widget.Toast;
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelEndPoints.ShopEndPoint;
+import org.nearbyshops.enduserapp.Notifications.NonStopService.LocationUpdateService;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduserapp.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduserapp.Shops.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
+import org.nearbyshops.enduserapp.Shops.ShopsActivity;
 import org.nearbyshops.enduserapp.Shops.UtilityLocation;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
@@ -34,6 +41,9 @@ import icepick.State;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by sumeet on 25/5/16.
@@ -88,6 +98,8 @@ public class FragmentShopTwo extends Fragment implements
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+
+
     }
 
 
@@ -137,7 +149,17 @@ public class FragmentShopTwo extends Fragment implements
             notifyTitleChanged();
 
 
-            return rootView;
+
+
+
+//                getActivity().startService(new Intent(getActivity(), LocationUpdateService.class));
+
+//                IntentFilter filter = new IntentFilter(LocationUpdateService.ACTION);
+//                LocalBroadcastManager.getInstance(getActivity()).registerReceiver(testReceiver, filter);
+
+
+
+                return rootView;
         }
 
 
@@ -516,11 +538,6 @@ public class FragmentShopTwo extends Fragment implements
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        isDestroyed = false;
-    }
 
     @Override
     public void notifySortChanged() {
@@ -554,6 +571,57 @@ public class FragmentShopTwo extends Fragment implements
         searchQuery = null;
         makeRefreshNetworkCall();
     }
+
+
+
+    // location code
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        isDestroyed = false;
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        // Unregister the listener when the application is paused
+
+//        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(testReceiver);
+
+    }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+//        getActivity().stopService(new Intent(getActivity(), LocationUpdateService.class));
+
+    }
+
+
+//
+//    private BroadcastReceiver testReceiver = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            int resultCode = intent.getIntExtra("resultCode", RESULT_CANCELED);
+//
+//            if (resultCode == RESULT_OK) {
+//
+////                String resultValue = intent.getStringExtra("resultValue");
+////                Toast.makeText(getActivity(), resultValue, Toast.LENGTH_SHORT).show();
+//
+//                showToastMessage("Broadcast Received !");
+//            }
+//        }
+//    };
+
 
 
 }

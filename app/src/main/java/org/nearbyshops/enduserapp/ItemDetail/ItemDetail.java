@@ -1050,7 +1050,4 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
         intent.putExtra(ItemImageFullscreenFragment.ITEM_IMAGES_INTENT_KEY,json);
         startActivity(intent);
     }
-
-
-
 }

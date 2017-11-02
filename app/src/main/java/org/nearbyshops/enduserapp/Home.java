@@ -18,6 +18,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.os.ResultReceiver;
@@ -37,6 +38,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -67,6 +70,7 @@ import org.nearbyshops.enduserapp.ModelServiceConfig.Endpoints.ServiceConfigurat
 import org.nearbyshops.enduserapp.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserapp.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserapp.Notifications.NonStopService.IntentServiceSSE;
+import org.nearbyshops.enduserapp.Notifications.NonStopService.LocationUpdateService;
 import org.nearbyshops.enduserapp.Notifications.SSEIntentServiceUser;
 import org.nearbyshops.enduserapp.OrdersHomePickFromShop.OrdersHomePickFromShop;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ServiceConfigurationService;
@@ -154,12 +158,22 @@ public class Home extends AppCompatActivity
 
         // Location Code
 
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestIdToken(getString(R.string.server_client_id))
+                .build();
+
+
+
+
         // Create an instance of GoogleAPIClient.
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
                     .addConnectionCallbacks(this)
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                     .build();
         }
 
@@ -193,6 +207,10 @@ public class Home extends AppCompatActivity
 //        setlabelLogin();
 
 
+
+        startLocationService();
+
+                setupNotifications();
 
 
     } // onCreate() Ends
@@ -234,6 +252,7 @@ public class Home extends AppCompatActivity
     {
         FragmentManager fm = getSupportFragmentManager();
         LoginDialog loginDialog = new LoginDialog();
+        loginDialog.setStyle(DialogFragment.STYLE_NORMAL,R.style.DialogFragmentTheme);
         loginDialog.show(fm,"serviceUrl");
     }
 
@@ -500,11 +519,36 @@ public class Home extends AppCompatActivity
 
             item.setTitle("Login");
 
-            showToastMessage("You are logged out !");
+//            showToastMessage("You are logged out !");
             navigationView.getMenu().findItem(R.id.nav_edit_profile).setVisible(false);
+
+            signOut();
         }
 
     }
+
+
+    void signOut()
+    {
+        if(!mGoogleApiClient.isConnected())
+        {
+            return;
+        }
+
+
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+            @Override
+            public void onResult(@NonNull Status status) {
+
+                if(status.isSuccess())
+                {
+                    showToastMessage("Signed Out !");
+                }
+            }
+        });
+    }
+
+
 
 
     @SuppressWarnings("RestrictedApi")
@@ -579,6 +623,8 @@ public class Home extends AppCompatActivity
 
         isDestroyed = true;
 
+        stopLocationService();
+
         if (mGoogleApiClient != null) {
 
             mGoogleApiClient.disconnect();
@@ -593,7 +639,6 @@ public class Home extends AppCompatActivity
     protected void onResume() {
         super.onResume();
 
-        setupNotifications();
 
         setlabelLogin();
         updateLoginMenuVisibility();
@@ -992,6 +1037,7 @@ public class Home extends AppCompatActivity
 
 
 
+
     @SuppressLint("ParcelCreator")
     @SuppressWarnings("RestrictedApi")
     class AddressResultReceiver extends ResultReceiver {
@@ -1111,7 +1157,7 @@ public class Home extends AppCompatActivity
 
         System.out.println("Setup Notifications !");
 
-        if(endUser!=null)
+        if(UtilityLogin.getEndUser(this)!=null)
         {
             System.out.println("Setup Notifications : End USER ID : " + String.valueOf(endUser.getEndUserID()));
 
@@ -1123,8 +1169,32 @@ public class Home extends AppCompatActivity
                 Intent intent = new Intent(this, IntentServiceSSE.class);
                 startService(intent);
 
+
             }
         }
+
+
+
+//        Intent intentLocation = new Intent(this, LocationUpdateService.class);
+//        startService(intentLocation);
+    }
+
+
+
+
+
+    void startLocationService()
+    {
+//        Intent intentLocation = new Intent(this, LocationUpdateService.class);
+//        startService(intentLocation);
+    }
+
+
+
+    void stopLocationService()
+    {
+//        Intent intentLocation = new Intent(this, LocationUpdateService.class);
+//        stopService(intentLocation);
     }
 
 

@@ -41,6 +41,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/container"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -143,6 +144,7 @@
 
 
                 <TextView
+                    android:id="@+id/forgot_password"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="15dp"
@@ -152,6 +154,75 @@
                     android:layout_height="wrap_content" />
 
         </RelativeLayout>
+
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:text="Sign In with Google Account"
+            android:id="@+id/label"
+            android:layout_below="@id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <com.google.android.gms.common.SignInButton
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/label"
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <ProgressBar
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/label"
+            android:layout_alignEnd="@id/sign_in_button"
+            android:layout_alignStart="@id/sign_in_button"
+            android:layout_alignLeft="@id/sign_in_button"
+            android:layout_alignRight="@id/sign_in_button"
+            android:layout_above="@id/sign_in_button"
+            android:layout_marginBottom="-16dp"
+            android:id="@+id/progress_bar"
+            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/buttonColorDark" />
+
+
+
+
+        <LinearLayout
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_below="@id/sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/sign_out_button"
+                android:layout_weight="1"
+                android:text="Sign Out"
+                android:layout_below="@id/sign_in_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+            <Button
+                android:id="@+id/revoke_access_button"
+                android:layout_weight="1"
+                android:text="Revoke Access"
+                android:layout_below="@id/sign_in_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 

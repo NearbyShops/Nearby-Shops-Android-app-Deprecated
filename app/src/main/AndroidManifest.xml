@@ -5,9 +5,9 @@
 
     <!-- To auto-complete the email text field in the loginActivity form with the user's emails -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -490,14 +490,23 @@
         <service
             android:name=".Notifications.SSEIntentServiceUser"
             android:exported="false" />
+
         <service
             android:name=".Notifications.SSENotificationService"
             android:enabled="true"
             android:exported="true" />
+
         <service
             android:name=".Notifications.NonStopService.IntentServiceSSE"
             android:enabled="true"
             android:exported="true" />
+
+        <service
+            android:name=".Notifications.NonStopService.LocationUpdateService"
+            android:enabled="true"
+            android:exported="true" />
+
+
 
         <activity
             android:name=".FilterItemsBySpecifications.FilterItemsActivity"
@@ -508,6 +517,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Home" />
         </activity>
+
+
         <activity
             android:name=".ItemImageSlider.ItemImagesFullscreen"
             android:label="@string/title_activity_item_images_fullscreen"

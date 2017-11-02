@@ -2,6 +2,7 @@ package org.nearbyshops.enduserapp.Notifications;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -14,6 +15,7 @@ import android.util.Log;
 import org.glassfish.jersey.media.sse.EventInput;
 import org.glassfish.jersey.media.sse.InboundEvent;
 import org.glassfish.jersey.media.sse.SseFeature;
+import org.nearbyshops.enduserapp.Home;
 import org.nearbyshops.enduserapp.Model.Service;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.R;
@@ -52,11 +54,13 @@ public class SSEIntentServiceUser extends IntentService{
     }
 
 
-//    @Override
-//    public int onStartCommand(Intent intent, int flags, int startId) {
-//        super.onStartCommand(intent, flags, startId);
-//        return START_REDELIVER_INTENT;
-//    }
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        super.onStartCommand(intent, flags, startId);
+        return START_REDELIVER_INTENT;
+    }
+
 
 
 
@@ -135,6 +139,13 @@ public class SSEIntentServiceUser extends IntentService{
 
             String eventName = inboundEvent.getName();
             String message = inboundEvent.readData(String.class);
+
+
+
+            // The PendingIntent to launch our activity if the user selects this notification
+            PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                    new Intent(this, Home.class), 0);
+
 
 
 //            Drawable drawable = VectorDrawableCompat.create(getResources(),R.drawable.ic_shopping_basket_white_24px,getTheme());
