@@ -23,7 +23,7 @@ import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -33,7 +33,7 @@ public class CancelledOrdersPFS extends AppCompatActivity implements NotifyTitle
     private PagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
 
-    @Bind(R.id.slidingLayer)
+    @BindView(R.id.slidingLayer)
     SlidingLayer slidingLayer;
 
     public static final String TAG_SLIDING_LAYER = "sliding_layer";
@@ -166,11 +166,6 @@ public class CancelledOrdersPFS extends AppCompatActivity implements NotifyTitle
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
 
 
 

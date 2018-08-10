@@ -17,11 +17,11 @@ android {
     }
 
     compileSdkVersion 25
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "org.nearbyshops.enduserapp"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 25
         versionCode 9
         versionName "1.42"
@@ -56,21 +56,22 @@ android {
 }
 
 
-configurations {
-//    all*.exclude module: 'javax.inject.Inject'
-    all*.exclude group: 'javax.inject', module: 'javax.inject'
-}
+//
+//configurations {
+////    all*.exclude module: 'javax.inject.Inject'
+////    all*.exclude group: 'javax.inject', module: 'javax.inject'
+//}
 
 
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile('org.glassfish.jersey.media:jersey-media-sse:2.24') {
+//    compile('org.glassfish.jersey.media:jersey-media-sse:2.24') {
 //                exclude group: 'javax.inject', module: 'javax.inject'
-    }
-    compile('org.glassfish.jersey.core:jersey-client:2.24') {
+//    }
+//    compile('org.glassfish.jersey.core:jersey-client:2.24') {
 //                    exclude group: 'javax.inject', module: 'javax.inject'
-    }
+//    }
     // apache commons dependency for URL Validation
 
     // https://mvnrepository.com/artifact/commons-validator/commons-validator
@@ -85,9 +86,9 @@ dependencies {
     //    compile 'com.google.dagger:dagger:2.2'
 
 
-    compile 'commons-validator:commons-validator:1.4.0'
+    compile 'commons-validator:commons-validator:1.6'
     compile 'com.wunderlist:sliding-layer:1.2.5'
-    compile 'com.jakewharton:butterknife:7.0.1'
+
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support:cardview-v7:25.3.1'
@@ -95,27 +96,47 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:palette-v7:25.3.1'
     compile 'com.appyvet:materialrangebar:1.3'
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.squareup.okhttp3:okhttp:3.1.2'
+
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.4.0'
+    compile 'com.squareup.retrofit2:retrofit:2.4.0'
+    compile 'com.squareup.okhttp3:okhttp:3.11.0'
+
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.android.gms:play-services-auth:11.0.2'
     compile 'com.google.android.gms:play-services-location:11.0.2'
     compile 'com.google.android.gms:play-services-maps:11.0.2'
-    compile 'com.android.support:multidex:1.0.1'
+
+    compile 'com.android.support:multidex:1.0.3'
+
     compile 'frankiesardo:icepick:3.2.0'
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.2.3'
     compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
     compile 'com.yalantis:ucrop:2.2.0'
-    compile 'com.google.dagger:dagger:2.8'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
-    provided 'frankiesardo:icepick-processor:3.2.0'
 
-    compile 'com.alexvasilkov:gesture-views:2.2.0'
+    compile 'com.android.support.constraint:constraint-layout:1.1.2'
+    testCompile 'junit:junit:4.12'
+
+
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+//    compile 'com.google.dagger:dagger:2.8'
+//    annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
+
+    implementation 'com.google.dagger:dagger:2.11'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+
+
+//    annotationProcessor 'frankiesardo:icepick-processor:3.2.0'
+
+    compile 'com.alexvasilkov:gesture-views:2.4.0'
+
+    implementation 'com.github.stfalcon:smsverifycatcher:0.3.1'
+
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.roughike:bottom-bar:2.3.1'
 }
 
 

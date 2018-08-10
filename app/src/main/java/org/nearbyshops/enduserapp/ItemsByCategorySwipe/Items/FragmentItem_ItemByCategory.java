@@ -23,7 +23,7 @@ import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyCategoryCh
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyGeneral;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 import org.nearbyshops.enduserapp.Items.SlidingLayerSort.UtilitySortItemsByCategory;
 
 import java.util.ArrayList;
@@ -275,11 +275,11 @@ public class FragmentItem_ItemByCategory extends Fragment
 
         Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(notifiedCurrentCategory.getItemCategoryID(),
                 null,
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
-                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),null,
+                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY),
+                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LON_CENTER_KEY),
+                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MAX_KEY),
+                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MIN_KEY),
+                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.PROXIMITY_KEY),null,
                 current_sort, limit,offset,null);
 
 

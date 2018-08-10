@@ -18,7 +18,7 @@ import org.nearbyshops.enduserapp.Carts.CartItem.CartItemListActivity;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelStats.CartStats;
 import org.nearbyshops.enduserapp.R;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
 
@@ -72,7 +72,7 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
 //            imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
 //                    + shop.getLogoImagePath() + ".jpg";
 
-            imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
+            imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
                     + shop.getLogoImagePath() + ".jpg";
 
         }

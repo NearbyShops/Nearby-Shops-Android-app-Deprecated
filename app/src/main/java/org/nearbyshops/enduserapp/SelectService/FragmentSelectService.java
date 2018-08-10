@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -20,22 +19,19 @@ import android.widget.TextView;
 import com.google.gson.GsonBuilder;
 
 import org.apache.commons.validator.routines.UrlValidator;
-import org.nearbyshops.enduserapp.Home;
 import org.nearbyshops.enduserapp.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ServiceConfigurationService;
-import org.nearbyshops.enduserapp.Services.ServicesActivity;
 import org.nearbyshops.enduserapp.Shops.UtilityLocation;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.Currency;
 import java.util.Locale;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnTextChanged;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,15 +45,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class FragmentSelectService extends Fragment {
 
 
-    @Bind(R.id.serviceURL) EditText serviceURL;
-    @Bind(R.id.text_input_service_url) TextInputLayout textInputServiceURL;
+    @BindView(R.id.serviceURL) EditText serviceURL;
+    @BindView(R.id.text_input_service_url) TextInputLayout textInputServiceURL;
 
     UrlValidator urlValidator;
 
 
 
-//    @Bind(R.id.service_url) TextInputEditText service_url;
-    @Bind(R.id.reset_button) TextView resetButton;
+//    @BindView(R.id.service_url) TextInputEditText service_url;
+    @BindView(R.id.reset_button) TextView resetButton;
 
     @Nullable
     @Override
@@ -79,7 +75,7 @@ public class FragmentSelectService extends Fragment {
 
         urlValidator = new UrlValidator(schemes);
 
-        serviceURL.setText(UtilityGeneral.getServiceURL(getActivity()));
+        serviceURL.setText(PrefGeneral.getServiceURL(getActivity()));
 
         serviceURL.addTextChangedListener(new TextWatcher() {
             @Override
@@ -96,7 +92,7 @@ public class FragmentSelectService extends Fragment {
             public void afterTextChanged(Editable s) {
 
                 if (urlValidator.isValid(s.toString())) {
-                    UtilityGeneral.saveServiceURL(s.toString(),getActivity());
+                    PrefGeneral.saveServiceURL(s.toString(),getActivity());
                     textInputServiceURL.setError(null);
                     textInputServiceURL.setErrorEnabled(false);
                     updateStatusLight();
@@ -107,7 +103,7 @@ public class FragmentSelectService extends Fragment {
                     textInputServiceURL.setErrorEnabled(true);
                     textInputServiceURL.setError("Invalid URL");
 
-                    UtilityGeneral.saveServiceLightStatus(getActivity(),STATUS_LIGHT_RED);
+                    PrefGeneral.saveServiceLightStatus(getActivity(),STATUS_LIGHT_RED);
                     setStatusLight();
                 }
 
@@ -129,7 +125,7 @@ public class FragmentSelectService extends Fragment {
     @OnClick(R.id.reset_button)
     void resetButtonClick()
     {
-        UtilityGeneral.saveServiceURL("http://nearbyshops.org",getActivity());
+        PrefGeneral.saveServiceURL("http://nearbyshops.org",getActivity());
 //        bindDataToViews();
     }
 
@@ -157,7 +153,7 @@ public class FragmentSelectService extends Fragment {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
-                .baseUrl(UtilityGeneral.getServiceURL(MyApplication.getAppContext()))
+                .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
                 .build();
 
         ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
@@ -182,7 +178,7 @@ public class FragmentSelectService extends Fragment {
                     if(response.body()!=null)
                     {
                         ServiceConfigurationLocal configurationLocal = response.body();
-                        UtilityGeneral.saveConfiguration(configurationLocal,getActivity());
+                        PrefGeneral.saveConfiguration(configurationLocal,getActivity());
                         saveCurrency(configurationLocal.getISOCountryCode(), configurationLocal.getISOLanguageCode());
 
 
@@ -203,12 +199,12 @@ public class FragmentSelectService extends Fragment {
 
                         if(configurationLocal.getRt_distance()<=configurationLocal.getServiceRange())
                         {
-                            UtilityGeneral.saveServiceLightStatus(getActivity(),STATUS_LIGHT_GREEN);
+                            PrefGeneral.saveServiceLightStatus(getActivity(),STATUS_LIGHT_GREEN);
                             setStatusLight();
                         }
                         else
                         {
-                            UtilityGeneral.saveServiceLightStatus(getActivity(),STATUS_LIGHT_YELLOW);
+                            PrefGeneral.saveServiceLightStatus(getActivity(),STATUS_LIGHT_YELLOW);
                             setStatusLight();
                         }
 //                        }
@@ -222,13 +218,13 @@ public class FragmentSelectService extends Fragment {
                     }
                     else
                     {
-                        UtilityGeneral.saveServiceLightStatus(getActivity(),STATUS_LIGHT_RED);
+                        PrefGeneral.saveServiceLightStatus(getActivity(),STATUS_LIGHT_RED);
                         setStatusLight();
                     }
                 }
                 else
                 {
-                    UtilityGeneral.saveServiceLightStatus(getActivity(),STATUS_LIGHT_RED);
+                    PrefGeneral.saveServiceLightStatus(getActivity(),STATUS_LIGHT_RED);
                     setStatusLight();
                 }
             }
@@ -242,7 +238,7 @@ public class FragmentSelectService extends Fragment {
                 }
 
 
-                UtilityGeneral.saveServiceLightStatus(getActivity(),STATUS_LIGHT_RED);
+                PrefGeneral.saveServiceLightStatus(getActivity(),STATUS_LIGHT_RED);
                 setStatusLight();
 
             }
@@ -251,7 +247,7 @@ public class FragmentSelectService extends Fragment {
     }
 
 
-    @Bind(R.id.status_indicator_one) TextView statusLight;
+    @BindView(R.id.status_indicator_one) TextView statusLight;
     public static final int STATUS_LIGHT_GREEN = 1;
     public static final int STATUS_LIGHT_YELLOW = 2;
     public static final int STATUS_LIGHT_RED = 3;
@@ -260,7 +256,7 @@ public class FragmentSelectService extends Fragment {
     void setStatusLight()
     {
 
-        int status = UtilityGeneral.getServiceLightStatus(getActivity());
+        int status = PrefGeneral.getServiceLightStatus(getActivity());
 
         if(status == STATUS_LIGHT_GREEN)
         {
@@ -278,13 +274,13 @@ public class FragmentSelectService extends Fragment {
     }
 
 
-
-
-    @OnClick(R.id.discover_services_button)
-    void discoverServicesClick()
-    {
-        startActivity(new Intent(getActivity(), ServicesActivity.class));
-    }
+//
+//
+//    @OnClick(R.id.discover_services_button)
+//    void discoverServicesClick()
+//    {
+//        startActivity(new Intent(getActivity(), ServicesActivity.class));
+//    }
 
 
     @OnClick(R.id.paste_url_button)
@@ -308,7 +304,7 @@ public class FragmentSelectService extends Fragment {
         try {
             Locale locale = new Locale(languageCode,countryCode);
             Currency currency = Currency.getInstance(locale);
-            UtilityGeneral.saveCurrencySymbol(currency.getSymbol(),getActivity());
+            PrefGeneral.saveCurrencySymbol(currency.getSymbol(),getActivity());
         }
         catch (Exception ex)
         {

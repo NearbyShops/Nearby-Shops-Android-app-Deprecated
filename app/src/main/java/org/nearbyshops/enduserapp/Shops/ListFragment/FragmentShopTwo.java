@@ -7,18 +7,26 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wunderlist.slidinglayer.SlidingLayer;
+
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
+import org.nearbyshops.enduserapp.Items.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduserapp.Notifications.NonStopService.LocationUpdateService;
@@ -28,15 +36,20 @@ import org.nearbyshops.enduserapp.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduserapp.Shops.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
 import org.nearbyshops.enduserapp.Shops.ShopsActivity;
+import org.nearbyshops.enduserapp.Shops.SlidingLayerSort.SlidingLayerSortShops;
 import org.nearbyshops.enduserapp.Shops.UtilityLocation;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserapp.Shops.SlidingLayerSort.UtilitySortShopsByCategory;
+import org.nearbyshops.enduserapp.Utility.DividerItemDecoration;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import icepick.State;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,6 +57,7 @@ import retrofit2.Response;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+import static org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.ItemCategoriesSimple.TAG_SLIDING;
 
 /**
  * Created by sumeet on 25/5/16.
@@ -51,7 +65,7 @@ import static android.app.Activity.RESULT_OK;
 public class FragmentShopTwo extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifyDatasetChanged,NotifySearch{
 
-        ArrayList<Shop> dataset;
+        ArrayList<Shop> dataset = new ArrayList<>();
 
         @State boolean isSaved;
         @Inject ShopService shopService;
@@ -69,7 +83,17 @@ public class FragmentShopTwo extends Fragment implements
         boolean switchMade = false;
         boolean isDestroyed;
 
-        public FragmentShopTwo() {
+
+
+
+//    @BindView(R.id.icon_list) ImageView mapIcon;
+    @BindView(R.id.shop_count_indicator) TextView itemHeader;
+    @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
+
+
+
+
+    public FragmentShopTwo() {
             // inject dependencies through dagger
             DaggerComponentBuilder.getInstance()
                     .getNetComponent().Inject(this);
@@ -78,7 +102,15 @@ public class FragmentShopTwo extends Fragment implements
 
         }
 
-    /**
+
+
+
+
+
+
+
+
+        /**
          * Returns a new instance of this fragment for the given section
          * number.
          */
@@ -94,20 +126,17 @@ public class FragmentShopTwo extends Fragment implements
         }
 
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-
-
-    }
 
 
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
+
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//    }
+//
+//
+
 
 
 
@@ -115,32 +144,30 @@ public class FragmentShopTwo extends Fragment implements
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
+            setRetainInstance(true);
             View rootView = inflater.inflate(R.layout.fragment_shops_two, container, false);
+            ButterKnife.bind(this,rootView);
 
-            //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
 
             recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
             swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
             switchMade = getArguments().getBoolean("switch");
 
-                if(savedInstanceState==null && !switchMade)
-                {
-                    // ensure that there is no swipe to right on first fetch
+
+            Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+            toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+            toolbar.setTitle("Nearby Shops");
+            ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+    //
+
+            if(savedInstanceState==null && !switchMade)
+            {
+                // ensure that there is no swipe to right on first fetch
 //                    isbackPressed = true;
-                    makeRefreshNetworkCall();
-                    isSaved = true;
-                }
+                makeRefreshNetworkCall();
+                isSaved = true;
+            }
 
-                else if(savedInstanceState == null && switchMade)
-                {
-
-                }
-                else
-                {
-//                    Log.d("shopsbycategory","saved State");
-//                    onViewStateRestored(savedInstanceState);
-
-                }
 
 
             setupRecyclerView();
@@ -149,7 +176,7 @@ public class FragmentShopTwo extends Fragment implements
             notifyTitleChanged();
 
 
-
+            setupSlidingLayer();
 
 
 //                getActivity().startService(new Intent(getActivity(), LocationUpdateService.class));
@@ -159,7 +186,7 @@ public class FragmentShopTwo extends Fragment implements
 
 
 
-                return rootView;
+            return rootView;
         }
 
 
@@ -217,7 +244,58 @@ public class FragmentShopTwo extends Fragment implements
 
 
 
-        void setupRecyclerView()
+
+    @OnClick({R.id.icon_sort,R.id.text_sort})
+    void sortClick()
+    {
+        slidingLayer.openLayer(true);
+//        showToastMessage("Sort Clicked");
+    }
+
+
+
+    void setupSlidingLayer()
+    {
+
+        ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
+        //slidingLayer.setShadowSizeRes(R.dimen.shadow_size);
+
+        if(slidingLayer!=null)
+        {
+            slidingLayer.setChangeStateOnTap(true);
+            slidingLayer.setSlidingEnabled(true);
+//            slidingLayer.setPreviewOffsetDistance(15);
+            slidingLayer.setOffsetDistance(30);
+            slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
+
+            DisplayMetrics metrics = new DisplayMetrics();
+            getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+            //RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(250, ViewGroup.LayoutParams.MATCH_PARENT);
+
+            //slidingContents.setLayoutParams(layoutParams);
+
+            //slidingContents.setMinimumWidth(metrics.widthPixels-50);
+
+
+
+            if(getChildFragmentManager().findFragmentByTag(TAG_SLIDING)==null)
+            {
+                System.out.println("Item Cat Simple : New Sliding Layer Loaded !");
+                getChildFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.slidinglayerfragment,new SlidingLayerSortShops(),TAG_SLIDING)
+                        .commit();
+            }
+        }
+
+    }
+
+
+
+
+
+    void setupRecyclerView()
         {
             if(recyclerView == null)
             {
@@ -241,17 +319,20 @@ public class FragmentShopTwo extends Fragment implements
             layoutManager = new GridLayoutManager(getActivity(),1);
             recyclerView.setLayoutManager(layoutManager);
 
-//            recyclerView.addItemDecoration(new EqualSpaceItemDecoration(5));
+//            recyclerView.addItemDecoration(new EqualSpaceItemDecoration(1));
 
-            /*recyclerView.addItemDecoration(
+
+
+            recyclerView.addItemDecoration(
                     new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL_LIST)
             );
 
-            recyclerView.addItemDecoration(
-                    new DividerItemDecoration(getActivity(),DividerItemDecoration.HORIZONTAL_LIST)
-            );*/
 
-            //itemCategoriesList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
+//            recyclerView.addItemDecoration(
+//                    new DividerItemDecoration(getActivity(),DividerItemDecoration.HORIZONTAL_LIST)
+//            );
+
+//            itemCategoriesList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 
             DisplayMetrics metrics = new DisplayMetrics();
             getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -400,6 +481,11 @@ public class FragmentShopTwo extends Fragment implements
 
 
 
+
+
+
+
+
             System.out.println("Lat : " + UtilityLocation.getLatitude(getActivity())
                                 + "\nLon : " + UtilityLocation.getLongitude(getActivity()));
 
@@ -430,7 +516,12 @@ public class FragmentShopTwo extends Fragment implements
                             item_count = response.body().getItemCount();
                         }
 
+
+
+
                     }
+
+
 
 
                     notifyTitleChanged();
@@ -539,6 +630,10 @@ public class FragmentShopTwo extends Fragment implements
 
 
 
+
+
+    
+
     @Override
     public void notifySortChanged() {
         makeRefreshNetworkCall();
@@ -555,6 +650,10 @@ public class FragmentShopTwo extends Fragment implements
             ((NotifyDatasetChanged)fragment).notifyDatasetChanged();
         }
     }
+
+
+
+
 
 
 
@@ -586,24 +685,30 @@ public class FragmentShopTwo extends Fragment implements
     }
 
 
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        // Unregister the listener when the application is paused
-
-//        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(testReceiver);
-
-    }
 
 
-    @Override
-    public void onStop() {
-        super.onStop();
 
-//        getActivity().stopService(new Intent(getActivity(), LocationUpdateService.class));
 
-    }
+
+
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//
+//        // Unregister the listener when the application is paused
+//
+////        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(testReceiver);
+//
+//    }
+
+
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//
+////        getActivity().stopService(new Intent(getActivity(), LocationUpdateService.class));
+//
+//    }
 
 
 //

@@ -1,7 +1,6 @@
 package org.nearbyshops.enduserapp.Notifications.NonStopService;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -17,7 +16,7 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import org.nearbyshops.enduserapp.SharedPreferences.UtilityLocationOld;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 /**
  * Created by sumeet on 10/4/17.
@@ -257,8 +256,8 @@ public class LocationUpdateService extends NonStopIntentService implements Googl
 
     void saveLocation(Location location)
     {
-        UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,(float)location.getLatitude());
-        UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,(float)location.getLongitude());
+        PrefGeneral.saveInSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY,(float)location.getLatitude());
+        PrefGeneral.saveInSharedPrefFloat(PrefGeneral.LON_CENTER_KEY,(float)location.getLongitude());
 
         org.nearbyshops.enduserapp.Shops.UtilityLocation.saveLatitude((float) location.getLatitude(),this);
         org.nearbyshops.enduserapp.Shops.UtilityLocation.saveLongitude((float) location.getLongitude(),this);

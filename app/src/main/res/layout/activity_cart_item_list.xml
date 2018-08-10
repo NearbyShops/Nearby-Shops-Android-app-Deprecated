@@ -216,11 +216,11 @@
 
 
     <TextView
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="0dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/confirm"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         android:text="Checkout !"
         android:textSize="24dp"
         android:padding="10dp"

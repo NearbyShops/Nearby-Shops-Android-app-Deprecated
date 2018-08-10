@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,7 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.Shops.Interfaces.NotifyListItemClick;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
 
@@ -63,7 +62,7 @@ public class AdapterHorizontal extends RecyclerView.Adapter<AdapterHorizontal.Vi
 //        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
 //                + dataset.get(position).getLogoImagePath();
 
-        String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
+        String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
                 + dataset.get(position).getLogoImagePath() + ".jpg";
 
 

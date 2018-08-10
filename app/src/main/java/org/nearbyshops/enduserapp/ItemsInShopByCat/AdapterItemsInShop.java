@@ -1,6 +1,7 @@
 package org.nearbyshops.enduserapp.ItemsInShopByCat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
@@ -26,20 +27,21 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
-import org.nearbyshops.enduserapp.Login.LoginDialog;
+import org.nearbyshops.enduserapp.LoginNew.Login;
 import org.nearbyshops.enduserapp.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.Model.ItemCategory;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.Model.ShopItem;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.ModelStats.CartStats;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduserapp.Utility.InputFilterMinMax;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
 import java.util.HashMap;
@@ -48,7 +50,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
@@ -117,7 +119,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         cartItemMap.clear();
         cartStatsMap.clear();
 
-        EndUser endUser = UtilityLogin.getEndUser(context);
+        User endUser = PrefLogin.getUser(context);
 
         if(endUser == null)
         {
@@ -129,7 +131,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
         Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,null,
-                endUser.getEndUserID(),shop.getShopID(),false);
+                endUser.getUserID(),shop.getShopID(),false);
 
 
         cartItemCall.enqueue(new Callback<List<CartItem>>() {
@@ -171,7 +173,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
         Call<List<CartStats>> listCall = cartStatsService
-                .getCart(endUser.getEndUserID(), null,shop.getShopID(),false,null,null);
+                .getCart(endUser.getUserID(), null,shop.getShopID(),false,null,null);
 
 
 
@@ -350,7 +352,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public class LoadingViewHolder extends  RecyclerView.ViewHolder{
 
-        @Bind(R.id.progress_bar)
+        @BindView(R.id.progress_bar)
         ProgressBar progressBar;
 
         public LoadingViewHolder(View itemView) {
@@ -366,7 +368,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
     class ViewHolderHeader extends RecyclerView.ViewHolder{
 
 
-        @Bind(R.id.header)
+        @BindView(R.id.header)
         TextView header;
 
         public ViewHolderHeader(View itemView) {
@@ -388,7 +390,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
             holder.categoryName.setText(String.valueOf(itemCategory.getCategoryName()));
 
 
-            String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/ItemCategory/Image/five_hundred_"
+            String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/ItemCategory/Image/five_hundred_"
                     + itemCategory.getImagePath() + ".jpg";
 
 
@@ -409,13 +411,13 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
     class ViewHolderItemCategory extends RecyclerView.ViewHolder{
 
 
-        @Bind(R.id.name)
+        @BindView(R.id.name)
         TextView categoryName;
-        @Bind(R.id.itemCategoryListItem)
+        @BindView(R.id.itemCategoryListItem)
         ConstraintLayout itemCategoryListItem;
-        @Bind(R.id.categoryImage)
+        @BindView(R.id.categoryImage)
         ImageView categoryImage;
-        @Bind(R.id.cardview)
+        @BindView(R.id.cardview)
         CardView cardView;
 
         public ViewHolderItemCategory(View itemView) {
@@ -483,7 +485,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
             if(item!=null)
             {
                 String currency = "";
-                currency = UtilityGeneral.getCurrencySymbol(context);
+                currency = PrefGeneral.getCurrencySymbol(context);
 
                 holder.itemName.setText(item.getItemName());
                 holder.itemPrice.setText(currency + ". " + String.format("%.2f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
@@ -505,7 +507,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 //                imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
 //                        + item.getItemImageURL();
 
-                imagePath = UtilityGeneral.getServiceURL(context)
+                imagePath = PrefGeneral.getServiceURL(context)
                         + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
 
             }
@@ -530,47 +532,47 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
     public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
-        @Bind(R.id.add_to_cart_text)
+        @BindView(R.id.add_to_cart_text)
         TextView addToCartText;
 
-        @Bind(R.id.item_title)
+        @BindView(R.id.item_title)
         TextView itemName;
 
-        @Bind(R.id.item_image)
+        @BindView(R.id.item_image)
         ImageView itemImage;
 
-        @Bind(R.id.item_price)
+        @BindView(R.id.item_price)
         TextView itemPrice;
 
-        @Bind(R.id.available)
+        @BindView(R.id.available)
         TextView available;
 
-        @Bind(R.id.rating)
+        @BindView(R.id.rating)
         TextView rating;
 
-        @Bind(R.id.rating_count)
+        @BindView(R.id.rating_count)
         TextView ratinCount;
 
-        @Bind(R.id.increaseQuantity)
+        @BindView(R.id.increaseQuantity)
         ImageView increaseQuantity;
 
-        @Bind(R.id.itemQuantity)
+        @BindView(R.id.itemQuantity)
         EditText itemQuantity;
 
-        @Bind(R.id.reduceQuantity)
+        @BindView(R.id.reduceQuantity)
         ImageView reduceQuantity;
 
-        @Bind(R.id.total)
+        @BindView(R.id.total)
         TextView itemTotal;
 
 //        @Bind(R.id.add_to_cart_text)
 //        TextView addToCart;
 
-        @Bind(R.id.list_item)
+        @BindView(R.id.list_item)
         CardView shopItemListItem;
 
 
-        @Bind(R.id.progress_bar) ProgressBar progressBar;
+        @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
         ShopItem shopItem;
@@ -744,7 +746,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                     //showToastMessage("Add to cart! : " + dataset.get(getLayoutPosition()).getShopID());
 
-                    EndUser endUser = UtilityLogin.getEndUser(context);
+                    User endUser = PrefLogin.getUser(context);
                     if(endUser==null)
                     {
 
@@ -759,7 +761,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                     Call<ResponseBody> call = cartItemService.createCartItem(
                             cartItem,
-                            endUser.getEndUserID(),
+                            endUser.getUserID(),
                             shop.getShopID()
                     );
 
@@ -811,14 +813,14 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                     // Delete from cart
 
                     //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
-                    EndUser endUser = UtilityLogin.getEndUser(context);
+                    User endUser = PrefLogin.getUser(context);
                     if(endUser==null)
                     {
                         return;
                     }
 
                     Call<ResponseBody> callDelete = cartItemService.deleteCartItem(0,cartItem.getItemID(),
-                            endUser.getEndUserID(),
+                            endUser.getUserID(),
                             shopItem.getShopID()
                     );
 
@@ -870,7 +872,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                     // Update from cart
 
                     //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
-                    EndUser endUser = UtilityLogin.getEndUser(context);
+                    User endUser = PrefLogin.getUser(context);
 
                     if(endUser==null)
                     {
@@ -883,7 +885,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                         Call<ResponseBody> callUpdate = cartItemService.updateCartItem(
                                 cartItem,
-                                endUser.getEndUserID(),
+                                endUser.getUserID(),
                                 shop.getShopID()
                         );
 
@@ -1170,12 +1172,16 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
     private void showLoginDialog()
     {
 
-        if(context instanceof AppCompatActivity)
-        {
-            FragmentManager fm =  ((AppCompatActivity)context).getSupportFragmentManager();
-            LoginDialog loginDialog = new LoginDialog();
-            loginDialog.show(fm,"serviceUrl");
-        }
+//        if(context instanceof AppCompatActivity)
+//        {
+//            FragmentManager fm =  ((AppCompatActivity)context).getSupportFragmentManager();
+//            LoginDialog loginDialog = new LoginDialog();
+//            loginDialog.show(fm,"serviceUrl");
+//        }
+
+
+        Intent intent = new Intent(context,Login.class);
+        context.startActivity(intent);
 
     }
 

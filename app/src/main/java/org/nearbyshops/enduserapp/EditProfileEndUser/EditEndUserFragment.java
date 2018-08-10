@@ -30,10 +30,11 @@ import com.yalantis.ucrop.UCropActivity;
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.Model.Image;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.EndUserService;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -41,7 +42,7 @@ import java.io.InputStream;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
@@ -78,15 +79,15 @@ public class EditEndUserFragment extends Fragment {
 
 
     // bind views
-    @Bind(R.id.uploadImage)
+    @BindView(R.id.uploadImage)
     ImageView resultView;
 
 
-    @Bind(R.id.item_id) EditText item_id;
-    @Bind(R.id.name) EditText name;
-    @Bind(R.id.username) EditText username;
-    @Bind(R.id.password) EditText password;
-    @Bind(R.id.about) EditText about;
+    @BindView(R.id.item_id) EditText item_id;
+    @BindView(R.id.name) EditText name;
+    @BindView(R.id.username) EditText username;
+    @BindView(R.id.password) EditText password;
+    @BindView(R.id.about) EditText about;
 
 //    @Bind(R.id.phone_number) EditText phone;
 //    @Bind(R.id.designation) EditText designation;
@@ -96,7 +97,7 @@ public class EditEndUserFragment extends Fragment {
 //    @Bind(R.id.govt_id_name) EditText govtIDName;
 //    @Bind(R.id.govt_id_number) EditText govtIDNumber;
 
-    @Bind(R.id.saveButton) Button buttonUpdateItem;
+    @BindView(R.id.saveButton) Button buttonUpdateItem;
 
 
     public static final String SHOP_ADMIN_INTENT_KEY = "delivery_guy_intent_key";
@@ -137,7 +138,7 @@ public class EditEndUserFragment extends Fragment {
 
             if(current_mode == MODE_UPDATE)
             {
-                shopAdmin = UtilityLogin.getEndUser(getContext());
+//                shopAdmin = PrefLogin.getUser(getContext());
                 if(shopAdmin!=null) {
                     bindDataToViews();
                 }
@@ -196,7 +197,7 @@ public class EditEndUserFragment extends Fragment {
 
     void loadImage(String imagePath) {
 
-        String iamgepath = UtilityGeneral.getServiceURL(getContext()) + "/api/v1/EndUser/Image/" + imagePath;
+        String iamgepath = PrefGeneral.getServiceURL(getContext()) + "/api/v1/EndUser/Image/" + imagePath;
 
         Picasso.with(getContext())
                 .load(iamgepath)
@@ -428,7 +429,7 @@ public class EditEndUserFragment extends Fragment {
         getDataFromViews();
 
         // update Item Call
-        Call<ResponseBody> call = endUserService.updateBySelf(UtilityLogin.getAuthorizationHeaders(getContext()),
+        Call<ResponseBody> call = endUserService.updateBySelf(PrefLogin.getAuthorizationHeaders(getContext()),
                 shopAdmin.getEndUserID(),shopAdmin);
 
         call.enqueue(new Callback<ResponseBody>() {
@@ -441,8 +442,8 @@ public class EditEndUserFragment extends Fragment {
 
                     if(getActivity().getIntent().getIntExtra(EDIT_MODE_INTENT_KEY,MODE_UPDATE)==MODE_UPDATE)
                     {
-                        UtilityLogin.saveEndUser(shopAdmin,getContext());
-                        UtilityLogin.saveCredentials(
+//                        PrefLogin.saveUser(shopAdmin,getContext());
+                        PrefLogin.saveCredentials(
                                 getContext(),
                                 shopAdmin.getUsername(),
                                 shopAdmin.getPassword()
@@ -488,7 +489,7 @@ public class EditEndUserFragment extends Fragment {
                     shopAdmin = response.body();
                     bindDataToViews();
 
-                    UtilityLogin.saveCredentials(
+                    PrefLogin.saveCredentials(
                             getContext(),shopAdmin.getUsername(),
                             shopAdmin.getPassword());
 
@@ -514,7 +515,7 @@ public class EditEndUserFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
 
@@ -536,7 +537,7 @@ public class EditEndUserFragment extends Fragment {
 
 
 
-    @Bind(R.id.textChangePicture)
+    @BindView(R.id.textChangePicture)
     TextView changePicture;
 
 
@@ -770,7 +771,7 @@ public class EditEndUserFragment extends Fragment {
 
 
 
-        Call<Image> imageCall = endUserService.uploadImage(UtilityLogin.getAuthorizationHeaders(getContext()),
+        Call<Image> imageCall = endUserService.uploadImage(PrefLogin.getAuthorizationHeaders(getContext()),
                 requestBodyBinary);
 
 
@@ -839,7 +840,7 @@ public class EditEndUserFragment extends Fragment {
 
     void deleteImage(String filename)
     {
-        Call<ResponseBody> call = endUserService.deleteImage(UtilityLogin.getAuthorizationHeaders(getContext()),filename);
+        Call<ResponseBody> call = endUserService.deleteImage(PrefLogin.getAuthorizationHeaders(getContext()),filename);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override

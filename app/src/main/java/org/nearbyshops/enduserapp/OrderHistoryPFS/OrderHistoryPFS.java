@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 
-import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserapp.OrderHistoryPFS.SlidingLayerSort.SlidingLayerSortOrdersPFS;
 import org.nearbyshops.enduserapp.R;
@@ -25,17 +24,17 @@ import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class OrderHistoryPFS extends AppCompatActivity implements NotifyTitleChanged, NotifySort ,NotifyAboutLogin{
+public class OrderHistoryPFS extends AppCompatActivity implements NotifyTitleChanged, NotifySort{
 
 
     private PagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
 
-    @Bind(R.id.slidingLayer)
+    @BindView(R.id.slidingLayer)
     SlidingLayer slidingLayer;
 
     public static final String TAG_SLIDING_LAYER = "sliding_layer";
@@ -169,13 +168,6 @@ public class OrderHistoryPFS extends AppCompatActivity implements NotifyTitleCha
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
-
-
 
 
     // Add Search Feature to the activity
@@ -266,7 +258,7 @@ public class OrderHistoryPFS extends AppCompatActivity implements NotifyTitleCha
     }
 
 
-    @Override
+//    @Override
     public void NotifyLogin() {
 
         Fragment fragment = getSupportFragmentManager()

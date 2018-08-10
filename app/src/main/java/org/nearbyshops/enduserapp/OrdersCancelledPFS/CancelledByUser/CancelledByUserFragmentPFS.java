@@ -28,7 +28,7 @@ import org.nearbyshops.enduserapp.RetrofitRESTContractPFS.OrderServicePFS;
 import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
 import java.util.ArrayList;
@@ -242,7 +242,7 @@ public class CancelledByUserFragmentPFS extends Fragment implements AdapterCance
         current_sort = UtilitySortOrdersPFS.getSort(getContext()) + " " + UtilitySortOrdersPFS.getAscending(getContext());
 
         Call<OrderEndPointPFS> call = orderServiceShopStaff.getOrders(
-                    UtilityLogin.getAuthorizationHeaders(getActivity()),
+                    PrefLogin.getAuthorizationHeaders(getActivity()),
                     null,shopID,
                     OrderStatusPickFromShop.CANCELLED_BY_USER,
                     null,null,

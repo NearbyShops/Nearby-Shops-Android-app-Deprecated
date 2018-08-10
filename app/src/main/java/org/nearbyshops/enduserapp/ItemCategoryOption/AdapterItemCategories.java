@@ -22,12 +22,12 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserapp.Model.ItemCategory;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.R;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -77,7 +77,7 @@ public class AdapterItemCategories extends RecyclerView.Adapter<AdapterItemCateg
         holder.categoryDescription.setText(dataset.get(position).getCategoryDescription());
 
 
-        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+        String imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
                 + dataset.get(position).getImagePath();
 
         Picasso.with(context)
@@ -116,8 +116,8 @@ public class AdapterItemCategories extends RecyclerView.Adapter<AdapterItemCateg
         //@Bind(R.id.categoryImage) ImageView categoryImage;
         //@Bind(R.id.textviewEdit) TextView textViewEdit;
 
-        @Bind(R.id.categoryImage) ImageView categoryImage;
-        @Bind(R.id.moreOptions) ImageView optionsOverflow;
+        @BindView(R.id.categoryImage) ImageView categoryImage;
+        @BindView(R.id.moreOptions) ImageView optionsOverflow;
 
         public ViewHolder(View itemView) {
             super(itemView);

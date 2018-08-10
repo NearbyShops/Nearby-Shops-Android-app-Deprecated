@@ -21,7 +21,7 @@ import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduserapp.RetrofitRESTContractPFS.OrderServicePFS;
 import org.nearbyshops.enduserapp.Shops.UtilityLocation;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
 import java.util.ArrayList;
@@ -278,7 +278,7 @@ public class FragmentOrderDetailPFS extends Fragment implements SwipeRefreshLayo
         Shop currentShop = UtilityShopHome.getShop(getContext());
 
         Call<OrderItemEndPointPFS> call = orderItemService.getOrderItemPFS(
-                UtilityLogin.getAuthorizationHeaders(getActivity()),
+                PrefLogin.getAuthorizationHeaders(getActivity()),
                 order.getOrderID(),null,null,null,limit,offset,null);
 
 

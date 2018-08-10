@@ -16,7 +16,6 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.Model.Shop;
-import org.nearbyshops.enduserapp.ModelCartOrder.OrderItem;
 import org.nearbyshops.enduserapp.ModelPickFromShop.OrderItemPFS;
 import org.nearbyshops.enduserapp.ModelPickFromShop.OrderPFS;
 import org.nearbyshops.enduserapp.ModelPickFromShop.OrderStatsPFS;
@@ -24,11 +23,11 @@ import org.nearbyshops.enduserapp.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserapp.OrderHistoryPFS.Utility.UtilityOrderStatusPFS;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -118,28 +117,28 @@ class AdapterOrderDetailPFS extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     class ViewHolderOrder extends RecyclerView.ViewHolder{
 
-        @Bind(R.id.order_id) TextView orderID;
-        @Bind(R.id.dateTimePlaced) TextView dateTimePlaced;
-        @Bind(R.id.deliveryAddressName) TextView deliveryAddressName;
-        @Bind(R.id.deliveryAddress) TextView deliveryAddress;
-        @Bind(R.id.deliveryAddressPhone) TextView deliveryAddressPhone;
-        @Bind(R.id.numberOfItems) TextView numberOfItems;
-        @Bind(R.id.orderTotal) TextView orderTotal;
-        @Bind(R.id.currentStatus) TextView currentStatus;
+        @BindView(R.id.order_id) TextView orderID;
+        @BindView(R.id.dateTimePlaced) TextView dateTimePlaced;
+        @BindView(R.id.deliveryAddressName) TextView deliveryAddressName;
+        @BindView(R.id.deliveryAddress) TextView deliveryAddress;
+        @BindView(R.id.deliveryAddressPhone) TextView deliveryAddressPhone;
+        @BindView(R.id.numberOfItems) TextView numberOfItems;
+        @BindView(R.id.orderTotal) TextView orderTotal;
+        @BindView(R.id.currentStatus) TextView currentStatus;
 
 //        @Bind(R.id.confirmOrderButton)
 //        TextView confirmOrderButton;
 
 
-        @Bind(R.id.shop_name) TextView shopName;
-        @Bind(R.id.shop_address) TextView shopAddress;
-        @Bind(R.id.shop_logo) ImageView shopLogo;
-        @Bind(R.id.delivery) TextView delivery;
-        @Bind(R.id.distance) TextView distance;
-        @Bind(R.id.rating) TextView rating;
-        @Bind(R.id.rating_count) TextView rating_count;
-        @Bind(R.id.description) TextView description;
-        @Bind(R.id.shop_info_card) CardView list_item;
+        @BindView(R.id.shop_name) TextView shopName;
+        @BindView(R.id.shop_address) TextView shopAddress;
+        @BindView(R.id.shop_logo) ImageView shopLogo;
+        @BindView(R.id.delivery) TextView delivery;
+        @BindView(R.id.distance) TextView distance;
+        @BindView(R.id.rating) TextView rating;
+        @BindView(R.id.rating_count) TextView rating_count;
+        @BindView(R.id.description) TextView description;
+        @BindView(R.id.shop_info_card) CardView list_item;
 
 
 
@@ -239,7 +238,7 @@ class AdapterOrderDetailPFS extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
 //                        + shop.getLogoImagePath();
 
-                String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
+                String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
                         + shop.getLogoImagePath() + ".jpg";
 
                 Drawable placeholder = VectorDrawableCompat
@@ -283,28 +282,28 @@ class AdapterOrderDetailPFS extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     class ViewHolderOrderItem extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @Bind(R.id.itemImage)
+        @BindView(R.id.itemImage)
         ImageView itemImage;
 
-        @Bind(R.id.itemName)
+        @BindView(R.id.itemName)
         TextView itemName;
 
-        @Bind(R.id.quantity)
+        @BindView(R.id.quantity)
         TextView quantity;
 
-        @Bind(R.id.pincode)
+        @BindView(R.id.pincode)
         TextView itemPrice;
 
-        @Bind(R.id.item_total)
+        @BindView(R.id.item_total)
         TextView itemTotal;
 
-//        @Bind(R.id.item_rating)
+//        @BindView(R.id.item_rating)
 //        TextView itemRating;
 
-//        @Bind(R.id.rating_count)
+//        @BindView(R.id.rating_count)
 //        TextView ratingCount;
 
-        @Bind(R.id.item_id)
+        @BindView(R.id.item_id)
         TextView itemID;
 
 
@@ -354,7 +353,7 @@ class AdapterOrderDetailPFS extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext()) + item.getItemImageURL();
 
 
-        String imagePath = UtilityGeneral.getServiceURL(context)
+        String imagePath = PrefGeneral.getServiceURL(context)
                 + "/api/v1/Item/Image/five_hundred_" + item.getItemImageURL() + ".jpg";
 
 

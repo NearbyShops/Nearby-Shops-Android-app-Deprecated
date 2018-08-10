@@ -17,7 +17,7 @@ import org.nearbyshops.enduserapp.R;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -120,8 +120,8 @@ public class AdapterItemSpecifications extends RecyclerView.Adapter<RecyclerView
 
 
 //        @Bind(R.id.list_item) RelativeLayout listItem;
-        @Bind(R.id.title_name) TextView name;
-        @Bind(R.id.values) TextView values;
+        @BindView(R.id.title_name) TextView name;
+        @BindView(R.id.values) TextView values;
 
 
         public ViewHolderItemImage(View itemView) {

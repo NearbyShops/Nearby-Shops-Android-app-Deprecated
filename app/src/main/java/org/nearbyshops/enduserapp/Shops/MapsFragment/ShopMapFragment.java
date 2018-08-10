@@ -30,12 +30,12 @@ import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduserapp.Shops.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduserapp.Shops.Interfaces.NotifyListItemClick;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import icepick.Icepick;
 import icepick.State;
@@ -57,7 +57,7 @@ public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,Not
     SupportMapFragment mapFragment;
 
 
-    @Bind(R.id.horizontal_list)
+    @BindView(R.id.horizontal_list)
     RecyclerView reviewsList;
 
     LinearLayoutManager linearLayoutManager;
@@ -224,8 +224,8 @@ public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,Not
 
         Location location = new Location("xyz");
 
-        location.setLatitude(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,0));
-        location.setLongitude(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,0));
+        location.setLatitude(PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY,0));
+        location.setLongitude(PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LON_CENTER_KEY,0));
 
 
         if(dataset!=null && dataset.size()>0)
@@ -337,12 +337,6 @@ public class ShopMapFragment extends Fragment implements OnMapReadyCallback ,Not
     }
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        ButterKnife.unbind(this);
-    }
 
 
     @Override

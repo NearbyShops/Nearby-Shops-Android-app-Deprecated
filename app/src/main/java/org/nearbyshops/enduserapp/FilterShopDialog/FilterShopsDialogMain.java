@@ -15,9 +15,9 @@ import com.appyvet.rangebar.IRangeBarFormatter;
 import com.appyvet.rangebar.RangeBar;
 
 import org.nearbyshops.enduserapp.R;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -27,16 +27,16 @@ import butterknife.ButterKnife;
 public class FilterShopsDialogMain extends DialogFragment implements RangeBar.OnRangeBarChangeListener {
 
 
-    @Bind(R.id.rangebarDeliveryRange)
+    @BindView(R.id.rangebarDeliveryRange)
     RangeBar rangeBarDeliveryRange;
 
-    @Bind(R.id.rangebarProximity)
+    @BindView(R.id.rangebarProximity)
     RangeBar rangeBarProximity;
 
-    @Bind(R.id.textMax)
+    @BindView(R.id.textMax)
     TextView textMax;
 
-    @Bind(R.id.textMin)
+    @BindView(R.id.textMin)
     TextView textMin;
 
 
@@ -96,7 +96,7 @@ public class FilterShopsDialogMain extends DialogFragment implements RangeBar.On
 
 
 
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
 
@@ -112,24 +112,24 @@ public class FilterShopsDialogMain extends DialogFragment implements RangeBar.On
 
     void updateRangeBars()
     {
-        if(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,30)>30)
+        if(PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MAX_KEY,30)>30)
         {
             return;
         }
 
         rangeBarDeliveryRange.setRangePinsByValue(
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,0),
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,30));
+                PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MIN_KEY,0),
+                PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MAX_KEY,30));
 
 
-        if(UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,30)>
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,30))
+        if(PrefGeneral.getFromSharedPrefFloat(PrefGeneral.PROXIMITY_KEY,30)>
+                PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MAX_KEY,30))
         {
             return;
         }
 
         rangeBarProximity.setSeekPinByValue(
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,30));
+                PrefGeneral.getFromSharedPrefFloat(PrefGeneral.PROXIMITY_KEY,30));
 
     }
 
@@ -145,8 +145,8 @@ public class FilterShopsDialogMain extends DialogFragment implements RangeBar.On
                 deliveryRangeMax = 30;
             }
 
-            UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY,deliveryRangeMin);
-            UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY,deliveryRangeMax);
+            PrefGeneral.saveInSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MIN_KEY,deliveryRangeMin);
+            PrefGeneral.saveInSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MAX_KEY,deliveryRangeMax);
         }
 
 
@@ -158,7 +158,7 @@ public class FilterShopsDialogMain extends DialogFragment implements RangeBar.On
             }
 
 
-            UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY,proximity);
+            PrefGeneral.saveInSharedPrefFloat(PrefGeneral.PROXIMITY_KEY,proximity);
         }
     }
 

@@ -3,6 +3,7 @@ package org.nearbyshops.enduserapp.OrderDetail;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -24,11 +25,11 @@ import org.nearbyshops.enduserapp.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.Utility.UtilityOrderStatus;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -118,36 +119,37 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     class ViewHolderOrder extends RecyclerView.ViewHolder{
 
-        @Bind(R.id.order_id) TextView orderID;
-        @Bind(R.id.dateTimePlaced) TextView dateTimePlaced;
-        @Bind(R.id.deliveryAddressName) TextView deliveryAddressName;
-        @Bind(R.id.deliveryAddress) TextView deliveryAddress;
-        @Bind(R.id.deliveryAddressPhone) TextView deliveryAddressPhone;
-        @Bind(R.id.numberOfItems) TextView numberOfItems;
-        @Bind(R.id.orderTotal) TextView orderTotal;
-        @Bind(R.id.currentStatus) TextView currentStatus;
+        @BindView(R.id.order_id) TextView orderID;
+        @BindView(R.id.dateTimePlaced) TextView dateTimePlaced;
+        @BindView(R.id.deliveryAddressName) TextView deliveryAddressName;
+        @BindView(R.id.deliveryAddress) TextView deliveryAddress;
+        @BindView(R.id.deliveryAddressPhone) TextView deliveryAddressPhone;
+        @BindView(R.id.numberOfItems) TextView numberOfItems;
+        @BindView(R.id.orderTotal) TextView orderTotal;
+        @BindView(R.id.currentStatus) TextView currentStatus;
 
 
         // order Summary Views
 
-        @Bind(R.id.item_total) TextView itemTotal;
-        @Bind(R.id.delivery_charges) TextView deliveryCharges;
-        @Bind(R.id.order_total_summary) TextView orderTotalSummary;
+//        @BindView(R.id.item_total) TextView itemTotal;
+//        @BindView(R.id.delivery_charges) TextView deliveryCharges;
+//        @BindView(R.id.order_total_summary) TextView orderTotalSummary;
 
 
 //        @Bind(R.id.confirmOrderButton)
 //        TextView confirmOrderButton;
 
 
-        @Bind(R.id.shop_name) TextView shopName;
-        @Bind(R.id.shop_address) TextView shopAddress;
-        @Bind(R.id.shop_logo) ImageView shopLogo;
-        @Bind(R.id.delivery) TextView delivery;
-        @Bind(R.id.distance) TextView distance;
-        @Bind(R.id.rating) TextView rating;
-        @Bind(R.id.rating_count) TextView rating_count;
-        @Bind(R.id.description) TextView description;
-        @Bind(R.id.shop_info_card) CardView list_item;
+        @BindView(R.id.shop_name) TextView shopName;
+        @BindView(R.id.shop_address) TextView shopAddress;
+        @BindView(R.id.shop_logo) ImageView shopLogo;
+        @BindView(R.id.delivery) TextView delivery;
+        @BindView(R.id.distance) TextView distance;
+        @BindView(R.id.rating) TextView rating;
+        @BindView(R.id.rating_count) TextView rating_count;
+        @BindView(R.id.description) TextView description;
+        @BindView(R.id.shop_info_card)
+        ConstraintLayout list_item;
 
 
 
@@ -238,10 +240,10 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             // bind shop Summary Views
 
-            holder.itemTotal.setText("Item Total : " + String.valueOf(orderStats.getItemTotal()));
-            holder.deliveryCharges.setText("Delivery Charges : " + String.valueOf(order.getDeliveryCharges()));
-            holder.orderTotalSummary.setText("Total : " + String.valueOf(orderStats.getItemTotal() + order.getDeliveryCharges()));
-
+//            holder.itemTotal.setText("Item Total : " + String.valueOf(orderStats.getItemTotal()));
+//            holder.deliveryCharges.setText("Delivery Charges : " + String.valueOf(order.getDeliveryCharges()));
+//            holder.orderTotalSummary.setText("Total : " + String.valueOf(orderStats.getItemTotal() + order.getDeliveryCharges()));
+//
 
             if(shop!=null)
             {
@@ -255,7 +257,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 //                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
 //                        + shop.getLogoImagePath();
 
-                String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
+                String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
                         + shop.getLogoImagePath() + ".jpg";
 
                 Drawable placeholder = VectorDrawableCompat
@@ -299,19 +301,19 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     class ViewHolderOrderItem extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @Bind(R.id.itemImage)
+        @BindView(R.id.itemImage)
         ImageView itemImage;
 
-        @Bind(R.id.itemName)
+        @BindView(R.id.itemName)
         TextView itemName;
 
-        @Bind(R.id.quantity)
+        @BindView(R.id.quantity)
         TextView quantity;
 
-        @Bind(R.id.pincode)
+        @BindView(R.id.pincode)
         TextView itemPrice;
 
-        @Bind(R.id.item_total)
+        @BindView(R.id.item_total)
         TextView itemTotal;
 
 //        @Bind(R.id.item_rating)
@@ -320,7 +322,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 //        @Bind(R.id.rating_count)
 //        TextView ratingCount;
 
-        @Bind(R.id.item_id)
+        @BindView(R.id.item_id)
         TextView itemID;
 
 
@@ -370,7 +372,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 //        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext()) + item.getItemImageURL();
 
 
-        String imagePath = UtilityGeneral.getServiceURL(context)
+        String imagePath = PrefGeneral.getServiceURL(context)
                 + "/api/v1/Item/Image/five_hundred_" + item.getItemImageURL() + ".jpg";
 
 

@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import icepick.State;
 import retrofit2.Call;
@@ -61,8 +61,8 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
     int item_count_item;
     int fetched_items_count = 0;
 
-    @Bind(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
-    @Bind(R.id.recycler_view) RecyclerView itemCategoriesList;
+    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.recycler_view) RecyclerView itemCategoriesList;
 
     ArrayList<Object> dataset = new ArrayList<>();
     ArrayList<ItemCategory> datasetCategory = new ArrayList<>();

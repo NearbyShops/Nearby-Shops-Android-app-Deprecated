@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import icepick.State;
 import retrofit2.Call;
@@ -74,10 +74,10 @@ public class FragmentItemsInShop extends Fragment implements
         boolean isDestroyed;
 
 
-        @Bind(R.id.itemsInCart)
+        @BindView(R.id.itemsInCart)
         public TextView itemsInCart;
 
-        @Bind(R.id.cartTotal)
+        @BindView(R.id.cartTotal)
         public TextView cartTotal;
 
 
@@ -421,7 +421,6 @@ public class FragmentItemsInShop extends Fragment implements
     public void onDestroyView() {
         super.onDestroyView();
         isDestroyed = true;
-        ButterKnife.unbind(this);
     }
 
 

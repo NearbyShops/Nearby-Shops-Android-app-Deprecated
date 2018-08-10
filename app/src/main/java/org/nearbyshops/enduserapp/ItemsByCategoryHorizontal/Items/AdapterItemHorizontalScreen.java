@@ -19,11 +19,11 @@ import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.ModelStats.ItemStats;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopItemByItem.ShopsForItemSwipe;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -116,7 +116,7 @@ public class AdapterItemHorizontalScreen extends RecyclerView.Adapter<RecyclerVi
 //                imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
 //                        + dataset.get(position).getItemImageURL();
 
-                imagePath = UtilityGeneral.getServiceURL(context)
+                imagePath = PrefGeneral.getServiceURL(context)
                         + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
 
             }
@@ -215,7 +215,7 @@ public class AdapterItemHorizontalScreen extends RecyclerView.Adapter<RecyclerVi
 
     public class LoadingViewHolder extends  RecyclerView.ViewHolder{
 
-        @Bind(R.id.progress_bar)
+        @BindView(R.id.progress_bar)
         ProgressBar progressBar;
 
         public LoadingViewHolder(View itemView) {

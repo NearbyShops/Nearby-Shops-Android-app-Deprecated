@@ -4,7 +4,9 @@ package org.nearbyshops.enduserapp.RetrofitRESTContractSDS;
 import org.nearbyshops.enduserapp.Model.Image;
 import org.nearbyshops.enduserapp.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserapp.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserapp.ModelServiceConfig.ServiceConfigurationLocal;
 
+import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -24,29 +26,13 @@ import retrofit2.http.Query;
 public interface ServiceConfigService {
 
 
-    @GET("/api/v1/ServiceConfiguration/UpdateService")
-    Call<ResponseBody> saveService(@Query("ServiceURL") String serviceURL);
-
-
-
-    @PUT("/api/v1/ServiceConfiguration/UpdateByStaff/{ServiceID}")
-    Call<ResponseBody> updateShop(@Header("Authorization") String headers,
-                                  ServiceConfigurationGlobal serviceConfigurationGlobal,
-                                  @Path("ServiceID") int serviceID);
-
 
 
     @GET("/api/v1/ServiceConfiguration")
-    Call<ServiceConfigurationEndPoint> getShopListSimple(
-            @Query("latCenter") Double latCenter, @Query("lonCenter") Double lonCenter,
-            @Query("proximity") Double proximity,
-            @Query("ServiceURL") String serviceURL,
-            @Query("SearchString") String searchString,
-            @Query("IsOfficial") Boolean isOfficial, @Query("IsVerified") Boolean isVerified,
-            @Query("ServiceType") Integer serviceType,
-            @Query("SortBy") String sortBy,
-            @Query("Limit") Integer limit, @Query("Offset") int offset
-    );
+    Call<ServiceConfigurationLocal> getService(@Query("latCenter")Double latCenter,
+                                               @Query("lonCenter")Double lonCenter);
+
+
 
 
     // Image Calls

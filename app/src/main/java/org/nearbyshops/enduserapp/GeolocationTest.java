@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import org.nearbyshops.enduserapp.Utility.GeoLocation;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -16,13 +16,13 @@ import butterknife.OnClick;
 
 public class GeolocationTest extends AppCompatActivity {
 
-    @Bind(R.id.latmax) TextView latMax;
+    @BindView(R.id.latmax) TextView latMax;
 
-    @Bind(R.id.latmin) TextView latMin;
+    @BindView(R.id.latmin) TextView latMin;
 
-    @Bind(R.id.lonmin) TextView lonMin;
+    @BindView(R.id.lonmin) TextView lonMin;
 
-    @Bind(R.id.lonmax) TextView lonMax;
+    @BindView(R.id.lonmax) TextView lonMax;
 
 //    private Unbinder unbinder;
 
@@ -32,11 +32,11 @@ public class GeolocationTest extends AppCompatActivity {
     GeoLocation pointOne;
     GeoLocation pointTwo;
 
-    @Bind(R.id.buttonCalculate) Button calculate;
+    @BindView(R.id.buttonCalculate) Button calculate;
 
-    @Bind(R.id.enterLatitude) EditText enterLatitude;
-    @Bind(R.id.enterLontitude) EditText enterLongitude;
-    @Bind(R.id.enterDistance) EditText enterDistance;
+    @BindView(R.id.enterLatitude) EditText enterLatitude;
+    @BindView(R.id.enterLontitude) EditText enterLongitude;
+    @BindView(R.id.enterDistance) EditText enterDistance;
 
 
     @Override

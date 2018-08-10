@@ -18,12 +18,12 @@ import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserapp.ShopHome.ShopHome;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -84,7 +84,7 @@ public class AdapterShop extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 //                    + dataset.get(position).getLogoImagePath();
 
 
-            String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
+            String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
                     + dataset.get(position).getLogoImagePath() + ".jpg";
 
             Picasso.with(context)
@@ -147,7 +147,7 @@ public class AdapterShop extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class LoadingViewHolder extends  RecyclerView.ViewHolder{
 
-        @Bind(R.id.progress_bar)
+        @BindView(R.id.progress_bar)
         ProgressBar progressBar;
 
         public LoadingViewHolder(View itemView) {

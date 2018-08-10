@@ -27,10 +27,10 @@ import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.Model.ShopItem;
 import org.nearbyshops.enduserapp.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.ModelStats.ItemStats;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopItemService;
-import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserapp.ShopHome.ShopHome;
 import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
 import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
@@ -38,8 +38,8 @@ import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifySwipeToRight;
 import org.nearbyshops.enduserapp.Shops.UtilityLocation;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.ShopItemByItem.SlidingLayerSort.UtilitySortShopItems;
 import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
@@ -47,7 +47,7 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import icepick.Icepick;
@@ -158,7 +158,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
 
 
-        // bindings for Item
+        // BindViewings for Item
 //        itemDescription = (TextView) rootView.findViewById(R.id.itemDescription);
 //        itemName = (TextView) rootView.findViewById(R.id.itemName);
 //        itemImage = (ImageView) rootView.findViewById(R.id.itemImage);
@@ -234,7 +234,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     void makeNetworkCall(final boolean notifyChange)
     {
 
-            EndUser endUser = UtilityLogin.getEndUser(getActivity());
+            User endUser = PrefLogin.getUser(getActivity());
 
             if(endUser == null)
             {
@@ -265,7 +265,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
                     UtilityLocation.getLongitude(getActivity()),
                     null, null,
                     null,
-                    endUser.getEndUserID(),
+                    endUser.getUserID(),
                     true,
                     null,null,null,null,
                     null,
@@ -425,9 +425,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
         isDestroyed = true;
-        ButterKnife.unbind(this);
     }
 
 
@@ -464,16 +462,16 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
 
 
-    @Bind(R.id.itemName) TextView categoryName;
+    @BindView(R.id.itemName) TextView categoryName;
 //        TextView categoryDescription;
 
-//    @Bind(R.id.items_list_item) CardView itemCategoryListItem;
-    @Bind(R.id.itemImage) ImageView categoryImage;
-    @Bind(R.id.price_range) TextView priceRange;
-    @Bind(R.id.price_average) TextView priceAverage;
-    @Bind(R.id.shop_count) TextView shopCount;
-    @Bind(R.id.item_rating) TextView itemRating;
-    @Bind(R.id.rating_count) TextView ratingCount;
+//    @BindView(R.id.items_list_item) CardView itemCategoryListItem;
+    @BindView(R.id.itemImage) ImageView categoryImage;
+    @BindView(R.id.price_range) TextView priceRange;
+    @BindView(R.id.price_average) TextView priceAverage;
+    @BindView(R.id.shop_count) TextView shopCount;
+    @BindView(R.id.item_rating) TextView itemRating;
+    @BindView(R.id.rating_count) TextView ratingCount;
 
 
     void bindItem()
@@ -486,7 +484,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
         if(itemStats!=null)
         {
             String currency = "";
-            currency = UtilityGeneral.getCurrencySymbol(getActivity());
+            currency = PrefGeneral.getCurrencySymbol(getActivity());
 
             priceRange.setText("Price Range :\n" + currency + ". " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
             priceAverage.setText("Price Average :\n" + currency + ". " + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
@@ -497,7 +495,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
         ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " Ratings )");
 
 
-        String imagePath = UtilityGeneral.getServiceURL(getActivity())
+        String imagePath = PrefGeneral.getServiceURL(getActivity())
                 + "/api/v1/Item/Image/five_hundred_" + item.getItemImageURL() + ".jpg";
 
 

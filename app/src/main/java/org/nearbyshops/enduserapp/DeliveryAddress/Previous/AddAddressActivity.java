@@ -15,11 +15,11 @@ import org.nearbyshops.enduserapp.DeliveryAddress.PickLocationActivity;
 import org.nearbyshops.enduserapp.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.DeliveryAddressService;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -37,28 +37,28 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
 
     // address Fields
 
-    @Bind(R.id.receiversName)
+    @BindView(R.id.receiversName)
     EditText receiversName;
 
-    @Bind(R.id.receiversPhoneNumber)
+    @BindView(R.id.receiversPhoneNumber)
     EditText receiversPhoneNumber;
 
-    @Bind(R.id.deliveryAddress)
+    @BindView(R.id.deliveryAddress)
     EditText deliveryAddressView;
 
-    @Bind(R.id.addressCity)
+    @BindView(R.id.addressCity)
     EditText city;
 
-    @Bind(R.id.pincode)
+    @BindView(R.id.pincode)
     EditText pincode;
 
-    @Bind(R.id.landmark)
+    @BindView(R.id.landmark)
     EditText landMark;
 
-    @Bind(R.id.latitude)
+    @BindView(R.id.latitude)
     EditText latitude;
 
-    @Bind(R.id.longitude)
+    @BindView(R.id.longitude)
     EditText longitude;
 
 
@@ -110,7 +110,7 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
         deliveryAddress.setLatitude(Double.parseDouble(latitude.getText().toString()));
         deliveryAddress.setLongitude(Double.parseDouble(longitude.getText().toString()));
 
-        deliveryAddress.setEndUserID(UtilityLogin.getEndUser(this).getEndUserID());
+        deliveryAddress.setEndUserID(PrefLogin.getUser(this).getUserID());
 
     }
 
@@ -132,8 +132,7 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
     protected void onDestroy() {
         super.onDestroy();
 
-        ButterKnife.unbind(this);
-
+//        ButterKnife.unbind(this);
     }
 
     @Override

@@ -14,7 +14,7 @@ import org.nearbyshops.enduserapp.R;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -86,32 +86,32 @@ public class AdapterReturnedByDG extends RecyclerView.Adapter<AdapterReturnedByD
     class ViewHolder extends RecyclerView.ViewHolder{
 
 
-        @Bind(R.id.order_id)
+        @BindView(R.id.order_id)
         TextView orderID;
 
-        @Bind(R.id.dateTimePlaced)
+        @BindView(R.id.dateTimePlaced)
         TextView dateTimePlaced;
 
-        @Bind(R.id.deliveryAddressName)
+        @BindView(R.id.deliveryAddressName)
         TextView deliveryAddressName;
 
-        @Bind(R.id.deliveryAddress)
+        @BindView(R.id.deliveryAddress)
         TextView deliveryAddress;
 
-        @Bind(R.id.deliveryAddressPhone)
+        @BindView(R.id.deliveryAddressPhone)
         TextView deliveryAddressPhone;
 
 
-        @Bind(R.id.numberOfItems)
+        @BindView(R.id.numberOfItems)
         TextView numberOfItems;
 
-        @Bind(R.id.orderTotal)
+        @BindView(R.id.orderTotal)
         TextView orderTotal;
 
-        @Bind(R.id.currentStatus)
+        @BindView(R.id.currentStatus)
         TextView currentStatus;
 
-        @Bind(R.id.acceptHandoverButton)
+        @BindView(R.id.acceptHandoverButton)
         TextView cancelHandoverButton;
 
 

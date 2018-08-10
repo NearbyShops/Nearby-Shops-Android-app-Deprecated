@@ -17,7 +17,7 @@ import org.nearbyshops.enduserapp.R;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -151,7 +151,7 @@ class AdapterOrdersPendingPFS extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public class LoadingViewHolder extends  RecyclerView.ViewHolder{
 
-        @Bind(R.id.progress_bar)
+        @BindView(R.id.progress_bar)
         ProgressBar progressBar;
 
         public LoadingViewHolder(View itemView) {
@@ -167,29 +167,29 @@ class AdapterOrdersPendingPFS extends RecyclerView.Adapter<RecyclerView.ViewHold
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
-        @Bind(R.id.order_id)
+        @BindView(R.id.order_id)
         TextView orderID;
 
-        @Bind(R.id.dateTimePlaced)
+        @BindView(R.id.dateTimePlaced)
         TextView dateTimePlaced;
 
-        @Bind(R.id.deliveryAddressName)
+        @BindView(R.id.deliveryAddressName)
         TextView deliveryAddressName;
 
-        @Bind(R.id.deliveryAddress)
+        @BindView(R.id.deliveryAddress)
         TextView deliveryAddress;
 
-        @Bind(R.id.deliveryAddressPhone)
+        @BindView(R.id.deliveryAddressPhone)
         TextView deliveryAddressPhone;
 
 
-        @Bind(R.id.numberOfItems)
+        @BindView(R.id.numberOfItems)
         TextView numberOfItems;
 
-        @Bind(R.id.orderTotal)
+        @BindView(R.id.orderTotal)
         TextView orderTotal;
 
-        @Bind(R.id.currentStatus)
+        @BindView(R.id.currentStatus)
         TextView currentStatus;
 
 //        @Bind(R.id.confirmOrderButton)

@@ -21,7 +21,7 @@ import org.nearbyshops.enduserapp.ModelStatusCodes.OrderStatusHomeDelivery;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
 import java.util.ArrayList;
@@ -259,7 +259,7 @@ public class FragmentCancelledByShop extends Fragment
 
         Call<OrderEndPoint> call = orderService
                     .getOrders(
-                            UtilityLogin.getAuthorizationHeaders(getActivity()),
+                            PrefLogin.getAuthorizationHeaders(getActivity()),
                             null,
                             shopID,false, OrderStatusHomeDelivery.CANCELLED_BY_SHOP,
                             null,null,null,null,null,null,null,null,null,

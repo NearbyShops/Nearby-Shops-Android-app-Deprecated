@@ -14,7 +14,7 @@ import org.nearbyshops.enduserapp.Model.ShopItem;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -24,25 +24,25 @@ import butterknife.OnClick;
 
 public class SlidingLayerSortItemsInShop extends Fragment {
 
-    @Bind(R.id.sort_rating)
+    @BindView(R.id.sort_rating)
     TextView sort_by_rating;
 
-    @Bind(R.id.sort_popularity)
+    @BindView(R.id.sort_popularity)
     TextView sort_by_popularity;
 
-    @Bind(R.id.a_to_z)
+    @BindView(R.id.a_to_z)
     TextView sort_by_shop_count;
 
-    @Bind(R.id.item_price)
+    @BindView(R.id.item_price)
     TextView sort_by_price_avg;
 
 
 
 
-    @Bind(R.id.sort_ascending)
+    @BindView(R.id.sort_ascending)
     TextView sort_ascending;
 
-    @Bind(R.id.sort_descending)
+    @BindView(R.id.sort_descending)
     TextView sort_descending;
 
     String currentSort = SORT_BY_ITEM_RATING;
@@ -74,11 +74,7 @@ public class SlidingLayerSortItemsInShop extends Fragment {
 
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
+
 
 
     void loadDefaultSort() {

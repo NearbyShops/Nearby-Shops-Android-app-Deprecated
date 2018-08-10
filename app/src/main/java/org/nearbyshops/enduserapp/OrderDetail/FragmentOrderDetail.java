@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,7 +23,7 @@ import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.OrderItemService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduserapp.Shops.UtilityLocation;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
 import java.util.ArrayList;
@@ -83,7 +84,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
 
-        order = UtilityOrderDetail.getOrder(getActivity());
+        order = PrefOrderDetail.getOrder(getActivity());
 
 
         if(savedInstanceState==null)
@@ -203,9 +204,11 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         });
 */
 
+
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 //        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL));
 
 
@@ -275,6 +278,10 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     }
 
 
+
+
+
+
     @Inject
     ShopService shopService;
 
@@ -284,7 +291,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         Shop currentShop = UtilityShopHome.getShop(getContext());
 
         Call<OrderItemEndPoint> call = orderItemService.getOrderItem(
-                UtilityLogin.getAuthorizationHeaders(getActivity()),
+                PrefLogin.getAuthorizationHeaders(getActivity()),
                 order.getOrderID(),null,null,null,limit,offset,null);
 
 
@@ -369,6 +376,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         }
 
     }
+
 
 
 

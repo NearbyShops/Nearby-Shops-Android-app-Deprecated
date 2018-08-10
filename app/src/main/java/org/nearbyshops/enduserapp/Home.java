@@ -3,24 +3,18 @@ package org.nearbyshops.enduserapp;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.os.ResultReceiver;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -28,12 +22,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,61 +43,43 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.google.gson.GsonBuilder;
 
 
-import org.apache.commons.validator.routines.UrlValidator;
-import org.nearbyshops.enduserapp.Carts.CartsList.CartsListActivity;
+import org.nearbyshops.enduserapp.Carts.CartsList.CartsListFragment;
 import org.nearbyshops.enduserapp.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserapp.EditProfileEndUser.EditEndUserFragment;
 import org.nearbyshops.enduserapp.EditProfileEndUser.EditProfileEndUser;
 import org.nearbyshops.enduserapp.FilterShops.FilterShops;
 import org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.ItemCategoriesSimple;
 import org.nearbyshops.enduserapp.Items.ItemsActivity;
-import org.nearbyshops.enduserapp.Login.LoginDialog;
-import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
-import org.nearbyshops.enduserapp.ModelRoles.EndUser;
-import org.nearbyshops.enduserapp.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
-import org.nearbyshops.enduserapp.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserapp.ModelServiceConfig.ServiceConfigurationLocal;
-import org.nearbyshops.enduserapp.Notifications.NonStopService.IntentServiceSSE;
-import org.nearbyshops.enduserapp.Notifications.NonStopService.LocationUpdateService;
-import org.nearbyshops.enduserapp.Notifications.SSEIntentServiceUser;
+import org.nearbyshops.enduserapp.LoginNew.Login;
 import org.nearbyshops.enduserapp.OrdersHomePickFromShop.OrdersHomePickFromShop;
-import org.nearbyshops.enduserapp.RetrofitRESTContract.ServiceConfigurationService;
 import org.nearbyshops.enduserapp.RetrofitRESTContractSDS.ServiceConfigService;
 import org.nearbyshops.enduserapp.SelectService.SelectService;
-import org.nearbyshops.enduserapp.Services.ServicesActivity;
 import org.nearbyshops.enduserapp.Settings.SettingsCustom;
 import org.nearbyshops.enduserapp.SharedPreferences.UtilityLocationOld;
 import org.nearbyshops.enduserapp.Shops.ShopsActivity;
-import org.nearbyshops.enduserapp.Shops.UtilityLocation;
 import org.nearbyshops.enduserapp.ShopsByCatSimple.ShopsByCat;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.UtilityGeocoding.Constants;
 import org.nearbyshops.enduserapp.UtilityGeocoding.FetchAddressIntentService;
 import org.nearbyshops.enduserapp.OrdersHomeDelivery.OrderHome;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.Currency;
 import java.util.Locale;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Subscription;
 
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,  GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, LocationListener , NotifyAboutLogin{
+        GoogleApiClient.OnConnectionFailedListener, LocationListener{
 
     // views for navigation drawer
 
@@ -123,6 +96,10 @@ public class Home extends AppCompatActivity
 
 
 
+
+
+
+
     // location variables
     //private FusedLocationProviderApi fusedLocationProviderApi = LocationServices.FusedLocationApi;
 
@@ -130,7 +107,7 @@ public class Home extends AppCompatActivity
     Location mLastLocation;
     LocationRequest mLocationRequest;
 
-    @Bind(R.id.text_lat_lon)
+    @BindView(R.id.text_lat_lon)
     TextView text_lat_longitude;
 
     // location variables ends
@@ -194,7 +171,7 @@ public class Home extends AppCompatActivity
         setupNavigationDrawer();
 
 
-        if(UtilityGeneral.getServiceURL(this).equals("http://nearbyshops.org"))
+        if(PrefGeneral.getServiceURL(this).equals("http://nearbyshops.org"))
         {
 //            showLoginDialog();
 //            showLoginDialog();
@@ -210,7 +187,7 @@ public class Home extends AppCompatActivity
 
         startLocationService();
 
-                setupNotifications();
+//                setupNotifications();
 
 
     } // onCreate() Ends
@@ -250,10 +227,13 @@ public class Home extends AppCompatActivity
 
     private void showLoginDialog()
     {
-        FragmentManager fm = getSupportFragmentManager();
-        LoginDialog loginDialog = new LoginDialog();
-        loginDialog.setStyle(DialogFragment.STYLE_NORMAL,R.style.DialogFragmentTheme);
-        loginDialog.show(fm,"serviceUrl");
+//        FragmentManager fm = getSupportFragmentManager();
+//        LoginDialog loginDialog = new LoginDialog();
+//        loginDialog.setStyle(DialogFragment.STYLE_NORMAL,R.style.DialogFragmentTheme);
+//        loginDialog.show(fm,"serviceUrl");
+
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
     }
 
 
@@ -335,7 +315,7 @@ public class Home extends AppCompatActivity
 
     boolean location_block_visible = false;
 
-    @Bind(R.id.location_settings_block)
+    @BindView(R.id.location_settings_block)
     RelativeLayout locationBlock;
 
 
@@ -358,7 +338,7 @@ public class Home extends AppCompatActivity
 
     boolean market_information_visible = false;
 
-    @Bind(R.id.market_information)
+    @BindView(R.id.market_information)
     CardView market_information_block;
 
     @OnClick(R.id.market_information_label)
@@ -388,8 +368,6 @@ public class Home extends AppCompatActivity
 
         isDestroyed = true;
 
-        //unbinder.unbind();
-        ButterKnife.unbind(this);
 
 
         if(editTextSub!=null && !editTextSub.isUnsubscribed())
@@ -402,7 +380,7 @@ public class Home extends AppCompatActivity
 
     void updateLoginMenuVisibility()
     {
-        if(UtilityLogin.getEndUser(this)==null)
+        if(PrefLogin.getUser(this)==null)
         {
             // logged out
             navigationView.getMenu().findItem(R.id.nav_edit_profile).setVisible(false);
@@ -432,7 +410,7 @@ public class Home extends AppCompatActivity
 
         } else if (id == R.id.nav_carts) {
 
-            Intent intent = new Intent(this, CartsListActivity.class);
+            Intent intent = new Intent(this, CartsListFragment.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_orders) {
@@ -507,15 +485,15 @@ public class Home extends AppCompatActivity
 
     void loginClick(MenuItem item)
     {
-        if(UtilityLogin.getEndUser(this)==null)
+        if(PrefLogin.getUser(this)==null)
         {
             showLoginDialog();
             navigationView.getMenu().findItem(R.id.nav_edit_profile).setVisible(true);
         }
         else
         {
-            UtilityLogin.saveEndUser(null,this);
-            UtilityLogin.saveCredentials(this,null,null);
+            PrefLogin.saveUserProfile(null,this);
+            PrefLogin.saveCredentials(this,null,null);
 
             item.setTitle("Login");
 
@@ -554,7 +532,7 @@ public class Home extends AppCompatActivity
     @SuppressWarnings("RestrictedApi")
     void setlabelLogin()
     {
-        if(UtilityLogin.getEndUser(this)==null)
+        if(PrefLogin.getUser(this)==null)
         {
             navigationView.getMenu().getItem(0).setTitle("Login");
         }
@@ -566,7 +544,9 @@ public class Home extends AppCompatActivity
 
 
 
-    @Override
+
+
+//    @Override
     @SuppressWarnings("RestrictedApi")
     public void NotifyLogin() {
 
@@ -871,8 +851,8 @@ public class Home extends AppCompatActivity
 
         startIntentService(location);
 
-        UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,(float)location.getLatitude());
-        UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,(float)location.getLongitude());
+        PrefGeneral.saveInSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY,(float)location.getLatitude());
+        PrefGeneral.saveInSharedPrefFloat(PrefGeneral.LON_CENTER_KEY,(float)location.getLongitude());
 
         org.nearbyshops.enduserapp.Shops.UtilityLocation.saveLatitude((float) location.getLatitude(),this);
         org.nearbyshops.enduserapp.Shops.UtilityLocation.saveLongitude((float) location.getLongitude(),this);
@@ -880,101 +860,13 @@ public class Home extends AppCompatActivity
         UtilityLocationOld.saveCurrentLocation(this,location);
 
 
-        setupURLAuto();
+
 
     }
 
     @Inject
     ServiceConfigService serviceConfigService;
     boolean isDestroyed;
-
-
-    void setupURLAuto()
-    {
-
-        if(!UtilityGeneral.getServiceURL(this).equals(UtilityGeneral.DEFAULT_SERVICE_URL))
-        {
-            // do not proceed if user has already set the URL
-            return;
-        }
-
-
-        String current_sort = "IS_OFFICIAL_SERVICE_PROVIDER desc,distance asc";
-
-        Call<ServiceConfigurationEndPoint> call = serviceConfigService.getShopListSimple(
-                UtilityLocation.getLatitude(this),
-                UtilityLocation.getLongitude(this),
-                null,null,
-                null,
-                null,null,
-                null,
-                current_sort,1,0);
-
-
-        call.enqueue(new Callback<ServiceConfigurationEndPoint>() {
-            @Override
-            public void onResponse(Call<ServiceConfigurationEndPoint> call, Response<ServiceConfigurationEndPoint> response) {
-
-                if(isDestroyed)
-                {
-                    return;
-                }
-
-                if(response.body()!= null)
-                {
-                    response.body().getItemCount();
-
-
-                    if(response.body().getResults()!=null && response.body().getResults().size()>=1)
-                    {
-//                        UtilityGeneral.saveServiceURL(
-//                                response.body().getResults().get(0).getServiceURL(),
-//                                Home.this
-//                        );
-
-                        String serviceURLString = response.body().getResults().get(0).getServiceURL();
-
-                        UtilityGeneral.saveServiceURL(serviceURLString,Home.this);
-                        UtilityGeneral.saveConfigurationGlobal(response.body().getResults().get(0),Home.this);
-
-
-                        ServiceConfigurationGlobal serviceConfigGlobal = response.body().getResults().get(0);
-                        saveCurrency(serviceConfigGlobal.getISOCountryCode(),serviceConfigGlobal.getISOLanguageCode());
-
-
-//                        if (urlValidator.isValid(serviceURLString)) {
-//
-//                            textInputServiceURL.setError(null);
-//                            textInputServiceURL.setErrorEnabled(false);
-//                            serviceURL.setText(serviceURLString);
-//                            updateStatusLight();
-//                        }
-//
-//
-
-                    }
-                }
-            }
-
-
-
-
-
-
-            @Override
-            public void onFailure(Call<ServiceConfigurationEndPoint> call, Throwable t) {
-
-                if(isDestroyed)
-                {
-                    return;
-                }
-
-//                showToastMessage("Network Request failed !");
-
-            }
-        });
-
-    }
 
 
 
@@ -984,7 +876,7 @@ public class Home extends AppCompatActivity
         try {
             Locale locale = new Locale(languageCode,countryCode);
             Currency currency = Currency.getInstance(locale);
-            UtilityGeneral.saveCurrencySymbol(currency.getSymbol(),Home.this);
+            PrefGeneral.saveCurrencySymbol(currency.getSymbol(),Home.this);
         }
         catch (Exception ex)
         {
@@ -1022,7 +914,7 @@ public class Home extends AppCompatActivity
 
     // address resolution code
 
-    @Bind(R.id.text_address)
+    @BindView(R.id.text_address)
     TextView text_address;
 
 
@@ -1149,35 +1041,6 @@ public class Home extends AppCompatActivity
     // setup Notifications for the User using SSE (Server Sent Events)
 
 
-
-    @OnClick(R.id.experimental_features)
-    void setupNotifications()
-    {
-        EndUser endUser = UtilityLogin.getEndUser(this);
-
-        System.out.println("Setup Notifications !");
-
-        if(UtilityLogin.getEndUser(this)!=null)
-        {
-            System.out.println("Setup Notifications : End USER ID : " + String.valueOf(endUser.getEndUserID()));
-
-            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT)
-            {
-//                Intent intent = new Intent(this, SSEIntentServiceUser.class);
-//                intent.putExtra(SSEIntentServiceUser.END_USER_ID, endUser.getEndUserID());
-
-                Intent intent = new Intent(this, IntentServiceSSE.class);
-                startService(intent);
-
-
-            }
-        }
-
-
-
-//        Intent intentLocation = new Intent(this, LocationUpdateService.class);
-//        startService(intentLocation);
-    }
 
 
 

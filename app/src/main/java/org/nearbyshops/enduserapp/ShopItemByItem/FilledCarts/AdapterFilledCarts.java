@@ -24,13 +24,14 @@ import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.Model.ShopItem;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.ModelStats.CartStats;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduserapp.Utility.InputFilterMinMax;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,13 +39,16 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+
+
 
 /**
  * Created by sumeet on 27/5/16.
@@ -90,7 +94,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
         cartItemMap.clear();
         cartStatsMap.clear();
 
-        EndUser endUser = UtilityLogin.getEndUser(context);
+        User endUser = PrefLogin.getUser(context);
 
         if(endUser == null)
         {
@@ -99,7 +103,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
 
         Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,item.getItemID(),
-                endUser.getEndUserID(),null,false);
+                endUser.getUserID(),null,false);
 
         cartItemCall.enqueue(new Callback<List<CartItem>>() {
             @Override
@@ -138,7 +142,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
         });
 
         Call<List<CartStats>> listCall = cartStatsService
-                .getCart(endUser.getEndUserID(),null, null, false,null,null);
+                .getCart(endUser.getUserID(),null, null, false,null,null);
 
         /*
 
@@ -269,7 +273,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 //                    + shop.getLogoImagePath();
 
 
-            String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/"
+            String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/"
                     + "five_hundred_" + shop.getLogoImagePath() + ".jpg";
 
             System.out.println(imagePath);
@@ -316,55 +320,55 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
     class ViewHolder extends RecyclerView.ViewHolder{
 
 
-        @Bind(R.id.rating)
+        @BindView(R.id.rating)
         TextView rating;
 
-        @Bind(R.id.ratings_count)
+        @BindView(R.id.ratings_count)
         TextView ratingCount;
 
-        @Bind(R.id.textAddToCart)
+        @BindView(R.id.textAddToCart)
         TextView addToCartText;
 
-        @Bind(R.id.distance)
+        @BindView(R.id.distance)
         TextView distance;
 
-        @Bind(R.id.deliveryCharge)
+        @BindView(R.id.deliveryCharge)
         TextView deliveryCharge;
 
-        @Bind(R.id.shopName)
+        @BindView(R.id.shopName)
         TextView shopName;
 
-        @Bind(R.id.itemsAvailable)
+        @BindView(R.id.itemsAvailable)
         TextView itemsAvailable;
 
-        @Bind(R.id.itemPrice)
+        @BindView(R.id.itemPrice)
         TextView itemPrice;
 
-        @Bind(R.id.itemTotal)
+        @BindView(R.id.itemTotal)
         TextView itemTotal;
 
-        @Bind(R.id.reduceQuantity)
+        @BindView(R.id.reduceQuantity)
         ImageView reduceQuantity;
 
-        @Bind(R.id.increaseQuantity)
+        @BindView(R.id.increaseQuantity)
         ImageView increaseQuantity;
 
-        @Bind(R.id.itemQuantity)
+        @BindView(R.id.itemQuantity)
         EditText itemQuantity;
 
-        @Bind(R.id.itemsInCart)
+        @BindView(R.id.itemsInCart)
         TextView itemsInCart;
 
-        @Bind(R.id.cartTotal)
+        @BindView(R.id.cartTotal)
         TextView cartTotal;
 
-        @Bind(R.id.addToCart)
+        @BindView(R.id.addToCart)
         LinearLayout addToCart;
 
-        @Bind(R.id.shopImage)
+        @BindView(R.id.shopImage)
         ImageView shopImage;
 
-        @Bind(R.id.shopItem_list_item)
+        @BindView(R.id.shopItem_list_item)
         LinearLayout shopItemListItem;
 
         ShopItem shopItem;
@@ -548,7 +552,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
                     //showToastMessage("Add to cart! : " + dataset.get(getLayoutPosition()).getShopID());
 
-                    EndUser endUser = UtilityLogin.getEndUser(context);
+                    User endUser = PrefLogin.getUser(context);
                     if(endUser==null)
                     {
                         return;
@@ -557,7 +561,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
                     Call<ResponseBody> call = cartItemService.createCartItem(
                             cartItem,
-                            endUser.getEndUserID(),
+                            endUser.getUserID(),
                             dataset.get(getLayoutPosition()).getShopID()
                     );
 
@@ -592,14 +596,14 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                     // Delete from cart
 
                     //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
-                    EndUser endUser = UtilityLogin.getEndUser(context);
+                    User endUser = PrefLogin.getUser(context);
                     if(endUser==null)
                     {
                         return;
                     }
 
                     Call<ResponseBody> callDelete = cartItemService.deleteCartItem(0,cartItem.getItemID(),
-                            endUser.getEndUserID(),
+                            endUser.getUserID(),
                             dataset.get(getLayoutPosition()).getShopID()
                     );
 
@@ -641,7 +645,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                     // Update from cart
 
                     //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
-                    EndUser endUser = UtilityLogin.getEndUser(context);
+                    User endUser = PrefLogin.getUser(context);
 
                     if(endUser==null)
                     {
@@ -654,7 +658,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
                         Call<ResponseBody> callUpdate = cartItemService.updateCartItem(
                                 cartItem,
-                                endUser.getEndUserID(),
+                                endUser.getUserID(),
                                 shop.getShopID()
                         );
 

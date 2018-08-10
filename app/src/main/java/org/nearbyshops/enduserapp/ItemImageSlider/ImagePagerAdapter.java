@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserapp.Model.ItemImage;
 import org.nearbyshops.enduserapp.R;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
 
@@ -127,12 +127,12 @@ public class ImagePagerAdapter extends RecyclePagerAdapter<RecyclePagerAdapter.V
 
         if(position==0)
         {
-            imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Item/Image/"
+            imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Item/Image/"
                     + dataset.get(position).getImageFilename();
         }
         else
         {
-            imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/"
+            imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/"
                     + dataset.get(position).getImageFilename();
         }
 

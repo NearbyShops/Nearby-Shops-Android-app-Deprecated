@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
@@ -17,13 +16,13 @@ import android.widget.Toast;
 
 
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
-import org.nearbyshops.enduserapp.Login.LoginDialog;
+import org.nearbyshops.enduserapp.LoginNew.Login;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelCartOrder.Endpoints.OrderEndPoint;
 import org.nearbyshops.enduserapp.ModelCartOrder.Order;
-import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.OrderDetail.OrderDetail;
-import org.nearbyshops.enduserapp.OrderDetail.UtilityOrderDetail;
+import org.nearbyshops.enduserapp.OrderDetail.PrefOrderDetail;
 import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
 import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.SlidingLayerSort.UtilitySortOrdersHD;
@@ -32,7 +31,7 @@ import org.nearbyshops.enduserapp.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
 import java.util.ArrayList;
@@ -228,7 +227,7 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
 //            Shop currentShop = UtilityShopHome.getShop(getContext());
 
 
-        EndUser endUser = UtilityLogin.getEndUser(getActivity());
+        User endUser = PrefLogin.getUser(getActivity());
         if(endUser==null)
         {
             showLoginDialog();
@@ -255,8 +254,12 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
             }
         }
 
+
+
+
+
         Call<OrderEndPoint> call = orderService.getOrders(
-                    UtilityLogin.getAuthorizationHeaders(getActivity()),
+                    PrefLogin.getAuthorizationHeaders(getActivity()),
                     null,shopID,false,
                     null,null,null,
                     null,null,
@@ -377,7 +380,7 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
 
     @Override
     public void notifyOrderSelected(Order order) {
-        UtilityOrderDetail.saveOrder(order,getActivity());
+        PrefOrderDetail.saveOrder(order,getActivity());
         getActivity().startActivity(new Intent(getActivity(),OrderDetail.class));
     }
 
@@ -419,7 +422,7 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
 //        Call<ResponseBody> call = orderService.cancelOrderByShop(order.getOrderID());
 
         Call<ResponseBody> call = orderService.cancelledByEndUser(
-                UtilityLogin.getAuthorizationHeaders(getActivity()),
+                PrefLogin.getAuthorizationHeaders(getActivity()),
                 order.getOrderID()
         );
 
@@ -481,14 +484,19 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
 
     private void showLoginDialog()
     {
-        Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_DIALOG);
 
-        if(getActivity().getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_DIALOG)==null)
-        {
-            FragmentManager fm = getActivity().getSupportFragmentManager();
-            LoginDialog loginDialog = new LoginDialog();
-            loginDialog.show(fm,TAG_LOGIN_DIALOG);
-        }
+//        Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_DIALOG);
+//
+//        if(getActivity().getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_DIALOG)==null)
+//        {
+//            FragmentManager fm = getActivity().getSupportFragmentManager();
+//            LoginDialog loginDialog = new LoginDialog();
+//            loginDialog.show(fm,TAG_LOGIN_DIALOG);
+//        }
+
+
+        Intent intent = new Intent(getActivity(),Login.class);
+        startActivity(intent);
     }
 
 

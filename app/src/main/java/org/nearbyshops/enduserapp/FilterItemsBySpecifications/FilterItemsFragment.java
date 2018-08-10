@@ -13,8 +13,6 @@ import android.widget.Toast;
 
 
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
-import org.nearbyshops.enduserapp.ModelItemSpecs.EndPoints.ItemSpecNameEndPoint;
-import org.nearbyshops.enduserapp.ModelItemSpecs.EndPoints.ItemSpecValueEndPoint;
 import org.nearbyshops.enduserapp.ModelItemSpecs.ItemSpecificationItem;
 import org.nearbyshops.enduserapp.ModelItemSpecs.ItemSpecificationName;
 import org.nearbyshops.enduserapp.ModelItemSpecs.ItemSpecificationValue;
@@ -23,7 +21,7 @@ import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemSpecItemService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemSpecNameService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemSpecValueService;
 import org.nearbyshops.enduserapp.Shops.UtilityLocation;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -32,7 +30,7 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -47,7 +45,7 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
     @Inject
     ItemSpecNameService itemSpecNameService;
 
-    @Bind(R.id.recycler_view_names)
+    @BindView(R.id.recycler_view_names)
     RecyclerView recyclerViewName;
 
     AdapterItemSpecName adapterName;
@@ -68,7 +66,7 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
     @Inject
     ItemSpecValueService itemSpecValueService;
 
-    @Bind(R.id.recycler_view_values)
+    @BindView(R.id.recycler_view_values)
     RecyclerView recyclerViewValues;
 
     AdapterItemSpecValue adapterValues;
@@ -77,7 +75,7 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
 
     GridLayoutManager layoutManagerValues;
 
-    @Bind(R.id.progress_bar) ProgressBar progressBar;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
 
@@ -511,7 +509,7 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
     @Override
     public void onDestroy() {
         super.onDestroy();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
     @Override
@@ -528,7 +526,7 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
 
         int itemID = getActivity().getIntent().getIntExtra(ITEM_ID_INTENT_KEY,0);
 
-        Call<ResponseBody> call = itemSpecItemService.deleteItemSpecItem(UtilityLogin.getAuthorizationHeaders(getActivity()),itemSpecValueID,itemID);
+        Call<ResponseBody> call = itemSpecItemService.deleteItemSpecItem(PrefLogin.getAuthorizationHeaders(getActivity()),itemSpecValueID,itemID);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -559,7 +557,7 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
 
 
         Call<ResponseBody> call = itemSpecItemService.saveItemSpecName(
-                UtilityLogin.getAuthorizationHeaders(getActivity()),
+                PrefLogin.getAuthorizationHeaders(getActivity()),
                 itemSpecificationItem
         );
 

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/light_grey"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="5dp">
+
+
+    <LinearLayout
+        android:id="@+id/service_info_block"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_marginTop="-5dp"
+            android:id="@+id/connection"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+
+            <TextView
+                android:layout_marginStart="0dp"
+                android:gravity="center"
+                android:id="@+id/indicator_light"
+                android:background="@color/gplus_color_1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+
+            <TextView
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="Available"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/status"/>
+
+
+            <ImageView
+                android:layout_marginEnd="5dp"
+                android:id="@+id/reconnect"
+                app:srcCompat="@drawable/ic_refresh_black_24px"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintRight_toLeftOf="@+id/status" />
+
+
+        </LinearLayout>
+
+
+        <!--style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"-->
+
+
+        <TextView
+            android:layout_marginTop="0dp"
+            android:background="@color/blueGrey800"
+            app:layout_constraintTop_toBottomOf="@id/connection"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+
+        <!--<include-->
+            <!--android:layout_marginTop="1dp"-->
+            <!--android:visibility="visible"-->
+            <!--android:id="@+id/service_details"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/connection"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_width="0dp"-->
+            <!--layout="@layout/list_item_service_config"/>-->
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:id="@+id/service_name"
+            android:textSize="20sp"
+            android:text="Taxi Referral Service"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:background="#55000000"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_marginTop="5dp"
+            android:textSize="20sp"
+            android:text="Hyderabad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <!--Telangana, India, 500042-->
+        <TextView
+            android:layout_marginTop="0dp"
+            android:id="@+id/address"
+            android:text="Telangana, India"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/no_service_block"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="No City Selected"
+            android:textSize="17sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="@string/selection_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progress_bar"
+        android:minHeight="50dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+
+
+
+</android.support.constraint.ConstraintLayout>

@@ -22,7 +22,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_shop_home" />
+    <include layout="@layout/content_shop_home_new" />
 
     <!--
 

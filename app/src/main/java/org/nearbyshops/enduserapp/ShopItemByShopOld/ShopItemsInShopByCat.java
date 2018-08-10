@@ -25,7 +25,7 @@ import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyGeneral;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -33,7 +33,7 @@ public class ShopItemsInShopByCat extends AppCompatActivity implements NotifyGen
         NotifyTitleChanged, ViewPager.OnPageChangeListener, NotifyCategoryChanged, NotifySort {
 
 
-    @Bind(R.id.slidinglayerfragment)
+    @BindView(R.id.slidinglayerfragment)
     FrameLayout slidingFragmentContainer;
 
 
@@ -44,17 +44,17 @@ public class ShopItemsInShopByCat extends AppCompatActivity implements NotifyGen
 //    public NotifyCategoryChanged notifyCategoryChanged;
 
 
-    @Bind(R.id.appbar)
+    @BindView(R.id.appbar)
     AppBarLayout appBar;
 
-    @Bind(R.id.tablayout)
+    @BindView(R.id.tablayout)
     TabLayout tabLayout;
 
-    @Bind(R.id.tablayoutPager)
+    @BindView(R.id.tablayoutPager)
     TabLayout tabLayoutPager;
 
 
-    @Bind(R.id.slidingLayer)
+    @BindView(R.id.slidingLayer)
     SlidingLayer slidingLayer;
 
 
@@ -180,12 +180,7 @@ public class ShopItemsInShopByCat extends AppCompatActivity implements NotifyGen
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
 
-        ButterKnife.unbind(this);
-    }
 
 
     @Override

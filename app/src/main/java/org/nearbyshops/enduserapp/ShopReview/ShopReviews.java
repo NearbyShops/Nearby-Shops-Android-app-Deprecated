@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserapp.ShopReview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,14 +15,15 @@ import android.widget.Toast;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
-import org.nearbyshops.enduserapp.Login.LoginDialog;
-import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
+import org.nearbyshops.enduserapp.LoginNew.Login;
+import org.nearbyshops.enduserapp.LoginNew.NotifyAboutLogin;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelEndPoints.ShopReviewEndPoint;
 import org.nearbyshops.enduserapp.ModelEndPoints.ShopReviewThanksEndpoint;
 import org.nearbyshops.enduserapp.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserapp.ModelReviewShop.ShopReviewThanks;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopReviewThanksService;
@@ -29,7 +31,7 @@ import org.nearbyshops.enduserapp.ShopReview.Interfaces.NotifyLoginByAdapter;
 import org.nearbyshops.enduserapp.ShopReview.SlidingLayerSort.SlidingLayerSortReview;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.Utility.DividerItemDecoration;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.ShopReview.SlidingLayerSort.UtilitySortShopReview;
 
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import icepick.Icepick;
@@ -60,7 +62,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
     Map<Integer,ShopReviewThanks> thanksMap = new HashMap<>();
 
 
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView reviewsList;
 
     ShopReviewAdapter adapter;
@@ -89,7 +91,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
     @State int offset = 0;
     @State int item_count = 0;
 
-    @Bind(R.id.slidingLayer)
+    @BindView(R.id.slidingLayer)
     SlidingLayer slidingLayer;
 
 
@@ -363,7 +365,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
 
 
-    @Bind(R.id.swipeContainer)
+    @BindView(R.id.swipeContainer)
     SwipeRefreshLayout swipeContainer;
 
     void setupSwipeContainer()
@@ -397,9 +399,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         activityStopped = true;
-        ButterKnife.unbind(this);
     }
 
     @Override
@@ -490,7 +490,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
     private void makeNetworkCallThanks()
     {
 
-        EndUser endUser = UtilityLogin.getEndUser(this);
+        User endUser = PrefLogin.getUser(this);
 
 
         if(endUser==null)
@@ -499,7 +499,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
             return;
         }
 
-        Call<ShopReviewThanksEndpoint> endpointCall = thanksService.getShopReviewThanks(null,endUser.getEndUserID(),
+        Call<ShopReviewThanksEndpoint> endpointCall = thanksService.getShopReviewThanks(null,endUser.getUserID(),
                 shop.getShopID(),null,100,0,null);
 
 
@@ -613,9 +613,13 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
     private void showLoginDialog()
     {
-        FragmentManager fm = getSupportFragmentManager();
-        LoginDialog loginDialog = new LoginDialog();
-        loginDialog.show(fm,"serviceUrl");
+//        FragmentManager fm = getSupportFragmentManager();
+//        LoginDialog loginDialog = new LoginDialog();
+//        loginDialog.show(fm,"serviceUrl");
+
+
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
     }
 
 
@@ -626,15 +630,25 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
     }
 
 
-
-    @Override
-    public void NotifyLogin() {
-        onRefreshSwipeIndicator();
-    }
+//
+//    @Override
+//    public void NotifyLogin() {
+//        onRefreshSwipeIndicator();
+//    }
 
 
     @Override
     public void NotifyLoginAdapter() {
         showLoginDialog();
     }
+
+
+
+    @Override
+    public void loginSuccess() {
+        onRefreshSwipeIndicator();
+    }
+
+
+
 }

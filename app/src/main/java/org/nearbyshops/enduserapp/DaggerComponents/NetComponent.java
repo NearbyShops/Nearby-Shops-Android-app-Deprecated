@@ -4,10 +4,11 @@ package org.nearbyshops.enduserapp.DaggerComponents;
 import org.nearbyshops.enduserapp.CancelledOrders.CancelledByEndUser.FragmentCancelledByUser;
 import org.nearbyshops.enduserapp.CancelledOrders.CancelledByShop.FragmentCancelledByShop;
 import org.nearbyshops.enduserapp.CancelledOrders.ReturnedByDeliveryGuy.FragmentReturnedByDG;
+import org.nearbyshops.enduserapp.Carts.CartItem.CartItemAdapter;
 import org.nearbyshops.enduserapp.DeliveryAddress.EditAddress.EditAddressFragment;
 import org.nearbyshops.enduserapp.DeliveryAddress.Previous.AddAddressActivity;
 import org.nearbyshops.enduserapp.Carts.CartItem.CartItemListActivity;
-import org.nearbyshops.enduserapp.Carts.CartsList.CartsListActivity;
+import org.nearbyshops.enduserapp.Carts.CartsList.CartsListFragment;
 import org.nearbyshops.enduserapp.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserapp.DeliveryAddress.Previous.EditAddressActivity;
 import org.nearbyshops.enduserapp.Carts.PlaceOrderActivity;
@@ -18,6 +19,7 @@ import org.nearbyshops.enduserapp.FilterItemsBySpecifications.FilterItemsFragmen
 import org.nearbyshops.enduserapp.FilterShopDialog.FilterShopsDialog;
 import org.nearbyshops.enduserapp.FilterShops.FilterShops;
 import org.nearbyshops.enduserapp.Home;
+import org.nearbyshops.enduserapp.HomeNew.HomeNew;
 import org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.AdapterSimple;
 import org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduserapp.ItemCategoryOption.FragmentShopOld;
@@ -31,19 +33,18 @@ import org.nearbyshops.enduserapp.ItemsByCategoryHorizontal.Items.FragmentItemSc
 import org.nearbyshops.enduserapp.ItemsInShop.ShopItems.FragmentItemsInShop;
 import org.nearbyshops.enduserapp.ItemsInShopByCat.AdapterItemsInShop;
 import org.nearbyshops.enduserapp.ItemsInShopByCat.ItemsInShopByCatFragment;
-import org.nearbyshops.enduserapp.Login.LoginDialog;
-import org.nearbyshops.enduserapp.Login.LoginServiceDialog;
 import org.nearbyshops.enduserapp.LoginActivity;
+import org.nearbyshops.enduserapp.LoginNew.LoginFragment;
+import org.nearbyshops.enduserapp.LoginNew.ServiceIndicatorFragment;
 import org.nearbyshops.enduserapp.OrderDetail.FragmentOrderDetail;
 import org.nearbyshops.enduserapp.OrderDetailPFS.FragmentOrderDetailPFS;
 import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.Complete.CompleteOrdersFragment;
 import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.Pending.PendingOrdersFragment;
+import org.nearbyshops.enduserapp.OrderHistoryNew.PendingOrdersFragmentNew;
 import org.nearbyshops.enduserapp.OrderHistoryPFS.Complete.CompleteOrdersFragmentPFS;
 import org.nearbyshops.enduserapp.OrderHistoryPFS.Pending.PendingOrdersFragmentPFS;
 import org.nearbyshops.enduserapp.OrdersCancelledPFS.CancelledByShop.CancelledByShopFragmentPFS;
 import org.nearbyshops.enduserapp.OrdersCancelledPFS.CancelledByUser.CancelledByUserFragmentPFS;
-import org.nearbyshops.enduserapp.Services.ServiceFragment.ServicesFragment;
-import org.nearbyshops.enduserapp.Services.SubmitURLDialog.SubmitURLDialog;
 import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserapp.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduserapp.ShopItemByShopOld.ItemCategories.ItemCategoriesFragmentShopHome;
@@ -62,6 +63,13 @@ import org.nearbyshops.enduserapp.ShopItemByItem.FilledCarts.AdapterFilledCarts;
 import org.nearbyshops.enduserapp.ShopItemByItem.NewCarts.AdapterNewCarts;
 import org.nearbyshops.enduserapp.ShopItemByItem.FilledCarts.FilledCartsFragment;
 import org.nearbyshops.enduserapp.ShopItemByItem.NewCarts.NewCartsFragment;
+import org.nearbyshops.enduserapp.SignUp.ForgotPassword.FragmentCheckResetCode;
+import org.nearbyshops.enduserapp.SignUp.ForgotPassword.FragmentEnterCredentials;
+import org.nearbyshops.enduserapp.SignUp.ForgotPassword.FragmentResetPassword;
+import org.nearbyshops.enduserapp.SignUp.FragmentEmailOrPhone;
+import org.nearbyshops.enduserapp.SignUp.FragmentEnterPassword;
+import org.nearbyshops.enduserapp.SignUp.FragmentVerifyEmailSignUp;
+
 
 import javax.inject.Singleton;
 
@@ -92,7 +100,7 @@ public interface NetComponent {
 
     void Inject(AdapterFilledCarts adapterFilledCarts);
 
-    void Inject(CartsListActivity cartsListActivity);
+    void Inject(CartsListFragment cartsListActivity);
 
     void Inject(CartItemListActivity cartItemListActivity);
 
@@ -112,7 +120,6 @@ public interface NetComponent {
 
     void Inject(FragmentShopOld shopFragment);
 
-    void Inject(LoginDialog loginDialog);
 
     void Inject(ItemCategoriesFragment itemCategoriesFragment);
 
@@ -122,7 +129,6 @@ public interface NetComponent {
 
     void Inject(FragmentItem_ItemByCategory fragmentItem_itemByCategory);
 
-    void Inject(LoginServiceDialog loginServiceDialog);
 
     void Inject(ShopDetail shopDetail);
 
@@ -182,10 +188,6 @@ public interface NetComponent {
 
     void Inject(FragmentReturnedByDG fragmentReturnedByDG);
 
-    void Inject(ServicesFragment servicesFragment);
-
-    void Inject(SubmitURLDialog submitURLDialog);
-
     void Inject(CompleteOrdersFragmentPFS completeOrdersFragmentPFS);
 
     void Inject(FragmentOrderDetailPFS fragmentOrderDetailPFS);
@@ -203,4 +205,27 @@ public interface NetComponent {
     void Inject(Home home);
 
     void Inject(FilterItemsFragment filterItemsFragment);
+
+    void Inject(LoginFragment loginFragment);
+
+    void Inject(FragmentCheckResetCode fragmentCheckResetCode);
+
+    void Inject(FragmentEmailOrPhone fragmentEmailOrPhone);
+
+    void Inject(FragmentEnterCredentials fragmentEnterCredentials);
+
+    void Inject(FragmentEnterPassword fragmentEnterPassword);
+
+    void Inject(FragmentResetPassword fragmentResetPassword);
+
+    void Inject(FragmentVerifyEmailSignUp fragmentVerifyEmailSignUp);
+
+
+    void Inject(HomeNew homeNew);
+
+    void Inject(ServiceIndicatorFragment serviceIndicatorFragment);
+
+    void Inject(PendingOrdersFragmentNew pendingOrdersFragmentNew);
+
+    void Inject(CartItemAdapter cartItemAdapter);
 }

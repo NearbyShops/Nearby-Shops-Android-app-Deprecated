@@ -19,11 +19,11 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserapp.Model.ItemImage;
 import org.nearbyshops.enduserapp.R;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -84,7 +84,7 @@ public class AdapterItemImages extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
 //            nine_hundred_   + ".jpg"
-            String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/"
+            String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/"
                     + dataset.get(position).getImageFilename();
 
             Drawable placeholder = VectorDrawableCompat
@@ -123,9 +123,9 @@ public class AdapterItemImages extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
 
-        @Bind(R.id.list_item) RelativeLayout listItem;
-        @Bind(R.id.item_image) GestureImageView itemImage;
-        @Bind(R.id.indicator) TextView indicator;
+        @BindView(R.id.list_item) RelativeLayout listItem;
+        @BindView(R.id.item_image) GestureImageView itemImage;
+        @BindView(R.id.indicator) TextView indicator;
 //        @Bind(R.id.copyright_info) TextView copyrights;
 
 

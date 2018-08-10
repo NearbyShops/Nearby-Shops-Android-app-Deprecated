@@ -12,18 +12,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.ModelStats.CartStats;
 import org.nearbyshops.enduserapp.R;
+import org.nearbyshops.enduserapp.RetrofitRESTContract.CartItemService;
+import org.nearbyshops.enduserapp.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduserapp.Utility.InputFilterMinMax;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
+
+import javax.inject.Inject;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by sumeet on 6/6/16.
@@ -42,6 +54,20 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
     double cartTotal = 0;
 
 
+    @Inject
+    CartItemService cartItemService;
+
+    @Inject
+    CartStatsService cartStatsService;
+
+
+    public CartItemAdapter() {
+
+    }
+
+
+
+
     public CartItemAdapter(List<CartItem> dataset, Context context, NotifyCartItem notifyCartItem) {
 
         this.dataset = dataset;
@@ -50,8 +76,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 //        this.cartStats = cartStats;
 
 
-
-
+        DaggerComponentBuilder.getInstance()
+                .getNetComponent().Inject(this);
     }
 
 
@@ -63,11 +89,13 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
 
 
+
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_cart_item,parent,false);
+                .inflate(R.layout.list_item_cart_item_new,parent,false);
 
         return new ViewHolder(view);
     }
@@ -108,7 +136,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 //            imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
 //                    + item.getItemImageURL();
 
-            String imagePath = UtilityGeneral.getServiceURL(context)
+            String imagePath = PrefGeneral.getServiceURL(context)
                     + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
 
 
@@ -145,6 +173,9 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
         EditText itemQuantity;
         TextView updateButton;
         TextView removeButton;
+        ProgressBar progressBarRemove;
+        ProgressBar progressBarUpdate;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -167,6 +198,9 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
             increaseQuantity.setOnClickListener(this);
             updateButton.setOnClickListener(this);
             removeButton.setOnClickListener(this);
+
+            progressBarRemove = (ProgressBar) itemView.findViewById(R.id.progress_bar_remove);
+            progressBarUpdate = (ProgressBar) itemView.findViewById(R.id.progress_bar_update);
 
         }
 
@@ -211,14 +245,90 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
         public void removeClick()
         {
 
-            notifyCartItem.notifyRemove(dataset.get(getLayoutPosition()));
+//            notifyCartItem.notifyRemove(dataset.get(getLayoutPosition()));
 
+
+
+            progressBarRemove.setVisibility(View.VISIBLE);
+            removeButton.setVisibility(View.INVISIBLE);
+
+            final CartItem cartItem = dataset.get(getLayoutPosition());
+
+            Call<ResponseBody> call = cartItemService.deleteCartItem(cartItem.getCartID(),cartItem.getItemID(),0,0);
+
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                    if(response.code() == 200)
+                    {
+                        showToastMessage("Item Deleted");
+
+                        // refresh the list
+//                        makeNetworkCall();
+                        notifyCartItem.notifyRemove(dataset.get(getLayoutPosition()));
+                    }
+
+
+                    notifyItemRemoved(getLayoutPosition());
+                    dataset.remove(cartItem);
+
+                    progressBarRemove.setVisibility(View.INVISIBLE);
+                    removeButton.setVisibility(View.VISIBLE);
+
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    showToastMessage("Remove failed. Try again !");
+
+                    progressBarRemove.setVisibility(View.INVISIBLE);
+                    removeButton.setVisibility(View.VISIBLE);
+                }
+            });
         }
+
+
+
 
         public void updateClick()
         {
 
-            notifyCartItem.notifyUpdate(dataset.get(getLayoutPosition()));
+//            notifyCartItem.notifyUpdate(dataset.get(getLayoutPosition()));
+
+            progressBarUpdate.setVisibility(View.VISIBLE);
+            updateButton.setVisibility(View.INVISIBLE);
+
+            final CartItem cartItem = dataset.get(getLayoutPosition());
+
+            Call<ResponseBody> call = cartItemService.updateCartItem(cartItem,0,0);
+
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                    if(response.code() == 200)
+                    {
+                        notifyCartItem.notifyUpdate(cartItem);
+                    }
+
+
+                    progressBarUpdate.setVisibility(View.INVISIBLE);
+                    updateButton.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    showToastMessage("Update failed. Try again !");
+
+
+                    progressBarUpdate.setVisibility(View.INVISIBLE);
+                    updateButton.setVisibility(View.VISIBLE);
+                }
+            });
+
         }
 
 
@@ -408,6 +518,17 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
         void notifyTotal(double total);
 
+
+
+    }
+
+
+
+
+
+    void showToastMessage(String message)
+    {
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
     }
 
 }

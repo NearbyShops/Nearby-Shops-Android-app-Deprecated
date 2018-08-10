@@ -18,7 +18,7 @@ import org.nearbyshops.enduserapp.R;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -29,7 +29,7 @@ public class ItemImageFullscreenFragment extends Fragment implements ViewPager.O
 
 
     ArrayList<ItemImage> dataset = new ArrayList<>();
-//    @Bind(R.id.recycler_view)
+//    @BindView(R.id.recycler_view)
 //    RecyclerView itemImagesList;
 //    AdapterItemImages adapterItemImages;
 //    GridLayoutManager layoutManager;
@@ -37,10 +37,10 @@ public class ItemImageFullscreenFragment extends Fragment implements ViewPager.O
 
     private ViewPager viewPager;
 
-    @Bind(R.id.indicator) TextView indicator;
-    @Bind(R.id.caption) TextView caption;
-    @Bind(R.id.caption_title) TextView captionTitle;
-    @Bind(R.id.copyrights) TextView copyrights;
+    @BindView(R.id.indicator) TextView indicator;
+    @BindView(R.id.caption) TextView caption;
+    @BindView(R.id.caption_title) TextView captionTitle;
+    @BindView(R.id.copyrights) TextView copyrights;
 
 
 
@@ -107,12 +107,6 @@ public class ItemImageFullscreenFragment extends Fragment implements ViewPager.O
 
 
 
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

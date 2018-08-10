@@ -17,22 +17,22 @@ import android.widget.Toast;
 
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.ItemDetail.ItemDetail;
-import org.nearbyshops.enduserapp.Login.LoginDialog;
-import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
+import org.nearbyshops.enduserapp.LoginNew.Login;
+import org.nearbyshops.enduserapp.LoginNew.NotifyAboutLogin;
 import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopItemService;
-import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserapp.ShopHome.ShopHome;
 import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
 import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
 import org.nearbyshops.enduserapp.Shops.UtilityLocation;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.ShopItemByItem.SlidingLayerSort.UtilitySortShopItems;
 import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
@@ -49,7 +49,7 @@ import retrofit2.Response;
 
 public class NewCartsFragment extends Fragment
         implements SwipeRefreshLayout.OnRefreshListener,
-        AdapterNewCarts.NotifyAddToCart, NotifyFillCartsChanged, NotifyAboutLogin,
+        AdapterNewCarts.NotifyAddToCart, NotifyFillCartsChanged,
         NotifySort {
 
 
@@ -176,7 +176,7 @@ public class NewCartsFragment extends Fragment
         recyclerView.setAdapter(adapter);
 
         layoutManager = new GridLayoutManager(getActivity(),1);
-        layoutManager.setAutoMeasureEnabled(true);
+//        layoutManager.setAutoMeasureEnabled(true);
         recyclerView.setLayoutManager(layoutManager);
 
         //recyclerView.addItemDecoration(
@@ -216,6 +216,11 @@ public class NewCartsFragment extends Fragment
                     {
                         return;
                     }
+
+
+
+
+
 
 
                     // trigger fetch next page
@@ -275,14 +280,14 @@ public class NewCartsFragment extends Fragment
     void makeNetworkCall(final boolean notifyChange, final boolean clearDataset)
     {
 
-            EndUser endUser = UtilityLogin.getEndUser(getActivity());
+            User endUser = PrefLogin.getUser(getActivity());
 
             Integer endUserID = null;
 
 
             if(endUser != null)
             {
-                endUserID = endUser.getEndUserID();
+                endUserID = endUser.getUserID();
             }
 
 
@@ -386,11 +391,20 @@ public class NewCartsFragment extends Fragment
 
 
 
+
+
+
+
+
     private void showLoginDialog()
     {
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        LoginDialog loginDialog = new LoginDialog();
-        loginDialog.show(fm,"serviceUrl");
+//        FragmentManager fm = getActivity().getSupportFragmentManager();
+//        LoginDialog loginDialog = new LoginDialog();
+//        loginDialog.show(fm,"serviceUrl");
+
+
+        Intent intent = new Intent(getActivity(),Login.class);
+        startActivity(intent);
     }
 
 
@@ -492,14 +506,10 @@ public class NewCartsFragment extends Fragment
     public void onDestroyView() {
         super.onDestroyView();
         isDestroyed = true;
-        ButterKnife.unbind(this);
     }
 
-    @Override
-    public void NotifyLogin() {
 
-        makeRefreshNetworkCall();
-    }
+
 
     @Override
     public void notifySortChanged() {

@@ -25,10 +25,10 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
-import org.nearbyshops.enduserapp.Carts.CartsList.CartsListActivity;
-import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
+import org.nearbyshops.enduserapp.Carts.CartsList.CartsListFragment;
 import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.ModelStats.ItemStats;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.R;
@@ -38,10 +38,10 @@ import org.nearbyshops.enduserapp.ShopItemByItem.Interfaces.NotifySwipeToRight;
 import org.nearbyshops.enduserapp.ShopItemByItem.SlidingLayerSort.SlidingLayerSortShopItem;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -49,14 +49,14 @@ import butterknife.OnClick;
  * Created by sumeet on 31/5/16.
  */
 public class ShopsForItemSwipe extends AppCompatActivity implements Target, NotifySort,
-        NotifySwipeToRight,NotifyFillCartsChanged, NotifyTitleChanged,NotifyNewCartsChanged, NotifyAboutLogin{
+        NotifySwipeToRight,NotifyFillCartsChanged, NotifyTitleChanged,NotifyNewCartsChanged{
 
 
     private PagerAdapterShopItem pagerAdapter;
 
     private ViewPager mViewPager;
 
-    @Bind(R.id.tablayout)
+    @BindView(R.id.tablayout)
     TabLayout tabLayout;
 
 
@@ -68,10 +68,10 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
 
     public static final String ITEM_INTENT_KEY = "item";
 
-    @Bind(R.id.appbar)
+    @BindView(R.id.appbar)
     AppBarLayout appBarLayout;
 
-//    @Bind(R.id.itemStats)
+//    @BindView(R.id.itemStats)
 //    TextView itemStatsText;
 
 
@@ -98,7 +98,7 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
 
         if(item!=null)
         {
-            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+            String imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
                     + item.getItemImageURL();
 
 //            Picasso.with(this).load(imagePath).placeholder(R.drawable.nature_people).into(actionBarImage);
@@ -128,7 +128,7 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
     }
 
 
-    @Bind(R.id.slidingLayer)
+    @BindView(R.id.slidingLayer)
     SlidingLayer slidingLayer;
 
 
@@ -187,7 +187,7 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
     void checkoutClick()
     {
 
-        EndUser endUser = UtilityLogin.getEndUser(this);
+        User endUser = PrefLogin.getUser(this);
 
         if(endUser == null)
         {
@@ -242,7 +242,7 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
 
     void cartsButtonClick()
     {
-        Intent intent = new Intent(this, CartsListActivity.class);
+        Intent intent = new Intent(this, CartsListFragment.class);
         startActivity(intent);
     }
 
@@ -255,12 +255,6 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        ButterKnife.unbind(this);
-    }
 
     @Override
     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -356,7 +350,7 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
     }
 
 
-    @Override
+
     public void NotifyLogin() {
 
         notifyNewCartsChanged();

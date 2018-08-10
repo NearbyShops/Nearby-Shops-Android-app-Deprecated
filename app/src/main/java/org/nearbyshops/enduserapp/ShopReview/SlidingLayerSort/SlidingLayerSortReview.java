@@ -13,7 +13,7 @@ import org.nearbyshops.enduserapp.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -23,13 +23,13 @@ import butterknife.OnClick;
 
 public class SlidingLayerSortReview extends Fragment {
 
-    @Bind(R.id.sort_by_date)
+    @BindView(R.id.sort_by_date)
     TextView sort_by_date;
 
-//    @Bind(R.id.sort_by_username)
+//    @BindView(R.id.sort_by_username)
 //    TextView sort_by_username;
 
-    @Bind(R.id.sort_by_thanks_count)
+    @BindView(R.id.sort_by_thanks_count)
     TextView sort_by_thanks_count;
 
 //    @Bind(R.id.sort_by_updated)
@@ -41,10 +41,10 @@ public class SlidingLayerSortReview extends Fragment {
 //    @Bind(R.id.shop_count)
 //    TextView sort_by_shop_count;
 
-    @Bind(R.id.sort_ascending)
+    @BindView(R.id.sort_ascending)
     TextView sort_ascending;
 
-    @Bind(R.id.sort_descending)
+    @BindView(R.id.sort_descending)
     TextView sort_descending;
 
     String currentSort = SORT_BY_DATE;
@@ -76,11 +76,6 @@ public class SlidingLayerSortReview extends Fragment {
 
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 
 
     void loadDefaultSort() {

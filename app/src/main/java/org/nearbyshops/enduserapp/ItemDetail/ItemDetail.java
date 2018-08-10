@@ -37,8 +37,7 @@ import com.squareup.picasso.Target;
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.ItemImageSlider.ItemImageFullscreenFragment;
 import org.nearbyshops.enduserapp.ItemImageSlider.ItemImagesFullscreen;
-import org.nearbyshops.enduserapp.Login.LoginDialog;
-import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
+import org.nearbyshops.enduserapp.LoginNew.Login;
 import org.nearbyshops.enduserapp.Model.Endpoints.ItemImageEndPoint;
 import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.Model.ItemImage;
@@ -53,15 +52,15 @@ import org.nearbyshops.enduserapp.RetrofitRESTContract.FavouriteItemService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemImageService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemReviewService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemSpecNameService;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -72,7 +71,7 @@ import retrofit2.Response;
 
 
 
-public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
+public class ItemDetail extends AppCompatActivity implements
         Target, RatingBar.OnRatingBarChangeListener, NotifyReviewUpdate, AdapterItemImages.notificationsFromAdapter {
 
 
@@ -96,13 +95,13 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
     Item item;
 
-    @Bind(R.id.fab)
+    @BindView(R.id.fab)
     FloatingActionButton fab;
 
-    @Bind(R.id.book_title)
+    @BindView(R.id.book_title)
     TextView bookTitle;
 
-    @Bind(R.id.author_name)
+    @BindView(R.id.author_name)
     TextView authorName;
 
 //    @Bind(R.id.date_of_publish)
@@ -112,44 +111,44 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 //    @Bind(R.id.publisher_name)
 //    TextView publisherName;
 
-    @Bind(R.id.book_description)
+    @BindView(R.id.book_description)
     TextView bookDescription;
 
-    @Bind(R.id.book_cover)
+    @BindView(R.id.book_cover)
     ImageView bookCover;
 
-    @Bind(R.id.rating_text)
+    @BindView(R.id.rating_text)
     TextView ratingText;
 
-    @Bind(R.id.ratings_count)
+    @BindView(R.id.ratings_count)
     TextView ratingsCount;
 
-    @Bind(R.id.ratingBar)
+    @BindView(R.id.ratingBar)
     RatingBar ratingsBar;
 
-    @Bind(R.id.user_rating_review)
+    @BindView(R.id.user_rating_review)
     LinearLayout user_review_ratings_block;
 
-    @Bind(R.id.edit_review_text)
+    @BindView(R.id.edit_review_text)
     TextView edit_review_text;
 
-    @Bind(R.id.ratingBar_rate)
+    @BindView(R.id.ratingBar_rate)
     RatingBar ratingBar_rate;
 
-    @Bind(R.id.read_all_reviews_button)
+    @BindView(R.id.read_all_reviews_button)
     TextView read_all_reviews_button;
 
-    @Bind(R.id.member_profile_image)
+    @BindView(R.id.member_profile_image)
     ImageView member_profile_image;
 
-    @Bind(R.id.member_name)
+    @BindView(R.id.member_name)
     TextView member_name;
 
-    @Bind(R.id.member_rating)
+    @BindView(R.id.member_rating)
     RatingBar member_rating_indicator;
 
 
-    @Bind(R.id.collapsing_toolbar)
+    @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
 
 
@@ -216,7 +215,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
     ArrayList<ItemImage> dataset = new ArrayList<>();
 
-    @Bind(R.id.recyclerview_item_images)
+    @BindView(R.id.recyclerview_item_images)
 
     RecyclerView itemImagesList;
     AdapterItemImages adapterItemImages;
@@ -294,7 +293,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
     ArrayList<ItemSpecificationName> datasetSpecs = new ArrayList<>();
 
-    @Bind(R.id.recyclerview_item_specifications)
+    @BindView(R.id.recyclerview_item_specifications)
     RecyclerView itemSpecsList;
     AdapterItemSpecifications adapterItemSpecs;
     GridLayoutManager layoutManagerItemSpecs;
@@ -402,7 +401,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 //                    + item.getItemImageURL();
 
 
-            String imagePath = UtilityGeneral.getServiceURL(this)
+            String imagePath = PrefGeneral.getServiceURL(this)
                     + "/api/v1/Item/Image/seven_hundred_" + item.getItemImageURL() + ".jpg";
 
             //five_hundred_  + ".jpg"
@@ -450,16 +449,16 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
     }
 
 
-    @Bind(R.id.edit_review_block)
+    @BindView(R.id.edit_review_block)
     RelativeLayout edit_review_block;
 
-    @Bind(R.id.review_title)
+    @BindView(R.id.review_title)
     TextView review_title;
 
-    @Bind(R.id.review_description)
+    @BindView(R.id.review_description)
     TextView review_description;
 
-    @Bind(R.id.review_date)
+    @BindView(R.id.review_date)
     TextView review_date;
 
     ItemReview reviewForUpdate;
@@ -468,7 +467,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
     // method to check whether the user has written the review or not if the user is currently logged in.
     void checkUserReview() {
 
-        if (UtilityLogin.getEndUser(this) == null) {
+        if (PrefLogin.getUser(this) == null) {
 
             user_review_ratings_block.setVisibility(View.GONE);
 
@@ -488,7 +487,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
 
                 Call<ItemReviewEndPoint> call = itemReviewService.getReviews(item.getItemID(),
-                        UtilityLogin.getEndUser(this).getEndUserID(), true, "REVIEW_DATE", null, null, null);
+                        PrefLogin.getUser(this).getUserID(), true, "REVIEW_DATE", null, null, null);
 
 //                Log.d("review_check",String.valueOf(UtilityGeneral.getUserID(this)) + " : " + String.valueOf(shop.getBookID()));
 
@@ -529,7 +528,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
                                 EndUser member = response.body().getResults().get(0).getRt_end_user_profile();
                                 member_name.setText(member.getName());
 
-                                String imagePath = UtilityGeneral.getImageEndpointURL(ItemDetail.this)
+                                String imagePath = PrefGeneral.getImageEndpointURL(ItemDetail.this)
                                         + member.getProfileImageURL();
 
 
@@ -593,7 +592,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
 
         isDestroyed = true;
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
 
         /*if (unbinder != null) {
             unbinder.unbind();
@@ -726,7 +725,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
 
 
-    @Bind(R.id.coordinatorLayout)
+    @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
 
 
@@ -746,7 +745,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
     void fabClick()
     {
 
-        if(UtilityLogin.getEndUser(this)==null)
+        if(PrefLogin.getUser(this)==null)
         {
             // User Not logged In.
 //            showMessageSnackBar("Please Login to use this Feature !");
@@ -763,18 +762,22 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
     private void showLoginDialog()
     {
-        FragmentManager fm = getSupportFragmentManager();
-        LoginDialog loginDialog = new LoginDialog();
-        loginDialog.show(fm,"serviceUrl");
+//        FragmentManager fm = getSupportFragmentManager();
+//        LoginDialog loginDialog = new LoginDialog();
+//        loginDialog.show(fm,"serviceUrl");
+
+
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
     }
 
 
 
-    @Override
-    public void NotifyLogin() {
-
-//        fabClick();
-    }
+//    @Override
+//    public void NotifyLogin() {
+//
+////        fabClick();
+//    }
 
 
 
@@ -785,11 +788,11 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
     {
 
 
-        if(item !=null && UtilityLogin.getEndUser(this)!=null)
+        if(item !=null && PrefLogin.getUser(this)!=null)
         {
 
             Call<FavouriteItemEndpoint> call = favouriteItemService
-                    .getFavouriteBooks(item.getItemID(),UtilityLogin.getEndUser(this).getEndUserID()
+                    .getFavouriteBooks(item.getItemID(), PrefLogin.getUser(this).getUserID()
                     ,null,null,null,null);
 
 
@@ -830,12 +833,12 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
     {
 
 
-        if(item !=null && UtilityLogin.getEndUser(this)!=null)
+        if(item !=null && PrefLogin.getUser(this)!=null)
         {
 
             FavouriteItem favouriteItem = new FavouriteItem();
             favouriteItem.setItemID(item.getItemID());
-            favouriteItem.setEndUserID(UtilityLogin.getEndUser(this).getEndUserID());
+            favouriteItem.setEndUserID(PrefLogin.getUser(this).getUserID());
 
             Call<FavouriteItem> call = favouriteItemService.insertFavouriteItem(favouriteItem);
 
@@ -866,10 +869,10 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
     void deleteFavourite()
     {
 
-        if(item !=null && UtilityLogin.getEndUser(this)!=null)
+        if(item !=null && PrefLogin.getUser(this)!=null)
         {
             Call<ResponseBody> call = favouriteItemService.deleteFavouriteItem(item.getItemID(),
-                    UtilityLogin.getEndUser(this).getEndUserID());
+                    PrefLogin.getUser(this).getUserID());
 
 
             call.enqueue(new Callback<ResponseBody>() {
@@ -927,20 +930,20 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
 //        Log.d("Before Check Favourite", "Item ID : EndUser ID" + String.valueOf(item.getItemID()) + " : " + String.valueOf(UtilityLogin.getEndUser(this).getEndUserID()));
 
-        if(UtilityLogin.getEndUser(this)==null)
+        if(PrefLogin.getUser(this)==null)
         {
             return;
         }
 
 
-        if(item != null && UtilityLogin.getEndUser(this) != null)
+        if(item != null && PrefLogin.getUser(this) != null)
         {
 
 
-            Log.d("After Favourite", "Item ID : EndUser ID" + String.valueOf(item.getItemID()) + " : " + String.valueOf(UtilityLogin.getEndUser(this).getEndUserID()));
+            Log.d("After Favourite", "Item ID : EndUser ID" + String.valueOf(item.getItemID()) + " : " + String.valueOf(PrefLogin.getUser(this).getUserID()));
 
             Call<FavouriteItemEndpoint> call = favouriteItemService.getFavouriteBooks(item.getItemID(),
-                    UtilityLogin.getEndUser(this).getEndUserID()
+                    PrefLogin.getUser(this).getUserID()
                     ,null,null,null,null);
 
 
@@ -990,7 +993,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
                 .setType("image/jpg")
                 .getIntent();
 
-        String url = UtilityGeneral.getServiceURL(this)+ "/api/Images" + String.valueOf(item.getItemImageURL());
+        String url = PrefGeneral.getServiceURL(this)+ "/api/Images" + String.valueOf(item.getItemImageURL());
 //        intent.putExtra(Intent.EXTRA_TEXT,url);
         intent.putExtra(Intent.EXTRA_TEXT,url);
 //        intent.putExtra(Intent.EXTRA_TITLE,shop.getBookName());
@@ -1001,7 +1004,7 @@ public class ItemDetail extends AppCompatActivity implements NotifyAboutLogin,
 
 
 
-    @Bind(R.id.read_full_button)
+    @BindView(R.id.read_full_button)
     TextView readFullDescription;
 
     @OnClick(R.id.read_full_button)

@@ -21,10 +21,10 @@ import org.nearbyshops.enduserapp.OrdersHomePickFromShop.OrdersHomePickFromShop;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserapp.ShopReview.ShopReviews;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -32,15 +32,15 @@ public class ShopHome extends AppCompatActivity {
 
     private Shop shop;
 
-    @Bind(R.id.shop_name) TextView shopName;
-    @Bind(R.id.shop_address) TextView shopAddress;
-    @Bind(R.id.shop_logo) ImageView shopLogo;
-    @Bind(R.id.delivery) TextView delivery;
-    @Bind(R.id.distance) TextView distance;
-    @Bind(R.id.rating) TextView rating;
-    @Bind(R.id.rating_count) TextView rating_count;
-    @Bind(R.id.description) TextView description;
-    @Bind(R.id.option_items_by_category) ImageView optionItemsByCategory;
+    @BindView(R.id.shop_name) TextView shopName;
+    @BindView(R.id.shop_address) TextView shopAddress;
+    @BindView(R.id.shop_logo) ImageView shopLogo;
+    @BindView(R.id.delivery) TextView delivery;
+    @BindView(R.id.distance) TextView distance;
+    @BindView(R.id.rating) TextView rating;
+    @BindView(R.id.rating_count) TextView rating_count;
+    @BindView(R.id.description) TextView description;
+    @BindView(R.id.option_items_by_category) ImageView optionItemsByCategory;
 
 
 
@@ -89,7 +89,7 @@ public class ShopHome extends AppCompatActivity {
 //            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
 //                    + shop.getLogoImagePath();
 
-            String imagePath = UtilityGeneral.getServiceURL(this) + "/api/v1/Shop/Image/"
+            String imagePath = PrefGeneral.getServiceURL(this) + "/api/v1/Shop/Image/"
                     + "five_hundred_" + shop.getLogoImagePath() + ".jpg";
 
             Drawable placeholder = VectorDrawableCompat
@@ -103,7 +103,7 @@ public class ShopHome extends AppCompatActivity {
 
 
             String currency = "";
-            currency = UtilityGeneral.getCurrencySymbol(this);
+            currency = PrefGeneral.getCurrencySymbol(this);
 
             delivery.setText("Delivery : " + currency + ". " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
             distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
@@ -162,22 +162,23 @@ public class ShopHome extends AppCompatActivity {
     }
 
 
-    @OnClick(R.id.option_orders_pfs)
-    void ordersPFSClick()
-    {
-        Intent intent = new Intent(this,OrdersHomePickFromShop.class);
-        intent.putExtra(OrdersHomePickFromShop.IS_FILTER_BY_SHOP,true);
-        startActivity(intent);
-    }
+//    @OnClick(R.id.option_orders_pfs)
+//    void ordersPFSClick()
+//    {
+//        Intent intent = new Intent(this,OrdersHomePickFromShop.class);
+//        intent.putExtra(OrdersHomePickFromShop.IS_FILTER_BY_SHOP,true);
+//        startActivity(intent);
+//    }
 
 
 
-    @OnClick(R.id.option_items)
-    void ItemsClick()
-    {
-        Intent intent = new Intent(this, ItemsInShop.class);
-        startActivity(intent);
-    }
+
+//    @OnClick(R.id.option_items)
+//    void ItemsClick()
+//    {
+//        Intent intent = new Intent(this, ItemsInShop.class);
+//        startActivity(intent);
+//    }
 
 
     @OnClick(R.id.shop_card)
@@ -212,10 +213,4 @@ public class ShopHome extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        ButterKnife.unbind(this);
-    }
 }

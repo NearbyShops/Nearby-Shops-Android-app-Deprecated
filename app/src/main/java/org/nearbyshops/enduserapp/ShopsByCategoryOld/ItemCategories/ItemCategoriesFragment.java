@@ -26,13 +26,13 @@ import org.nearbyshops.enduserapp.Model.ItemCategory;
 import org.nearbyshops.enduserapp.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemCategoryService;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import icepick.Icepick;
 import icepick.State;
@@ -69,7 +69,7 @@ public class ItemCategoriesFragment extends Fragment
     @State int item_count = 0;
 
 
-    @Bind(R.id.swipeContainer)
+    @BindView(R.id.swipeContainer)
     SwipeRefreshLayout swipeContainer;
 
 
@@ -291,11 +291,11 @@ public class ItemCategoriesFragment extends Fragment
         Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
                 null,currentCategory.getItemCategoryID(),
                 null,
-                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY, 0),
-                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY, 0),
-                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY, 0),
-                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY, 0),
-                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY, 0),true,
+                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY, 0),
+                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LON_CENTER_KEY, 0),
+                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MAX_KEY, 0),
+                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MIN_KEY, 0),
+                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.PROXIMITY_KEY, 0),true,
                 "id",limit,offset,false);
 
         Log.d("applog","DetachedTabs: Network call made !");
@@ -526,12 +526,7 @@ public class ItemCategoriesFragment extends Fragment
 
 
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
 
-        ButterKnife.unbind(this);
-    }
 
 
     @Override

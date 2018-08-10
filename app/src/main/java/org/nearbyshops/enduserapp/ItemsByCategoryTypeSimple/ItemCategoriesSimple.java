@@ -15,7 +15,7 @@ import org.nearbyshops.enduserapp.Items.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -23,11 +23,14 @@ import butterknife.OnClick;
 public class ItemCategoriesSimple extends AppCompatActivity implements NotifyHeaderChanged,NotifySort{
 
     public static final String TAG_FRAGMENT = "item_categories_simple";
-    public static final String TAG_SLIDING = "sort_items_sliding";
+    public static final String TAG_SLIDING = "sort_shops_sliding";
 
 
-    @Bind(R.id.text_sub) TextView itemHeader;
-    @Bind(R.id.slidingLayer) SlidingLayer slidingLayer;
+    @BindView(R.id.text_sub) TextView itemHeader;
+    @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,11 +140,7 @@ public class ItemCategoriesSimple extends AppCompatActivity implements NotifyHea
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
+
 
     @OnClick({R.id.icon_sort,R.id.text_sort})
     void sortClick()
@@ -160,4 +159,7 @@ public class ItemCategoriesSimple extends AppCompatActivity implements NotifyHea
             ((NotifySort)fragment).notifySortChanged();
         }
     }
+
+
+
 }

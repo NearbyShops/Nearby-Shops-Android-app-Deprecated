@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<tabs xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!--<tab-->
+        <!--id="@+id/tab_local"-->
+        <!--icon="@drawable/ic_search_white_24px"-->
+        <!--title= "Local" />-->
+
+
+
+
+    <tab
+        id="@+id/tab_items"
+        icon="@drawable/ic_items_24px"
+        title="Items" />
+
+
+
+    <tab
+        id="@+id/tab_shops"
+        icon="@drawable/ic_home_black_24px"
+        title="Shops" />
+
+
+
+    <!--title="Search"-->
+    <!--icon="@drawable/"-->
+    <!--icon="@drawable/ic_refresh_black_24px"-->
+
+
+
+
+    <tab
+        icon="@drawable/ic_shopping_basket_white_24px"
+        id="@+id/tab_cart"
+        title="Cart" />
+
+
+    <!--title="Requests"-->
+
+
+    <tab
+        icon="@drawable/ic_local_shipping_black_24px"
+        id="@+id/tab_orders"
+        title="Orders" />
+
+
+    <tab
+        id="@+id/tab_profile"
+        icon="@drawable/ic_face_black_24px"
+        title="Profile" />
+
+</tabs>

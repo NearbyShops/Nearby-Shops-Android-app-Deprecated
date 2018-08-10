@@ -17,15 +17,15 @@ import android.widget.Toast;
 
 import org.nearbyshops.enduserapp.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
-import org.nearbyshops.enduserapp.Login.LoginDialog;
+import org.nearbyshops.enduserapp.LoginNew.Login;
 import org.nearbyshops.enduserapp.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserapp.Model.Shop;
-import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.ModelStats.CartStats;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.CartStatsService;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -157,7 +157,7 @@ public class CartItemListActivity extends AppCompatActivity
     void fetchCartStats()
     {
 
-        EndUser endUser = UtilityLogin.getEndUser(this);
+        User endUser = PrefLogin.getUser(this);
 
         if(endUser==null || shop==null)
         {
@@ -166,7 +166,7 @@ public class CartItemListActivity extends AppCompatActivity
         }
 
 
-        Call<List<CartStats>> call = cartStatsService.getCart(endUser.getEndUserID(),null,shop.getShopID(),false,null,null);
+        Call<List<CartStats>> call = cartStatsService.getCart(endUser.getUserID(),null,shop.getShopID(),false,null,null);
 
         call.enqueue(new Callback<List<CartStats>>() {
 
@@ -318,7 +318,7 @@ public class CartItemListActivity extends AppCompatActivity
     void makeNetworkCall()
     {
 
-        EndUser endUser = UtilityLogin.getEndUser(this);
+        User endUser = PrefLogin.getUser(this);
 
         if(endUser==null)
         {
@@ -335,7 +335,7 @@ public class CartItemListActivity extends AppCompatActivity
         }
 
         Call<List<CartItem>> call = cartItemService.getCartItem(null,null,
-                endUser.getEndUserID(),shop.getShopID(),true);
+                endUser.getUserID(),shop.getShopID(),true);
 
         call.enqueue(new Callback<List<CartItem>>() {
             @Override
@@ -413,57 +413,68 @@ public class CartItemListActivity extends AppCompatActivity
     @Override
     public void notifyUpdate(CartItem cartItem) {
 
-        Call<ResponseBody> call = cartItemService.updateCartItem(cartItem,0,0);
+//        Call<ResponseBody> call = cartItemService.updateCartItem(cartItem,0,0);
+//
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//                if(response.code() == 200)
+//                {
+//                    showToastMessage("Item Updated !");
+//
+//                    totalValue.setText(" : Rs " + String.format("%.2f", cartTotal));
+//                    cartStats.setCart_Total(cartTotal);
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//                showToastMessage("Update failed. Try again !");
+//            }
+//        });
 
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                if(response.code() == 200)
-                {
-                    showToastMessage("Item Updated !");
 
-                    totalValue.setText(" : Rs " + String.format("%.2f", cartTotal));
-                    cartStats.setCart_Total(cartTotal);
+        showToastMessage("Item Updated !");
+        totalValue.setText(" : Rs " + String.format("%.2f", cartTotal));
+        cartStats.setCart_Total(cartTotal);
 
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                showToastMessage("Update failed. Try again !");
-            }
-        });
 
     }
 
     @Override
     public void notifyRemove(CartItem cartItem) {
 
-        Call<ResponseBody> call = cartItemService.deleteCartItem(cartItem.getCartID(),cartItem.getItemID(),0,0);
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                if(response.code() == 200)
-                {
-                    showToastMessage("Item Deleted");
-
-                    // refresh the list
-                    makeNetworkCall();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                showToastMessage("Remove failed. Try again !");
-
-            }
-        });
+//        Call<ResponseBody> call = cartItemService.deleteCartItem(cartItem.getCartID(),cartItem.getItemID(),0,0);
+//
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//                if(response.code() == 200)
+//                {
+//                    showToastMessage("Item Deleted");
+//
+//                    // refresh the list
+//                    makeNetworkCall();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//                showToastMessage("Remove failed. Try again !");
+//
+//            }
+//        });
     }
+
+
+
+
 
 
     @Override
@@ -474,20 +485,18 @@ public class CartItemListActivity extends AppCompatActivity
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
-
 
 
 
     private void showLoginDialog()
     {
-        FragmentManager fm = getSupportFragmentManager();
-        LoginDialog loginDialog = new LoginDialog();
-        loginDialog.show(fm,"serviceUrl");
+//        FragmentManager fm = getSupportFragmentManager();
+//        LoginDialog loginDialog = new LoginDialog();
+//        loginDialog.show(fm,"serviceUrl");
+
+
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
     }
 
 }

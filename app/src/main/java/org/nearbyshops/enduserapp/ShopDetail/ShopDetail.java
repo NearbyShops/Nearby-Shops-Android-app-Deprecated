@@ -41,8 +41,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
-import org.nearbyshops.enduserapp.Login.LoginDialog;
-import org.nearbyshops.enduserapp.Login.NotifyAboutLogin;
+import org.nearbyshops.enduserapp.LoginNew.Login;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelEndPoints.FavouriteShopEndpoint;
 import org.nearbyshops.enduserapp.ModelEndPoints.ShopReviewEndPoint;
@@ -53,15 +52,15 @@ import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.FavouriteShopService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduserapp.ShopReview.ShopReviews;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -70,7 +69,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Target, RatingBar.OnRatingBarChangeListener ,NotifyReviewUpdate, OnMapReadyCallback {
+public class ShopDetail extends AppCompatActivity implements Target, RatingBar.OnRatingBarChangeListener ,NotifyReviewUpdate, OnMapReadyCallback {
 
     public final static String SHOP_DETAIL_INTENT_KEY = "intent_key_shop_detail";
 
@@ -85,60 +84,60 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
     Shop shop;
 
-    @Bind(R.id.fab)
+    @BindView(R.id.fab)
     FloatingActionButton fab;
 
-    @Bind(R.id.book_title)
+    @BindView(R.id.book_title)
     TextView bookTitle;
 
-    @Bind(R.id.author_name)
+    @BindView(R.id.author_name)
     TextView authorName;
 
-    @Bind(R.id.date_of_publish)
+    @BindView(R.id.date_of_publish)
     TextView publishDate;
 
 
 //    @Bind(R.id.publisher_name)
 //    TextView publisherName;
 
-    @Bind(R.id.book_description)
+    @BindView(R.id.book_description)
     TextView bookDescription;
 
-    @Bind(R.id.book_cover)
+    @BindView(R.id.book_cover)
     ImageView bookCover;
 
-    @Bind(R.id.rating_text)
+    @BindView(R.id.rating_text)
     TextView ratingText;
 
-    @Bind(R.id.ratings_count)
+    @BindView(R.id.ratings_count)
     TextView ratingsCount;
 
-    @Bind(R.id.ratingBar)
+    @BindView(R.id.ratingBar)
     RatingBar ratingsBar;
 
-    @Bind(R.id.user_rating_review)
+    @BindView(R.id.user_rating_review)
     LinearLayout user_review_ratings_block;
 
-    @Bind(R.id.edit_review_text)
+    @BindView(R.id.edit_review_text)
     TextView edit_review_text;
 
-    @Bind(R.id.ratingBar_rate)
+    @BindView(R.id.ratingBar_rate)
     RatingBar ratingBar_rate;
 
-    @Bind(R.id.read_all_reviews_button)
+    @BindView(R.id.read_all_reviews_button)
     TextView read_all_reviews_button;
 
-    @Bind(R.id.member_profile_image)
+    @BindView(R.id.member_profile_image)
     ImageView member_profile_image;
 
-    @Bind(R.id.member_name)
+    @BindView(R.id.member_name)
     TextView member_name;
 
-    @Bind(R.id.member_rating)
+    @BindView(R.id.member_rating)
     RatingBar member_rating_indicator;
 
 
-    @Bind(R.id.collapsing_toolbar)
+    @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
 
 
@@ -270,7 +269,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 //                    + shop.getLogoImagePath();
 
 
-            String imagePath = UtilityGeneral.getServiceURL(this) + "/api/v1/Shop/Image/five_hundred_"
+            String imagePath = PrefGeneral.getServiceURL(this) + "/api/v1/Shop/Image/five_hundred_"
                     + shop.getLogoImagePath() + ".jpg";
 
 //            if (!shop.getBookCoverImageURL().equals("")) {
@@ -314,16 +313,16 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
 
 
-    @Bind(R.id.edit_review_block)
+    @BindView(R.id.edit_review_block)
     RelativeLayout edit_review_block;
 
-    @Bind(R.id.review_title)
+    @BindView(R.id.review_title)
     TextView review_title;
 
-    @Bind(R.id.review_description)
+    @BindView(R.id.review_description)
     TextView review_description;
 
-    @Bind(R.id.review_date)
+    @BindView(R.id.review_date)
     TextView review_date;
 
     ShopReview reviewForUpdate;
@@ -332,7 +331,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     // method to check whether the user has written the review or not if the user is currently logged in.
     void checkUserReview() {
 
-        if (UtilityLogin.getEndUser(this) == null) {
+        if (PrefLogin.getUser(this) == null) {
 
             user_review_ratings_block.setVisibility(View.GONE);
 
@@ -351,7 +350,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
 
                 Call<ShopReviewEndPoint> call = shopReviewService.getReviews(shop.getShopID(),
-                        UtilityLogin.getEndUser(this).getEndUserID(), true, "REVIEW_DATE", null, null, null);
+                        PrefLogin.getUser(this).getUserID(), true, "REVIEW_DATE", null, null, null);
 
 //                Log.d("review_check",String.valueOf(UtilityGeneral.getUserID(this)) + " : " + String.valueOf(shop.getBookID()));
 
@@ -392,7 +391,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
                                 EndUser member = response.body().getResults().get(0).getRt_end_user_profile();
                                 member_name.setText(member.getName());
 
-                                String imagePath = UtilityGeneral.getImageEndpointURL(ShopDetail.this)
+                                String imagePath = PrefGeneral.getImageEndpointURL(ShopDetail.this)
                                         + member.getProfileImageURL();
 
 
@@ -450,17 +449,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
 
-
-        ButterKnife.unbind(this);
-
-        /*if (unbinder != null) {
-            unbinder.unbind();
-        }*/
-    }
 
     @Override
     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -587,7 +576,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
 
 
-    @Bind(R.id.coordinatorLayout)
+    @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
 
 
@@ -602,7 +591,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     void fabClick()
     {
 
-        if(UtilityLogin.getEndUser(this)==null)
+        if(PrefLogin.getUser(this)==null)
         {
             // User Not logged In.
 //            showMessageSnackBar("Please Login to add shop to Favourites !");
@@ -622,18 +611,21 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
     private void showLoginDialog()
     {
-        FragmentManager fm = getSupportFragmentManager();
-        LoginDialog loginDialog = new LoginDialog();
-        loginDialog.show(fm,"serviceUrl");
+//        FragmentManager fm = getSupportFragmentManager();
+//        LoginDialog loginDialog = new LoginDialog();
+//        loginDialog.show(fm,"serviceUrl");
+
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
     }
 
 
 
-    @Override
-    public void NotifyLogin() {
-
-//        fabClick();
-    }
+//    @Override
+//    public void NotifyLogin() {
+//
+////        fabClick();
+//    }
 
 
 
@@ -642,10 +634,10 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
     void toggleFavourite(){
 
-        if(shop !=null && UtilityLogin.getEndUser(this)!=null)
+        if(shop !=null && PrefLogin.getUser(this)!=null)
         {
 
-            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteBooks(shop.getShopID(),UtilityLogin.getEndUser(this).getEndUserID()
+            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteBooks(shop.getShopID(), PrefLogin.getUser(this).getUserID()
                     ,null,null,null,null);
 
 
@@ -683,12 +675,12 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     {
 
 
-        if(shop !=null && UtilityLogin.getEndUser(this)!=null)
+        if(shop !=null && PrefLogin.getUser(this)!=null)
         {
 
             FavouriteShop favouriteBook = new FavouriteShop();
             favouriteBook.setShopID(shop.getShopID());
-            favouriteBook.setEndUserID(UtilityLogin.getEndUser(this).getEndUserID());
+            favouriteBook.setEndUserID(PrefLogin.getUser(this).getUserID());
 
             Call<FavouriteShop> call = favouriteShopService.insertFavouriteBook(favouriteBook);
 
@@ -719,10 +711,10 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     void deleteFavourite()
     {
 
-        if(shop !=null && UtilityLogin.getEndUser(this)!=null)
+        if(shop !=null && PrefLogin.getUser(this)!=null)
         {
             Call<ResponseBody> call = favouriteShopService.deleteFavouriteBook(shop.getShopID(),
-                    UtilityLogin.getEndUser(this).getEndUserID());
+                    PrefLogin.getUser(this).getUserID());
 
 
             call.enqueue(new Callback<ResponseBody>() {
@@ -775,10 +767,10 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
 
         // make a network call to check the favourite
 
-        if(shop !=null && UtilityLogin.getEndUser(this)!=null)
+        if(shop !=null && PrefLogin.getUser(this)!=null)
         {
 
-            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteBooks(shop.getShopID(),UtilityLogin.getEndUser(this).getEndUserID()
+            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteBooks(shop.getShopID(), PrefLogin.getUser(this).getUserID()
                     ,null,null,null,null);
 
 
@@ -824,7 +816,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
                 .setType("image/jpg")
                 .getIntent();
 
-        String url = UtilityGeneral.getServiceURL(this)+ "/api/Images" + String.valueOf(shop.getLogoImagePath());
+        String url = PrefGeneral.getServiceURL(this)+ "/api/Images" + String.valueOf(shop.getLogoImagePath());
 //        intent.putExtra(Intent.EXTRA_TEXT,url);
         intent.putExtra(Intent.EXTRA_TEXT,url);
 //        intent.putExtra(Intent.EXTRA_TITLE,shop.getBookName());
@@ -832,7 +824,7 @@ public class ShopDetail extends AppCompatActivity implements NotifyAboutLogin,Ta
     }
 
 
-    @Bind(R.id.read_full_button)
+    @BindView(R.id.read_full_button)
     TextView readFullDescription;
 
     @OnClick(R.id.read_full_button)

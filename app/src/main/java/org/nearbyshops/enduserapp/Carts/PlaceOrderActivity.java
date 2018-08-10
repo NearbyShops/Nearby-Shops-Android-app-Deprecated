@@ -13,6 +13,7 @@ import android.widget.Toast;
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserapp.Home;
+import org.nearbyshops.enduserapp.HomeNew.HomeNew;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelCartOrder.Order;
 import org.nearbyshops.enduserapp.ModelPickFromShop.OrderPFS;
@@ -22,13 +23,13 @@ import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduserapp.RetrofitRESTContractPFS.OrderServicePFS;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
@@ -58,11 +59,11 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     TextView subTotal;
     TextView deliveryCharges;
     TextView total;
-    @Bind(R.id.free_delivery_info) TextView freeDeliveryInfo;
+    @BindView(R.id.free_delivery_info) TextView freeDeliveryInfo;
 
-    @Bind(R.id.radioPickFromShop) RadioButton pickFromShopCheck;
-    @Bind(R.id.radioHomeDelivery) RadioButton homeDelieryCheck;
-    @Bind(R.id.placeOrder) TextView placeOrder;
+    @BindView(R.id.radioPickFromShop) RadioButton pickFromShopCheck;
+    @BindView(R.id.radioHomeDelivery) RadioButton homeDelieryCheck;
+    @BindView(R.id.placeOrder) TextView placeOrder;
 
 
     // address views
@@ -228,7 +229,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
         }
 
         Call<List<CartStats>> call = cartStatsService.getCart(
-                UtilityLogin.getEndUser(this).getEndUserID(),cartStats.getCartID(), null,true,null,null);
+                PrefLogin.getUser(this).getUserID(),cartStats.getCartID(), null,true,null,null);
 
 
         call.enqueue(new Callback<List<CartStats>>() {
@@ -381,7 +382,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                         showToastMessage("Successful !");
 
 
-                        Intent i = new Intent(PlaceOrderActivity.this,Home.class);
+                        Intent i = new Intent(PlaceOrderActivity.this,HomeNew.class);
 
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
@@ -422,7 +423,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                         showToastMessage("Successful !");
 
 
-                        Intent i = new Intent(PlaceOrderActivity.this,Home.class);
+                        Intent i = new Intent(PlaceOrderActivity.this,HomeNew.class);
 
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
@@ -453,16 +454,20 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
 
 
+
+
     void showToastMessage(String message)
     {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
 
-        ButterKnife.unbind(this);
-    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//
+////        ButterKnife.unBindView(this);
+//    }
 }

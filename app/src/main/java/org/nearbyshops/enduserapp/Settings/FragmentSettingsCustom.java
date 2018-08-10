@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 
 import org.nearbyshops.enduserapp.R;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
@@ -25,9 +25,9 @@ import butterknife.OnTextChanged;
 public class FragmentSettingsCustom extends Fragment {
 
 
-    @Bind(R.id.service_url)
+    @BindView(R.id.service_url)
     TextInputEditText service_url;
-    @Bind(R.id.reset_button) TextView resetButton;
+    @BindView(R.id.reset_button) TextView resetButton;
 
     @Nullable
     @Override
@@ -49,7 +49,7 @@ public class FragmentSettingsCustom extends Fragment {
 
     void bindDataToViews()
     {
-        service_url.setText(UtilityGeneral.getServiceURL_SDS(getActivity()));
+        service_url.setText(PrefGeneral.getServiceURL_SDS(getActivity()));
     }
 
 
@@ -57,7 +57,7 @@ public class FragmentSettingsCustom extends Fragment {
     @OnTextChanged(R.id.service_url)
     void textChangeServiceURL()
     {
-        UtilityGeneral.saveServiceURL_SDS(service_url.getText().toString(),getActivity());
+        PrefGeneral.saveServiceURL_SDS(service_url.getText().toString(),getActivity());
     }
 
 
@@ -66,7 +66,7 @@ public class FragmentSettingsCustom extends Fragment {
     @OnClick(R.id.reset_button)
     void resetButtonClick()
     {
-        UtilityGeneral.saveServiceURL_SDS("http://sds.nearbyshops.org",getActivity());
+        PrefGeneral.saveServiceURL_SDS("http://sds.nearbyshops.org",getActivity());
         bindDataToViews();
     }
 

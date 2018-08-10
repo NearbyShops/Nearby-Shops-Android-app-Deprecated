@@ -16,7 +16,7 @@ import org.nearbyshops.enduserapp.R;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -159,7 +159,7 @@ class AdapterItemSpecValue extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     public class LoadingViewHolder extends  RecyclerView.ViewHolder{
 
-        @Bind(R.id.progress_bar)
+        @BindView(R.id.progress_bar)
         ProgressBar progressBar;
 
         public LoadingViewHolder(View itemView) {
@@ -184,9 +184,9 @@ class AdapterItemSpecValue extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 //        @Bind(R.id.description) TextView description;
 //        @Bind(R.id.item_count) TextView itemCount;
 
-        @Bind(R.id.results) TextView results;
-        @Bind(R.id.checkbox_values) CheckBox checkBoxValues;
-        @Bind(R.id.title_values) TextView title;
+        @BindView(R.id.results) TextView results;
+        @BindView(R.id.checkbox_values) CheckBox checkBoxValues;
+        @BindView(R.id.title_values) TextView title;
 
 
 

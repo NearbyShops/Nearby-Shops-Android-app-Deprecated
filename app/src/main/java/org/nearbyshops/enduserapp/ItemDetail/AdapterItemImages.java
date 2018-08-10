@@ -6,12 +6,9 @@ import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,11 +18,11 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserapp.Model.ItemImage;
 import org.nearbyshops.enduserapp.R;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -85,7 +82,7 @@ public class AdapterItemImages extends RecyclerView.Adapter<RecyclerView.ViewHol
 //            holder.copyrights.setText(dataset.get(position).getImageCopyrights());
 
 
-            String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/five_hundred_"
+            String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/five_hundred_"
                     + dataset.get(position).getImageFilename() + ".jpg";
 
             Drawable placeholder = VectorDrawableCompat
@@ -124,9 +121,9 @@ public class AdapterItemImages extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
 
-        @Bind(R.id.list_item) RelativeLayout listItem;
-        @Bind(R.id.item_image) ImageView itemImage;
-        @Bind(R.id.indicator) TextView indicator;
+        @BindView(R.id.list_item) RelativeLayout listItem;
+        @BindView(R.id.item_image) ImageView itemImage;
+        @BindView(R.id.indicator) TextView indicator;
 //        @Bind(R.id.copyright_info) TextView copyrights;
 
 

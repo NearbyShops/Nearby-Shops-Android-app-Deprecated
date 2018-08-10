@@ -17,11 +17,11 @@ import org.nearbyshops.enduserapp.DeliveryAddress.PickLocationActivity;
 import org.nearbyshops.enduserapp.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.DeliveryAddressService;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
@@ -39,16 +39,16 @@ public class EditAddressFragment extends Fragment{
 
     @Inject DeliveryAddressService deliveryAddressService;
 
-    @Bind(R.id.updateAddress) TextView updateDeliveryAddress;
+    @BindView(R.id.updateAddress) TextView updateDeliveryAddress;
     // address Fields
-    @Bind(R.id.receiversName) EditText receiversName;
-    @Bind(R.id.receiversPhoneNumber) EditText receiversPhoneNumber;
-    @Bind(R.id.deliveryAddress) EditText deliveryAddressView;
-    @Bind(R.id.addressCity) EditText city;
-    @Bind(R.id.pincode) EditText pincode;
-    @Bind(R.id.landmark) EditText landMark;
-    @Bind(R.id.latitude) EditText latitude;
-    @Bind(R.id.longitude) EditText longitude;
+    @BindView(R.id.receiversName) EditText receiversName;
+    @BindView(R.id.receiversPhoneNumber) EditText receiversPhoneNumber;
+    @BindView(R.id.deliveryAddress) EditText deliveryAddressView;
+    @BindView(R.id.addressCity) EditText city;
+    @BindView(R.id.pincode) EditText pincode;
+    @BindView(R.id.landmark) EditText landMark;
+    @BindView(R.id.latitude) EditText latitude;
+    @BindView(R.id.longitude) EditText longitude;
 
 
 
@@ -222,7 +222,7 @@ public class EditAddressFragment extends Fragment{
 
     void addDeliveryAddress()
     {
-        if(UtilityLogin.getEndUser(getActivity())==null)
+        if(PrefLogin.getUser(getActivity())==null)
         {
             showToastMessage("Please login to use this feature !");
             return;
@@ -235,7 +235,7 @@ public class EditAddressFragment extends Fragment{
         }
 
         getDataFromViews();
-        deliveryAddress.setEndUserID(UtilityLogin.getEndUser(getActivity()).getEndUserID());
+        deliveryAddress.setEndUserID(PrefLogin.getUser(getActivity()).getUserID());
 
         Call<DeliveryAddress> call = deliveryAddressService.postAddress(deliveryAddress);
         call.enqueue(new Callback<DeliveryAddress>() {
@@ -305,7 +305,7 @@ public class EditAddressFragment extends Fragment{
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
 

@@ -28,12 +28,39 @@
             android:name=".Home"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+
+        <activity android:name=".HomeNew.HomeNew">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+
+
+        <activity
+            android:name=".SignUp.SignUp"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".LoginNew.Login"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+
+
+        <activity
+            android:name=".SignUp.ForgotPassword.ForgotPassword"
+            android:label="Forgot Password"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+
+
+
+
         <activity android:name=".GeolocationTest" />
 
         <!-- <activity -->
@@ -69,7 +96,7 @@
                 android:value="org.nearbyshops.enduserapp.ItemCategoryOption.ShopItemSwipeView" />
         </activity>
         <activity
-            android:name=".Carts.CartsList.CartsListActivity"
+            android:name=".Carts.CartsList.CartsListFragment"
             android:label="@string/title_activity_carts_list"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
@@ -80,11 +107,11 @@
         <activity
             android:name=".Carts.CartItem.CartItemListActivity"
             android:label="@string/title_activity_cart_item_list"
-            android:parentActivityName=".Carts.CartsList.CartsListActivity"
+            android:parentActivityName=".Carts.CartsList.CartsListFragment"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Carts.CartsList.CartsListActivity" />
+                android:value="org.nearbyshops.enduserapp.Carts.CartsList.CartsListFragment" />
         </activity>
         <activity
             android:name=".Carts.PlaceOrderActivity"
@@ -394,23 +421,6 @@
         <!-- </activity> -->
 
         <activity
-            android:name=".Services.ServicesActivity"
-            android:label="Discover Services"
-            android:launchMode="singleTop"
-            android:parentActivityName=".Home"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".OrdersHomePickFromShop.OrdersHomePickFromShop"
             android:label="Orders : Pick From Shop"
             android:parentActivityName=".Home"
@@ -486,20 +496,6 @@
         </activity>
 
         <!-- Intent Service For Notifications to the User -->
-
-        <service
-            android:name=".Notifications.SSEIntentServiceUser"
-            android:exported="false" />
-
-        <service
-            android:name=".Notifications.SSENotificationService"
-            android:enabled="true"
-            android:exported="true" />
-
-        <service
-            android:name=".Notifications.NonStopService.IntentServiceSSE"
-            android:enabled="true"
-            android:exported="true" />
 
         <service
             android:name=".Notifications.NonStopService.LocationUpdateService"

@@ -1,19 +1,28 @@
 package org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wunderlist.slidinglayer.SlidingLayer;
+
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
+import org.nearbyshops.enduserapp.FilterItemsBySpecifications.FilterItemsActivity;
+import org.nearbyshops.enduserapp.Items.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.Interfaces.NotifyHeaderChanged;
 import org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
@@ -26,19 +35,21 @@ import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduserapp.Shops.UtilityLocation;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
 import org.nearbyshops.enduserapp.Items.SlidingLayerSort.UtilitySortItemsByCategory;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import icepick.State;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.ItemCategoriesSimple.TAG_SLIDING;
 
 /**
  * Created by sumeet on 2/12/16.
@@ -55,8 +66,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     int item_count_item;
     int fetched_items_count = 0;
 
-    @Bind(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
-    @Bind(R.id.recycler_view) RecyclerView itemCategoriesList;
+    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.recycler_view) RecyclerView itemCategoriesList;
 
     ArrayList<Object> dataset = new ArrayList<>();
     ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
@@ -68,6 +79,12 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
     @Inject ItemCategoryService itemCategoryService;
     @Inject ItemService itemService;
+
+
+
+    @BindView(R.id.shop_count_indicator) TextView itemHeader;
+    @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
+
 
     ItemCategory currentCategory = null;
 
@@ -90,8 +107,19 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
         setRetainInstance(true);
         View rootView = inflater.inflate(R.layout.fragment_item_categories_simple, container, false);
-
         ButterKnife.bind(this,rootView);
+
+
+//        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
+
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+        toolbar.setTitle("Nearby Shops");
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+//
+
 
 
         if(savedInstanceState ==null)
@@ -103,7 +131,71 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
         setupRecyclerView();
         setupSwipeContainer();
         notifyItemHeaderChanged();
+
+
+
+
+
+        setupSlidingLayer();
+
+
         return rootView;
+    }
+
+
+    void setupSlidingLayer()
+    {
+
+        ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
+        //slidingLayer.setShadowSizeRes(R.dimen.shadow_size);
+
+        if(slidingLayer!=null)
+        {
+            slidingLayer.setChangeStateOnTap(true);
+            slidingLayer.setSlidingEnabled(true);
+//            slidingLayer.setPreviewOffsetDistance(15);
+            slidingLayer.setOffsetDistance(30);
+            slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
+
+            DisplayMetrics metrics = new DisplayMetrics();
+            getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+            //RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(250, ViewGroup.LayoutParams.MATCH_PARENT);
+
+            //slidingContents.setLayoutParams(layoutParams);
+
+            //slidingContents.setMinimumWidth(metrics.widthPixels-50);
+
+
+
+            if(getChildFragmentManager().findFragmentByTag(TAG_SLIDING)==null)
+            {
+                System.out.println("Item Cat Simple : New Sliding Layer Loaded !");
+                getChildFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.slidinglayerfragment,new SlidingLayerSortItems(),TAG_SLIDING)
+                        .commit();
+            }
+        }
+
+    }
+
+
+
+
+
+    @OnClick({R.id.icon_sort,R.id.text_sort})
+    void sortClick()
+    {
+        slidingLayer.openLayer(true);
+    }
+
+
+    @OnClick({R.id.icon_filter,R.id.text_filter})
+    void filterClick()
+    {
+        Intent intent = new Intent(getActivity(), FilterItemsActivity.class);
+        startActivity(intent);
     }
 
 
@@ -578,6 +670,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
+    boolean backPressed = false;
+
     @Override
     public boolean backPressed() {
 
@@ -604,8 +698,17 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
             }
         }
 
+
+
         return currentCategoryID == -1;
     }
+
+
+
+
+
+
+
 
 
     void notifyItemHeaderChanged()
@@ -614,7 +717,22 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
         {
             ((NotifyHeaderChanged) getActivity()).notifyItemHeaderChanged(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items");
         }
+
+
+
+        if(currentCategory.getItemCategoryID()==1)
+        {
+            itemHeader.setText(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " Items");
+        }
+        else
+        {
+            itemHeader.setText(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName());
+        }
+//        + " Items"
+
     }
+
+
 
 
     @Override

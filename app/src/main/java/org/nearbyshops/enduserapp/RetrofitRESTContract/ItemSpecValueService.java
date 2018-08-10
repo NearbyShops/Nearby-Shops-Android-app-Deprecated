@@ -7,11 +7,6 @@ import org.nearbyshops.enduserapp.ModelItemSpecs.ItemSpecificationValue;
 
 import java.util.List;
 
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;

@@ -21,17 +21,19 @@ import org.nearbyshops.enduserapp.Model.ItemCategory;
 import org.nearbyshops.enduserapp.ModelStats.ItemStats;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopItemByItem.ShopsForItemSwipe;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * Created by sumeet on 19/12/15.
  */
+
+
 
 
 public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -150,7 +152,7 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     class ViewHolderHeader extends RecyclerView.ViewHolder{
 
 
-        @Bind(R.id.header) TextView header;
+        @BindView(R.id.header) TextView header;
 
         public ViewHolderHeader(View itemView) {
             super(itemView);
@@ -171,7 +173,7 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             holder.categoryName.setText(String.valueOf(itemCategory.getCategoryName()));
 
 
-            String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/ItemCategory/Image/five_hundred_"
+            String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/ItemCategory/Image/five_hundred_"
                     + itemCategory.getImagePath() + ".jpg";
 
             Drawable placeholder = VectorDrawableCompat
@@ -190,10 +192,10 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     class ViewHolderItemCategory extends RecyclerView.ViewHolder{
 
 
-        @Bind(R.id.name) TextView categoryName;
-        @Bind(R.id.itemCategoryListItem) ConstraintLayout itemCategoryListItem;
-        @Bind(R.id.categoryImage) ImageView categoryImage;
-        @Bind(R.id.cardview) CardView cardView;
+        @BindView(R.id.name) TextView categoryName;
+        @BindView(R.id.itemCategoryListItem) ConstraintLayout itemCategoryListItem;
+        @BindView(R.id.categoryImage) ImageView categoryImage;
+        @BindView(R.id.cardview) CardView cardView;
 
         public ViewHolderItemCategory(View itemView) {
             super(itemView);
@@ -226,7 +228,7 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if(itemStats!=null)
         {
             String currency = "";
-            currency = UtilityGeneral.getCurrencySymbol(context);
+            currency = PrefGeneral.getCurrencySymbol(context);
 
             holder.priceRange.setText("Price Range :\n" + currency + ". " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
             holder.priceAverage.setText("Price Average :\n" + currency + ". " + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
@@ -234,11 +236,13 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 //            System.out.println("Rating : " + itemStats.getRating_avg() + " : Ratings Count " + itemStats.getRatingCount());
         }
 
+
+
         holder.itemRating.setText(String.format("%.2f",item.getRt_rating_avg()));
         holder.ratingCount.setText("( " + String.valueOf((int)item.getRt_rating_count()) + " Ratings )");
 
 
-        String imagePath = UtilityGeneral.getServiceURL(context)
+        String imagePath = PrefGeneral.getServiceURL(context)
                 + "/api/v1/Item/Image/five_hundred_" + item.getItemImageURL() + ".jpg";
 
 
@@ -254,19 +258,22 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 
 
+
+
+
     class ViewHolderItemSimple extends RecyclerView.ViewHolder {
 
 
-        @Bind(R.id.itemName) TextView categoryName;
+        @BindView(R.id.itemName) TextView categoryName;
 //        TextView categoryDescription;
 
-        @Bind(R.id.items_list_item) CardView itemCategoryListItem;
-        @Bind(R.id.itemImage) ImageView categoryImage;
-        @Bind(R.id.price_range) TextView priceRange;
-        @Bind(R.id.price_average) TextView priceAverage;
-        @Bind(R.id.shop_count) TextView shopCount;
-        @Bind(R.id.item_rating) TextView itemRating;
-        @Bind(R.id.rating_count) TextView ratingCount;
+        @BindView(R.id.items_list_item) CardView itemCategoryListItem;
+        @BindView(R.id.itemImage) ImageView categoryImage;
+        @BindView(R.id.price_range) TextView priceRange;
+        @BindView(R.id.price_average) TextView priceAverage;
+        @BindView(R.id.shop_count) TextView shopCount;
+        @BindView(R.id.item_rating) TextView itemRating;
+        @BindView(R.id.rating_count) TextView ratingCount;
 
 
 

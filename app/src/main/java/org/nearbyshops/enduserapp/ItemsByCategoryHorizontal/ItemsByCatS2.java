@@ -26,7 +26,7 @@ import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyGeneral;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -34,12 +34,12 @@ public class ItemsByCatS2 extends AppCompatActivity implements NotifyCategoryCha
 
 
 
-    @Bind(R.id.tablayout)
+    @BindView(R.id.tablayout)
     TabLayout tabLayout;
 
     LinearLayoutManager linearLayoutManager;
 
-    @Bind(R.id.slidingLayer)
+    @BindView(R.id.slidingLayer)
     SlidingLayer slidingLayer;
 
 
@@ -163,11 +163,6 @@ public class ItemsByCatS2 extends AppCompatActivity implements NotifyCategoryCha
 
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
 
 
 
@@ -179,10 +174,10 @@ public class ItemsByCatS2 extends AppCompatActivity implements NotifyCategoryCha
 
 
 
-    @Bind(R.id.item_categories_container)
+    @BindView(R.id.item_categories_container)
     FrameLayout itemCategoriesContainer;
 
-    @Bind(R.id.icon_sub)
+    @BindView(R.id.icon_sub)
     ImageView expandIcon;
 
     @OnClick({R.id.icon_sub,R.id.text_sub})
@@ -268,10 +263,10 @@ public class ItemsByCatS2 extends AppCompatActivity implements NotifyCategoryCha
 
 
 
-    @Bind(R.id.text_sub)
+    @BindView(R.id.text_sub)
     TextView textSub;
 
-    @Bind(R.id.shop_count_indicator)
+    @BindView(R.id.shop_count_indicator)
     TextView shopCountIndicator;
 
 

@@ -165,15 +165,15 @@
 
 
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/borderThree"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_below="@id/currentStatus"
-        android:background="#88000000"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+    <!--<LinearLayout-->
+        <!--android:orientation="horizontal"-->
+        <!--android:id="@+id/borderThree"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_below="@id/currentStatus"-->
+        <!--android:background="#88000000"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"/>-->
 
 
 </RelativeLayout>

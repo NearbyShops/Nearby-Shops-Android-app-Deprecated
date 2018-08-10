@@ -22,18 +22,18 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.ItemDetail.NotifyReviewUpdate;
 import org.nearbyshops.enduserapp.ModelReviewItem.ItemReview;
-import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.EndUserService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ItemReviewService;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
 import java.text.SimpleDateFormat;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
@@ -48,28 +48,28 @@ import retrofit2.Response;
 public class FilterShopsDialog extends DialogFragment {
 
 
-    @Bind(R.id.dialog_dismiss_icon)
+    @BindView(R.id.dialog_dismiss_icon)
     ImageView dismiss_dialog_button;
 
-    @Bind(R.id.submit_button)
+    @BindView(R.id.submit_button)
     TextView submit_button;
 
-    @Bind(R.id.cancel_button)
+    @BindView(R.id.cancel_button)
     TextView cancel_button;
 
-    @Bind(R.id.review_text)
+    @BindView(R.id.review_text)
     EditText review_text;
 
-    @Bind(R.id.rating_bar)
+    @BindView(R.id.rating_bar)
     RatingBar ratingBar;
 
-    @Bind(R.id.review_title)
+    @BindView(R.id.review_title)
     TextView review_title;
 
-    @Bind(R.id.member_name)
+    @BindView(R.id.member_name)
     TextView member_name;
 
-    @Bind(R.id.member_profile_image)
+    @BindView(R.id.member_profile_image)
     ImageView member_profile_image;
 
     int book_id;
@@ -122,7 +122,7 @@ public class FilterShopsDialog extends DialogFragment {
 
             ratingBar.setRating(review_for_edit.getRating());
 
-            String imagePath = UtilityGeneral.getImageEndpointURL(getActivity())
+            String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
                     + review_for_edit.getRt_end_user_profile().getProfileImageURL();
 
 
@@ -214,7 +214,7 @@ public class FilterShopsDialog extends DialogFragment {
     void setMember()
     {
 
-        EndUser endUser = UtilityLogin.getEndUser(getActivity());
+        User endUser = PrefLogin.getUser(getActivity());
 
 
         if(endUser!=null)
@@ -222,8 +222,8 @@ public class FilterShopsDialog extends DialogFragment {
             member_name.setText(" by " + endUser.getName());
 
 
-            String imagePath = UtilityGeneral.getImageEndpointURL(getActivity())
-                    + endUser.getProfileImageURL();
+            String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
+                    + endUser.getProfileImagePath();
 
 
             Drawable placeholder = VectorDrawableCompat
@@ -306,7 +306,7 @@ public class FilterShopsDialog extends DialogFragment {
         itemReview.setReviewTitle(review_title.getText().toString());
         itemReview.setReviewText(review_text.getText().toString());
         itemReview.setItemID(book_id);
-        itemReview.setEndUserID(UtilityLogin.getEndUser(getActivity()).getEndUserID());
+        itemReview.setEndUserID(PrefLogin.getUser(getActivity()).getUserID());
 
         Call<ItemReview> call = itemReviewService.insertItemReview(itemReview);
 

@@ -20,13 +20,13 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserapp.Model.ItemCategory;
 import org.nearbyshops.enduserapp.R;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -99,7 +99,7 @@ public class AdapterHorizontal extends RecyclerView.Adapter<AdapterHorizontal.Vi
 //        String imagePath = UtilityGeneral.getImageEndpointURL(context)
 //                + dataset.get(position).getImagePath();
 
-        String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/ItemCategory/Image/five_hundred_"
+        String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/ItemCategory/Image/five_hundred_"
                 + dataset.get(position).getImagePath() + ".jpg";
 
         Drawable placeholder = VectorDrawableCompat
@@ -133,12 +133,12 @@ public class AdapterHorizontal extends RecyclerView.Adapter<AdapterHorizontal.Vi
 
         TextView categoryName;
 
-        @Bind(R.id.itemCategoryListItem)
+        @BindView(R.id.itemCategoryListItem)
         RelativeLayout itemCategoryListItem;
 
-        @Bind(R.id.categoryImage) ImageView categoryImage;
+        @BindView(R.id.categoryImage) ImageView categoryImage;
 
-        @Bind(R.id.cardview)
+        @BindView(R.id.cardview)
         CardView cardView;
 
 

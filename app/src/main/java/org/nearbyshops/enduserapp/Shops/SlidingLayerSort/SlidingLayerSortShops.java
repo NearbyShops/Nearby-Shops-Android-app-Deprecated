@@ -12,7 +12,7 @@ import android.widget.TextView;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -22,27 +22,27 @@ import butterknife.OnClick;
 
 public class SlidingLayerSortShops extends Fragment {
 
-    @Bind(R.id.sort_distance)
+    @BindView(R.id.sort_distance)
     TextView sort_by_distance;
 
-    @Bind(R.id.sort_rating)
+    @BindView(R.id.sort_rating)
     TextView sort_by_rating;
 
-    @Bind(R.id.popularity)
+    @BindView(R.id.popularity)
     TextView sort_by_popularity;
 
-//    @Bind(R.id.available)
+//    @BindView(R.id.available)
 //    TextView sort_by_items_available;
 
-//    @Bind(R.id.item_price)
+//    @BindView(R.id.item_price)
 //    TextView sort_by_item_price;
 
 
 
-    @Bind(R.id.sort_ascending)
+    @BindView(R.id.sort_ascending)
     TextView sort_ascending;
 
-    @Bind(R.id.sort_descending)
+    @BindView(R.id.sort_descending)
     TextView sort_descending;
 
     String currentSort = SORT_BY_DISTANCE;
@@ -73,11 +73,6 @@ public class SlidingLayerSortShops extends Fragment {
 
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 
 
     void loadDefaultSort() {

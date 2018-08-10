@@ -26,26 +26,26 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
-import org.nearbyshops.enduserapp.Login.LoginDialog;
+import org.nearbyshops.enduserapp.LoginNew.Login;
 import org.nearbyshops.enduserapp.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.Model.ShopItem;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.ModelStats.ItemStats;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.CartItemService;
-import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserapp.Utility.InputFilterMinMax;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
@@ -169,7 +169,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 //                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
 //                        + shop.getLogoImagePath();
 
-                String imagePath = UtilityGeneral.getServiceURL(context)
+                String imagePath = PrefGeneral.getServiceURL(context)
                         + "/api/v1/Shop/Image/"
                         + "five_hundred_" + shop.getLogoImagePath() + ".jpg";
 
@@ -267,7 +267,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public class LoadingViewHolder extends  RecyclerView.ViewHolder{
 
-        @Bind(R.id.progress_bar)
+        @BindView(R.id.progress_bar)
         ProgressBar progressBar;
 
         public LoadingViewHolder(View itemView) {
@@ -355,7 +355,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(itemStats!=null)
         {
             String currency = "";
-            currency = UtilityGeneral.getCurrencySymbol(context);
+            currency = PrefGeneral.getCurrencySymbol(context);
 
             holder.priceRange.setText("Price Range :\n" + currency + ". " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
             holder.priceAverage.setText("Price Average :\n" + currency + ". " + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
@@ -367,7 +367,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
         holder.ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " Ratings )");
 
 
-        String imagePath = UtilityGeneral.getServiceURL(context)
+        String imagePath = PrefGeneral.getServiceURL(context)
                 + "/api/v1/Item/Image/five_hundred_" + item.getItemImageURL() + ".jpg";
 
 
@@ -385,17 +385,17 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
     class ViewHolderItemSimple extends RecyclerView.ViewHolder {
 
 
-        @Bind(R.id.itemName) TextView categoryName;
+        @BindView(R.id.itemName) TextView categoryName;
 //        TextView categoryDescription;
 
-        @Bind(R.id.items_list_item)
+        @BindView(R.id.items_list_item)
         CardView itemCategoryListItem;
-        @Bind(R.id.itemImage) ImageView categoryImage;
-        @Bind(R.id.price_range) TextView priceRange;
-        @Bind(R.id.price_average) TextView priceAverage;
-        @Bind(R.id.shop_count) TextView shopCount;
-        @Bind(R.id.item_rating) TextView itemRating;
-        @Bind(R.id.rating_count) TextView ratingCount;
+        @BindView(R.id.itemImage) ImageView categoryImage;
+        @BindView(R.id.price_range) TextView priceRange;
+        @BindView(R.id.price_average) TextView priceAverage;
+        @BindView(R.id.shop_count) TextView shopCount;
+        @BindView(R.id.item_rating) TextView itemRating;
+        @BindView(R.id.rating_count) TextView ratingCount;
 
 
 
@@ -453,7 +453,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-            imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+            imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
                     + ((Item)dataset.get(position)).getItemImageURL();
 
         }
@@ -496,53 +496,53 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
     class ViewHolder extends RecyclerView.ViewHolder implements Callback<ResponseBody>, TextWatcher {
 
 
-        @Bind(R.id.rating)
+        @BindView(R.id.rating)
         TextView rating;
 
-        @Bind(R.id.ratings_count)
+        @BindView(R.id.ratings_count)
         TextView ratingCount;
 
 
-        @Bind(R.id.distance)
+        @BindView(R.id.distance)
         TextView distance;
 
-        @Bind(R.id.deliveryCharge)
+        @BindView(R.id.deliveryCharge)
         TextView deliveryCharge;
 
-        @Bind(R.id.shopName)
+        @BindView(R.id.shopName)
         TextView shopName;
 
-        @Bind(R.id.itemsAvailable)
+        @BindView(R.id.itemsAvailable)
         TextView itemsAvailable;
 
-        @Bind(R.id.itemPrice)
+        @BindView(R.id.itemPrice)
         TextView itemPrice;
 
-        @Bind(R.id.itemTotal)
+        @BindView(R.id.itemTotal)
         TextView itemTotal;
 
-        @Bind(R.id.reduceQuantity)
+        @BindView(R.id.reduceQuantity)
         ImageView reduceQuantity;
 
-        @Bind(R.id.increaseQuantity)
+        @BindView(R.id.increaseQuantity)
         ImageView increaseQuantity;
 
-        @Bind(R.id.itemQuantity)
+        @BindView(R.id.itemQuantity)
         EditText itemQuantity;
 
-        @Bind(R.id.itemsInCart)
+        @BindView(R.id.itemsInCart)
         TextView itemsInCart;
 
-        @Bind(R.id.cartTotal)
+        @BindView(R.id.cartTotal)
         TextView cartTotal;
 
-        @Bind(R.id.addToCart)
+        @BindView(R.id.addToCart)
         LinearLayout addToCart;
 
-        @Bind(R.id.shopImage)
+        @BindView(R.id.shopImage)
         ImageView shopImage;
 
-        @Bind(R.id.shopItem_list_item)
+        @BindView(R.id.shopItem_list_item)
         LinearLayout shopItemListItem;
 
 
@@ -556,6 +556,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             itemQuantity.addTextChangedListener(this);
         }
+
 
 
         void setFilter() {
@@ -572,6 +573,10 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
 
         }
+
+
+
+
 
 
 
@@ -679,7 +684,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-            if(UtilityLogin.getEndUser(activity)==null)
+            if(PrefLogin.getUser(activity)==null)
             {
 
                 Toast.makeText(context, "Please Login to continue ...", Toast.LENGTH_SHORT).show();
@@ -688,7 +693,9 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
 
 
-            EndUser endUser = UtilityLogin.getEndUser(context);
+
+
+            User endUser = PrefLogin.getUser(context);
 
             CartItem cartItem = new CartItem();
 
@@ -697,9 +704,10 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             Call<ResponseBody> call = cartItemService.createCartItem(
                     cartItem,
-                    endUser.getEndUserID(),
+                    endUser.getUserID(),
                     ((ShopItem)dataset.get(getLayoutPosition())).getShopID()
             );
+
 
             //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
 
@@ -814,9 +822,12 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private void showLoginDialog()
     {
-        FragmentManager fm = activity.getSupportFragmentManager();
-        LoginDialog loginDialog = new LoginDialog();
-        loginDialog.show(fm,"serviceUrl");
+//        FragmentManager fm = activity.getSupportFragmentManager();
+//        LoginDialog loginDialog = new LoginDialog();
+//        loginDialog.show(fm,"serviceUrl");
+
+        Intent intent = new Intent(context,Login.class);
+        context.startActivity(intent);
     }
 
 

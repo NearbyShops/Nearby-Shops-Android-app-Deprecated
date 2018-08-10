@@ -24,12 +24,12 @@ import org.nearbyshops.enduserapp.Model.ItemCategory;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopHome.ShopHome;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -198,7 +198,7 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public class LoadingViewHolder extends  RecyclerView.ViewHolder{
 
-        @Bind(R.id.progress_bar)
+        @BindView(R.id.progress_bar)
         ProgressBar progressBar;
 
         public LoadingViewHolder(View itemView) {
@@ -223,7 +223,7 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
             }
 
 
-            String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
+            String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
                     + shop.getLogoImagePath() + ".jpg";
 
             Drawable placeholder = VectorDrawableCompat
@@ -237,7 +237,7 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
             String currency = "";
-            currency = UtilityGeneral.getCurrencySymbol(context);
+            currency = PrefGeneral.getCurrencySymbol(context);
 
             holder.delivery.setText("Delivery : " + currency + ". " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
             holder.distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
@@ -268,31 +268,31 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public class ViewHolderShop extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @Bind(R.id.shop_name)
+        @BindView(R.id.shop_name)
         TextView shopName;
 
-        @Bind(R.id.shop_address)
+        @BindView(R.id.shop_address)
         TextView shopAddress;
 
-        @Bind(R.id.shop_logo)
+        @BindView(R.id.shop_logo)
         ImageView shopLogo;
 
-        @Bind(R.id.delivery)
+        @BindView(R.id.delivery)
         TextView delivery;
 
-        @Bind(R.id.distance)
+        @BindView(R.id.distance)
         TextView distance;
 
-        @Bind(R.id.rating)
+        @BindView(R.id.rating)
         TextView rating;
 
-        @Bind(R.id.rating_count)
+        @BindView(R.id.rating_count)
         TextView rating_count;
 
-        @Bind(R.id.description)
+        @BindView(R.id.description)
         TextView description;
 
-        @Bind(R.id.shop_info_card)
+        @BindView(R.id.shop_info_card)
         CardView list_item;
 
         public ViewHolderShop(View itemView) {
@@ -371,7 +371,7 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
     public class ViewHolderHeader extends RecyclerView.ViewHolder{
 
 
-        @Bind(R.id.header)
+        @BindView(R.id.header)
         TextView header;
 
         ViewHolderHeader(View itemView) {
@@ -393,7 +393,7 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
             holder.categoryName.setText(String.valueOf(itemCategory.getCategoryName()));
 
 
-            String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/ItemCategory/Image/five_hundred_"
+            String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/ItemCategory/Image/five_hundred_"
                     + itemCategory.getImagePath() + ".jpg";
 
             Drawable placeholder = VectorDrawableCompat
@@ -412,10 +412,10 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
     public class ViewHolderItemCategory extends RecyclerView.ViewHolder{
 
 
-        @Bind(R.id.name) TextView categoryName;
-        @Bind(R.id.itemCategoryListItem) ConstraintLayout itemCategoryListItem;
-        @Bind(R.id.categoryImage) ImageView categoryImage;
-        @Bind(R.id.cardview) CardView cardView;
+        @BindView(R.id.name) TextView categoryName;
+        @BindView(R.id.itemCategoryListItem) ConstraintLayout itemCategoryListItem;
+        @BindView(R.id.categoryImage) ImageView categoryImage;
+        @BindView(R.id.cardview) CardView cardView;
 
         ViewHolderItemCategory(View itemView) {
             super(itemView);

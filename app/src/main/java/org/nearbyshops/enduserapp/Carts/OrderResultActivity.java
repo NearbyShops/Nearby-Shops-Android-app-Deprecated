@@ -9,7 +9,10 @@ import android.view.View;
 
 import org.nearbyshops.enduserapp.R;
 
+
+
 public class OrderResultActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +20,7 @@ public class OrderResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_result);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

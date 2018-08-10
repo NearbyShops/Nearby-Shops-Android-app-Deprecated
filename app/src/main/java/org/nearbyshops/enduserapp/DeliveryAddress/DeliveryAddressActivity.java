@@ -3,7 +3,6 @@ package org.nearbyshops.enduserapp.DeliveryAddress;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,12 +17,13 @@ import android.widget.Toast;
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.DeliveryAddress.EditAddress.EditAddressFragment;
 import org.nearbyshops.enduserapp.DeliveryAddress.EditAddress.EditDeliveryAddress;
-import org.nearbyshops.enduserapp.Login.LoginDialog;
+import org.nearbyshops.enduserapp.LoginNew.Login;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.DeliveryAddressService;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -167,7 +167,7 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
     void makeNetworkCall()
     {
-        EndUser endUser = UtilityLogin.getEndUser(this);
+        User endUser = PrefLogin.getUser(this);
 
         if(endUser == null)
         {
@@ -177,7 +177,7 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
         }
 
         Call<List<DeliveryAddress>> call = deliveryAddressService.getAddresses(
-                endUser.getEndUserID());
+                endUser.getUserID());
 
         call.enqueue(new Callback<List<DeliveryAddress>>() {
             @Override
@@ -218,9 +218,12 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
     private void showLoginDialog()
     {
-        FragmentManager fm = getSupportFragmentManager();
-        LoginDialog loginDialog = new LoginDialog();
-        loginDialog.show(fm,"serviceUrl");
+//        FragmentManager fm = getSupportFragmentManager();
+//        LoginDialog loginDialog = new LoginDialog();
+//        loginDialog.show(fm,"serviceUrl");
+
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
     }
 
 
@@ -231,7 +234,7 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
     protected void onDestroy() {
         super.onDestroy();
 
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
 
     }
 

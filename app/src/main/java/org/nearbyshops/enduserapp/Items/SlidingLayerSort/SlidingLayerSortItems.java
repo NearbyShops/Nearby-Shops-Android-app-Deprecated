@@ -12,7 +12,7 @@ import android.widget.TextView;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -22,14 +22,14 @@ import butterknife.OnClick;
 
 public class SlidingLayerSortItems extends Fragment {
 
-    @Bind(R.id.sort_rating) TextView sort_by_rating;
-    @Bind(R.id.sort_popularity) TextView sort_by_popularity;
-    @Bind(R.id.shop_count) TextView sort_by_shop_count;
-    @Bind(R.id.item_price) TextView sort_by_price_avg;
+    @BindView(R.id.sort_rating) TextView sort_by_rating;
+    @BindView(R.id.sort_popularity) TextView sort_by_popularity;
+    @BindView(R.id.shop_count) TextView sort_by_shop_count;
+    @BindView(R.id.item_price) TextView sort_by_price_avg;
 
 
-    @Bind(R.id.sort_ascending) TextView sort_ascending;
-    @Bind(R.id.sort_descending) TextView sort_descending;
+    @BindView(R.id.sort_ascending) TextView sort_ascending;
+    @BindView(R.id.sort_descending) TextView sort_descending;
 
     String currentSort = SORT_BY_ITEM_RATING;
     String currentAscending = SORT_DESCENDING;
@@ -59,12 +59,6 @@ public class SlidingLayerSortItems extends Fragment {
     }
 
 
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 
 
     void loadDefaultSort() {
@@ -124,9 +118,9 @@ public class SlidingLayerSortItems extends Fragment {
 
         UtilitySortItemsByCategory.saveSort(getActivity(),SORT_BY_ITEM_RATING);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
 
@@ -142,9 +136,9 @@ public class SlidingLayerSortItems extends Fragment {
 
         UtilitySortItemsByCategory.saveSort(getActivity(),SORT_BY_POPULARITY);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
 
@@ -160,9 +154,9 @@ public class SlidingLayerSortItems extends Fragment {
 
         UtilitySortItemsByCategory.saveSort(getActivity(),SORT_BY_SHOP_COUNT);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
 
@@ -177,13 +171,13 @@ public class SlidingLayerSortItems extends Fragment {
 
         UtilitySortItemsByCategory.saveSort(getActivity(),SORT_BY_AVG_PRICE);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+
+
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
-
-
 
 
 
@@ -198,12 +192,14 @@ public class SlidingLayerSortItems extends Fragment {
 
         UtilitySortItemsByCategory.saveAscending(getActivity(),SORT_ASCENDING);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
 
     }
+
+
 
 
     @OnClick(R.id.sort_descending)
@@ -216,9 +212,9 @@ public class SlidingLayerSortItems extends Fragment {
 
         UtilitySortItemsByCategory.saveAscending(getActivity(),SORT_DESCENDING);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
 

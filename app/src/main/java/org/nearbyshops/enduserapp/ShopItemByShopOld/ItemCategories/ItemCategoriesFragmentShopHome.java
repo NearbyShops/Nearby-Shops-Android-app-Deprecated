@@ -32,7 +32,7 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import icepick.Icepick;
 import icepick.State;
@@ -71,7 +71,7 @@ public class ItemCategoriesFragmentShopHome extends Fragment
     @State int item_count = 0;
 
 
-    @Bind(R.id.swipeContainer)
+    @BindView(R.id.swipeContainer)
     SwipeRefreshLayout swipeContainer;
 
 
@@ -533,12 +533,6 @@ public class ItemCategoriesFragmentShopHome extends Fragment
 
 
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-        ButterKnife.unbind(this);
-    }
 
 
     @Override

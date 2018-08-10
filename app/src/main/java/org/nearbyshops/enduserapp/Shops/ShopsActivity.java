@@ -39,7 +39,7 @@ import org.nearbyshops.enduserapp.Shops.SlidingLayerSort.SlidingLayerSortShops;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import icepick.Icepick;
@@ -54,10 +54,10 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
     @State
     ArrayList<Shop> dataset = new ArrayList<>();
 
-    @Bind(R.id.shop_count_indicator)
+    @BindView(R.id.shop_count_indicator)
     TextView shopsCount;
 
-    @Bind(R.id.slidingLayer)
+    @BindView(R.id.slidingLayer)
     SlidingLayer slidingLayer;
 
 //    FragmentShopTwo fragmentShopTwo;
@@ -167,10 +167,10 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
     }
 
 
-    @Bind(R.id.icon_list)
+    @BindView(R.id.icon_list)
     ImageView mapIcon;
 
-    @Bind(R.id.appbar)
+    @BindView(R.id.appbar)
     AppBarLayout appBarLayout;
 
     @OnClick({R.id.icon_list,R.id.text_list})
@@ -419,6 +419,7 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
             public boolean onClose() {
 
 
+
                 Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_SHOP_FRAGMENT);
 
                 if(fragment instanceof NotifySearch)
@@ -477,10 +478,13 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         stopService(new Intent(this, LocationUpdateService.class));
-        ButterKnife.unbind(this);
     }
+
+
+
+
+
 
 
 
@@ -494,6 +498,11 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
         LocalBroadcastManager.getInstance(this).registerReceiver(testReceiver, filter);
 
     }
+
+
+
+
+
 
     // Define the callback for what to do when data is received
     private BroadcastReceiver testReceiver = new BroadcastReceiver() {
@@ -514,5 +523,8 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
             Toast.makeText(ShopsActivity.this, "Location Updated ", Toast.LENGTH_SHORT).show();
         }
     };
+
+
+
 
 }

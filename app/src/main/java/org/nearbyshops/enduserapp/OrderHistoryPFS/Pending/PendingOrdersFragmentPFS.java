@@ -17,11 +17,12 @@ import android.widget.Toast;
 
 
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
-import org.nearbyshops.enduserapp.Login.LoginDialog;
+import org.nearbyshops.enduserapp.LoginNew.Login;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelPickFromShop.OrderEndPointPFS;
 import org.nearbyshops.enduserapp.ModelPickFromShop.OrderPFS;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.OrderDetailPFS.OrderDetailPFS;
 import org.nearbyshops.enduserapp.OrderDetailPFS.UtilityOrderDetailPFS;
 import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
@@ -32,7 +33,7 @@ import org.nearbyshops.enduserapp.RetrofitRESTContractPFS.OrderServicePFS;
 import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
 import java.util.ArrayList;
@@ -226,7 +227,7 @@ public class PendingOrdersFragmentPFS extends Fragment implements AdapterOrdersP
     {
 
 
-        EndUser endUser = UtilityLogin.getEndUser(getActivity());
+        User endUser = PrefLogin.getUser(getActivity());
         if(endUser==null)
         {
             showLoginDialog();
@@ -256,7 +257,7 @@ public class PendingOrdersFragmentPFS extends Fragment implements AdapterOrdersP
 
 
         Call<OrderEndPointPFS> call = orderServiceShopStaff.getOrders(
-                    UtilityLogin.getAuthorizationHeaders(getActivity()),
+                    PrefLogin.getAuthorizationHeaders(getActivity()),
                     null,shopID,null,null,null,
                     null,null,
                     true,searchQuery,
@@ -416,7 +417,7 @@ public class PendingOrdersFragmentPFS extends Fragment implements AdapterOrdersP
 //        Call<ResponseBody> call = orderService.cancelOrderByShop(order.getOrderID());
 
         Call<ResponseBody> call = orderServiceShopStaff.cancelledByEndUser(
-                UtilityLogin.getAuthorizationHeaders(getActivity()),
+                PrefLogin.getAuthorizationHeaders(getActivity()),
                 order.getOrderID()
         );
 
@@ -475,12 +476,15 @@ public class PendingOrdersFragmentPFS extends Fragment implements AdapterOrdersP
 
     private void showLoginDialog()
     {
-        if(getActivity().getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_DIALOG)==null)
-        {
-            FragmentManager fm = getActivity().getSupportFragmentManager();
-            LoginDialog loginDialog = new LoginDialog();
-            loginDialog.show(fm,TAG_LOGIN_DIALOG);
-        }
+//        if(getActivity().getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_DIALOG)==null)
+//        {
+//            FragmentManager fm = getActivity().getSupportFragmentManager();
+//            LoginDialog loginDialog = new LoginDialog();
+//            loginDialog.show(fm,TAG_LOGIN_DIALOG);
+//        }
+
+        Intent intent = new Intent(getActivity(),Login.class);
+        startActivity(intent);
     }
 
 

@@ -24,7 +24,7 @@ import org.nearbyshops.enduserapp.Model.ItemCategory;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import icepick.Icepick;
 
@@ -47,9 +47,9 @@ public class ShopItemSwipeView extends AppCompatActivity implements NotifyCatego
 
     private PagerAdapter mSectionsPagerAdapter;
 
-    @Bind(R.id.tabLayoutCat) TabLayout tabLayoutCat;
+    @BindView(R.id.tabLayoutCat) TabLayout tabLayoutCat;
 
-    @Bind(R.id.tablayout)
+    @BindView(R.id.tablayout)
     TabLayout tabLayout;
 
     //@Bind(R.id.filter)
@@ -201,7 +201,7 @@ public class ShopItemSwipeView extends AppCompatActivity implements NotifyCatego
     protected void onDestroy() {
         super.onDestroy();
 
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
 

@@ -17,7 +17,7 @@ import org.nearbyshops.enduserapp.ModelStats.ItemStats;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopItemByItem.ShopsForItemSwipe;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
 
@@ -84,7 +84,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
 //            Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
         }
 
-        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+        String imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
                 + dataset.get(position).getItemImageURL();
 
         Picasso.with(context)

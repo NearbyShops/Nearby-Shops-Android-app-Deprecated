@@ -25,7 +25,7 @@ import org.nearbyshops.enduserapp.ItemsInShopByCat.SlidingLayerSort.SlidingLayer
 import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -44,9 +44,9 @@ public class ItemsInShopByCat extends AppCompatActivity implements NotifyIndicat
 //    @Bind(R.id.fab_add_selected_to_shop)
 //    FloatingActionButton fab_add_selected;
 
-    @Bind(R.id.text_sub)
+    @BindView(R.id.text_sub)
     TextView itemHeader;
-    @Bind(R.id.slidingLayer)
+    @BindView(R.id.slidingLayer)
     SlidingLayer slidingLayer;
 
     @Override
@@ -171,11 +171,7 @@ public class ItemsInShopByCat extends AppCompatActivity implements NotifyIndicat
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
+
 
     @OnClick({R.id.icon_sort,R.id.text_sort})
     void sortClick()

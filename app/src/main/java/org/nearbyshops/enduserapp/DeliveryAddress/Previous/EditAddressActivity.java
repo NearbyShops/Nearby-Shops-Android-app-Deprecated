@@ -18,7 +18,7 @@ import org.nearbyshops.enduserapp.RetrofitRESTContract.DeliveryAddressService;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
@@ -36,34 +36,34 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
     @Inject
     DeliveryAddressService deliveryAddressService;
 
-    @Bind(R.id.updateAddress)
+    @BindView(R.id.updateAddress)
     TextView updateDeliveryAddress;
 
     // address Fields
 
-    @Bind(R.id.receiversName)
+    @BindView(R.id.receiversName)
     EditText receiversName;
 
-    @Bind(R.id.receiversPhoneNumber)
+    @BindView(R.id.receiversPhoneNumber)
     EditText receiversPhoneNumber;
 
-    @Bind(R.id.deliveryAddress)
+    @BindView(R.id.deliveryAddress)
     EditText deliveryAddressView;
 
-    @Bind(R.id.addressCity)
+    @BindView(R.id.addressCity)
     EditText city;
 
-    @Bind(R.id.pincode)
+    @BindView(R.id.pincode)
     EditText pincode;
 
-    @Bind(R.id.landmark)
+    @BindView(R.id.landmark)
     EditText landMark;
 
 
-    @Bind(R.id.latitude)
+    @BindView(R.id.latitude)
     EditText latitude;
 
-    @Bind(R.id.longitude)
+    @BindView(R.id.longitude)
     EditText longitude;
 
 
@@ -178,7 +178,7 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
     protected void onDestroy() {
         super.onDestroy();
 
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
 

@@ -20,11 +20,11 @@ import org.nearbyshops.enduserapp.ModelStats.ItemStats;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopItemByItem.ShopsForItemSwipe;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -109,7 +109,7 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
-                imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+                imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
                         + dataset.get(position).getItemImageURL();
             }
 
@@ -202,7 +202,7 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class LoadingViewHolder extends  RecyclerView.ViewHolder{
 
-        @Bind(R.id.progress_bar)
+        @BindView(R.id.progress_bar)
         ProgressBar progressBar;
 
         public LoadingViewHolder(View itemView) {

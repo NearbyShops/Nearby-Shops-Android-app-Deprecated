@@ -15,7 +15,7 @@ import org.nearbyshops.enduserapp.ItemsInShopByCat.SlidingLayerSort.SlidingLayer
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -25,10 +25,10 @@ public class ItemsInShop extends AppCompatActivity implements NotifyTitleChanged
     public static final String TAG_SHOP_ITEM_FRAGMENT = "shop_item_fragment";
     public static final String TAG_SLIDING_LAYER = "sliding_layer";
 
-    @Bind(R.id.slidingLayer)
+    @BindView(R.id.slidingLayer)
     SlidingLayer slidingLayer;
 
-    @Bind(R.id.shop_count_indicator)
+    @BindView(R.id.shop_count_indicator)
     TextView shopsCount;
 
 
@@ -126,12 +126,6 @@ public class ItemsInShop extends AppCompatActivity implements NotifyTitleChanged
 
     }
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
 
     @Override
     public void notifySortChanged() {

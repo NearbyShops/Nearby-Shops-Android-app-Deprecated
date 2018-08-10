@@ -47,13 +47,13 @@ import com.squareup.picasso.Target;
 
 import org.apache.commons.validator.routines.UrlValidator;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.UtilityGeocoding.Constants;
 import org.nearbyshops.enduserapp.UtilityGeocoding.FetchAddressIntentService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.EndUserService;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -67,16 +67,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
 
-    @Bind(R.id.serviceURLEditText) EditText serviceUrlEditText;
-    @Bind(R.id.distributorIDEdittext) EditText distributorIDEditText;
-    @Bind(R.id.distributorPassword) EditText password;
-    @Bind(R.id.loginButton) Button loginButton;
-    @Bind(R.id.signUpButton) Button signUpButton;
-    @Bind(R.id.inputLayoutServiceURL) TextInputLayout inputLayoutServiceURL;
-    @Bind(R.id.urlValidText) TextView urlValidText;
-    @Bind(R.id.login_backdrop) ImageView loginBackdrop;
-    @Bind(R.id.collapsingToolbar) CollapsingToolbarLayout collapsingToolbarLayout;
-    @Bind(R.id.serviceURLBar) LinearLayout serviceBar;
+    @BindView(R.id.serviceURLEditText) EditText serviceUrlEditText;
+    @BindView(R.id.distributorIDEdittext) EditText distributorIDEditText;
+    @BindView(R.id.distributorPassword) EditText password;
+    @BindView(R.id.loginButton) Button loginButton;
+    @BindView(R.id.signUpButton) Button signUpButton;
+    @BindView(R.id.inputLayoutServiceURL) TextInputLayout inputLayoutServiceURL;
+    @BindView(R.id.urlValidText) TextView urlValidText;
+    @BindView(R.id.login_backdrop) ImageView loginBackdrop;
+    @BindView(R.id.collapsingToolbar) CollapsingToolbarLayout collapsingToolbarLayout;
+    @BindView(R.id.serviceURLBar) LinearLayout serviceBar;
 
 
     // location variables
@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // Location code ends
 
 
-        serviceUrlEditText.setText(UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+        serviceUrlEditText.setText(PrefGeneral.getServiceURL(MyApplication.getAppContext()));
         //distributorIDEditText.setText(String.valueOf(UtilityGeneral.getEndUserID(MyApplication.getAppContext())));
 
         //makeServiceConfigCall();
@@ -154,7 +154,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //URLUtil.isValidUrl(s.toString())
 
                 if (urlValidator.isValid(s.toString())) {
-                    UtilityGeneral.saveServiceURL(s.toString(),LoginActivity.this);
+                    PrefGeneral.saveServiceURL(s.toString(),LoginActivity.this);
 
 
                     //inputLayoutServiceURL.setErrorEnabled(false);
@@ -226,7 +226,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     void loadImage(String serviceImagePath) {
 
-        String imagePath = UtilityGeneral.getConfigImageEndpointURL(MyApplication.getAppContext())
+        String imagePath = PrefGeneral.getConfigImageEndpointURL(MyApplication.getAppContext())
                 + serviceImagePath;
 
         if(loginBackdrop!=null)
@@ -333,14 +333,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     void makeLoginRequest() {
 
 
-        if (!urlValidator.isValid(UtilityGeneral.getServiceURL(MyApplication.getAppContext()))) {
+        if (!urlValidator.isValid(PrefGeneral.getServiceURL(MyApplication.getAppContext()))) {
             return;
         }
 
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(UtilityGeneral.getServiceURL(MyApplication.getAppContext()))
+                .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
                 .build();
 
 
@@ -353,7 +353,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (!username.equals("") && !passwordstr.equals("")) {
 
-            Call<EndUser> call = service.getEndUserLogin(UtilityLogin.baseEncoding(username,passwordstr));
+            Call<EndUser> call = service.getEndUserLogin(PrefLogin.baseEncoding(username,passwordstr));
 
 
             call.enqueue(new Callback<EndUser>() {
@@ -368,7 +368,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (response.body() != null) {
 
 
-                            UtilityLogin.saveCredentials(LoginActivity.this,username,passwordstr);
+                            PrefLogin.saveCredentials(LoginActivity.this,username,passwordstr);
 //                            UtilityGeneral.saveEndUserID(response.body().getEndUserID());
 
 //                            showToastMessage(response.body().getEndUserName() + " : " + response.body().getEndUserID());
@@ -398,12 +398,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        ButterKnife.unbind(this);
-    }
 
 
 
@@ -646,8 +640,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     void saveLocation(Location location)
     {
 
-        UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY,(float)location.getLatitude());
-        UtilityGeneral.saveInSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY,(float)location.getLongitude());
+        PrefGeneral.saveInSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY,(float)location.getLatitude());
+        PrefGeneral.saveInSharedPrefFloat(PrefGeneral.LON_CENTER_KEY,(float)location.getLongitude());
     }
 
 

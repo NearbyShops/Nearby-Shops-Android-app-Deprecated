@@ -8,7 +8,6 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.nearbyshops.enduserapp.ModelItemSpecs.ItemSpecificationName;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.CartService;
@@ -31,9 +30,10 @@ import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopReviewThanksService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopService;
+import org.nearbyshops.enduserapp.RetrofitRESTContract.UserService;
 import org.nearbyshops.enduserapp.RetrofitRESTContractPFS.OrderServicePFS;
 import org.nearbyshops.enduserapp.RetrofitRESTContractSDS.ServiceConfigService;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -117,12 +117,12 @@ public class NetModule {
     @Provides
     Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
 
-        Log.d("applog","Retrofit: " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+        Log.d("applog","Retrofit: " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
 
 
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(UtilityGeneral.getServiceURL(MyApplication.getAppContext()))
+                .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
                 .client(okHttpClient)
                 .build();
     }
@@ -138,7 +138,7 @@ public class NetModule {
 
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(UtilityGeneral.getServiceURL_SDS(MyApplication.getAppContext()))
+                .baseUrl(PrefGeneral.getServiceURL_SDS(MyApplication.getAppContext()))
                 .build();
     }
 
@@ -151,7 +151,7 @@ public class NetModule {
 
         ShopItemService shopItemService = retrofit.create(ShopItemService.class);
 
-        Log.d("applog","ShopItemService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+        Log.d("applog","ShopItemService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
 
         return shopItemService;
     }
@@ -162,7 +162,7 @@ public class NetModule {
     {
         CartService cartService = retrofit.create(CartService.class);
 
-        Log.d("applog","CartService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+        Log.d("applog","CartService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
 
         return cartService;
     }
@@ -173,7 +173,7 @@ public class NetModule {
     {
         CartItemService cartItemService = retrofit.create(CartItemService.class);
 
-        Log.d("applog","CartItemService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+        Log.d("applog","CartItemService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
 
         return  cartItemService;
     }
@@ -184,7 +184,7 @@ public class NetModule {
     {
         CartStatsService service = retrofit.create(CartStatsService.class);
 
-        Log.d("applog","CartStatsService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+        Log.d("applog","CartStatsService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
 
         return service;
     }
@@ -195,7 +195,7 @@ public class NetModule {
 
         DeliveryAddressService service = retrofit.create(DeliveryAddressService.class);
 
-        Log.d("applog","DeliveryAddressService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+        Log.d("applog","DeliveryAddressService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
 
         return service;
     }
@@ -206,7 +206,7 @@ public class NetModule {
     {
         OrderService service = retrofit.create(OrderService.class);
 
-        Log.d("applog","OrderServicePFS : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+        Log.d("applog","OrderServicePFS : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
 
         return service;
     }
@@ -225,7 +225,7 @@ public class NetModule {
     {
         ItemCategoryService service = retrofit.create(ItemCategoryService.class);
 
-        Log.d("applog","ItemCategoryService : " + UtilityGeneral.getServiceURL(MyApplication.getAppContext()));
+        Log.d("applog","ItemCategoryService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
 
         return service;
     }
@@ -348,6 +348,14 @@ public class NetModule {
     ServiceConfigService provideServiceConfig(@Named("sds")Retrofit retrofit)
     {
         return retrofit.create(ServiceConfigService.class);
+    }
+
+
+
+    @Provides
+    UserService provideUserService(Retrofit retrofit)
+    {
+        return retrofit.create(UserService.class);
     }
 
 }

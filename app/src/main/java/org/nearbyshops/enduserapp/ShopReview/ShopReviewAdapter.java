@@ -20,18 +20,19 @@ import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserapp.ModelReviewShop.ShopReviewThanks;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
+import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopReviewThanksService;
 import org.nearbyshops.enduserapp.ShopReview.Interfaces.NotifyLoginByAdapter;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityLogin;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
 
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
@@ -111,7 +112,7 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
 //                + dataset.get(position).getRt_end_user_profile().getProfileImageURL();
 
 
-        String imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/EndUser/Image/" + dataset.get(position).getRt_end_user_profile().getProfileImageURL();
+        String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/EndUser/Image/" + dataset.get(position).getRt_end_user_profile().getProfileImageURL();
 
 
 
@@ -137,31 +138,31 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder{
 
 
-        @Bind(R.id.profile_image)
+        @BindView(R.id.profile_image)
         ImageView profile_image;
 
-        @Bind(R.id.member_name)
+        @BindView(R.id.member_name)
         TextView member_name;
 
-        @Bind(R.id.rating)
+        @BindView(R.id.rating)
         RatingBar rating;
 
-        @Bind(R.id.review_date)
+        @BindView(R.id.review_date)
         TextView review_date;
 
-        @Bind(R.id.review_title)
+        @BindView(R.id.review_title)
         TextView review_title;
 
-        @Bind(R.id.review_text)
+        @BindView(R.id.review_text)
         TextView review_text;
 
-        @Bind(R.id.thanks_button)
+        @BindView(R.id.thanks_button)
         TextView thanksButton;
 
-        @Bind(R.id.thanks_count)
+        @BindView(R.id.thanks_count)
         TextView thanksCount;
 
-        @Bind(R.id.list_item_shop_review)
+        @BindView(R.id.list_item_shop_review)
         RelativeLayout listItem;
 
 
@@ -178,7 +179,7 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
         void listItemClick()
         {
             final ShopReview shopReview = dataset.get(getAdapterPosition());
-            EndUser endUser = UtilityLogin.getEndUser(context);
+            User endUser = PrefLogin.getUser(context);
 
             if(endUser==null)
             {
@@ -196,7 +197,7 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
 
             if(thanksMap.containsKey(shopReview.getShopReviewID()))
             {
-                Call<ResponseBody> deleteCall = thanksService.deleteThanks(shopReview.getShopReviewID(),endUser.getEndUserID());
+                Call<ResponseBody> deleteCall = thanksService.deleteThanks(shopReview.getShopReviewID(),endUser.getUserID());
 
                 deleteCall.enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -223,7 +224,7 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
             else
             {
                 ShopReviewThanks shopReviewThanks = new ShopReviewThanks();
-                shopReviewThanks.setEndUserID(endUser.getEndUserID());
+                shopReviewThanks.setEndUserID(endUser.getUserID());
                 shopReviewThanks.setShopReviewID(dataset.get(getAdapterPosition()).getShopReviewID());
 
                 Call<ShopReviewThanks> insertCall = thanksService.insertThanks(shopReviewThanks);

@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.MyApplication;
 import org.nearbyshops.enduserapp.R;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
 
@@ -52,7 +52,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ViewHolder> {
 
 //        Log.d("applog","on BInd()");
 
-        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+        String imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
                 + dataset.get(position).getLogoImagePath();
 
         Picasso.with(context)

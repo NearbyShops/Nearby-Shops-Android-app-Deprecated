@@ -3,11 +3,6 @@ package org.nearbyshops.enduserapp.RetrofitRESTContract;
 import org.nearbyshops.enduserapp.Model.Image;
 import org.nearbyshops.enduserapp.ModelRoles.EndUser;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;

@@ -14,6 +14,9 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 
+
+
+
 public class UtilityLocation {
 
     public static String KEY_LAT_CENTER = "key_lat_center";
@@ -56,17 +59,23 @@ public class UtilityLocation {
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 
-        Double latitude = (double) sharedPref.getFloat(KEY_LAT_CENTER, -1);
+        return (Double) (double) sharedPref.getFloat(KEY_LAT_CENTER, 17.47f);
 
-        if( latitude == -1)
-        {
-            return null;
-        }
-        else
-        {
-            return latitude;
-        }
+        //
+//        if( latitude == -1)
+//        {
+//            return null;
+//        }
+//        else
+//        {
+//            return latitude;
+//        }
     }
+
+
+
+
+
 
 
     // saving longitude
@@ -98,20 +107,25 @@ public class UtilityLocation {
     }
 
 
+
+
+
+
     public static Double getLongitude(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        return (Double) (double) sharedPref.getFloat(KEY_LON_CENTER, 78.54f);
 
-        Double longitude = (double) sharedPref.getFloat(KEY_LON_CENTER, -1);
 
-        if( longitude == -1)
-        {
-            return null;
-        }
-        else
-        {
-            return longitude;
-        }
+
+//        if( longitude == -1)
+//        {
+//            return null;
+//        }
+//        else
+//        {
+//            return longitude;
+//        }
     }
 
 

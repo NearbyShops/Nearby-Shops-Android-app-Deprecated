@@ -3,6 +3,7 @@ package org.nearbyshops.enduserapp.OrdersHomeDelivery;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -18,10 +19,10 @@ import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
-import org.nearbyshops.enduserapp.Utility.UtilityGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -30,21 +31,22 @@ public class OrderHome extends AppCompatActivity {
     private Shop shop;
 
 
-    @Bind(R.id.shop_name) TextView shopName;
-    @Bind(R.id.shop_address) TextView shopAddress;
-    @Bind(R.id.shop_logo) ImageView shopLogo;
-    @Bind(R.id.delivery) TextView delivery;
-    @Bind(R.id.distance) TextView distance;
-    @Bind(R.id.rating) TextView rating;
-    @Bind(R.id.rating_count) TextView rating_count;
-    @Bind(R.id.description) TextView description;
+    @BindView(R.id.shop_name) TextView shopName;
+    @BindView(R.id.shop_address) TextView shopAddress;
+    @BindView(R.id.shop_logo) ImageView shopLogo;
+    @BindView(R.id.delivery) TextView delivery;
+    @BindView(R.id.distance) TextView distance;
+    @BindView(R.id.rating) TextView rating;
+    @BindView(R.id.rating_count) TextView rating_count;
+    @BindView(R.id.description) TextView description;
 
 
     public static final String IS_FILTER_BY_SHOP = "IS_FILTER_BY_SHOP";
 
 
     boolean filterByShop = false;
-    @Bind(R.id.shop_card) CardView shopCard;
+    @BindView(R.id.shop_card)
+    ConstraintLayout shopCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,11 +91,7 @@ public class OrderHome extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
+
 
     @OnClick(R.id.shop_card)
     void shopCardClick()
@@ -122,7 +120,7 @@ public class OrderHome extends AppCompatActivity {
 //            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
 //                    + shop.getLogoImagePath();
 
-            String imagePath = UtilityGeneral.getServiceURL(this) + "/api/v1/Shop/Image/"
+            String imagePath = PrefGeneral.getServiceURL(this) + "/api/v1/Shop/Image/"
                     + "five_hundred_" + shop.getLogoImagePath() + ".jpg";
 
             Drawable placeholder = VectorDrawableCompat

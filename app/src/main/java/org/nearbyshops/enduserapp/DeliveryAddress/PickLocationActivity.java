@@ -156,6 +156,6 @@ public class PickLocationActivity extends FragmentActivity implements OnMapReady
         }*/
 
 
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 }

@@ -20,7 +20,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import icepick.Icepick;
 import icepick.State;
@@ -45,34 +45,34 @@ public class ShopReviewStats extends Fragment{
     ShopReviewService shopReviewService;
 
 
-    @Bind(R.id.ten_star_bar_color)
+    @BindView(R.id.ten_star_bar_color)
     TextView bar_ten_star;
 
-    @Bind(R.id.nine_star_bar_color)
+    @BindView(R.id.nine_star_bar_color)
     TextView bar_nine_star;
 
-    @Bind(R.id.eight_star_bar_color)
+    @BindView(R.id.eight_star_bar_color)
     TextView bar_eight_star;
 
-    @Bind(R.id.seven_star_bar_color)
+    @BindView(R.id.seven_star_bar_color)
     TextView bar_seven_star;
 
-    @Bind(R.id.six_star_bar_color)
+    @BindView(R.id.six_star_bar_color)
     TextView bar_six_star;
 
-    @Bind(R.id.five_star_bar_color)
+    @BindView(R.id.five_star_bar_color)
     TextView bar_five_star;
 
-    @Bind(R.id.four_star_bar_color)
+    @BindView(R.id.four_star_bar_color)
     TextView bar_four_star;
 
-    @Bind(R.id.three_star_bar_color)
+    @BindView(R.id.three_star_bar_color)
     TextView bar_three_star;
 
-    @Bind(R.id.two_star_bar_color)
+    @BindView(R.id.two_star_bar_color)
     TextView bar_two_star;
 
-    @Bind(R.id.one_star_bar_color)
+    @BindView(R.id.one_star_bar_color)
     TextView bar_one_star;
 
 
@@ -266,12 +266,6 @@ public class ShopReviewStats extends Fragment{
     }
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        ButterKnife.unbind(this);
-    }
 
 
     @Override

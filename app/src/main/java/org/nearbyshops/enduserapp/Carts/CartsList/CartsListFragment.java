@@ -1,0 +1,309 @@
+package org.nearbyshops.enduserapp.Carts.CartsList;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import org.nearbyshops.enduserapp.DaggerComponentBuilder;
+import org.nearbyshops.enduserapp.LoginNew.Login;
+import org.nearbyshops.enduserapp.ModelRoles.User;
+import org.nearbyshops.enduserapp.ModelStats.CartStats;
+import org.nearbyshops.enduserapp.R;
+import org.nearbyshops.enduserapp.RetrofitRESTContract.CartStatsService;
+import org.nearbyshops.enduserapp.Utility.PrefGeneral;
+import org.nearbyshops.enduserapp.Utility.PrefLogin;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class CartsListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, Callback<List<CartStats>> {
+
+
+    @Inject
+    CartStatsService cartStatsService;
+
+    RecyclerView recyclerView;
+    CartsListAdapter adapter;
+    GridLayoutManager layoutManager;
+    SwipeRefreshLayout swipeContainer;
+
+    List<CartStats> dataset = new ArrayList<>();
+
+
+    public CartsListFragment() {
+
+        DaggerComponentBuilder.getInstance()
+                .getNetComponent()
+                .Inject(this);
+
+    }
+
+
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_carts_list);
+//    }
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        super.onCreateView(inflater, container, savedInstanceState);
+
+        setRetainInstance(true);
+        View rootView = inflater.inflate(R.layout.activity_carts_list, container, false);
+        ButterKnife.bind(this, rootView);
+
+
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+        toolbar.setTitle("Nearby Shops");
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+//
+
+//        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+//        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+////        toolbar.setTitle("TripLogic");
+//        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
+
+        // findViewByID's
+        swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+
+        setupSwipeContainer();
+        setupRecyclerView();
+
+
+//        ((AppCompatActivity)getActivity())
+//                .getSupportActionBar()
+//                .setDisplayHomeAsUpEnabled(true);
+
+
+        return rootView;
+    }
+
+
+
+
+    void setupSwipeContainer()
+    {
+
+        if(swipeContainer!=null) {
+
+            swipeContainer.setOnRefreshListener(this);
+            swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                    android.R.color.holo_green_light,
+                    android.R.color.holo_orange_light,
+                    android.R.color.holo_red_light);
+        }
+
+    }
+
+    void setupRecyclerView()
+    {
+
+
+        adapter = new CartsListAdapter(dataset,getActivity());
+
+        recyclerView.setAdapter(adapter);
+
+        layoutManager = new GridLayoutManager(getActivity(),1);
+        recyclerView.setLayoutManager(layoutManager);
+
+        //recyclerView.addItemDecoration(
+        //        new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST)
+        //);
+
+        //recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL_LIST));
+
+        //itemCategoriesList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//        layoutManager.setSpanCount(metrics.widthPixels/350);
+
+        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
+
+        if(spanCount==0){
+            spanCount = 1;
+        }
+
+        layoutManager.setSpanCount(spanCount);
+
+
+
+
+    }
+
+
+    void showToastMessage(String message)
+    {
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRefresh() {
+
+        makeNetworkCall();
+    }
+
+
+
+    void makeNetworkCall()
+    {
+
+
+        User endUser = PrefLogin.getUser(getActivity());
+        if(endUser==null)
+        {
+            showLoginDialog();
+
+            swipeContainer.setRefreshing(false);
+            return;
+        }
+
+
+
+        Call<List<CartStats>> call = cartStatsService.getCart(
+                endUser.getUserID(),null,null,true,
+                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY),
+                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LON_CENTER_KEY)
+        );
+
+        /*
+
+        UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
+                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY)
+
+
+        */
+
+
+        call.enqueue(this);
+
+/*
+
+        Log.d("applog",String.valueOf(endUser.getEndUserID()) + " "
+        + UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY) + " "
+        + UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY));
+*/
+
+
+        /*
+        if(UtilityGeneral.isNetworkAvailable(this))
+        {
+
+
+        }
+        else
+        {
+
+            showToastMessage("No network. Application is Offline !");
+            swipeContainer.setRefreshing(false);
+
+        }
+
+        */
+
+    }
+
+
+    @Override
+    public void onResponse(Call<List<CartStats>> call, Response<List<CartStats>> response) {
+
+
+
+        if(response.body()!=null)
+        {
+            dataset.clear();
+            dataset.addAll(response.body());
+            adapter.notifyDataSetChanged();
+        }else
+        {
+            dataset.clear();
+            adapter.notifyDataSetChanged();
+        }
+
+        swipeContainer.setRefreshing(false);
+
+    }
+
+    @Override
+    public void onFailure(Call<List<CartStats>> call, Throwable t) {
+
+        showToastMessage("Network Request failed !");
+        swipeContainer.setRefreshing(false);
+
+    }
+
+
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+        swipeContainer.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeContainer.setRefreshing(true);
+
+                try {
+
+                    makeNetworkCall();
+
+                } catch (IllegalArgumentException ex)
+                {
+                    ex.printStackTrace();
+
+                }
+
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+    }
+
+
+
+    private void showLoginDialog()
+    {
+//        FragmentManager fm = getActivity().getSupportFragmentManager();
+//        LoginDialog loginDialog = new LoginDialog();
+//        loginDialog.show(fm,"serviceUrl");
+
+
+        Intent intent = new Intent(getActivity(),Login.class);
+        startActivity(intent);
+    }
+
+
+}

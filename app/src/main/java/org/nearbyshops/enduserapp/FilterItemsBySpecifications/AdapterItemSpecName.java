@@ -16,7 +16,7 @@ import org.nearbyshops.enduserapp.R;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -162,7 +162,7 @@ class AdapterItemSpecName extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 //        @Bind(R.id.image_item_spec) ImageView imageItemSpec;
 //        @Bind(R.id.description) TextView description;
 
-        @Bind(R.id.title_name) TextView titleName;
+        @BindView(R.id.title_name) TextView titleName;
 
 
 
@@ -234,7 +234,7 @@ class AdapterItemSpecName extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     public class LoadingViewHolder extends  RecyclerView.ViewHolder{
 
-        @Bind(R.id.progress_bar)
+        @BindView(R.id.progress_bar)
         ProgressBar progressBar;
 
         public LoadingViewHolder(View itemView) {

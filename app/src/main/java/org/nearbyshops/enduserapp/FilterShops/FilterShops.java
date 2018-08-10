@@ -35,7 +35,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import icepick.State;
@@ -48,9 +48,9 @@ public class FilterShops extends FragmentActivity implements OnMapReadyCallback,
 
     private GoogleMap mMap;
 
-    @Bind(R.id.seekbar) SeekBar seekbar;
-    @Bind(R.id.shop_count) TextView shopCount;
-    @Bind(R.id.item_count) TextView itemCount;
+    @BindView(R.id.seekbar) SeekBar seekbar;
+    @BindView(R.id.shop_count) TextView shopCount;
+    @BindView(R.id.item_count) TextView itemCount;
 //    @Bind(R.id.delivery_range_header) TextView deliveryRangeHeader;
 
     public FilterShops() {
@@ -159,7 +159,7 @@ public class FilterShops extends FragmentActivity implements OnMapReadyCallback,
     protected void onDestroy() {
         super.onDestroy();
         isDestroyed = true;
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
 
@@ -428,12 +428,12 @@ public class FilterShops extends FragmentActivity implements OnMapReadyCallback,
 
 
 
-    @Bind(R.id.checkbox_proximity) CheckBox checkBoxProximity;
-    @Bind(R.id.proximity_header) TextView proximityHeader;
-    @Bind(R.id.seekbar_proximity) SeekBar seekBarProximity;
+    @BindView(R.id.checkbox_proximity) CheckBox checkBoxProximity;
+    @BindView(R.id.proximity_header) TextView proximityHeader;
+    @BindView(R.id.seekbar_proximity) SeekBar seekBarProximity;
 
-    @Bind(R.id.delivery_range_header) TextView deliveryRangeHeader;
-    @Bind(R.id.checkbox_delivery_range) CheckBox checkBoxDeliveryRange;
+    @BindView(R.id.delivery_range_header) TextView deliveryRangeHeader;
+    @BindView(R.id.checkbox_delivery_range) CheckBox checkBoxDeliveryRange;
 
     Map<Integer,Circle> circleMap = new HashMap<>();
     Map<Integer,Marker> markerMap = new HashMap<>();
