@@ -529,8 +529,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
     public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
-        @BindView(R.id.add_to_cart_text)
-        TextView addToCartText;
+        @BindView(R.id.add_to_cart_text) TextView addToCartText;
+        @BindView(R.id.progress_bar) ProgressBar progressBar;
 
         @BindView(R.id.item_title)
         TextView itemName;
@@ -562,14 +562,13 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         @BindView(R.id.total)
         TextView itemTotal;
 
-//        @Bind(R.id.add_to_cart_text)
+//        @BindView(R.id.add_to_cart_text)
 //        TextView addToCart;
+
+
 
         @BindView(R.id.list_item)
         CardView shopItemListItem;
-
-
-        @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
         ShopItem shopItem;
@@ -595,6 +594,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
             }
 
         }
+
+
+
 
 
 
@@ -764,6 +766,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                     //dataset.get(getLayoutPosition()).getShopID()
 
+                    addToCartText.setVisibility(View.INVISIBLE);
                     progressBar.setVisibility(View.VISIBLE);
 
                     call.enqueue(new Callback<ResponseBody>() {
@@ -782,12 +785,14 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                             }
 
 
+                            addToCartText.setVisibility(View.VISIBLE);
                             progressBar.setVisibility(View.INVISIBLE);
                         }
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                            addToCartText.setVisibility(View.VISIBLE);
                             progressBar.setVisibility(View.INVISIBLE);
                         }
                     });
@@ -821,6 +826,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                             shopItem.getShopID()
                     );
 
+                    addToCartText.setVisibility(View.INVISIBLE);
                     progressBar.setVisibility(View.VISIBLE);
 
                     callDelete.enqueue(new Callback<ResponseBody>() {
@@ -828,6 +834,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+
+                            addToCartText.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.INVISIBLE);
 
 
                             if(response.code()==200)
@@ -858,6 +867,11 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+
+                            addToCartText.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.INVISIBLE);
+
+
                             progressBar.setVisibility(View.INVISIBLE);
                         }
                     });
@@ -886,6 +900,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                                 shop.getShopID()
                         );
 
+                        addToCartText.setVisibility(View.INVISIBLE);
                         progressBar.setVisibility(View.VISIBLE);
 
                         callUpdate.enqueue(new Callback<ResponseBody>() {
@@ -902,12 +917,14 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                                     itemTotal.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
                                 }
 
+                                addToCartText.setVisibility(View.VISIBLE);
                                 progressBar.setVisibility(View.INVISIBLE);
                             }
 
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                                addToCartText.setVisibility(View.VISIBLE);
                                 progressBar.setVisibility(View.INVISIBLE);
                             }
                         });

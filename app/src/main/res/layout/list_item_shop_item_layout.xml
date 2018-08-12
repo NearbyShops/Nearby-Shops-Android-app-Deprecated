@@ -360,8 +360,20 @@
 
 
 
+        <!--<EditText-->
+            <!--android:text="0"-->
+            <!--android:id="@+id/itemQuantity"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:inputType="number"-->
+            <!--android:layout_width="70dp"-->
+            <!--android:layout_height="match_parent" />-->
 
-        <EditText
+
+
+        <TextView
+            android:textSize="20sp"
             android:text="0"
             android:id="@+id/itemQuantity"
             android:gravity="center"

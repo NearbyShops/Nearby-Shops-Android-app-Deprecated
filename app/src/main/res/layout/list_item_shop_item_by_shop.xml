@@ -41,17 +41,6 @@
             android:layout_height="wrap_content" />
 
 
-        <ProgressBar
-            app:layout_constraintTop_toBottomOf="@id/item_title"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:visibility="invisible"
-            android:id="@+id/progress_bar"
-            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:indeterminateTint="@color/buttonColorDark" />
 
 
 
@@ -247,6 +236,18 @@
             android:layout_height="wrap_content" />
 
 
+
+        <ProgressBar
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@id/add_to_cart_text"
+            app:layout_constraintStart_toStartOf="@id/add_to_cart_text"
+            app:layout_constraintEnd_toEndOf="@id/add_to_cart_text"
+            app:layout_constraintBottom_toBottomOf="@id/add_to_cart_text"
+            android:id="@+id/progress_bar"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/buttonColorDark" />
 
         <ImageView
             app:layout_constraintLeft_toLeftOf="parent"

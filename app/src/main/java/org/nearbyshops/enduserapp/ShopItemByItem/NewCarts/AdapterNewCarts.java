@@ -529,7 +529,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
         ImageView increaseQuantity;
 
         @BindView(R.id.itemQuantity)
-        EditText itemQuantity;
+        TextView itemQuantity;
 
         @BindView(R.id.itemsInCart)
         TextView itemsInCart;
