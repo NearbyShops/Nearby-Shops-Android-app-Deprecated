@@ -4,15 +4,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
@@ -25,19 +31,23 @@ import org.nearbyshops.enduserapp.OrderDetail.OrderDetail;
 import org.nearbyshops.enduserapp.OrderDetail.PrefOrderDetail;
 import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
+import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.SlidingLayerSort.SlidingLayerSortOrdersHD;
 import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.SlidingLayerSort.UtilitySortOrdersHD;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserapp.Utility.PrefLogin;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import icepick.State;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -50,6 +60,8 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
 
 //    @Inject
 //    OrderServicePFS orderService;
+
+    public static final String TAG_SLIDING_LAYER = "sliding_layer_orders";
 
     @Inject
     OrderService orderService;
@@ -68,6 +80,10 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
     @State int item_count = 0;
 
     boolean isDestroyed;
+
+
+    @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
+    @BindView(R.id.shop_count_indicator) TextView orderCountIndicator;
 
 
 
@@ -90,13 +106,16 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
 
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_home_delivery_placed_orders, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_home_delivery_placed_orders_new, container, false);
+        ButterKnife.bind(this,rootView);
 
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
@@ -109,8 +128,17 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
         }
 
 
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+        toolbar.setTitle("Nearby Shops");
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+//
+
+
         setupRecyclerView();
         setupSwipeContainer();
+
+        setupSlidingLayer();
 
 
         return rootView;
@@ -129,6 +157,57 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
         }
 
     }
+
+
+    void setupSlidingLayer()
+    {
+
+        ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
+        //slidingLayer.setShadowSizeRes(R.dimen.shadow_size);
+
+        if(slidingLayer!=null) {
+            slidingLayer.setChangeStateOnTap(true);
+            slidingLayer.setSlidingEnabled(true);
+            slidingLayer.setPreviewOffsetDistance(15);
+            slidingLayer.setOffsetDistance(10);
+            slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
+
+//            DisplayMetrics metrics = new DisplayMetrics();
+//            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+            //RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(250, ViewGroup.LayoutParams.MATCH_PARENT);
+
+            //slidingContents.setLayoutParams(layoutParams);
+
+            //slidingContents.setMinimumWidth(metrics.widthPixels-50);
+
+
+            if (getChildFragmentManager().findFragmentByTag(TAG_SLIDING_LAYER)==null)
+            {
+                getChildFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.slidinglayerfragment,new SlidingLayerSortOrdersHD(),TAG_SLIDING_LAYER)
+                        .commit();
+            }
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+    @OnClick({R.id.icon_sort,R.id.text_sort})
+    void sortClick()
+    {
+        slidingLayer.openLayer(true);
+    }
+
+
 
 
     void setupRecyclerView()
@@ -207,6 +286,7 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
     }
 
 
+
     void makeRefreshNetworkCall()
     {
         swipeContainer.post(new Runnable() {
@@ -245,7 +325,7 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
 
         if(getActivity().getIntent().getBooleanExtra(OrderHistoryHD.IS_FILTER_BY_SHOP,false))
         {
-            Shop shop = UtilityShopHome.getShop(getActivity());
+            Shop shop = PrefShopHome.getShop(getActivity());
 
             if(shop!=null)
             {
@@ -289,6 +369,9 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
                         adapter.notifyDataSetChanged();
                         notifyTitleChanged();
 
+
+
+                        orderCountIndicator.setText(String.valueOf(dataset.size()) + " out of " + String.valueOf(item_count) + " Orders");
                     }
 
                     swipeContainer.setRefreshing(false);

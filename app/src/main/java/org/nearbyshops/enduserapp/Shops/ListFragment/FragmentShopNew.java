@@ -1,14 +1,8 @@
 package org.nearbyshops.enduserapp.Shops.ListFragment;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,23 +13,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
-import org.nearbyshops.enduserapp.Items.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelEndPoints.ShopEndPoint;
-import org.nearbyshops.enduserapp.Notifications.NonStopService.LocationUpdateService;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduserapp.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduserapp.Shops.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
-import org.nearbyshops.enduserapp.Shops.ShopsActivity;
 import org.nearbyshops.enduserapp.Shops.SlidingLayerSort.SlidingLayerSortShops;
 import org.nearbyshops.enduserapp.Shops.UtilityLocation;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
@@ -55,14 +45,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.app.Activity.RESULT_CANCELED;
-import static android.app.Activity.RESULT_OK;
 import static org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.ItemCategoriesSimple.TAG_SLIDING;
 
 /**
  * Created by sumeet on 25/5/16.
  */
-public class FragmentShopTwo extends Fragment implements
+public class FragmentShopNew extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifyDatasetChanged,NotifySearch{
 
         ArrayList<Shop> dataset = new ArrayList<>();
@@ -87,13 +75,13 @@ public class FragmentShopTwo extends Fragment implements
 
 
 //    @BindView(R.id.icon_list) ImageView mapIcon;
-    @BindView(R.id.shop_count_indicator) TextView itemHeader;
+    @BindView(R.id.shop_count_indicator) TextView shopCountIndicator;
     @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
 
 
 
 
-    public FragmentShopTwo() {
+    public FragmentShopNew() {
             // inject dependencies through dagger
             DaggerComponentBuilder.getInstance()
                     .getNetComponent().Inject(this);
@@ -114,9 +102,9 @@ public class FragmentShopTwo extends Fragment implements
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static FragmentShopTwo newInstance(boolean switchMade) {
+        public static FragmentShopNew newInstance(boolean switchMade) {
 
-            FragmentShopTwo fragment = new FragmentShopTwo();
+            FragmentShopNew fragment = new FragmentShopNew();
             Bundle args = new Bundle();
 //            args.putParcelable("itemCat",itemCategory);
             args.putBoolean("switch",switchMade);
@@ -145,7 +133,7 @@ public class FragmentShopTwo extends Fragment implements
                                  Bundle savedInstanceState) {
 
             setRetainInstance(true);
-            View rootView = inflater.inflate(R.layout.fragment_shops_two, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_shops_new, container, false);
             ButterKnife.bind(this,rootView);
 
 
@@ -519,7 +507,10 @@ public class FragmentShopTwo extends Fragment implements
 
 
 
+                        shopCountIndicator.setText(String.valueOf(dataset.size()) + " out of " + String.valueOf(item_count) + " Shops");
+
                     }
+
 
 
 

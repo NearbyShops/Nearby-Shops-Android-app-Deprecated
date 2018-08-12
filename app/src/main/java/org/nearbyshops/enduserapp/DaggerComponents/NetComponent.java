@@ -14,6 +14,12 @@ import org.nearbyshops.enduserapp.DeliveryAddress.Previous.EditAddressActivity;
 import org.nearbyshops.enduserapp.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduserapp.DaggerModules.AppModule;
 import org.nearbyshops.enduserapp.DaggerModules.NetModule;
+import org.nearbyshops.enduserapp.EditProfile.ChangeEmail.FragmentChangeEmail;
+import org.nearbyshops.enduserapp.EditProfile.ChangeEmail.FragmentVerifyEmailChange;
+import org.nearbyshops.enduserapp.EditProfile.ChangePassword.FragmentChangePassword;
+import org.nearbyshops.enduserapp.EditProfile.ChangePhone.FragmentChangePhone;
+import org.nearbyshops.enduserapp.EditProfile.ChangePhone.FragmentVerifyPhone;
+import org.nearbyshops.enduserapp.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserapp.EditProfileEndUser.EditEndUserFragment;
 import org.nearbyshops.enduserapp.FilterItemsBySpecifications.FilterItemsFragment;
 import org.nearbyshops.enduserapp.FilterShopDialog.FilterShopsDialog;
@@ -53,7 +59,7 @@ import org.nearbyshops.enduserapp.ShopItemByShopOld.ShopItems.FragmentShopItemsB
 import org.nearbyshops.enduserapp.ShopReview.ShopReviewAdapter;
 import org.nearbyshops.enduserapp.ShopReview.ShopReviewStats;
 import org.nearbyshops.enduserapp.ShopReview.ShopReviews;
-import org.nearbyshops.enduserapp.Shops.ListFragment.FragmentShopTwo;
+import org.nearbyshops.enduserapp.Shops.ListFragment.FragmentShopNew;
 import org.nearbyshops.enduserapp.ShopsByCatSimple.ShopsByCatFragment;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.ItemCategories.ItemCategoriesFragment;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Shops.FragmentShop;
@@ -69,6 +75,7 @@ import org.nearbyshops.enduserapp.SignUp.ForgotPassword.FragmentResetPassword;
 import org.nearbyshops.enduserapp.SignUp.FragmentEmailOrPhone;
 import org.nearbyshops.enduserapp.SignUp.FragmentEnterPassword;
 import org.nearbyshops.enduserapp.SignUp.FragmentVerifyEmailSignUp;
+import org.nearbyshops.enduserapp.TabProfile.ProfileFragment;
 
 
 import javax.inject.Singleton;
@@ -150,7 +157,7 @@ public interface NetComponent {
 
     void Inject(AdapterShopItems adapterShopItems);
 
-    void Inject(FragmentShopTwo fragmentShopTwo);
+    void Inject(FragmentShopNew fragmentShopTwo);
 
     void Inject(FragmentItemsList fragmentItemsList);
 
@@ -228,4 +235,18 @@ public interface NetComponent {
     void Inject(PendingOrdersFragmentNew pendingOrdersFragmentNew);
 
     void Inject(CartItemAdapter cartItemAdapter);
+
+    void Inject(FragmentVerifyEmailChange fragmentVerifyEmailChange);
+
+    void Inject(FragmentVerifyPhone fragmentVerifyPhone);
+
+    void Inject(FragmentChangePassword fragmentChangePassword);
+
+    void Inject(FragmentChangePhone fragmentChangePhone);
+
+    void Inject(FragmentEditProfile fragmentEditProfile);
+
+    void Inject(ProfileFragment profileFragment);
+
+    void Inject(FragmentChangeEmail fragmentChangeEmail);
 }

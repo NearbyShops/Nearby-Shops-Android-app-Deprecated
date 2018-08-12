@@ -14,8 +14,8 @@
     <string name="usage_instructions_select_location">Long Click To select Location.</string>
     <string name="toast_location_not_selected">Location not selected !</string>
 
-    <string name="sign_in_message">Sign In to send requests to taxi drivers and let them pick you up from your location</string>
-    <string name="sign_in_header">Send Request to Taxi Drivers</string>
+    <string name="sign_in_message">Sign In to add items to cart and buy from shops near you.</string>
+    <string name="sign_in_header">Buy from Shops near you</string>
 
     <string name="udate_successful_api_response">Update Successful !</string>
     <string name="api_response_partially_updated">Partially Updated. Check data changes !</string>

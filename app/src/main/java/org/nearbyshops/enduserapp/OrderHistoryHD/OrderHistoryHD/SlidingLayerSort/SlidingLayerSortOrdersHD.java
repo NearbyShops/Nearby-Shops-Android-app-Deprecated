@@ -121,9 +121,9 @@ public class SlidingLayerSortOrdersHD extends Fragment {
 
         UtilitySortOrdersHD.saveSort(getActivity(), SORT_BY_DISTANCE);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
 
@@ -139,9 +139,9 @@ public class SlidingLayerSortOrdersHD extends Fragment {
 
         UtilitySortOrdersHD.saveSort(getActivity(), SORT_BY_DATE_TIME);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
 
@@ -157,9 +157,9 @@ public class SlidingLayerSortOrdersHD extends Fragment {
 
         UtilitySortOrdersHD.saveSort(getActivity(), SORT_BY_STATUS);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
 
@@ -174,9 +174,9 @@ public class SlidingLayerSortOrdersHD extends Fragment {
 
         UtilitySortOrdersHD.saveSort(getActivity(), SORT_BY_PINCODE);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
 
@@ -195,9 +195,9 @@ public class SlidingLayerSortOrdersHD extends Fragment {
 
         UtilitySortOrdersHD.saveAscending(getActivity(),SORT_ASCENDING);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
 
     }
@@ -213,9 +213,9 @@ public class SlidingLayerSortOrdersHD extends Fragment {
 
         UtilitySortOrdersHD.saveAscending(getActivity(),SORT_DESCENDING);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
 

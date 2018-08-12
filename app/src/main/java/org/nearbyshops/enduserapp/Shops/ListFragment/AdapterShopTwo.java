@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,7 @@ import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopHome.ShopHome;
 import org.nearbyshops.enduserapp.Utility.PrefGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import java.util.List;
 
@@ -138,9 +137,9 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             int itemCount = 0;
 
-            if(fragment instanceof  FragmentShopTwo)
+            if(fragment instanceof FragmentShopNew)
             {
-                itemCount = ((FragmentShopTwo) fragment).getItemCount();
+                itemCount = ((FragmentShopNew) fragment).getItemCount();
             }
 
 
@@ -240,7 +239,7 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
 
             Intent shopHomeIntent = new Intent(context, ShopHome.class);
-            UtilityShopHome.saveShop(dataset.get(getLayoutPosition()),context);
+            PrefShopHome.saveShop(dataset.get(getLayoutPosition()),context);
             context.startActivity(shopHomeIntent);
         }
 
@@ -269,7 +268,7 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 case R.id.list_item_shop:
 
                     Intent shopHomeIntent = new Intent(context, ShopHome.class);
-                    UtilityShopHome.saveShop(dataset.get(getLayoutPosition()),context);
+                    PrefShopHome.saveShop(dataset.get(getLayoutPosition()),context);
                     context.startActivity(shopHomeIntent);
 
                     break;

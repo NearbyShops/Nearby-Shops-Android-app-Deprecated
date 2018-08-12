@@ -3,7 +3,6 @@ package org.nearbyshops.enduserapp.OrderHistoryPFS.Complete;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +17,6 @@ import org.nearbyshops.enduserapp.LoginNew.Login;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelPickFromShop.OrderEndPointPFS;
 import org.nearbyshops.enduserapp.ModelPickFromShop.OrderPFS;
-import org.nearbyshops.enduserapp.ModelRoles.EndUser;
 import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.OrderDetailPFS.OrderDetailPFS;
 import org.nearbyshops.enduserapp.OrderDetailPFS.UtilityOrderDetailPFS;
@@ -31,7 +29,7 @@ import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserapp.Utility.PrefLogin;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -240,7 +238,7 @@ public class CompleteOrdersFragmentPFS extends Fragment implements AdapterComple
 
         if(getActivity().getIntent().getBooleanExtra(OrderHistoryPFS.IS_FILTER_BY_SHOP,false))
         {
-            Shop shop = UtilityShopHome.getShop(getActivity());
+            Shop shop = PrefShopHome.getShop(getActivity());
 
             if(shop!=null)
             {

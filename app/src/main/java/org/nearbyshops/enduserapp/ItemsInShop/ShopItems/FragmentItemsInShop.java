@@ -23,7 +23,7 @@ import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 import org.nearbyshops.enduserapp.ItemsInShopByCat.SlidingLayerSort.UtilitySortItemsInShop;
 
 import java.util.ArrayList;
@@ -136,7 +136,7 @@ public class FragmentItemsInShop extends Fragment implements
 
             if(shop==null)
             {
-                shop = UtilityShopHome.getShop(getActivity());
+                shop = PrefShopHome.getShop(getActivity());
             }
 
             return rootView;

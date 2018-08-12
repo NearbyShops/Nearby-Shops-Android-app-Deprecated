@@ -31,7 +31,7 @@ import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduserapp.Shops.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
-import org.nearbyshops.enduserapp.Shops.ListFragment.FragmentShopTwo;
+import org.nearbyshops.enduserapp.Shops.ListFragment.FragmentShopNew;
 import org.nearbyshops.enduserapp.Shops.MapsFragment.ShopMapFragment;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
@@ -81,7 +81,7 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
         {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragment_container, FragmentShopTwo.newInstance(false),TAG_SHOP_FRAGMENT)
+                    .add(R.id.fragment_container, FragmentShopNew.newInstance(false),TAG_SHOP_FRAGMENT)
                     .commit();
 
         }
@@ -208,7 +208,7 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
             {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.fragment_container, FragmentShopTwo.newInstance(false),TAG_SHOP_FRAGMENT)
+                        .add(R.id.fragment_container, FragmentShopNew.newInstance(false),TAG_SHOP_FRAGMENT)
                         .commit();
 
             }

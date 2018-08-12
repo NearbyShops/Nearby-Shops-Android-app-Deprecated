@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,11 +17,9 @@ import android.widget.Toast;
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.ItemDetail.ItemDetail;
 import org.nearbyshops.enduserapp.LoginNew.Login;
-import org.nearbyshops.enduserapp.LoginNew.NotifyAboutLogin;
 import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.ModelEndPoints.ShopItemEndPoint;
-import org.nearbyshops.enduserapp.ModelRoles.EndUser;
 import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopItemService;
@@ -34,7 +31,7 @@ import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.ShopItemByItem.SlidingLayerSort.UtilitySortShopItems;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import java.util.ArrayList;
 
@@ -461,7 +458,7 @@ public class NewCartsFragment extends Fragment
 //        startActivity(intent);
 
         Intent shopHomeIntent = new Intent(getActivity(), ShopHome.class);
-        UtilityShopHome.saveShop(shop,getActivity());
+        PrefShopHome.saveShop(shop,getActivity());
         startActivity(shopHomeIntent);
 
     }

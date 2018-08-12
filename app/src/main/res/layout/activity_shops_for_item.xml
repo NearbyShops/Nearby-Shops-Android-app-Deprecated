@@ -40,6 +40,7 @@
                 android:layout_height="match_parent" />
 
             <TextView
+                android:textColor="@color/white"
                 android:id="@+id/text_sort"
                 android:padding="5dp"
                 android:text="Filter / Sort"
@@ -58,6 +59,7 @@
                 android:layout_height="match_parent" />
 
             <TextView
+                android:textColor="@color/white"
                 android:layout_marginRight="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="Checkout"

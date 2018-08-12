@@ -13,16 +13,14 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserapp.Carts.CartItem.CartItemListActivity;
-import org.nearbyshops.enduserapp.ItemsInShop.ItemsInShop;
 import org.nearbyshops.enduserapp.ItemsInShopByCat.ItemsInShopByCat;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.OrdersHomeDelivery.OrderHome;
-import org.nearbyshops.enduserapp.OrdersHomePickFromShop.OrdersHomePickFromShop;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserapp.ShopReview.ShopReviews;
 import org.nearbyshops.enduserapp.Utility.PrefGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -75,7 +73,7 @@ public class ShopHome extends AppCompatActivity {
 
     void bindShop()
     {
-        shop = UtilityShopHome.getShop(this);
+        shop = PrefShopHome.getShop(this);
 
         if(shop!=null)
         {

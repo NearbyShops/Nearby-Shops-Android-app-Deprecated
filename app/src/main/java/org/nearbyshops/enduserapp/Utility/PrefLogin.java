@@ -2,6 +2,7 @@ package org.nearbyshops.enduserapp.Utility;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 
 import com.google.gson.Gson;
@@ -41,6 +42,42 @@ public class PrefLogin {
         editor.putString("password",password);
         editor.apply();
     }
+
+
+
+    public static void saveUsername(Context context, String username)
+    {
+        // get a handle to shared Preference
+        SharedPreferences sharedPref;
+
+        sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preference_file_name),
+                MODE_PRIVATE);
+
+        // write to the shared preference
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("username", username);
+//        editor.putString("password",password);
+        editor.apply();
+    }
+
+
+    public static void savePassword(Context context, String password)
+    {
+        // get a handle to shared Preference
+        SharedPreferences sharedPref;
+
+        sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preference_file_name),
+                MODE_PRIVATE);
+
+        // write to the shared preference
+        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.putString("username", username);
+        editor.putString("password",password);
+        editor.apply();
+    }
+
 
 
 

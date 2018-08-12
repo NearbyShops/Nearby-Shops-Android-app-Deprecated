@@ -17,7 +17,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 
-public class UtilityShopHome {
+public class PrefShopHome {
 
     public static void saveShop(Shop shop, Context context)
     {

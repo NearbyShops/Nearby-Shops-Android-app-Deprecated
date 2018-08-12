@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
-import org.greenrobot.eventbus.EventBus;
 import org.nearbyshops.enduserapp.Carts.CartsList.CartsListFragment;
 import org.nearbyshops.enduserapp.DaggerComponentBuilder;
 import org.nearbyshops.enduserapp.Interfaces.ShowFragment;
@@ -23,9 +22,14 @@ import org.nearbyshops.enduserapp.LoginNew.NotifyAboutLogin;
 import org.nearbyshops.enduserapp.LoginPlaceholders.FragmentSignInMessage;
 import org.nearbyshops.enduserapp.OrderHistoryNew.PendingOrdersFragmentNew;
 import org.nearbyshops.enduserapp.R;
-import org.nearbyshops.enduserapp.Shops.ListFragment.FragmentShopTwo;
-import org.nearbyshops.enduserapp.ShopsByCatSimple.ShopsByCatFragment;
+import org.nearbyshops.enduserapp.Shops.ListFragment.FragmentShopNew;
+import org.nearbyshops.enduserapp.TabProfile.ProfileFragment;
 import org.nearbyshops.enduserapp.Utility.PrefLogin;
+
+
+
+
+
 
 
 public class HomeNew extends AppCompatActivity implements ShowFragment,NotifyAboutLogin {
@@ -236,10 +240,10 @@ public class HomeNew extends AppCompatActivity implements ShowFragment,NotifyAbo
 
         if(getSupportFragmentManager().findFragmentByTag(TAG_PROFILE)==null)
         {
-//            getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .replace(R.id.fragment_container,new ProfileFragment(),TAG_PROFILE)
-//                    .commit();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container,new ProfileFragment(),TAG_PROFILE)
+                    .commit();
         }
     }
 
@@ -304,7 +308,7 @@ public class HomeNew extends AppCompatActivity implements ShowFragment,NotifyAbo
         {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, FragmentShopTwo.newInstance(false), TAG_SHOPS_FRAGMENT)
+                    .replace(R.id.fragment_container, FragmentShopNew.newInstance(false), TAG_SHOPS_FRAGMENT)
                     .commit();
         }
 

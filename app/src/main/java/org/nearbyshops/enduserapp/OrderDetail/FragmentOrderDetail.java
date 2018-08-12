@@ -24,7 +24,7 @@ import org.nearbyshops.enduserapp.RetrofitRESTContract.OrderItemService;
 import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduserapp.Shops.UtilityLocation;
 import org.nearbyshops.enduserapp.Utility.PrefLogin;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -288,7 +288,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     void makeNetworkCall(final boolean clearDataset)
     {
 
-        Shop currentShop = UtilityShopHome.getShop(getContext());
+        Shop currentShop = PrefShopHome.getShop(getContext());
 
         Call<OrderItemEndPoint> call = orderItemService.getOrderItem(
                 PrefLogin.getAuthorizationHeaders(getActivity()),

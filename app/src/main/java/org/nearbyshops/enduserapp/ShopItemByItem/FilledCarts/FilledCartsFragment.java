@@ -26,7 +26,6 @@ import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.Model.ShopItem;
 import org.nearbyshops.enduserapp.ModelEndPoints.ShopItemEndPoint;
-import org.nearbyshops.enduserapp.ModelRoles.EndUser;
 import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.ModelStats.ItemStats;
 import org.nearbyshops.enduserapp.R;
@@ -41,7 +40,7 @@ import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChang
 import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 import org.nearbyshops.enduserapp.Utility.PrefLogin;
 import org.nearbyshops.enduserapp.ShopItemByItem.SlidingLayerSort.UtilitySortShopItems;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import java.util.ArrayList;
 
@@ -385,7 +384,7 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
 
         Intent shopHomeIntent = new Intent(getActivity(), ShopHome.class);
-        UtilityShopHome.saveShop(shop,getActivity());
+        PrefShopHome.saveShop(shop,getActivity());
         startActivity(shopHomeIntent);
 
 

@@ -60,6 +60,37 @@
 
 
 
+        <activity
+            android:name=".EditProfile.ChangeEmail.ChangeEmail"
+            android:label="Change E-mail"
+            android:parentActivityName=".EditProfile.EditProfile">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EditProfile.EditProfile" />
+        </activity>
+
+        <activity
+            android:name=".EditProfile.ChangePhone.ChangePhone"
+            android:label="Change Phone"
+            android:parentActivityName=".EditProfile.EditProfile">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EditProfile.EditProfile" />
+        </activity>
+
+        <!-- android:theme="@style/AppTheme.NoActionBar" -->
+        <activity
+            android:name=".EditProfile.EditProfile"
+            android:label="Edit Profile"
+            android:parentActivityName=".Home">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+        </activity>
+
+
+
+
 
         <activity android:name=".GeolocationTest" />
 

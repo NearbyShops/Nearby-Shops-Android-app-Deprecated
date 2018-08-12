@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,7 +19,7 @@ import org.nearbyshops.enduserapp.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserapp.Utility.PrefGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -96,7 +95,7 @@ public class OrderHome extends AppCompatActivity {
     @OnClick(R.id.shop_card)
     void shopCardClick()
     {
-        shop = UtilityShopHome.getShop(this);
+        shop = PrefShopHome.getShop(this);
         Intent intent = new Intent(this, ShopDetail.class);
         intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
         startActivity(intent);
@@ -106,7 +105,7 @@ public class OrderHome extends AppCompatActivity {
 
     void bindShop()
     {
-        shop = UtilityShopHome.getShop(this);
+        shop = PrefShopHome.getShop(this);
 
         if(shop!=null)
         {

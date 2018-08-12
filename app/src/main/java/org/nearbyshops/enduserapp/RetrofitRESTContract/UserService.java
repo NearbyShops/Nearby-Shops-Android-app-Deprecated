@@ -186,6 +186,14 @@ public interface UserService {
 
 
 
+    @PUT ("/api/v1/User/UpdateProfileEndUser")
+    Call<ResponseBody> updateProfileEndUser(
+            @Header("Authorization") String headers,
+            @Body User user
+    );
+
+
+
 
 
 

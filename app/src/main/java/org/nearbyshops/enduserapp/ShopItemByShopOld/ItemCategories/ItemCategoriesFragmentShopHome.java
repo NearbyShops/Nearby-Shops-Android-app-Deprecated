@@ -26,7 +26,7 @@ import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyCategoryCh
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyGeneral;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.ToggleFab;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import java.util.ArrayList;
 
@@ -105,7 +105,7 @@ public class ItemCategoriesFragmentShopHome extends Fragment
         View rootView = inflater.inflate(R.layout.fragment_item_category_shop_home, container, false);
         ButterKnife.bind(this,rootView);
 
-        shop = UtilityShopHome.getShop(getActivity());
+        shop = PrefShopHome.getShop(getActivity());
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);

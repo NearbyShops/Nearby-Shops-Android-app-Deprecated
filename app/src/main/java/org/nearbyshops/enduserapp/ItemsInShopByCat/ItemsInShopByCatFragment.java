@@ -32,7 +32,7 @@ import org.nearbyshops.enduserapp.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduserapp.ItemsInShopByCat.SlidingLayerSort.UtilitySortItemsInShop;
 import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import java.util.ArrayList;
 
@@ -316,7 +316,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
         Call<ItemCategoryEndPoint> endPointCall = null;
 
-        Shop currentShop = UtilityShopHome.getShop(getContext());
+        Shop currentShop = PrefShopHome.getShop(getContext());
 
         if(searchQuery == null)
         {
@@ -489,7 +489,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
         Call<ShopItemEndPoint> endPointCall = null;
 
-        Shop currentShop = UtilityShopHome.getShop(getContext());
+        Shop currentShop = PrefShopHome.getShop(getContext());
 
 
         if(searchQuery==null)

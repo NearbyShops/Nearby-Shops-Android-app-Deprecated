@@ -29,7 +29,7 @@ import org.nearbyshops.enduserapp.Interfaces.NotifySearch;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserapp.Utility.PrefLogin;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -229,7 +229,7 @@ public class CancelledByUserFragmentPFS extends Fragment implements AdapterCance
 
         if(getActivity().getIntent().getBooleanExtra(CancelledOrdersPFS.IS_FILTER_BY_SHOP,false))
         {
-            Shop shop = UtilityShopHome.getShop(getActivity());
+            Shop shop = PrefShopHome.getShop(getActivity());
 
             if(shop!=null)
             {

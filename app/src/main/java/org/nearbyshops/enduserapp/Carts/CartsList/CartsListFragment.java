@@ -48,6 +48,8 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
     List<CartStats> dataset = new ArrayList<>();
 
+    boolean isDestroyed = false;
+
 
     public CartsListFragment() {
 
@@ -78,7 +80,7 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-        toolbar.setTitle("Nearby Shops");
+//        toolbar.setTitle("Nearby Shops");
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 //
 
@@ -237,6 +239,10 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
     @Override
     public void onResponse(Call<List<CartStats>> call, Response<List<CartStats>> response) {
 
+        if(isDestroyed)
+        {
+            return;
+        }
 
 
         if(response.body()!=null)
@@ -254,8 +260,19 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
     }
 
+
+
+
     @Override
     public void onFailure(Call<List<CartStats>> call, Throwable t) {
+
+
+        if(isDestroyed)
+        {
+            return;
+        }
+
+
 
         showToastMessage("Network Request failed !");
         swipeContainer.setRefreshing(false);
@@ -290,9 +307,17 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
             }
         });
 
+
+        isDestroyed=false;
+
     }
 
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        isDestroyed=true;
+    }
 
     private void showLoginDialog()
     {

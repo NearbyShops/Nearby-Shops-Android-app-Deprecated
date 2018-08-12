@@ -25,7 +25,7 @@ import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyCategoryCh
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyGeneral;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifySort;
 import org.nearbyshops.enduserapp.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 import org.nearbyshops.enduserapp.ItemsInShopByCat.SlidingLayerSort.UtilitySortItemsInShop;
 
 import java.util.ArrayList;
@@ -163,7 +163,7 @@ public class FragmentShopItemsByShop extends Fragment implements
             setupRecyclerView();
             setupSwipeContainer();
 
-            shop = UtilityShopHome.getShop(getActivity());
+            shop = PrefShopHome.getShop(getActivity());
 
             return rootView;
         }

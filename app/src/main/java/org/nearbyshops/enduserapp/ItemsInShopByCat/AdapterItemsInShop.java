@@ -6,9 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -33,7 +31,6 @@ import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.Model.ItemCategory;
 import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.Model.ShopItem;
-import org.nearbyshops.enduserapp.ModelRoles.EndUser;
 import org.nearbyshops.enduserapp.ModelRoles.User;
 import org.nearbyshops.enduserapp.ModelStats.CartStats;
 import org.nearbyshops.enduserapp.R;
@@ -42,7 +39,7 @@ import org.nearbyshops.enduserapp.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduserapp.Utility.InputFilterMinMax;
 import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 import org.nearbyshops.enduserapp.Utility.PrefLogin;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import java.util.HashMap;
 import java.util.List;
@@ -127,7 +124,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
 
 
-        Shop shop = UtilityShopHome.getShop(context);
+        Shop shop = PrefShopHome.getShop(context);
 
 
         Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,null,
@@ -757,7 +754,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                     }
 
 
-                    Shop shop = UtilityShopHome.getShop(context);
+                    Shop shop = PrefShopHome.getShop(context);
 
                     Call<ResponseBody> call = cartItemService.createCartItem(
                             cartItem,
@@ -949,7 +946,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             double cartTotalValue = 0;
 
-            Shop shop = UtilityShopHome.getShop(context);
+            Shop shop = PrefShopHome.getShop(context);
 
             CartStats cartStats = cartStatsMap.get(shop.getShopID());
 
@@ -968,7 +965,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         @OnClick(R.id.reduceQuantity)
         void reduceQuantityClick(View view)
         {
-            Shop shop = UtilityShopHome.getShop(context);
+            Shop shop = PrefShopHome.getShop(context);
 
             shopItem = (ShopItem) dataset.get(getLayoutPosition());
             cartItem = cartItemMap.get(shopItem.getItemID());
@@ -1059,7 +1056,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         @OnClick(R.id.increaseQuantity)
         void increaseQuantityClick(View view)
         {
-            Shop shop = UtilityShopHome.getShop(context);
+            Shop shop = PrefShopHome.getShop(context);
 
             shopItem = (ShopItem) dataset.get(getLayoutPosition());
             cartItem = cartItemMap.get(shopItem.getItemID());

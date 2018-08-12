@@ -19,7 +19,7 @@ import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserapp.ShopHome.ShopHome;
 import org.nearbyshops.enduserapp.Utility.PrefGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import java.util.List;
 
@@ -201,7 +201,7 @@ public class AdapterShop extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 case R.id.list_item_shop:
 
                     Intent shopHomeIntent = new Intent(context, ShopHome.class);
-                    UtilityShopHome.saveShop(dataset.get(getLayoutPosition()),context);
+                    PrefShopHome.saveShop(dataset.get(getLayoutPosition()),context);
                     context.startActivity(shopHomeIntent);
 
                     break;

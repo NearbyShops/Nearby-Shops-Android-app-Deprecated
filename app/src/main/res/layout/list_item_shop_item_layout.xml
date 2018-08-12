@@ -17,6 +17,8 @@
 
 
 
+
+
 <LinearLayout
     android:background="#22000000"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -357,13 +359,16 @@
             android:layout_height="40dp" />
 
 
+
+
         <EditText
+            android:text="0"
+            android:enabled="false"
             android:id="@+id/itemQuantity"
             android:gravity="center"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:inputType="number"
-            android:text="0"
             android:layout_width="70dp"
             android:layout_height="match_parent" />
 

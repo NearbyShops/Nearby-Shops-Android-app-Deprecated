@@ -25,7 +25,7 @@ import org.nearbyshops.enduserapp.Model.Shop;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopHome.ShopHome;
 import org.nearbyshops.enduserapp.Utility.PrefGeneral;
-import org.nearbyshops.enduserapp.Utility.UtilityShopHome;
+import org.nearbyshops.enduserapp.Utility.PrefShopHome;
 
 import java.util.List;
 
@@ -312,7 +312,7 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
                 Shop shop = (Shop) dataset.get(getLayoutPosition());
 
                 Intent shopHomeIntent = new Intent(context, ShopHome.class);
-                UtilityShopHome.saveShop(shop,context);
+                PrefShopHome.saveShop(shop,context);
                 context.startActivity(shopHomeIntent);
             }
 
@@ -351,7 +351,7 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
                         Shop shop = (Shop) dataset.get(getLayoutPosition());
 
                         Intent shopHomeIntent = new Intent(context, ShopHome.class);
-                        UtilityShopHome.saveShop(shop,context);
+                        PrefShopHome.saveShop(shop,context);
                         context.startActivity(shopHomeIntent);
                     }
 
