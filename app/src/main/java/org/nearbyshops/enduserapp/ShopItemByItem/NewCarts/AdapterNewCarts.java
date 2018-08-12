@@ -399,6 +399,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
+
         public ViewHolderItemSimple(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
@@ -539,11 +540,15 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @BindView(R.id.addToCart)
         LinearLayout addToCart;
 
+        @BindView(R.id.progress_bar) ProgressBar progressBar;
+
         @BindView(R.id.shopImage)
         ImageView shopImage;
 
         @BindView(R.id.shopItem_list_item)
         LinearLayout shopItemListItem;
+
+
 
 
         ShopItem shopItem;
@@ -702,11 +707,18 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
             cartItem.setItemID(((ShopItem)dataset.get(getLayoutPosition())).getItemID());
             cartItem.setItemQuantity(Integer.parseInt(itemQuantity.getText().toString()));
 
+
+
+
             Call<ResponseBody> call = cartItemService.createCartItem(
                     cartItem,
                     endUser.getUserID(),
                     ((ShopItem)dataset.get(getLayoutPosition())).getShopID()
             );
+
+
+            progressBar.setVisibility(View.VISIBLE);
+            addToCart.setVisibility(View.INVISIBLE);
 
 
             //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
@@ -720,6 +732,13 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @Override
         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+
+
+
+            progressBar.setVisibility(View.INVISIBLE);
+            addToCart.setVisibility(View.VISIBLE);
+
+
             if(response.code()==201)
             {
                 Toast.makeText(context,"Add to cart. Successful !",Toast.LENGTH_SHORT).show();
@@ -730,6 +749,12 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         @Override
         public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+            progressBar.setVisibility(View.INVISIBLE);
+            addToCart.setVisibility(View.VISIBLE);
+
+
 
             Toast.makeText(context," Unsuccessful !",Toast.LENGTH_SHORT).show();
 

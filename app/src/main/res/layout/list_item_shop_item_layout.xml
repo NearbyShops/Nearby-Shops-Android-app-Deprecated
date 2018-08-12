@@ -363,7 +363,6 @@
 
         <EditText
             android:text="0"
-            android:enabled="false"
             android:id="@+id/itemQuantity"
             android:gravity="center"
             android:layout_marginLeft="5dp"
@@ -417,36 +416,62 @@
 
 
 
-    <LinearLayout
-        android:id="@+id/addToCart"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <ImageView
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginLeft="0dp"
-        android:background="@color/grey800"
-        app:srcCompat="@drawable/ic_add_shopping_cart_white_24px"
-        android:layout_width="100dp"
-        android:layout_height="match_parent" />
 
-        <TextView
-            android:id="@+id/textAddToCart"
-        android:textSize="24sp"
-        android:gravity="right"
-        android:layout_marginRight="0dp"
-        android:textColor="@color/colorWhite"
-        android:background="@color/grey800"
-        android:text="Add to Cart"
-        android:padding="20dp"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/addToCart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <ImageView
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="0dp"
+                android:background="@color/grey800"
+                app:srcCompat="@drawable/ic_add_shopping_cart_white_24px"
+                android:layout_width="100dp"
+                android:layout_height="match_parent" />
+
+
+
+            <TextView
+                android:id="@+id/textAddToCart"
+                android:textSize="24sp"
+                android:gravity="right"
+                android:layout_marginRight="0dp"
+                android:textColor="@color/colorWhite"
+                android:background="@color/grey800"
+                android:text="Add to Cart"
+                android:padding="20dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <ProgressBar
+            android:visibility="invisible"
+            android:id="@+id/progress_bar"
+            app:layout_constraintBottom_toBottomOf="@id/addToCart"
+            app:layout_constraintEnd_toEndOf="@id/addToCart"
+            app:layout_constraintStart_toStartOf="@id/addToCart"
+            app:layout_constraintTop_toTopOf="@id/addToCart"
+            android:layout_width="35dp"
+            android:layout_height="35dp" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
 
 
     <LinearLayout

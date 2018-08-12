@@ -217,10 +217,11 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
+
     void setupRecyclerView()
     {
 
-        listAdapter = new AdapterSimple(dataset,getActivity(),this);
+        listAdapter = new AdapterSimple(dataset,getActivity(),this,this);
         itemCategoriesList.setAdapter(listAdapter);
 
         layoutManager = new GridLayoutManager(getActivity(),6, LinearLayoutManager.VERTICAL,false);
@@ -235,7 +236,13 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
             @Override
             public int getSpanSize(int position) {
 
-                if(dataset.get(position) instanceof ItemCategory)
+
+
+                if(position == dataset.size())
+                {
+
+                }
+                else if(dataset.get(position) instanceof ItemCategory)
                 {
                     final DisplayMetrics metrics = new DisplayMetrics();
                     getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -313,7 +320,14 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 */
 
 
-                if(layoutManager.findLastVisibleItemPosition()==dataset.size()-1)
+                if(offset_item + limit_item > layoutManager.findLastVisibleItemPosition())
+                {
+                    return;
+                }
+
+
+
+                if(layoutManager.findLastVisibleItemPosition()==dataset.size()-1+1)
                 {
 
                     // trigger fetch next page
@@ -573,6 +587,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
                         datasetItems.clear();
                         datasetItems.addAll(response.body().getResults());
+
+//                        fetched_items_count = fetched_items_count + response.body().getResults().size();
+//                        item_count_item = response.body().getItemCount();
+
                         item_count_item = response.body().getItemCount();
                         fetched_items_count = datasetItems.size();
 

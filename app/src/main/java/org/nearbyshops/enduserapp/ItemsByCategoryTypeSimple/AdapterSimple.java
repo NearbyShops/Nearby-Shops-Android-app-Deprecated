@@ -5,22 +5,28 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.nearbyshops.enduserapp.Items.ItemsList.AdapterItem;
+import org.nearbyshops.enduserapp.Items.ItemsList.FragmentItemsList;
 import org.nearbyshops.enduserapp.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
 import org.nearbyshops.enduserapp.Model.Item;
 import org.nearbyshops.enduserapp.Model.ItemCategory;
 import org.nearbyshops.enduserapp.ModelStats.ItemStats;
 import org.nearbyshops.enduserapp.R;
 import org.nearbyshops.enduserapp.ShopItemByItem.ShopsForItemSwipe;
+import org.nearbyshops.enduserapp.ShopsByCategoryOld.ItemCategories.ItemCategoriesFragment;
 import org.nearbyshops.enduserapp.Utility.PrefGeneral;
 
 import java.util.List;
@@ -46,10 +52,12 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public static final int VIEW_TYPE_ITEM_CATEGORY = 1;
     public static final int VIEW_TYPE_ITEM = 2;
     public static final int VIEW_TYPE_HEADER = 3;
+    public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 4;
 
 
+    private Fragment fragment;
 
-    public AdapterSimple(List<Object> dataset, Context context, NotificationsFromAdapter notificationReceiver) {
+    public AdapterSimple(List<Object> dataset, Context context, NotificationsFromAdapter notificationReceiver,Fragment fragment) {
 
 
 //        DaggerComponentBuilder.getInstance()
@@ -58,6 +66,7 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.notificationReceiver = notificationReceiver;
         this.dataset = dataset;
         this.context = context;
+        this.fragment = fragment;
     }
 
     @Override
@@ -81,6 +90,15 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_header_type_simple,parent,false);
             return new ViewHolderHeader(view);
         }
+        else if(viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR)
+        {
+
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item_progress_bar,parent,false);
+
+            return new LoadingViewHolder(view);
+        }
+
 
 //        else
 //        {
@@ -111,8 +129,63 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
                 ((ViewHolderHeader) holder).header.setText(header.getHeading());
             }
-
         }
+        else if(holder instanceof LoadingViewHolder)
+        {
+
+
+            LoadingViewHolder viewHolder = (LoadingViewHolder) holder;
+
+
+            Log.d("adapter_item_cat","Hello from LoadingViewHolder");
+
+            if(fragment instanceof ItemCategoriesFragmentSimple)
+            {
+                int fetched_count  = ((ItemCategoriesFragmentSimple) fragment).fetched_items_count;
+                int items_count = ((ItemCategoriesFragmentSimple) fragment).item_count_item;
+
+                Log.d("adapter_item_cat","Fetched Count : "  + String.valueOf(fetched_count) + " Items Count : "  + String.valueOf(items_count));
+
+
+
+                if(fetched_count == items_count)
+                {
+                    viewHolder.progressBar.setVisibility(View.GONE);
+                }
+                else
+                {
+                    viewHolder.progressBar.setVisibility(View.VISIBLE);
+                    viewHolder.progressBar.setIndeterminate(true);
+
+                }
+            }
+        }
+
+//        else if(holder instanceof LoadingViewHolder)
+//        {
+//
+//            LoadingViewHolder viewHolder = (LoadingViewHolder) holder;
+//
+//            int itemCount = 0;
+//
+//            if(fragment instanceof ItemCategoriesFragmentSimple)
+//            {
+//                itemCount = ((ItemCategoriesFragmentSimple) fragment).item_count_item + ((ItemCategoriesFragmentSimple) fragment).item_count_item_category;
+//            }
+//
+//            if(position == 0 || position == itemCount)
+//            {
+//                viewHolder.progressBar.setVisibility(View.GONE);
+//            }
+//            else
+//            {
+//                viewHolder.progressBar.setVisibility(View.VISIBLE);
+//                viewHolder.progressBar.setIndeterminate(true);
+//
+//            }
+//        }
+
+
 
     }
 
@@ -122,7 +195,13 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         super.getItemViewType(position);
 
-        if(dataset.get(position) instanceof ItemCategory)
+
+
+        if(position == dataset.size())
+        {
+            return VIEW_TYPE_SCROLL_PROGRESS_BAR;
+        }
+        else if(dataset.get(position) instanceof ItemCategory)
         {
             return VIEW_TYPE_ITEM_CATEGORY;
         }
@@ -142,7 +221,7 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public int getItemCount() {
 
-        return dataset.size();
+        return (dataset.size() + 1);
     }
 
 
@@ -313,4 +392,17 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 //        Toast.makeText(context,message, Toast.LENGTH_SHORT).show();
 //    }
 
+
+
+
+    public class LoadingViewHolder extends  RecyclerView.ViewHolder{
+
+        @BindView(R.id.progress_bar)
+        ProgressBar progressBar;
+
+        public LoadingViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+        }
+    }
 }
