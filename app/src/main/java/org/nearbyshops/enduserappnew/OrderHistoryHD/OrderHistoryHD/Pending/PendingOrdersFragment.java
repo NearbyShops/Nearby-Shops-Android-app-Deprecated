@@ -29,10 +29,10 @@ import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.SlidingLayerS
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
-import org.nearbyshops.enduserappnew.Utility.PrefShopHome;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 
 import java.util.ArrayList;
 import java.util.List;

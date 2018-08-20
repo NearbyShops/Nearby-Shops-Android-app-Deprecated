@@ -22,9 +22,9 @@ import org.nearbyshops.enduserappnew.ModelEndPoints.ItemEndPoint;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
-import org.nearbyshops.enduserappnew.Shops.UtilityLocation;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.UtilitySortItemsByCategory;
 
 import java.util.ArrayList;
@@ -269,8 +269,8 @@ public class FragmentItemsList extends Fragment
 
         Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(null,
                 null,
-                UtilityLocation.getLatitude(getActivity()),
-                UtilityLocation.getLongitude(getActivity()),
+                PrefLocation.getLatitude(getActivity()),
+                PrefLocation.getLongitude(getActivity()),
                 null,
                 null,
                 null,

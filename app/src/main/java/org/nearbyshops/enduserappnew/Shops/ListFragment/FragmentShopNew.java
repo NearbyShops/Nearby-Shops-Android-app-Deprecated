@@ -27,11 +27,11 @@ import org.nearbyshops.enduserappnew.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduserappnew.Shops.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.SlidingLayerSortShops;
-import org.nearbyshops.enduserappnew.Shops.UtilityLocation;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.UtilitySortShopsByCategory;
-import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
+import org.nearbyshops.enduserappnew.Preferences.DividerItemDecoration;
 
 import java.util.ArrayList;
 
@@ -461,8 +461,8 @@ public class FragmentShopNew extends Fragment implements
             Call<ShopEndPoint> callEndpoint = shopService.getShops(
                     null,
                     null,
-                    UtilityLocation.getLatitude(getActivity()),
-                    UtilityLocation.getLongitude(getActivity()),
+                    PrefLocation.getLatitude(getActivity()),
+                    PrefLocation.getLongitude(getActivity()),
                     null, null, null,
                     searchQuery,current_sort,limit,offset,false
             );
@@ -474,8 +474,8 @@ public class FragmentShopNew extends Fragment implements
 
 
 
-            System.out.println("Lat : " + UtilityLocation.getLatitude(getActivity())
-                                + "\nLon : " + UtilityLocation.getLongitude(getActivity()));
+            System.out.println("Lat : " + PrefLocation.getLatitude(getActivity())
+                                + "\nLon : " + PrefLocation.getLongitude(getActivity()));
 
 
 

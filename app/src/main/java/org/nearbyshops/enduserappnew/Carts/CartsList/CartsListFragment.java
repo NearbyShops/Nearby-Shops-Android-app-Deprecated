@@ -22,8 +22,8 @@ import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartStatsService;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 import java.util.ArrayList;
 import java.util.List;

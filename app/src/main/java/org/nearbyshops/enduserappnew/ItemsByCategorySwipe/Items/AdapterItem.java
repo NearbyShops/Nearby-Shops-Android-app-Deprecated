@@ -20,7 +20,7 @@ import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopItemByItem.ShopsForItemSwipe;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 
 import java.util.List;
 

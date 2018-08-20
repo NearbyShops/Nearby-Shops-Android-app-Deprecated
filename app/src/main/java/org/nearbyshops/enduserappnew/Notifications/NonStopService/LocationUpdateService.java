@@ -15,8 +15,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import org.nearbyshops.enduserappnew.SharedPreferences.UtilityLocationOld;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 
 /**
  * Created by sumeet on 10/4/17.
@@ -259,16 +259,12 @@ public class LocationUpdateService extends NonStopIntentService implements Googl
         PrefGeneral.saveInSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY,(float)location.getLatitude());
         PrefGeneral.saveInSharedPrefFloat(PrefGeneral.LON_CENTER_KEY,(float)location.getLongitude());
 
-        org.nearbyshops.enduserappnew.Shops.UtilityLocation.saveLatitude((float) location.getLatitude(),this);
-        org.nearbyshops.enduserappnew.Shops.UtilityLocation.saveLongitude((float) location.getLongitude(),this);
-
-        UtilityLocationOld.saveCurrentLocation(this,location);
+        PrefLocation.saveLatitude((float) location.getLatitude(),this);
+        PrefLocation.saveLongitude((float) location.getLongitude(),this);
 
         broadcastMessage();
 
 //        stopLocationUpdates();
-
-
     }
 
 

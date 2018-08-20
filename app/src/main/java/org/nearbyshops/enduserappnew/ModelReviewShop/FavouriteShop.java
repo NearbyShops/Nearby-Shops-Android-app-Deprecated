@@ -2,7 +2,7 @@ package org.nearbyshops.enduserappnew.ModelReviewShop;
 
 
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
 
 /**
  * Created by sumeet on 8/8/16.
@@ -26,7 +26,7 @@ public class FavouriteShop {
             + " " + FavouriteShop.SHOP_ID + " INT,"
             + " " + FavouriteShop.IS_FAVOURITE + " boolean,"
 
-            + " FOREIGN KEY(" + FavouriteShop.END_USER_ID +") REFERENCES " + EndUser.TABLE_NAME + "(" + EndUser.END_USER_ID + "),"
+            + " FOREIGN KEY(" + FavouriteShop.END_USER_ID +") REFERENCES " + User.TABLE_NAME + "(" + User.USER_ID + "),"
             + " FOREIGN KEY(" + FavouriteShop.SHOP_ID +") REFERENCES " + Shop.TABLE_NAME + "(" + Shop.SHOP_ID + "),"
             + " PRIMARY KEY (" + FavouriteShop.END_USER_ID + ", " + FavouriteShop.SHOP_ID + ")"
             + ")";

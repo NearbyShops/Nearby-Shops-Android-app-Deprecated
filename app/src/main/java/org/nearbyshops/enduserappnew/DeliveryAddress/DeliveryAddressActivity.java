@@ -18,12 +18,11 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress.EditAddressFragment;
 import org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress.EditDeliveryAddress;
 import org.nearbyshops.enduserappnew.LoginNew.Login;
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.DeliveryAddressService;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +47,7 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
     List<DeliveryAddress> dataset = new ArrayList<>();
 
-    EndUser endUser = null;
+//    EndUser endUser = null;
 
     public final static String SHOP_INTENT_KEY = "shop_cart_item";
     public final static String CART_STATS_INTENT_KEY = "cart_stats";

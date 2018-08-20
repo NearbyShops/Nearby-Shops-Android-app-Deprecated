@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

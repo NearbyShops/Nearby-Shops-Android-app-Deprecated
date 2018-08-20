@@ -19,13 +19,12 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReviewThanks;
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewThanksService;
 import org.nearbyshops.enduserappnew.ShopReview.Interfaces.NotifyLoginByAdapter;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 import java.util.List;
 import java.util.Map;
@@ -79,7 +78,7 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
     @Override
     public void onBindViewHolder(ShopReviewAdapter.ViewHolder holder, final int position) {
 
-        EndUser endUser = dataset.get(position).getRt_end_user_profile();
+        User endUser = dataset.get(position).getRt_end_user_profile();
 
         holder.member_name.setText(endUser.getName());
         holder.rating.setRating(dataset.get(position).getRating());
@@ -112,7 +111,7 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
 //                + dataset.get(position).getRt_end_user_profile().getProfileImageURL();
 
 
-        String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/EndUser/Image/" + dataset.get(position).getRt_end_user_profile().getProfileImageURL();
+        String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/User/Image/" + dataset.get(position).getRt_end_user_profile().getProfileImagePath();
 
 
 

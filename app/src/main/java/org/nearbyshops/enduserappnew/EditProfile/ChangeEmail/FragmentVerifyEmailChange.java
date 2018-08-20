@@ -20,7 +20,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 import javax.inject.Inject;
 

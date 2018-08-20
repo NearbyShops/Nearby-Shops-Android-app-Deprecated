@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

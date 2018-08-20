@@ -27,7 +27,6 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduserappnew.Carts.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
 import org.nearbyshops.enduserappnew.MyApplication;
@@ -36,10 +35,10 @@ import org.nearbyshops.enduserappnew.ShopItemByItem.Interfaces.NotifyFillCartsCh
 import org.nearbyshops.enduserappnew.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
 import org.nearbyshops.enduserappnew.ShopItemByItem.Interfaces.NotifySwipeToRight;
 import org.nearbyshops.enduserappnew.ShopItemByItem.SlidingLayerSort.SlidingLayerSortShopItem;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

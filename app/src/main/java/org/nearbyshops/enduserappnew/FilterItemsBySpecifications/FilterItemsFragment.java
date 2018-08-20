@@ -20,8 +20,8 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemSpecItemService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemSpecNameService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemSpecValueService;
-import org.nearbyshops.enduserappnew.Shops.UtilityLocation;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -265,8 +265,8 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
 
         Call<List<ItemSpecificationName>> call = itemSpecNameService.getItemSpecsForFilters(
                 null,null,
-                UtilityLocation.getLatitude(getActivity()),
-                UtilityLocation.getLongitude(getActivity()),null
+                PrefLocation.getLatitude(getActivity()),
+                PrefLocation.getLongitude(getActivity()),null
         );
 
 
@@ -373,8 +373,8 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
 
         Call<List<ItemSpecificationValue>> call = itemSpecValueService.getItemSpecsForFilters(
                 selectedItemNameID,null,null,
-                UtilityLocation.getLatitude(getActivity()),
-                UtilityLocation.getLongitude(getActivity()),
+                PrefLocation.getLatitude(getActivity()),
+                PrefLocation.getLongitude(getActivity()),
                 null
         );
 

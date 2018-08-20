@@ -2,7 +2,7 @@ package org.nearbyshops.enduserappnew.ModelReviewItem;
 
 
 import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
 
 /**
  * Created by sumeet on 8/8/16.
@@ -26,7 +26,7 @@ public class FavouriteItem {
             + " " + FavouriteItem.ITEM_ID + " INT,"
             + " " + FavouriteItem.IS_FAVOURITE + " boolean,"
 
-            + " FOREIGN KEY(" + FavouriteItem.END_USER_ID +") REFERENCES " + EndUser.TABLE_NAME + "(" + EndUser.END_USER_ID + "),"
+            + " FOREIGN KEY(" + FavouriteItem.END_USER_ID +") REFERENCES " + User.TABLE_NAME + "(" + User.USER_ID + "),"
             + " FOREIGN KEY(" + FavouriteItem.ITEM_ID +") REFERENCES " + Item.TABLE_NAME + "(" + Item.ITEM_ID + "),"
             + " PRIMARY KEY (" + FavouriteItem.END_USER_ID + ", " + FavouriteItem.ITEM_ID + ")"
             + ")";

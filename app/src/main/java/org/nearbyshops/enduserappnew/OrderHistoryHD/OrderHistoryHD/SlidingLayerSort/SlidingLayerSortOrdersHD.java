@@ -13,7 +13,7 @@ import android.widget.TextView;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

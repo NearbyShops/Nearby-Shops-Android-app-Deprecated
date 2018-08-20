@@ -20,14 +20,12 @@ import org.nearbyshops.enduserappnew.EditProfile.ChangePassword.FragmentChangePa
 import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.FragmentChangePhone;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.FragmentVerifyPhone;
 import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
-import org.nearbyshops.enduserappnew.EditProfileEndUser.EditEndUserFragment;
 import org.nearbyshops.enduserappnew.FilterItemsBySpecifications.FilterItemsFragment;
 import org.nearbyshops.enduserappnew.FilterShopDialog.FilterShopsDialog;
 import org.nearbyshops.enduserappnew.Home;
-import org.nearbyshops.enduserappnew.HomeNew.HomeNew;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.AdapterSimple;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
-import org.nearbyshops.enduserappnew.ItemCategoryOption.FragmentShopOld;
+import org.nearbyshops.enduserappnew.ItemCategoryOption.FragmentShop;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail;
 import org.nearbyshops.enduserappnew.ItemDetail.RateReviewItemDialog;
 import org.nearbyshops.enduserappnew.Items.ItemsList.FragmentItemsList;
@@ -38,30 +36,23 @@ import org.nearbyshops.enduserappnew.ItemsByCategoryHorizontal.Items.FragmentIte
 import org.nearbyshops.enduserappnew.ItemsInShop.ShopItems.FragmentItemsInShop;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.AdapterItemsInShop;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCatFragment;
-import org.nearbyshops.enduserappnew.LoginActivity;
 import org.nearbyshops.enduserappnew.LoginNew.LoginFragment;
 import org.nearbyshops.enduserappnew.LoginNew.ServiceIndicatorFragment;
 import org.nearbyshops.enduserappnew.OrderDetail.FragmentOrderDetail;
-import org.nearbyshops.enduserappnew.OrderDetailPFS.FragmentOrderDetailPFS;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Complete.CompleteOrdersFragment;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Pending.PendingOrdersFragment;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.PendingOrdersFragmentNew;
-import org.nearbyshops.enduserappnew.OrderHistoryPFS.Complete.CompleteOrdersFragmentPFS;
-import org.nearbyshops.enduserappnew.OrderHistoryPFS.Pending.PendingOrdersFragmentPFS;
-import org.nearbyshops.enduserappnew.OrdersCancelledPFS.CancelledByShop.CancelledByShopFragmentPFS;
-import org.nearbyshops.enduserappnew.OrdersCancelledPFS.CancelledByUser.CancelledByUserFragmentPFS;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserappnew.ShopDetail.RateReviewDialog;
-import org.nearbyshops.enduserappnew.ShopItemByShopOld.ItemCategories.ItemCategoriesFragmentShopHome;
-import org.nearbyshops.enduserappnew.ShopItemByShopOld.ShopItems.AdapterShopItems;
-import org.nearbyshops.enduserappnew.ShopItemByShopOld.ShopItems.FragmentShopItemsByShop;
+import org.nearbyshops.enduserappnew.ShopItemByShop.ItemCategories.ItemCategoriesFragmentShopHome;
+import org.nearbyshops.enduserappnew.ShopItemByShop.ShopItems.AdapterShopItems;
+import org.nearbyshops.enduserappnew.ShopItemByShop.ShopItems.FragmentShopItemsByShop;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewAdapter;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewStats;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
 import org.nearbyshops.enduserappnew.Shops.ListFragment.FragmentShopNew;
 import org.nearbyshops.enduserappnew.ShopsByCatSimple.ShopsByCatFragment;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.ItemCategories.ItemCategoriesFragment;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Shops.FragmentShop;
+import org.nearbyshops.enduserappnew.ShopsByCategory.ItemCategories.ItemCategoriesFragment;
 import org.nearbyshops.enduserappnew.ItemCategoryOption.FragmentItemCategories;
 import org.nearbyshops.enduserappnew.ItemCategoryOption.FragmentItem;
 import org.nearbyshops.enduserappnew.ShopItemByItem.FilledCarts.AdapterFilledCarts;
@@ -89,14 +80,6 @@ import dagger.Component;
 @Component(modules={AppModule.class, NetModule.class})
 public interface NetComponent {
 
-    // void inject(MyFragment fragment);
-    // void inject(MyService service);
-
-//    void inject(ItemCategoryRetrofitProvider provider);
-//
-//    void inject(ShopRetrofitProvider provider);
-//
-//    void inject(ItemProviderRetrofit providerRetrofit);
 
     void Inject(FilledCartsFragment shopsForItem);
 
@@ -120,16 +103,14 @@ public interface NetComponent {
 
     void Inject(FragmentItemCategories fragmentItemCategories);
 
-    void Inject(LoginActivity loginActivity);
-
     void Inject(FragmentItem itemFragment);
 
-    void Inject(FragmentShopOld shopFragment);
+    void Inject(FragmentShop shopFragment);
 
 
     void Inject(ItemCategoriesFragment itemCategoriesFragment);
 
-    void Inject(FragmentShop fragmentShop);
+    void Inject(org.nearbyshops.enduserappnew.ShopsByCategory.Shops.FragmentShop fragmentShop);
 
     void Inject(ItemCategoriesFragmentItem itemCategoriesFragmentItem);
 
@@ -194,21 +175,7 @@ public interface NetComponent {
 
     void Inject(FragmentReturnedByDG fragmentReturnedByDG);
 
-    void Inject(CompleteOrdersFragmentPFS completeOrdersFragmentPFS);
-
-    void Inject(FragmentOrderDetailPFS fragmentOrderDetailPFS);
-
-    void Inject(PendingOrdersFragmentPFS pendingOrdersFragmentPFS);
-
-    void Inject(CancelledByShopFragmentPFS cancelledByShopFragmentPFS);
-
-    void Inject(CancelledByUserFragmentPFS cancelledByUserFragmentPFS);
-
-    void Inject(EditEndUserFragment editEndUserFragment);
-
     void Inject(EditAddressFragment editAddressFragment);
-
-    void Inject(Home home);
 
     void Inject(FilterItemsFragment filterItemsFragment);
 
@@ -227,7 +194,7 @@ public interface NetComponent {
     void Inject(FragmentVerifyEmailSignUp fragmentVerifyEmailSignUp);
 
 
-    void Inject(HomeNew homeNew);
+    void Inject(Home homeNew);
 
     void Inject(ServiceIndicatorFragment serviceIndicatorFragment);
 

@@ -24,8 +24,8 @@ import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopHome.ShopHome;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 
 import java.util.List;
 

@@ -22,7 +22,7 @@ import org.nearbyshops.enduserappnew.ItemCategoryOption.Interfaces.NotifyBackPre
 import org.nearbyshops.enduserappnew.ItemCategoryOption.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

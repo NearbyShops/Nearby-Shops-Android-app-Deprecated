@@ -1,6 +1,6 @@
 package org.nearbyshops.enduserappnew.ModelReviewItem;
 
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
 
 /**
  * Created by sumeet on 21/10/16.
@@ -23,7 +23,7 @@ public class ItemReviewThanks {
             + " " + ItemReviewThanks.END_USER_ID + " INT,"
             + " " + ItemReviewThanks.ITEM_REVIEW_ID + " INT,"
 
-            + " FOREIGN KEY(" + ItemReviewThanks.END_USER_ID +") REFERENCES " + EndUser.TABLE_NAME + "(" + EndUser.END_USER_ID + "),"
+            + " FOREIGN KEY(" + ItemReviewThanks.END_USER_ID +") REFERENCES " + User.TABLE_NAME + "(" + User.USER_ID + "),"
             + " FOREIGN KEY(" + ItemReviewThanks.ITEM_REVIEW_ID +") REFERENCES " + ItemReview.TABLE_NAME + "(" + ItemReview.ITEM_REVIEW_ID + "),"
             + " PRIMARY KEY (" + ItemReviewThanks.END_USER_ID + ", " + ItemReviewThanks.ITEM_REVIEW_ID + ")"
             + ")";

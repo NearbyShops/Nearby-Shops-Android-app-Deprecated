@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import org.nearbyshops.enduserappnew.ItemCategoryOption.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 
 /**
  * Created by sumeet on 25/5/16.
@@ -20,7 +20,7 @@ public class PagerAdapter extends FragmentPagerAdapter implements NotifyTitleCha
 
     FragmentItem fragmentItem = FragmentItem.newInstance(itemCategory);
 
-    FragmentShopOld fragmentShopOld = FragmentShopOld.newInstance(2,itemCategory);
+    FragmentShop fragmentShopOld = FragmentShop.newInstance(2,itemCategory);
 
 
 

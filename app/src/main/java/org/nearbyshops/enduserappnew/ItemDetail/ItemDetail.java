@@ -46,14 +46,14 @@ import org.nearbyshops.enduserappnew.ModelReviewItem.FavouriteItem;
 import org.nearbyshops.enduserappnew.ModelReviewItem.FavouriteItemEndpoint;
 import org.nearbyshops.enduserappnew.ModelReviewItem.ItemReview;
 import org.nearbyshops.enduserappnew.ModelReviewItem.ItemReviewEndPoint;
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.FavouriteItemService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemImageService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemReviewService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemSpecNameService;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -525,11 +525,11 @@ public class ItemDetail extends AppCompatActivity implements
 //                                user_review.setText(response.body().getResults().get(0).getReviewText());
 //                                ratingBar_rate.setRating(response.body().getResults().get(0).getRating());
 
-                                EndUser member = response.body().getResults().get(0).getRt_end_user_profile();
+                                User member = response.body().getResults().get(0).getRt_end_user_profile();
                                 member_name.setText(member.getName());
 
                                 String imagePath = PrefGeneral.getImageEndpointURL(ItemDetail.this)
-                                        + member.getProfileImageURL();
+                                        + member.getProfileImagePath();
 
 
 

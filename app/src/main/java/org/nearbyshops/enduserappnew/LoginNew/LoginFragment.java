@@ -25,8 +25,8 @@ import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.ForgotPassword;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceForgotPassword;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
 import org.nearbyshops.enduserappnew.SignUp.SignUp;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 import javax.inject.Inject;
 

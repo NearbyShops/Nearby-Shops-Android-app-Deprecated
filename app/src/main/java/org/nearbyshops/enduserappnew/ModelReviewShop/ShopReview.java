@@ -4,14 +4,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
 
 import java.sql.Timestamp;
 
 /**
  * Created by sumeet on 8/8/16.
  */
-public class ShopReview implements Parcelable{
+public class ShopReview{
 
 
     // Table Name
@@ -43,7 +43,7 @@ public class ShopReview implements Parcelable{
             + " " + ShopReview.REVIEW_DATE + "  timestamp with time zone NOT NULL DEFAULT now(),"
 
             + " FOREIGN KEY(" + ShopReview.SHOP_ID +") REFERENCES " + Shop.TABLE_NAME + "(" + Shop.SHOP_ID + "),"
-            + " FOREIGN KEY(" + ShopReview.END_USER_ID +") REFERENCES " + EndUser.TABLE_NAME + "(" + EndUser.END_USER_ID + "),"
+            + " FOREIGN KEY(" + ShopReview.END_USER_ID +") REFERENCES " + User.TABLE_NAME + "(" + User.USER_ID + "),"
             + " UNIQUE (" + ShopReview.SHOP_ID + "," + ShopReview.END_USER_ID + ")"
             + ")";
 
@@ -61,7 +61,7 @@ public class ShopReview implements Parcelable{
     private String reviewTitle;
     private Timestamp reviewDate;
 
-    private EndUser rt_end_user_profile;
+    private User rt_end_user_profile;
     private int rt_thanks_count;
 
     public int getRt_thanks_count() {
@@ -75,56 +75,59 @@ public class ShopReview implements Parcelable{
 
     // getter and Setter Methods
 
+//
+//    protected ShopReview(Parcel in) {
+//        shopReviewID = in.readInt();
+//        shopID = in.readInt();
+//        endUserID = in.readInt();
+//        rating = in.readInt();
+//        reviewText = in.readString();
+//        reviewTitle = in.readString();
+//        rt_thanks_count = in.readInt();
+//
+//        reviewDate = new Timestamp(in.readLong());
+//    }
+//
+//    @Override
+//    public void writeToParcel(Parcel dest, int flags) {
+//        dest.writeInt(shopReviewID);
+//        dest.writeInt(shopID);
+//        dest.writeInt(endUserID);
+//        dest.writeInt(rating);
+//        dest.writeString(reviewText);
+//        dest.writeString(reviewTitle);
+//        dest.writeInt(rt_thanks_count);
+//
+//
+//        if(reviewDate!=null)
+//        {
+//            dest.writeLong(reviewDate.getTime());
+//        }
+//        else
+//        {
+//            dest.writeLong(0);
+//        }
+//    }
 
-    protected ShopReview(Parcel in) {
-        shopReviewID = in.readInt();
-        shopID = in.readInt();
-        endUserID = in.readInt();
-        rating = in.readInt();
-        reviewText = in.readString();
-        reviewTitle = in.readString();
-        rt_thanks_count = in.readInt();
-
-        reviewDate = new Timestamp(in.readLong());
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(shopReviewID);
-        dest.writeInt(shopID);
-        dest.writeInt(endUserID);
-        dest.writeInt(rating);
-        dest.writeString(reviewText);
-        dest.writeString(reviewTitle);
-        dest.writeInt(rt_thanks_count);
 
 
-        if(reviewDate!=null)
-        {
-            dest.writeLong(reviewDate.getTime());
-        }
-        else
-        {
-            dest.writeLong(0);
-        }
-    }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<ShopReview> CREATOR = new Creator<ShopReview>() {
-        @Override
-        public ShopReview createFromParcel(Parcel in) {
-            return new ShopReview(in);
-        }
-
-        @Override
-        public ShopReview[] newArray(int size) {
-            return new ShopReview[size];
-        }
-    };
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    public static final Creator<ShopReview> CREATOR = new Creator<ShopReview>() {
+//        @Override
+//        public ShopReview createFromParcel(Parcel in) {
+//            return new ShopReview(in);
+//        }
+//
+//        @Override
+//        public ShopReview[] newArray(int size) {
+//            return new ShopReview[size];
+//        }
+//    };
 
     public Integer getShopReviewID() {
         return shopReviewID;
@@ -185,11 +188,11 @@ public class ShopReview implements Parcelable{
     }
 
 
-    public EndUser getRt_end_user_profile() {
+    public User getRt_end_user_profile() {
         return rt_end_user_profile;
     }
 
-    public void setRt_end_user_profile(EndUser rt_end_user_profile) {
+    public void setRt_end_user_profile(User rt_end_user_profile) {
         this.rt_end_user_profile = rt_end_user_profile;
     }
 }

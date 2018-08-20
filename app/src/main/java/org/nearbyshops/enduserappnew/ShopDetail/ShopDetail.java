@@ -1,8 +1,6 @@
 package org.nearbyshops.enduserappnew.ShopDetail;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -14,7 +12,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -47,13 +44,13 @@ import org.nearbyshops.enduserappnew.ModelEndPoints.FavouriteShopEndpoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopReviewEndPoint;
 import org.nearbyshops.enduserappnew.ModelReviewShop.FavouriteShop;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.FavouriteShopService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -378,11 +375,11 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 //                                user_review.setText(response.body().getResults().get(0).getReviewText());
 //                                ratingBar_rate.setRating(response.body().getResults().get(0).getRating());
 
-                                EndUser member = response.body().getResults().get(0).getRt_end_user_profile();
+                                User member = response.body().getResults().get(0).getRt_end_user_profile();
                                 member_name.setText(member.getName());
 
                                 String imagePath = PrefGeneral.getImageEndpointURL(ShopDetail.this)
-                                        + member.getProfileImageURL();
+                                        + member.getProfileImagePath();
 
 
 

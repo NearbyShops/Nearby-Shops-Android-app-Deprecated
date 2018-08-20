@@ -1,7 +1,7 @@
 package org.nearbyshops.enduserappnew.ModelReviewItem;
 
 import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
 
 import java.sql.Timestamp;
 
@@ -40,7 +40,7 @@ public class ItemReview {
             + " " + ItemReview.REVIEW_DATE + "  timestamp with time zone NOT NULL DEFAULT now(),"
 
             + " FOREIGN KEY(" + ItemReview.ITEM_ID +") REFERENCES " + Item.TABLE_NAME + "(" + Item.ITEM_ID + "),"
-            + " FOREIGN KEY(" + ItemReview.END_USER_ID +") REFERENCES " + EndUser.TABLE_NAME + "(" + EndUser.END_USER_ID + "),"
+            + " FOREIGN KEY(" + ItemReview.END_USER_ID +") REFERENCES " + User.TABLE_NAME + "(" + User.USER_ID + "),"
             + " UNIQUE (" + ItemReview.ITEM_ID + "," + ItemReview.END_USER_ID + ")"
             + ")";
 
@@ -56,7 +56,7 @@ public class ItemReview {
     private String reviewTitle;
     private Timestamp reviewDate;
 
-    private EndUser rt_end_user_profile;
+    private User rt_end_user_profile;
     private Integer rt_thanks_count;
 
 
@@ -129,12 +129,11 @@ public class ItemReview {
         this.reviewDate = reviewDate;
     }
 
-
-    public EndUser getRt_end_user_profile() {
+    public User getRt_end_user_profile() {
         return rt_end_user_profile;
     }
 
-    public void setRt_end_user_profile(EndUser rt_end_user_profile) {
+    public void setRt_end_user_profile(User rt_end_user_profile) {
         this.rt_end_user_profile = rt_end_user_profile;
     }
 }

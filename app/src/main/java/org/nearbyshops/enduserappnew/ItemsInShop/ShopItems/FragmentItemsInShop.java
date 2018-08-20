@@ -21,9 +21,9 @@ import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopItemService;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserappnew.Utility.PrefShopHome;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.SlidingLayerSort.UtilitySortItemsInShop;
 
 import java.util.ArrayList;

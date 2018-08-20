@@ -31,8 +31,8 @@ import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.SlidingLayerSort.UtilitySortItemsInShop;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.Utility.PrefShopHome;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 
 import java.util.ArrayList;
 

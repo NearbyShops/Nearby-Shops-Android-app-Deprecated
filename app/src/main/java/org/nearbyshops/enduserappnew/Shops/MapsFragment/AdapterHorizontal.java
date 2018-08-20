@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Shops.Interfaces.NotifyListItemClick;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 
 import java.util.List;
 
