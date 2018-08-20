@@ -4,31 +4,34 @@ apply plugin: 'com.android.application'
 
 
 
+
 android {
 
-    signingConfigs {
-        release {
-            keyAlias 'sumeet'
-            keyPassword 'abcde23870'
-            storeFile file('/media/sumeet/data/BookDiscovery/keystore/androidplaystore.jks')
-            storePassword 'bluetree'
-//            v2SigningEnabled false
-        }
-    }
 
-    compileSdkVersion 25
+//    signingConfigs {
+//        release {
+//            keyAlias 'sumeet'
+//            keyPassword 'abcde23870'
+//            storeFile file('/media/sumeet/data/BookDiscovery/keystore/androidplaystore.jks')
+//            storePassword 'bluetree'
+////            v2SigningEnabled false
+//        }
+//    }
+
+
+    compileSdkVersion 26
     buildToolsVersion '27.0.3'
 
     defaultConfig {
-        applicationId "org.nearbyshops.enduserapp"
+        applicationId "org.nearbyshops.enduserappnew"
         minSdkVersion 19
-        targetSdkVersion 25
-        versionCode 9
-        versionName "1.42"
+        targetSdkVersion 26
+        versionCode 1
+        versionName "0.9"
         // Enabling multidex support.
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
-        signingConfig signingConfigs.release
+//        signingConfig signingConfigs.release
     }
     buildTypes {
         release {
@@ -36,6 +39,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
 
     dependencies {
 
@@ -65,61 +76,45 @@ android {
 
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
 //    compile('org.glassfish.jersey.media:jersey-media-sse:2.24') {
 //                exclude group: 'javax.inject', module: 'javax.inject'
 //    }
 //    compile('org.glassfish.jersey.core:jersey-client:2.24') {
 //                    exclude group: 'javax.inject', module: 'javax.inject'
 //    }
-    // apache commons dependency for URL Validation
-
-    // https://mvnrepository.com/artifact/commons-validator/commons-validator
-    //    compile 'com.heinrichreimersoftware:material-intro:1.2.1'
-    //    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
-//    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
-//    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
-    //    provided 'javax.annotation:jsr250-api:1.0'
-
-    //    apt 'com.google.dagger:dagger-compiler:2.2'
-
-    //    compile 'com.google.dagger:dagger:2.2'
 
 
-    compile 'commons-validator:commons-validator:1.6'
-    compile 'com.wunderlist:sliding-layer:1.2.5'
 
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.android.support:cardview-v7:25.3.1'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:palette-v7:25.3.1'
-    compile 'com.appyvet:materialrangebar:1.3'
+    implementation 'commons-validator:commons-validator:1.6'
+    implementation 'com.wunderlist:sliding-layer:1.2.5'
 
-    compile 'com.google.code.gson:gson:2.8.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.4.0'
-    compile 'com.squareup.retrofit2:retrofit:2.4.0'
-    compile 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'com.android.support:support-v4:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.android.support:cardview-v7:26.1.0'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:palette-v7:26.1.0'
+    implementation 'com.appyvet:materialrangebar:1.3'
 
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.google.android.gms:play-services-auth:11.0.2'
-    compile 'com.google.android.gms:play-services-location:11.0.2'
-    compile 'com.google.android.gms:play-services-maps:11.0.2'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
 
-    compile 'com.android.support:multidex:1.0.3'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.google.android.gms:play-services-location:11.0.2'
 
-    compile 'frankiesardo:icepick:3.2.0'
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.2.3'
-    compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
-    compile 'com.yalantis:ucrop:2.2.0'
+    implementation 'com.android.support:multidex:1.0.3'
 
-    compile 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.yalantis:ucrop:2.2.0'
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testCompile 'junit:junit:4.12'
 
 
-    compile 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
 //    compile 'com.google.dagger:dagger:2.8'
@@ -128,17 +123,13 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.11'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
 
-
-//    annotationProcessor 'frankiesardo:icepick-processor:3.2.0'
-
-    compile 'com.alexvasilkov:gesture-views:2.4.0'
-
-    implementation 'com.github.stfalcon:smsverifycatcher:0.3.1'
-
+    implementation 'com.alexvasilkov:gesture-views:2.4.0'
+    implementation 'com.github.stfalcon:smsverifycatcher:0.3.2'
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.roughike:bottom-bar:2.3.1'
+
 }
 
 
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
 

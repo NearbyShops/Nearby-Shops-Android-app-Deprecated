@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!-- suppress AndroidDomInspection -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.nearbyshops.enduserapp"
+    package="org.nearbyshops.enduserappnew"
     android:installLocation="auto">
 
     <!-- To auto-complete the email text field in the loginActivity form with the user's emails -->
@@ -9,6 +9,13 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <!--<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>-->
+
+
+
 
     <application
         android:name=".MyApplication"
@@ -115,7 +122,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".ShopItemByItem.ShopsForItemSwipe"
@@ -124,7 +131,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.ItemCategoryOption.ShopItemSwipeView" />
+                android:value="org.nearbyshops.enduserappnew.ItemCategoryOption.ShopItemSwipeView" />
         </activity>
         <activity
             android:name=".Carts.CartsList.CartsListFragment"
@@ -133,7 +140,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".Carts.CartItem.CartItemListActivity"
@@ -142,7 +149,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Carts.CartsList.CartsListFragment" />
+                android:value="org.nearbyshops.enduserappnew.Carts.CartsList.CartsListFragment" />
         </activity>
         <activity
             android:name=".Carts.PlaceOrderActivity"
@@ -151,7 +158,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Carts.CartItem.CartItemListActivity" />
+                android:value="org.nearbyshops.enduserappnew.Carts.CartItem.CartItemListActivity" />
         </activity>
         <activity
             android:name=".DeliveryAddress.DeliveryAddressActivity"
@@ -160,7 +167,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Carts.PlaceOrderActivity" />
+                android:value="org.nearbyshops.enduserappnew.Carts.PlaceOrderActivity" />
         </activity>
         <activity
             android:name=".DeliveryAddress.Previous.EditAddressActivity"
@@ -169,7 +176,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.DeliveryAddress.DeliveryAddressActivity" />
+                android:value="org.nearbyshops.enduserappnew.DeliveryAddress.DeliveryAddressActivity" />
         </activity>
         <activity
             android:name=".DeliveryAddress.Previous.AddAddressActivity"
@@ -178,7 +185,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.DeliveryAddress.DeliveryAddressActivity" />
+                android:value="org.nearbyshops.enduserappnew.DeliveryAddress.DeliveryAddressActivity" />
         </activity>
         <activity
             android:name=".aaSamples.NavigationDrawerSample"
@@ -187,7 +194,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".OrdersHomeDelivery.OrderHome"
@@ -196,7 +203,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".ShopsByCategoryOld.ShopsByCategory"
@@ -205,7 +212,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".ItemsByCategorySwipe.ItemsByCategory"
@@ -214,7 +221,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".ShopDetail.ShopDetail"
@@ -223,7 +230,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".ItemDetail.ItemDetail"
@@ -232,7 +239,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".ShopReview.ShopReviews"
@@ -241,7 +248,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".ShopHome.ShopHome"
@@ -250,7 +257,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".ShopItemByShopOld.ShopItemsInShopByCat"
@@ -259,7 +266,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".Carts.OrderResultActivity"
@@ -272,7 +279,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
 
         <!-- Google Maps Key -->
@@ -298,7 +305,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -315,7 +322,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -331,7 +338,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".ItemsByCategoryHorizontal.ItemsByCatS2"
@@ -344,7 +351,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".ItemsInShopByCat.ItemsInShopByCat"
@@ -354,7 +361,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.ShopHome.ShopHome" />
+                android:value="org.nearbyshops.enduserappnew.ShopHome.ShopHome" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -370,7 +377,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".ShopsByCatSimple.ShopsByCat"
@@ -380,7 +387,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -397,7 +404,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.OrdersHomeDelivery.OrderHome" />
+                android:value="org.nearbyshops.enduserappnew.OrdersHomeDelivery.OrderHome" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -413,7 +420,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.OrdersHomeDelivery.OrderHome" />
+                android:value="org.nearbyshops.enduserappnew.OrdersHomeDelivery.OrderHome" />
         </activity>
         <activity
             android:name=".CancelledOrders.CancelledOrdersHomeDelivery"
@@ -422,7 +429,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.OrdersHomeDelivery.OrderHome" />
+                android:value="org.nearbyshops.enduserappnew.OrdersHomeDelivery.OrderHome" />
         </activity>
         <activity
             android:name=".Settings.SettingsCustom"
@@ -430,7 +437,7 @@
             android:parentActivityName=".Home">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".SelectService.SelectService"
@@ -438,7 +445,7 @@
             android:parentActivityName=".Home">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
 
         <!-- <activity -->
@@ -458,7 +465,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name=".OrderDetailPFS.OrderDetailPFS"
@@ -467,7 +474,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.OrdersHomeDelivery.OrderHome" />
+                android:value="org.nearbyshops.enduserappnew.OrdersHomeDelivery.OrderHome" />
         </activity>
         <activity
             android:name=".OrderHistoryPFS.OrderHistoryPFS"
@@ -477,7 +484,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.OrdersHomePickFromShop.OrdersHomePickFromShop" />
+                android:value="org.nearbyshops.enduserappnew.OrdersHomePickFromShop.OrdersHomePickFromShop" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -494,7 +501,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.OrdersHomePickFromShop.OrdersHomePickFromShop" />
+                android:value="org.nearbyshops.enduserappnew.OrdersHomePickFromShop.OrdersHomePickFromShop" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -510,7 +517,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
@@ -523,7 +530,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
 
         <!-- Intent Service For Notifications to the User -->
@@ -553,7 +560,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserapp.Home" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
     </application>
 

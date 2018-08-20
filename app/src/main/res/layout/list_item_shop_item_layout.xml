@@ -471,7 +471,11 @@
         </LinearLayout>
 
 
+
+
+
         <ProgressBar
+            android:indeterminateTint="@color/buttonColorDark"
             android:visibility="invisible"
             android:id="@+id/progress_bar"
             app:layout_constraintBottom_toBottomOf="@id/addToCart"

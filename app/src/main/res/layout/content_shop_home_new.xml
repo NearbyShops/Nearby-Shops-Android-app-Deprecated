@@ -15,7 +15,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/content_shop_home"
-        tools:context="org.nearbyshops.enduserapp.ShopHome.ShopHome"
+        tools:context="org.nearbyshops.enduserappnew.ShopHome.ShopHome"
         tools:showIn="@layout/activity_shop_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

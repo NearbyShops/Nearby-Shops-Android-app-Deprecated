@@ -16,7 +16,7 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
-            tools:context="org.nearbyshops.enduserapp.DeliveryAddress.Previous.EditAddressActivity"
+            tools:context="org.nearbyshops.enduserappnew.DeliveryAddress.Previous.EditAddressActivity"
             tools:showIn="@layout/activity_edit_address">
 
 
@@ -195,7 +195,7 @@
                 android:id="@+id/latitude_container">
 
                 <EditText
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:id="@+id/latitude"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -214,7 +214,7 @@
                 android:id="@+id/longitude_container">
 
                 <EditText
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:id="@+id/longitude"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
