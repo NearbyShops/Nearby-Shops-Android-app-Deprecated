@@ -32,8 +32,8 @@ import org.nearbyshops.enduserappnew.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduserappnew.Shops.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Shops.ListFragment.FragmentShopNew;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.SlidingLayerSortShops;
 
 import java.util.ArrayList;

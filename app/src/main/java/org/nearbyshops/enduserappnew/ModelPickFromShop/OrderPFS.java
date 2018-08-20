@@ -2,7 +2,7 @@ package org.nearbyshops.enduserappnew.ModelPickFromShop;
 
 
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 
 import java.sql.Timestamp;
@@ -71,7 +71,7 @@ public class OrderPFS {
             + " " + OrderPFS.TIMESTAMP_PFS_READY_FOR_PICKUP + " timestamp with time zone,"
             + " " + OrderPFS.TIMESTAMP_PFS_DELIVERED + " timestamp with time zone,"
 
-            + " FOREIGN KEY(" + OrderPFS.END_USER_ID +") REFERENCES " + EndUser.TABLE_NAME + "(" + EndUser.END_USER_ID + "),"
+            + " FOREIGN KEY(" + OrderPFS.END_USER_ID +") REFERENCES " + User.TABLE_NAME + "(" + User.USER_ID + "),"
             + " FOREIGN KEY(" + OrderPFS.SHOP_ID +") REFERENCES " + Shop.TABLE_NAME + "(" + Shop.SHOP_ID + "),"
             + " FOREIGN KEY(" + OrderPFS.DELIVERY_ADDRESS_ID +") REFERENCES " + DeliveryAddress.TABLE_NAME + "(" + DeliveryAddress.ID + ")"
             + ")";

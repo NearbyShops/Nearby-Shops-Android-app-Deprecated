@@ -12,8 +12,8 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduserappnew.ItemsInShop.ShopItems.FragmentItemsInShop;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.SlidingLayerSort.SlidingLayerSortItemsInShop;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

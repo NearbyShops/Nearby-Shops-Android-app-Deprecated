@@ -21,13 +21,12 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.EndUserService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
 
 import java.text.SimpleDateFormat;
 
@@ -89,7 +88,7 @@ public class RateReviewDialog extends DialogFragment {
 
 
     @Inject
-    EndUserService endUserService;
+    UserService endUserService;
 
 
     public RateReviewDialog() {
@@ -129,7 +128,7 @@ public class RateReviewDialog extends DialogFragment {
             itemRatingText.setText(String.valueOf((float)review_for_edit.getRating()));
 
             String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
-                    + review_for_edit.getRt_end_user_profile().getProfileImageURL();
+                    + review_for_edit.getRt_end_user_profile().getProfileImagePath();
 
 
             Drawable placeholder = VectorDrawableCompat

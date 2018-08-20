@@ -34,13 +34,13 @@ import org.nearbyshops.enduserappnew.ShopHome.ShopHome;
 import org.nearbyshops.enduserappnew.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
 import org.nearbyshops.enduserappnew.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
 import org.nearbyshops.enduserappnew.ShopItemByItem.Interfaces.NotifySwipeToRight;
-import org.nearbyshops.enduserappnew.Shops.UtilityLocation;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.ShopItemByItem.SlidingLayerSort.UtilitySortShopItems;
-import org.nearbyshops.enduserappnew.Utility.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 
 import java.util.ArrayList;
 
@@ -258,8 +258,8 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
         Call<ShopItemEndPoint> callEndpoint = shopItemService.getShopItemEndpoint(
                     null,null,item.getItemID(),
-                    UtilityLocation.getLatitude(getActivity()),
-                    UtilityLocation.getLongitude(getActivity()),
+                    PrefLocation.getLatitude(getActivity()),
+                    PrefLocation.getLongitude(getActivity()),
                     null, null,
                     null,
                     endUser.getUserID(),

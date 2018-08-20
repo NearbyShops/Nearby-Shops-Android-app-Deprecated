@@ -17,6 +17,8 @@
 
 
 
+
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -31,14 +33,8 @@
             android:name=".UtilityGeocoding.FetchAddressIntentService"
             android:exported="false" />
 
-        <activity
-            android:name=".Home"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
 
-
-        <activity android:name=".HomeNew.HomeNew">
+        <activity android:name=".Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -86,14 +82,6 @@
         </activity>
 
         <!-- android:theme="@style/AppTheme.NoActionBar" -->
-        <activity
-            android:name=".EditProfile.EditProfile"
-            android:label="Edit Profile"
-            android:parentActivityName=".Home">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Home" />
-        </activity>
 
 
 
@@ -112,10 +100,6 @@
         <!-- </activity> -->
 
         <activity
-            android:name=".LoginActivity"
-            android:label="Nearby Shops : Login"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".ItemCategoryOption.ShopItemSwipeView"
             android:label="Shops and Items"
             android:parentActivityName=".Home"
@@ -133,24 +117,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduserappnew.ItemCategoryOption.ShopItemSwipeView" />
         </activity>
-        <activity
-            android:name=".Carts.CartsList.CartsListFragment"
-            android:label="@string/title_activity_carts_list"
-            android:parentActivityName=".Home"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.Home" />
-        </activity>
+        <!--<activity-->
+            <!--android:name=".Carts.CartsList.CartsList"-->
+            <!--android:label="@string/title_activity_carts_list"-->
+            <!--android:parentActivityName=".Home"-->
+            <!--android:theme="@style/AppTheme.NoActionBar">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.PARENT_ACTIVITY"-->
+                <!--android:value="org.nearbyshops.enduserappnew.Home" />-->
+        <!--</activity>-->
         <activity
             android:name=".Carts.CartItem.CartItemListActivity"
             android:label="@string/title_activity_cart_item_list"
-            android:parentActivityName=".Carts.CartsList.CartsListFragment"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.Carts.CartsList.CartsListFragment" />
         </activity>
+
         <activity
             android:name=".Carts.PlaceOrderActivity"
             android:label="@string/title_activity_place_order"
@@ -206,7 +187,7 @@
                 android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
-            android:name=".ShopsByCategoryOld.ShopsByCategory"
+            android:name=".ShopsByCategory.ShopsByCategory"
             android:label="@string/label_shops_by_category"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
@@ -260,7 +241,7 @@
                 android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
         <activity
-            android:name=".ShopItemByShopOld.ShopItemsInShopByCat"
+            android:name=".ShopItemByShop.ShopItemsInShopByCat"
             android:label="@string/title_activity_shop_home"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
@@ -272,30 +253,22 @@
             android:name=".Carts.OrderResultActivity"
             android:label="@string/title_activity_order_result"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".DeliveryAddress.PickLocationActivity"
-            android:label="Pick Location"
-            android:parentActivityName=".Home"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.Home" />
-        </activity>
 
-        <!-- Google Maps Key -->
+        <!---->
+        <!--&lt;!&ndash; Google Maps Key &ndash;&gt;-->
 
 
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB_BpmVLbrXdFzz1JyaYl21F2EDoU1EreM" />
+        <!--&lt;!&ndash;-->
+             <!--The API key for Google Maps-based APIs is defined as a string resource.-->
+             <!--(See the file "res/values/google_maps_api.xml").-->
+             <!--Note that the API key is linked to the encryption key used to sign the APK.-->
+             <!--You need a different API key for each encryption key, including the release key that is used to-->
+             <!--sign the APK for publishing.-->
+             <!--You can define the keys for the debug and release targets in src/debug/ and src/release/.-->
+        <!--&ndash;&gt;-->
+        <!--<meta-data-->
+            <!--android:name="com.google.android.geo.API_KEY"-->
+            <!--android:value="AIzaSyB_BpmVLbrXdFzz1JyaYl21F2EDoU1EreM" />-->
 
         <activity
             android:name=".Shops.ShopsActivity"
@@ -370,15 +343,7 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".FilterShops.FilterShops"
-            android:label="@string/title_activity_item_categories_simple"
-            android:parentActivityName=".Home"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.Home" />
-        </activity>
+
         <activity
             android:name=".ShopsByCatSimple.ShopsByCat"
             android:label="Shops By Category"
@@ -439,14 +404,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
-        <activity
-            android:name=".SelectService.SelectService"
-            android:label="Select Service"
-            android:parentActivityName=".Home">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.Home" />
-        </activity>
+
 
         <!-- <activity -->
         <!-- android:name=".Services.ServicesActivity" -->
@@ -458,67 +416,8 @@
         <!-- android:value=".Home" /> -->
         <!-- </activity> -->
 
-        <activity
-            android:name=".OrdersHomePickFromShop.OrdersHomePickFromShop"
-            android:label="Orders : Pick From Shop"
-            android:parentActivityName=".Home"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.Home" />
-        </activity>
-        <activity
-            android:name=".OrderDetailPFS.OrderDetailPFS"
-            android:label="Order Details"
-            android:parentActivityName=".OrdersHomePickFromShop.OrdersHomePickFromShop"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.OrdersHomeDelivery.OrderHome" />
-        </activity>
-        <activity
-            android:name=".OrderHistoryPFS.OrderHistoryPFS"
-            android:label="Order History"
-            android:launchMode="singleTop"
-            android:parentActivityName=".OrdersHomePickFromShop.OrdersHomePickFromShop"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.OrdersHomePickFromShop.OrdersHomePickFromShop" />
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
 
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".OrdersCancelledPFS.CancelledOrdersPFS"
-            android:label="Order History"
-            android:launchMode="singleTop"
-            android:parentActivityName=".OrdersHomePickFromShop.OrdersHomePickFromShop"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.OrdersHomePickFromShop.OrdersHomePickFromShop" />
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
 
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".EditProfileEndUser.EditProfileEndUser"
-            android:label="Edit Profile"
-            android:parentActivityName=".Home"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.Home" />
-        </activity>
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"

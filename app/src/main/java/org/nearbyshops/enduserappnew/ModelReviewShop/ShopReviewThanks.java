@@ -4,7 +4,7 @@ package org.nearbyshops.enduserappnew.ModelReviewShop;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
 
 /**
  * Created by sumeet on 21/10/16.
@@ -27,7 +27,7 @@ public class ShopReviewThanks implements Parcelable{
             + " " + ShopReviewThanks.END_USER_ID + " INT,"
             + " " + ShopReviewThanks.SHOP_REVIEW_ID + " INT,"
 
-            + " FOREIGN KEY(" + ShopReviewThanks.END_USER_ID +") REFERENCES " + EndUser.TABLE_NAME + "(" + EndUser.END_USER_ID + "),"
+            + " FOREIGN KEY(" + ShopReviewThanks.END_USER_ID +") REFERENCES " + User.TABLE_NAME + "(" + User.USER_ID + "),"
             + " FOREIGN KEY(" + ShopReviewThanks.SHOP_REVIEW_ID +") REFERENCES " + ShopReview.TABLE_NAME + "(" + ShopReview.SHOP_REVIEW_ID + "),"
             + " PRIMARY KEY (" + ShopReviewThanks.END_USER_ID + ", " + ShopReviewThanks.SHOP_REVIEW_ID + ")"
             + ")";

@@ -13,7 +13,6 @@ import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.DeliveryAddressService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.EndUserService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.FavouriteItemService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.FavouriteShopService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
@@ -31,9 +30,7 @@ import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewThanksService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContractPFS.OrderServicePFS;
-import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.ServiceConfigService;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -285,14 +282,6 @@ public class NetModule {
     }
 
 
-    @Provides
-    EndUserService endUserService(Retrofit retrofit)
-    {
-
-        EndUserService endUserService = retrofit.create(EndUserService.class);
-        return endUserService;
-    }
-
 
 
     @Provides
@@ -336,20 +325,6 @@ public class NetModule {
 //        EndUserService endUserService = ;
         return retrofit.create(ShopReviewThanksService.class);
     }
-
-    @Provides
-    OrderServicePFS orderServicePFS(Retrofit retrofit)
-    {
-        return retrofit.create(OrderServicePFS.class);
-    }
-
-
-    @Provides
-    ServiceConfigService provideServiceConfig(@Named("sds")Retrofit retrofit)
-    {
-        return retrofit.create(ServiceConfigService.class);
-    }
-
 
 
     @Provides

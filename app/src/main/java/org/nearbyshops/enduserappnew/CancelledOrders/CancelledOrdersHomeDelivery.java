@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 
 
 public class CancelledOrdersHomeDelivery extends AppCompatActivity implements NotifyTitleChanged {

@@ -1,7 +1,6 @@
 package org.nearbyshops.enduserappnew.ItemCategoryOption;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -20,9 +19,9 @@ import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemService;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.Preferences.DividerItemDecoration;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 
 import java.util.ArrayList;
 

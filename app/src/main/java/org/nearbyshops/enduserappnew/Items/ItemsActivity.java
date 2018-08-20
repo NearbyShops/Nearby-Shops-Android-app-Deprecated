@@ -20,8 +20,8 @@ import org.nearbyshops.enduserappnew.Items.ItemsList.FragmentItemsList;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

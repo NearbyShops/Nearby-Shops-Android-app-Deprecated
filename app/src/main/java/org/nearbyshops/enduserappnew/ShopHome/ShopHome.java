@@ -19,8 +19,8 @@ import org.nearbyshops.enduserappnew.OrdersHomeDelivery.OrderHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

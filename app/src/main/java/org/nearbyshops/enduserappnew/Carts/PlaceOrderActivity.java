@@ -13,7 +13,6 @@ import android.widget.Toast;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserappnew.Home;
-import org.nearbyshops.enduserappnew.HomeNew.HomeNew;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.ModelPickFromShop.OrderPFS;
@@ -22,8 +21,7 @@ import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.OrderService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContractPFS.OrderServicePFS;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 import java.util.List;
 
@@ -45,7 +43,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
     @Inject CartStatsService cartStatsService;
     @Inject OrderService orderService;
-    @Inject OrderServicePFS orderServicePFS;
+//    @Inject OrderServicePFS orderServicePFS;
 
 
     CartStats cartStats;
@@ -353,8 +351,8 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
         if(pickFromShopCheck.isChecked())
         {
-//            order.setPickFromShop(true);
-            placeOrderPFS();
+            order.setPickFromShop(true);
+//            placeOrderPFS();
         }
         else if(homeDelieryCheck.isChecked())
         {
@@ -366,46 +364,46 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
     }
 
-    void placeOrderPFS()
-    {
-        Call<ResponseBody> call = orderServicePFS.postOrder(orderPFS,cartStatsFromNetworkCall.getCartID());
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-
-                if(response!=null)
-                {
-                    if(response.code() == 201)
-                    {
-                        showToastMessage("Successful !");
-
-
-                        Intent i = new Intent(PlaceOrderActivity.this,HomeNew.class);
-
-                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-                        startActivity(i);
-
-                    }else
-                    {
-                        showToastMessage("failed Code : !" + String.valueOf(response.code()));
-                    }
-
-                }else
-                {
-                    showToastMessage("failed !");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                showToastMessage("Network connection Failed !");
-            }
-        });
-    }
+//    void placeOrderPFS()
+//    {
+//        Call<ResponseBody> call = orderServicePFS.postOrder(orderPFS,cartStatsFromNetworkCall.getCartID());
+//
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//
+//                if(response!=null)
+//                {
+//                    if(response.code() == 201)
+//                    {
+//                        showToastMessage("Successful !");
+//
+//
+//                        Intent i = new Intent(PlaceOrderActivity.this,HomeNew.class);
+//
+//                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//
+//                        startActivity(i);
+//
+//                    }else
+//                    {
+//                        showToastMessage("failed Code : !" + String.valueOf(response.code()));
+//                    }
+//
+//                }else
+//                {
+//                    showToastMessage("failed !");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//                showToastMessage("Network connection Failed !");
+//            }
+//        });
+//    }
 
 
     void placeOrderHD()
@@ -423,7 +421,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                         showToastMessage("Successful !");
 
 
-                        Intent i = new Intent(PlaceOrderActivity.this,HomeNew.class);
+                        Intent i = new Intent(PlaceOrderActivity.this,Home.class);
 
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 

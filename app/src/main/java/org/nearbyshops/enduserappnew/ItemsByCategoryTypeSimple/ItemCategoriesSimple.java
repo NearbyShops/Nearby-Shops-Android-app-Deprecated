@@ -13,7 +13,7 @@ import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.Notify
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyHeaderChanged;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

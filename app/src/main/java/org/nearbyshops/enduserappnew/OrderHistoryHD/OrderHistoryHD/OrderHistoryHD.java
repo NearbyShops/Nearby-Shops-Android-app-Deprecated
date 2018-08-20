@@ -21,8 +21,8 @@ import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Interfaces.Re
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.SlidingLayerSort.SlidingLayerSortOrdersHD;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -19,9 +19,9 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.ServiceConfigService;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.RetrofitRESTContract.ServiceConfigurationService;
 
 import javax.inject.Inject;
 
@@ -45,7 +45,7 @@ public class ServiceIndicatorFragment extends Fragment {
 
 //    @BindView(R.id.service_url) TextView serviceURL;
     @BindView(R.id.service_name)
-TextView serviceName;
+    TextView serviceName;
     @BindView(R.id.city)
     TextView city;
     @BindView(R.id.address)
@@ -70,8 +70,8 @@ TextView serviceName;
     @Inject
     Gson gson;
 
-//    @Inject
-//    ServiceConfigService service;
+    @Inject
+    ServiceConfigurationService service;
 
 
     public ServiceIndicatorFragment() {
@@ -182,11 +182,11 @@ TextView serviceName;
 
 
 
-        ServiceConfigService service = retrofit.create(ServiceConfigService.class);
+        ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
+
+        Call<ServiceConfigurationLocal> call = service.getServiceConfiguration(0.0,0.0);
 
 
-
-        Call<ServiceConfigurationLocal> call = service.getService(0.0,0.0);
 
 
 

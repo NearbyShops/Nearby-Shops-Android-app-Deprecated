@@ -20,11 +20,11 @@ import org.nearbyshops.enduserappnew.ItemsByCategoryHorizontal.ItemCategories.It
 import org.nearbyshops.enduserappnew.ItemsByCategoryHorizontal.Items.FragmentItemScreenHorizontal;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyBackPressed;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyCategoryChanged;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyGeneral;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyCategoryChanged;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyGeneral;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.Model.ItemImage;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 
 import java.util.List;
 

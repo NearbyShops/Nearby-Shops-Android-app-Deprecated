@@ -21,7 +21,7 @@ import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.Notify
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.SlidingLayerSortShops;
 
 import butterknife.BindView;

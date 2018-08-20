@@ -2,7 +2,6 @@ package org.nearbyshops.enduserappnew.ShopReview;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -22,16 +21,15 @@ import org.nearbyshops.enduserappnew.ModelEndPoints.ShopReviewEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopReviewThanksEndpoint;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReviewThanks;
-import org.nearbyshops.enduserappnew.ModelRoles.EndUser;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewThanksService;
 import org.nearbyshops.enduserappnew.ShopReview.Interfaces.NotifyLoginByAdapter;
 import org.nearbyshops.enduserappnew.ShopReview.SlidingLayerSort.SlidingLayerSortReview;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
-import org.nearbyshops.enduserappnew.Utility.PrefLogin;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.Preferences.DividerItemDecoration;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.ShopReview.SlidingLayerSort.UtilitySortShopReview;
 
 import java.util.ArrayList;

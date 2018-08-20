@@ -18,16 +18,13 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduserappnew.Items.ItemsList.AdapterItem;
-import org.nearbyshops.enduserappnew.Items.ItemsList.FragmentItemsList;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopItemByItem.ShopsForItemSwipe;
-import org.nearbyshops.enduserappnew.ShopsByCategoryOld.ItemCategories.ItemCategoriesFragment;
-import org.nearbyshops.enduserappnew.Utility.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 
 import java.util.List;
 
