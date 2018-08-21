@@ -37,7 +37,7 @@ import com.squareup.picasso.Target;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ItemImageSlider.ItemImageFullscreenFragment;
 import org.nearbyshops.enduserappnew.ItemImageSlider.ItemImagesFullscreen;
-import org.nearbyshops.enduserappnew.LoginNew.Login;
+import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Endpoints.ItemImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemImage;

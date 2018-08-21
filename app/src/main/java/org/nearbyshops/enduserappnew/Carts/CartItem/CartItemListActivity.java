@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import org.nearbyshops.enduserappnew.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.LoginNew.Login;
+import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelRoles.User;

@@ -17,7 +17,7 @@ import android.widget.Toast;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress.EditAddressFragment;
 import org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress.EditDeliveryAddress;
-import org.nearbyshops.enduserappnew.LoginNew.Login;
+import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.R;

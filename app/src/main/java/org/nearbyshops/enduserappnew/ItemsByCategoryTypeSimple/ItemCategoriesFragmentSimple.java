@@ -431,6 +431,9 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     boolean isFirst = true;
 
 
+
+
+
     void makeRequestItemCategory()
     {
 //        (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY, 0),

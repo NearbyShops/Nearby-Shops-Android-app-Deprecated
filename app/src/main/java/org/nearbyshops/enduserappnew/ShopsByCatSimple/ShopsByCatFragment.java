@@ -317,8 +317,8 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
                     null,
                     PrefLocation.getLatitude(getActivity()),
                     PrefLocation.getLongitude(getActivity()),
-                    PrefLocation.getDeliveryRangeMax(getActivity()),
-                    0.00,
+                    null,
+                    null,
                     PrefLocation.getProximity(getActivity()),true,
                     ItemCategory.CATEGORY_ORDER,null,null,false);
 
@@ -347,8 +347,8 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
                     null,
                     PrefLocation.getLatitude(getActivity()),
                     PrefLocation.getLongitude(getActivity()),
-                    PrefLocation.getDeliveryRangeMax(getActivity()),
-                    0.00,
+                    null,
+                    null,
                     PrefLocation.getProximity(getActivity()),true,
                     ItemCategory.CATEGORY_ORDER,null,null,false);
         }
@@ -531,8 +531,8 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
                     null,
                     PrefLocation.getLatitude(getActivity()),
                     PrefLocation.getLongitude(getActivity()),
-                    PrefLocation.getDeliveryRangeMax(getActivity()),
-                    0.00,
+                    null,
+                    null,
                     PrefLocation.getProximity(getActivity()),
                     current_sort,limit_item,offset_item,false
             );
@@ -547,8 +547,8 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
                     null,
                     PrefLocation.getLatitude(getActivity()),
                     PrefLocation.getLongitude(getActivity()),
-                    PrefLocation.getDeliveryRangeMax(getActivity()),
-                    0.00,
+                    null,
+                    null,
                     PrefLocation.getProximity(getActivity()),
                     current_sort,limit_item,offset_item,false
             );

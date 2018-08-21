@@ -1,10 +1,10 @@
-package org.nearbyshops.enduserappnew.ItemCategoryOption;
+package org.nearbyshops.enduserappnew.ItemByCategory;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import org.nearbyshops.enduserappnew.ItemCategoryOption.Interfaces.NotifyCategoryChanged;
+import org.nearbyshops.enduserappnew.ItemByCategory.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 

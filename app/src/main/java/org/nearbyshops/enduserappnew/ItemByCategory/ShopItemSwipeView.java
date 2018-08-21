@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemCategoryOption;
+package org.nearbyshops.enduserappnew.ItemByCategory;
 
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -18,8 +18,8 @@ import android.widget.RelativeLayout;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
-import org.nearbyshops.enduserappnew.ItemCategoryOption.Interfaces.NotifyBackPressed;
-import org.nearbyshops.enduserappnew.ItemCategoryOption.Interfaces.NotifyCategoryChanged;
+import org.nearbyshops.enduserappnew.ItemByCategory.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduserappnew.ItemByCategory.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;

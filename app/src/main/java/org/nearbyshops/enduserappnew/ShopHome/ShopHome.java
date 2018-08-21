@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.Carts.CartItem.CartItemListActivity;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
 import org.nearbyshops.enduserappnew.OrdersHomeDelivery.OrderHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
@@ -25,6 +26,8 @@ import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD.IS_FILTER_BY_SHOP;
 
 public class ShopHome extends AppCompatActivity {
 
@@ -154,10 +157,18 @@ public class ShopHome extends AppCompatActivity {
     @OnClick(R.id.option_orders)
     void ordersClick()
     {
-        Intent intent = new Intent(this,OrderHome.class);
-        intent.putExtra(OrderHome.IS_FILTER_BY_SHOP,true);
+//        Intent intent = new Intent(this,OrderHome.class);
+//        intent.putExtra(OrderHome.IS_FILTER_BY_SHOP,true);
+//        startActivity(intent);
+
+
+
+        Intent intent = new Intent(this, OrderHistoryHD.class);
+        intent.putExtra(OrderHistoryHD.IS_FILTER_BY_SHOP,true);
+//        intent.putExtra(IS_FILTER_BY_SHOP,getIntent().getBooleanExtra(IS_FILTER_BY_SHOP,false));
         startActivity(intent);
     }
+
 
 
 //    @OnClick(R.id.option_orders_pfs)

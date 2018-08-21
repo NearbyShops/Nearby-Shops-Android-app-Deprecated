@@ -50,7 +50,7 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".LoginNew.Login"
+            android:name=".Login.Login"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
 
@@ -85,6 +85,17 @@
 
 
 
+        <activity
+            android:name=".EditProfile.EditProfile"
+            android:label="Edit Profile"
+            android:parentActivityName=".Home">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+        </activity>
+
+
+
 
 
         <activity android:name=".GeolocationTest" />
@@ -100,7 +111,7 @@
         <!-- </activity> -->
 
         <activity
-            android:name=".ItemCategoryOption.ShopItemSwipeView"
+            android:name=".ItemByCategory.ShopItemSwipeView"
             android:label="Shops and Items"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
@@ -111,11 +122,11 @@
         <activity
             android:name=".ShopItemByItem.ShopsForItemSwipe"
             android:label="@string/title_activity_shops_for_item"
-            android:parentActivityName=".ItemCategoryOption.ShopItemSwipeView"
+            android:parentActivityName=".ItemByCategory.ShopItemSwipeView"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.ItemCategoryOption.ShopItemSwipeView" />
+                android:value="org.nearbyshops.enduserappnew.ItemByCategory.ShopItemSwipeView" />
         </activity>
         <!--<activity-->
             <!--android:name=".Carts.CartsList.CartsList"-->

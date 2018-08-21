@@ -264,7 +264,7 @@ public class LocationUpdateService extends NonStopIntentService implements Googl
 
         broadcastMessage();
 
-//        stopLocationUpdates();
+        stopLocationUpdates();
     }
 
 
