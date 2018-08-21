@@ -22,6 +22,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class PrefGeneral {
 
 
+
     //    public static final String DEFAULT_SERVICE_URL = "http://taxireferral.org";
     public static final String DEFAULT_SERVICE_URL = "http://example.com";
 

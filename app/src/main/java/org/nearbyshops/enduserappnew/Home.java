@@ -14,14 +14,12 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
 import org.nearbyshops.enduserappnew.Carts.CartsList.CartsListFragment;
-import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduserappnew.LoginNew.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.LoginPlaceholders.FragmentSignInMessage;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.PendingOrdersFragmentNew;
-import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Shops.ListFragment.FragmentShopNew;
 import org.nearbyshops.enduserappnew.TabProfile.ProfileFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
@@ -46,6 +44,9 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
 
     BottomBar bottomBar;
+
+
+
 
 
 

@@ -104,6 +104,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
 
+
+
         setupSwipeContainer();
 
 
@@ -286,12 +288,14 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     void getUserProfile()
     {
-        User driver = PrefLogin.getUser(getContext());
+        User driver = PrefLogin.getUser(getActivity());
 
         if(driver==null)
         {
             return;
         }
+
+
 
 
 
