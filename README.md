@@ -6,7 +6,6 @@ Build your own self-hosted e-commerce marketplace for local bussiness in a Singl
 
 
 
-
 Download
 --------
 
@@ -22,7 +21,9 @@ Screenshots
 -----------
 
 
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041722.png" width="208"><img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041731.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041758.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041819.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041824.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041829.png" width="208">
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041722.png" width="208"><img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041731.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041758.png" width="208"> 
+
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041819.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041824.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041829.png" width="208">
 
 
 
@@ -30,7 +31,7 @@ Screenshots
 License
 =======
 
-    Copyright 2017 Civic Life Solutions, Inc.
+    Copyright 2017 Bluetree Software LLP, Inc.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
