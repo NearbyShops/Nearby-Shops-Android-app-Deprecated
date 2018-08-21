@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemCategoryOption;
+package org.nearbyshops.enduserappnew.ItemByCategory;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

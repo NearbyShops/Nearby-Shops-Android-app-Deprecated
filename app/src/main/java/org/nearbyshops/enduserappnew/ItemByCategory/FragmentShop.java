@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemCategoryOption;
+package org.nearbyshops.enduserappnew.ItemByCategory;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,13 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import org.nearbyshops.enduserappnew.ItemCategoryOption.Interfaces.NotifyCategoryChanged;
-import org.nearbyshops.enduserappnew.ModelEndPoints.ItemEndPoint;
+import com.wunderlist.slidinglayer.SlidingLayer;
+
+import org.nearbyshops.enduserappnew.ItemByCategory.Interfaces.NotifyCategoryChanged;
+import org.nearbyshops.enduserappnew.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
+import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemService;
+import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.Preferences.DividerItemDecoration;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
@@ -27,8 +29,6 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-//import icepick.Icepick;
-//import icepick.State;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,124 +36,111 @@ import retrofit2.Response;
 /**
  * Created by sumeet on 25/5/16.
  */
-public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefreshListener, NotifyCategoryChanged{
-
+public class FragmentShop extends Fragment implements SwipeRefreshLayout.OnRefreshListener, NotifyCategoryChanged {
 
 
 //        ItemCategory itemCategory;
+
 
         ItemCategory notifiedCurrentCategory;
 
         boolean isSaved = false;
 
+
         @Inject
-        ItemService itemService;
+        ShopService shopService;
 
         RecyclerView recyclerView;
-        AdapterItem adapter;
 
-        ArrayList<Item> dataset = new ArrayList<>();
+        AdapterShop adapter;
+
+        ArrayList<Shop> dataset = new ArrayList<>();
 
         GridLayoutManager layoutManager;
+
         SwipeRefreshLayout swipeContainer;
 
 
+        SlidingLayer slidingLayer ;
+
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
 
-
-
-
-    private int limit = 30;
-    int offset = 0;
-
-    int item_count = 0;
-
-
-    // Interface References
-
-    NotifyTitleChanged notifyTitleChanged;
-
-    // Interface References Ends
-
-
-    public FragmentItem() {
+    public FragmentShop() {
         // inject dependencies through dagger
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
 
-        Log.d("applog","Item Fragment Constructor");
+
+        Log.d("applog","Shop Fragment Constructor");
+
     }
 
     /**
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static FragmentItem newInstance(ItemCategory itemCategory) {
+        public static FragmentShop newInstance(int sectionNumber, ItemCategory itemCategory) {
 
-            FragmentItem fragment = new FragmentItem();
+            FragmentShop fragment = new FragmentShop();
             Bundle args = new Bundle();
             args.putParcelable("itemCat",itemCategory);
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
+
             return fragment;
         }
-
-
-
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
-            View rootView = inflater.inflate(R.layout.fragment_items, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_shop_item_by_shop, container, false);
+            //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
 
 //            itemCategory = getArguments().getParcelable("itemCat");
 
             recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
 
+            setupRecyclerView();
+
             swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
 
-            setupRecyclerView();
             setupSwipeContainer();
-
-
-            if(getActivity() instanceof NotifyTitleChanged)
-            {
-                notifyTitleChanged = (NotifyTitleChanged) getActivity();
-            }
 
 
             if(getActivity() instanceof ShopItemSwipeView)
             {
-
                 /*
                 if(!((ShopItemSwipeView) getActivity()).getNotifyCategoryChangedList().contains(this))
                 {
                     ((ShopItemSwipeView) getActivity()).getNotifyCategoryChangedList().add(this);
-                }
-                    */
+                }*/
 
-                ((ShopItemSwipeView) getActivity()).notifyCategoryChangedItemFragemnt = this;
-
+                ((ShopItemSwipeView) getActivity()).notifyCategoryChangedShopFragment = this;
             }
 
 
-            if(!isSaved)
-            {
-                if(notifiedCurrentCategory==null)
+
+
+                if(!isSaved)
                 {
-                    this.notifiedCurrentCategory = ((ShopItemSwipeView)getActivity()).notifiedCurrentCategory;
+                    if(notifiedCurrentCategory==null)
+                    {
+                        this.notifiedCurrentCategory = ((ShopItemSwipeView)getActivity()).notifiedCurrentCategory;
+                        makeRefreshNetworkCall();
+                    }
+
+                    isSaved = true;
                 }
-
-                makeRefreshNetworkCall();
-
-                isSaved = true;
-            }
 
 
 
             return rootView;
-
         }
 
 
@@ -172,10 +159,16 @@ public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
 
+
+    final private int limit = 30;
+    int offset = 0;
+    int item_count = 0;
+
+
     void setupRecyclerView()
     {
 
-        adapter = new AdapterItem(dataset,getActivity());
+        adapter = new AdapterShop(dataset,getActivity());
 
         recyclerView.setAdapter(adapter);
 
@@ -190,39 +183,20 @@ public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefre
                 new DividerItemDecoration(getActivity(),DividerItemDecoration.HORIZONTAL_LIST)
         );
 
+        //itemCategoriesList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
 
         DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         layoutManager.setSpanCount(metrics.widthPixels/350);
-
-
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
-                if(layoutManager.findLastVisibleItemPosition()==dataset.size()-1)
-                {
-                    // trigger fetch next page
-
-                    if((offset+limit)<=item_count)
-                    {
-                        offset = offset + limit;
-                        makeNetworkCall();
-                    }
-
-                }
-            }
-        });
     }
 
 
 
 
 
-    void makeRefreshNetworkCall()
-    {
+    private void makeRefreshNetworkCall() {
+
         swipeContainer.post(new Runnable() {
             @Override
             public void run() {
@@ -230,8 +204,8 @@ public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefre
 
                 try {
 
+                    offset = 0; // reset the offset
                     dataset.clear();
-                    offset = 0 ; // reset offset
                     makeNetworkCall();
 
                 } catch (IllegalArgumentException ex)
@@ -241,12 +215,26 @@ public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefre
                 }
             }
         });
+
+    }
+
+
+
+    @Override
+    public void onRefresh() {
+
+        offset = 0; // reset the offset
+        dataset.clear();
+        makeNetworkCall();
     }
 
 
 
 
-    void makeNetworkCall()
+
+
+
+    private void makeNetworkCall()
     {
 
         if(notifiedCurrentCategory==null)
@@ -255,30 +243,36 @@ public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefre
 
             return;
         }
-/*
-            Call<List<Item>> call = itemService.getItems(itemCategory.getItemCategoryID(),null,
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
-                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY)
-            );*/
 
+        Call<ShopEndPoint> callEndpoint = shopService.filterShopsByItemCategory(
 
-        Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(notifiedCurrentCategory.getItemCategoryID(),
+                notifiedCurrentCategory.getItemCategoryID(),
                 null,
                 (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY),
                 (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LON_CENTER_KEY),
                 (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MAX_KEY),
                 (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MIN_KEY),
                 (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.PROXIMITY_KEY),
-                null,null, limit,offset,null);
+                null,limit,offset,false
+        );
+
+/*
+
+        Call<List<Shop>> call = shopService.getShops(null,
+                notifiedCurrentCategory.getItemCategoryID(),
+                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
+                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
+                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY),
+                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
+                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY));
+*/
 
 
 
-        endPointCall.enqueue(new Callback<ItemEndPoint>() {
+        callEndpoint.enqueue(new Callback<ShopEndPoint>() {
             @Override
-            public void onResponse(Call<ItemEndPoint> call, Response<ItemEndPoint> response) {
+            public void onResponse(Call<ShopEndPoint> call, Response<ShopEndPoint> response) {
+
 
 //                dataset.clear();
 
@@ -290,9 +284,14 @@ public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefre
                     {
                         item_count = response.body().getItemCount();
                     }
+                }
 
 
-                    notifyTitleChanged.titleChanged(1,dataset.size(),item_count);
+                if(getActivity() instanceof  NotifyTitleChanged)
+                {
+
+                    ((NotifyTitleChanged)getActivity()).titleChanged(2,dataset.size(),item_count);
+
                 }
 
                 adapter.notifyDataSetChanged();
@@ -301,16 +300,15 @@ public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefre
             }
 
             @Override
-            public void onFailure(Call<ItemEndPoint> call, Throwable t) {
+            public void onFailure(Call<ShopEndPoint> call, Throwable t) {
 
+                showToastMessage(getString(R.string.network_request_failed));
                 swipeContainer.setRefreshing(false);
-
-                showToastMessage("Network request failed. Please check your connection !");
-
             }
         });
 
     }
+
 
 
     void showToastMessage(String message)
@@ -318,19 +316,16 @@ public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefre
         Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onRefresh() {
-
-        dataset.clear();
-        offset = 0; // reset the offset
-        makeNetworkCall();
-    }
 
     @Override
     public void categoryChanged(ItemCategory currentCategory, boolean isBackPressed) {
 
+
         this.notifiedCurrentCategory = currentCategory;
         makeRefreshNetworkCall();
+
+
+        Log.d("applog", "Fragment Shop: Category Changed");
     }
 
 
@@ -342,7 +337,6 @@ public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefre
 
 
     // apply ice pack
-
 
 
 //    @Override
@@ -364,21 +358,19 @@ public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefre
 //
 //        if (savedInstanceState != null) {
 //
-//            ArrayList<Item> tempList = savedInstanceState.getParcelableArrayList("dataset");
+//            ArrayList<Shop> tempList = savedInstanceState.getParcelableArrayList("dataset");
 //
 //            dataset.clear();
 //            dataset.addAll(tempList);
 //
-//
-//
-//            if(notifyTitleChanged !=null)
+//            if(getActivity() instanceof  NotifyTitleChanged)
 //            {
-//                notifyTitleChanged.titleChanged(1,dataset.size(),item_count);
+//                ((NotifyTitleChanged)getActivity()).titleChanged(2,dataset.size(),item_count);
 //            }
+//
 //
 //            adapter.notifyDataSetChanged();
 //        }
-//
 //    }
 
 

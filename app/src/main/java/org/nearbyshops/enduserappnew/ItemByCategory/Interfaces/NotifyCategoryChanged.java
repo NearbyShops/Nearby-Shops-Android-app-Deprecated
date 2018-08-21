@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemCategoryOption.Interfaces;
+package org.nearbyshops.enduserappnew.ItemByCategory.Interfaces;
 
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 

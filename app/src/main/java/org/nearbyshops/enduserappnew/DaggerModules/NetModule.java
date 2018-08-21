@@ -125,21 +125,6 @@ public class NetModule {
     }
 
 
-    @Provides @Named("sds")
-    Retrofit provideRetrofitGIDB(Gson gson, OkHttpClient okHttpClient) {
-
-        //        .client(okHttpClient)
-
-//        Log.d("applog","Retrofit : " + UtilityGeneral.getServiceURL_SDS(MyApplication.getAppContext()));
-
-
-        return new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(PrefGeneral.getServiceURL_SDS(MyApplication.getAppContext()))
-                .build();
-    }
-
-
 
 
     @Provides

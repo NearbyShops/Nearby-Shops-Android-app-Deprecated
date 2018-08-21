@@ -17,9 +17,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.LoginNew.Login;
+import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
@@ -83,6 +84,9 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 //        toolbar.setTitle("Nearby Shops");
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 //
+
+
+
 
 //        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
@@ -194,9 +198,13 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
         Call<List<CartStats>> call = cartStatsService.getCart(
                 endUser.getUserID(),null,null,true,
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LON_CENTER_KEY)
+                PrefLocation.getLatitude(getActivity()),
+                PrefLocation.getLongitude(getActivity())
         );
+
+//        ,
+//        (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY),
+//                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LON_CENTER_KEY)
 
         /*
 
@@ -318,6 +326,9 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
         super.onStop();
         isDestroyed=true;
     }
+
+
+
 
     private void showLoginDialog()
     {

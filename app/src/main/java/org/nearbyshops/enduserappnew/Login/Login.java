@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.LoginNew;
+package org.nearbyshops.enduserappnew.Login;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

@@ -33,11 +33,17 @@ public class PrefGeneral {
 
 
 
+    private static final String TAG_PREF_CURRENCY = "currency_symbol";
+    private static final String TAG_PREF_CONFIG = "configuration";
+
+
     public static final String LAT_CENTER_KEY = "latCenterKey";
     public static final String LON_CENTER_KEY = "lonCenterKey";
     public static final String DELIVERY_RANGE_MAX_KEY = "deliveryRangeMaxKey";
     public static final String DELIVERY_RANGE_MIN_KEY = "deliveryRagneMinKey";
     public static final String PROXIMITY_KEY = "proximityKey";
+
+
 
 
 
@@ -175,118 +181,48 @@ public class PrefGeneral {
 
 
 
-    public static void saveServiceURL_SDS(String service_url,Context context)
-    {
-//        Context context = MyApplication.getAppContext();
-        // get a handle to shared Preference
-        SharedPreferences sharedPref;
-
-        sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), Context.MODE_PRIVATE);
-
-        // write to the shared preference
-        SharedPreferences.Editor editor = sharedPref.edit();
-
-        editor.putString(context.getString(R.string.preference_service_url_sds_key), service_url);
-        editor.apply();
-    }
-
-    public static String getServiceURL_SDS(Context context) {
-
-//        context = MyApplication.getAppContext();
-
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), Context.MODE_PRIVATE);
-        return sharedPref.getString(context.getString(R.string.preference_service_url_sds_key), "http://sds.nearbyshops.org");
-    }
-
-
-
-
-
-
-
-
-    private static final String TAG_PREF_CONFIG = "configuration";
-
     public static void saveConfiguration(ServiceConfigurationLocal configuration, Context context)
     {
-
         //Creating a shared preference
-
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 
         SharedPreferences.Editor prefsEditor = sharedPref.edit();
-        Gson gson = new Gson();
+        Gson gson = UtilityFunctions.provideGson();
         String json = gson.toJson(configuration);
         prefsEditor.putString(TAG_PREF_CONFIG, json);
         prefsEditor.apply();
     }
 
 
+
+
+
+
     public static ServiceConfigurationLocal getConfiguration(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 
-        Gson gson = new Gson();
-        String json = sharedPref.getString(TAG_PREF_CONFIG, "null");
 
-        if(json.equals("null"))
-        {
+        String json = sharedPref.getString(TAG_PREF_CONFIG, null);
+        Gson gson = UtilityFunctions.provideGson();
 
-            return null;
+        return gson.fromJson(json, ServiceConfigurationLocal.class);
 
-        }else
-        {
-            return gson.fromJson(json, ServiceConfigurationLocal.class);
-        }
-    }
-
-    private static final String TAG_PREF_CONFIG_GLOBAL = "configuration_global";
-
-    public static void saveConfigurationGlobal(ServiceConfigurationGlobal configuration, Context context)
-    {
-
-        //Creating a shared preference
-
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
-        SharedPreferences.Editor prefsEditor = sharedPref.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(configuration);
-        prefsEditor.putString(TAG_PREF_CONFIG_GLOBAL, json);
-        prefsEditor.apply();
     }
 
 
-    public static ServiceConfigurationGlobal getConfigurationGlobal(Context context)
-    {
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
-        Gson gson = new Gson();
-        String json = sharedPref.getString(TAG_PREF_CONFIG_GLOBAL, "null");
-
-        if(json.equals("null"))
-        {
-
-            return null;
-
-        }else
-        {
-            return gson.fromJson(json, ServiceConfigurationGlobal.class);
-        }
-    }
 
 
-    private static final String TAG_PREF_CURRENCY = "currency_symbol";
+
+
 
     public static void saveCurrencySymbol(String symbol, Context context)
     {
-
         //Creating a shared preference
-
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
         SharedPreferences.Editor prefsEditor = sharedPref.edit();
-        Gson gson = new Gson();
+        Gson gson = UtilityFunctions.provideGson();
+
         String json = gson.toJson(symbol);
         prefsEditor.putString(TAG_PREF_CURRENCY, json);
         prefsEditor.apply();
@@ -296,19 +232,7 @@ public class PrefGeneral {
     public static String getCurrencySymbol(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
-        Gson gson = new Gson();
-
-//        if(json.equals("null"))
-//        {
-//
-//            return null;
-//
-//        }else
-//        {
-//            return gson.fromJson(json, String.class);
-//        }
-
+        Gson gson = UtilityFunctions.provideGson();
 
         return sharedPref.getString(TAG_PREF_CURRENCY, context.getString(R.string.rupee_symbol));
     }
@@ -318,29 +242,29 @@ public class PrefGeneral {
 
 
 
-    public static void saveServiceLightStatus(Context context, int status)
-    {
-
-        // get a handle to shared Preference
-        SharedPreferences sharedPref;
-
-        sharedPref = context.getSharedPreferences(
-                context.getString(R.string.preference_file_name),
-                MODE_PRIVATE);
-
-        // write to the shared preference
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("service_light_status",status);
-        editor.apply();
-    }
-
-
-
-    public static int getServiceLightStatus(Context context)
-    {
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        return sharedPref.getInt("service_light_status", 3);
-    }
+//    public static void saveServiceLightStatus(Context context, int status)
+//    {
+//
+//        // get a handle to shared Preference
+//        SharedPreferences sharedPref;
+//
+//        sharedPref = context.getSharedPreferences(
+//                context.getString(R.string.preference_file_name),
+//                MODE_PRIVATE);
+//
+//        // write to the shared preference
+//        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.putInt("service_light_status",status);
+//        editor.apply();
+//    }
+//
+//
+//
+//    public static int getServiceLightStatus(Context context)
+//    {
+//        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+//        return sharedPref.getInt("service_light_status", 3);
+//    }
 
 
 }

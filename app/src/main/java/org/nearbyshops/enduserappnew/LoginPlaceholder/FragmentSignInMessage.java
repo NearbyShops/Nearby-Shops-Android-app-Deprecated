@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.LoginPlaceholders;
+package org.nearbyshops.enduserappnew.LoginPlaceholder;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import org.nearbyshops.enduserappnew.LoginNew.Login;
-import org.nearbyshops.enduserappnew.LoginNew.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.Login.Login;
+import org.nearbyshops.enduserappnew.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.R;
 
 import butterknife.ButterKnife;

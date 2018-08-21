@@ -14,8 +14,8 @@ import android.widget.Toast;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.LoginNew.Login;
-import org.nearbyshops.enduserappnew.LoginNew.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.Login.Login;
+import org.nearbyshops.enduserappnew.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopReviewEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopReviewThanksEndpoint;
