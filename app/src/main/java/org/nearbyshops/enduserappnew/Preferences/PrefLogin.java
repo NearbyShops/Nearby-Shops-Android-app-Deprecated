@@ -18,6 +18,13 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by sumeet on 25/9/16.
  */
 
+
+
+
+
+
+
+
 public class PrefLogin {
 
 
@@ -228,6 +235,8 @@ public class PrefLogin {
     }
 
 
+
+
     public static User getUser(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
@@ -237,8 +246,6 @@ public class PrefLogin {
 
         return gson.fromJson(json, User.class);
     }
-
-
 
 
 }

@@ -33,7 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <TextView
+                android:text="0 out of 0 Orders"
                 android:textColor="@color/white"
                 android:id="@+id/shop_count_indicator"
                 android:paddingLeft="10dp"

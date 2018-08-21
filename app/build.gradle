@@ -4,7 +4,6 @@ apply plugin: 'com.android.application'
 
 
 
-
 android {
 
 
@@ -17,6 +16,9 @@ android {
 ////            v2SigningEnabled false
 //        }
 //    }
+
+
+
 
 
 
@@ -88,6 +90,10 @@ dependencies {
 //    }
 
 
+    implementation 'com.alexvasilkov:gesture-views:2.4.0'
+    implementation 'com.github.stfalcon:smsverifycatcher:0.3.2'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.roughike:bottom-bar:2.3.1'
 
     implementation 'commons-validator:commons-validator:1.6'
     implementation 'com.wunderlist:sliding-layer:1.2.5'
@@ -106,31 +112,23 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
 
     implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'com.google.android.gms:play-services-location:11.0.2'
-
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
     implementation 'com.android.support:multidex:1.0.3'
-
     implementation 'com.yalantis:ucrop:2.2.0'
-
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    testCompile 'junit:junit:4.12'
 
+    testImplementation 'junit:junit:4.12'
 
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
-//    compile 'com.google.dagger:dagger:2.8'
-//    annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
-
-    implementation 'com.google.dagger:dagger:2.11'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
-
-    implementation 'com.alexvasilkov:gesture-views:2.4.0'
-    implementation 'com.github.stfalcon:smsverifycatcher:0.3.2'
-    implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'com.roughike:bottom-bar:2.3.1'
+    implementation 'com.google.dagger:dagger:2.16'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
 
 }
+
+
+
 
 
 //apply plugin: 'com.google.gms.google-services'

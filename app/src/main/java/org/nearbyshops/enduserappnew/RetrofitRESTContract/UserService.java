@@ -121,8 +121,6 @@ public interface UserService {
 
 
 
-
-
     @GET("/api/v1/User/GetToken")
     Call<User> getLogin(@Header("Authorization") String headers);
 
@@ -182,6 +180,8 @@ public interface UserService {
 //            @Header("Authorization") String headers,
 //            @Body User user
 //    );
+
+
 
 
 
