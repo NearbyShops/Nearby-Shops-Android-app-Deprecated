@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.OrderHistoryNew;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.ModelCartOrder.OrderStats;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Utility.UtilityOrderStatus;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 
 import java.util.List;
@@ -33,12 +35,14 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 2;
 
 
+    private Context context;
     private Fragment fragment;
 
-    AdapterOrdersPending(List<Order> dataset, NotifyConfirmOrder notifyConfirmOrder, Fragment fragment) {
+    AdapterOrdersPending(List<Order> dataset, NotifyConfirmOrder notifyConfirmOrder, Fragment fragment,Context context) {
         this.dataset = dataset;
         this.notifyConfirmOrder = notifyConfirmOrder;
         this.fragment = fragment;
+        this.context = context;
     }
 
     @Override
@@ -109,7 +113,7 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 holder.deliveryAddressPhone.setText("Phone : " + deliveryAddress.getPhoneNumber());
 
                 holder.numberOfItems.setText(orderStats.getItemCount() + " Items");
-                holder.orderTotal.setText("| Total : " + (orderStats.getItemTotal() + order.getDeliveryCharges()));
+                holder.orderTotal.setText("| Total : " +String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + (orderStats.getItemTotal() + order.getDeliveryCharges()));
                 //holder.currentStatus.setText();
 
 

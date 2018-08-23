@@ -11,15 +11,13 @@ import org.nearbyshops.enduserappnew.Model.Shop;
 public class CartStats implements Parcelable{
 
 
-    int cartID;
 
-    int itemsInCart;
 
-    double cart_Total;
-
-    int shopID;
-
-    Shop shop;
+    private int cartID;
+    private int itemsInCart;
+    private double cart_Total;
+    private int shopID;
+    private Shop shop;
 
 
 

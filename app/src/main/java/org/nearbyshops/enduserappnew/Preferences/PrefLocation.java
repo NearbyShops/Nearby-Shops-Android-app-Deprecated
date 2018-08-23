@@ -59,9 +59,9 @@ public class PrefLocation {
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 
-        return (Double) (double) sharedPref.getFloat(KEY_LAT_CENTER, 17.47f);
+        return (Double) (double)sharedPref.getFloat(KEY_LAT_CENTER, 17.47f);
 
-        //
+
 //        if( latitude == -1)
 //        {
 //            return null;
@@ -133,48 +133,51 @@ public class PrefLocation {
 
     // saving longitude
 
-    public static void saveProximity(Float proximity, Context context)
-    {
-
-        //Creating a shared preference
-
-        SharedPreferences sharedPref = context
-                .getSharedPreferences(
-                        context.getString(R.string.preference_file_name),
-                        MODE_PRIVATE
-                );
-
-
-        SharedPreferences.Editor prefsEditor = sharedPref.edit();
-
-        if(proximity == null)
-        {
-            prefsEditor.putFloat(KEY_PROXIMITY, -1);
-        }
-        else
-        {
-            prefsEditor.putFloat(KEY_PROXIMITY, proximity);
-        }
-
-        prefsEditor.apply();
-    }
-
-
-    public static Double getProximity(Context context)
-    {
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
-        Double proximity = (double) sharedPref.getFloat(KEY_PROXIMITY, -1);
-
-        if( proximity == -1)
-        {
-            return null;
-        }
-        else
-        {
-            return proximity;
-        }
-    }
+//    public static void saveProximity(Float proximity, Context context)
+//    {
+//
+//        //Creating a shared preference
+//
+//        SharedPreferences sharedPref = context
+//                .getSharedPreferences(
+//                        context.getString(R.string.preference_file_name),
+//                        MODE_PRIVATE
+//                );
+//
+//
+//        SharedPreferences.Editor prefsEditor = sharedPref.edit();
+//
+//        if(proximity == null)
+//        {
+//            prefsEditor.putFloat(KEY_PROXIMITY, -1);
+//        }
+//        else
+//        {
+//            prefsEditor.putFloat(KEY_PROXIMITY, proximity);
+//        }
+//
+//        prefsEditor.apply();
+//    }
+//
+//
+//
+//
+//
+//    public static Double getProximity(Context context)
+//    {
+//        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+//
+//        Double proximity = (double) sharedPref.getFloat(KEY_PROXIMITY, -1);
+//
+//        if( proximity == -1)
+//        {
+//            return null;
+//        }
+//        else
+//        {
+//            return proximity;
+//        }
+//    }
 
 
 

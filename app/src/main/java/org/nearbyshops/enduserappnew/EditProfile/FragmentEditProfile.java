@@ -677,6 +677,13 @@ TextView messageChangePassword;
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
                 if(response.code()==200)
                 {
                     showToastMessage("Update Successful !");
@@ -703,6 +710,13 @@ TextView messageChangePassword;
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
                 showToastMessage("Update Failed !");
 
@@ -792,7 +806,7 @@ TextView messageChangePassword;
 
     void showToastMessage(String message)
     {
-        Toast.makeText(getContext(),message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -1069,6 +1083,13 @@ TextView messageChangePassword;
             @Override
             public void onResponse(Call<Image> call, Response<Image> response) {
 
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
                 if(response.code()==201)
                 {
 //                    showToastMessage("Image UPload Success !");
@@ -1118,6 +1139,13 @@ TextView messageChangePassword;
             @Override
             public void onFailure(Call<Image> call, Throwable t) {
 
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
                 showToastMessage("Image Upload failed !");
                 driver.setProfileImagePath(null);
 
@@ -1155,7 +1183,13 @@ TextView messageChangePassword;
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
 
-                    if(response.code()==200)
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
+                if(response.code()==200)
                     {
                         showToastMessage("Image Removed !");
                     }
@@ -1176,6 +1210,13 @@ TextView messageChangePassword;
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
 //                showToastMessage("Image Delete failed");
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
 
                 saveButton.setVisibility(View.VISIBLE);

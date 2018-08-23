@@ -619,16 +619,16 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                 }
 
-                cartTotal.setText("Cart Total : Rs " + String.format( "%.2f", total));
-                itemTotal.setText("Total : " + String.format( "%.2f", total));
+                cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
+                itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
 
             }else
             {
 
                 itemQuantity.setText(String.valueOf(0));
 
-                itemTotal.setText("Total : " + String.format( "%.2f", total));
-                cartTotal.setText("Cart Total : Rs " + String.format( "%.2f", total));
+                itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
+                cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
             }
 
         }
@@ -667,15 +667,15 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
 
                 itemsInCart.setText(String.valueOf(1) + " " + "Items in Cart");
-                itemTotal.setText("Total : " + String.format("%.2f", total));
-                cartTotal.setText("Cart Total : Rs " + String.format("%.2f", total));
+                itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f", total));
+                cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f", total));
 
             }else
             {
                 itemsInCart.setText(String.valueOf(0) + " " + "Items in Cart");
                 itemQuantity.setText(String.valueOf(0));
-                itemTotal.setText("Total : " + String.format( "%.2f", total));
-                cartTotal.setText("Cart Total : Rs " + String.format("%.2f", total));
+                itemTotal.setText("Total : "+ PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
+                cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f", total));
             }
 
         }
@@ -689,7 +689,7 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
             if(PrefLogin.getUser(activity)==null)
             {
 
-                Toast.makeText(context, "Please Login to continue ...", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Please Login to continue ...", Toast.LENGTH_SHORT).show();
                 showLoginDialog();
                 return;
             }
@@ -807,9 +807,9 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
 
 
-            itemTotal.setText("Total : " + String.format( "%.2f", total));
+            itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
 
-            cartTotal.setText("Cart Total : Rs " + String.format( "%.2f", total));
+            cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
         }
 
         @Override
