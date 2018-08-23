@@ -521,12 +521,24 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
+
+
+
     void refreshAdapter()
     {
         dataset.clear();
 
         HeaderItemsList headerItemCategory = new HeaderItemsList();
-        headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
+
+        if(currentCategory.getParentCategoryID()==-1)
+        {
+            headerItemCategory.setHeading("Categories");
+        }
+        else
+        {
+            headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
+        }
+
         dataset.add(headerItemCategory);
 
         dataset.addAll(datasetCategory);
