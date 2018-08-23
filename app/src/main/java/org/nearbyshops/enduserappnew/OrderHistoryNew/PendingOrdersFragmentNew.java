@@ -209,10 +209,11 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
 
 
 
+
     void setupRecyclerView()
     {
 
-        adapter = new AdapterOrdersPending(dataset,this,this);
+        adapter = new AdapterOrdersPending(dataset,this,this,getActivity());
 
         recyclerView.setAdapter(adapter);
 

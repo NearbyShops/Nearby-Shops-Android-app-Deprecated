@@ -319,7 +319,7 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
                     PrefLocation.getLongitude(getActivity()),
                     null,
                     null,
-                    PrefLocation.getProximity(getActivity()),true,
+                    null,true,
                     ItemCategory.CATEGORY_ORDER,null,null,false);
 
         }
@@ -349,7 +349,7 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
                     PrefLocation.getLongitude(getActivity()),
                     null,
                     null,
-                    PrefLocation.getProximity(getActivity()),true,
+                    null,true,
                     ItemCategory.CATEGORY_ORDER,null,null,false);
         }
 
@@ -533,7 +533,7 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
                     PrefLocation.getLongitude(getActivity()),
                     null,
                     null,
-                    PrefLocation.getProximity(getActivity()),
+                    null,
                     current_sort,limit_item,offset_item,false
             );
 
@@ -549,7 +549,7 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
                     PrefLocation.getLongitude(getActivity()),
                     null,
                     null,
-                    PrefLocation.getProximity(getActivity()),
+                    null,
                     current_sort,limit_item,offset_item,false
             );
         }

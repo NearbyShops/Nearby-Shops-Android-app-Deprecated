@@ -228,7 +228,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             holder.deliveryAddressPhone.setText("Phone : " + deliveryAddress.getPhoneNumber());
 
             holder.numberOfItems.setText(orderStats.getItemCount() + " Items");
-            holder.orderTotal.setText("| Total : " + String.valueOf(orderStats.getItemTotal() + order.getDeliveryCharges()));
+            holder.orderTotal.setText("| Total : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.valueOf(orderStats.getItemTotal() + order.getDeliveryCharges()));
             //holder.currentStatus.setText();
 
 
@@ -357,13 +357,14 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         OrderItem orderItem = (OrderItem) dataset.get(position);
         Item item = orderItem.getItem();
 
+        holder.itemID.setText("Item ID : " + String.valueOf(orderItem.getItemID()));
+
         holder.itemName.setText(item.getItemName());
         holder.quantity.setText("Item Quantity : " + String.valueOf(orderItem.getItemQuantity()) + " "  + item.getQuantityUnit());
-        holder.itemPrice.setText("Item Price : " + String.valueOf(orderItem.getItemPriceAtOrder()));
-        holder.itemTotal.setText("Item Total : " + String.valueOf(orderItem.getItemPriceAtOrder()*orderItem.getItemQuantity()));
+        holder.itemPrice.setText("Item Price : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.valueOf(orderItem.getItemPriceAtOrder())+ " per "  + item.getQuantityUnit());
 
+        holder.itemTotal.setText("Item Total : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.valueOf(orderItem.getItemPriceAtOrder()*orderItem.getItemQuantity()));
 
-        holder.itemID.setText("Item ID : " + String.valueOf(orderItem.getItemID()));
 
 
         // bind Item Image
@@ -383,8 +384,6 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 .load(imagePath)
                 .placeholder(placeholder)
                 .into(holder.itemImage);
-
-
 
     }
 

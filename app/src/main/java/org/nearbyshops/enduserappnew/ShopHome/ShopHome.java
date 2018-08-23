@@ -14,9 +14,11 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.Carts.CartItem.CartItemListActivity;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCat;
+import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
 import org.nearbyshops.enduserappnew.OrdersHomeDelivery.OrderHome;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
@@ -84,7 +86,7 @@ public class ShopHome extends AppCompatActivity {
 
             if(shop.getShopAddress()!=null)
             {
-                shopAddress.setText(shop.getShopAddress() + "\n" + String.valueOf(shop.getPincode()));
+                shopAddress.setText(shop.getShopAddress() + ", " + shop.getCity()  + " - " + String.valueOf(shop.getPincode()));
             }
 
 //            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
@@ -149,18 +151,30 @@ public class ShopHome extends AppCompatActivity {
     @OnClick(R.id.option_cart)
     void shopCart()
     {
+
+        if(PrefLogin.getUser(this)==null)
+        {
+            showLoginDialog();
+            return;
+        }
+
+
         Intent intent = new Intent(this,CartItemListActivity.class);
         intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,shop);
         startActivity(intent);
     }
 
+
+
     @OnClick(R.id.option_orders)
     void ordersClick()
     {
-//        Intent intent = new Intent(this,OrderHome.class);
-//        intent.putExtra(OrderHome.IS_FILTER_BY_SHOP,true);
-//        startActivity(intent);
 
+        if(PrefLogin.getUser(this)==null)
+        {
+            showLoginDialog();
+            return;
+        }
 
 
         Intent intent = new Intent(this, OrderHistoryHD.class);
@@ -219,6 +233,15 @@ public class ShopHome extends AppCompatActivity {
     void showToastMessage(String message)
     {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    private void showLoginDialog()
+    {
+
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
     }
 
 

@@ -81,9 +81,10 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
             {
                 holder.shopName.setText(shop.getShopName());
 
+
                 if(shop.getShopAddress()!=null)
                 {
-                    holder.shopAddress.setText(shop.getShopAddress() + "\n" + String.valueOf(shop.getPincode()));
+                    holder.shopAddress.setText(shop.getShopAddress() + ", " + shop.getCity()  + " - " + String.valueOf(shop.getPincode()));
                 }
 
 //                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())

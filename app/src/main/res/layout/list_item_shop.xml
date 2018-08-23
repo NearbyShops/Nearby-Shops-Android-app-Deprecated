@@ -42,6 +42,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_marginTop="5dp"
             android:id="@+id/shop_address"
             app:layout_constraintTop_toBottomOf="@+id/shop_name"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -49,6 +50,7 @@
             android:text="Street Name, City Name\nPincode Not Available"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
+
 
         <TextView
             android:id="@+id/border_top"
@@ -139,7 +141,7 @@
             app:layout_constraintRight_toRightOf="@+id/delivery"
             android:layout_width="0dp"
             android:layout_height="1dp" />
-        
+
 
         <TextView
             app:layout_constraintTop_toBottomOf="@+id/border_description"
