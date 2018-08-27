@@ -28,48 +28,43 @@ public class PrefLocation {
 
 
 
-    public static void saveLatitude(Float latitude, Context context)
+
+    public static void saveLatLonCurrent(double lat,double lon, Context context)
+    {
+        //Creating a shared preference
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = sharedPref.edit();
+
+        prefsEditor.putFloat(KEY_LAT_CENTER, (float) lat);
+        prefsEditor.putFloat(KEY_LON_CENTER, (float) lon);
+
+        prefsEditor.apply();
+    }
+
+
+
+
+    public static void saveLatitude(float latitude, Context context)
     {
 
         //Creating a shared preference
 
-        SharedPreferences sharedPref = context
-                .getSharedPreferences(
+        SharedPreferences sharedPref = context.getSharedPreferences(
                         context.getString(R.string.preference_file_name),
                         MODE_PRIVATE
                 );
 
 
         SharedPreferences.Editor prefsEditor = sharedPref.edit();
-
-        if(latitude == null)
-        {
-            prefsEditor.putFloat(KEY_LAT_CENTER, -1);
-        }
-        else
-        {
-            prefsEditor.putFloat(KEY_LAT_CENTER, latitude);
-        }
-
+        prefsEditor.putFloat(KEY_LAT_CENTER, latitude);
         prefsEditor.apply();
     }
 
 
-    public static Double getLatitude(Context context)
+    public static double getLatitude(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
-        return (Double) (double)sharedPref.getFloat(KEY_LAT_CENTER, 17.47f);
-
-
-//        if( latitude == -1)
-//        {
-//            return null;
-//        }
-//        else
-//        {
-//            return latitude;
-//        }
+        return (double)sharedPref.getFloat(KEY_LAT_CENTER, 0f);
     }
 
 
@@ -80,52 +75,26 @@ public class PrefLocation {
 
     // saving longitude
 
-    public static void saveLongitude(Float longitude, Context context)
+    public static void saveLongitude(float longitude, Context context)
     {
 
         //Creating a shared preference
 
-        SharedPreferences sharedPref = context
-                .getSharedPreferences(
-                        context.getString(R.string.preference_file_name),
-                        MODE_PRIVATE
-                );
-
-
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = sharedPref.edit();
 
-        if(longitude == null)
-        {
-            prefsEditor.putFloat(KEY_LON_CENTER, -1);
-        }
-        else
-        {
-            prefsEditor.putFloat(KEY_LON_CENTER, longitude);
-        }
 
+        prefsEditor.putFloat(KEY_LON_CENTER, longitude);
         prefsEditor.apply();
     }
 
 
 
 
-
-
-    public static Double getLongitude(Context context)
+    public static double getLongitude(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        return (Double) (double) sharedPref.getFloat(KEY_LON_CENTER, 78.54f);
-
-
-
-//        if( longitude == -1)
-//        {
-//            return null;
-//        }
-//        else
-//        {
-//            return longitude;
-//        }
+        return (double) sharedPref.getFloat(KEY_LON_CENTER, 0f);
     }
 
 

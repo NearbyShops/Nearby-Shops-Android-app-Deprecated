@@ -25,8 +25,8 @@ import android.widget.Toast;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
+import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceLOST;
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Notifications.NonStopService.LocationUpdateService;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Shops.Interfaces.GetDataset;
 import org.nearbyshops.enduserappnew.Shops.Interfaces.NotifyDatasetChanged;
@@ -111,7 +111,7 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
         }
 
 
-        startService(new Intent(this, LocationUpdateService.class));
+        startService(new Intent(this, LocationUpdateServiceLOST.class));
 
 
     }
@@ -475,7 +475,7 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopService(new Intent(this, LocationUpdateService.class));
+        stopService(new Intent(this, LocationUpdateServiceLOST.class));
     }
 
 
@@ -491,35 +491,35 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
     protected void onStart() {
         super.onStart();
 
-        IntentFilter filter = new IntentFilter(LocationUpdateService.ACTION);
-        LocalBroadcastManager.getInstance(this).registerReceiver(testReceiver, filter);
+//        IntentFilter filter = new IntentFilter(LocationUpdateService.class);
+//        LocalBroadcastManager.getInstance(this).registerReceiver(testReceiver, filter);
 
     }
 
 
 
 
-
-
-    // Define the callback for what to do when data is received
-    private BroadcastReceiver testReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-//            int resultCode = intent.getIntExtra("resultCode", RESULT_CANCELED);
-//            if (resultCode == RESULT_OK) {
-//                String resultValue = intent.getStringExtra("resultValue");
-//                Toast.makeText(getActivity(), "Location Updated ", Toast.LENGTH_SHORT).show();
-//            }
-
-//            if(isDestroyed)
-//            {
-//                return;
-//            }
-
-            Toast.makeText(ShopsActivity.this, "Location Updated ", Toast.LENGTH_SHORT).show();
-        }
-    };
+//
+//
+//    // Define the callback for what to do when data is received
+//    private BroadcastReceiver testReceiver = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//
+////            int resultCode = intent.getIntExtra("resultCode", RESULT_CANCELED);
+////            if (resultCode == RESULT_OK) {
+////                String resultValue = intent.getStringExtra("resultValue");
+////                Toast.makeText(getActivity(), "Location Updated ", Toast.LENGTH_SHORT).show();
+////            }
+//
+////            if(isDestroyed)
+////            {
+////                return;
+////            }
+//
+//            Toast.makeText(ShopsActivity.this, "Location Updated ", Toast.LENGTH_SHORT).show();
+//        }
+//    };
 
 
 

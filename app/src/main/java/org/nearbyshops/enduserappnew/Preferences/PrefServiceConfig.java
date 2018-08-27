@@ -49,7 +49,6 @@ public class PrefServiceConfig {
         }
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
         SharedPreferences.Editor prefsEditor = sharedPref.edit();
 
         Gson gson = UtilityFunctions.provideGson();

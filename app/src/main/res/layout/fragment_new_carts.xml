@@ -9,10 +9,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<android.support.v4.widget.NestedScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android">-->
 
         <!--<RelativeLayout-->
             <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
@@ -33,6 +33,6 @@
 
         <!--</RelativeLayout>-->
 
-    </android.support.v4.widget.NestedScrollView>
+    <!--</android.support.v4.widget.NestedScrollView>-->
 
 </android.support.v4.widget.SwipeRefreshLayout>

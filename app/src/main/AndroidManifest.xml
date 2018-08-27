@@ -29,8 +29,13 @@
 
         <!-- android:icon="@mipmap/ic_launcher" -->
 
+        <!--<service-->
+            <!--android:name=".UtilityGeocoding.FetchAddressIntentService"-->
+            <!--android:exported="false" />-->
+
+
         <service
-            android:name=".UtilityGeocoding.FetchAddressIntentService"
+            android:name=".AndroidServices.LocationUpdateServiceLOST"
             android:exported="false" />
 
 
@@ -445,10 +450,12 @@
 
         <!-- Intent Service For Notifications to the User -->
 
-        <service
-            android:name=".Notifications.NonStopService.LocationUpdateService"
-            android:enabled="true"
-            android:exported="true" />
+        <!--<service-->
+            <!--android:name=".AndroidServices.LocationUpdateService"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="true" />-->
+
+
 
 
 
@@ -472,6 +479,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
+
     </application>
+
+
 
 </manifest>

@@ -28,8 +28,7 @@
                 android:id="@+id/categoryImage"
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/veggies"/>
+                android:layout_height="150dp" />
 
 
 
