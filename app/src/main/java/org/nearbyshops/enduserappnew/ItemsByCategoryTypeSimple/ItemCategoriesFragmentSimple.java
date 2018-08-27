@@ -1,6 +1,7 @@
 package org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,10 @@ import android.widget.Toast;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceLOST;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.FilterItemsBySpecifications.FilterItemsActivity;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.SlidingLayerSortItems;
@@ -53,6 +58,13 @@ import static org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCatego
 /**
  * Created by sumeet on 2/12/16.
  */
+
+
+
+
+
+
+
 
 public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort{
 
@@ -132,10 +144,9 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
         notifyItemHeaderChanged();
 
 
-
-
-
         setupSlidingLayer();
+
+
 
 
         return rootView;
@@ -169,7 +180,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
             if(getChildFragmentManager().findFragmentByTag(TAG_SLIDING)==null)
             {
-                System.out.println("Item Cat Simple : New Sliding Layer Loaded !");
+//                System.out.println("Item Cat Simple : New Sliding Layer Loaded !");
                 getChildFragmentManager()
                         .beginTransaction()
                         .replace(R.id.slidinglayerfragment,new SlidingLayerSortItems(),TAG_SLIDING)
@@ -410,13 +421,20 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     public void onDestroyView() {
         super.onDestroyView();
         isDestroyed = true;
+
+        getActivity().stopService(new Intent(getActivity(),LocationUpdateServiceLOST.class));
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
         isDestroyed=false;
+        EventBus.getDefault().register(this);
     }
+
+
+
 
     private void showToastMessage(String message)
     {
@@ -428,11 +446,12 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
+
+
+
+
+
     boolean isFirst = true;
-
-
-
-
 
     void makeRequestItemCategory()
     {
@@ -772,6 +791,30 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
         makeRefreshNetworkCall();
     }
+
+
+
+
+
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+    }
+
+
+
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void doThis(Location location) {
+
+        showToastMessage("Location Updated !");
+        makeRefreshNetworkCall();
+    }
+
 
 
 }

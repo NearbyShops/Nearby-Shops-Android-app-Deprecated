@@ -18,6 +18,8 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class PrefShopHome {
 
+
+
     public static void saveShop(Shop shop, Context context)
     {
 
@@ -29,20 +31,25 @@ public class PrefShopHome {
         //Creating a shared preference
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
         SharedPreferences.Editor prefsEditor = sharedPref.edit();
 
-        if(shop == null)
-        {
-            prefsEditor.putString("admin", "null");
+//        if(shop == null)
+//        {
+//            prefsEditor.putString("admin", "null");
+//
+//        }
+//        else
+//        {
+//            Gson gson = new Gson();
+//            String json = gson.toJson(shop);
+//            prefsEditor.putString("shop", json);
+//        }
 
-        }
-        else
-        {
-            Gson gson = new Gson();
-            String json = gson.toJson(shop);
-            prefsEditor.putString("shop", json);
-        }
+
+
+        Gson gson = UtilityFunctions.provideGson();
+        String json = gson.toJson(shop);
+        prefsEditor.putString("shop", json);
 
         prefsEditor.apply();
     }
@@ -52,18 +59,22 @@ public class PrefShopHome {
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 
-        Gson gson = new Gson();
-        String json = sharedPref.getString("shop", "null");
+        Gson gson = UtilityFunctions.provideGson();
+        String json = sharedPref.getString("shop", null);
 
-        if(json.equals("null"))
-        {
 
-            return null;
+//        if(json.equals("null"))
+//        {
+//
+//            return null;
+//
+//        }else
+//        {
+//            return gson.fromJson(json, Shop.class);
+//        }
 
-        }else
-        {
-            return gson.fromJson(json, Shop.class);
-        }
+
+        return gson.fromJson(json, Shop.class);
 
     }
 }

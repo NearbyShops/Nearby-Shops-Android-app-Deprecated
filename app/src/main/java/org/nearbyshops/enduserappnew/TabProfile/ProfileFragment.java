@@ -24,12 +24,12 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 
+import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceLOST;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Notifications.NonStopService.LocationUpdateService;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
@@ -288,9 +288,9 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     void getUserProfile()
     {
-        User driver = PrefLogin.getUser(getActivity());
+        User endUser = PrefLogin.getUser(getActivity());
 
-        if(driver==null)
+        if(endUser==null)
         {
             return;
         }
@@ -432,7 +432,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     void stopService()
     {
-        getActivity().stopService(new Intent(getActivity(), LocationUpdateService.class));
+        getActivity().stopService(new Intent(getActivity(), LocationUpdateServiceLOST.class));
 
     }
 
@@ -442,7 +442,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     void startLocationUpdate()
     {
-        getActivity().startService(new Intent(getActivity(),LocationUpdateService.class));
+        getActivity().startService(new Intent(getActivity(),LocationUpdateServiceLOST.class));
     }
 
 

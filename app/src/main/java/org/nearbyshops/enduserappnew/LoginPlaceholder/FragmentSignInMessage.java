@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import org.nearbyshops.enduserappnew.Login.Login;
@@ -50,6 +51,10 @@ public class FragmentSignInMessage extends Fragment {
     }
 
 
+
+
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -58,8 +63,21 @@ public class FragmentSignInMessage extends Fragment {
         {
             if(getActivity() instanceof NotifyAboutLogin)
             {
+//                showToastMessage("Notify about login !");
                 ((NotifyAboutLogin) getActivity()).loginSuccess();
             }
         }
     }
+
+
+
+
+
+
+
+    void showToastMessage(String message)
+    {
+        Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
+    }
+
 }

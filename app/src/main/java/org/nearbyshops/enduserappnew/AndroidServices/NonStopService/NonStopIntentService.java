@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Notifications.NonStopService;
+package org.nearbyshops.enduserappnew.AndroidServices.NonStopService;
 
 import android.app.Service;
 import android.content.Intent;

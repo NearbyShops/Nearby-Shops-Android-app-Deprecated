@@ -266,6 +266,10 @@ TextInputEditText username;
     @BindView(R.id.login)
     Button loginButton;
 
+
+
+
+
     @OnClick(R.id.login)
     void makeRequestLogin()
     {
@@ -275,6 +279,10 @@ TextInputEditText username;
             // validation failed return
             return;
         }
+
+
+
+
 
         final String phoneWithCode = username.getText().toString();
 //        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
@@ -303,12 +311,18 @@ TextInputEditText username;
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
 
+                if(isDestroyed)
+                {
+                    return;
+                }
+
                 progressBar.setVisibility(View.GONE);
                 loginButton.setVisibility(View.VISIBLE);
 
                 if(response.code()==200)
                 {
                     // save username and password
+
 
                     if(response.body().getRole()!=User.ROLE_END_USER_CODE)
                     {
@@ -360,11 +374,25 @@ TextInputEditText username;
 
 
 
+
+
+
+
+
+
+
                     if(getActivity() instanceof NotifyAboutLogin)
                     {
+//                        showToastMessage("Notify about login !");
                         ((NotifyAboutLogin) getActivity()).loginSuccess();
                     }
 
+
+
+//                        getActivity().finish();
+
+
+//                    showToastMessage("Login success : code : " + String.valueOf(response.code()));
 
 
 
@@ -382,6 +410,11 @@ TextInputEditText username;
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
                 showToastMessage("Network connection problem !");
                 progressBar.setVisibility(View.GONE);
                 loginButton.setVisibility(View.VISIBLE);

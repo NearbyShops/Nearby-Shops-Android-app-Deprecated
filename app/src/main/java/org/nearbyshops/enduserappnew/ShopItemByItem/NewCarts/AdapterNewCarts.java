@@ -630,8 +630,11 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
                 cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
             }
-
         }
+
+
+
+
 
         @OnClick(R.id.increaseQuantity)
         void increaseQuantityClick(View view)

@@ -11,11 +11,7 @@
 
 
 
-
-
-
     <com.alexvasilkov.gestures.views.GestureImageView
-        android:src="@drawable/carrots"
         android:scaleType="centerCrop"
         android:id="@+id/item_image"
         android:layout_width="match_parent"
