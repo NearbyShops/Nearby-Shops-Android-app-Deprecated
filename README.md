@@ -2,7 +2,22 @@
 Nearby Shops End-User android app
 ====================================
 
-Build your own self-hosted e-commerce marketplace for local bussiness in a Single City. With location based features and  three native mobile app each for each for Customers, Shop Owners, and Administrator.
+End-User app for Nearby Shops e-commerce package.  
+
+
+Libraries Used
+---------------
+
+Retrofit, Ok-Http, Event-Bus, Picasso, Lost (for finding location), butterknife, dagger2, U-Crop, Android-Support-Libraries, Gesture Views
+
+
+Third Party Integrations
+-------------------------
+
+Open-Signal (for push notifications), Fabrio.io (crash reporting), 
+
+
+
 
 
 
@@ -21,7 +36,7 @@ Screenshots
 -----------
 
 
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041722.png" width="208"><img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041731.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041758.png" width="208"> 
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041722.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041731.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041758.png" width="208"> 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041819.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041824.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041829.png" width="208">
 
