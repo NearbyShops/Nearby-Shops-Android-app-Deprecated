@@ -32,8 +32,9 @@ import com.roughike.bottombar.OnTabSelectListener;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceGoogle;
+
 import org.nearbyshops.enduserappnew.Carts.CartsList.CartsListFragment;
+import org.nearbyshops.enduserappnew.EventBus.LocationPermissionGranted;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
@@ -200,9 +201,6 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
 
         startSettingsCheck();
-
-//        stopService(new Intent(this,LocationUpdateServiceLOST.class));
-        startService(new Intent(this,LocationUpdateServiceGoogle.class));
 
 
 
@@ -568,10 +566,19 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
 
 
+            Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_ITEMS_FRAGMENT);
+
+            if(fragment instanceof PermissionGranted)
+            {
+                ((PermissionGranted) fragment).permissionGranted();
+            }
+
+
+            EventBus.getDefault().post(new LocationPermissionGranted(123,124));
+
 
 //            stopService(new Intent(this,LocationUpdateServiceLOST.class));
-            startService(new Intent(this,LocationUpdateServiceGoogle.class));
-
+//            startService(new Intent(this,LocationUpdateServiceLocal.class));
 
 //                onConnected(null);
 
@@ -650,6 +657,19 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
+
+    public interface PermissionGranted
+    {
+        void permissionGranted();
+    }
+
+
 
 
 }

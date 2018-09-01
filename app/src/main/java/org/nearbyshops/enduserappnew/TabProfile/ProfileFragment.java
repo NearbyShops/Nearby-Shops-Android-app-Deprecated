@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 
-import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceGoogle;
+
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
@@ -443,21 +443,6 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-
-    void stopService()
-    {
-        getActivity().stopService(new Intent(getActivity(), LocationUpdateServiceGoogle.class));
-
-    }
-
-
-
-
-
-    void startLocationUpdate()
-    {
-        getActivity().startService(new Intent(getActivity(),LocationUpdateServiceGoogle.class));
-    }
 
 
     @Override

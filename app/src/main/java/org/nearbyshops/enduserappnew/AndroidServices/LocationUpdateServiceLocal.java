@@ -5,25 +5,20 @@
 //import android.content.Intent;
 //import android.content.pm.PackageManager;
 //import android.location.Location;
-//import android.os.Bundle;
-//import android.support.annotation.NonNull;
-//import android.support.annotation.Nullable;
 //import android.support.v4.app.ActivityCompat;
 //import android.support.v4.content.LocalBroadcastManager;
 //import android.util.Log;
 //
-//import com.google.android.gms.common.ConnectionResult;
-//import com.google.android.gms.common.api.GoogleApiClient;
+//import com.google.android.gms.location.LocationAvailability;
+//import com.google.android.gms.location.LocationCallback;
 //import com.google.android.gms.location.LocationListener;
 //import com.google.android.gms.location.LocationRequest;
+//import com.google.android.gms.location.LocationResult;
 //import com.google.android.gms.location.LocationServices;
 //
-//
 //import org.greenrobot.eventbus.EventBus;
-//import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+//import org.nearbyshops.enduserappnew.AndroidServices.NonStopService.NonStopIntentService;
 //import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
-//
-//import javax.inject.Inject;
 //
 //
 ///**
@@ -32,18 +27,17 @@
 //
 //
 //
-//public class LocationUpdateServiceGoogle extends IntentService implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener ,LocationListener {
+//public class LocationUpdateServiceLocal extends IntentService implements LocationListener {
 //
 //
-//    GoogleApiClient mGoogleApiClient;
+//
+////    GoogleApiClient mGoogleApiClient;
 //    LocationRequest mLocationRequest;
 //    Location mLastLocation;
 //
-//    public static final String ACTION = "com.codepath.example.servicesdemo.MyTestService";
-//    public static final String ACTION_LOCATION_UPDATED_ONLINE = "com.taxireferral.locationupdate.online";
+//
 //    public static final String ACTION_LOCATION_UPDATED_OFFLINE = "com.taxireferral.locationupdate.offline";
 //    public static final String ACTION_FAILED_TO_UPDATE_LOCATION = "com.taxireferral.locationupdate.failed";
-//
 //
 //
 //
@@ -51,17 +45,17 @@
 //    public void onCreate() {
 //        super.onCreate();
 //
+////
+////        // Create an instance of GoogleAPIClient.
+////        if (mGoogleApiClient == null) {
+////            mGoogleApiClient = new GoogleApiClient.Builder(this)
+////                    .addConnectionCallbacks(this)
+////                    .addOnConnectionFailedListener(this)
+////                    .addApi(LocationServices.API)
+////                    .build();
+////        }
 //
-//        // Create an instance of GoogleAPIClient.
-//        if (mGoogleApiClient == null) {
-//            mGoogleApiClient = new GoogleApiClient.Builder(this)
-//                    .addConnectionCallbacks(this)
-//                    .addOnConnectionFailedListener(this)
-//                    .addApi(LocationServices.API)
-//                    .build();
-//        }
-//
-//        // Location code ends
+//        // Location_ code ends
 //    }
 //
 //
@@ -69,12 +63,12 @@
 //
 //
 //
-//    public LocationUpdateServiceGoogle(String name) {
+//    public LocationUpdateServiceLocal(String name) {
 //        super(name);
 //    }
 //
 //
-//    public LocationUpdateServiceGoogle() {
+//    public LocationUpdateServiceLocal() {
 //        super("name");
 //
 //    }
@@ -90,13 +84,19 @@
 //    @Override
 //    protected void onHandleIntent(Intent intent) {
 //
-//        Log.d("location_update","on handle intent ");
+//        requestLocationUpdates();
 //
+//        logMessage("LocationUpdateServiceLocal : onHandleIntent");
 //    }
 //
 //
-//    @Override
-//    public void onConnected(@Nullable Bundle bundle) {
+//    LocationCallback locationCallback;
+//
+//
+//
+//
+//
+//    public void requestLocationUpdates() {
 //
 //        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 //            // TODO: Consider calling
@@ -113,9 +113,6 @@
 //
 //
 //
-//
-//        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-//
 //        mLocationRequest = new LocationRequest();
 //        mLocationRequest.setInterval(10000);
 //        mLocationRequest.setSmallestDisplacement(100);
@@ -123,25 +120,32 @@
 //        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 //
 //
-//        if(mLocationRequest!=null && mGoogleApiClient.isConnected())
+//
+//
+//        locationCallback = new LocationCallback(){
+//            @Override
+//            public void onLocationResult(LocationResult locationResult) {
+//                super.onLocationResult(locationResult);
+//
+//
+//                                        locationResult.getLastLocation().getLatitude();
+//                                        locationResult.getLastLocation().getLongitude();
+//
+//            }
+//
+//            @Override
+//            public void onLocationAvailability(LocationAvailability locationAvailability) {
+//                super.onLocationAvailability(locationAvailability);
+//            }
+//        };
+//
+//
+//        if(mLocationRequest!=null)
 //        {
-//                LocationServices.FusedLocationApi.requestLocationUpdates(
-//                        mGoogleApiClient, mLocationRequest, this);
+//                LocationServices.getFusedLocationProviderClient(getApplicationContext()).requestLocationUpdates(
+//                         mLocationRequest, locationCallback,null);
 //        }
 //
-//    }
-//
-//
-//    @Override
-//    public void onConnectionSuspended(int i) {
-//        mGoogleApiClient.connect();
-//    }
-//
-//
-//
-//    @Override
-//    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-//        mGoogleApiClient.connect();
 //    }
 //
 //
@@ -149,41 +153,33 @@
 //    public void onStart(Intent intent, int startId) {
 //        super.onStart(intent, startId);
 //
-//        if (mGoogleApiClient != null) {
-//            mGoogleApiClient.connect();
-//        }
 //    }
+//
+//
+//
+//
+//
 //
 //
 //    @Override
 //    public void onDestroy() {
 //        super.onDestroy();
-//
-//        if (mGoogleApiClient != null) {
-//
-//            mGoogleApiClient.disconnect();
-//        }
-//
+//        stopLocationUpdates();
 //    }
+//
 //
 //
 //    @Override
 //    public void onLocationChanged(Location location) {
 //
-//
-////        LocationWithAddress locationCurrent = new LocationWithAddress(
-////                location.getLatitude(),
-////                location.getLongitude()
-////        );
-//
+//        PrefLocation.saveLatLonCurrent(location.getLatitude(),location.getLongitude(),getApplicationContext());
 //
 //        EventBus.getDefault().post(location);
-//
-//        PrefLocation.saveLatLonCurrent(location.getLatitude(),location.getLongitude(),getApplicationContext());
 //
 //        logMessage("Location Updated : Lat : " + location.getLatitude() + " Lon : " + location.getLongitude());
 //        stopLocationUpdates();
 //    }
+//
 //
 //
 //
@@ -196,17 +192,22 @@
 //
 //
 //
+//
+//
+//
+//
+//
+//
 //    protected void stopLocationUpdates() {
 //
-//        if(mGoogleApiClient.isConnected())
+//
+//        if(locationCallback!=null)
 //        {
-//            LocationServices.FusedLocationApi.removeLocationUpdates(
-//                    mGoogleApiClient, this);
+//            LocationServices.getFusedLocationProviderClient(getApplicationContext()).removeLocationUpdates(locationCallback);
 //        }
 //
 //        stopSelf();
 //    }
-//
 //
 //
 //}

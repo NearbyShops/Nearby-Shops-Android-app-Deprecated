@@ -44,6 +44,11 @@
             android:exported="false" />
 
 
+        <service
+            android:name=".AndroidServices.LocationUpdateServiceLocal"
+            android:exported="false" />
+
+
 
 
         <activity android:name=".Home">

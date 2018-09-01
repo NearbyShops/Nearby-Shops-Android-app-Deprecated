@@ -34,7 +34,7 @@ import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartItemService;
-import org.nearbyshops.enduserappnew.Preferences.InputFilterMinMax;
+import org.nearbyshops.enduserappnew.Utility.InputFilterMinMax;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 

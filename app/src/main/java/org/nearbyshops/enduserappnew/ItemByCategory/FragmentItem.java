@@ -17,11 +17,11 @@ import org.nearbyshops.enduserappnew.ModelEndPoints.ItemEndPoint;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserappnew.Preferences.DividerItemDecoration;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
 
 import java.util.ArrayList;
 
@@ -267,11 +267,11 @@ public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefre
 
         Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(notifiedCurrentCategory.getItemCategoryID(),
                 null,
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LON_CENTER_KEY),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MAX_KEY),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MIN_KEY),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.PROXIMITY_KEY),
+                PrefLocation.getLatitude(getActivity()),
+                PrefLocation.getLongitude(getActivity()),
+                null,
+                null,
+                null,
                 null,null, limit,offset,null);
 
 

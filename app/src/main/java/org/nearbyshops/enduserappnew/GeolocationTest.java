@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.nearbyshops.enduserappnew.Preferences.GeoLocation;
+import org.nearbyshops.enduserappnew.Utility.GeoLocation;
 
 import butterknife.BindView;
 

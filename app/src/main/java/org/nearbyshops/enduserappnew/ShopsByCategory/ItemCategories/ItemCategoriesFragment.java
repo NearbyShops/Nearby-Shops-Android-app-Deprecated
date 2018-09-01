@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyGeneral;
@@ -288,11 +289,10 @@ public class ItemCategoriesFragment extends Fragment
         Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
                 null,currentCategory.getItemCategoryID(),
                 null,
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY, 0),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LON_CENTER_KEY, 0),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MAX_KEY, 0),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MIN_KEY, 0),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.PROXIMITY_KEY, 0),true,
+                PrefLocation.getLatitude(getActivity()),
+                PrefLocation.getLongitude(getActivity()),
+                null,null ,
+                null,true,
                 "id",limit,offset,false);
 
         Log.d("applog","DetachedTabs: Network call made !");

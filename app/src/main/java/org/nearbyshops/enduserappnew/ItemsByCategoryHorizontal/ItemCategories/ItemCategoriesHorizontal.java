@@ -18,6 +18,7 @@ import android.widget.Toast;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyBackPressed;
@@ -302,11 +303,11 @@ public class ItemCategoriesHorizontal extends Fragment
                 null,
                 currentCategory.getItemCategoryID(),
                 null,
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY, 0),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LON_CENTER_KEY, 0),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MAX_KEY, 0),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MIN_KEY, 0),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.PROXIMITY_KEY, 0),true,
+                PrefLocation.getLatitude(getActivity()),
+                PrefLocation.getLongitude(getActivity()),
+                null,
+                null,
+                null,true,
                 "id",limit,offset,false);
 
         Log.d("applog","DetachedTabs: Network call made !");

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Preferences;
+package org.nearbyshops.enduserappnew.Utility;
 
 import android.content.Context;
 import android.content.res.TypedArray;

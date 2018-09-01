@@ -1,9 +1,12 @@
 package org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -19,14 +22,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceGoogle;
+
+
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.EventBus.LocationPermissionGranted;
 import org.nearbyshops.enduserappnew.FilterItemsBySpecifications.FilterItemsActivity;
+import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyHeaderChanged;
@@ -35,6 +46,7 @@ import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemEndPoint;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemService;
@@ -66,7 +78,7 @@ import static org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCatego
 
 
 
-public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort{
+public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort, Home.PermissionGranted{
 
     boolean isDestroyed = false;
 
@@ -148,9 +160,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
-        getActivity().startService(new Intent(getActivity(),LocationUpdateServiceGoogle.class));
+//        getActivity().startService(new Intent(getActivity(),LocationUpdateServiceLocal.class));
 
 
+        requestLocationUpdates();
 
         return rootView;
     }
@@ -420,17 +433,15 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
+
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         isDestroyed = true;
 
+        stopLocationUpdates();
 
-
-        if(getActivity()!=null)
-        {
-            getActivity().stopService(new Intent(getActivity(),LocationUpdateServiceGoogle.class));
-        }
     }
 
 
@@ -781,6 +792,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
+
         if(currentCategory.getItemCategoryID()==1)
         {
             itemHeader.setText(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " Items");
@@ -818,6 +830,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
+
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void doThis(Location location) {
 
@@ -827,4 +841,153 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
+
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void permissionGranted(LocationPermissionGranted granted) {
+
+//        showToastMessage("Granted event bus !");
+        requestLocationUpdates();
+    }
+
+
+
+
+
+
+
+    LocationRequest mLocationRequestTwo;
+    LocationCallback locationCallback;
+
+
+
+    public void requestLocationUpdates()
+    {
+
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
+
+
+
+
+
+        mLocationRequestTwo = LocationRequest.create();
+        mLocationRequestTwo.setInterval(10000);
+        mLocationRequestTwo.setSmallestDisplacement(100);
+        mLocationRequestTwo.setFastestInterval(5000);
+        mLocationRequestTwo.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+
+//        locationCallback = new MyLocationCallback();
+
+        locationCallback = new LocationCallback(){
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
+
+
+                double lat = 0;
+                double lon = 0;
+
+                Location location = locationResult.getLocations().get(locationResult.getLocations().size()-1);
+
+                lat = location.getLatitude();
+                lon = location.getLongitude();
+
+
+
+//                double lat = locationResult.getLastLocation().getLatitude();
+//                double lon = locationResult.getLastLocation().getLongitude();
+
+
+
+//
+//                double displacement = UtilityFunctions.calculateDistance(lat,lon,
+//                        PrefLocation.getLatitideCurrent(getActivity()),
+//                        PrefLocation.getLongitudeCurrent(getActivity()));
+
+                Location previousLocation = new Location("abcd");
+                previousLocation.setLatitude(PrefLocation.getLatitude(getActivity()));
+                previousLocation.setLongitude(PrefLocation.getLongitude(getActivity()));
+
+                PrefLocation.saveLatLonCurrent(lat,lon,getActivity());
+
+                Location currentLocation = new Location("crrent");
+                currentLocation.setLatitude(lat);
+                currentLocation.setLongitude(lon);
+
+
+
+
+
+                double distanceChanged = currentLocation.distanceTo(previousLocation);
+
+//                showToastMessage("Distance Changed : " + String.valueOf(distanceChanged));
+
+                if(distanceChanged > 100)
+                {
+                    makeRefreshNetworkCall();
+                }
+
+
+
+                stopLocationUpdates();
+
+
+//                showToastMessage("Location Updated !");
+            }
+
+
+            @Override
+            public void onLocationAvailability(LocationAvailability locationAvailability) {
+                super.onLocationAvailability(locationAvailability);
+            }
+        };
+
+
+        LocationServices.getFusedLocationProviderClient(getActivity())
+                .requestLocationUpdates(mLocationRequestTwo,locationCallback, null);
+    }
+
+
+
+
+    void stopLocationUpdates()
+    {
+
+        if(locationCallback!=null)
+        {
+            LocationServices.getFusedLocationProviderClient(getActivity())
+                    .removeLocationUpdates(locationCallback);
+        }
+    }
+
+
+
+
+
+    @Override
+    public void permissionGranted() {
+//        showToastMessage("Granted interface !");
+        requestLocationUpdates();
+    }
 }
