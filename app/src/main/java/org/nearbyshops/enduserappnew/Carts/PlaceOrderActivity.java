@@ -18,6 +18,8 @@ import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.ModelPickFromShop.OrderPFS;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.OrderService;
@@ -51,6 +53,8 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
     TextView addPickAddress;
     DeliveryAddress selectedAddress;
+
+
 
 
     // Total Fields
@@ -200,22 +204,22 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+        @Override
+        protected void onSaveInstanceState(Bundle outState) {
+            super.onSaveInstanceState(outState);
 
-        if(selectedAddress!=null)
-        {
-            outState.putParcelable("selectedAddress",selectedAddress);
+            if(selectedAddress!=null)
+            {
+                outState.putParcelable("selectedAddress",selectedAddress);
+            }
         }
-    }
 
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
+        @Override
+        protected void onRestoreInstanceState(Bundle savedInstanceState) {
+            super.onRestoreInstanceState(savedInstanceState);
 
-        selectedAddress = savedInstanceState.getParcelable("selectedAddress");
-    }
+            selectedAddress = savedInstanceState.getParcelable("selectedAddress");
+        }
 
 
 
@@ -226,8 +230,12 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
             return;
         }
 
+
         Call<List<CartStats>> call = cartStatsService.getCart(
-                PrefLogin.getUser(this).getUserID(),cartStats.getCartID(), null,true,null,null);
+                PrefLogin.getUser(this).getUserID(),cartStats.getCartID(),
+                null,true,null,null
+        );
+
 
 
         call.enqueue(new Callback<List<CartStats>>() {
@@ -277,17 +285,18 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
         if(cartStatsFromNetworkCall!=null)
         {
 
-            freeDeliveryInfo.setText("Free delivery is offered above the order of " + String.valueOf(cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery()));
+            freeDeliveryInfo.setText("Free delivery is offered above the order of " + String.valueOf(PrefGeneral.getCurrencySymbol(this)) + " " + String.valueOf(cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery()));
 
-            subTotal.setText("Subtotal: " + cartStats.getCart_Total());
+
+            subTotal.setText("Subtotal: " + PrefGeneral.getCurrencySymbol(this) + " " + cartStats.getCart_Total());
             deliveryCharges.setText("Delivery Charges : N/A");
 
             //total.setText("Total : " + cartStats.getCart_Total()+ );
 
             if(pickFromShopCheck.isChecked())
             {
-                total.setText("Total : " + String.format( "%.2f", cartStats.getCart_Total()));
-                deliveryCharges.setText("Delivery Charges : " + 0);
+                total.setText("Total : " + PrefGeneral.getCurrencySymbol(this) + " " + String.format( "%.2f", cartStats.getCart_Total()));
+                deliveryCharges.setText("Delivery Charges : "+ PrefGeneral.getCurrencySymbol(this) + " " + 0);
             }
 
             if(homeDelieryCheck.isChecked())
@@ -297,19 +306,23 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                 if(cartStatsFromNetworkCall.getCart_Total() < cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery())
                 {
 
-                    total.setText("Total : " + String.format( "%.2f", cartStats.getCart_Total() + cartStats.getShop().getDeliveryCharges()));
-                    deliveryCharges.setText("Delivery Charges : " + cartStats.getShop().getDeliveryCharges());
+                    total.setText("Total : " + PrefGeneral.getCurrencySymbol(this) + " " + String.format( "%.2f", cartStats.getCart_Total() + cartStats.getShop().getDeliveryCharges()));
+                    deliveryCharges.setText("Delivery Charges : " + PrefGeneral.getCurrencySymbol(this) + " " + cartStats.getShop().getDeliveryCharges());
                 }
                 else
                 {
 
-                    deliveryCharges.setText("Delivery Charges : Zero " + "(Delivery is free above the order of : " + String.valueOf(cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery()) + " )");
-                    total.setText("Total : " + String.format( "%.2f", cartStats.getCart_Total()));
+                    deliveryCharges.setText("Delivery Charges : Zero " + "(Delivery is free above the order of : " + PrefGeneral.getCurrencySymbol(this) + " " + String.valueOf(cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery()) + " )");
+                    total.setText("Total : " + PrefGeneral.getCurrencySymbol(this) + " " + String.format( "%.2f", cartStats.getCart_Total()));
                 }
 
             }
         }
     }
+
+
+
+
 
 
 
@@ -345,6 +358,8 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
         }
 
 
+
+        order.setEndUserID(PrefLogin.getUser(this).getUserID());
 
         order.setDeliveryAddressID(selectedAddress.getId());
         orderPFS.setDeliveryAddressID(selectedAddress.getId());

@@ -220,9 +220,7 @@ public class PrefLogin {
     public static void saveUserProfile(User user, Context context)
     {
 
-
         //Creating a shared preference
-
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 
         SharedPreferences.Editor prefsEditor = sharedPref.edit();
@@ -237,6 +235,8 @@ public class PrefLogin {
 
 
 
+
+
     public static User getUser(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
@@ -246,6 +246,10 @@ public class PrefLogin {
 
         return gson.fromJson(json, User.class);
     }
+
+
+
+
 
 
 }

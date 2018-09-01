@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 
-import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceLOST;
+import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceGoogle;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
@@ -34,6 +34,8 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -262,7 +264,9 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         PrefLogin.saveCredentials(getActivity(),null,null);
 
         // stop location update service
-        stopService();
+//        stopService();
+
+
 
         
         if(getActivity() instanceof ShowFragment)
@@ -288,6 +292,13 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     void getUserProfile()
     {
+
+        if(getActivity()==null)
+        {
+            return;
+        }
+
+
         User endUser = PrefLogin.getUser(getActivity());
 
         if(endUser==null)
@@ -302,6 +313,9 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         Call<User> call = userService.getProfile(
                 PrefLogin.getAuthorizationHeaders(getActivity())
         );
+
+
+
 
 
         call.enqueue(new Callback<User>() {
@@ -432,7 +446,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     void stopService()
     {
-        getActivity().stopService(new Intent(getActivity(), LocationUpdateServiceLOST.class));
+        getActivity().stopService(new Intent(getActivity(), LocationUpdateServiceGoogle.class));
 
     }
 
@@ -442,7 +456,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     void startLocationUpdate()
     {
-        getActivity().startService(new Intent(getActivity(),LocationUpdateServiceLOST.class));
+        getActivity().startService(new Intent(getActivity(),LocationUpdateServiceGoogle.class));
     }
 
 

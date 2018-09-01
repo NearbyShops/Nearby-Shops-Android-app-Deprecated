@@ -1,16 +1,12 @@
 package org.nearbyshops.enduserappnew.Shops;
 
 import android.app.SearchManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -25,7 +21,8 @@ import android.widget.Toast;
 
 import com.wunderlist.slidinglayer.SlidingLayer;
 
-import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceLOST;
+
+import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceGoogle;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Shops.Interfaces.GetDataset;
@@ -111,7 +108,7 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
         }
 
 
-        startService(new Intent(this, LocationUpdateServiceLOST.class));
+        startService(new Intent(this, LocationUpdateServiceGoogle.class));
 
 
     }
@@ -475,7 +472,7 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopService(new Intent(this, LocationUpdateServiceLOST.class));
+        stopService(new Intent(this, LocationUpdateServiceGoogle.class));
     }
 
 

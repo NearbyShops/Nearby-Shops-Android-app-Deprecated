@@ -143,6 +143,7 @@ public class ServiceIndicatorFragment extends Fragment {
                 addressText.setText(address);
                 city.setText(serviceConfig.getCity());
 
+
                 indicatorLight.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_1));
                 status.setText("Service Available");
 

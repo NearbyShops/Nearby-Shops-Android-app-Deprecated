@@ -38,6 +38,7 @@ import org.nearbyshops.enduserappnew.ItemsInShopByCat.AdapterItemsInShop;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCatFragment;
 import org.nearbyshops.enduserappnew.Login.LoginFragment;
 import org.nearbyshops.enduserappnew.Login.ServiceIndicatorFragment;
+import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.OrderDetail.FragmentOrderDetail;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Complete.CompleteOrdersFragment;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Pending.PendingOrdersFragment;
@@ -215,4 +216,6 @@ public interface NetComponent {
     void Inject(ProfileFragment profileFragment);
 
     void Inject(FragmentChangeEmail fragmentChangeEmail);
+
+    void Inject(UpdateOneSignalID updateOneSignalID);
 }

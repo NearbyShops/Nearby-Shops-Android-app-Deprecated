@@ -41,7 +41,7 @@ public class CartItemListActivity extends AppCompatActivity
         implements SwipeRefreshLayout.OnRefreshListener, CartItemAdapter.NotifyCartItem {
 
 
-    TextView confirmItems;
+//    TextView confirmItems;
 
     @Inject
     CartItemService cartItemService;
@@ -73,14 +73,14 @@ public class CartItemListActivity extends AppCompatActivity
 
 
     // header views
-    ImageView shopImage;
-    TextView shopName;
-    TextView rating;
-    TextView distance;
-    TextView deliveryCharge;
-    TextView itemsInCart;
-    TextView cartTotalHeader;
-    LinearLayout cartsListItem;
+//    ImageView shopImage;
+//    TextView shopName;
+//    TextView rating;
+//    TextView distance;
+//    TextView deliveryCharge;
+//    TextView itemsInCart;
+//    TextView cartTotalHeader;
+//    LinearLayout cartsListItem;
 
 
     public CartItemListActivity() {
@@ -92,8 +92,8 @@ public class CartItemListActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart_item_list);
 
+        setContentView(R.layout.activity_cart_item_list);
         ButterKnife.bind(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -104,7 +104,7 @@ public class CartItemListActivity extends AppCompatActivity
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         totalValue = (TextView) findViewById(R.id.totalValue);
         estimatedTotal = (TextView) findViewById(R.id.estimatedTotal);
-        confirmItems = (TextView) findViewById(R.id.confirm);
+//        confirmItems = (TextView) findViewById(R.id.confirm);
 
 
 //        shopImage = (ImageView) findViewById(R.id.shopImage);
@@ -149,6 +149,12 @@ public class CartItemListActivity extends AppCompatActivity
 
         displayCartStats();
     }
+
+
+
+
+
+
 
 
 
@@ -201,7 +207,7 @@ public class CartItemListActivity extends AppCompatActivity
         if(cartStats!=null)
         {
             cartTotal = cartStats.getCart_Total();
-            totalValue.setText(" : Rs " + String.format("%.2f", cartTotal));
+            totalValue.setText("Total : Rs " + String.format("%.2f", cartTotal));
 
             adapter.setCartStats(cartStats);
         }
@@ -209,14 +215,19 @@ public class CartItemListActivity extends AppCompatActivity
 
 
 
+
+
     @OnClick(R.id.confirm)
-    void confirmItemsClick(View view)
+    void confirmItemsClick()
     {
         Intent intent = new Intent(this,PlaceOrderActivity.class);
         intent.putExtra(PlaceOrderActivity.CART_STATS_INTENT_KEY,cartStats);
 
         startActivity(intent);
     }
+
+
+
 
 
     /*void setupHeader()
@@ -437,7 +448,7 @@ public class CartItemListActivity extends AppCompatActivity
 
 
         showToastMessage("Item Updated !");
-        totalValue.setText(" : Rs " + String.format("%.2f", cartTotal));
+        totalValue.setText("Total : Rs " + String.format("%.2f", cartTotal));
         cartStats.setCart_Total(cartTotal);
 
 
