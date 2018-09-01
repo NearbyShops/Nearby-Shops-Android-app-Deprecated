@@ -27,6 +27,7 @@ public class FragmentSignInMessage extends Fragment {
 
 
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

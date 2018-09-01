@@ -32,13 +32,15 @@ import com.roughike.bottombar.OnTabSelectListener;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceLOST;
+import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceGoogle;
 import org.nearbyshops.enduserappnew.Carts.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduserappnew.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.LoginPlaceholder.FragmentSignInMessage;
+import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
+import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.PendingOrdersFragmentNew;
 import org.nearbyshops.enduserappnew.Shops.ListFragment.FragmentShopNew;
 import org.nearbyshops.enduserappnew.TabProfile.ProfileFragment;
@@ -165,27 +167,32 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
 
 
-//        int screenToOpen = getIntent().getIntExtra("screen_to_open",-1);
+        int screenToOpen = getIntent().getIntExtra("screen_to_open",-1);
 
 
 
-//        if(screenToOpen==1)
-//        {
-//            bottomBar.selectTabWithId(R.id.tab_search);
-//        }
-//        else if(screenToOpen==2)
-//        {
-//            bottomBar.selectTabWithId(R.id.tab_requests);
-//        }
-//        else if(screenToOpen==3)
-//        {
-//            bottomBar.selectTabWithId(R.id.tab_trips);
-//        }
-//        else if(screenToOpen==4)
-//        {
-//
-//            bottomBar.selectTabWithId(R.id.tab_profile);
-//        }
+        if(screenToOpen==1)
+        {
+            bottomBar.selectTabWithId(R.id.tab_items);
+        }
+        else if(screenToOpen==2)
+        {
+            bottomBar.selectTabWithId(R.id.tab_shops);
+        }
+        else if(screenToOpen==3)
+        {
+            bottomBar.selectTabWithId(R.id.tab_cart);
+        }
+        else if(screenToOpen==4)
+        {
+
+            bottomBar.selectTabWithId(R.id.tab_orders);
+        }
+        else if(screenToOpen==5)
+        {
+
+            bottomBar.selectTabWithId(R.id.tab_profile);
+        }
 
 
 
@@ -194,10 +201,16 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
         startSettingsCheck();
 
-        stopService(new Intent(this,LocationUpdateServiceLOST.class));
-        startService(new Intent(this,LocationUpdateServiceLOST.class));
+//        stopService(new Intent(this,LocationUpdateServiceLOST.class));
+        startService(new Intent(this,LocationUpdateServiceGoogle.class));
 
 
+
+
+        if(PrefOneSignal.getToken(this)!=null)
+        {
+            startService(new Intent(getApplicationContext(), UpdateOneSignalID.class));
+        }
     }
 
 
@@ -556,8 +569,8 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
 
 
-            stopService(new Intent(this,LocationUpdateServiceLOST.class));
-            startService(new Intent(this,LocationUpdateServiceLOST.class));
+//            stopService(new Intent(this,LocationUpdateServiceLOST.class));
+            startService(new Intent(this,LocationUpdateServiceGoogle.class));
 
 
 //                onConnected(null);
@@ -626,6 +639,10 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
 
 
+
+
+
+
     private void resolveLocationSettings() {
         try {
             requestStatus.startResolutionForResult(this, REQUEST_CHECK_SETTINGS);
@@ -633,15 +650,6 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
-
-
-
 
 
 }

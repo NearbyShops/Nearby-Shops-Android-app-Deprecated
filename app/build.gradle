@@ -1,6 +1,13 @@
+
+plugins {
+    id 'com.onesignal.androidsdk.onesignal-gradle-plugin' version '0.8.1'
+}
+
+
+
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 apply plugin: 'com.android.application'
 //apply plugin: 'android-apt'
-
 
 
 
@@ -20,16 +27,22 @@ android {
 
 
 
+    defaultConfig {
+        manifestPlaceholders = [onesignal_app_id: "b6fe253c-2a93-4452-8cd7-36555aa046ca",
+                                // Project number pulled from dashboard, local value is ignored.
+                                onesignal_google_project_number: "REMOTE"]
+    }
 
 
 
-    compileSdkVersion 26
-    buildToolsVersion '27.0.3'
+
+    compileSdkVersion 28
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         applicationId "org.nearbyshops.enduserappnew"
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "0.9"
         // Enabling multidex support.
@@ -37,6 +50,7 @@ android {
         vectorDrawables.useSupportLibrary = true
 //        signingConfig signingConfigs.release
     }
+    
     buildTypes {
         release {
             minifyEnabled false
@@ -64,10 +78,14 @@ android {
 
     repositories {
         maven { url "https://clojars.org/repo/" }
+
     }
 
-    productFlavors {
+    repositories {
+        maven { url 'https://maven.google.com' }
     }
+
+
 }
 
 
@@ -92,19 +110,21 @@ dependencies {
 
     implementation 'com.alexvasilkov:gesture-views:2.4.0'
     implementation 'com.github.stfalcon:smsverifycatcher:0.3.2'
-    implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.roughike:bottom-bar:2.3.1'
 
     implementation 'commons-validator:commons-validator:1.6'
     implementation 'com.wunderlist:sliding-layer:1.2.5'
 
-    implementation 'com.android.support:support-v4:26.1.0'
-    implementation 'com.android.support:recyclerview-v7:26.1.0'
-    implementation 'com.android.support:cardview-v7:26.1.0'
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
-    implementation 'com.android.support:palette-v7:26.1.0'
+
+
+    implementation 'com.android.support:support-v4:28.0.0-rc01'
+    implementation 'com.android.support:recyclerview-v7:28.0.0-rc01'
+    implementation 'com.android.support:cardview-v7:28.0.0-rc01'
+    implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
+    implementation 'com.android.support:design:28.0.0-rc01'
+    implementation 'com.android.support:palette-v7:28.0.0-rc01'
     implementation 'com.appyvet:materialrangebar:1.3'
+
 
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
@@ -113,9 +133,9 @@ dependencies {
 
     implementation 'com.yalantis:ucrop:2.2.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
-//    implementation 'com.google.android.gms:play-services-location:15.0.1'
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
     implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
     implementation 'com.mapzen.android:lost:3.0.2'
 
@@ -126,6 +146,10 @@ dependencies {
 
     implementation 'com.google.dagger:dagger:2.16'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
+
+
+    implementation 'com.onesignal:OneSignal:3.10.0'
+    implementation 'org.greenrobot:eventbus:3.1.1'
 
 }
 

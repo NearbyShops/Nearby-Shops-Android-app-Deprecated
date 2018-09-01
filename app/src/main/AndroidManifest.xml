@@ -35,8 +35,15 @@
 
 
         <service
-            android:name=".AndroidServices.LocationUpdateServiceLOST"
+            android:name=".OneSignal.UpdateOneSignalID"
             android:exported="false" />
+
+
+        <service
+            android:name=".AndroidServices.LocationUpdateServiceGoogle"
+            android:exported="false" />
+
+
 
 
         <activity android:name=".Home">

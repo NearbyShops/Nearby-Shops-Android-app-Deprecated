@@ -38,7 +38,7 @@
             android:padding="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="Add / Pick Delivery address"
+            android:text="Select Delivery address"
             android:layout_alignParentRight="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

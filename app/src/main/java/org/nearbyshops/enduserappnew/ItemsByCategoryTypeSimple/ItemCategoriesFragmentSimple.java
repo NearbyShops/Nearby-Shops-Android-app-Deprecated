@@ -24,7 +24,7 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceLOST;
+import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceGoogle;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.FilterItemsBySpecifications.FilterItemsActivity;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.SlidingLayerSortItems;
@@ -146,6 +146,9 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
         setupSlidingLayer();
 
+
+
+        getActivity().startService(new Intent(getActivity(),LocationUpdateServiceGoogle.class));
 
 
 
@@ -422,9 +425,16 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
         super.onDestroyView();
         isDestroyed = true;
 
-        getActivity().stopService(new Intent(getActivity(),LocationUpdateServiceLOST.class));
 
+
+        if(getActivity()!=null)
+        {
+            getActivity().stopService(new Intent(getActivity(),LocationUpdateServiceGoogle.class));
+        }
     }
+
+
+
 
     @Override
     public void onResume() {
