@@ -21,8 +21,7 @@ import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyCategoryChanged;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserappnew.Preferences.DividerItemDecoration;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.UtilitySortItemsByCategory;
 
 import java.util.ArrayList;
@@ -262,9 +261,9 @@ public class FragmentItemScreenHorizontal extends Fragment
                 null,
                 PrefLocation.getLatitude(getActivity()),
                 PrefLocation.getLongitude(getActivity()),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MAX_KEY),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MIN_KEY),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.PROXIMITY_KEY),null,
+                null,
+                null,
+                null,null,
                 current_sort, limit,offset,null);
 
 

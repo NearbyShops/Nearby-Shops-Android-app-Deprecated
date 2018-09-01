@@ -19,6 +19,7 @@ import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
@@ -215,14 +216,15 @@ public class FragmentItemCategories extends Fragment implements  AdapterItemCate
     void makeNetworkRequest() {
 
 
+
         final Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
                 null,currentCategory.getItemCategoryID(),
                 null,
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY, 0),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LON_CENTER_KEY, 0),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MAX_KEY, 0),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.DELIVERY_RANGE_MIN_KEY, 0),
-                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.PROXIMITY_KEY, 0),
+                PrefLocation.getLatitude(getActivity()),
+                PrefLocation.getLongitude(getActivity()),
+                null,
+                null,
+                null,
                 true, "id",limit,offset,false);
 
         /*Call<List<ItemCategory>> call = itemCategoryService.getItemCategories(currentCategory.getItemCategoryID(), null,

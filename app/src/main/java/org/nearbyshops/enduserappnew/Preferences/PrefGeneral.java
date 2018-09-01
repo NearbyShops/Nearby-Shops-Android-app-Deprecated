@@ -37,11 +37,11 @@ public class PrefGeneral {
     private static final String TAG_PREF_CONFIG = "configuration";
 
 
-    public static final String LAT_CENTER_KEY = "latCenterKey";
-    public static final String LON_CENTER_KEY = "lonCenterKey";
-    public static final String DELIVERY_RANGE_MAX_KEY = "deliveryRangeMaxKey";
-    public static final String DELIVERY_RANGE_MIN_KEY = "deliveryRagneMinKey";
-    public static final String PROXIMITY_KEY = "proximityKey";
+//    public static final String LAT_CENTER_KEY = "latCenterKey";
+//    public static final String LON_CENTER_KEY = "lonCenterKey";
+//    public static final String DELIVERY_RANGE_MAX_KEY = "deliveryRangeMaxKey";
+//    public static final String DELIVERY_RANGE_MIN_KEY = "deliveryRagneMinKey";
+//    public static final String PROXIMITY_KEY = "proximityKey";
 
 
 
@@ -51,58 +51,58 @@ public class PrefGeneral {
 
 
 
-    public static void saveInSharedPrefFloat(String key,float value)
-    {
-        Context context = MyApplication.getAppContext();
-
-        // Get a handle to shared preference
-        SharedPreferences sharedPref;
-        sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
-        // write to the shared preference
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putFloat(key,value);
-        editor.apply();
-    }
-
-
-    public static float getFromSharedPrefFloat(String key,float defaultValue)
-    {
-        Context context = MyApplication.getAppContext();
-        // Get a handle to shared preference
-        SharedPreferences sharedPref;
-        sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
-        // read from shared preference
-
-        return sharedPref.getFloat(key, defaultValue);
-    }
-
-
-
-
-    public static float getFromSharedPrefFloat(String key)
-    {
-        Context context = MyApplication.getAppContext();
-        // Get a handle to shared preference
-        SharedPreferences sharedPref;
-        sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
-        // read from shared preference
-
-        return sharedPref.getFloat(key,0.0f);
-    }
-
-
+//    public static void saveInSharedPrefFloat(String key,float value)
+//    {
+//        Context context = MyApplication.getAppContext();
+//
+//        // Get a handle to shared preference
+//        SharedPreferences sharedPref;
+//        sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+//
+//        // write to the shared preference
+//        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.putFloat(key,value);
+//        editor.apply();
+//    }
+//
+//
+//    public static float getFromSharedPrefFloat(String key,float defaultValue)
+//    {
+//        Context context = MyApplication.getAppContext();
+//        // Get a handle to shared preference
+//        SharedPreferences sharedPref;
+//        sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+//
+//        // read from shared preference
+//
+//        return sharedPref.getFloat(key, defaultValue);
+//    }
+//
+//
+//
+//
+//    public static float getFromSharedPrefFloat(String key)
+//    {
+//        Context context = MyApplication.getAppContext();
+//        // Get a handle to shared preference
+//        SharedPreferences sharedPref;
+//        sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+//
+//        // read from shared preference
+//
+//        return sharedPref.getFloat(key,0.0f);
+//    }
 
 
 
-    public static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
+
+
+//    public static boolean isNetworkAvailable(Context context) {
+//        ConnectivityManager connectivityManager
+//                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+//        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+//        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+//    }
 
 
     public static String getImageEndpointURL(Context context)
@@ -111,20 +111,20 @@ public class PrefGeneral {
     }
 
 
-    public static String getConfigImageEndpointURL(Context context)
-    {
-        return PrefGeneral.getServiceURL(context) + "/api/ServiceConfigImages";
-    }
-
-
-    public DisplayMetrics getDisplayMetrics(Activity activity)
-    {
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        return metrics;
-    }
+//    public static String getConfigImageEndpointURL(Context context)
+//    {
+//        return PrefGeneral.getServiceURL(context) + "/api/ServiceConfigImages";
+//    }
+//
+//
+//    public DisplayMetrics getDisplayMetrics(Activity activity)
+//    {
+//
+//        DisplayMetrics metrics = new DisplayMetrics();
+//        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//
+//        return metrics;
+//    }
 
 
 

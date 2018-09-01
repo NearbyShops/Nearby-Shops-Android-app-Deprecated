@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Preferences;
+package org.nearbyshops.enduserappnew.Utility;
 
 import android.text.InputFilter;
 import android.text.Spanned;

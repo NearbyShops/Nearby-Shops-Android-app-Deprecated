@@ -22,7 +22,7 @@ import android.widget.Toast;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 
-import org.nearbyshops.enduserappnew.AndroidServices.LocationUpdateServiceGoogle;
+
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Shops.Interfaces.GetDataset;
@@ -106,9 +106,6 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
         {
             appBarLayout.setExpanded(false,true);
         }
-
-
-        startService(new Intent(this, LocationUpdateServiceGoogle.class));
 
 
     }
@@ -467,20 +464,6 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
 
 
     // broadcast location service
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        stopService(new Intent(this, LocationUpdateServiceGoogle.class));
-    }
-
-
-
-
-
-
-
 
 
 

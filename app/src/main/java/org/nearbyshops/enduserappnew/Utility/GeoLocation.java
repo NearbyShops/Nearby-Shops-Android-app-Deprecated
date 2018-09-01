@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Preferences;
+package org.nearbyshops.enduserappnew.Utility;
 
 /**
  * <p>Represents a point on the surface of a sphere. (The Earth is almost

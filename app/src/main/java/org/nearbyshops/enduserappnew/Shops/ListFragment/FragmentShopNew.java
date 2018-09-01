@@ -31,7 +31,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.UtilitySortShopsByCategory;
-import org.nearbyshops.enduserappnew.Preferences.DividerItemDecoration;
+import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
 
 import java.util.ArrayList;
 

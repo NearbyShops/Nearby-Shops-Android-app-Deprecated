@@ -28,7 +28,7 @@ import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewThanksServic
 import org.nearbyshops.enduserappnew.ShopReview.Interfaces.NotifyLoginByAdapter;
 import org.nearbyshops.enduserappnew.ShopReview.SlidingLayerSort.SlidingLayerSortReview;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.Preferences.DividerItemDecoration;
+import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.ShopReview.SlidingLayerSort.UtilitySortShopReview;
 
