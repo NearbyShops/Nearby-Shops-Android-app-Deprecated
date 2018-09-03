@@ -483,7 +483,7 @@
 
 
         <activity
-            android:name=".ItemImageSlider.ItemImagesFullscreen"
+            android:name=".ItemImageSliderDeprecated.ItemImagesFullscreen"
             android:label="@string/title_activity_item_images_fullscreen"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
@@ -491,6 +491,33 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduserappnew.Home" />
         </activity>
+
+
+
+        <activity
+            android:name=".ItemImages.ItemImageList"
+            android:label="Item Images"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+        </activity>
+
+
+
+
+        <activity
+            android:name=".ImageSlider.ImageSlider"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+        </activity>
+
+
+
 
     </application>
 
