@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemImageSlider;
+package org.nearbyshops.enduserappnew.ItemImageSliderDeprecated;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

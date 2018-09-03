@@ -23,6 +23,7 @@ import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.FilterItemsBySpecifications.FilterItemsFragment;
 import org.nearbyshops.enduserappnew.FilterShopDialog.FilterShopsDialog;
 import org.nearbyshops.enduserappnew.Home;
+import org.nearbyshops.enduserappnew.ItemImages.ItemImageListFragment;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.AdapterSimple;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduserappnew.ItemByCategory.FragmentShop;
@@ -218,4 +219,6 @@ public interface NetComponent {
     void Inject(FragmentChangeEmail fragmentChangeEmail);
 
     void Inject(UpdateOneSignalID updateOneSignalID);
+
+    void Inject(ItemImageListFragment imageListFragment);
 }

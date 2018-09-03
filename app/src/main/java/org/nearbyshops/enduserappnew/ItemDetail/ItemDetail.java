@@ -30,13 +30,11 @@ import android.widget.Toast;
 
 //import com.google.android.gms.maps.GoogleMap;
 //import com.google.android.gms.maps.model.Marker;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ItemImageSlider.ItemImageFullscreenFragment;
-import org.nearbyshops.enduserappnew.ItemImageSlider.ItemImagesFullscreen;
+import org.nearbyshops.enduserappnew.ItemImages.ItemImageList;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Endpoints.ItemImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.Item;
@@ -94,6 +92,8 @@ public class ItemDetail extends AppCompatActivity implements
 //    Marker currentMarker;
 
     Item item;
+
+    @BindView(R.id.images_count) TextView imagesCount;
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
@@ -191,55 +191,105 @@ public class ItemDetail extends AppCompatActivity implements
 
         Log.d("ShopLog",String.valueOf(item.getRt_rating_avg()) + ":" + String.valueOf(item.getRt_rating_count()));
 
-        /*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        setupRecyclerView();
+
+//        setupRecyclerView();
         setupRecyclerViewSpecs();
 
         checkFavourite();
+
+        getItemImageCount();
     }
 
 
 
-
-    ArrayList<ItemImage> dataset = new ArrayList<>();
-
-    @BindView(R.id.recyclerview_item_images)
-
-    RecyclerView itemImagesList;
-    AdapterItemImages adapterItemImages;
-    GridLayoutManager layoutManager;
-
-
-
-    void setupRecyclerView() {
-
-        adapterItemImages = new AdapterItemImages(dataset,this,this);
-        itemImagesList.setAdapter(adapterItemImages);
-        layoutManager = new GridLayoutManager(this, 1, LinearLayoutManager.HORIZONTAL, false);
-        itemImagesList.setLayoutManager(layoutManager);
-
-        makeNetworkCallItemImages(true);
-    }
+//    ArrayList<ItemImage> dataset = new ArrayList<>();
+//
+//    @BindView(R.id.recyclerview_item_images)
+//
+//    RecyclerView itemImagesList;
+//    AdapterItemImages adapterItemImages;
+//    GridLayoutManager layoutManager;
 
 
 
-    void makeNetworkCallItemImages(final boolean clearDataset)
+//    void setupRecyclerView() {
+//
+//        adapterItemImages = new AdapterItemImages(dataset,this,this);
+//        itemImagesList.setAdapter(adapterItemImages);
+//        layoutManager = new GridLayoutManager(this, 1, LinearLayoutManager.HORIZONTAL, false);
+//        itemImagesList.setLayoutManager(layoutManager);
+//
+////        getItemImageCount(true);
+//    }
+
+
+
+//    void getItemImageCount(final boolean clearDataset)
+//    {
+//
+//            Call<ItemImageEndPoint> call = itemImageService.getItemImages(
+//                    item.getItemID(),ItemImage.IMAGE_ORDER,null,null,null
+//            );
+//
+//
+//            call.enqueue(new Callback<ItemImageEndPoint>() {
+//                @Override
+//                public void onResponse(Call<ItemImageEndPoint> call, Response<ItemImageEndPoint> response) {
+//
+//                    if(isDestroyed)
+//                    {
+//                        return;
+//                    }
+//
+//                    if(response.body()!=null)
+//                    {
+//                        if(response.body().getResults()!=null)
+//                        {
+//                            if(clearDataset)
+//                            {
+//                                dataset.clear();
+//                            }
+//
+//                            dataset.addAll(response.body().getResults());
+//                            adapterItemImages.notifyDataSetChanged();
+//
+//
+////                            showToastMessage("Dataset Changed : Item ID : " + String.valueOf(item.getItemID()) +
+////                            "\nDataset Count" + String.valueOf(response.body().getResults().size())
+////                            );
+//
+//                        }
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<ItemImageEndPoint> call, Throwable t) {
+//
+//
+//                    if(isDestroyed)
+//                    {
+//                        return;
+//                    }
+//
+//
+//                    showToastMessage("Loading Images Failed !");
+//                }
+//            });
+//    }
+
+
+
+
+
+    void getItemImageCount()
     {
 
             Call<ItemImageEndPoint> call = itemImageService.getItemImages(
-                    item.getItemID(),ItemImage.IMAGE_ORDER,null,null,null
+                    item.getItemID(), ItemImage.IMAGE_ORDER,
+                    null,null,
+                    true
             );
 
 
@@ -254,22 +304,18 @@ public class ItemDetail extends AppCompatActivity implements
 
                     if(response.body()!=null)
                     {
-                        if(response.body().getResults()!=null)
+                        int count = response.body().getItemCount();
+
+
+                        if(count==0)
                         {
-                            if(clearDataset)
-                            {
-                                dataset.clear();
-                            }
-
-                            dataset.addAll(response.body().getResults());
-                            adapterItemImages.notifyDataSetChanged();
-
-
-//                            showToastMessage("Dataset Changed : Item ID : " + String.valueOf(item.getItemID()) +
-//                            "\nDataset Count" + String.valueOf(response.body().getResults().size())
-//                            );
-
+                            imagesCount.setVisibility(View.GONE);
                         }
+                        else
+                        {
+                            imagesCount.setText(String.valueOf(count) + " Images for " + item.getItemName());
+                        }
+
                     }
                 }
 
@@ -287,8 +333,6 @@ public class ItemDetail extends AppCompatActivity implements
                 }
             });
     }
-
-
 
 
     ArrayList<ItemSpecificationName> datasetSpecs = new ArrayList<>();
@@ -390,7 +434,18 @@ public class ItemDetail extends AppCompatActivity implements
                 bookTitle.setText(item.getItemName());
             }
 
+            if(item.getItemDescription()==null)
+            {
+
+            }
+            else if (item.getItemDescription().length()==0)
+            {
+                authorName.setVisibility(View.GONE);
+            }
+
+
             authorName.setText(item.getItemDescription());
+
 
 
 
@@ -436,7 +491,22 @@ public class ItemDetail extends AppCompatActivity implements
             }
 
 
-            bookDescription.setText(item.getItemDescriptionLong());
+
+
+            if(item.getItemDescriptionLong()==null)
+            {
+                bookDescription.setText("Description not available. ");
+            }
+            else if( item.getItemDescriptionLong().length()==0)
+            {
+                bookDescription.setText("Description not available. ");
+            }
+            else
+            {
+                bookDescription.setText(item.getItemDescriptionLong());
+            }
+
+
 
             /*if (shop.getLongDescription()!=null && !shop.getLongDescription().equals("null") && !shop.getDe.equals("")) {
 
@@ -1029,7 +1099,10 @@ public class ItemDetail extends AppCompatActivity implements
     @OnClick(R.id.book_cover)
     void profileImageClick()
     {
-        listItemClick();
+//        listItemClick();
+        Intent intent = new Intent(this, ItemImageList.class);
+        intent.putExtra("item_id",item.getItemID());
+        startActivity(intent);
     }
 
 
@@ -1038,19 +1111,19 @@ public class ItemDetail extends AppCompatActivity implements
     public void listItemClick() {
 
 
-        ItemImage itemImage = new ItemImage();
-        itemImage.setImageFilename(item.getItemImageURL());
-
-        List<ItemImage> list = new ArrayList<>();
-
-        list.addAll(dataset);
-        list.add(0,itemImage);
-
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
-
-        Intent intent = new Intent(this, ItemImagesFullscreen.class);
-        intent.putExtra(ItemImageFullscreenFragment.ITEM_IMAGES_INTENT_KEY,json);
-        startActivity(intent);
+//        ItemImage itemImage = new ItemImage();
+//        itemImage.setImageFilename(item.getItemImageURL());
+//
+//        List<ItemImage> list = new ArrayList<>();
+//
+//        list.addAll(dataset);
+//        list.add(0,itemImage);
+//
+//        Gson gson = new Gson();
+//        String json = gson.toJson(list);
+//
+//        Intent intent = new Intent(this, ItemImagesFullscreen.class);
+//        intent.putExtra(ItemImageFullscreenFragment.ITEM_IMAGES_INTENT_KEY,json);
+//        startActivity(intent);
     }
 }

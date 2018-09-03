@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemImageSlider;
+package org.nearbyshops.enduserappnew.ItemImageSliderDeprecated;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
