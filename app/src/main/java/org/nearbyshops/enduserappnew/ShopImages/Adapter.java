@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemImages;
+package org.nearbyshops.enduserappnew.ShopImages;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -16,10 +16,10 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.Model.ItemImage;
+import org.nearbyshops.enduserappnew.Model.ShopImage;
 import org.nearbyshops.enduserappnew.ModelUtility.HeaderTitle;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
-
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,10 +37,13 @@ import butterknife.OnLongClick;
 
 public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private int itemCount;
+
+
 
     // keeping track of selections
-    Map<Integer, ItemImage> selectedItems = new HashMap<>();
-    ItemImage selectedItemSingle;
+    private Map<Integer, ShopImage> selectedItems = new HashMap<>();
+    private ShopImage selectedItemSingle;
 
 
     private List<Object> dataset;
@@ -69,6 +72,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
+
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -77,7 +82,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (viewType == VIEW_TYPE_ITEM_IMAGE) {
 
             view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_item_image, parent, false);
+                    .inflate(R.layout.list_item_item_image_new, parent, false);
+
 
             return new ViewHolderTripRequest(view);
         }
@@ -124,17 +130,17 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             LoadingViewHolder viewHolder = (LoadingViewHolder) holder;
 
-            int itemCount = 0;
 
 
-            if (fragment instanceof ItemImageListFragment) {
-                itemCount = (((ItemImageListFragment) fragment).item_count_vehicle + 1 );
-            }
+
+//            if (fragment instanceof ShopImageListFragment) {
+//                itemCount = (((ShopImageListFragment) fragment).item_count_vehicle + 1 );
+//            }
 
 
 //            itemCount = dataset.size();
 
-            if (position == 0 || position == itemCount) {
+            if (dataset.size() >= itemCount) {
                 viewHolder.progressBar.setVisibility(View.GONE);
             }
             else
@@ -156,12 +162,14 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             return VIEW_TYPE_PROGRESS_BAR;
         } else if (dataset.get(position) instanceof HeaderTitle) {
             return VIEW_TYPE_HEADER;
-        } else if (dataset.get(position) instanceof ItemImage) {
+        } else if (dataset.get(position) instanceof ShopImage) {
             return VIEW_TYPE_ITEM_IMAGE;
         }
 
         return -1;
     }
+
+
 
 
     @Override
@@ -171,18 +179,23 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
 
+    public void setItemCount(int itemCount) {
+        this.itemCount = itemCount;
+    }
+
+
 
 
     void bindTripRequest(ViewHolderTripRequest holder, int position)
     {
 
-        if(dataset.get(position) instanceof ItemImage)
+        if(dataset.get(position) instanceof ShopImage)
         {
-            ItemImage taxiImage = (ItemImage) dataset.get(position);
+            ShopImage taxiImage = (ShopImage) dataset.get(position);
 
             holder.imageTitle.setText(taxiImage.getCaptionTitle());
             holder.imageDescription.setText(taxiImage.getCaption());
-            holder.copyrights.setText(taxiImage.getImageCopyrights());
+            holder.copyrights.setText(taxiImage.getCopyrights());
 
 
             Drawable drawable = ContextCompat.getDrawable(context,R.drawable.ic_nature_people_white_48px);
@@ -190,11 +203,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 //            String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/TaxiImages/Image/" + "_hundred_"+ taxiImage.getImageFilename() + ".jpg";
 //            String image_url = PrefGeneral.getServiceURL(context) + "/api/v1/TaxiImages/Image/" + taxiImage.getImageFilename();
 
-            String imagePathSmall = PrefGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/five_hundred_"
+            String imagePathSmall = PrefGeneral.getServiceURL(context) + "/api/v1/ShopImage/Image/five_hundred_"
                     + taxiImage.getImageFilename() + ".jpg";
 
 
-            String imagePathFullSize = PrefGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/"
+            String imagePathFullSize = PrefGeneral.getServiceURL(context) + "/api/v1/ShopImage/Image/"
                     + taxiImage.getImageFilename();
 
 
@@ -207,7 +220,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
-            if(selectedItems.containsKey(taxiImage.getImageID()))
+            if(selectedItems.containsKey(taxiImage.getShopImageID()))
             {
 //                holder.listItem.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_2));
 //                holder.listItem.animate().scaleXBy(-3);
@@ -274,22 +287,22 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @OnLongClick(R.id.list_item)
         boolean listItemLongClick(View view)
         {
-            ItemImage taxiImage = (ItemImage) dataset.get(getLayoutPosition());
+            ShopImage shopImage = (ShopImage) dataset.get(getLayoutPosition());
 
 
 
             if(selectedItems.containsKey(
-                    taxiImage.getImageID()
+                    shopImage.getShopImageID()
             ))
             {
-                selectedItems.remove(taxiImage.getImageID());
+                selectedItems.remove(shopImage.getShopImageID());
                 checkIcon.setVisibility(View.INVISIBLE);
 
             }else
             {
-                selectedItems.put(taxiImage.getImageID(),taxiImage);
+                selectedItems.put(shopImage.getShopImageID(),shopImage);
                 checkIcon.setVisibility(View.VISIBLE);
-                selectedItemSingle = taxiImage;
+                selectedItemSingle = shopImage;
             }
 
 
@@ -312,7 +325,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
             return notificationReceiver.listItemLongClick(view,
-                    (ItemImage) dataset.get(getLayoutPosition()),
+                    (ShopImage) dataset.get(getLayoutPosition()),
                     getLayoutPosition()
             );
         }
@@ -324,7 +337,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
 
             notificationReceiver.listItemClick(
-                    (ItemImage) dataset.get(getLayoutPosition()),
+                    (ShopImage) dataset.get(getLayoutPosition()),
                     getLayoutPosition()
             );
 
@@ -357,8 +370,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     interface NotificationsFromAdapter
     {
         void notifyListItemSelected();
-        void listItemClick(ItemImage taxiImage, int position);
-        boolean listItemLongClick(View view, ItemImage taxiImage, int position);
+        void listItemClick(ShopImage shopImage, int position);
+        boolean listItemLongClick(View view, ShopImage shopImage, int position);
     }
 
 

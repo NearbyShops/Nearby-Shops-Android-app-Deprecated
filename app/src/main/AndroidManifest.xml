@@ -505,10 +505,34 @@
         </activity>
 
 
+        <activity
+            android:name=".ShopImages.ShopImageList"
+            android:label="Shop Images"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+        </activity>
+
+
+
+
 
 
         <activity
             android:name=".ImageSlider.ImageSlider"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+        </activity>
+
+
+
+        <activity
+            android:name=".ImageSliderShop.ImageSliderShop"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

@@ -36,6 +36,8 @@ android {
 
 
 
+
+
     compileSdkVersion 28
     buildToolsVersion '28.0.2'
 
@@ -43,8 +45,8 @@ android {
         applicationId "org.nearbyshops.enduserappnew"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
-        versionName "0.9"
+        versionCode 2
+        versionName "0.10"
         // Enabling multidex support.
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
@@ -108,6 +110,8 @@ dependencies {
 //    }
 
 
+
+    implementation 'com.github.sujithkanna:smileyrating:1.6.8'
     implementation 'com.alexvasilkov:gesture-views:2.4.0'
     implementation 'com.github.stfalcon:smsverifycatcher:0.3.2'
     implementation 'com.roughike:bottom-bar:2.3.1'
@@ -150,6 +154,7 @@ dependencies {
 
     implementation 'com.onesignal:OneSignal:3.10.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
+
 
 }
 
