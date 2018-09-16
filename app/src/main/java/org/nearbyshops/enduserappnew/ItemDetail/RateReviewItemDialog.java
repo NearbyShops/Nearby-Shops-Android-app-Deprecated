@@ -17,6 +17,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hsalf.smilerating.SmileRating;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -73,6 +74,9 @@ public class RateReviewItemDialog extends DialogFragment {
 
     @BindView(R.id.item_rating_text)
     TextView itemRatingText;
+
+    @BindView(R.id.smile_rating)
+    SmileRating smileRating;
 
     int book_id;
 
@@ -159,10 +163,57 @@ public class RateReviewItemDialog extends DialogFragment {
 //        setMember();
 
 
+        smileRating.setOnSmileySelectionListener(new SmileRating.OnSmileySelectionListener() {
+            @Override
+            public void onSmileySelected(int smiley, boolean reselected) {
+                // reselected is false when user selects different smiley that previously selected one
+                // true when the same smiley is selected.
+                // Except if it first time, then the value will be false.
+
+                setRatingText(smiley+1);
+
+                switch (smiley) {
+                    case SmileRating.BAD:
+//                        Log.i(TAG, "Bad");
+                        break;
+                    case SmileRating.GOOD:
+//                        Log.i(TAG, "Good");
+                        break;
+                    case SmileRating.GREAT:
+//                        Log.i(TAG, "Great");
+                        break;
+                    case SmileRating.OKAY:
+//                        Log.i(TAG, "Okay");
+                        break;
+                    case SmileRating.TERRIBLE:
+//                        Log.i(TAG, "Terrible");
+                        break;
+                }
+
+
+            }
+        });
+
+
 //        dismiss_dialog_button = (ImageView) view.findViewById(R.id.dialog_dismiss_icon);
 
         return view;
     }
+
+
+
+
+    void setRatingText(int rating)
+    {
+        if(rating<=1)
+        {
+            itemRatingText.setText(String.valueOf(rating) + " Star ");
+        }
+        else {
+            itemRatingText.setText(String.valueOf(rating) + " Stars ");
+        }
+    }
+
 
 
 
@@ -314,7 +365,9 @@ public class RateReviewItemDialog extends DialogFragment {
     {
         ItemReview itemReview = new ItemReview();
 //        bookReview.setReviewDate(new java.sql.Date(System.currentTimeMillis()));
-        itemReview.setRating((int) ratingBar.getRating());
+//        itemReview.setRating((int) ratingBar.getRating());
+        itemReview.setRating(smileRating.getRating());
+
         itemReview.setReviewTitle(review_title.getText().toString());
         itemReview.setReviewText(review_text.getText().toString());
         itemReview.setItemID(book_id);

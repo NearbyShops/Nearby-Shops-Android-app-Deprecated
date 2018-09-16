@@ -38,6 +38,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.ItemImages.ItemImageList;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelEndPoints.FavouriteShopEndpoint;
@@ -48,6 +49,7 @@ import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.FavouriteShopService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
+import org.nearbyshops.enduserappnew.ShopImages.ShopImageList;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
@@ -66,7 +68,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ShopDetail extends AppCompatActivity implements Target, RatingBar.OnRatingBarChangeListener ,NotifyReviewUpdate{
+public class ShopDetail extends AppCompatActivity implements Target, RatingBar.OnRatingBarChangeListener ,NotifyReviewUpdate {
 
     public final static String SHOP_DETAIL_INTENT_KEY = "intent_key_shop_detail";
 
@@ -175,7 +177,6 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
         }
 
 
-
 //        Log.d("ShopLog",String.valueOf(shop.getRt_rating_avg()) + ":" + String.valueOf(shop.getRt_rating_count()));
 
         /*
@@ -196,16 +197,12 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
     }
 
 
-
-
-
-
     void bindViews(Shop shop) {
 
         if (shop != null) {
 
 
-            if (shop.getShopName()==null) {
+            if (shop.getShopName() == null) {
                 bookTitle.setText("Shop Title");
             } else {
                 bookTitle.setText(shop.getShopName());
@@ -230,12 +227,10 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
                 publishDate.setText(dateFormat.format(shop.getDateOfPublish()));
             }*/
 
-            if(shop.getDateTimeStarted().getTime()==0)
-            {
+            if (shop.getDateTimeStarted().getTime() == 0) {
                 publishDate.setText("Date Started not available !");
 
-            }else
-            {
+            } else {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(shop.getDateTimeStarted().getTime());
                 SimpleDateFormat dateFormat = new SimpleDateFormat(getString(R.string.date_format_simple));
@@ -299,7 +294,6 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
     }
 
 
-
     @BindView(R.id.edit_review_block)
     RelativeLayout edit_review_block;
 
@@ -352,8 +346,7 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 //                                edit_review_text.setText("Edit your review and Rating !");
 
 
-                                if(edit_review_block==null)
-                                {
+                                if (edit_review_block == null) {
                                     // If the views are not bound then return. This can happen in delayed response. When this call is executed
                                     // after the activity have gone out of scope.
                                     return;
@@ -380,7 +373,6 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 
                                 String imagePath = PrefGeneral.getImageEndpointURL(ShopDetail.this)
                                         + member.getProfileImagePath();
-
 
 
                                 Drawable placeholder = VectorDrawableCompat
@@ -434,8 +426,6 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
     void showToastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-
-
 
 
     @Override
@@ -518,7 +508,7 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
     }
 
 
-    @OnClick({R.id.edit_review_text,R.id.ratingBar_rate})
+    @OnClick({R.id.edit_review_text, R.id.ratingBar_rate})
     void write_review_click() {
 
         FragmentManager fm = getSupportFragmentManager();
@@ -562,7 +552,6 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
     }
 
 
-
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
 
@@ -573,13 +562,10 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
     }
 
 
-
     @OnClick(R.id.fab)
-    void fabClick()
-    {
+    void fabClick() {
 
-        if(PrefLogin.getUser(this)==null)
-        {
+        if (PrefLogin.getUser(this) == null) {
             // User Not logged In.
 //            showMessageSnackBar("Please Login to add shop to Favourites !");
             showToastMessage("Please Login to use this Feature !");
@@ -587,25 +573,20 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
             showLoginDialog();
 
 
-        }else
-        {
+        } else {
             toggleFavourite();
         }
     }
 
 
-
-
-    private void showLoginDialog()
-    {
+    private void showLoginDialog() {
 //        FragmentManager fm = getSupportFragmentManager();
 //        LoginDialog loginDialog = new LoginDialog();
 //        loginDialog.show(fm,"serviceUrl");
 
-        Intent intent = new Intent(this,Login.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
-
 
 
 //    @Override
@@ -615,17 +596,12 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 //    }
 
 
+    void toggleFavourite() {
 
-
-
-
-    void toggleFavourite(){
-
-        if(shop !=null && PrefLogin.getUser(this)!=null)
-        {
+        if (shop != null && PrefLogin.getUser(this) != null) {
 
             Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteBooks(shop.getShopID(), PrefLogin.getUser(this).getUserID()
-                    ,null,null,null,null);
+                    , null, null, null, null);
 
 
             call.enqueue(new Callback<FavouriteShopEndpoint>() {
@@ -633,15 +609,11 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
                 public void onResponse(Call<FavouriteShopEndpoint> call, Response<FavouriteShopEndpoint> response) {
 
 
-                    if(response.body()!=null)
-                    {
-                        if(response.body().getItemCount()>=1)
-                        {
+                    if (response.body() != null) {
+                        if (response.body().getItemCount() >= 1) {
                             deleteFavourite();
 
-                        }
-                        else if(response.body().getItemCount()==0)
-                        {
+                        } else if (response.body().getItemCount() == 0) {
                             insertFavourite();
                         }
                     }
@@ -658,12 +630,10 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
     }
 
 
-    void insertFavourite()
-    {
+    void insertFavourite() {
 
 
-        if(shop !=null && PrefLogin.getUser(this)!=null)
-        {
+        if (shop != null && PrefLogin.getUser(this) != null) {
 
             FavouriteShop favouriteBook = new FavouriteShop();
             favouriteBook.setShopID(shop.getShopID());
@@ -675,8 +645,7 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
                 @Override
                 public void onResponse(Call<FavouriteShop> call, Response<FavouriteShop> response) {
 
-                    if(response.code() == 201)
-                    {
+                    if (response.code() == 201) {
                         // created successfully
 
                         setFavouriteIcon(true);
@@ -695,11 +664,9 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 
     }
 
-    void deleteFavourite()
-    {
+    void deleteFavourite() {
 
-        if(shop !=null && PrefLogin.getUser(this)!=null)
-        {
+        if (shop != null && PrefLogin.getUser(this) != null) {
             Call<ResponseBody> call = favouriteShopService.deleteFavouriteBook(shop.getShopID(),
                     PrefLogin.getUser(this).getUserID());
 
@@ -708,8 +675,7 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                    if(response.code()==200)
-                    {
+                    if (response.code() == 200) {
                         setFavouriteIcon(false);
                     }
 
@@ -726,39 +692,30 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
     }
 
 
+    void setFavouriteIcon(boolean isFavourite) {
 
-
-    void setFavouriteIcon(boolean isFavourite)
-    {
-
-        if(fab==null)
-        {
+        if (fab == null) {
             return;
         }
 
-        if(isFavourite)
-        {
+        if (isFavourite) {
             Drawable drawable = VectorDrawableCompat.create(getResources(), R.drawable.ic_favorite_white_24px, getTheme());
             fab.setImageDrawable(drawable);
-        }
-        else
-        {
+        } else {
             Drawable drawable2 = VectorDrawableCompat.create(getResources(), R.drawable.ic_favorite_border_white_24px, getTheme());
             fab.setImageDrawable(drawable2);
         }
     }
 
 
-    void checkFavourite()
-    {
+    void checkFavourite() {
 
         // make a network call to check the favourite
 
-        if(shop !=null && PrefLogin.getUser(this)!=null)
-        {
+        if (shop != null && PrefLogin.getUser(this) != null) {
 
             Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteBooks(shop.getShopID(), PrefLogin.getUser(this).getUserID()
-                    ,null,null,null,null);
+                    , null, null, null, null);
 
 
             call.enqueue(new Callback<FavouriteShopEndpoint>() {
@@ -766,16 +723,11 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
                 public void onResponse(Call<FavouriteShopEndpoint> call, Response<FavouriteShopEndpoint> response) {
 
 
-
-                    if(response.body()!=null)
-                    {
-                        if(response.body().getItemCount()>=1)
-                        {
+                    if (response.body() != null) {
+                        if (response.body().getItemCount() >= 1) {
                             setFavouriteIcon(true);
 
-                        }
-                        else if(response.body().getItemCount()==0)
-                        {
+                        } else if (response.body().getItemCount() == 0) {
                             setFavouriteIcon(false);
                         }
                     }
@@ -795,19 +747,19 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 
 
 
+
     @OnClick(R.id.share_buttons)
-    void shareButtonClick()
-    {
+    void shareButtonClick() {
 
         Intent intent = ShareCompat.IntentBuilder.from(this)
                 .setType("image/jpg")
                 .getIntent();
 
-        String url = PrefGeneral.getServiceURL(this)+ "/api/Images" + String.valueOf(shop.getLogoImagePath());
+        String url = PrefGeneral.getServiceURL(this) + "/api/Images" + String.valueOf(shop.getLogoImagePath());
 //        intent.putExtra(Intent.EXTRA_TEXT,url);
-        intent.putExtra(Intent.EXTRA_TEXT,url);
+        intent.putExtra(Intent.EXTRA_TEXT, url);
 //        intent.putExtra(Intent.EXTRA_TITLE,shop.getBookName());
-        startActivity(Intent.createChooser(intent,"Share Link"));
+        startActivity(Intent.createChooser(intent, "Share Link"));
     }
 
 
@@ -815,8 +767,7 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
     TextView readFullDescription;
 
     @OnClick(R.id.read_full_button)
-    void readFullButtonClick()
-    {
+    void readFullButtonClick() {
 /*
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(RelativeLayout.BELOW,R.id.author_name);
@@ -827,6 +778,24 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
         bookDescription.setMaxLines(Integer.MAX_VALUE);
         readFullDescription.setVisibility(View.GONE);
     }
+
+
+    @OnClick(R.id.book_cover)
+    void profileImageClick() {
+//        listItemClick();
+        Intent intent = new Intent(this, ShopImageList.class);
+        intent.putExtra("shop_id", shop.getShopID());
+        startActivity(intent);
+    }
+
+
+
+
+    void getImageCount()
+    {
+
+    }
+
 
 
 
