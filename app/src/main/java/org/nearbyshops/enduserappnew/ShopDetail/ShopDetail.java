@@ -40,14 +40,19 @@ import com.squareup.picasso.Target;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ItemImages.ItemImageList;
 import org.nearbyshops.enduserappnew.Login.Login;
+import org.nearbyshops.enduserappnew.Model.Endpoints.ItemImageEndPoint;
+import org.nearbyshops.enduserappnew.Model.ItemImage;
 import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.Model.ShopImage;
 import org.nearbyshops.enduserappnew.ModelEndPoints.FavouriteShopEndpoint;
+import org.nearbyshops.enduserappnew.ModelEndPoints.ShopImageEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopReviewEndPoint;
 import org.nearbyshops.enduserappnew.ModelReviewShop.FavouriteShop;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.FavouriteShopService;
+import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopImageService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduserappnew.ShopImages.ShopImageList;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
@@ -72,11 +77,17 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 
     public final static String SHOP_DETAIL_INTENT_KEY = "intent_key_shop_detail";
 
+
+    boolean isDestroyed = false;
+
     @Inject
     ShopReviewService shopReviewService;
 
     @Inject
     FavouriteShopService favouriteShopService;
+
+    @Inject
+    ShopImageService shopImageService;
 
 //    private GoogleMap mMap;
 //    Marker currentMarker;
@@ -139,6 +150,8 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
 
+    @BindView(R.id.image_count) TextView imagesCount;
+
 
 //    Unbinder unbinder;
 
@@ -193,6 +206,7 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 
 
         checkFavourite();
+        getShopImageCount();
 //        setupMap();
     }
 
@@ -789,10 +803,74 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isDestroyed = false;
+    }
 
 
-    void getImageCount()
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isDestroyed = true;
+    }
+
+
+
+
+    void getShopImageCount()
     {
+
+
+        Call<ShopImageEndPoint> call = shopImageService.getShopImages(
+                shop.getShopID(), ShopImage.IMAGE_ORDER,
+                null,null,
+                true,true
+        );
+
+
+        call.enqueue(new Callback<ShopImageEndPoint>() {
+            @Override
+            public void onResponse(Call<ShopImageEndPoint> call, Response<ShopImageEndPoint> response) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+                if(response.body()!=null)
+                {
+                    int count = response.body().getItemCount();
+
+
+                    if(count==0)
+                    {
+                        imagesCount.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        imagesCount.setText(String.valueOf(count)  + " Photos");
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ShopImageEndPoint> call, Throwable t) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
+                showToastMessage("Loading Images Failed !");
+            }
+        });
+
 
     }
 

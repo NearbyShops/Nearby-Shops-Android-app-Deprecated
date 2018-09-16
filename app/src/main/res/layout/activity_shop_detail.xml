@@ -35,6 +35,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+
+            <TextView
+                android:background="#55000000"
+                android:textStyle="bold"
+                android:padding="2dp"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                android:id="@+id/image_count"
+                android:layout_gravity="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <!--android:maxHeight="300dp"-->
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -50,9 +62,25 @@
 
     </android.support.design.widget.AppBarLayout>
 
+
+
+    <!--<TextView-->
+        <!--android:padding="5dp"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:background="#55000000"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:text="21 Photos"-->
+        <!--android:layout_gravity="top|end"-->
+        <!--android:id="@+id/images_count"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+
+
+
     <include layout="@layout/content_shop_detail" />
 
     <!---->
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

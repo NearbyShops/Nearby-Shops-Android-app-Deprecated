@@ -93,7 +93,8 @@ public class ItemDetail extends AppCompatActivity implements
 
     Item item;
 
-    @BindView(R.id.images_count) TextView imagesCount;
+
+    @BindView(R.id.image_count) TextView imagesCount;
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
@@ -313,7 +314,7 @@ public class ItemDetail extends AppCompatActivity implements
                         }
                         else
                         {
-                            imagesCount.setText(String.valueOf(count) + " Images for " + item.getItemName());
+                            imagesCount.setText(String.valueOf(count) + " Photos");
                         }
 
                     }
