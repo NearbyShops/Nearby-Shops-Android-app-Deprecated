@@ -77,7 +77,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (viewType == VIEW_TYPE_ITEM_IMAGE) {
 
             view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_item_image, parent, false);
+                    .inflate(R.layout.list_item_item_image_new, parent, false);
 
             return new ViewHolderTripRequest(view);
         }
