@@ -520,8 +520,8 @@ public class FragmentVerifyEmailSignUp extends Fragment {
 
 
 
-            Gson gson = new Gson();
-            logMessage(gson.toJson(user));
+//            Gson gson = new Gson();
+//            logMessage(gson.toJson(user));
 
 
             Call<User> call = userService.endUserRegistration(user);
