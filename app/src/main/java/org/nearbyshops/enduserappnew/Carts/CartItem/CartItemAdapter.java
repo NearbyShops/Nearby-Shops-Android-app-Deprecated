@@ -1,8 +1,10 @@
 package org.nearbyshops.enduserappnew.Carts.CartItem;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -248,6 +250,46 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 //            notifyCartItem.notifyRemove(dataset.get(getLayoutPosition()));
 
 
+            progressBarRemove.setVisibility(View.VISIBLE);
+            removeButton.setVisibility(View.INVISIBLE);
+
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+            builder.setTitle("Confirm Remove Item !")
+                    .setMessage("Are you sure you want to remove this item !")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            removeItem();
+
+                            progressBarRemove.setVisibility(View.INVISIBLE);
+                            removeButton.setVisibility(View.VISIBLE);
+
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            showToastMessage(" Not Removed !");
+
+                            progressBarRemove.setVisibility(View.INVISIBLE);
+                            removeButton.setVisibility(View.VISIBLE);
+
+                        }
+                    })
+                    .show();
+
+        }
+
+
+
+
+        public void removeItem()
+        {
 
             progressBarRemove.setVisibility(View.VISIBLE);
             removeButton.setVisibility(View.INVISIBLE);
@@ -262,7 +304,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
                     if(response.code() == 200)
                     {
-                        showToastMessage("Item Deleted");
+                        showToastMessage("Item Removed");
 
                         // refresh the list
 //                        makeNetworkCall();
@@ -281,7 +323,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
 
-                    showToastMessage("Remove failed. Try again !");
+                    showToastMessage("Remove failed. Please Try again !");
 
                     progressBarRemove.setVisibility(View.INVISIBLE);
                     removeButton.setVisibility(View.VISIBLE);

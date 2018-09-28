@@ -324,11 +324,12 @@ TextInputEditText username;
                     // save username and password
 
 
-                    if(response.body().getRole()!=User.ROLE_END_USER_CODE)
-                    {
-                        showToastMessage("Only an End-User is allowed to login");
-                        return;
-                    }
+
+//                    if(response.body().getRole()!=User.ROLE_END_USER_CODE)
+//                    {
+//                        showToastMessage("Only an End-User is allowed to login");
+//                        return;
+//                    }
 
 
                     PrefLogin.saveCredentials(

@@ -5,10 +5,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +44,8 @@ public class EditAddressFragment extends Fragment{
 
     @Inject DeliveryAddressService deliveryAddressService;
 
-    @BindView(R.id.updateAddress) TextView updateDeliveryAddress;
+    @BindView(R.id.saveButton) TextView updateDeliveryAddress;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
     // address Fields
     @BindView(R.id.receiversName) EditText receiversName;
     @BindView(R.id.receiversPhoneNumber) EditText receiversPhoneNumber;
@@ -81,6 +86,11 @@ public class EditAddressFragment extends Fragment{
 //        setContentView(R.layout.activity_edit_address);
 
 
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         current_mode = getActivity().getIntent().getIntExtra(EDIT_MODE_INTENT_KEY,MODE_ADD);
 
         if(current_mode ==MODE_UPDATE)
@@ -90,9 +100,46 @@ public class EditAddressFragment extends Fragment{
         }
 
 
+        setActionBarTitle();
+
         return rootView;
     }
 
+
+
+
+    void setActionBarTitle()
+    {
+        if(getActivity() instanceof AppCompatActivity)
+        {
+            ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+
+            if(actionBar!=null)
+            {
+                if(current_mode == MODE_ADD)
+                {
+                    actionBar.setTitle("Add Delivery Address");
+                }
+                else if(current_mode==MODE_UPDATE)
+                {
+                    actionBar.setTitle("Edit Delivery Address");
+                }
+
+            }
+        }
+
+
+        if(current_mode==MODE_ADD)
+        {
+            updateDeliveryAddress.setText("Add");
+        }
+        else if(current_mode==MODE_UPDATE)
+        {
+            updateDeliveryAddress.setText("Save");
+        }
+
+
+    }
 
 
 
@@ -133,7 +180,7 @@ public class EditAddressFragment extends Fragment{
 
 
 
-    @OnClick(R.id.updateAddress)
+    @OnClick(R.id.saveButton)
     void updateAddressClick(View view)
     {
 
@@ -221,6 +268,8 @@ public class EditAddressFragment extends Fragment{
 
 
 
+
+
     void addDeliveryAddress()
     {
         if(PrefLogin.getUser(getActivity())==null)
@@ -238,6 +287,11 @@ public class EditAddressFragment extends Fragment{
         getDataFromViews();
         deliveryAddress.setEndUserID(PrefLogin.getUser(getActivity()).getUserID());
 
+        progressBar.setVisibility(View.VISIBLE);
+        updateDeliveryAddress.setVisibility(View.INVISIBLE);
+
+
+
         Call<DeliveryAddress> call = deliveryAddressService.postAddress(deliveryAddress);
         call.enqueue(new Callback<DeliveryAddress>() {
             @Override
@@ -252,28 +306,44 @@ public class EditAddressFragment extends Fragment{
                     deliveryAddress = response.body();
 //                    bindDataToViews();
 
+                    setActionBarTitle();
                 }
                 else
                 {
                     showToastMessage("Unsuccessful !");
                 }
+
+
+
+                progressBar.setVisibility(View.INVISIBLE);
+                updateDeliveryAddress.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFailure(Call<DeliveryAddress> call, Throwable t) {
 
                 showToastMessage("Network Connection Failed !");
+
+
+                progressBar.setVisibility(View.INVISIBLE);
+                updateDeliveryAddress.setVisibility(View.VISIBLE);
             }
         });
-
-
     }
+
+
+
 
     void updateAddress()
     {
         getDataFromViews();
 
         Call<ResponseBody> call = deliveryAddressService.putAddress(deliveryAddress,deliveryAddress.getId());
+
+
+        progressBar.setVisibility(View.VISIBLE);
+        updateDeliveryAddress.setVisibility(View.INVISIBLE);
+
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -286,12 +356,22 @@ public class EditAddressFragment extends Fragment{
                 {
                     showToastMessage("failed to update !");
                 }
+
+
+
+                progressBar.setVisibility(View.INVISIBLE);
+                updateDeliveryAddress.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
                 showToastMessage("Network connection failed !");
+
+
+
+                progressBar.setVisibility(View.INVISIBLE);
+                updateDeliveryAddress.setVisibility(View.VISIBLE);
             }
         });
     }

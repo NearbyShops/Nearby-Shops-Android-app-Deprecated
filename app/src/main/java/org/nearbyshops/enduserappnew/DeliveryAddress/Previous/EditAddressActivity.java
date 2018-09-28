@@ -35,7 +35,7 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
     @Inject
     DeliveryAddressService deliveryAddressService;
 
-    @BindView(R.id.updateAddress)
+    @BindView(R.id.saveButton)
     TextView updateDeliveryAddress;
 
     // address Fields
@@ -133,7 +133,7 @@ public class EditAddressActivity extends AppCompatActivity implements Callback<R
 
 
 
-    @OnClick(R.id.updateAddress)
+    @OnClick(R.id.saveButton)
     void updateAddressClick(View view)
     {
 
