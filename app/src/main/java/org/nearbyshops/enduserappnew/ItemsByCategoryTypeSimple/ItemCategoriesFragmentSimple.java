@@ -78,7 +78,7 @@ import static org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCatego
 
 
 
-public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort, Home.PermissionGranted{
+public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort{
 
     boolean isDestroyed = false;
 
@@ -476,6 +476,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
     void makeRequestItemCategory()
     {
+
+
 //        (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY, 0),
 //                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY, 0),
 
@@ -572,7 +574,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
         if(currentCategory.getParentCategoryID()==-1)
         {
-            headerItemCategory.setHeading("Categories");
+            headerItemCategory.setHeading("Item Categories");
         }
         else
         {
@@ -592,6 +594,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
         listAdapter.notifyDataSetChanged();
         swipeContainer.setRefreshing(false);
     }
+
 
 
 
@@ -985,7 +988,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
-    @Override
+
     public void permissionGranted() {
 //        showToastMessage("Granted interface !");
         requestLocationUpdates();

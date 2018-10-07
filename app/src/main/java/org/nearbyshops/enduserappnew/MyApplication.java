@@ -6,6 +6,7 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
+import com.mapbox.mapboxsdk.Mapbox;
 import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
@@ -165,6 +166,7 @@ public class MyApplication extends MultiDexApplication{
                 .init();
 
 
+        Mapbox.getInstance(this,getString(R.string.fake_key));
 
 
         OneSignal.idsAvailable(new OneSignal.IdsAvailableHandler() {

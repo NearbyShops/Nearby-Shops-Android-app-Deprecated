@@ -19,7 +19,17 @@
     <color name="colorPrimaryDark">#455A64</color>
     <color name="colorAccent">#FF9800</color>
 
+
+
+    <!--<color name="colorPrimary">#009688</color>-->
+    <!--<color name="colorPrimaryDark">#00796B</color>-->
+    <!--<color name="colorAccent">#FFC107</color>-->
+
+
     <color name="colorWhite">#FFffff</color>
+
+    <color name="mapboxBlue">#1e8cab</color>
+
 
     <color name="teal">#00796B</color>
     <color name="darkGreen">#2E7D32</color>

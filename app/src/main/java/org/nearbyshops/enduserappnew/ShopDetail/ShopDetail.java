@@ -470,8 +470,11 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 
         }
 
-        bookTitle.setBackgroundColor(vibrant);
-        authorName.setBackgroundColor(vibrant);
+
+
+
+        bookTitle.setTextColor(vibrant);
+        authorName.setTextColor(vibrant);
 
 
         if (fab != null && vibrantDark != 0) {
@@ -520,6 +523,8 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
         }
 
     }
+
+
 
 
     @OnClick({R.id.edit_review_text, R.id.ratingBar_rate})

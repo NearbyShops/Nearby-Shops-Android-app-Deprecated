@@ -15,11 +15,10 @@ import org.nearbyshops.enduserappnew.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
-import org.nearbyshops.enduserappnew.ModelPickFromShop.OrderPFS;
+
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.OrderService;
@@ -41,7 +40,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
 
     Order order = new Order();
-    OrderPFS orderPFS = new OrderPFS();
+//    OrderPFS orderPFS = new OrderPFS();
 
     @Inject CartStatsService cartStatsService;
     @Inject OrderService orderService;
@@ -299,6 +298,8 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                 deliveryCharges.setText("Delivery Charges : "+ PrefGeneral.getCurrencySymbol(this) + " " + 0);
             }
 
+
+
             if(homeDelieryCheck.isChecked())
             {
 
@@ -362,7 +363,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
         order.setEndUserID(PrefLogin.getUser(this).getUserID());
 
         order.setDeliveryAddressID(selectedAddress.getId());
-        orderPFS.setDeliveryAddressID(selectedAddress.getId());
+//        orderPFS.setDeliveryAddressID(selectedAddress.getId());
 
         if(pickFromShopCheck.isChecked())
         {
@@ -372,8 +373,10 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
         else if(homeDelieryCheck.isChecked())
         {
             order.setPickFromShop(false);
-            placeOrderHD();
         }
+
+        placeOrderHD();
+
 
 //        order.setOrderStatus(1);
 
@@ -421,6 +424,8 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 //    }
 
 
+
+
     void placeOrderHD()
     {
         Call<ResponseBody> call = orderService.postOrder(order,cartStatsFromNetworkCall.getCartID());
@@ -463,6 +468,8 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
         });
 
     }
+
+
 
 
 

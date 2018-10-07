@@ -130,13 +130,6 @@ public class PrefGeneral {
 
 
 
-
-
-
-
-
-
-
     public static void saveServiceURL(String service_url, Context context)
     {
 
