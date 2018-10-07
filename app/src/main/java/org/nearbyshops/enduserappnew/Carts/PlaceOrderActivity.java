@@ -331,7 +331,19 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     void radioCheckClicked()
     {
         setTotal();
+
+        if(pickFromShopCheck.isChecked())
+        {
+            addPickAddress.setText("Select Address");
+        }
+        else
+        {
+            addPickAddress.setText("Select Delivery Address");
+        }
     }
+
+
+
 
 
 
@@ -339,17 +351,19 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     void placeOrderClick()
     {
 
+        if(pickFromShopCheck.isChecked()==false && homeDelieryCheck.isChecked()== false)
+        {
+            showToastMessage("Please select delivery type !");
+            return;
+        }
+
+
         if(selectedAddress==null)
         {
             showToastMessage("Please add/select Delivery Address !");
             return;
         }
 
-        if(pickFromShopCheck.isChecked()==false && homeDelieryCheck.isChecked()== false)
-        {
-            showToastMessage("Please select delivery type !");
-            return;
-        }
 
 
         if(cartStatsFromNetworkCall==null)

@@ -31,7 +31,7 @@
 
     <RatingBar
         android:isIndicator="true"
-        android:numStars="10"
+        android:numStars="5"
         android:rating="3"
         android:id="@+id/rating"
         android:layout_marginLeft="10dp"

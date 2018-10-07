@@ -194,12 +194,13 @@
 
 
 
+
         <TextView
             app:layout_constraintHorizontal_chainStyle="spread"
             android:id="@+id/totalValue"
             android:layout_margin="10dp"
-            android:text=" Rs 00.00"
-            android:textSize="17sp"
+            android:text=" 00.00"
+            android:textSize="24sp"
             android:padding="5dp"
             android:textColor="@color/blueGrey800"
             android:layout_width="0dp"

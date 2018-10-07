@@ -56,12 +56,12 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
         Shop shop = dataset.get(position).getShop();
 
         holder.itemsInCart.setText(dataset.get(position).getItemsInCart() + " Items in Cart");
-        holder.cartTotal.setText("Cart Total : Rs " + dataset.get(position).getCart_Total());
+        holder.cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + dataset.get(position).getCart_Total());
 
 
         if(shop!=null)
         {
-            holder.deliveryCharge.setText("Delivery Rs " + shop.getDeliveryCharges() + " Per Order");
+            holder.deliveryCharge.setText("Delivery " + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(shop.getDeliveryCharges()) + " Per Order");
             holder.distance.setText(String.format( "%.2f", shop.getRt_distance()) + " Km");
 
             holder.shopName.setText(shop.getShopName());
