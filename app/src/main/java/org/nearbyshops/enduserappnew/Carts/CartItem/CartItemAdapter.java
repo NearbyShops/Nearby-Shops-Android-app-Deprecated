@@ -128,10 +128,10 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
             //        + "Rs:" +  String.format( "%.2f", cartItem.getRt_itemPrice()*cartItem.getItemQuantity()));
 
 
-            holder.itemTotal.setText("Total "
+            holder.itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " "
                     + String.format( "%.2f", cartItem.getRt_itemPrice()*cartItem.getItemQuantity()));
 
-            holder.itemsAvailable.setText("Available : " + String.valueOf(cartItem.getRt_availableItemQuantity()));
+            holder.itemsAvailable.setText("Available : " + String.valueOf(cartItem.getRt_availableItemQuantity()) + " " + item.getQuantityUnit());
 
 
 
@@ -403,12 +403,12 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
                 }
 
-                itemTotal.setText("Total : " + String.format( "%.2f", total));
+                itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
 
             }else
             {
                 itemQuantity.setText(String.valueOf(0));
-                itemTotal.setText("Total : " + String.format( "%.2f", total));
+                itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
             }
 
         }
@@ -444,12 +444,12 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
                 }
 
-                itemTotal.setText("Total : " + String.format("%.2f", total));
+                itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f", total));
 
             }else
             {
                 itemQuantity.setText(String.valueOf(0));
-                itemTotal.setText("Total : " + String.format( "%.2f", total));
+                itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
             }
 
         }
@@ -515,7 +515,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
             //        + "Rs:" + String.format( "%.2f", total));
 
 
-            itemTotal.setText("Total " + String.format( "%.2f", total));
+            itemTotal.setText("Total "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
 
 
 

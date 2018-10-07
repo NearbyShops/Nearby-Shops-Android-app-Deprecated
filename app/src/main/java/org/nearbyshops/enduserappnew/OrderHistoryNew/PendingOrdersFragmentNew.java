@@ -337,14 +337,15 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
 
 
 
-        Call<OrderEndPoint> call = orderService.getOrders(
-                    PrefLogin.getAuthorizationHeaders(getActivity()),
-                    null,shopID,false,
-                    null,null,null,
-                    null,null,
-                    null,null,
-                    null,searchQuery,
-                    current_sort,limit,offset,null);
+            Call<OrderEndPoint> call = orderService.getOrders(
+                        PrefLogin.getAuthorizationHeaders(getActivity()),
+                        null,shopID,false,
+                        null,null,null,
+                        null,null,
+                        null,null,
+                        null,searchQuery,
+                        current_sort,limit,offset,null);
+
 
 
             call.enqueue(new Callback<OrderEndPoint>() {

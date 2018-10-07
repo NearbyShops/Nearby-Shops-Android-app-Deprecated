@@ -21,6 +21,7 @@ import org.nearbyshops.enduserappnew.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartStatsService;
@@ -207,7 +208,7 @@ public class CartItemListActivity extends AppCompatActivity
         if(cartStats!=null)
         {
             cartTotal = cartStats.getCart_Total();
-            totalValue.setText("Total : Rs " + String.format("%.2f", cartTotal));
+            totalValue.setText("Total : " + PrefGeneral.getCurrencySymbol(this) + " " + String.format("%.2f", cartTotal));
 
             adapter.setCartStats(cartStats);
         }
@@ -447,8 +448,10 @@ public class CartItemListActivity extends AppCompatActivity
 
 
 
+
+
         showToastMessage("Item Updated !");
-        totalValue.setText("Total : Rs " + String.format("%.2f", cartTotal));
+        totalValue.setText("Total : "  + PrefGeneral.getCurrencySymbol(this) + " " + String.format("%.2f", cartTotal));
         cartStats.setCart_Total(cartTotal);
 
 
@@ -490,7 +493,7 @@ public class CartItemListActivity extends AppCompatActivity
     public void notifyTotal(double total) {
 
         cartTotal = total;
-        estimatedTotal.setText("Estimated Total (Before Update) : Rs " + String.format("%.2f", cartTotal));
+        estimatedTotal.setText("Estimated Total (Before Update) : "  + PrefGeneral.getCurrencySymbol(this) + " " + String.format("%.2f", cartTotal));
     }
 
 
