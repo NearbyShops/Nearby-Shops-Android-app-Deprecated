@@ -30,7 +30,7 @@ import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.SlidingLayerSortShop
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.UtilitySortShopsByCategory;
+import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.PrefSortShopsByCategory;
 import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
 
 import java.util.ArrayList;
@@ -456,7 +456,7 @@ public class FragmentShopNew extends Fragment implements
 
 
             String current_sort = "";
-            current_sort = UtilitySortShopsByCategory.getSort(getContext()) + " " + UtilitySortShopsByCategory.getAscending(getContext());
+            current_sort = PrefSortShopsByCategory.getSort(getContext()) + " " + PrefSortShopsByCategory.getAscending(getContext());
 
             Call<ShopEndPoint> callEndpoint = shopService.getShops(
                     null,

@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 //import org.nearbyshops.enduserappnew.DeliveryAddress.PickLocationActivity;
+//import org.nearbyshops.enduserappnew.DeliveryAddress.PickLocation.PickLocation;
+import org.nearbyshops.enduserappnew.DeliveryAddress.PickLocation.PickLocation;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.DeliveryAddressService;
@@ -140,6 +142,12 @@ public class EditAddressFragment extends Fragment{
 
 
     }
+
+
+
+
+
+
 
 
 
@@ -392,12 +400,21 @@ public class EditAddressFragment extends Fragment{
 
     private int REQUEST_CODE_PICK_LAT_LON = 23;
 
+
     @OnClick(R.id.pick_location_button)
     void pickLocationClick()
     {
 //        Intent intent = new Intent(getActivity(),PickLocationActivity.class);
 //        startActivityForResult(intent,REQUEST_CODE_PICK_LAT_LON);
+
+
+        Intent intent = new Intent(getActivity(),PickLocation.class);
+        intent.putExtra("lat_dest",Double.parseDouble(latitude.getText().toString()));
+        intent.putExtra("lon_dest",Double.parseDouble(longitude.getText().toString()));
+        startActivityForResult(intent,3);
     }
+
+
 
 
     @OnClick(R.id.navigate_button)
@@ -426,6 +443,12 @@ public class EditAddressFragment extends Fragment{
             latitude.setText(String.valueOf(data.getDoubleExtra("latitude",0)));
             longitude.setText(String.valueOf(data.getDoubleExtra("longitude",0)));
         }
+        else if(requestCode==3 && resultCode==3)
+        {
+            latitude.setText(String.valueOf(data.getDoubleExtra("lat_dest",0.0)));
+            longitude.setText(String.valueOf(data.getDoubleExtra("lon_dest",0.0)));
+        }
+
     }
 
 

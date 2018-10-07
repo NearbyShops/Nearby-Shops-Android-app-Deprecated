@@ -29,7 +29,7 @@ import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.UtilitySortShopsByCategory;
+import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.PrefSortShopsByCategory;
 
 import java.util.ArrayList;
 
@@ -497,7 +497,7 @@ public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.O
 
         String current_sort = "";
 
-        current_sort = UtilitySortShopsByCategory.getSort(getContext()) + " " + UtilitySortShopsByCategory.getAscending(getContext());
+        current_sort = PrefSortShopsByCategory.getSort(getContext()) + " " + PrefSortShopsByCategory.getAscending(getContext());
 
         Call<ShopEndPoint> endPointCall = null;
 

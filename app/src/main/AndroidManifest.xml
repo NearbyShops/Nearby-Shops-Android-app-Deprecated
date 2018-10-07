@@ -542,6 +542,11 @@
 
 
 
+        <activity
+            android:name=".DeliveryAddress.PickLocation.PickLocation"
+            android:label="Pick Location"
+            android:theme="@style/AppTheme.NoActionBar" />
+
 
     </application>
 

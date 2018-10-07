@@ -307,6 +307,9 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
 
     }
 
+
+
+
     @Override
     public int getItemCount() {
         return dataset.size();
@@ -517,6 +520,8 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
                 itemQuantity.setFilters(new InputFilter[]{new InputFilterMinMax("0", String.valueOf(availableItems))});
             }
         }
+
+
 
 
         @OnClick(R.id.shopImage)
@@ -751,6 +756,9 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
         }
 
 
+
+
+
         @OnClick(R.id.reduceQuantity)
         void reduceQuantityClick(View view)
         {
@@ -888,5 +896,7 @@ public class AdapterFilledCarts extends RecyclerView.Adapter<AdapterFilledCarts.
         void notifyCartDataChanged();
         void notifyShopLogoClick(Shop shop);
     }
+
+
 
 }

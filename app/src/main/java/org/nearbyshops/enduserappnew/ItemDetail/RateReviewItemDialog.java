@@ -126,12 +126,16 @@ public class RateReviewItemDialog extends DialogFragment {
 
             member_name.setText(" by : "  + review_for_edit.getRt_end_user_profile().getName());
 
+
             ratingBar.setRating(review_for_edit.getRating());
+            smileRating.setSelectedSmile(review_for_edit.getRating()-1);
 //            itemRatingText.setText(String.format("%.0f",review_for_edit.getRating()));
             itemRatingText.setText(String.valueOf((float)review_for_edit.getRating()));
 
             String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
                     + review_for_edit.getRt_end_user_profile().getProfileImagePath();
+
+
 
 
             Drawable placeholder = VectorDrawableCompat
@@ -361,6 +365,8 @@ public class RateReviewItemDialog extends DialogFragment {
     }
 
 
+
+
     void submitReview()
     {
         ItemReview itemReview = new ItemReview();
@@ -411,7 +417,8 @@ public class RateReviewItemDialog extends DialogFragment {
         if(review_for_edit!=null)
         {
 
-            review_for_edit.setRating((int)ratingBar.getRating());
+//            review_for_edit.setRating((int)ratingBar.getRating());
+            review_for_edit.setRating(smileRating.getRating());
             review_for_edit.setReviewTitle(review_title.getText().toString());
             review_for_edit.setReviewText(review_text.getText().toString());
 

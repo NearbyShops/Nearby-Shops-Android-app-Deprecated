@@ -497,10 +497,14 @@ public class ItemDetail extends AppCompatActivity implements
             if(item.getItemDescriptionLong()==null)
             {
                 bookDescription.setText("Description not available. ");
+                bookDescription.setVisibility(View.GONE);
+                readFullDescription.setVisibility(View.GONE);
             }
             else if( item.getItemDescriptionLong().length()==0)
             {
                 bookDescription.setText("Description not available. ");
+                bookDescription.setVisibility(View.GONE);
+                readFullDescription.setVisibility(View.GONE);
             }
             else
             {
@@ -698,8 +702,9 @@ public class ItemDetail extends AppCompatActivity implements
 
         }
 
-        bookTitle.setBackgroundColor(vibrant);
-        authorName.setBackgroundColor(vibrant);
+
+//        bookTitle.setBackgroundColor(vibrant);
+//        authorName.setBackgroundColor(vibrant);
 
 
         if (fab != null && vibrantDark != 0) {
@@ -751,6 +756,8 @@ public class ItemDetail extends AppCompatActivity implements
     }
 
 
+
+
     @OnClick({R.id.edit_review_text,R.id.ratingBar_rate})
     void write_review_click() {
 
@@ -764,11 +771,15 @@ public class ItemDetail extends AppCompatActivity implements
     }
 
 
+
+
     @Override
     public void notifyReviewUpdated() {
 
         checkUserReview();
     }
+
+
 
     @Override
     public void notifyReviewDeleted() {
@@ -1127,4 +1138,7 @@ public class ItemDetail extends AppCompatActivity implements
 //        intent.putExtra(ItemImageFullscreenFragment.ITEM_IMAGES_INTENT_KEY,json);
 //        startActivity(intent);
     }
+
+
+
 }

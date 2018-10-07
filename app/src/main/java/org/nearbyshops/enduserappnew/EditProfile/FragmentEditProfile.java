@@ -199,6 +199,7 @@ TextView messageChangePassword;
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        ContextCompat.getColor(getActivity(),R.color.mapbox_blue);
 
 
 

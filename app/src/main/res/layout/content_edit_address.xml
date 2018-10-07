@@ -228,6 +228,7 @@
                 android:id="@+id/latitude_container">
 
                 <EditText
+                    android:text="0.00"
                     android:inputType="numberDecimal"
                     android:id="@+id/latitude"
                     android:layout_width="match_parent"
@@ -247,6 +248,7 @@
                 android:id="@+id/longitude_container">
 
                 <EditText
+                    android:text="0.00"
                     android:inputType="numberDecimal"
                     android:id="@+id/longitude"
                     android:layout_width="match_parent"

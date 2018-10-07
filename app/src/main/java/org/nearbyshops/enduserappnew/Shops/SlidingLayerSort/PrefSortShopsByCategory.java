@@ -11,7 +11,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by sumeet on 29/9/16.
  */
 
-public class UtilitySortShopsByCategory {
+public class PrefSortShopsByCategory {
 
 
 

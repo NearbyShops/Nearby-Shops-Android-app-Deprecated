@@ -33,12 +33,6 @@
 
 
         <TextView
-            android:textColor="@color/white"
-            android:paddingTop="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:background="#88000000"
             android:layout_marginTop="10dp"
             android:id="@+id/book_title"
             android:textSize="24sp"
@@ -47,12 +41,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:paddingBottom="10dp"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="0dp"
-            android:textColor="@color/white"
-            android:background="#88000000"
+            android:layout_marginTop="10dp"
             android:id="@+id/author_name"
             android:text="Author Name"
             android:layout_below="@id/book_title"
@@ -173,7 +162,7 @@
 
         <RatingBar
             android:rating="4.3"
-            android:numStars="10"
+            android:numStars="5"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_marginTop="10dp"
             android:isIndicator="false"
@@ -214,7 +203,7 @@
 
             <RatingBar
                 android:layout_gravity="center"
-                android:numStars="10"
+                android:numStars="5"
                 android:id="@+id/ratingBar_rate"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
@@ -224,6 +213,7 @@
                 android:layout_alignParentEnd="true" />
 
         </LinearLayout>
+
 
         <RelativeLayout
             android:animateLayoutChanges="true"
@@ -266,7 +256,7 @@
                 android:layout_height="wrap_content" />
 
             <RatingBar
-                android:numStars="10"
+                android:numStars="5"
                 android:rating="4"
                 android:id="@+id/member_rating"
                 android:layout_marginLeft="10dp"

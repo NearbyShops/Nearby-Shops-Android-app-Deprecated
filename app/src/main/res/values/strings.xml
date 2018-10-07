@@ -8,6 +8,8 @@
         <item name="usd">\u0024</item>
     </string-array>
 
+    <string name="fake_key">pk.fakekey</string>
+
     <string name="rupee_symbol">\u20B9</string>
     <string name="rupee_standard">\u20A8</string>
     <string name="selection_tip">Please select a city to get started</string>
