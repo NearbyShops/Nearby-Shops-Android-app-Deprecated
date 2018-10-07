@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -314,8 +315,32 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 
 
-        holder.itemRating.setText(String.format("%.2f",item.getRt_rating_avg()));
-        holder.ratingCount.setText("( " + String.valueOf((int)item.getRt_rating_count()) + " Ratings )");
+//        holder.itemRating.setText(String.format("%.2f",item.getRt_rating_avg()));
+//        holder.ratingCount.setText("( " + String.valueOf((int)item.getRt_rating_count()) + " Ratings )");
+
+
+
+
+
+        if(item.getRt_rating_count()==0)
+        {
+            holder.itemRating.setText(" New ");
+            holder.itemRating.setBackgroundColor(ContextCompat.getColor(context,R.color.phonographyBlue));
+            holder.ratingCount.setVisibility(View.GONE);
+        }
+        else
+        {
+
+
+            holder.itemRating.setText(String.format("%.2f",item.getRt_rating_avg()));
+            holder.ratingCount.setText("( " + String.valueOf((int)item.getRt_rating_count()) + " Ratings )");
+
+            holder.itemRating.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_2));
+            holder.ratingCount.setVisibility(View.VISIBLE);
+
+        }
+
+
 
 
         String imagePath = PrefGeneral.getServiceURL(context)

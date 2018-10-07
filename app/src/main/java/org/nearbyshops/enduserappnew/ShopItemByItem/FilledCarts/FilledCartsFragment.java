@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -490,6 +491,25 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
         itemRating.setText(String.format("%.2f",item.getRt_rating_avg()));
         ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " Ratings )");
+
+
+
+
+        if(item.getRt_rating_count()==0)
+        {
+            itemRating.setText(" New ");
+            itemRating.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.phonographyBlue));
+            ratingCount.setVisibility(View.GONE);
+        }
+        else
+        {
+
+            ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " Ratings )");
+            itemRating.setText(String.format(" %.2f ",item.getRt_rating_avg()));
+            itemRating.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_2));
+            ratingCount.setVisibility(View.VISIBLE);
+        }
+
 
 
         String imagePath = PrefGeneral.getServiceURL(getActivity())
