@@ -17,6 +17,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -38,6 +40,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EventBus.LocationPermissionGranted;
 import org.nearbyshops.enduserappnew.FilterItemsBySpecifications.FilterItemsActivity;
 import org.nearbyshops.enduserappnew.Home;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyHeaderChanged;
@@ -78,7 +81,7 @@ import static org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCatego
 
 
 
-public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort{
+public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort,NotifySearch {
 
     boolean isDestroyed = false;
 
@@ -141,7 +144,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
         toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         toolbar.setTitle("Nearby Shops");
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-//
+
 
 
 
@@ -207,8 +210,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     }
 
 
-
-
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
     @OnClick({R.id.icon_sort,R.id.text_sort})
     void sortClick()
@@ -992,5 +997,22 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     public void permissionGranted() {
 //        showToastMessage("Granted interface !");
         requestLocationUpdates();
+    }
+
+
+
+
+
+
+    @Override
+    public void search(String searchString) {
+
+        showToastMessage("Query : " + searchString);
+    }
+
+    @Override
+    public void endSearchMode() {
+
+        showToastMessage("Search Collapsed !");
     }
 }
