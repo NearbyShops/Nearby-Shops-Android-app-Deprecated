@@ -128,6 +128,8 @@ public class FragmentShopNew extends Fragment implements
 
 
 
+
+
     @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {

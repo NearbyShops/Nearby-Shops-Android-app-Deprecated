@@ -483,6 +483,14 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     {
 
 
+
+//
+//        if(searchQuery!=null)
+//        {
+//            return;
+//        }
+
+
 //        (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY, 0),
 //                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY, 0),
 
@@ -586,6 +594,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
             headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
         }
 
+
+
         dataset.add(headerItemCategory);
 
         dataset.addAll(datasetCategory);
@@ -622,12 +632,30 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
         current_sort = UtilitySortItemsByCategory.getSort(getContext()) + " " + UtilitySortItemsByCategory.getAscending(getContext());
 
-        Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(currentCategory.getItemCategoryID(),
-                null,
-                PrefLocation.getLatitude(getActivity()),
-                PrefLocation.getLongitude(getActivity()),
-                null,null, null, null,
-                current_sort, limit_item,offset_item,null);
+        Call<ItemEndPoint> endPointCall = null;
+
+        if(searchQuery==null)
+        {
+            endPointCall = itemService.getItemsEndpoint(currentCategory.getItemCategoryID(),
+                    null,
+                    PrefLocation.getLatitude(getActivity()),
+                    PrefLocation.getLongitude(getActivity()),
+                    null,null, null, searchQuery,
+                    current_sort, limit_item,offset_item,null);
+
+        }
+        else
+        {
+
+            endPointCall = itemService.getItemsEndpoint(null,
+                    null,
+                    PrefLocation.getLatitude(getActivity()),
+                    PrefLocation.getLongitude(getActivity()),
+                    null,null, null, searchQuery,
+                    current_sort, limit_item,offset_item,null);
+
+        }
+
 
 
         endPointCall.enqueue(new Callback<ItemEndPoint>() {
@@ -1004,15 +1032,20 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
+    String searchQuery = null;
+
     @Override
-    public void search(String searchString) {
+    public void search(final String searchString) {
 
         showToastMessage("Query : " + searchString);
+        searchQuery = searchString;
+        makeRefreshNetworkCall();
     }
 
     @Override
     public void endSearchMode() {
-
         showToastMessage("Search Collapsed !");
+        searchQuery = null;
+        makeRefreshNetworkCall();
     }
 }
