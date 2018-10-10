@@ -3,6 +3,7 @@ package org.nearbyshops.enduserappnew.OrderHistoryNew;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,8 @@ import android.widget.TextView;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.ModelCartOrder.OrderStats;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Utility.UtilityOrderStatus;
+import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusHomeDelivery;
+import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusPickFromShop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 
@@ -117,7 +119,33 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 //holder.currentStatus.setText();
 
 
-                String status = UtilityOrderStatus.getStatus(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
+//                String status = UtilityOrderStatus.getStatus(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
+                String status = "";
+
+
+
+                showLog("Order PickfromShop : " + String.valueOf(order.getPickFromShop()));
+
+                showLog("Order Status Home Delivery : "  + String.valueOf(order.getStatusHomeDelivery()));
+                showLog("Order Status Pick from Shop : " + String.valueOf(order.getStatusPickFromShop()));
+
+
+                if(order.getPickFromShop())
+                {
+                    status = OrderStatusPickFromShop.getStatusString(order.getStatusPickFromShop());
+
+                    showLog("Status : " + OrderStatusPickFromShop.getStatusString(order.getStatusPickFromShop()));
+                }
+                else
+                {
+                    status = OrderStatusHomeDelivery.getStatusString(order.getStatusHomeDelivery());
+
+                    showLog("Status : " + OrderStatusHomeDelivery.getStatusString(order.getStatusHomeDelivery()));
+                }
+
+
+
+
                 holder.currentStatus.setText("Current Status : " + status);
             }
         }
@@ -143,6 +171,12 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
+
+
+    void showLog(String message)
+    {
+        Log.d("order_status",message);
+    }
 
 
 

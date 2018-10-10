@@ -269,12 +269,12 @@ public class FragmentItemsList extends Fragment
 
         Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(null,
                 null,
-                PrefLocation.getLatitude(getActivity()),
-                PrefLocation.getLongitude(getActivity()),
+                PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
                 null,
                 null,
                 null,
-                searchQuery,current_sort,limit,offset,null);
+                null,
+                searchQuery,current_sort,limit,offset,clearDataset,false);
 
 
         endPointCall.enqueue(new Callback<ItemEndPoint>() {

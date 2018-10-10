@@ -267,12 +267,12 @@ public class FragmentItem extends Fragment implements SwipeRefreshLayout.OnRefre
 
         Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(notifiedCurrentCategory.getItemCategoryID(),
                 null,
-                PrefLocation.getLatitude(getActivity()),
-                PrefLocation.getLongitude(getActivity()),
+                PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
                 null,
                 null,
                 null,
-                null,null, limit,offset,null);
+                null,
+                null,null, limit,offset,true,false);
 
 
 

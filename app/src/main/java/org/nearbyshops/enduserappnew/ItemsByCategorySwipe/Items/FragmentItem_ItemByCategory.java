@@ -277,11 +277,11 @@ public class FragmentItem_ItemByCategory extends Fragment
 
         Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(notifiedCurrentCategory.getItemCategoryID(),
                 null,
-                PrefLocation.getLatitude(getActivity()),
-                PrefLocation.getLongitude(getActivity()),
+                PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
+                null,
                 null, null,
                 null,null,
-                current_sort, limit,offset,null);
+                current_sort, limit,offset,clearDataset,false);
 
 
 
@@ -301,14 +301,15 @@ public class FragmentItem_ItemByCategory extends Fragment
                     if(clearDataset)
                     {
                         dataset.clear();
+
+                        if(response.body().getItemCount()!=null)
+                        {
+                            item_count = response.body().getItemCount();
+                        }
                     }
+
                     dataset.addAll(response.body().getResults());
                     adapter.notifyDataSetChanged();
-
-                    if(response.body().getItemCount()!=null)
-                    {
-                        item_count = response.body().getItemCount();
-                    }
 
 
                     if(!notifiedCurrentCategory.getisAbstractNode() && item_count>0 && !isbackPressed)

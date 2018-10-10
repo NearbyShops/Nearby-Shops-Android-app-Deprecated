@@ -14,6 +14,7 @@ import android.widget.TextView;
 import org.nearbyshops.enduserappnew.ModelItemSpecs.ItemSpecificationValue;
 import org.nearbyshops.enduserappnew.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -28,6 +29,9 @@ class AdapterItemSpecValue extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private List<ItemSpecificationValue> dataset = null;
     private NotificationsFromAdapter notifyFragment;
     private Context context;
+
+    private List<Integer> valuesList = new ArrayList<>();
+
 
     private Fragment fragment;
 
@@ -46,6 +50,8 @@ class AdapterItemSpecValue extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         this.fragment = fragment;
     }
+
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -206,17 +212,26 @@ class AdapterItemSpecValue extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
 
 
+
+
         @OnClick(R.id.checkbox_values)
         void checkChanged()
         {
             if(checkBoxValues.isChecked())
             {
-                notifyFragment.insertItemSpecItem(dataset.get(getLayoutPosition()).getId());
+//                notifyFragment.insertItemSpecItem(dataset.get(getLayoutPosition()).getId());
+
+                valuesList.add(Integer.valueOf(dataset.get(getLayoutPosition()).getId()));
+
             }
             else if(!checkBoxValues.isChecked())
             {
-                notifyFragment.deleteItemSpecItem(dataset.get(getLayoutPosition()).getId());
+//                notifyFragment.deleteItemSpecItem(dataset.get(getLayoutPosition()).getId());
+
+                valuesList.remove(Integer.valueOf(dataset.get(getLayoutPosition()).getId()));
             }
+
+
         }
 
 

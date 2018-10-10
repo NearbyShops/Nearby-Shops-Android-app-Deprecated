@@ -259,12 +259,12 @@ public class FragmentItemScreenHorizontal extends Fragment
 
         Call<ItemEndPoint> endPointCall = itemService.getItemsEndpoint(notifiedCurrentCategory.getItemCategoryID(),
                 null,
-                PrefLocation.getLatitude(getActivity()),
-                PrefLocation.getLongitude(getActivity()),
+                PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
+                null,
                 null,
                 null,
                 null,null,
-                current_sort, limit,offset,null);
+                current_sort, limit,offset,clearDataset,false);
 
 
 //        .getFromSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY)
