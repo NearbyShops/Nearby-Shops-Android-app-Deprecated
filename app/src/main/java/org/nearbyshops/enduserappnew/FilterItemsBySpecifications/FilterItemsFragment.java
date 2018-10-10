@@ -263,8 +263,13 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
         }
 
 
+        int itemCatID = getActivity().getIntent().getIntExtra("ItemCatID",0);
+
+
+//        showToastMessage("ItemCatID : " + String.valueOf(itemCatID));
+
         Call<List<ItemSpecificationName>> call = itemSpecNameService.getItemSpecsForFilters(
-                null,null,
+                itemCatID,null,
                 PrefLocation.getLatitude(getActivity()),
                 PrefLocation.getLongitude(getActivity()),null
         );
@@ -319,16 +324,7 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
                 showToastMessage("Failed !");
             }
         });
-
-
-
     }
-
-
-
-
-
-
 
 
 
@@ -367,12 +363,18 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
             offset_values = 0;
         }
 
+
+
+        int itemCatID = getActivity().getIntent().getIntExtra("ItemCatID",0);
+
+//        showToastMessage("ItemCatID : " + String.valueOf(itemCatID));
+
 //        itemSpecNameID = getActivity().getIntent().getIntExtra(ITEM_SPEC_NAME_INTENT_KEY,0);
 
         progressBar.setVisibility(View.VISIBLE);
 
         Call<List<ItemSpecificationValue>> call = itemSpecValueService.getItemSpecsForFilters(
-                selectedItemNameID,null,null,
+                selectedItemNameID,itemCatID,null,
                 PrefLocation.getLatitude(getActivity()),
                 PrefLocation.getLongitude(getActivity()),
                 null
@@ -460,6 +462,8 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
     @Override
     public void listItemClick(ItemSpecificationName itemSpecName, int position) {
 
+
+
         selectedItemNameID = itemSpecName.getId();
         initializeValuesList();
 
@@ -515,6 +519,14 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
     @Override
     public void listItemClick(ItemSpecificationValue itemSpecValue, int position) {
 
+        if(!checkboxesList.contains(Integer.valueOf(itemSpecValue.getId())))
+        {
+            checkboxesList.add(Integer.valueOf(itemSpecValue.getId()));
+        }
+        else
+        {
+            checkboxesList.remove(Integer.valueOf(itemSpecValue.getId()));
+        }
     }
 
 
@@ -523,25 +535,25 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
 
     @Override
     public void deleteItemSpecItem(int itemSpecValueID) {
-
-        int itemID = getActivity().getIntent().getIntExtra(ITEM_ID_INTENT_KEY,0);
-
-        Call<ResponseBody> call = itemSpecItemService.deleteItemSpecItem(PrefLogin.getAuthorizationHeaders(getActivity()),itemSpecValueID,itemID);
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.code()==200)
-                {
-                    showToastMessage("Removed !");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
+//
+//        int itemID = getActivity().getIntent().getIntExtra(ITEM_ID_INTENT_KEY,0);
+//
+//        Call<ResponseBody> call = itemSpecItemService.deleteItemSpecItem(PrefLogin.getAuthorizationHeaders(getActivity()),itemSpecValueID,itemID);
+//
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                if(response.code()==200)
+//                {
+//                    showToastMessage("Removed !");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//        });
     }
 
 
@@ -550,35 +562,35 @@ public class FilterItemsFragment extends Fragment implements AdapterItemSpecName
     @Override
     public void insertItemSpecItem(int ItemSpecValueID) {
 
-        ItemSpecificationItem itemSpecificationItem = new ItemSpecificationItem();
-
-        itemSpecificationItem.setItemID(getActivity().getIntent().getIntExtra(ITEM_ID_INTENT_KEY,0));
-        itemSpecificationItem.setItemSpecValueID(ItemSpecValueID);
-
-
-        Call<ResponseBody> call = itemSpecItemService.saveItemSpecName(
-                PrefLogin.getAuthorizationHeaders(getActivity()),
-                itemSpecificationItem
-        );
-
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                if(response.code()==201)
-                {
-                    showToastMessage("Added !");
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
-
+//        ItemSpecificationItem itemSpecificationItem = new ItemSpecificationItem();
+//
+//        itemSpecificationItem.setItemID(getActivity().getIntent().getIntExtra(ITEM_ID_INTENT_KEY,0));
+//        itemSpecificationItem.setItemSpecValueID(ItemSpecValueID);
+//
+//
+//        Call<ResponseBody> call = itemSpecItemService.saveItemSpecName(
+//                PrefLogin.getAuthorizationHeaders(getActivity()),
+//                itemSpecificationItem
+//        );
+//
+//
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//                if(response.code()==201)
+//                {
+//                    showToastMessage("Added !");
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//        });
+//
 
     }
 }

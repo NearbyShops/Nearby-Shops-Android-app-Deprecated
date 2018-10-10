@@ -17,7 +17,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Endpoints.OrderEndPoint;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
-import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusHomeDelivery;
+import org.nearbyshops.enduserappnew.ModelStatusCodes.OldStatusCodes.OrderStatusHomeDeliveryOld;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
@@ -262,7 +262,7 @@ public class FragmentReturnedByDG extends Fragment
                 .getOrders(
                         PrefLogin.getAuthorizationHeaders(getActivity()),
                         null,
-                        shopID,false, OrderStatusHomeDelivery.RETURNED,
+                        shopID,false, OrderStatusHomeDeliveryOld.RETURNED,
                         null,null,null,null,null,null,null,null,null,
                         limit,offset,null
                 );

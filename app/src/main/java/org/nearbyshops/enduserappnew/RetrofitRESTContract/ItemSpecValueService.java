@@ -47,7 +47,6 @@ public interface ItemSpecValueService {
 
 
 
-
     @GET("/api/v1/ItemSpecificationValue/OuterJoin")
     Call<ItemSpecValueEndPoint> getItemSpecName(
             @Query("ItemSpecID") Integer itemSpecID,

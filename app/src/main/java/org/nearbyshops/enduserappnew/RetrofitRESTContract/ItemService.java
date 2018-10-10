@@ -42,15 +42,16 @@ public interface ItemService
             @Query("ItemCategoryID")Integer itemCategoryID,
             @Query("ShopID")Integer shopID,
             @Query("latCenter") Double latCenter, @Query("lonCenter") Double lonCenter,
+            @Query("ItemSpecValues") String itemSpecValues,
             @Query("deliveryRangeMax")Double deliveryRangeMax,
             @Query("deliveryRangeMin")Double deliveryRangeMin,
             @Query("proximity")Double proximity,
             @Query("SearchString") String searchString,
             @Query("SortBy") String sortBy,
             @Query("Limit")Integer limit, @Query("Offset")Integer offset,
-            @Query("metadata_only")Boolean metaonly
+            @Query("GetRowCount")boolean getRowCount,
+            @Query("MetadataOnly")boolean getOnlyMetaData
     );
-
 
 
 

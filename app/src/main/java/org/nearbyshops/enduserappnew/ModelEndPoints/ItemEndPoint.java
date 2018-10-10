@@ -9,10 +9,10 @@ import java.util.List;
  */
 public class ItemEndPoint {
 
-    Integer itemCount;
-    Integer offset;
-    Integer limit;
-    List<Item> results;
+    private int itemCount;
+    private int offset;
+    private int limit;
+    private List<Item> results;
 
 
     public Integer getItemCount() {

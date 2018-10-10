@@ -1,7 +1,7 @@
-package org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Utility;
+package org.nearbyshops.enduserappnew.ModelStatusCodes.OldStatusCodes;
 
 
-import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusHomeDelivery;
+import org.nearbyshops.enduserappnew.ModelStatusCodes.OldStatusCodes.OrderStatusHomeDeliveryOld;
 
 /**
  * Created by sumeet on 23/12/16.
@@ -47,27 +47,27 @@ public class UtilityOrderStatus {
         {
             return "Complete";
         }
-        else if(orderStatusHomeDelivery== OrderStatusHomeDelivery.CANCELLED_BY_SHOP)
+        else if(orderStatusHomeDelivery== OrderStatusHomeDeliveryOld.CANCELLED_BY_SHOP)
         {
             return "Cancelled By Shop";
         }
-        else if(orderStatusHomeDelivery == OrderStatusHomeDelivery.CANCELLED_BY_SHOP_RETURN_PENDING)
+        else if(orderStatusHomeDelivery == OrderStatusHomeDeliveryOld.CANCELLED_BY_SHOP_RETURN_PENDING)
         {
             return "Pending Return - Cancelled By Shop";
         }
-        else if(orderStatusHomeDelivery == OrderStatusHomeDelivery.CANCELLED_BY_USER_RETURN_PENDING)
+        else if(orderStatusHomeDelivery == OrderStatusHomeDeliveryOld.CANCELLED_BY_USER_RETURN_PENDING)
         {
             return "Pending Return - Cancelled By User";
         }
-        else if(orderStatusHomeDelivery == OrderStatusHomeDelivery.CANCELLED_BY_USER)
+        else if(orderStatusHomeDelivery == OrderStatusHomeDeliveryOld.CANCELLED_BY_USER)
         {
             return "Cancelled By User";
         }
-        else if(orderStatusHomeDelivery == OrderStatusHomeDelivery.RETURN_PENDING)
+        else if(orderStatusHomeDelivery == OrderStatusHomeDeliveryOld.RETURN_PENDING)
         {
             return "Return Pending";
         }
-        else if(orderStatusHomeDelivery == OrderStatusHomeDelivery.RETURNED)
+        else if(orderStatusHomeDelivery == OrderStatusHomeDeliveryOld.RETURNED)
         {
             return "Returned";
         }

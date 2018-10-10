@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -81,7 +82,7 @@ import static org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCatego
 
 
 
-public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort,NotifySearch {
+public class ItemCategoriesFragmentSimple extends Fragment implements Home.PermissionGranted, SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort,NotifySearch {
 
     boolean isDestroyed = false;
 
@@ -106,13 +107,16 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     @Inject ItemCategoryService itemCategoryService;
     @Inject ItemService itemService;
 
-
-
     @BindView(R.id.shop_count_indicator) TextView itemHeader;
     @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
 
 
     ItemCategory currentCategory = null;
+
+
+    private static final int REQUEST_CODE_ASK_PERMISSION = 55;
+
+
 
     public ItemCategoriesFragmentSimple() {
         super();
@@ -125,6 +129,9 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
         currentCategory.setCategoryName("");
         currentCategory.setParentCategoryID(-1);
     }
+
+
+
 
     @Nullable
     @Override
@@ -210,10 +217,15 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     }
 
 
+
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
     }
+
+
+
 
     @OnClick({R.id.icon_sort,R.id.text_sort})
     void sortClick()
@@ -222,11 +234,13 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
     }
 
 
+
     @OnClick({R.id.icon_filter,R.id.text_filter})
     void filterClick()
     {
         Intent intent = new Intent(getActivity(), FilterItemsActivity.class);
-        startActivity(intent);
+        intent.putExtra("ItemCatID",currentCategory.getItemCategoryID());
+        startActivityForResult(intent,123);
     }
 
 
@@ -377,10 +391,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
-                    if(layoutManager.findLastVisibleItemPosition()== previous_position)
-                    {
-                        return;
-                    }
+//                    if(layoutManager.findLastVisibleItemPosition()== previous_position)
+//                    {
+//                        return;
+//                    }
 
 
                     // trigger fetch next page
@@ -392,7 +406,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
                         makeRequestItem(false,false);
                     }
 
-                    previous_position = layoutManager.findLastVisibleItemPosition();
+
+//                    previous_position = layoutManager.findLastVisibleItemPosition();
 
                 }
             }
@@ -494,12 +509,18 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 //        (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY, 0),
 //                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY, 0),
 
-         Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
+
+
+
+//        showToastMessage("Lat : " + String.valueOf(PrefLocation.getLatitude(getActivity()))  + " : "  + String.valueOf(PrefLocation.getLongitude(getActivity())));
+
+
+
+        Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
                 null,
                 currentCategory.getItemCategoryID(),
                 null,
-                PrefLocation.getLatitude(getActivity()),
-                PrefLocation.getLongitude(getActivity()),
+                PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
                 null,null,null,
                 true,
                 ItemCategory.CATEGORY_ORDER,null,null,false);
@@ -614,7 +635,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
-    void makeRequestItem(final boolean clearDataset, boolean resetOffset)
+    void makeRequestItem(boolean clearDatasetLocal, boolean resetOffset)
     {
 
         if(resetOffset)
@@ -634,14 +655,16 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
         Call<ItemEndPoint> endPointCall = null;
 
+
+
         if(searchQuery==null)
         {
             endPointCall = itemService.getItemsEndpoint(currentCategory.getItemCategoryID(),
                     null,
-                    PrefLocation.getLatitude(getActivity()),
-                    PrefLocation.getLongitude(getActivity()),
+                    PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
+                    null,
                     null,null, null, searchQuery,
-                    current_sort, limit_item,offset_item,null);
+                    current_sort, limit_item,offset_item,clearDatasetLocal,false);
 
         }
         else
@@ -649,12 +672,15 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
             endPointCall = itemService.getItemsEndpoint(null,
                     null,
-                    PrefLocation.getLatitude(getActivity()),
-                    PrefLocation.getLongitude(getActivity()),
+                    PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
+                    null,
                     null,null, null, searchQuery,
-                    current_sort, limit_item,offset_item,null);
+                    current_sort, limit_item,offset_item,clearDatasetLocal,false);
 
         }
+
+
+
 
 
 
@@ -669,8 +695,9 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
                 }
 
 
-                if(clearDataset)
+                if(clearDatasetLocal)
                 {
+
 
                     if(response.body()!=null)
                     {
@@ -710,7 +737,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
                         dataset.addAll(response.body().getResults());
                         fetched_items_count = fetched_items_count + response.body().getResults().size();
-                        item_count_item = response.body().getItemCount();
+//                        item_count_item = response.body().getItemCount();
                         listAdapter.notifyDataSetChanged();
                     }
 
@@ -719,7 +746,6 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
                 notifyItemHeaderChanged();
-
 
             }
 
@@ -732,7 +758,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
                 }
 
 
-                if(clearDataset)
+
+                if(clearDatasetLocal)
                 {
 
                     if(isFirst)
@@ -893,6 +920,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
+
+
+
+
     LocationRequest mLocationRequestTwo;
     LocationCallback locationCallback;
 
@@ -911,6 +942,12 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+
+
+//            ActivityCompat.requestPermissions(getActivity(),
+//                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},REQUEST_CODE_ASK_PERMISSION);
+
+
             return;
         }
 
@@ -981,6 +1018,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
                 if(distanceChanged > 100)
                 {
+//                    showToastMessage("Refreshed !");
                     makeRefreshNetworkCall();
                 }
 
@@ -1007,6 +1045,51 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
+
+
+
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//
+//        showToastMessage("Permissions Result !");
+//
+//
+//        if(requestCode==REQUEST_CODE_ASK_PERMISSION)
+//        {
+//            // If request is cancelled, the result arrays are empty.
+//            if (grantResults.length > 0
+//                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                // permission was granted, yay! Do the
+//                // contacts-related task you need to do.
+//
+//                requestLocationUpdates();
+//
+//
+//            } else {
+//                // permission denied, boo! Disable the
+//                // functionality that depends on this permission.
+//
+//                showToastMessage("The location permission is essential without it the app cannot work !");
+//
+//            }
+//            return;
+//
+//
+//
+//        }
+//
+//    }
+
+
+
+
+
+
+    
+
+
     void stopLocationUpdates()
     {
 
@@ -1022,7 +1105,9 @@ public class ItemCategoriesFragmentSimple extends Fragment implements SwipeRefre
 
 
 
+    @Override
     public void permissionGranted() {
+
 //        showToastMessage("Granted interface !");
         requestLocationUpdates();
     }

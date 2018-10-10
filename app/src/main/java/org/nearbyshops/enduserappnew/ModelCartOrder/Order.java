@@ -103,7 +103,7 @@ public class Order {
 
     private Integer deliveryCharges;
     private Integer deliveryAddressID;
-    private Boolean pickFromShop;
+    private boolean pickFromShop;
 
     private Integer deliveryGuySelfID;
     private Timestamp dateTimePlaced;
