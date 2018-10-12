@@ -100,6 +100,7 @@
 
 
             <TextView
+                android:visibility="gone"
                 android:textSize="24sp"
                 android:layout_marginTop="30dp"
                 android:id="@+id/header_referral"
@@ -113,6 +114,7 @@
 
 
             <android.support.design.widget.TextInputLayout
+                android:visibility="gone"
                 android:id="@+id/referrar_user_id_text_input"
                 android:layout_marginTop="10dp"
                 app:layout_constraintRight_toRightOf="parent"
