@@ -108,7 +108,7 @@
             android:id="@+id/city"
             android:layout_marginTop="5dp"
             android:textSize="20sp"
-            android:text="Hyderabad"
+            android:text="Nearby Shops India"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -118,7 +118,7 @@
         <TextView
             android:layout_marginTop="0dp"
             android:id="@+id/address"
-            android:text="Telangana, India"
+            android:text="India"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

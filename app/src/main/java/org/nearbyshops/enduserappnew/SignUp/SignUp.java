@@ -3,8 +3,10 @@ package org.nearbyshops.enduserappnew.SignUp;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.Toolbar;
 
 import com.stfalcon.smsverifycatcher.OnSmsCatchListener;
 import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
@@ -26,6 +28,15 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
     SmsVerifyCatcher smsVerifyCatcher;
 
 
+
+
+
+
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +45,12 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
         overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
         setContentView(R.layout.activity_sign_up);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        toolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.white));
-//        toolbar.setTitle("Sign Up");
-//        setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.white));
+        toolbar.setTitle("Sign Up");
+        setSupportActionBar(toolbar);
+
+
 
 //        if(getSupportFragmentManager().findFragmentByTag(TAG_STEP_ONE)==null)
 //        {
@@ -52,6 +65,9 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
         }
 
 
+
+
+
         smsVerifyCatcher = new SmsVerifyCatcher(this, new OnSmsCatchListener<String>() {
             @Override
             public void onSmsCatch(String message) {
@@ -60,12 +76,11 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
             }
         });
 
-
-
-
-
 //        }
     }
+
+
+
 
 
 
@@ -93,6 +108,11 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
 
 
 
+
+
+
+
+
     @Override
     public void showVerifyEmail() {
 
@@ -102,9 +122,10 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
                 .replace(R.id.fragment_container,new FragmentVerifyEmailSignUp(),TAG_STEP_THREE)
                 .addToBackStack("step_three")
                 .commit();
-
-
     }
+
+
+
 
     @Override
     public void showEnterPassword() {
@@ -118,6 +139,12 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
 
 //                        .addToBackStack("step_four")
     }
+
+
+
+
+
+
 
     @Override
     public void showResultSuccess() {

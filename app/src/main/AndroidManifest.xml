@@ -76,7 +76,7 @@
         <activity
             android:name=".SignUp.SignUp"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Login.Login"
             android:theme="@style/AppTheme"

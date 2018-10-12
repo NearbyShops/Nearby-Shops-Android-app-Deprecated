@@ -600,6 +600,9 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
 
 
 
+
+
+
     void refreshAdapter()
     {
         dataset.clear();
@@ -616,10 +619,15 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
         }
 
 
-
         dataset.add(headerItemCategory);
 
-        dataset.addAll(datasetCategory);
+
+        if(searchQuery==null)
+        {
+
+            dataset.addAll(datasetCategory);
+        }
+
 
         HeaderItemsList headerItem = new HeaderItemsList();
         headerItem.setHeading(currentCategory.getCategoryName() + " Items");
@@ -1087,7 +1095,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
 
 
 
-    
+
 
 
     void stopLocationUpdates()
@@ -1117,19 +1125,22 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
 
 
 
+
+
     String searchQuery = null;
 
     @Override
     public void search(final String searchString) {
 
-        showToastMessage("Query : " + searchString);
+//        showToastMessage("Query : " + searchString);
         searchQuery = searchString;
         makeRefreshNetworkCall();
     }
 
     @Override
     public void endSearchMode() {
-        showToastMessage("Search Collapsed !");
+
+//        showToastMessage("Search Collapsed !");
         searchQuery = null;
         makeRefreshNetworkCall();
     }

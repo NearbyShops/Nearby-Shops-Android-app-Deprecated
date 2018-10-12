@@ -27,6 +27,10 @@ android {
 
 
 
+
+    
+
+
     defaultConfig {
         manifestPlaceholders = [onesignal_app_id: "b6fe253c-2a93-4452-8cd7-36555aa046ca",
                                 // Project number pulled from dashboard, local value is ignored.
@@ -52,8 +56,8 @@ android {
         applicationId "org.nearbyshops.enduserappnew"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 4
-        versionName "0.2"
+        versionCode 5
+        versionName "0.3"
         // Enabling multidex support.
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
