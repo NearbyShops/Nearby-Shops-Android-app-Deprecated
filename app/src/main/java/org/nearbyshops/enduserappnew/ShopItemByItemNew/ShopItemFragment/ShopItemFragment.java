@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ShopItemByItem.FilledCarts;
+package org.nearbyshops.enduserappnew.ShopItemByItemNew.ShopItemFragment;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -18,30 +18,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail;
-//import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.AdapterSimple;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduserappnew.ShopHome.ShopHome;
-import org.nearbyshops.enduserappnew.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
-import org.nearbyshops.enduserappnew.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
-import org.nearbyshops.enduserappnew.ShopItemByItem.Interfaces.NotifySwipeToRight;
-import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.ShopItemByItemNew.SlidingLayerSort.PrefSortShopItems;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
+import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 
 import java.util.ArrayList;
 
@@ -54,8 +51,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        AdapterFilledCarts.NotifyFilledCart, NotifyNewCartsChanged, NotifySort
+//import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.AdapterSimple;
+
+public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
+        AdapterShopItem.NotifyFilledCart, NotifySort
 {
 
     Item item;
@@ -66,51 +65,63 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
     ArrayList<ShopItem> dataset = new ArrayList<>();
 
-//    @Bind(R.id.items_list_item)
-//    CardView itemsListItem;
+    @BindView(R.id.recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
 
-
-    RecyclerView recyclerView;
-    AdapterFilledCarts adapter;
+    AdapterShopItem adapter;
     GridLayoutManager layoutManager;
-    SwipeRefreshLayout swipeContainer;
+
 
     boolean isDestroyed;
 
 
-//    TextView itemDescription;
-//    TextView itemName;
-//    ImageView itemImage;
+    // bindings for item
+    @BindView(R.id.itemName) TextView categoryName;
+//        TextView categoryDescription;
+
+    //    @BindView(R.id.items_list_item) CardView itemCategoryListItem;
+    @BindView(R.id.itemImage) ImageView categoryImage;
+    @BindView(R.id.price_range) TextView priceRange;
+    @BindView(R.id.price_average) TextView priceAverage;
+    @BindView(R.id.shop_count) TextView shopCount;
+    @BindView(R.id.item_rating) TextView itemRating;
+    @BindView(R.id.rating_count) TextView ratingCount;
 
 
 
-//    TextView priceRange;
-//    TextView shopCount;
-//    @Bind(R.id.item_rating) TextView itemRating;
-//    @Bind(R.id.rating_count) TextView ratingCount;
+
+    boolean clearDataset = true;
+
+    private int limit = 10;
+    int offset = 0;
+    int item_count = 0;
+
+    /*
+    * Terminologies and concepts
+    *
+    * Each Shop has a seperate cart. If a customer buys 2 items from two shops that will create two separate carts. Two Shops do not share one cart.
+    *
+    *
+    * Filled Carts : Carts in which items are already added
+    * New Carts : Carts in which no items are added
+    *
+    *
+    * */
 
 
-//    NotifyFillCartsChanged notifyPagerAdapter;
 
 
-//    NotifySwipeToRight notifyTabsActivity;
 
-
-    public FilledCartsFragment() {
+    public ShopItemFragment() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
                 .Inject(this);
     }
 
-    public static FilledCartsFragment newInstance(Item item) {
 
-        FilledCartsFragment fragment = new FilledCartsFragment();
-        Bundle args = new Bundle();
-        args.putParcelable("item",item);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
+
 
 
     @Nullable
@@ -119,15 +130,20 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
         super.onCreateView(inflater, container, savedInstanceState);
 
 
-        View rootView = inflater.inflate(R.layout.fragment_filled_carts, container, false);
-
+        View rootView = inflater.inflate(R.layout.fragment_shop_item, container, false);
         ButterKnife.bind(this,rootView);
+        setRetainInstance(true);
 
 
-        item = getArguments().getParcelable("item");
+//        item = getArguments().getParcelable("item");
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-        swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
+        String jsonString = getActivity().getIntent().getStringExtra("item_json");
+        Gson gson = UtilityFunctions.provideGson();
+        item = gson.fromJson(jsonString,Item.class);
+
+
+//        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+//        swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
 
         if(swipeContainer!=null) {
 
@@ -141,6 +157,8 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
 
 
+
+
         if(savedInstanceState==null)
         {
             setupRecyclerView();
@@ -148,20 +166,11 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
         }
         else
         {
-            onViewStateRestored(savedInstanceState);
+//            onViewStateRestored(savedInstanceState);
             setupRecyclerView();
             adapter.makeNetworkCall();
         }
 
-
-
-
-        // BindViewings for Item
-//        itemDescription = (TextView) rootView.findViewById(R.id.itemDescription);
-//        itemName = (TextView) rootView.findViewById(R.id.itemName);
-//        itemImage = (ImageView) rootView.findViewById(R.id.itemImage);
-//        priceRange = (TextView) rootView.findViewById(R.id.price_range);
-//        shopCount = (TextView) rootView.findViewById(R.id.shop_count);
 
 
         bindItem();
@@ -171,9 +180,14 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     }
 
 
+
+
+
+
+
     void setupRecyclerView()
     {
-        adapter = new AdapterFilledCarts(dataset,getActivity(),item,this);
+        adapter = new AdapterShopItem(dataset,getActivity(),item,this);
 
         recyclerView.setAdapter(adapter);
 
@@ -203,7 +217,51 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
         layoutManager.setSpanCount(spanCount);
 
 
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+
+                if(offset + limit > layoutManager.findLastVisibleItemPosition())
+                {
+                    return;
+                }
+
+
+
+
+                if(layoutManager.findLastVisibleItemPosition()==dataset.size()-1)
+                {
+
+
+
+                    // trigger fetch next page
+
+                    if((offset + limit)<=item_count)
+                    {
+                        offset = offset + limit;
+
+//                        makeRequestItem(false,false);
+
+                        fetchNewCartItems();
+
+                    }
+
+
+                }
+            }
+
+        });
+
+
+
     }
+
+
 
 
 
@@ -213,47 +271,172 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
         swipeContainer.post(new Runnable() {
             @Override
             public void run() {
-                swipeContainer.setRefreshing(true);
 
-//                    dataset.clear();
-                    makeNetworkCall(false);
+                swipeContainer.setRefreshing(true);
+                onRefresh();
+
             }
         });
     }
 
 
-    @Override
-    public void onRefresh() {
-        makeNetworkCall(false);
-    }
 
 
 
-    void makeNetworkCall(final boolean notifyChange)
+
+
+
+    void fetchNewCartItems()
     {
 
-            User endUser = PrefLogin.getUser(getActivity());
-
-            if(endUser == null)
-            {
-//                showLoginDialog();
+        User endUser = PrefLogin.getUser(getActivity());
 
 
-                swipeContainer.setRefreshing(false);
+//        if(endUser == null)
+//        {
+//            swipeContainer.setRefreshing(false);
+//            return;
+//        }
 
-                if(getActivity() instanceof NotifySwipeToRight)
-                {
-                    ((NotifySwipeToRight)getActivity()).notifySwipeRight();
 
-                    return;
-                }
-            }
+        if(item==null)
+        {
+            showToastMessage("Item null !");
+            swipeContainer.setRefreshing(false);
+            return;
+        }
+
+
+
+        Integer endUserID = null;
+
+
+        if(endUser!=null)
+        {
+            endUserID = endUser.getUserID();
+        }
+
 
 
 
         String current_sort = "";
 
-        current_sort = PrefSortShopItems.getSort(getContext()) + " " + PrefSortShopItems.getAscending(getContext());
+        current_sort = PrefSortShopItems.getSort(getActivity())
+                + " " + PrefSortShopItems.getAscending(getActivity());
+
+
+        // Network Available
+        Call<ShopItemEndPoint> call = shopItemService.getShopItemEndpoint(
+                null,null,item.getItemID(),
+                PrefLocation.getLatitude(getActivity()),
+                PrefLocation.getLongitude(getActivity()),
+                null, null,
+                null,
+                endUserID,
+                false,
+                null,null,null,null,
+                null,true,current_sort,
+                limit,offset,null,true
+        );
+
+        call.enqueue(new Callback<ShopItemEndPoint>() {
+            @Override
+            public void onResponse(Call<ShopItemEndPoint> call, Response<ShopItemEndPoint> response) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
+                if(response.code()==200)
+                {
+                    if(response.body()!=null)
+                    {
+
+                        if(clearDataset)
+                        {
+                            dataset.clear();
+                            clearDataset = false;
+                        }
+
+
+                        dataset.addAll(response.body().getResults());
+                        item_count = response.body().getItemCount();
+
+                    }
+                }
+                else
+                {
+                    showToastMessage("Response Code : " + String.valueOf(response.code()));
+                }
+
+
+
+
+                adapter.notifyDataSetChanged();
+                swipeContainer.setRefreshing(false);
+            }
+
+            @Override
+            public void onFailure(Call<ShopItemEndPoint> call, Throwable t) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+                showToastMessage("Network Request failed !");
+                swipeContainer.setRefreshing(false);
+            }
+        });
+
+
+    }
+
+
+
+
+
+
+    @Override
+    public void onRefresh() {
+        clearDataset = true;
+        makeNetworkCall();
+        fetchNewCartItems();
+    }
+
+
+
+
+
+    void makeNetworkCall()
+    {
+
+            User endUser = PrefLogin.getUser(getActivity());
+
+
+            if(endUser == null)
+            {
+                swipeContainer.setRefreshing(false);
+                return;
+            }
+
+            if(item==null)
+            {
+                swipeContainer.setRefreshing(false);
+                return;
+            }
+
+
+
+
+
+        String current_sort = "";
+
+        current_sort = PrefSortShopItems.getSort(getActivity()) + " " + PrefSortShopItems.getAscending(getActivity());
 
 
 
@@ -281,42 +464,34 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
                         return;
                     }
 
-                    if (response.body() != null)
+
+                    if(response.code()==200)
                     {
 
-                        dataset.clear();
-                        dataset.addAll(response.body().getResults());
-
-                        if(response.body().getItemCount()==0)
+                        if (response.body() != null)
                         {
-                            if(getActivity() instanceof NotifySwipeToRight)
+
+                            if(clearDataset)
                             {
-                                ((NotifySwipeToRight)getActivity()).notifySwipeRight();
+                                dataset.clear();
+                                clearDataset=false;
                             }
+
+                            dataset.addAll(0,response.body().getResults());
+
+                            adapter.makeNetworkCall();
+                            adapter.notifyDataSetChanged();
+                            swipeContainer.setRefreshing(false);
+
+
                         }
-
-
-
-
-                        if(notifyChange)
-                        {
-                            filledCartsChanged();
-                        }
-
-
-                        adapter.makeNetworkCall();
-                        adapter.notifyDataSetChanged();
-                        notifyTitleChanged();
-                        swipeContainer.setRefreshing(false);
                     }
                     else
                     {
-
-                        if(getActivity() instanceof NotifySwipeToRight)
-                        {
-                            ((NotifySwipeToRight)getActivity()).notifySwipeRight();
-                        }
+                        showToastMessage("Failed code : " + String.valueOf(response.code()));
                     }
+
+
 
                 }
 
@@ -337,6 +512,8 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     }
 
 
+
+
     void showToastMessage(String message)
     {
         if(getActivity()!=null)
@@ -348,75 +525,26 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
 
 
-    void filledCartsChanged()
-    {
-        if(getActivity() instanceof NotifyFillCartsChanged)
-        {
-            ((NotifyFillCartsChanged)getActivity()).notifyFilledCartsChanged();
-        }
-    }
-
 
 
     @Override
     public void notifyCartDataChanged() {
 
-
-        swipeContainer.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeContainer.setRefreshing(true);
-
-                makeNetworkCall(true);
-            }
-        });
-
-
+//        swipeRefresh();
     }
+
+
 
     @Override
     public void notifyShopLogoClick(Shop shop) {
 
-//        Intent intent = new Intent(getActivity(), ShopDetail.class);
-//        intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
-//        startActivity(intent);
-
-
         Intent shopHomeIntent = new Intent(getActivity(), ShopHome.class);
         PrefShopHome.saveShop(shop,getActivity());
         startActivity(shopHomeIntent);
-
-
     }
 
 
-//    @Override
-//    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-//        super.onViewStateRestored(savedInstanceState);
-//        Icepick.restoreInstanceState(this,savedInstanceState);
-//        notifyTitleChanged();
-//    }
 
-
-//    @Override
-//    public void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        Icepick.saveInstanceState(this,outState);
-//    }
-
-
-
-    void notifyTitleChanged()
-    {
-        if(getActivity() instanceof NotifyTitleChanged)
-        {
-            ((NotifyTitleChanged) getActivity())
-                    .NotifyTitleChanged(
-                            " Filled Carts ("
-                            + String.valueOf(dataset.size()) + ")",0
-                    );
-        }
-    }
 
 
 
@@ -429,11 +557,12 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
 
 
-    @Override
-    public void notifyNewCartsChanged() {
-//        swipeRefresh();
-        makeNetworkCall(false);
-    }
+
+//    @Override
+//    public void notifyNewCartsChanged() {
+////        swipeRefresh();
+//        makeNetworkCall(false);
+//    }
 
 
     @Override
@@ -460,20 +589,15 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
 
 
 
-    @BindView(R.id.itemName) TextView categoryName;
-//        TextView categoryDescription;
-
-//    @BindView(R.id.items_list_item) CardView itemCategoryListItem;
-    @BindView(R.id.itemImage) ImageView categoryImage;
-    @BindView(R.id.price_range) TextView priceRange;
-    @BindView(R.id.price_average) TextView priceAverage;
-    @BindView(R.id.shop_count) TextView shopCount;
-    @BindView(R.id.item_rating) TextView itemRating;
-    @BindView(R.id.rating_count) TextView ratingCount;
-
 
     void bindItem()
     {
+
+        if(item==null)
+        {
+            return;
+        }
+
 
         categoryName.setText(item.getItemName());
 
@@ -525,6 +649,8 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
                 .into(categoryImage);
 
     }
+
+
 
 
 

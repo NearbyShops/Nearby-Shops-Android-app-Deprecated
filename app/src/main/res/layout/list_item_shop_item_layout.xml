@@ -37,6 +37,8 @@
     android:layout_height="wrap_content">
 
 
+
+
     <LinearLayout
         android:layout_marginBottom="0dp"
         android:background="#000000"
@@ -114,7 +116,7 @@
             android:layout_toRightOf="@id/shopImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delivery : Rs 00"
+            android:text="Delivery : "
             android:id="@+id/deliveryCharge"
             android:layout_marginRight="0dp"
             android:layout_marginLeft="0dp"
@@ -234,7 +236,6 @@
             android:textSize="17sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Rs 45.76 / Kg"
             android:id="@+id/itemPrice"
             android:layout_marginRight="0dp"
             android:layout_marginLeft="0dp"
@@ -417,10 +418,10 @@
             android:textColor="@color/colorWhite"
             android:background="@color/teal"
             android:padding="5dp"
+            android:text="Cart Total : 0"
             android:textSize="15sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" Cart Total : Rs 0"/>
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>
@@ -432,8 +433,27 @@
         android:layout_height="wrap_content">
 
 
-        <LinearLayout
+
+        <TextView
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/out_of_stock_indicator"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@color/gplus_color_4"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="Out of Stock"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <LinearLayout
+            app:layout_constraintTop_toBottomOf="@id/out_of_stock_indicator"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

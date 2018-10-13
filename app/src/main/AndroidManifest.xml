@@ -559,6 +559,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
 
+
+        <activity
+            android:name=".ShopItemByItemNew.ShopItemByItemNew"
+            android:theme="@style/AppTheme" />
+
+
+
+
     </application>
 
 

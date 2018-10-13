@@ -52,7 +52,7 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
 
 
 
-//        if(getSupportFragmentManager().findFragmentByTag(TAG_STEP_ONE)==null)
+//        if(getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT)==null)
 //        {
 
 
