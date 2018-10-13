@@ -224,6 +224,10 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
         return new ViewHolder(view);
     }
 
+
+
+
+
     @Override
     public void onBindViewHolder(AdapterShopItems.ViewHolder holder, int position) {
 
@@ -264,14 +268,28 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
         {
             holder.available.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()));
 
+            if(shopItem.getAvailableItemQuantity()==0)
+            {
+                holder.outOfStockIndicator.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                holder.outOfStockIndicator.setVisibility(View.GONE);
+            }
         }
 
+
+
+
         String imagePath = null;
+
+
+
 
         if(item!=null)
         {
             holder.itemName.setText(item.getItemName());
-            holder.itemPrice.setText("Rs. " + String.format("%.2f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
+            holder.itemPrice.setText(PrefGeneral.getCurrencySymbol(context) +  " " + String.format("%.2f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
 
             if(item.getRt_rating_count()==0)
             {
@@ -304,10 +322,8 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
                 .placeholder(placeholder)
                 .into(holder.itemImage);
 
+
 //        holder.rating.setText(String.format("%.2f",));
-
-
-
     }
 
 
@@ -326,6 +342,10 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+
+
+        @BindView(R.id.out_of_stock_indicator)
+        TextView outOfStockIndicator;
 
 
         @BindView(R.id.add_to_cart_text)

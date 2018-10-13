@@ -477,6 +477,17 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             holder.available.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()));
 
+            if(shopItem.getAvailableItemQuantity()==0)
+            {
+                holder.outOfStockIndicator.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                holder.outOfStockIndicator.setVisibility(View.GONE);
+            }
+
+
+
             String imagePath = null;
 
             if(item!=null)
@@ -565,6 +576,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 //        @BindView(R.id.add_to_cart_text)
 //        TextView addToCart;
 
+
+        @BindView(R.id.out_of_stock_indicator)
+        TextView outOfStockIndicator;
 
 
         @BindView(R.id.list_item)
