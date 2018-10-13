@@ -34,7 +34,7 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopItemByItem.Interfaces.NotifyFillCartsChanged;
 import org.nearbyshops.enduserappnew.ShopItemByItem.Interfaces.NotifyNewCartsChanged;
 import org.nearbyshops.enduserappnew.ShopItemByItem.Interfaces.NotifySwipeToRight;
-import org.nearbyshops.enduserappnew.ShopItemByItem.SlidingLayerSort.SlidingLayerSortShopItem;
+import org.nearbyshops.enduserappnew.ShopItemByItemNew.SlidingLayerSort.SlidingLayerSortShopItem;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;

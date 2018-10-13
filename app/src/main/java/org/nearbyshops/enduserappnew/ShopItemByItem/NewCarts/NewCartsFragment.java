@@ -30,7 +30,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.ShopItemByItem.SlidingLayerSort.UtilitySortShopItems;
+import org.nearbyshops.enduserappnew.ShopItemByItemNew.SlidingLayerSort.PrefSortShopItems;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 
 import java.util.ArrayList;
@@ -290,8 +290,8 @@ public class NewCartsFragment extends Fragment
 
         String current_sort = "";
 
-        current_sort = UtilitySortShopItems.getSort(getContext())
-                + " " + UtilitySortShopItems.getAscending(getContext());
+        current_sort = PrefSortShopItems.getSort(getContext())
+                + " " + PrefSortShopItems.getAscending(getContext());
 
 
         // Network Available

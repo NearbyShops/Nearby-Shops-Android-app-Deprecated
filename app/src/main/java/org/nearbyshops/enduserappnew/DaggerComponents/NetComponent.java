@@ -47,6 +47,8 @@ import org.nearbyshops.enduserappnew.OrderHistoryNew.PendingOrdersFragmentNew;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserappnew.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduserappnew.ShopImages.ShopImageListFragment;
+import org.nearbyshops.enduserappnew.ShopItemByItemNew.ShopItemFragment.AdapterShopItem;
+import org.nearbyshops.enduserappnew.ShopItemByItemNew.ShopItemFragment.ShopItemFragment;
 import org.nearbyshops.enduserappnew.ShopItemByShop.ItemCategories.ItemCategoriesFragmentShopHome;
 import org.nearbyshops.enduserappnew.ShopItemByShop.ShopItems.AdapterShopItems;
 import org.nearbyshops.enduserappnew.ShopItemByShop.ShopItems.FragmentShopItemsByShop;
@@ -224,4 +226,8 @@ public interface NetComponent {
     void Inject(ItemImageListFragment imageListFragment);
 
     void Inject(ShopImageListFragment shopImageListFragment);
+
+    void Inject(ShopItemFragment shopItemFragment);
+
+    void Inject(AdapterShopItem adapterShopItem);
 }

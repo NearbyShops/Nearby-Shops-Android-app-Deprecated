@@ -17,15 +17,18 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopItemByItem.ShopsForItemSwipe;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.ShopItemByItemNew.ShopItemByItemNew;
 
 import java.util.List;
 
@@ -390,9 +393,20 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             {
                 if(dataset.get(getLayoutPosition()) instanceof Item)
                 {
-                    Intent intent = new Intent(context, ShopsForItemSwipe.class);
-                    intent.putExtra(ShopsForItemSwipe.ITEM_INTENT_KEY,(Item)dataset.get(getLayoutPosition()));
+//                    Intent intent = new Intent(context, ShopsForItemSwipe.class);
+//                    intent.putExtra(ShopsForItemSwipe.ITEM_INTENT_KEY,(Item)dataset.get(getLayoutPosition()));
+//                    context.startActivity(intent);
+
+                    Intent intent = new Intent(context,ShopItemByItemNew.class);
+
+                    Gson gson = UtilityFunctions.provideGson();
+                    String jsonString = gson.toJson((Item)dataset.get(getLayoutPosition()));
+                    intent.putExtra("item_json",jsonString);
+
                     context.startActivity(intent);
+
+
+
                 }
             }
 

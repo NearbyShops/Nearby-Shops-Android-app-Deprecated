@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ShopItemByItem.SlidingLayerSort;
+package org.nearbyshops.enduserappnew.ShopItemByItemNew.SlidingLayerSort;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,7 +11,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by sumeet on 29/9/16.
  */
 
-public class UtilitySortShopItems {
+public class PrefSortShopItems {
 
 
 
