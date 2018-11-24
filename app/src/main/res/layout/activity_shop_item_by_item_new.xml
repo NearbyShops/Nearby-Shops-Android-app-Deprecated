@@ -24,6 +24,7 @@
 
 
             <LinearLayout
+                android:background="@color/phonographyBlue"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:orientation="horizontal"

@@ -22,6 +22,8 @@ import org.nearbyshops.enduserappnew.ModelCartOrder.OrderItem;
 import org.nearbyshops.enduserappnew.ModelCartOrder.OrderStats;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.ModelStatusCodes.OldStatusCodes.UtilityOrderStatus;
+import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusHomeDelivery;
+import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusPickFromShop;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
@@ -232,8 +234,29 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             //holder.currentStatus.setText();
 
 
-            String status = UtilityOrderStatus.getStatus(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
+//            String status = UtilityOrderStatus.getStatus(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
+
+
+            String status = "";
+
+
+
+            if(order.getPickFromShop())
+            {
+                status = OrderStatusPickFromShop.getStatusString(order.getStatusPickFromShop());
+
+            }
+            else
+            {
+                status = OrderStatusHomeDelivery.getStatusString(order.getStatusHomeDelivery());
+
+            }
+
+
+
+
             holder.currentStatus.setText("Current Status : " + status);
+
 
 
 

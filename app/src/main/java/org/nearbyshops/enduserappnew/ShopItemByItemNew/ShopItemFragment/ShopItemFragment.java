@@ -208,13 +208,16 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 //        layoutManager.setSpanCount(metrics.widthPixels/350);
 
 
-        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
+//        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
+//
+//        if(spanCount==0){
+//            spanCount = 1;
+//        }
 
-        if(spanCount==0){
-            spanCount = 1;
-        }
 
-        layoutManager.setSpanCount(spanCount);
+
+
+        layoutManager.setSpanCount(1);
 
 
 

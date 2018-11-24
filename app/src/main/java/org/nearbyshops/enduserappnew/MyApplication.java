@@ -50,6 +50,8 @@ public class MyApplication extends MultiDexApplication{
 
 
 
+
+
     public void onCreate() {
 
         super.onCreate();
@@ -186,6 +188,8 @@ public class MyApplication extends MultiDexApplication{
 
         });
     }
+
+
 
     public static Context getAppContext() {
         return MyApplication.context;
