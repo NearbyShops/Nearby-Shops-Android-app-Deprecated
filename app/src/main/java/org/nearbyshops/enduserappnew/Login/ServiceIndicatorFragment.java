@@ -134,18 +134,18 @@ public class ServiceIndicatorFragment extends Fragment {
                 ServiceConfigurationLocal serviceConfig = PrefServiceConfig.getServiceConfigLocal(getActivity());
 
 
-                serviceName.setText(serviceConfig.getServiceName());
+//                serviceName.setText(serviceConfig.getServiceName());
 //                serviceURL.setText(PrefGeneral.getServiceURL(getActivity()));
 
                 String address = serviceConfig.getState() + ", " + serviceConfig.getCountry() + " - "
                         + serviceConfig.getPincode();
 
-                addressText.setText(address);
-                city.setText(serviceConfig.getCity());
+//                addressText.setText(address);
+//                city.setText(serviceConfig.getCity());
 
 
                 indicatorLight.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_1));
-                status.setText("Service Available");
+//                status.setText("Service Available");
 
             }
 
@@ -210,11 +210,11 @@ public class ServiceIndicatorFragment extends Fragment {
                     PrefServiceConfig.saveServiceConfigLocal(null,getActivity());
 
                     // no service
-                    serviceName.setText("Failed to get service into please try again");
+//                    serviceName.setText("Failed to get service into please try again");
 //                    serviceURL.setText(PrefGeneral.getServiceURL(getActivity()));
 
                     indicatorLight.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_4));
-                    status.setText("Service not available");
+//                    status.setText("Service not available");
 
 
                     progressBar.setVisibility(View.GONE);
@@ -235,11 +235,10 @@ public class ServiceIndicatorFragment extends Fragment {
 
                 PrefServiceConfig.saveServiceConfigLocal(null,getActivity());
 
-                serviceName.setText("Failed to get service info please try again");
-//                serviceURL.setText(PrefGeneral.getServiceURL(getActivity()));
+//                serviceName.setText("Failed to get service info please try again");
 
                 indicatorLight.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_4));
-                status.setText("Service not available");
+//                status.setText("Service not available");
 
 
 

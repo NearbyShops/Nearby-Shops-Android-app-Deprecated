@@ -287,6 +287,8 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
 
 
 
+
+
     void makeRefreshNetworkCall()
     {
         swipeContainer.post(new Runnable() {
@@ -330,6 +332,10 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
             if(shop!=null)
             {
                 shopID = shop.getShopID();
+            }
+            else
+            {
+                shopID = 0;
             }
         }
 

@@ -19,11 +19,13 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+        <!--android:paddingBottom="1dp"-->
+        <!--android:paddingTop="1dp"-->
 
         <LinearLayout
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
             android:background="@color/cyan900"
-            android:paddingBottom="1dp"
-            android:paddingTop="1dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

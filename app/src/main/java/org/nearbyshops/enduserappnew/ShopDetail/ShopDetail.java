@@ -765,21 +765,24 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 
 
 
+//
+//
+//    @OnClick(R.id.share_buttons)
+//    void shareButtonClick() {
+//
+//        Intent intent = ShareCompat.IntentBuilder.from(this)
+//                .setType("image/jpg")
+//                .getIntent();
+//
+//        String url = PrefGeneral.getServiceURL(this) + "/api/Images" + String.valueOf(shop.getLogoImagePath());
+////        intent.putExtra(Intent.EXTRA_TEXT,url);
+//        intent.putExtra(Intent.EXTRA_TEXT, url);
+////        intent.putExtra(Intent.EXTRA_TITLE,shop.getBookName());
+//        startActivity(Intent.createChooser(intent, "Share Link"));
+//    }
 
 
-    @OnClick(R.id.share_buttons)
-    void shareButtonClick() {
 
-        Intent intent = ShareCompat.IntentBuilder.from(this)
-                .setType("image/jpg")
-                .getIntent();
-
-        String url = PrefGeneral.getServiceURL(this) + "/api/Images" + String.valueOf(shop.getLogoImagePath());
-//        intent.putExtra(Intent.EXTRA_TEXT,url);
-        intent.putExtra(Intent.EXTRA_TEXT, url);
-//        intent.putExtra(Intent.EXTRA_TITLE,shop.getBookName());
-        startActivity(Intent.createChooser(intent, "Share Link"));
-    }
 
 
     @BindView(R.id.read_full_button)
@@ -797,6 +800,11 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
         bookDescription.setMaxLines(Integer.MAX_VALUE);
         readFullDescription.setVisibility(View.GONE);
     }
+
+
+
+
+
 
 
     @OnClick(R.id.book_cover)

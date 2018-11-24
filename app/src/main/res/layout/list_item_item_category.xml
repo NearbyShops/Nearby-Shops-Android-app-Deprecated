@@ -2,7 +2,8 @@
 
 
 
-<android.support.v7.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+<android.support.v7.widget.CardView
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,18 +26,37 @@
         android:layout_height="wrap_content">
 
 
+
+
+        <!--<ImageView-->
+            <!--android:background="#44000000"-->
+            <!--android:id="@+id/categoryImage"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="130dp"-->
+            <!--app:srcCompat="@drawable/ic_nature_people_white_48px"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--android:layout_marginStart="0dp"/>-->
+
+        <!--app:layout_constraintDimensionRatio="H,1:1"-->
+
+
         <ImageView
             android:background="#44000000"
             android:id="@+id/categoryImage"
             android:scaleType="centerCrop"
             android:layout_width="0dp"
-            android:layout_height="150dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="H,1:1"
             app:srcCompat="@drawable/ic_nature_people_white_48px"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginLeft="0dp"
             android:layout_marginStart="0dp"/>
+
+
 
 
         <!--

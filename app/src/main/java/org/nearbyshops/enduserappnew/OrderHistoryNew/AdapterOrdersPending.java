@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -124,23 +125,74 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 
 
-                showLog("Order PickfromShop : " + String.valueOf(order.getPickFromShop()));
-
-                showLog("Order Status Home Delivery : "  + String.valueOf(order.getStatusHomeDelivery()));
-                showLog("Order Status Pick from Shop : " + String.valueOf(order.getStatusPickFromShop()));
+//                showLog("Order PickfromShop : " + String.valueOf(order.getPickFromShop()));
+//                showLog("Order Status Home Delivery : "  + String.valueOf(order.getStatusHomeDelivery()));
+//                showLog("Order Status Pick from Shop : " + String.valueOf(order.getStatusPickFromShop()));
 
 
                 if(order.getPickFromShop())
                 {
                     status = OrderStatusPickFromShop.getStatusString(order.getStatusPickFromShop());
 
-                    showLog("Status : " + OrderStatusPickFromShop.getStatusString(order.getStatusPickFromShop()));
+//                    showLog("Status : " + OrderStatusPickFromShop.getStatusString(order.getStatusPickFromShop()));
+
+                    int statusCode = order.getStatusPickFromShop();
+
+                    if (statusCode == OrderStatusPickFromShop.ORDER_PLACED ||
+                            statusCode == OrderStatusPickFromShop.ORDER_CONFIRMED ||
+                            statusCode == OrderStatusPickFromShop.ORDER_PACKED)
+                    {
+                        holder.closeButton.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        holder.closeButton.setVisibility(View.GONE);
+                    }
+
+
+                    if(statusCode==OrderStatusPickFromShop.CANCELLED_BY_SHOP ||
+                            statusCode==OrderStatusPickFromShop.CANCELLED_BY_USER)
+                    {
+                        holder.cancelledImage.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        holder.cancelledImage.setVisibility(View.GONE);
+                    }
+
+
                 }
                 else
                 {
                     status = OrderStatusHomeDelivery.getStatusString(order.getStatusHomeDelivery());
 
-                    showLog("Status : " + OrderStatusHomeDelivery.getStatusString(order.getStatusHomeDelivery()));
+//                    showLog("Status : " + OrderStatusHomeDelivery.getStatusString(order.getStatusHomeDelivery()));
+
+                    int statusCode = order.getStatusHomeDelivery();
+
+                    if (statusCode == OrderStatusHomeDelivery.ORDER_PLACED ||
+                            statusCode == OrderStatusHomeDelivery.ORDER_CONFIRMED ||
+                            statusCode == OrderStatusHomeDelivery.ORDER_PACKED)
+                    {
+                        holder.closeButton.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        holder.closeButton.setVisibility(View.GONE);
+                    }
+
+
+
+                    if(statusCode==OrderStatusHomeDelivery.CANCELLED_BY_SHOP ||
+                            statusCode==OrderStatusHomeDelivery.CANCELLED_BY_USER)
+                    {
+                        holder.cancelledImage.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        holder.cancelledImage.setVisibility(View.GONE);
+                    }
+
                 }
 
 
@@ -231,6 +283,12 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 //        @Bind(R.id.confirmOrderButton)
 //        TextView confirmOrderButton;
+
+        @BindView(R.id.close_button)
+        ImageView closeButton;
+
+        @BindView(R.id.cancelled_image)
+        ImageView cancelledImage;
 
 
         public ViewHolder(View itemView) {

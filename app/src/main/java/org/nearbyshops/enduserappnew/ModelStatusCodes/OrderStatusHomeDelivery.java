@@ -49,6 +49,11 @@ public class OrderStatusHomeDelivery {
     public static final int CANCELLED_BY_USER = 20;
 
 
+    // cancellation can be done only upto order is packed - status is order_Packed
+
+
+
+
 
     public static String getStatusString(int orderStatus)
     {

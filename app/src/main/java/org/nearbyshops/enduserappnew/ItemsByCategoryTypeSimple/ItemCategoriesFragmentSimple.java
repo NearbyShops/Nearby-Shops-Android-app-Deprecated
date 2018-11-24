@@ -235,7 +235,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
 
 
 
-    @OnClick({R.id.icon_filter,R.id.text_filter})
+//    @OnClick({R.id.icon_filter,R.id.text_filter})
     void filterClick()
     {
         Intent intent = new Intent(getActivity(), FilterItemsActivity.class);
@@ -526,6 +526,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
                 ItemCategory.CATEGORY_ORDER,null,null,false);
 
 
+
+
         endPointCall.enqueue(new Callback<ItemCategoryEndPoint>() {
             @Override
             public void onResponse(Call<ItemCategoryEndPoint> call, Response<ItemCategoryEndPoint> response) {
@@ -603,18 +605,14 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
 
 
 
-    void refreshAdapter()
-    {
+    void refreshAdapter() {
         dataset.clear();
 
         HeaderItemsList headerItemCategory = new HeaderItemsList();
 
-        if(currentCategory.getParentCategoryID()==-1)
-        {
+        if (currentCategory.getParentCategoryID() == -1) {
             headerItemCategory.setHeading("Item Categories");
-        }
-        else
-        {
+        } else {
             headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
         }
 
@@ -622,16 +620,20 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
         dataset.add(headerItemCategory);
 
 
-        if(searchQuery==null)
-        {
+        if (searchQuery == null) {
 
             dataset.addAll(datasetCategory);
         }
 
 
-        HeaderItemsList headerItem = new HeaderItemsList();
-        headerItem.setHeading(currentCategory.getCategoryName() + " Items");
-        dataset.add(headerItem);
+//        if (datasetItems.size() > 0) {
+
+            HeaderItemsList headerItem = new HeaderItemsList();
+            headerItem.setHeading(currentCategory.getCategoryName() + " Items");
+            dataset.add(headerItem);
+
+//        }
+
 
         dataset.addAll(datasetItems);
 

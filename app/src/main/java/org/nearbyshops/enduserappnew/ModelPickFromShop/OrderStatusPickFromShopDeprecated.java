@@ -3,7 +3,7 @@ package org.nearbyshops.enduserappnew.ModelPickFromShop;
 /**
  * Created by sumeet on 13/6/16.
  */
-public class OrderStatusPickFromShop {
+public class OrderStatusPickFromShopDeprecated {
 
 
     public static final int ORDER_PLACED = 1;

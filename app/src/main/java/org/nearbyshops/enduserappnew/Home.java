@@ -78,9 +78,9 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
 //        bottomBar.setDefaultTab(R.id.tab_search);
-
-
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
+
 
 
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {

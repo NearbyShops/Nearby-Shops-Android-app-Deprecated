@@ -17,6 +17,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hsalf.smilerating.SmileRating;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -76,6 +77,11 @@ public class RateReviewDialog extends DialogFragment {
     @BindView(R.id.item_rating_text)
     TextView itemRatingText;
 
+
+    @BindView(R.id.smile_rating)
+    SmileRating smileRating;
+
+
     int book_id;
 
 
@@ -125,6 +131,8 @@ public class RateReviewDialog extends DialogFragment {
             member_name.setText(" by : " + review_for_edit.getRt_end_user_profile().getName());
 
             ratingBar.setRating(review_for_edit.getRating());
+//            smileRating.setSelectedSmile(review_for_edit.getRating());
+            smileRating.setSelectedSmile(review_for_edit.getRating()-1);
             itemRatingText.setText(String.valueOf((float)review_for_edit.getRating()));
 
             String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
@@ -138,19 +146,36 @@ public class RateReviewDialog extends DialogFragment {
             Picasso.with(getActivity()).load(imagePath)
                     .placeholder(placeholder)
                     .into(member_profile_image);
-
-
         }
 
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+
+//
+//        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+//            @Override
+//            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+////                itemRatingText.setText(String.format("%.0f",rating));
+//                itemRatingText.setText(String.valueOf(rating));
+//            }
+//        });
+
+//
+//        smileRating.setOnRatingSelectedListener(new SmileRating.OnRatingSelectedListener() {
+//            @Override
+//            public void onRatingSelected(int level, boolean reselected) {
+//
+//                itemRatingText.setText(String.valueOf(rating));
+//            }
+//        });
+
+
+        smileRating.setOnSmileySelectionListener(new SmileRating.OnSmileySelectionListener() {
             @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-//                itemRatingText.setText(String.format("%.0f",rating));
-                itemRatingText.setText(String.valueOf(rating));
+            public void onSmileySelected(int smiley, boolean reselected) {
+
+                itemRatingText.setText(String.valueOf(smiley));
             }
         });
-
-
 
 
         if(!isModeEdit)
@@ -316,7 +341,7 @@ public class RateReviewDialog extends DialogFragment {
     {
         ShopReview bookReview = new ShopReview();
 //        bookReview.setReviewDate(new java.sql.Date(System.currentTimeMillis()));
-        bookReview.setRating((int) ratingBar.getRating());
+        bookReview.setRating((int) smileRating.getRating());
         bookReview.setReviewTitle(review_title.getText().toString());
         bookReview.setReviewText(review_text.getText().toString());
         bookReview.setShopID(book_id);
@@ -360,7 +385,7 @@ public class RateReviewDialog extends DialogFragment {
         if(review_for_edit!=null)
         {
 
-            review_for_edit.setRating((int)ratingBar.getRating());
+            review_for_edit.setRating(smileRating.getRating());
             review_for_edit.setReviewTitle(review_title.getText().toString());
             review_for_edit.setReviewText(review_text.getText().toString());
 
