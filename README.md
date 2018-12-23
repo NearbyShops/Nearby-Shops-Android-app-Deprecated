@@ -2,7 +2,11 @@
 Nearby Shops End-User android app
 ====================================
 
+
 End-User app for Nearby Shops e-commerce package.  
+
+<img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="208"> 
+
 
 
 Libraries Used
