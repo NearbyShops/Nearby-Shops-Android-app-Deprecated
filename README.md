@@ -1,13 +1,23 @@
-
-Nearby Shops End-User android app
-====================================
-
-
 <img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="170"> 
 
 
 
+
+Nearby Shops End-User android app
+====================================
+
 End-User app for Nearby Shops e-commerce package.  
+
+
+
+
+Screenshots
+-----------
+
+
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041722.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041731.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041758.png" width="208"> 
+
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041819.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041824.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041829.png" width="208">
 
 
 
@@ -32,23 +42,16 @@ Download
 
 Get it from Google play store
 
-<a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew&amp;hl=en&amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
+<a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
 
 Demo
 -----
 
-The nearby shops currently have shops available in only few cities. If you are living in a city where shops are not available. You need to fake your location and set it to some location where shops are available. 
+Download the nearby shops android app from the above link and then set a fake location. 
 
-Use any location faker app which you can download from playstore and set your location to "Balanagar, Hyderabad". You may see some shops and items visible in the nearby shops app. 
+The nearby shops currently have shops available in only few cities. If you are living in a city where shops are not available. You need to fake your location and set it to some location where the shops are available. 
 
-
-Screenshots
------------
-
-
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041722.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041731.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041758.png" width="208"> 
-
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041819.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041824.png" width="208"> <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/screenshots/Screenshot_20180814-041829.png" width="208">
+Use any location faker app which you can download from playstore and set your location to "Hyderabad, India". You will see some shops and items visible in the nearby shops app. 
 
 
 
