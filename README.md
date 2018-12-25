@@ -54,6 +54,10 @@ The nearby shops currently have shops available in only few cities. If you are l
 Use any location faker app which you can download from playstore and set your location to "Hyderabad, India". You will see some shops and items visible in the nearby shops app. 
 
 
+Server Side Component
+-----------------------
+
+Source code for Server Side JSON Based REST API is available in this repository https://github.com/SumeetMoray/Nearby-Shops-API
 
 
 License
