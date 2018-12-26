@@ -1,22 +1,43 @@
-<img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="170"> 
-
-
-
-
 Nearby Shops End-User android app
 ====================================
 
-End-User app for Nearby Shops e-commerce package.  
+This is an End-User app for Nearby Shops platform.  
 
+Nearby Shops is a multi-vendor mobile based e-commerce platform. Multi-vendor means it can have multiple sellers. 
+Its designed primarily for local shopping needs like selling grocery, fruits and vegetables. 
 
+It has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. 
 
+Licensed under a permissive MIT license allows you to use this software even for commertial use. 
 
-Screenshots
------------
 
 <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181246-512x1024.png" width="208"> <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181259-512x1024.png" width="208"> <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181405-512x1024.png" width="208"> 
 
 <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181453-512x1024.png" width="208"> <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181504-512x1024.png" width="208"> <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181513-512x1024.png" width="208">
+
+
+
+Download
+--------
+
+Get it from Google play store
+
+<a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
+
+
+Demo
+-----
+
+Download the nearby shops android app from the above link and then set a fake location. 
+
+The nearby shops currently have shops available in only few cities. If you are living in a city where shops are not available. You need to fake your location and set it to some location where the shops are available. 
+
+Use any location faker app which you can download from playstore and set your location to "Hyderabad, India". You will see some shops and items visible in the nearby shops app. 
+
+Login credentials for end-user app are :  9490523891 (Username) | password (password)
+
+Login to the end-user app with the above login credentials and enjoy the demo.
+
 
 
 Libraries Used
@@ -28,32 +49,26 @@ Retrofit, Ok-Http, Event-Bus, Picasso, Lost (for finding location), butterknife,
 Third Party Integrations
 -------------------------
 
-Open-Signal (for push notifications), Fabrio.io (crash reporting), 
+Nearby Shops has latest integrations for SMS-OTP verification(MSG91), E-mail (mailgun), Open-Signal (for push notifications), Fabrio.io (crash reporting)
+
+
+Need Help
+-----------
+
+If you want any help regarding anything. Feel free to contact us. Send a message through our website or you can simply post an issue. Your issues will not be ignored and you will surely receive help. 
 
 
 
 
 
 
-Download
---------
+Source code for Shop-Owner, Admin app and Server Side
+-------------------------------------------------------
+If you want to see source code for Shop-Owner app, Admin-app and server side the links are provided below
 
-Get it from Google play store
+Shop-Owner app : https://github.com/SumeetMoray/Nearby-Shops-Shop-Owner-app
 
-<a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
-
-Demo
------
-
-Download the nearby shops android app from the above link and then set a fake location. 
-
-The nearby shops currently have shops available in only few cities. If you are living in a city where shops are not available. You need to fake your location and set it to some location where the shops are available. 
-
-Use any location faker app which you can download from playstore and set your location to "Hyderabad, India". You will see some shops and items visible in the nearby shops app. 
-
-
-Server Side Component
------------------------
+Admin app : https://github.com/SumeetMoray/Nearby-Shops-Admin-App
 
 Source code for Server Side JSON Based REST API is available in this repository https://github.com/SumeetMoray/Nearby-Shops-API
 
