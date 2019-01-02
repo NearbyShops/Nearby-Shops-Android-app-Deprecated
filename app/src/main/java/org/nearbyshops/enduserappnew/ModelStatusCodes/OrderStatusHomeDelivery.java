@@ -45,8 +45,12 @@ public class OrderStatusHomeDelivery {
 
     
 
-    public static final int CANCELLED_BY_SHOP = 19;
-    public static final int CANCELLED_BY_USER = 20;
+//    public static final int CANCELLED_BY_SHOP = 19;
+//    public static final int CANCELLED_BY_USER = 20;
+
+
+    public static final int CANCELLED_WITH_DELIVERY_GUY = 19;
+    public static final int CANCELLED = 20;
 
 
     // cancellation can be done only upto order is packed - status is order_Packed
@@ -81,11 +85,11 @@ public class OrderStatusHomeDelivery {
         }
         else if(orderStatus==RETURN_REQUESTED)
         {
-            statusString = "Order Packed";
+            statusString = "Order Returned";
         }
         else if(orderStatus==RETURNED_ORDERS)
         {
-            statusString = "Order Packed";
+            statusString = "Order Returned";
         }
         else if(orderStatus==DELIVERED)
         {
@@ -95,13 +99,13 @@ public class OrderStatusHomeDelivery {
         {
             statusString = "Delivered";
         }
-        else if(orderStatus==CANCELLED_BY_SHOP)
+        else if(orderStatus==CANCELLED_WITH_DELIVERY_GUY)
         {
-            statusString = "Cancelled by Shop";
+            statusString = "Order Cancelled";
         }
-        else if(orderStatus==CANCELLED_BY_USER)
+        else if(orderStatus==CANCELLED)
         {
-            statusString = "Cancelled by User";
+            statusString = "Order Cancelled";
         }
 
         return statusString;

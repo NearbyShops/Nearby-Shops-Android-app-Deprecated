@@ -113,7 +113,12 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 //holder.currentStatus.setText();
 
 
-                String status = UtilityOrderStatus.getStatus(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
+
+
+//                String status = UtilityOrderStatus.getStatus(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
+
+
+                String status = "";
                 holder.currentStatus.setText("Current Status : " + status);
             }
         }

@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,10 +90,12 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
         if(savedInstanceState==null)
         {
-            makeRefreshNetworkCall();
+
         }
 
 
+
+        makeRefreshNetworkCall();
 
         setupRecyclerView();
         setupSwipeContainer();
@@ -259,6 +262,11 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         offset = 0;
         makeNetworkCall(true);
         makeNetworkCallShop();
+
+
+        System.out.println("Dataset Size onRefresh() : " + String.valueOf(dataset.size()));
+        showLog("Dataset Size onRefresh() : " + String.valueOf(dataset.size()));
+
     }
 
 
@@ -288,7 +296,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     void makeNetworkCall(final boolean clearDataset)
     {
 
-        Shop currentShop = PrefShopHome.getShop(getContext());
+//        Shop currentShop = PrefShopHome.getShop(getContext());
 
         Call<OrderItemEndPoint> call = orderItemService.getOrderItem(
                 PrefLogin.getAuthorizationHeaders(getActivity()),
@@ -304,21 +312,40 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
                     return;
                 }
 
-                if(response.body()!= null)
+
+                if(response.code()==200)
                 {
-                    item_count = response.body().getItemCount();
 
-                    if(clearDataset)
+                    if(response.body()!= null)
                     {
-                        dataset.clear();
-                        dataset.add(0,order);
-                    }
+                        item_count = response.body().getItemCount();
 
-                    dataset.addAll(response.body().getResults());
-                    adapter.notifyDataSetChanged();
+                        if(clearDataset)
+                        {
+                            dataset.clear();
+                            dataset.add(0,order);
+                        }
+
+                        dataset.addAll(response.body().getResults());
+                        adapter.notifyDataSetChanged();
 //                    notifyTitleChanged();
 
+
+                        System.out.println("Dataset Size : " + String.valueOf(dataset.size()));
+                        showLog("Dataset Size : " + String.valueOf(dataset.size()));
+
+                    }
+
                 }
+                else
+                {
+                    showToastMessage("Failed : Code " + String.valueOf(response.code()));
+                }
+
+
+
+                System.out.println("Dataset Size onResponse() : " + String.valueOf(dataset.size()));
+                showLog("Dataset Size onResponse() : " + String.valueOf(dataset.size()));
 
                 swipeContainer.setRefreshing(false);
 
@@ -338,6 +365,9 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         });
 
     }
+
+
+
 
 
     void makeNetworkCallShop()
@@ -391,5 +421,15 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         Intent intent = new Intent(getActivity(), ItemDetail.class);
         intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
         getActivity().startActivity(intent);
+    }
+
+
+
+
+
+
+    void showLog(String message)
+    {
+        Log.d("order_detail",message);
     }
 }

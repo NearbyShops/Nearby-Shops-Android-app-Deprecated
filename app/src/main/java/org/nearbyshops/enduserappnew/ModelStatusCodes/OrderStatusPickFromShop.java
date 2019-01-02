@@ -25,16 +25,21 @@ package org.nearbyshops.enduserappnew.ModelStatusCodes;
 
 public class OrderStatusPickFromShop {
 
+
     public static final int ORDER_PLACED = 1; // Confirm (Staff)
     public static final int ORDER_CONFIRMED = 2; // Pack (Staff)
     public static final int ORDER_PACKED = 3; // payment-received(staff)
+    public static final int ORDER_READY_FOR_PICKUP = 4; // payment-received(staff)
 
-    public static final int DELIVERED = 4;// Payment Received-Complete
+    public static final int DELIVERED = 5;// Payment Received-Complete
 
 
 
-    public static final int CANCELLED_BY_SHOP = 19;
-    public static final int CANCELLED_BY_USER = 20;
+//    public static final int CANCELLED_BY_SHOP = 19;
+//    public static final int CANCELLED_BY_USER = 20;
+
+    public static final int CANCELLED = 20;
+
 
 
 
@@ -42,34 +47,34 @@ public class OrderStatusPickFromShop {
     {
         String statusString = "";
 
-        if(orderStatus==ORDER_PLACED)
+        if(orderStatus == ORDER_PLACED)
         {
-            statusString = "Order Placed - Pick from Shop";
+            statusString = "Order Placed";
         }
-        else if(orderStatus==ORDER_CONFIRMED)
+        else if(orderStatus == ORDER_CONFIRMED)
         {
-            statusString = "Order Confirmed - Pick from Shop";
+            statusString = "Order Confirmed";
         }
-        else if(orderStatus ==ORDER_PACKED)
+        else if(orderStatus == ORDER_PACKED)
         {
-            statusString = "Order Packed - Pick from Shop";
+            statusString = "Order Packed";
         }
-        else if(orderStatus==DELIVERED)
+        else if(orderStatus == ORDER_READY_FOR_PICKUP)
         {
-            statusString = "Delivered - Pick from Shop";
+            statusString = "Order Ready for Pickup";
         }
-        else if(orderStatus==CANCELLED_BY_SHOP)
+        else if(orderStatus == DELIVERED)
         {
-            statusString  = "Cancelled By Shop - Pick from Shop";
+            statusString = "Order Delivered";
         }
-        else if(orderStatus==CANCELLED_BY_USER)
+        else if(orderStatus == CANCELLED)
         {
-            statusString = "Cancelled By User - Pick from Shop";
+            statusString = "Order Cancelled";
         }
+
 
 
         return statusString;
     }
-
 
 }

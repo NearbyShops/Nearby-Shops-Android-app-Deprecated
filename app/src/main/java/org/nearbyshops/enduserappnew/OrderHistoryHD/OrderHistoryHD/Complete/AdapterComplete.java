@@ -118,8 +118,9 @@ class AdapterComplete extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 holder.orderTotal.setText("| Total : " + (orderStats.getItemTotal() + order.getDeliveryCharges()));
                 //holder.currentStatus.setText();
 
-                String status = UtilityOrderStatus.getStatus(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
-                holder.currentStatus.setText("Current Status : " + status);
+//                String status = UtilityOrderStatus.getStatus(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
+
+                holder.currentStatus.setText("Current Status : " );
 
             }
         }

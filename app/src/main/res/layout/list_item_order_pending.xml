@@ -272,20 +272,34 @@
 
 
 
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:padding="2dp"
+        android:textColor="@color/white"
+        android:background="@color/phonographyBlue"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dateTimePlaced"
+        android:id="@+id/is_pick_from_shop"
+        android:text="Pick from Shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 
 
 
     <TextView
+        android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="@id/dateTimePlaced"
-        app:layout_constraintTop_toBottomOf="@id/dateTimePlaced"
-        android:layout_below="@id/dateTimePlaced"
+        app:layout_constraintTop_toBottomOf="@id/is_pick_from_shop"
         android:id="@+id/deliveryAddressName"
         android:paddingRight="5dp"
         android:paddingLeft="5dp"
         android:textSize="20dp"
-        android:text="Sumeet Kumar"
+        android:text="Ramesh Kumar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -299,7 +313,7 @@
         android:paddingRight="5dp"
         android:paddingLeft="5dp"
         android:textSize="15dp"
-        android:text="Phone: 9490523891"
+        android:text="Phone: 1234567891"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -313,7 +327,7 @@
         android:id="@+id/deliveryAddress"
         android:paddingLeft="5dp"
         android:textSize="15dp"
-        android:text="K-53, BEL Colony, Koramangla"
+        android:text="K-53, ABCD Colony, PQRS Area, XYZ City"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -340,7 +354,7 @@
         android:id="@+id/numberOfItems"
         android:padding="5dp"
         android:textSize="20sp"
-        android:text="23 Items"
+        android:text="0 Items"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -355,7 +369,7 @@
         android:id="@+id/orderTotal"
         android:padding="5dp"
         android:textSize="20sp"
-        android:text="| Total : Rs 502.00"
+        android:text="| Total : 00.00"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -392,6 +406,7 @@
 
 
     <ImageView
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
