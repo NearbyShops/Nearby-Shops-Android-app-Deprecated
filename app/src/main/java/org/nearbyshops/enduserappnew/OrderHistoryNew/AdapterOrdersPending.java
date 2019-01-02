@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.OrderHistoryNew;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -90,6 +91,8 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 //        return -1;
     }
 
+
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holderVH, int position) {
 
@@ -102,7 +105,7 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
                 Order order = dataset.get(position);
                 DeliveryAddress deliveryAddress = order.getDeliveryAddress();
-                OrderStats orderStats = order.getOrderStats();
+//                OrderStats orderStats = order.getOrderStats();
 
                 holder.orderID.setText("Order ID : " + order.getOrderID());
                 holder.dateTimePlaced.setText("" + order.getDateTimePlaced().toLocaleString());
@@ -115,8 +118,11 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
                 holder.deliveryAddressPhone.setText("Phone : " + deliveryAddress.getPhoneNumber());
 
-                holder.numberOfItems.setText(orderStats.getItemCount() + " Items");
-                holder.orderTotal.setText("| Total : " +String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + (orderStats.getItemTotal() + order.getDeliveryCharges()));
+//                holder.numberOfItems.setText(orderStats.getItemCount() + " Items");
+
+                holder.numberOfItems.setText(order.getItemCount() + " Items");
+//                holder.orderTotal.setText("| Total : " +String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + (orderStats.getItemTotal() + order.getDeliveryCharges()));
+                holder.orderTotal.setText("| Total : " + PrefGeneral.getCurrencySymbol(context) + String.format( " %.2f" ,order.getNetPayable()));
                 //holder.currentStatus.setText();
 
 
@@ -130,8 +136,14 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 //                showLog("Order Status Pick from Shop : " + String.valueOf(order.getStatusPickFromShop()));
 
 
-                if(order.getPickFromShop())
+
+                if(order.isPickFromShop())
                 {
+
+                    holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context,R.color.orangeDark));
+                    holder.isPickFromShop.setText("Pick from Shop");
+
+
                     status = OrderStatusPickFromShop.getStatusString(order.getStatusPickFromShop());
 
 //                    showLog("Status : " + OrderStatusPickFromShop.getStatusString(order.getStatusPickFromShop()));
@@ -150,8 +162,7 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     }
 
 
-                    if(statusCode==OrderStatusPickFromShop.CANCELLED_BY_SHOP ||
-                            statusCode==OrderStatusPickFromShop.CANCELLED_BY_USER)
+                    if(statusCode==OrderStatusPickFromShop.CANCELLED)
                     {
                         holder.cancelledImage.setVisibility(View.VISIBLE);
                     }
@@ -164,6 +175,9 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 }
                 else
                 {
+                    holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context,R.color.phonographyBlue));
+                    holder.isPickFromShop.setText("Home Delivery");
+
                     status = OrderStatusHomeDelivery.getStatusString(order.getStatusHomeDelivery());
 
 //                    showLog("Status : " + OrderStatusHomeDelivery.getStatusString(order.getStatusHomeDelivery()));
@@ -183,8 +197,8 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 
 
-                    if(statusCode==OrderStatusHomeDelivery.CANCELLED_BY_SHOP ||
-                            statusCode==OrderStatusHomeDelivery.CANCELLED_BY_USER)
+                    if(statusCode==OrderStatusHomeDelivery.CANCELLED_WITH_DELIVERY_GUY ||
+                            statusCode==OrderStatusHomeDelivery.CANCELLED)
                     {
                         holder.cancelledImage.setVisibility(View.VISIBLE);
                     }
@@ -261,6 +275,9 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         @BindView(R.id.dateTimePlaced)
         TextView dateTimePlaced;
+
+        @BindView(R.id.is_pick_from_shop)
+        TextView isPickFromShop;
 
         @BindView(R.id.deliveryAddressName)
         TextView deliveryAddressName;

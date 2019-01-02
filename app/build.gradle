@@ -9,10 +9,10 @@ buildscript {
 }
 
 apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
-
-repositories {
-    maven { url 'https://maven.google.com' }
-}
+//
+//repositories {
+//    maven { url 'https://maven.google.com' }
+//}
 
 
 //plugins {
@@ -102,23 +102,32 @@ android {
 
 
     repositories {
+
         google()
         jcenter()
+
+        maven {
+            url "https://maven.google.com"
+        }
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/snapshots'
+        }
+        maven {
+            url "https://repo.eclipse.org/content/repositories/paho-snapshots/"
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven {
+            url "https://clojars.org/repo/"
+        }
+
     }
 
-    repositories {
-        maven { url 'https://jitpack.io' }
-    }
 
-
-    repositories {
-        maven { url "https://clojars.org/repo/" }
-
-    }
-
-//    repositories {
-//        maven { url 'https://maven.google.com' }
-//    }
 
 
 }

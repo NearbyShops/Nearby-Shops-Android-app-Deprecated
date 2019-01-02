@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -128,6 +129,16 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         @BindView(R.id.numberOfItems) TextView numberOfItems;
         @BindView(R.id.orderTotal) TextView orderTotal;
         @BindView(R.id.currentStatus) TextView currentStatus;
+        @BindView(R.id.is_pick_from_shop) TextView isPickFromShop;
+
+        @BindView(R.id.delivery_type) TextView deliveryTypeDescription;
+
+        @BindView(R.id.item_total_value) TextView itemTotal;
+        @BindView(R.id.delivery_charge_value) TextView deliveryCharge;
+        @BindView(R.id.app_service_charge_value) TextView appServiceCharge;
+        @BindView(R.id.net_payable_value) TextView netPayable;
+
+
 
 
         // order Summary Views
@@ -149,8 +160,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         @BindView(R.id.rating) TextView rating;
         @BindView(R.id.rating_count) TextView rating_count;
         @BindView(R.id.description) TextView description;
-        @BindView(R.id.shop_info_card)
-        ConstraintLayout list_item;
+        @BindView(R.id.shop_info_card) ConstraintLayout list_item;
 
 
 
@@ -203,10 +213,16 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
 
+
+
+
+
+
+
     private void bindOrder(ViewHolderOrder holder, int position)
     {
-        if(dataset!=null)
-        {
+//        if(dataset!=null)
+//        {
 //            if(dataset.size() <= position)
 //            {
 //                return;
@@ -215,7 +231,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             Order order = (Order)dataset.get(position);
             DeliveryAddress deliveryAddress = order.getDeliveryAddress();
-            OrderStats orderStats = order.getOrderStats();
+//            OrderStats orderStats = order.getOrderStats();
             Shop shop = order.getShop();
 
             holder.orderID.setText("Order ID : " + order.getOrderID());
@@ -229,26 +245,40 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             holder.deliveryAddressPhone.setText("Phone : " + deliveryAddress.getPhoneNumber());
 
-            holder.numberOfItems.setText(orderStats.getItemCount() + " Items");
-            holder.orderTotal.setText("| Total : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.valueOf(orderStats.getItemTotal() + order.getDeliveryCharges()));
-            //holder.currentStatus.setText();
 
-
-//            String status = UtilityOrderStatus.getStatus(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
+//            holder.numberOfItems.setText(orderStats.getItemCount() + " Items");
+            holder.numberOfItems.setText(order.getItemCount() + " Items");
+//            holder.orderTotal.setText("| Total : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.valueOf(orderStats.getItemTotal() + order.getDeliveryCharges()));
+            holder.orderTotal.setText("| Total : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.format("%.2f",order.getNetPayable()));
 
 
             String status = "";
 
 
 
-            if(order.getPickFromShop())
+            if(order.isPickFromShop())
             {
                 status = OrderStatusPickFromShop.getStatusString(order.getStatusPickFromShop());
+
+
+                holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context,R.color.orangeDark));
+                holder.isPickFromShop.setText("Pick from Shop");
+
+                holder.deliveryTypeDescription.setBackgroundColor(ContextCompat.getColor(context,R.color.orangeDark));
+                holder.deliveryTypeDescription.setText(context.getString(R.string.delivery_type_description_pick_from_shop));
 
             }
             else
             {
                 status = OrderStatusHomeDelivery.getStatusString(order.getStatusHomeDelivery());
+
+
+                holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context,R.color.phonographyBlue));
+                holder.isPickFromShop.setText("Home Delivery");
+
+
+                holder.deliveryTypeDescription.setBackgroundColor(ContextCompat.getColor(context,R.color.phonographyBlue));
+                holder.deliveryTypeDescription.setText(context.getString(R.string.delivery_type_description_home_delivery));
 
             }
 
@@ -260,6 +290,15 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 
+
+            // bind billing details
+
+            holder.itemTotal.setText(PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f",order.getItemTotal()));
+            holder.deliveryCharge.setText(PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f",order.getDeliveryCharges()));
+            holder.appServiceCharge.setText(PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f", order.getAppServiceCharge()));
+            holder.netPayable.setText(PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f",order.getNetPayable()));
+
+
             // bind shop Summary Views
 
 //            holder.itemTotal.setText("Item Total : " + String.valueOf(orderStats.getItemTotal()));
@@ -267,13 +306,16 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 //            holder.orderTotalSummary.setText("Total : " + String.valueOf(orderStats.getItemTotal() + order.getDeliveryCharges()));
 //
 
+
+
+
             if(shop!=null)
             {
                 holder.shopName.setText(shop.getShopName());
 
                 if(shop.getShopAddress()!=null)
                 {
-                    holder.shopAddress.setText(shop.getShopAddress() + "\n" + String.valueOf(shop.getPincode()));
+                    holder.shopAddress.setText(shop.getShopAddress() + ", " +  shop.getCity() +" - " + String.valueOf(shop.getPincode()));
                 }
 
 //                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
@@ -314,7 +356,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 }
 
             }
-        }
+//        }
     }
 
 

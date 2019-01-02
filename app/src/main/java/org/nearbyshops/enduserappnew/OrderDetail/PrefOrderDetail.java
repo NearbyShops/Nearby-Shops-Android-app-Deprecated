@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.R;
@@ -31,17 +32,25 @@ public class PrefOrderDetail {
 
         SharedPreferences.Editor prefsEditor = sharedPref.edit();
 
-        if(order == null)
-        {
-            prefsEditor.putString(TAG_ORDER_DETAIL, "null");
 
-        }
-        else
-        {
-            Gson gson = new Gson();
-            String json = gson.toJson(order);
-            prefsEditor.putString(TAG_ORDER_DETAIL, json);
-        }
+//        if(order == null)
+//        {
+//            prefsEditor.putString(TAG_ORDER_DETAIL, "null");
+//
+//        }
+//        else
+//        {
+//            Gson gson = new Gson();
+//            String json = gson.toJson(order);
+//            prefsEditor.putString(TAG_ORDER_DETAIL, json);
+//        }
+
+
+        Gson gson = getGson();
+        String json = gson.toJson(order);
+        prefsEditor.putString(TAG_ORDER_DETAIL, json);
+
+        System.out.println(json);
 
         prefsEditor.apply();
     }
@@ -51,18 +60,37 @@ public class PrefOrderDetail {
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 
-        Gson gson = new Gson();
-        String json = sharedPref.getString(TAG_ORDER_DETAIL, "null");
+        Gson gson = getGson();
 
-        if(json.equals("null"))
-        {
+//        String json = sharedPref.getString(TAG_ORDER_DETAIL, "null");
 
-            return null;
+//        if(json.equals("null"))
+//        {
+//
+//            return null;
+//
+//        }else
+//        {
+//            return gson.fromJson(json, Order.class);
+//        }
 
-        }else
-        {
-            return gson.fromJson(json, Order.class);
-        }
 
+        String json = sharedPref.getString(TAG_ORDER_DETAIL, null);
+
+        System.out.println(json);
+
+        return gson.fromJson(json, Order.class);
+    }
+
+
+
+
+    private static Gson getGson() {
+
+        final GsonBuilder gsonBuilder = new GsonBuilder();
+
+        return gsonBuilder
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                .create();
     }
 }
