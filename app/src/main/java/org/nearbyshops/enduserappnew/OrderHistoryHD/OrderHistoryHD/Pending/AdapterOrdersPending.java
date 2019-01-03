@@ -83,19 +83,22 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 //        return -1;
     }
 
+
+
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holderVH, int position) {
 
 
         if(holderVH instanceof ViewHolder)
         {
-            if(dataset!=null)
-            {
+//            if(dataset!=null)
+//            {
                 ViewHolder holder = (ViewHolder) holderVH;
 
                 Order order = dataset.get(position);
                 DeliveryAddress deliveryAddress = order.getDeliveryAddress();
-                OrderStats orderStats = order.getOrderStats();
+//                OrderStats orderStats = order.getOrderStats();
 
                 holder.orderID.setText("Order ID : " + order.getOrderID());
                 holder.dateTimePlaced.setText("" + order.getDateTimePlaced().toLocaleString());
@@ -108,19 +111,23 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
                 holder.deliveryAddressPhone.setText("Phone : " + deliveryAddress.getPhoneNumber());
 
-                holder.numberOfItems.setText(orderStats.getItemCount() + " Items");
-                holder.orderTotal.setText("| Total : " + (orderStats.getItemTotal() + order.getDeliveryCharges()));
+//                holder.numberOfItems.setText(orderStats.getItemCount() + " Items");
+//                holder.orderTotal.setText("| Total : " + (orderStats.getItemTotal() + order.getDeliveryCharges()));
                 //holder.currentStatus.setText();
+
+
+                holder.numberOfItems.setText(order.getItemCount() + " Items");
+                holder.orderTotal.setText("| Total : " + String.format("%.2f",order.getNetPayable()));
 
 
 
 
 //                String status = UtilityOrderStatus.getStatus(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
-
-
                 String status = "";
                 holder.currentStatus.setText("Current Status : " + status);
-            }
+
+
+//            }
         }
         else if(holderVH instanceof LoadingViewHolder)
         {

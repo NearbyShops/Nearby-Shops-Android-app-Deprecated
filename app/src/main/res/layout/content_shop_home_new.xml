@@ -159,7 +159,7 @@
             android:background="@color/backgroundTinted"
             android:layout_width="0dp"
             android:layout_height="150dp"
-            android:contentDescription="Items In Shop By Category" />
+            android:contentDescription="Items In Shop" />
 
 
         <TextView
@@ -169,7 +169,7 @@
             android:padding="10dp"
             android:textSize="20sp"
             android:textColor="@color/white"
-            android:text="Items In Shop By Category"
+            android:text="Items In Shop"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -259,7 +259,7 @@
 
 
         <TextView
-            android:text="Orders\nHome Delivery"
+            android:text="Orders"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:padding="10dp"
