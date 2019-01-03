@@ -54,7 +54,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersPending.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener ,NotifySort,NotifySearch ,RefreshFragment{
+public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersPending.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, RefreshFragment {
 
 
 //    @Inject

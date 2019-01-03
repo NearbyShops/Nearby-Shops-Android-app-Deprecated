@@ -462,7 +462,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 double total = shopItem.getItemPrice() * cartItem.getItemQuantity();
 
-                holder.itemTotal.setText("Total : " + String.format( "%.2f", total));
+                holder.itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
                 holder.addToCartText.setText("Update Cart");
 
             }else
@@ -475,7 +475,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
             }
 
 
-            holder.available.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()));
+
 
             if(shopItem.getAvailableItemQuantity()==0)
             {
@@ -485,6 +485,10 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
             {
                 holder.outOfStockIndicator.setVisibility(View.GONE);
             }
+
+
+
+            holder.available.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()) + " " + item.getQuantityUnit());
 
 
 
@@ -710,11 +714,11 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                     }
 
-                    itemTotal.setText("Total : " + String.format( "%.2f", total));
+                    itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
 
                     if(fragment instanceof ItemsInShopByCatFragment)
                     {
-                        ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
+                        ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartTotalNeutral() + total));
                     }
 
 
@@ -1066,17 +1070,17 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 if(fragment instanceof ItemsInShopByCatFragment)
                 {
-                    ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
+                    ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartTotalNeutral() + total));
                 }
 
 
 
-                itemTotal.setText("Total : " + String.format( "%.2f", total));
+                itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
 
             }else
             {
                 itemQuantity.setText(String.valueOf(0));
-                itemTotal.setText("Total : " + String.format( "%.2f", total));
+                itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
             }
 
         }
@@ -1159,12 +1163,12 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 }
 
-                itemTotal.setText("Total : " + String.format("%.2f", total));
+                itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f", total));
 
 
                 if(fragment instanceof ItemsInShopByCatFragment)
                 {
-                    ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : Rs " + String.valueOf(cartTotalNeutral() + total));
+                    ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartTotalNeutral() + total));
                 }
 
 
@@ -1172,7 +1176,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
             }else
             {
                 itemQuantity.setText(String.valueOf(0));
-                itemTotal.setText("Total : " + String.format( "%.2f", total));
+                itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
             }
         }
 
