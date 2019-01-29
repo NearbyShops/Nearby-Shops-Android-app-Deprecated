@@ -25,7 +25,7 @@ import org.nearbyshops.enduserappnew.OrderDetail.OrderDetail;
 import org.nearbyshops.enduserappnew.OrderDetail.PrefOrderDetail;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.SlidingLayerSort.UtilitySortOrdersHD;
+import org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort.PrefSortOrders;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
@@ -239,7 +239,7 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
 
 
         String current_sort = "";
-        current_sort = UtilitySortOrdersHD.getSort(getContext()) + " " + UtilitySortOrdersHD.getAscending(getContext());
+        current_sort = PrefSortOrders.getSort(getContext()) + " " + PrefSortOrders.getAscending(getContext());
 
         Integer shopID = null;
 
@@ -261,7 +261,6 @@ public class PendingOrdersFragment extends Fragment implements AdapterOrdersPend
                     PrefLogin.getAuthorizationHeaders(getActivity()),
                     null,shopID,false,
                     null,null,null,
-                    null,null,
                     null,null,
                     true,searchQuery,
                     current_sort,limit,offset,null);

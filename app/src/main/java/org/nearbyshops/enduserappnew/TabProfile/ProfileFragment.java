@@ -58,28 +58,20 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     boolean isDestroyed = false;
 
     @BindView(R.id.label_login)TextView labelLogin;
-    @BindView(R.id.swipe_container)
-    SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
 
 
 
 
-    @BindView(R.id.user_profile)
-    LinearLayout profileBlock;
-    @BindView(R.id.profile_image)
-    ImageView profileImage;
-    @BindView(R.id.user_name)
-    TextView userName;
-    @BindView(R.id.phone)
-    TextView phone;
-    @BindView(R.id.user_id)
-    TextView userID;
+    @BindView(R.id.user_profile) LinearLayout profileBlock;
+    @BindView(R.id.profile_image) ImageView profileImage;
+    @BindView(R.id.user_name) TextView userName;
+    @BindView(R.id.phone) TextView phone;
+    @BindView(R.id.user_id) TextView userID;
 
 
-    @BindView(R.id.current_dues)
-    TextView currentDues;
-    @BindView(R.id.credit_limit)
-    TextView creditLimit;
+    @BindView(R.id.current_dues) TextView currentDues;
+    @BindView(R.id.credit_limit) TextView creditLimit;
 
 
     @Inject
@@ -154,7 +146,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-    @OnClick(R.id.user_profile)
+    @OnClick({R.id.profile_image,R.id.user_profile})
     void editProfileClick()
     {
         Intent intent = new Intent(getActivity(), EditProfile.class);

@@ -159,6 +159,9 @@ public class PrefGeneral {
 
 
 
+
+
+
     public static String getServiceURL(Context context) {
 
         context = MyApplication.getAppContext();
@@ -209,28 +212,6 @@ public class PrefGeneral {
 
 
 
-    public static void saveCurrencySymbol(String symbol, Context context)
-    {
-        //Creating a shared preference
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        SharedPreferences.Editor prefsEditor = sharedPref.edit();
-        Gson gson = UtilityFunctions.provideGson();
-
-        String json = gson.toJson(symbol);
-        prefsEditor.putString(TAG_PREF_CURRENCY, json);
-        prefsEditor.apply();
-    }
-
-
-    public static String getCurrencySymbol(Context context)
-    {
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        Gson gson = UtilityFunctions.provideGson();
-
-        return sharedPref.getString(TAG_PREF_CURRENCY, context.getString(R.string.rupee_symbol));
-    }
-
-
 
 
 
@@ -259,5 +240,29 @@ public class PrefGeneral {
 //        return sharedPref.getInt("service_light_status", 3);
 //    }
 
+
+
+
+
+    public static void saveCurrencySymbol(String symbol, Context context)
+    {
+        //Creating a shared preference
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = sharedPref.edit();
+        Gson gson = UtilityFunctions.provideGson();
+
+        String json = gson.toJson(symbol);
+        prefsEditor.putString(TAG_PREF_CURRENCY, json);
+        prefsEditor.apply();
+    }
+
+
+    public static String getCurrencySymbol(Context context)
+    {
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        Gson gson = UtilityFunctions.provideGson();
+
+        return sharedPref.getString(TAG_PREF_CURRENCY, context.getString(R.string.rupee_symbol));
+    }
 
 }

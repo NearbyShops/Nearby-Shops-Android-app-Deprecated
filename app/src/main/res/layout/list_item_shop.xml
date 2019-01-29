@@ -39,7 +39,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Shop Name Long Form"
+        android:text=" - "
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/shop_name"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Street Name, City Name\nPincode Not Available"
+        android:text=" - "
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
@@ -60,32 +60,35 @@
         android:weightSum="2"
         android:id="@+id/labels_delivery"
         app:layout_constraintTop_toBottomOf="@id/shop_address"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="0dp"
         android:layout_height="wrap_content">
 
         <TextView
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
             android:layout_marginEnd="2.5dp"
-            android:padding="2dp"
             android:gravity="center"
             android:textColor="@color/white"
             android:background="@color/orangeDark"
             android:text="Pick from shop"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
 
         <TextView
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
             android:layout_marginStart="2.5dp"
-            android:padding="2dp"
             android:gravity="center"
             android:textColor="@color/white"
             android:background="@color/phonographyBlue"
             android:text="Home Delivery"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
 
@@ -121,7 +124,7 @@
         app:layout_constraintTop_toBottomOf="@+id/border_top"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="5dp"
-        android:text="Delivery : Rs. 20 per order"
+        android:text=" - "
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -133,7 +136,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/delivery"
         app:layout_constraintRight_toRightOf="@+id/delivery"
         app:layout_constraintTop_toBottomOf="@+id/delivery"
-        android:text="Distance : 6.7 km"
+        android:text="Distance : -"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
@@ -142,7 +145,7 @@
         android:id="@+id/rating"
         app:layout_constraintLeft_toLeftOf="@+id/delivery"
         app:layout_constraintTop_toBottomOf="@+id/distance"
-        android:text="5.2"
+        android:text=" - "
         android:textColor="@color/white"
         android:padding="3dp"
         android:textStyle="bold"
@@ -156,7 +159,7 @@
         android:id="@+id/rating_count"
         app:layout_constraintLeft_toRightOf="@+id/rating"
         app:layout_constraintBottom_toBottomOf="@+id/rating"
-        android:text="(2341 Ratings)"
+        android:text="( - Ratings)"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
@@ -190,7 +193,7 @@
         app:layout_constraintRight_toRightOf="@+id/delivery"
         android:layout_marginTop="5dp"
         android:id="@+id/description"
-        android:text="Shop Description. This shop delivers fruits and vegetables at your door step"
+        android:text=" - "
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
