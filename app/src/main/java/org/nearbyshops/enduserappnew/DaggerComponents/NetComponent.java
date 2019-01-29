@@ -43,7 +43,7 @@ import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.OrderDetail.FragmentOrderDetail;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Complete.CompleteOrdersFragment;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Pending.PendingOrdersFragment;
-import org.nearbyshops.enduserappnew.OrderHistoryNew.PendingOrdersFragmentNew;
+import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragmentNew;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserappnew.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduserappnew.ShopImages.ShopImageListFragment;
@@ -203,7 +203,7 @@ public interface NetComponent {
 
     void Inject(ServiceIndicatorFragment serviceIndicatorFragment);
 
-    void Inject(PendingOrdersFragmentNew pendingOrdersFragmentNew);
+    void Inject(OrdersFragmentNew pendingOrdersFragmentNew);
 
     void Inject(CartItemAdapter cartItemAdapter);
 

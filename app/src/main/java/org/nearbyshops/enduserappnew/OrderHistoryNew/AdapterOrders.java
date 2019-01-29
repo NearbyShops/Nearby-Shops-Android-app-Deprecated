@@ -13,7 +13,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
-import org.nearbyshops.enduserappnew.ModelCartOrder.OrderStats;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusHomeDelivery;
 import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusPickFromShop;
@@ -29,7 +28,7 @@ import butterknife.OnClick;
 /**
  * Created by sumeet on 13/6/16.
  */
-class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+class AdapterOrders extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private List<Order> dataset = null;
     private NotifyConfirmOrder notifyConfirmOrder;
@@ -42,7 +41,7 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Context context;
     private Fragment fragment;
 
-    AdapterOrdersPending(List<Order> dataset, NotifyConfirmOrder notifyConfirmOrder, Fragment fragment,Context context) {
+    AdapterOrders(List<Order> dataset, NotifyConfirmOrder notifyConfirmOrder, Fragment fragment, Context context) {
         this.dataset = dataset;
         this.notifyConfirmOrder = notifyConfirmOrder;
         this.fragment = fragment;
@@ -219,9 +218,9 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         {
             LoadingViewHolder viewHolder = (LoadingViewHolder) holderVH;
 
-            if(fragment instanceof PendingOrdersFragmentNew)
+            if(fragment instanceof OrdersFragmentNew)
             {
-                int items_count = ((PendingOrdersFragmentNew) fragment).item_count;
+                int items_count = ((OrdersFragmentNew) fragment).item_count;
 
                 if(dataset.size() == items_count)
                 {

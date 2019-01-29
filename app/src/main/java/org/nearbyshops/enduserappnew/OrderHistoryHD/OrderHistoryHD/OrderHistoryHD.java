@@ -18,7 +18,7 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 
 
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.SlidingLayerSort.SlidingLayerSortOrdersHD;
+import org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort.SlidingLayerSortOrders;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
@@ -106,7 +106,7 @@ public class OrderHistoryHD extends AppCompatActivity implements NotifyTitleChan
             {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.slidinglayerfragment,new SlidingLayerSortOrdersHD(),TAG_SLIDING_LAYER)
+                        .add(R.id.slidinglayerfragment,new SlidingLayerSortOrders(),TAG_SLIDING_LAYER)
                         .commit();
             }
 

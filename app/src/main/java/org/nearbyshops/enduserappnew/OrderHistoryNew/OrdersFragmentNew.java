@@ -31,8 +31,8 @@ import org.nearbyshops.enduserappnew.OrderDetail.OrderDetail;
 import org.nearbyshops.enduserappnew.OrderDetail.PrefOrderDetail;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.SlidingLayerSort.SlidingLayerSortOrdersHD;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.SlidingLayerSort.UtilitySortOrdersHD;
+import org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort.SlidingLayerSortOrders;
+import org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort.PrefSortOrders;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.OrderService;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
@@ -54,7 +54,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersPending.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, RefreshFragment {
+public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, RefreshFragment {
 
 
 //    @Inject
@@ -66,7 +66,7 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
     OrderService orderService;
 
     RecyclerView recyclerView;
-    AdapterOrdersPending adapter;
+    AdapterOrders adapter;
 
     public List<Order> dataset = new ArrayList<>();
 
@@ -86,7 +86,7 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
 
 
 
-    public PendingOrdersFragmentNew() {
+    public OrdersFragmentNew() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -95,8 +95,8 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
     }
 
 
-    public static PendingOrdersFragmentNew newInstance() {
-        PendingOrdersFragmentNew fragment = new PendingOrdersFragmentNew();
+    public static OrdersFragmentNew newInstance() {
+        OrdersFragmentNew fragment = new OrdersFragmentNew();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -185,7 +185,7 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
             {
                 getChildFragmentManager()
                         .beginTransaction()
-                        .add(R.id.slidinglayerfragment,new SlidingLayerSortOrdersHD(),TAG_SLIDING_LAYER)
+                        .add(R.id.slidinglayerfragment,new SlidingLayerSortOrders(),TAG_SLIDING_LAYER)
                         .commit();
             }
 
@@ -213,7 +213,7 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
     void setupRecyclerView()
     {
 
-        adapter = new AdapterOrdersPending(dataset,this,this,getActivity());
+        adapter = new AdapterOrders(dataset,this,this,getActivity());
 
         recyclerView.setAdapter(adapter);
 
@@ -302,42 +302,48 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
     }
 
 
+
+
+
+
     void makeNetworkCall(final boolean clearDataset)
     {
 
 //            Shop currentShop = UtilityShopHome.getShop(getContext());
 
 
-        User endUser = PrefLogin.getUser(getActivity());
-        if(endUser==null)
-        {
-            showLoginDialog();
+            User endUser = PrefLogin.getUser(getActivity());
 
-            swipeContainer.setRefreshing(false);
-            return;
-        }
-
-
-
-
-        String current_sort = "";
-        current_sort = UtilitySortOrdersHD.getSort(getContext()) + " " + UtilitySortOrdersHD.getAscending(getContext());
-
-        Integer shopID = null;
-
-        if(getActivity().getIntent().getBooleanExtra(OrderHistoryHD.IS_FILTER_BY_SHOP,false))
-        {
-            Shop shop = PrefShopHome.getShop(getActivity());
-
-            if(shop!=null)
+            if(endUser==null)
             {
-                shopID = shop.getShopID();
+                showLoginDialog();
+
+                swipeContainer.setRefreshing(false);
+                return;
             }
-            else
+
+
+
+
+            String current_sort = "";
+            current_sort = PrefSortOrders.getSort(getActivity()) + " " + PrefSortOrders.getAscending(getActivity());
+
+            Integer shopID = null;
+
+            if(getActivity().getIntent().getBooleanExtra(OrderHistoryHD.IS_FILTER_BY_SHOP,false))
             {
-                shopID = 0;
+                Shop shop = PrefShopHome.getShop(getActivity());
+
+                if(shop!=null)
+                {
+                    shopID = shop.getShopID();
+                }
+                else
+                {
+                    shopID = 0;
+                }
             }
-        }
+
 
 
 
@@ -348,10 +354,12 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
                         null,shopID,null,
                         null,null,null,
                         null,null,
-                        null,null,
                         null,searchQuery,
                         current_sort,limit,offset,null);
 
+
+
+            
 
 
             call.enqueue(new Callback<OrderEndPoint>() {
@@ -363,30 +371,45 @@ public class PendingOrdersFragmentNew extends Fragment implements AdapterOrdersP
                         return;
                     }
 
-                    if(response.body()!= null)
-                    {
-                        item_count = response.body().getItemCount();
 
-                        if(clearDataset)
+                    if(response.code()==200)
+                    {
+                        if(response.body()!= null)
                         {
-                            dataset.clear();
+                            item_count = response.body().getItemCount();
+
+                            if(clearDataset)
+                            {
+                                dataset.clear();
+                            }
+
+                            dataset.addAll(response.body().getResults());
+                            adapter.notifyDataSetChanged();
+                            notifyTitleChanged();
+
+
+
+                            orderCountIndicator.setText(String.valueOf(dataset.size()) + " out of " + String.valueOf(item_count) + " Orders");
                         }
 
-                        dataset.addAll(response.body().getResults());
-                        adapter.notifyDataSetChanged();
-                        notifyTitleChanged();
+                    }
+                    else
+                    {
 
+                        showToastMessage("Failed Code : " + String.valueOf(response.code()));
 
-
-                        orderCountIndicator.setText(String.valueOf(dataset.size()) + " out of " + String.valueOf(item_count) + " Orders");
                     }
 
-                    swipeContainer.setRefreshing(false);
 
+                    swipeContainer.setRefreshing(false);
                 }
+
+
+
 
                 @Override
                 public void onFailure(Call<OrderEndPoint> call, Throwable t) {
+
                     if(isDestroyed)
                     {
                         return;

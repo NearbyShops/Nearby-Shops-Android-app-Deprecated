@@ -18,6 +18,9 @@ import retrofit2.http.Query;
  */
 public interface OrderService {
 
+
+
+
     @POST("/api/Order")
     Call<ResponseBody> postOrder(@Body Order order,@Query("CartID") int cartID);
 
@@ -30,8 +33,6 @@ public interface OrderService {
                                   @Query("StatusHomeDelivery")Integer homeDeliveryStatus,
                                   @Query("StatusPickFromShopStatus")Integer pickFromShopStatus,
                                   @Query("DeliveryGuyID")Integer deliveryGuyID,
-                                  @Query("PaymentsReceived") Boolean paymentsReceived,
-                                  @Query("DeliveryReceived") Boolean deliveryReceived,
                                   @Query("latCenter")Double latCenter, @Query("lonCenter")Double lonCenter,
                                   @Query("PendingOrders") Boolean pendingOrders,
                                   @Query("SearchString") String searchString,
@@ -43,5 +44,9 @@ public interface OrderService {
     @PUT("/api/Order/CancelByUser/{OrderID}")
     Call<ResponseBody> cancelledByEndUser(@Header("Authorization") String headers,
                                           @Path("OrderID")int orderID);
+
+
+
+
 
 }
