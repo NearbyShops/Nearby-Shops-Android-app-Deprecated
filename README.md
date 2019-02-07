@@ -11,6 +11,13 @@ It has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON 
 Licensed under a permissive MIT license allows you to use this software even for commertial use. 
 
 
+Get Paid to Contribute
+------------------------
+Developer time is valuable and its not fair to expect developers to contribute their time without being reasonably compensated. Therefore we have made a policy to compensate the developers, designers or any other contributor who help us with the project. We will make best efforts to Compensate the contibutors. 
+
+All the pull requests that gets accepted will be compensated. The compensation will be similar to how freelance developers, desginers get paid. 
+
+
 Screenshots
 --------------
 
@@ -40,6 +47,7 @@ Use any location faker app which you can download from playstore and set your lo
 Login credentials for end-user app are :  9490523891 (Username) | password (password)
 
 Login to the end-user app with the above login credentials and enjoy the demo.
+
 
 
 
