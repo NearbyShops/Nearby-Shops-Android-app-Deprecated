@@ -79,7 +79,30 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             if(shop!=null)
             {
+
                 holder.shopName.setText(shop.getShopName());
+
+
+                if(shop.getPickFromShopAvailable())
+                {
+                    holder.pickFromShopIndicator.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    holder.pickFromShopIndicator.setVisibility(View.GONE);
+                }
+
+
+
+                if(shop.getHomeDeliveryAvailable())
+                {
+                    holder.homeDeliveryIndicator.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    holder.homeDeliveryIndicator.setVisibility(View.GONE);
+                }
+
 
 
                 if(shop.getShopAddress()!=null)
@@ -213,8 +236,9 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
         @BindView(R.id.rating) TextView rating;
         @BindView(R.id.rating_count) TextView rating_count;
         @BindView(R.id.description) TextView description;
-        @BindView(R.id.shop_info_card)
-        ConstraintLayout list_item;
+        @BindView(R.id.shop_info_card) ConstraintLayout list_item;
+        @BindView(R.id.indicator_pick_from_shop) TextView pickFromShopIndicator;
+        @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
 
         public ViewHolder(View itemView) {
             super(itemView);

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,9 @@ public class ShopHome extends AppCompatActivity {
     @BindView(R.id.description) TextView description;
     @BindView(R.id.option_items_by_category) ImageView optionItemsByCategory;
 
+    @BindView(R.id.indicator_pick_from_shop) TextView pickFromShopIndicator;
+    @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
+
 
 
     @Override
@@ -83,6 +87,27 @@ public class ShopHome extends AppCompatActivity {
         if(shop!=null)
         {
             shopName.setText(shop.getShopName());
+
+            if(shop.getPickFromShopAvailable())
+            {
+                pickFromShopIndicator.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                pickFromShopIndicator.setVisibility(View.GONE);
+            }
+
+
+
+            if(shop.getHomeDeliveryAvailable())
+            {
+                homeDeliveryIndicator.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                homeDeliveryIndicator.setVisibility(View.GONE);
+            }
+
 
             if(shop.getShopAddress()!=null)
             {

@@ -42,6 +42,9 @@ public interface ShopService {
 
 
 
+
+
+
     @GET("/api/v1/Shop/FilterByItemCat/{ItemCategoryID}")
     Call<ShopEndPoint> filterShopsByItemCategory(
             @Path("ItemCategoryID")Integer itemCategoryID,
