@@ -22,6 +22,8 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by sumeet on 5/6/16.
  */
@@ -65,6 +67,27 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
             holder.distance.setText(String.format( "%.2f", shop.getRt_distance()) + " Km");
 
             holder.shopName.setText(shop.getShopName());
+
+            if(shop.getPickFromShopAvailable())
+            {
+                holder.pickFromShopIndicator.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                holder.pickFromShopIndicator.setVisibility(View.GONE);
+            }
+
+
+
+            if(shop.getHomeDeliveryAvailable())
+            {
+                holder.homeDeliveryIndicator.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                holder.homeDeliveryIndicator.setVisibility(View.GONE);
+            }
+
 
 //            imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
 //                    + dataset.get(position).getShop().getLogoImagePath();
@@ -113,6 +136,9 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
         TextView itemsInCart;
         TextView cartTotal;
         LinearLayout cartsListItem;
+        TextView pickFromShopIndicator;
+        TextView homeDeliveryIndicator;
+
 
 
         public ViewHolder(View itemView) {
@@ -125,6 +151,9 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
             deliveryCharge = (TextView) itemView.findViewById(R.id.deliveryCharge);
             itemsInCart = (TextView) itemView.findViewById(R.id.itemsInCart);
             cartTotal = (TextView) itemView.findViewById(R.id.cartTotal);
+
+            pickFromShopIndicator = itemView.findViewById(R.id.indicator_pick_from_shop);
+            homeDeliveryIndicator = itemView.findViewById(R.id.indicator_home_delivery);
 
 
             cartsListItem = (LinearLayout) itemView.findViewById(R.id.carts_list_item);

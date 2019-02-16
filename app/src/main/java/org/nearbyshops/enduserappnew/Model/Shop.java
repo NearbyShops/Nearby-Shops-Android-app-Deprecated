@@ -142,11 +142,11 @@ public class Shop implements Parcelable{
 	// delivery charger per order
 	private double deliveryCharges;
 	private int billAmountForFreeDelivery;
-	private Boolean pickFromShopAvailable;
-	private Boolean homeDeliveryAvailable;
+	private boolean pickFromShopAvailable;
+	private boolean homeDeliveryAvailable;
 
-	private Boolean shopEnabled;
-	private Boolean shopWaitlisted;
+	private boolean shopEnabled;
+	private boolean shopWaitlisted;
 
 
 	

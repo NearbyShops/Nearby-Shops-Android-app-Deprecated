@@ -274,6 +274,31 @@ public class AdapterShopItem extends RecyclerView.Adapter<AdapterShopItem.ViewHo
             }
 
 
+
+            if(shop.getPickFromShopAvailable())
+            {
+                holder.pickFromShopIndicator.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                holder.pickFromShopIndicator.setVisibility(View.GONE);
+            }
+
+
+
+            if(shop.getHomeDeliveryAvailable())
+            {
+                holder.homeDeliveryIndicator.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                holder.homeDeliveryIndicator.setVisibility(View.GONE);
+            }
+
+
+
+
+
             holder.ratingCount.setText("( " + String.format("%.0f",shop.getRt_rating_count()) + " Ratings )");
 
 
@@ -393,6 +418,9 @@ public class AdapterShopItem extends RecyclerView.Adapter<AdapterShopItem.ViewHo
 
         @BindView(R.id.shopItem_list_item)
         LinearLayout shopItemListItem;
+
+        @BindView(R.id.indicator_pick_from_shop) TextView pickFromShopIndicator;
+        @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
 
         ShopItem shopItem;
         CartItem cartItem;
