@@ -70,8 +70,8 @@ android {
         applicationId "org.nearbyshops.enduserappnew"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 7
-        versionName "0.5"
+        versionCode 8
+        versionName "0.6"
         // Enabling multidex support.
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,6 +79,10 @@ public class FragmentShopNew extends Fragment implements
     @BindView(R.id.shop_count_indicator) TextView shopCountIndicator;
     @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
 
+
+
+    @BindView(R.id.empty_screen) LinearLayout emptyScreen;
+    @BindView(R.id.progress_bar_fetching_location) LinearLayout progressBarFetchingLocation;
 
 
 
@@ -473,11 +478,13 @@ public class FragmentShopNew extends Fragment implements
 
 
 
+            emptyScreen.setVisibility(View.GONE);
 
 
 
-            System.out.println("Lat : " + PrefLocation.getLatitude(getActivity())
-                                + "\nLon : " + PrefLocation.getLongitude(getActivity()));
+
+//            System.out.println("Lat : " + PrefLocation.getLatitude(getActivity())
+//                                + "\nLon : " + PrefLocation.getLongitude(getActivity()));
 
 
 
@@ -507,6 +514,10 @@ public class FragmentShopNew extends Fragment implements
                         }
 
 
+                        if(response.body().getResults().size()==0)
+                        {
+                            emptyScreen.setVisibility(View.VISIBLE);
+                        }
 
 
                         shopCountIndicator.setText(String.valueOf(dataset.size()) + " out of " + String.valueOf(item_count) + " Shops");
@@ -531,12 +542,29 @@ public class FragmentShopNew extends Fragment implements
                         return;
                     }
 
+                    emptyScreen.setVisibility(View.VISIBLE);
+
+
                     showToastMessage(getString(R.string.network_request_failed));
                     swipeContainer.setRefreshing(false);
                 }
             });
 
         }
+
+
+
+
+
+        @OnClick(R.id.button_try_again)
+        void tryAgainClick()
+        {
+            makeRefreshNetworkCall();
+        }
+
+
+
+
 
 
 

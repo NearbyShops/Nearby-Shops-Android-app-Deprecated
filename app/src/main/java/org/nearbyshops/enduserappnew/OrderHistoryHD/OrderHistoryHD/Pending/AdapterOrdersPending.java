@@ -9,9 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
-import org.nearbyshops.enduserappnew.ModelCartOrder.OrderStats;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.ModelStatusCodes.OldStatusCodes.UtilityOrderStatus;
 import org.nearbyshops.enduserappnew.R;
 
 import java.util.List;
@@ -49,7 +47,7 @@ class AdapterOrdersPending extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if(viewType==VIEW_TYPE_ORDER)
         {
             view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_order_pending,parent,false);
+                    .inflate(R.layout.list_item_order,parent,false);
 
             return new ViewHolder(view);
         }

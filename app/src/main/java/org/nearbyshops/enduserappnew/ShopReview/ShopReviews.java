@@ -162,7 +162,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
             makeNetworkCallThanks();
 
-            setStatFragment();
+//            setStatFragment();
         }
         else
         {

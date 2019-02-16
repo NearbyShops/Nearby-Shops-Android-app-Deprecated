@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -115,6 +116,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
 
 
     private static final int REQUEST_CODE_ASK_PERMISSION = 55;
+
+    @BindView(R.id.empty_screen) LinearLayout emptyScreen;
+    @BindView(R.id.progress_bar_fetching_location) LinearLayout progressBarFetchingLocation;
+
 
 
 
@@ -608,39 +613,104 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
     void refreshAdapter() {
         dataset.clear();
 
+
         HeaderItemsList headerItemCategory = new HeaderItemsList();
 
-        if (currentCategory.getParentCategoryID() == -1) {
-            headerItemCategory.setHeading("Item Categories");
-        } else {
-            headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
+
+        if(datasetCategory.size()>0)
+        {
+
+            if (searchQuery == null) {
+
+
+                if (currentCategory.getParentCategoryID() == -1) {
+                    headerItemCategory.setHeading("Item Categories");
+                } else {
+                    headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
+                }
+
+                dataset.add(headerItemCategory);
+
+                dataset.addAll(datasetCategory);
+            }
+
+
+//            dataset.addAll(datasetCategory);
         }
 
 
-        dataset.add(headerItemCategory);
 
 
-        if (searchQuery == null) {
-
-            dataset.addAll(datasetCategory);
-        }
-
-
-//        if (datasetItems.size() > 0) {
 
             HeaderItemsList headerItem = new HeaderItemsList();
-            headerItem.setHeading(currentCategory.getCategoryName() + " Items");
-            dataset.add(headerItem);
 
-//        }
+
+
+//            if(currentCategory.getParentCategoryID()!=-1)
+//            {
+//
+//            }
+
+
+            if(searchQuery==null)
+            {
+
+
+                if(datasetItems.size()>0)
+                {
+                    headerItem.setHeading(currentCategory.getCategoryName() + " Items");
+                }
+                else
+                {
+                    headerItem.setHeading("No Items in this category");
+                }
+
+            }
+            else
+            {
+                if(datasetItems.size()>0)
+                {
+                    headerItem.setHeading("Search Results");
+                }
+                else
+                {
+                    headerItem.setHeading("No items for the given search !");
+                }
+
+            }
+
+
+
+
+        if(datasetCategory.size()==0 && datasetItems.size()==0)
+        {
+            emptyScreen.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            emptyScreen.setVisibility(View.GONE);
+
+            dataset.add(headerItem);
+        }
 
 
         dataset.addAll(datasetItems);
+
+
+
 
         listAdapter.notifyDataSetChanged();
         swipeContainer.setRefreshing(false);
     }
 
+
+
+
+    @OnClick(R.id.button_try_again)
+    void tryAgainClick()
+    {
+        makeRefreshNetworkCall();
+    }
 
 
 
@@ -965,6 +1035,11 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
 
 
 
+        progressBarFetchingLocation.setVisibility(View.VISIBLE);
+
+
+
+
 
         mLocationRequestTwo = LocationRequest.create();
         mLocationRequestTwo.setInterval(10000);
@@ -985,6 +1060,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
                     return;
                 }
 
+
+                progressBarFetchingLocation.setVisibility(View.GONE);
 
 
 

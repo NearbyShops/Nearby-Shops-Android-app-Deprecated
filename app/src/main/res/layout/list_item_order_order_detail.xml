@@ -190,7 +190,7 @@
         android:layout_margin="0dp"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        layout="@layout/list_item_order_pending"/>
+        layout="@layout/list_item_order"/>
 
 
 

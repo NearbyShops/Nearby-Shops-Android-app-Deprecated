@@ -52,10 +52,10 @@
 
 
 
-            <TextView
-                android:background="@color/white"
-                android:layout_width="1dp"
-                android:layout_height="match_parent" />
+            <!--<TextView-->
+                <!--android:background="@color/white"-->
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="match_parent" />-->
 
 
             <ImageView
@@ -72,7 +72,7 @@
                 android:layout_marginEnd="10dp"
                 android:id="@+id/text_sort"
                 android:padding="5dp"
-                android:text="Sort"
+                android:text="Filter / Sort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -139,6 +139,84 @@
 
 
     </com.wunderlist.slidinglayer.SlidingLayer>
+
+
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/empty_screen"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--app:srcCompat="@drawable/ic_no_drivers_found"-->
+
+        <ImageView
+            android:id="@+id/empty_screen_image"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_receipt_color"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="140dp"
+            android:layout_height="140dp" />
+
+        <TextView
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="10sp"
+            android:text="Designed By Freepik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!--app:srcCompat="@drawable/empty_seven"-->
+
+
+        <TextView
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="17sp"
+            android:text="No Orders to show !"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="center"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:id="@+id/empty_screen_message"
+            android:text="No orders to show here ! If the filters are turned on try turning them off !"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" />
+
+
+
+        <TextView
+            android:id="@+id/button_try_again"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:text="Try Again"
+            android:background="@color/buttonColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
 
 
 </android.support.design.widget.CoordinatorLayout>
