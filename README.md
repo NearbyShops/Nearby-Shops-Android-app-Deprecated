@@ -1,14 +1,26 @@
 Nearby Shops End-User android app
 ====================================
 
+<img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="178"> 
+
+
 This is an End-User app for Nearby Shops platform.  
 
 Nearby Shops is a multi-vendor mobile based e-commerce platform. Multi-vendor means it can have multiple sellers. 
-Its designed primarily for local shopping needs like selling grocery, fruits and vegetables. 
+Its designed primarily for local shopping needs like shopping grocery, fruits and vegetables. 
 
 It has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. 
 
 Licensed under a permissive MIT license allows you to use this software even for commertial use. 
+
+
+Get Paid to Contribute
+------------------------
+Developer time is valuable and its not fair to expect developers to contribute their time without being reasonably compensated. Therefore we have made a policy to compensate the developers, designers or any other contributor who help us with the project. We will make best efforts to Compensate the contibutors. 
+
+The compensation will be similar to how freelance developers, desginers are paid / compensated !
+
+To know how to contribute please visit https://nearbyshops.org/contribute/
 
 
 Screenshots
@@ -43,6 +55,7 @@ Login to the end-user app with the above login credentials and enjoy the demo.
 
 
 
+
 Libraries Used
 ---------------
 
@@ -55,14 +68,12 @@ Third Party Integrations
 Nearby Shops has latest integrations for SMS-OTP verification(MSG91), E-mail (mailgun), Open-Signal (for push notifications), Fabrio.io (crash reporting)
 
 
-Need Help
+Community - Need Help
 -----------
 
 If you want any help regarding anything. Feel free to contact us. Send a message through our website or you can simply post an issue. Your issues will not be ignored and you will surely receive help. 
 
-
-
-
+Please Visit - https://nearbyshops.org/community
 
 
 Source code for Shop-Owner, Admin app and Server Side
