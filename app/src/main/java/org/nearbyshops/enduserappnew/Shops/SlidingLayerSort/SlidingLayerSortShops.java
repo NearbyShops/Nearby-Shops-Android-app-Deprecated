@@ -125,9 +125,9 @@ public class SlidingLayerSortShops extends Fragment {
 
         PrefSortShopsByCategory.saveSort(getActivity(),SORT_BY_DISTANCE);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
 
@@ -143,9 +143,9 @@ public class SlidingLayerSortShops extends Fragment {
 
         PrefSortShopsByCategory.saveSort(getActivity(),SORT_BY_RATING);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
 
@@ -161,9 +161,9 @@ public class SlidingLayerSortShops extends Fragment {
 
         PrefSortShopsByCategory.saveSort(getActivity(),SORT_BY_POPULARITY);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
 
@@ -183,9 +183,9 @@ public class SlidingLayerSortShops extends Fragment {
 
         PrefSortShopsByCategory.saveAscending(getActivity(),SORT_ASCENDING);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
 
     }
@@ -203,9 +203,9 @@ public class SlidingLayerSortShops extends Fragment {
 
         PrefSortShopsByCategory.saveAscending(getActivity(),SORT_DESCENDING);
 
-        if(getActivity() instanceof NotifySort)
+        if(getParentFragment() instanceof NotifySort)
         {
-            ((NotifySort)getActivity()).notifySortChanged();
+            ((NotifySort)getParentFragment()).notifySortChanged();
         }
     }
 

@@ -56,7 +56,7 @@ class AdapterOrders extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         if(viewType==VIEW_TYPE_ORDER)
         {
             view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_order_pending,parent,false);
+                    .inflate(R.layout.list_item_order,parent,false);
 
             return new ViewHolder(view);
         }

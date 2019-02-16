@@ -296,6 +296,11 @@ public class SlidingLayerSortOrders extends Fragment {
     {
         PrefSortOrders.saveFilterByOrderStatus(getActivity(),CLEAR_FILTERS_ORDER_STATUS);
         bindOrderStatus();
+
+        if(getParentFragment() instanceof NotifySort)
+        {
+            ((NotifySort)getParentFragment()).notifySortChanged();
+        }
     }
 
 
@@ -305,6 +310,11 @@ public class SlidingLayerSortOrders extends Fragment {
     {
         PrefSortOrders.saveFilterByOrderStatus(getActivity(),FILTER_BY_STATUS_PENDING);
         bindOrderStatus();
+
+        if(getParentFragment() instanceof NotifySort)
+        {
+            ((NotifySort)getParentFragment()).notifySortChanged();
+        }
     }
 
 
@@ -314,6 +324,11 @@ public class SlidingLayerSortOrders extends Fragment {
     {
         PrefSortOrders.saveFilterByOrderStatus(getActivity(),FILTER_BY_STATUS_COMPLETE);
         bindOrderStatus();
+
+        if(getParentFragment() instanceof NotifySort)
+        {
+            ((NotifySort)getParentFragment()).notifySortChanged();
+        }
     }
 
 
@@ -324,6 +339,11 @@ public class SlidingLayerSortOrders extends Fragment {
     {
         PrefSortOrders.saveFilterByOrderStatus(getActivity(),FILTER_BY_STATUS_CANCELLED);
         bindOrderStatus();
+
+        if(getParentFragment() instanceof NotifySort)
+        {
+            ((NotifySort)getParentFragment()).notifySortChanged();
+        }
     }
 
 
@@ -407,6 +427,11 @@ public class SlidingLayerSortOrders extends Fragment {
     {
         PrefSortOrders.saveFilterByDeliveryType(getActivity(),CLEAR_FILTERS_DELIVERY_TYPE);
         bindDeliveryType();
+
+        if(getParentFragment() instanceof NotifySort)
+        {
+            ((NotifySort)getParentFragment()).notifySortChanged();
+        }
     }
 
 
@@ -416,6 +441,11 @@ public class SlidingLayerSortOrders extends Fragment {
     {
         PrefSortOrders.saveFilterByDeliveryType(getActivity(),FILTER_BY_PICK_FROM_SHOP);
         bindDeliveryType();
+
+        if(getParentFragment() instanceof NotifySort)
+        {
+            ((NotifySort)getParentFragment()).notifySortChanged();
+        }
     }
 
 
@@ -424,6 +454,11 @@ public class SlidingLayerSortOrders extends Fragment {
     {
         PrefSortOrders.saveFilterByDeliveryType(getActivity(),FILTER_BY_HOME_DELIVERY);
         bindDeliveryType();
+
+        if(getParentFragment() instanceof NotifySort)
+        {
+            ((NotifySort)getParentFragment()).notifySortChanged();
+        }
     }
 
 

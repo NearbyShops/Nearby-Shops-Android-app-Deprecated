@@ -15,6 +15,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +62,7 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 //    OrderServicePFS orderService;
 
     public static final String TAG_SLIDING_LAYER = "sliding_layer_orders";
+    public static final String IS_FILTER_BY_SHOP = "IS_FILTER_BY_SHOP";
 
     @Inject
     OrderService orderService;
@@ -74,7 +76,7 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
     SwipeRefreshLayout swipeContainer;
 
 
-    final private int limit = 5;
+    final private int limit = 10;
     int offset = 0;
     int item_count = 0;
 
@@ -84,6 +86,9 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
     @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
     @BindView(R.id.shop_count_indicator) TextView orderCountIndicator;
 
+
+
+    @BindView(R.id.empty_screen) LinearLayout emptyScreen;
 
 
     public OrdersFragmentNew() {
@@ -113,7 +118,7 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_home_delivery_placed_orders_new, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_orders_new, container, false);
         ButterKnife.bind(this,rootView);
 
 
@@ -347,19 +352,46 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
 
+            Boolean pickFromShop = null;
+
+            if(PrefSortOrders.getFilterByDeliveryType(getActivity())==SlidingLayerSortOrders.FILTER_BY_PICK_FROM_SHOP)
+            {
+                pickFromShop=true;
+            }
+            else if(PrefSortOrders.getFilterByDeliveryType(getActivity())==SlidingLayerSortOrders.FILTER_BY_HOME_DELIVERY)
+            {
+                pickFromShop=false;
+            }
+
+
+
+            Boolean ordersPendingStatus = null;
+
+            if(PrefSortOrders.getFilterByOrderStatus(getActivity())==SlidingLayerSortOrders.FILTER_BY_STATUS_PENDING)
+            {
+                ordersPendingStatus = true;
+            }
+            else if(PrefSortOrders.getFilterByOrderStatus(getActivity())==SlidingLayerSortOrders.FILTER_BY_STATUS_COMPLETE)
+            {
+                ordersPendingStatus = false;
+            }
+
+
+            emptyScreen.setVisibility(View.GONE);
+
+
+
+
 
 
             Call<OrderEndPoint> call = orderService.getOrders(
                         PrefLogin.getAuthorizationHeaders(getActivity()),
-                        null,shopID,null,
+                        null,shopID,pickFromShop,
                         null,null,null,
                         null,null,
-                        null,searchQuery,
+                        ordersPendingStatus,searchQuery,
                         current_sort,limit,offset,null);
 
-
-
-            
 
 
             call.enqueue(new Callback<OrderEndPoint>() {
@@ -383,7 +415,17 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
                                 dataset.clear();
                             }
 
-                            dataset.addAll(response.body().getResults());
+                            if(response.body().getResults()!=null)
+                            {
+                                dataset.addAll(response.body().getResults());
+
+                                if(response.body().getResults().size()==0)
+                                {
+                                    emptyScreen.setVisibility(View.VISIBLE);
+                                }
+                            }
+
+
                             adapter.notifyDataSetChanged();
                             notifyTitleChanged();
 
@@ -414,6 +456,11 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
                     {
                         return;
                     }
+
+
+                    emptyScreen.setVisibility(View.VISIBLE);
+
+
 
                     showToastMessage("Network Request failed !");
                     swipeContainer.setRefreshing(false);
@@ -526,6 +573,9 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
     }
 
 
+
+
+
     private void cancelOrder(Order order) {
 
         showToastMessage("Cancel Order !");
@@ -566,6 +616,11 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
         });
 
     }
+
+
+
+
+
 
 
     @Override

@@ -10,12 +10,18 @@
         <!--title= "Local" />-->
 
 
-
-
     <tab
         id="@+id/tab_items"
         icon="@drawable/ic_items_24px"
         title="Items" />
+
+
+
+
+    <!--<tab-->
+        <!--id="@+id/tab_services"-->
+        <!--icon="@drawable/ic_items_24px"-->
+        <!--title="Services" />-->
 
 
 

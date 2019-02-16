@@ -180,7 +180,7 @@ public class ShopReviewStats extends Fragment{
         for(ShopReviewStatRow row : listStats)
         {
             reviews_count_total = reviews_count_total + row.getReviews_count();
-            statListNormalized[row.getRating()-1].setReviews_count(row.getReviews_count());
+//            statListNormalized[row.getRating()-1].setReviews_count(row.getReviews_count());
         }
 
         showResults();

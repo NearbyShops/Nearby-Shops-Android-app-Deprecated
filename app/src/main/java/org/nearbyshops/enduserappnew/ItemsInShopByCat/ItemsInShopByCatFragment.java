@@ -420,20 +420,23 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     {
         dataset.clear();
 
-        HeaderItemsList headerItemCategory = new HeaderItemsList();
+
 
         if(searchQuery==null)
         {
+
+            HeaderItemsList headerItemCategory = new HeaderItemsList();
             headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
-        }
-        else
-        {
-            headerItemCategory.setHeading( "Search Results (Subcategories)");
-        }
 
-        dataset.add(headerItemCategory);
 
-        dataset.addAll(datasetCategory);
+            dataset.add(headerItemCategory);
+            dataset.addAll(datasetCategory);
+        }
+//        else
+//        {
+//            headerItemCategory.setHeading( "Search Results (Subcategories)");
+//        }
+
 
         HeaderItemsList headerItem = new HeaderItemsList();
 
@@ -443,7 +446,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         }
         else
         {
-            headerItem.setHeading("Search Results (Items In Shop)");
+//            headerItem.setHeading("Search Results (Items In Shop)");
+            headerItem.setHeading("Search Results");
         }
 
 

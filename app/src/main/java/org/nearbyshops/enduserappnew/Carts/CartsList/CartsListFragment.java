@@ -14,6 +14,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -31,7 +32,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,6 +53,9 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
     List<CartStats> dataset = new ArrayList<>();
 
     boolean isDestroyed = false;
+
+
+    @BindView(R.id.empty_screen) LinearLayout emptyScreen;
 
 
     public CartsListFragment() {
@@ -84,6 +90,9 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 //        toolbar.setTitle("Nearby Shops");
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 //
+
+
+
 
 
 
@@ -214,6 +223,8 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
         */
 
+        emptyScreen.setVisibility(View.GONE);
+
 
         call.enqueue(this);
 
@@ -258,11 +269,24 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
             dataset.clear();
             dataset.addAll(response.body());
             adapter.notifyDataSetChanged();
-        }else
+
+            if(response.body().size()==0)
+            {
+                emptyScreen.setVisibility(View.VISIBLE);
+            }
+
+
+        }
+        else
         {
             dataset.clear();
             adapter.notifyDataSetChanged();
+
+            emptyScreen.setVisibility(View.VISIBLE);
         }
+
+
+
 
         swipeContainer.setRefreshing(false);
 
@@ -281,11 +305,23 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
         }
 
 
+        emptyScreen.setVisibility(View.VISIBLE);
 
         showToastMessage("Network Request failed !");
         swipeContainer.setRefreshing(false);
 
     }
+
+
+
+
+
+    @OnClick(R.id.button_try_again)
+    void tryAgainClick()
+    {
+        onRefresh();
+    }
+
 
 
 
