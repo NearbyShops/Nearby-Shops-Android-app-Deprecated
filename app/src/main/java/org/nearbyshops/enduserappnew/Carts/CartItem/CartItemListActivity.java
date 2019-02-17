@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.Carts.CartItem;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -32,6 +33,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -71,6 +73,10 @@ public class CartItemListActivity extends AppCompatActivity
     TextView estimatedTotal;
 
     double cartTotal = 0;
+
+
+    @BindView(R.id.empty_screen) LinearLayout emptyScreen;
+    @BindView(R.id.bottom_bar) ConstraintLayout bottomBar;
 
 
     // header views
@@ -344,6 +350,11 @@ public class CartItemListActivity extends AppCompatActivity
             return;
         }
 
+
+        emptyScreen.setVisibility(View.GONE);
+        bottomBar.setVisibility(View.VISIBLE);
+
+
         Call<List<CartItem>> call = cartItemService.getCartItem(null,null,
                 endUser.getUserID(),shop.getShopID(),true);
 
@@ -358,13 +369,22 @@ public class CartItemListActivity extends AppCompatActivity
 
                     adapter.notifyDataSetChanged();
 
-
+                    if(dataset.size()==0)
+                    {
+                        emptyScreen.setVisibility(View.VISIBLE);
+                        bottomBar.setVisibility(View.GONE);
+                    }
 
                 }else
                 {
+                    emptyScreen.setVisibility(View.VISIBLE);
+                    bottomBar.setVisibility(View.GONE);
+
                     dataset.clear();
                     adapter.notifyDataSetChanged();
                 }
+
+
 
                 swipeContainer.setRefreshing(false);
 
@@ -376,6 +396,9 @@ public class CartItemListActivity extends AppCompatActivity
 
                 showToastMessage("Network Request failed !");
                 swipeContainer.setRefreshing(false);
+
+                emptyScreen.setVisibility(View.VISIBLE);
+                bottomBar.setVisibility(View.GONE);
 
             }
         });
