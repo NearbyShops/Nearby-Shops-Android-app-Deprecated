@@ -181,6 +181,9 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
 
 
+
+
+
     void checkPermissions() {
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

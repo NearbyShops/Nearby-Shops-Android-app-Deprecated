@@ -398,6 +398,7 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".OrderHistoryHD.OrderHistoryHD.OrderHistoryHD"
             android:label="Order History"
@@ -415,6 +416,29 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".OrderHistoryNew.OrderHistoryNew"
+            android:label="Order History"
+            android:launchMode="singleTop"
+            android:parentActivityName=".OrdersHomeDelivery.OrderHome"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ShopHome.ShopHome" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+
         <activity
             android:name=".OrderDetail.OrderDetail"
             android:label="Order Details"
@@ -433,6 +457,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduserappnew.OrdersHomeDelivery.OrderHome" />
         </activity>
+
+
         <activity
             android:name=".Settings.SettingsCustom"
             android:label="Settings"

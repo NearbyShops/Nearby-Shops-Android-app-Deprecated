@@ -335,7 +335,7 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
             Integer shopID = null;
 
-            if(getActivity().getIntent().getBooleanExtra(OrderHistoryHD.IS_FILTER_BY_SHOP,false))
+            if(getActivity().getIntent().getBooleanExtra(OrderHistoryNew.IS_FILTER_BY_SHOP,false))
             {
                 Shop shop = PrefShopHome.getShop(getActivity());
 
@@ -348,6 +348,9 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
                     shopID = 0;
                 }
             }
+
+
+
 
 
 
@@ -427,7 +430,7 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
                             adapter.notifyDataSetChanged();
-                            notifyTitleChanged();
+//                            notifyTitleChanged();
 
 
 
@@ -471,10 +474,24 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
     }
 
 
+
+
+
+
+    @OnClick(R.id.button_try_again)
+    void tryAgainClick()
+    {
+        makeRefreshNetworkCall();
+    }
+
+
+
+
+
     @Override
     public void onResume() {
         super.onResume();
-        notifyTitleChanged();
+//        notifyTitleChanged();
         isDestroyed=false;
     }
 
@@ -497,20 +514,20 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
 
-
-    void notifyTitleChanged()
-    {
-
-        if(getActivity() instanceof NotifyTitleChanged)
-        {
-            ((NotifyTitleChanged)getActivity())
-                    .NotifyTitleChanged(
-                            "Pending (" + String.valueOf(dataset.size())
-                                    + "/" + String.valueOf(item_count) + ")",0);
-
-
-        }
-    }
+//
+//    void notifyTitleChanged()
+//    {
+//
+//        if(getActivity() instanceof NotifyTitleChanged)
+//        {
+//            ((NotifyTitleChanged)getActivity())
+//                    .NotifyTitleChanged(
+//                            "Pending (" + String.valueOf(dataset.size())
+//                                    + "/" + String.valueOf(item_count) + ")",0);
+//
+//
+//        }
+//    }
 
 
 
@@ -524,16 +541,16 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
 
-    void refreshConfirmedFragment()
-    {
-        Fragment fragment = getActivity().getSupportFragmentManager()
-                .findFragmentByTag(makeFragmentName(R.id.container,1));
-
-        if(fragment instanceof RefreshFragment)
-        {
-            ((RefreshFragment)fragment).refreshFragment();
-        }
-    }
+//    void refreshConfirmedFragment()
+//    {
+//        Fragment fragment = getActivity().getSupportFragmentManager()
+//                .findFragmentByTag(makeFragmentName(R.id.container,1));
+//
+//        if(fragment instanceof RefreshFragment)
+//        {
+//            ((RefreshFragment)fragment).refreshFragment();
+//        }
+//    }
 
 
 
