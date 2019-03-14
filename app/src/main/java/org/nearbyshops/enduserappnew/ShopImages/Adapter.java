@@ -134,7 +134,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 //            if (fragment instanceof ShopImageListFragment) {
-//                itemCount = (((ShopImageListFragment) fragment).item_count_vehicle + 1 );
+//                itemCount = (((ShopImageListFragment) fragment).item_count + 1 );
 //            }
 
 

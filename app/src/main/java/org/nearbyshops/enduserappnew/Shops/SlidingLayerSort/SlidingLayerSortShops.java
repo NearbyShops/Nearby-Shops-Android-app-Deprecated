@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort.PrefSortOrders;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 
@@ -60,6 +61,19 @@ public class SlidingLayerSortShops extends Fragment {
     public static String SORT_ASCENDING = "ASC NULLS LAST";
 
 
+    public static int CLEAR_FILTERS_DELIVERY_TYPE = -1;
+    public static int FILTER_BY_HOME_DELIVERY = 1;
+    public static int FILTER_BY_PICK_FROM_SHOP = 2;
+
+
+
+    @BindView(R.id.filter_home_delivery) TextView filterHomeDelivery;
+    @BindView(R.id.filter_pick_from_shop) TextView filterPickFromShop;
+    @BindView(R.id.clear_filter_delivery_type) TextView clearFilterDeliveryType;
+    @BindView(R.id.filter_option_description) TextView filterOptionDescription;
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,8 +82,13 @@ public class SlidingLayerSortShops extends Fragment {
         ButterKnife.bind(this,view);
 
         loadDefaultSort();
+        bindDeliveryType();
+
         return view;
     }
+
+
+
 
 
 
@@ -232,5 +251,92 @@ public class SlidingLayerSortShops extends Fragment {
         sort_ascending.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
         sort_descending.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
     }
+
+
+
+
+
+
+    @OnClick(R.id.clear_filter_delivery_type)
+    void clearDeliveryType()
+    {
+        PrefSortShopsByCategory.saveFilterByDeliveryType(getActivity(),true);
+        bindDeliveryType();
+
+        if(getParentFragment() instanceof NotifySort)
+        {
+            ((NotifySort)getParentFragment()).notifySortChanged();
+        }
+    }
+
+
+
+
+
+    @OnClick(R.id.filter_pick_from_shop)
+    void filterByPickFromShop()
+    {
+        PrefSortShopsByCategory.saveFilterByDeliveryType(getActivity(),false);
+        bindDeliveryType();
+
+        if(getParentFragment() instanceof NotifySort)
+        {
+            ((NotifySort)getParentFragment()).notifySortChanged();
+        }
+    }
+
+
+    @OnClick(R.id.filter_home_delivery)
+    void filterByHomeDelivery()
+    {
+        PrefSortShopsByCategory.saveFilterByDeliveryType(getActivity(),true);
+        bindDeliveryType();
+
+        if(getParentFragment() instanceof NotifySort)
+        {
+            ((NotifySort)getParentFragment()).notifySortChanged();
+        }
+    }
+
+
+
+
+    void bindDeliveryType()
+    {
+        boolean isHomeDelivery = PrefSortShopsByCategory.getFilterByDeliveryType(getActivity());
+
+
+        if(isHomeDelivery)
+        {
+            clearFilterDeliveryType.setVisibility(View.GONE);
+
+            filterHomeDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.buttonColor));
+            filterHomeDelivery.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+
+            filterPickFromShop.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
+            filterPickFromShop.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+
+            filterOptionDescription.setText("Items will be delivered to the user's address and services will be provided at user premises !");
+
+        }
+        else
+        {
+
+            clearFilterDeliveryType.setVisibility(View.VISIBLE);
+
+            filterHomeDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
+            filterHomeDelivery.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+
+            filterPickFromShop.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.buttonColor));
+            filterPickFromShop.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+
+            filterOptionDescription.setText("Items are required to be picked up from the shop and Services will be provided at the shop premises !");
+
+        }
+
+
+    }
+
+
 
 }

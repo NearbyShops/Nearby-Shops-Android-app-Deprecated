@@ -3,6 +3,7 @@ package org.nearbyshops.enduserappnew.Shops.SlidingLayerSort;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort.SlidingLayerSortOrders;
 import org.nearbyshops.enduserappnew.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -67,5 +68,35 @@ public class PrefSortShopsByCategory {
 
         return descending;
     }
+
+
+
+
+
+    public static void saveFilterByDeliveryType(Context context, boolean isHomeDelivery)
+    {
+        // get a handle to shared Preference
+        SharedPreferences sharedPref;
+
+        sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preference_file_name),
+                MODE_PRIVATE);
+
+        // write to the shared preference
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("filter_shops_by_delivery_type", isHomeDelivery);
+        editor.apply();
+    }
+
+
+
+
+
+    public static boolean getFilterByDeliveryType(Context context)
+    {
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        return sharedPref.getBoolean("filter_shops_by_delivery_type", true);
+    }
+
 
 }
