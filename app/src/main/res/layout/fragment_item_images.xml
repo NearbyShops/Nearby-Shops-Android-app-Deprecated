@@ -115,6 +115,7 @@
 
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/empty_screen"
         android:gravity="center"
         android:orientation="vertical"
