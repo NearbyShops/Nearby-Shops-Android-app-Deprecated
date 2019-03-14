@@ -33,7 +33,7 @@
                 app:layout_collapseParallaxMultiplier="0.5"
                 android:scaleType="centerCrop"
                 android:id="@+id/book_cover"
-                android:maxHeight="500dp"
+                android:maxHeight="400dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -111,6 +111,22 @@
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content" />-->
 
+
+
+    <!--Item profile Picture-->
+    <!--More Images : Empty Screen for Extra pics, Profile pic needs to show in extra pics-->
+    <!--Like / Favourite Button-->
+
+    <!--Item Name-->
+    <!--Item Brand with Brand Logo-->
+    <!--Item Short Description-->
+    <!--Item Full Description with show more option-->
+    <!--Item Specification : Should not show in case of no specifications-->
+    <!--Share Button-->
+    <!--Item Rating and Rating Count-->
+    <!--Item Reviews with 5 reviews and show more option | Show empty screen with no reviews message when having zero reviews -->
+    <!--Similar Items / Item Suggestions-->
+    <!--Write Review Button Option-->
 
 
 

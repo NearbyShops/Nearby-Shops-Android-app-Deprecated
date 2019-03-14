@@ -141,7 +141,7 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
                 else
                 {
-                    holder.rating.setText(String.valueOf(shop.getRt_rating_avg()));
+                    holder.rating.setText(String.format("%.2f",shop.getRt_rating_avg()));
                     holder.rating_count.setText("( " + String.format( "%.0f", shop.getRt_rating_count()) + " Ratings )");
                 }
 

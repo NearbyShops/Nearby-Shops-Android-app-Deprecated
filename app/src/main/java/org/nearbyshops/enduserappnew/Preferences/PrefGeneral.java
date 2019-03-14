@@ -33,6 +33,8 @@ public class PrefGeneral {
 
 
 
+
+
     private static final String TAG_PREF_CURRENCY = "currency_symbol";
     private static final String TAG_PREF_CONFIG = "configuration";
 

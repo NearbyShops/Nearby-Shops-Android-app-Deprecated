@@ -96,9 +96,13 @@ android {
     lintOptions {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
+        // but continue the build even when errors are found:f
         abortOnError false
     }
+
+
+
+
 
 
     repositories {
@@ -115,19 +119,16 @@ android {
         maven {
             url 'https://oss.sonatype.org/content/repositories/snapshots'
         }
-        maven {
-            url "https://repo.eclipse.org/content/repositories/paho-snapshots/"
-        }
+//        maven {
+//            url "https://repo.eclipse.org/content/repositories/paho-snapshots/"
+//        }
         maven {
             url 'https://jitpack.io'
         }
         maven {
             url "https://clojars.org/repo/"
         }
-
     }
-
-
 
 
 }
@@ -195,8 +196,12 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.16'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
 
-    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'com.google.firebase:firebase-messaging:17.4.0'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
+
+//    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+//    implementation 'com.google.android.gms:play-services-location:16.0.0'
+
 
 //    implementation 'com.google.firebase:firebase-messaging:11.6.0'
 //    implementation 'com.google.android.gms:play-services-location:15.0.0'

@@ -27,6 +27,7 @@
             <!--//app:layout_scrollFlags="scroll|exitUntilCollapsed"-->
 
             <ImageView
+                android:maxHeight="300dp"
                 android:adjustViewBounds="true"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.5"

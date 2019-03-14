@@ -501,10 +501,6 @@ public class SlidingLayerSortOrders extends Fragment {
             filterHomeDelivery.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
 
         }
-
-
-
-
     }
 
 

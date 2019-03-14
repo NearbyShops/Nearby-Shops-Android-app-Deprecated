@@ -13,12 +13,12 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ImageSliderShop.ImageSliderShop;
 import org.nearbyshops.enduserappnew.Interfaces.OnTaxiFilterChanged;
-import org.nearbyshops.enduserappnew.Model.ItemImage;
 import org.nearbyshops.enduserappnew.Model.ShopImage;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopImageEndPoint;
 import org.nearbyshops.enduserappnew.ModelUtility.HeaderTitle;
@@ -72,13 +72,19 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
     // flags
     boolean clearDataset = false;
 
-    boolean getRowCountVehicle = false;
-    boolean resetOffsetVehicle = false;
+//    boolean getRowCountVehicle = false;
+//    boolean resetOffsetVehicle = false;
 
 
-    private int limit_vehicle = 30;
-    int offset_vehicle = 0;
-    public int item_count_vehicle = 0;
+    private int limit = 30;
+    int offset = 0;
+    public int item_count = 0;
+
+
+
+
+    @BindView(R.id.empty_screen) LinearLayout emptyScreen;
+
 
 
 //    @BindView(R.id.drivers_count) TextView driversCount;
@@ -174,7 +180,7 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
                 if(layoutManager.findLastVisibleItemPosition()==dataset.size())
                 {
 
-                    if(offset_vehicle + limit_vehicle > layoutManager.findLastVisibleItemPosition())
+                    if(offset + limit > layoutManager.findLastVisibleItemPosition())
                     {
                         return;
                     }
@@ -182,9 +188,9 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
                     // trigger fetch next page
 
-                    if((offset_vehicle + limit_vehicle)<= item_count_vehicle)
+                    if((offset + limit)<= item_count)
                     {
-                        offset_vehicle = offset_vehicle + limit_vehicle;
+                        offset = offset + limit;
 
                         getShopImages();
                     }
@@ -233,8 +239,8 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
     public void onRefresh() {
 
         clearDataset = true;
-        getRowCountVehicle = true;
-        resetOffsetVehicle = true;
+//        getRowCountVehicle = true;
+//        resetOffsetVehicle = true;
 
         getShopImages();
     }
@@ -254,10 +260,16 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
     void getShopImages()
     {
 
-        if(resetOffsetVehicle)
+//        if(resetOffsetVehicle)
+//        {
+//            offset = 0;
+//            resetOffsetVehicle = false;
+//        }
+
+
+        if(clearDataset)
         {
-            offset_vehicle = 0;
-            resetOffsetVehicle = false;
+            offset=0;
         }
 
 
@@ -269,7 +281,7 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
         Call<ShopImageEndPoint> call = service.getShopImages(
                 shopID,
                 ShopImage.IMAGE_ORDER,
-                limit_vehicle,offset_vehicle,
+                limit, offset,
                 clearDataset,false
         );
 
@@ -292,18 +304,25 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
                         dataset.clear();
                         clearDataset = false;
 
-                        item_count_vehicle = response.body().getItemCount();
+                        item_count = response.body().getItemCount();
 
-                        listAdapter.setItemCount(item_count_vehicle);
+                        listAdapter.setItemCount(item_count);
 
-                        getRowCountVehicle = false;
-                        dataset.add(new HeaderTitle("Shop Images"));
+                        if(item_count>0)
+                        {
+                            dataset.add(new HeaderTitle("Shop Images"));
+                        }
                     }
 
 
-//                    if (getRowCountVehicle) {
-//
-//                    }
+                    if(item_count==0)
+                    {
+                        emptyScreen.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        emptyScreen.setVisibility(View.GONE);
+                    }
 
 
 

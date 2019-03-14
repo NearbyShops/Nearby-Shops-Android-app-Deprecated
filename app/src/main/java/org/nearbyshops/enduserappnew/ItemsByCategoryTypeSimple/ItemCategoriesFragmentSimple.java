@@ -435,6 +435,11 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
     @Override
     public void onRefresh() {
 
+
+
+
+        emptyScreen.setVisibility(View.GONE);
+
         makeRequestItemCategory();
         makeRequestItem(true,true);
     }

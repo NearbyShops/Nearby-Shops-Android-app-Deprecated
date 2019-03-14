@@ -146,7 +146,7 @@ public class ShopHome extends AppCompatActivity {
             }
             else
             {
-                rating.setText(String.valueOf(shop.getRt_rating_avg()));
+                rating.setText(String.format("%.2f",shop.getRt_rating_avg()));
                 rating_count.setText("( " + String.format( "%.0f", shop.getRt_rating_count()) + " Ratings )");
             }
 
