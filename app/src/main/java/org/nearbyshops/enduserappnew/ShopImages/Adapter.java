@@ -42,8 +42,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     // keeping track of selections
-    private Map<Integer, ShopImage> selectedItems = new HashMap<>();
-    private ShopImage selectedItemSingle;
+//    private Map<Integer, ShopImage> selectedItems = new HashMap<>();
+//    private ShopImage selectedItemSingle;
 
 
     private List<Object> dataset;
@@ -207,35 +207,39 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     + taxiImage.getImageFilename() + ".jpg";
 
 
+            String imagePathMedium = PrefGeneral.getServiceURL(context) + "/api/v1/ShopImage/Image/nine_hundred_"
+                    + taxiImage.getImageFilename() + ".jpg";
+
+
             String imagePathFullSize = PrefGeneral.getServiceURL(context) + "/api/v1/ShopImage/Image/"
                     + taxiImage.getImageFilename();
 
 
 
             Picasso.with(context)
-                    .load(imagePathFullSize)
+                    .load(imagePathMedium)
                     .placeholder(drawable)
                     .into(holder.taxiImage);
 
 
 
 
-            if(selectedItems.containsKey(taxiImage.getShopImageID()))
-            {
-//                holder.listItem.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_2));
-//                holder.listItem.animate().scaleXBy(-3);
-//                holder.listItem.animate().scaleYBy(-3);
-//                holder.listItem.animate().scaleY(-2);
-
-                holder.checkIcon.setVisibility(View.VISIBLE);
-
-            }
-            else
-            {
-//                holder.listItem.setBackgroundColor(ContextCompat.getColor(context,R.color.light_grey));
-
-                holder.checkIcon.setVisibility(View.INVISIBLE);
-            }
+//            if(selectedItems.containsKey(taxiImage.getShopImageID()))
+//            {
+////                holder.listItem.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_2));
+////                holder.listItem.animate().scaleXBy(-3);
+////                holder.listItem.animate().scaleYBy(-3);
+////                holder.listItem.animate().scaleY(-2);
+//
+//                holder.checkIcon.setVisibility(View.VISIBLE);
+//
+//            }
+//            else
+//            {
+////                holder.listItem.setBackgroundColor(ContextCompat.getColor(context,R.color.light_grey));
+//
+//                holder.checkIcon.setVisibility(View.INVISIBLE);
+//            }
 
         }
     }
@@ -284,52 +288,52 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
-        @OnLongClick(R.id.list_item)
-        boolean listItemLongClick(View view)
-        {
-            ShopImage shopImage = (ShopImage) dataset.get(getLayoutPosition());
-
-
-
-            if(selectedItems.containsKey(
-                    shopImage.getShopImageID()
-            ))
-            {
-                selectedItems.remove(shopImage.getShopImageID());
-                checkIcon.setVisibility(View.INVISIBLE);
-
-            }else
-            {
-                selectedItems.put(shopImage.getShopImageID(),shopImage);
-                checkIcon.setVisibility(View.VISIBLE);
-                selectedItemSingle = shopImage;
-            }
-
-
-
-            notificationReceiver.notifyListItemSelected();
-//                    notifyItemChanged(getLayoutPosition());
-
-
-
-//                    if(selectedItems.containsKey(taxiImage.getImageID()))
-//                    {
+//        @OnLongClick(R.id.list_item)
+//        boolean listItemLongClick(View view)
+//        {
+//            ShopImage shopImage = (ShopImage) dataset.get(getLayoutPosition());
 //
 //
-//                    }
-//                    else
-//                    {
 //
-//                        checkIcon.setVisibility(View.INVISIBLE);
-//                    }
-
-
-            return notificationReceiver.listItemLongClick(view,
-                    (ShopImage) dataset.get(getLayoutPosition()),
-                    getLayoutPosition()
-            );
-        }
-
+//            if(selectedItems.containsKey(
+//                    shopImage.getShopImageID()
+//            ))
+//            {
+//                selectedItems.remove(shopImage.getShopImageID());
+//                checkIcon.setVisibility(View.INVISIBLE);
+//
+//            }else
+//            {
+//                selectedItems.put(shopImage.getShopImageID(),shopImage);
+//                checkIcon.setVisibility(View.VISIBLE);
+//                selectedItemSingle = shopImage;
+//            }
+//
+//
+//
+//            notificationReceiver.notifyListItemSelected();
+////                    notifyItemChanged(getLayoutPosition());
+//
+//
+//
+////                    if(selectedItems.containsKey(taxiImage.getImageID()))
+////                    {
+////
+////
+////                    }
+////                    else
+////                    {
+////
+////                        checkIcon.setVisibility(View.INVISIBLE);
+////                    }
+//
+//
+//            return notificationReceiver.listItemLongClick(view,
+//                    (ShopImage) dataset.get(getLayoutPosition()),
+//                    getLayoutPosition()
+//            );
+//        }
+//
 
 
         @OnClick(R.id.list_item)

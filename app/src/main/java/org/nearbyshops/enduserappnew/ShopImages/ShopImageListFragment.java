@@ -42,7 +42,8 @@ import retrofit2.Response;
  * Created by sumeet on 14/6/17.
  */
 
-public class ShopImageListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, Adapter.NotificationsFromAdapter ,OnTaxiFilterChanged {
+public class ShopImageListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
+        Adapter.NotificationsFromAdapter ,OnTaxiFilterChanged {
 
     boolean isDestroyed = false;
 
