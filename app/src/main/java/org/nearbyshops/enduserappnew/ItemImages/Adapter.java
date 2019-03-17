@@ -39,8 +39,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     // keeping track of selections
-    Map<Integer, ItemImage> selectedItems = new HashMap<>();
-    ItemImage selectedItemSingle;
+//    Map<Integer, ItemImage> selectedItems = new HashMap<>();
+//    ItemImage selectedItemSingle;
 
 
     private List<Object> dataset;
@@ -190,39 +190,27 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 //            String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/TaxiImages/Image/" + "_hundred_"+ taxiImage.getImageFilename() + ".jpg";
 //            String image_url = PrefGeneral.getServiceURL(context) + "/api/v1/TaxiImages/Image/" + taxiImage.getImageFilename();
 
-            String imagePathSmall = PrefGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/five_hundred_"
+            String imagePathSmall = PrefGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/nine_hundred_"
                     + taxiImage.getImageFilename() + ".jpg";
 
 
-            String imagePathFullSize = PrefGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/"
-                    + taxiImage.getImageFilename();
+//            seven_hundred_
+
+
+//            String imagePathFullSize = PrefGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/"
+//                    + taxiImage.getImageFilename();
+
 
 
 
             Picasso.with(context)
-                    .load(imagePathFullSize)
+                    .load(imagePathSmall)
                     .placeholder(drawable)
                     .into(holder.taxiImage);
 
 
 
 
-            if(selectedItems.containsKey(taxiImage.getImageID()))
-            {
-//                holder.listItem.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_2));
-//                holder.listItem.animate().scaleXBy(-3);
-//                holder.listItem.animate().scaleYBy(-3);
-//                holder.listItem.animate().scaleY(-2);
-
-                holder.checkIcon.setVisibility(View.VISIBLE);
-
-            }
-            else
-            {
-//                holder.listItem.setBackgroundColor(ContextCompat.getColor(context,R.color.light_grey));
-
-                holder.checkIcon.setVisibility(View.INVISIBLE);
-            }
 
         }
     }
@@ -271,51 +259,59 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
-        @OnLongClick(R.id.list_item)
-        boolean listItemLongClick(View view)
-        {
-            ItemImage taxiImage = (ItemImage) dataset.get(getLayoutPosition());
 
 
 
-            if(selectedItems.containsKey(
-                    taxiImage.getImageID()
-            ))
-            {
-                selectedItems.remove(taxiImage.getImageID());
-                checkIcon.setVisibility(View.INVISIBLE);
 
-            }else
-            {
-                selectedItems.put(taxiImage.getImageID(),taxiImage);
-                checkIcon.setVisibility(View.VISIBLE);
-                selectedItemSingle = taxiImage;
-            }
-
-
-
-            notificationReceiver.notifyListItemSelected();
-//                    notifyItemChanged(getLayoutPosition());
-
-
-
-//                    if(selectedItems.containsKey(taxiImage.getImageID()))
-//                    {
+//        @OnLongClick(R.id.list_item)
+//        boolean listItemLongClick(View view)
+//        {
+//            ItemImage taxiImage = (ItemImage) dataset.get(getLayoutPosition());
 //
 //
-//                    }
-//                    else
-//                    {
 //
-//                        checkIcon.setVisibility(View.INVISIBLE);
-//                    }
+//            if(selectedItems.containsKey(
+//                    taxiImage.getImageID()
+//            ))
+//            {
+//                selectedItems.remove(taxiImage.getImageID());
+//                checkIcon.setVisibility(View.INVISIBLE);
+//
+//            }else
+//            {
+//                selectedItems.put(taxiImage.getImageID(),taxiImage);
+//                checkIcon.setVisibility(View.VISIBLE);
+//                selectedItemSingle = taxiImage;
+//            }
+//
+//
+//
+//            notificationReceiver.notifyListItemSelected();
+////                    notifyItemChanged(getLayoutPosition());
+//
+//
+//
+////                    if(selectedItems.containsKey(taxiImage.getImageID()))
+////                    {
+////
+////
+////                    }
+////                    else
+////                    {
+////
+////                        checkIcon.setVisibility(View.INVISIBLE);
+////                    }
+//
+//
+//            return notificationReceiver.listItemLongClick(view,
+//                    (ItemImage) dataset.get(getLayoutPosition()),
+//                    getLayoutPosition()
+//            );
+//        }
 
 
-            return notificationReceiver.listItemLongClick(view,
-                    (ItemImage) dataset.get(getLayoutPosition()),
-                    getLayoutPosition()
-            );
-        }
+
+
 
 
 

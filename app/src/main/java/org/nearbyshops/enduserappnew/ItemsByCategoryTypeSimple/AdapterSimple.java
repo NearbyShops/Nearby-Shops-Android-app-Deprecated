@@ -296,6 +296,7 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 
 
+
     void bindItem(ViewHolderItemSimple holder,int position)
     {
 
@@ -354,11 +355,16 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 .create(context.getResources(),
                         R.drawable.ic_nature_people_white_48px, context.getTheme());
 
-        Picasso.with(context).load(imagePath)
+        Picasso.with(context)
+                .load(imagePath)
                 .placeholder(drawable)
                 .into(holder.categoryImage);
-
     }
+
+
+
+
+
 
 
 

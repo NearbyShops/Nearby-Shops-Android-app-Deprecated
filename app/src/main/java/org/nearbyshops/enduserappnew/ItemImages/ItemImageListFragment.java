@@ -43,25 +43,22 @@ import retrofit2.Response;
  * Created by sumeet on 14/6/17.
  */
 
-public class ItemImageListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, Adapter.NotificationsFromAdapter ,OnTaxiFilterChanged {
+public class ItemImageListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
+        Adapter.NotificationsFromAdapter ,OnTaxiFilterChanged {
+
 
     boolean isDestroyed = false;
 
-    @BindView(R.id.swipe_container)
-    SwipeRefreshLayout swipeContainer;
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
-    @BindView(R.id.progress_bar)
-    ConstraintLayout progressBar;
+    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.progress_bar) ConstraintLayout progressBar;
 
 
 
 
-    @Inject
-    UserService userService;
+//    @Inject UserService userService;
 
-    @Inject
-    ItemImageService service;
+    @Inject ItemImageService service;
 
     GridLayoutManager layoutManager;
     Adapter listAdapter;
@@ -407,9 +404,11 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
     @Override
     public void notifyListItemSelected() {
-
-
     }
+
+
+
+
 
     @Override
     public void listItemClick(ItemImage taxiImage, int position) {
@@ -427,6 +426,7 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
         startActivity(intent);
     }
+
 
 
 
