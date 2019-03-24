@@ -154,7 +154,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
 
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-        toolbar.setTitle("Nearby Shops");
+//        toolbar.setTitle("Nearby Shops");
+        toolbar.setTitle(getString(R.string.app_name));
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
 

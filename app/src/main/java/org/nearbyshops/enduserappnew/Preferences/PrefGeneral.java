@@ -35,6 +35,7 @@ public class PrefGeneral {
 
 
 
+
     private static final String TAG_PREF_CURRENCY = "currency_symbol";
     private static final String TAG_PREF_CONFIG = "configuration";
 
@@ -44,10 +45,6 @@ public class PrefGeneral {
 //    public static final String DELIVERY_RANGE_MAX_KEY = "deliveryRangeMaxKey";
 //    public static final String DELIVERY_RANGE_MIN_KEY = "deliveryRagneMinKey";
 //    public static final String PROXIMITY_KEY = "proximityKey";
-
-
-
-
 
 
 
