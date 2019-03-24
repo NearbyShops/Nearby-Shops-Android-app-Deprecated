@@ -300,7 +300,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
         Call<OrderItemEndPoint> call = orderItemService.getOrderItem(
                 PrefLogin.getAuthorizationHeaders(getActivity()),
-                order.getOrderID(),null,null,null,limit,offset,null);
+                order.getOrderID(),null,null,null,null,null,null);
 
 
         call.enqueue(new Callback<OrderItemEndPoint>() {
