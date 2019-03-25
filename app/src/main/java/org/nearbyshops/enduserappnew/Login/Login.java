@@ -25,7 +25,7 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
-        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
+//        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
 
         setContentView(R.layout.activity_login_new);
 
@@ -74,7 +74,7 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
+//        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
     }
 
 
