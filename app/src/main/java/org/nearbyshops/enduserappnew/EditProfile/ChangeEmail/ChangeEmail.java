@@ -25,7 +25,7 @@ public class ChangeEmail extends AppCompatActivity implements ShowFragmentChange
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
 
-        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
+//        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
         setContentView(R.layout.activity_change_email);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -52,7 +52,7 @@ public class ChangeEmail extends AppCompatActivity implements ShowFragmentChange
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
+//        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
     }
 
 
@@ -65,7 +65,7 @@ public class ChangeEmail extends AppCompatActivity implements ShowFragmentChange
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+//                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
                 .replace(R.id.fragment_container,new FragmentVerifyEmailChange(),TAG_STEP_TWO)
                 .addToBackStack("step_two")
                 .commit();
@@ -81,7 +81,7 @@ public class ChangeEmail extends AppCompatActivity implements ShowFragmentChange
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+//                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
                 .replace(R.id.fragment_container,new FragmentResultChangeEmail())
                 .commit();
     }

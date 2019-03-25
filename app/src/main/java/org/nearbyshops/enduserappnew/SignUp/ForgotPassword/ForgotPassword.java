@@ -35,7 +35,7 @@ public class ForgotPassword extends AppCompatActivity implements ShowFragmentFor
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
 
-        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
+//        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
         setContentView(R.layout.activity_forgot_password);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -72,7 +72,7 @@ public class ForgotPassword extends AppCompatActivity implements ShowFragmentFor
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
+//        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
     }
 
 

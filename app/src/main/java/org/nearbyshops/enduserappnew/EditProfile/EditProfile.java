@@ -31,7 +31,7 @@ public class EditProfile extends AppCompatActivity implements NotifyChangePasswo
 
 
 
-        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
+//        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
         setContentView(R.layout.activity_edit_profile_driver);
         ButterKnife.bind(this);
 
@@ -52,7 +52,7 @@ public class EditProfile extends AppCompatActivity implements NotifyChangePasswo
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
+//        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class EditProfile extends AppCompatActivity implements NotifyChangePasswo
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+//                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
                 .addToBackStack("change_pass")
                 .replace(R.id.fragment_container,new FragmentChangePassword(), EditProfile.TAG_FRAGMENT_CHANGE_PASSWORD)
                 .commit();

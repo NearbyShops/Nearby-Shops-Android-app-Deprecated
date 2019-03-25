@@ -42,7 +42,7 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
-        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
+//        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
         setContentView(R.layout.activity_sign_up);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -88,7 +88,7 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
+//        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
     }
 
 
