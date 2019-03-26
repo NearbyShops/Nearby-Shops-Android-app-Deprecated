@@ -1,7 +1,9 @@
 Nearby Shops End-User android app
 ====================================
 
-<img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="178"> 
+
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/shops_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/orders_compressed.gif" width="208"> 
+
 
 
 This is an End-User app for Nearby Shops platform.  
@@ -27,14 +29,13 @@ Screenshots
 --------------
 
 
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/shops_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/orders_compressed.gif" width="208"> 
-
 <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181453-512x1024.png" width="208">   <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181504-512x1024.png" width="208">   <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181513-512x1024.png" width="208">
 
 
 
 Download
 --------
+<img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="178"> 
 
 Get it from Google play store
 
@@ -69,7 +70,7 @@ Third Party Integrations
 Nearby Shops has latest integrations for SMS-OTP verification(MSG91), E-mail (mailgun), Open-Signal (for push notifications), Fabrio.io (crash reporting)
 
 
-Community - Need Help
+Community - Need Help ? 
 ------------------------
 
 If you want any help regarding anything. Feel free to contact us. Send a message through our forum or you can simply post an issue. Your issues will not be ignored and you will surely receive help. 
