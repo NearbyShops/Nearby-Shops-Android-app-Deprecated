@@ -18,7 +18,7 @@ Get Paid to Contribute
 ------------------------
 Developer time is valuable and its not fair to expect developers to contribute their time without being reasonably compensated. Therefore we have made a policy to compensate the developers, designers or any other contributor who help us with the project. We will make best efforts to Compensate the contibutors. 
 
-The compensation will be similar to how freelance developers, desginers are paid / compensated ! You will be paid on hourly basis. If your contribution is accepted in the original project. 
+The compensation will be similar to how freelance developers, desginers are paid / compensated ! You will be paid on hourly basis if your contribution is accepted in the original project. 
 
 To know how to contribute please visit [ link coming soon]
 
@@ -26,11 +26,10 @@ To know how to contribute please visit [ link coming soon]
 Screenshots
 --------------
 
-<img src="https://nearbyshops.org/images/gifs/items_new_compressed.gif" width="208"> 
-<img src="https://nearbyshops.org/images/gifs/shops_compressed.gif" width="208"> 
-<img src="https://nearbyshops.org/images/gifs/orders_compressed.gif" width="208"> 
 
-<img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181453-512x1024.png" width="208"> <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181504-512x1024.png" width="208"> <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181513-512x1024.png" width="208">
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/shops_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/orders_compressed.gif" width="208"> 
+
+<img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181453-512x1024.png" width="208">   <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181504-512x1024.png" width="208">   <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181513-512x1024.png" width="208">
 
 
 
@@ -75,7 +74,7 @@ Community - Need Help
 
 If you want any help regarding anything. Feel free to contact us. Send a message through our forum or you can simply post an issue. Your issues will not be ignored and you will surely receive help. 
 
-Please Visit - https://forum.nearbyshops.org
+Reach out to us - Please Visit - https://forum.nearbyshops.org
 
 
 Source code for Shop-Owner, Admin app and Server Side
