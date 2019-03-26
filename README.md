@@ -1,13 +1,16 @@
-<img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
+
 
 Nearby Shops End-User android app
 ====================================
+
 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/shops_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/orders_compressed.gif" width="208"> 
 
 
 This is an End-User app for Nearby Shops platform.
+
+<img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
 
 Nearby Shops helps you build your own self-hosted local marketplace. For more information visit https://nearbyshops.org
 
@@ -20,7 +23,7 @@ Licensed under a permissive MIT license allows you to use this software even for
 
 
 
-<img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181453-512x1024.png" width="208">   <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181504-512x1024.png" width="208">   <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181513-512x1024.png" width="208">
+<img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181453-512x1024.png" width="208">   <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181504-512x1024.png" width="208">   <img src="https://nearbyshops.org/images/rating-review-3-512x1024.png" width="208">
 
 
 
