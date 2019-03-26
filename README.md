@@ -1,3 +1,5 @@
+<img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
+
 Nearby Shops End-User android app
 ====================================
 
@@ -5,8 +7,9 @@ Nearby Shops End-User android app
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/shops_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/orders_compressed.gif" width="208"> 
 
 
+This is an End-User app for Nearby Shops platform.
 
-This is an End-User app for Nearby Shops platform.  
+Nearby Shops helps you build your own self-hosted local marketplace. For more information visit https://nearbyshops.org
 
 Nearby Shops is a multi-vendor mobile based e-commerce platform. Multi-vendor means it can have multiple sellers. 
 Its designed primarily for local shopping needs like shopping grocery, fruits and vegetables. 
@@ -14,6 +17,12 @@ Its designed primarily for local shopping needs like shopping grocery, fruits an
 It has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. 
 
 Licensed under a permissive MIT license allows you to use this software even for commertial use. 
+
+
+
+<img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181453-512x1024.png" width="208">   <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181504-512x1024.png" width="208">   <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181513-512x1024.png" width="208">
+
+
 
 
 Get Paid to Contribute
@@ -25,17 +34,9 @@ The compensation will be similar to how freelance developers, desginers are paid
 To know how to contribute please visit [ link coming soon]
 
 
-Screenshots
---------------
-
-
-<img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181453-512x1024.png" width="208">   <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181504-512x1024.png" width="208">   <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181513-512x1024.png" width="208">
-
-
 
 Download
 --------
-<img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="178"> 
 
 Get it from Google play store
 
