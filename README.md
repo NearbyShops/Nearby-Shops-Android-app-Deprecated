@@ -6,7 +6,7 @@ Nearby Shops End-User android app
 
 <img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
 
-This is an End-User app for Nearby Shops platform. Nearby Shops helps you build your own self-hosted local marketplace. For more information visit https://nearbyshops.org
+This is an End-User app for Nearby Shops platform. Nearby Shops helps you build your own self-hosted local marketplace. For more information visit https://nearbyshops.org | Developers visit http://developer.nearbyshops.org
 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/shops_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/gifs/orders_compressed.gif" width="208"> 
@@ -15,7 +15,6 @@ This is an End-User app for Nearby Shops platform. Nearby Shops helps you build 
 
 Nearby Shops is a multi-vendor mobile based e-commerce platform. Multi-vendor means it can have multiple sellers. 
 Its designed primarily for local shopping needs like shopping grocery, fruits and vegetables. 
-
 
 It has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. 
 
@@ -46,8 +45,8 @@ Get it from Google play store
 <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
 
 
-Demo
------
+Instructions for Demo
+------------------------
 
 Download the nearby shops android app from the above link and then set a fake location. 
 
@@ -71,7 +70,7 @@ Retrofit, Ok-Http, Event-Bus, Picasso, Lost (for finding location), butterknife,
 Third Party Integrations
 -------------------------
 
-Nearby Shops has latest integrations for SMS-OTP verification(MSG91), E-mail (mailgun), Open-Signal (for push notifications), Fabrio.io (crash reporting)
+Nearby Shops has latest integrations for SMS-OTP verification(MSG91), E-mail (mailgun), One-Signal and Firebase (for push notifications), Maps (open-street-maps), Fabrio.io (crash reporting)
 
 
 Community - Need Help ? 
