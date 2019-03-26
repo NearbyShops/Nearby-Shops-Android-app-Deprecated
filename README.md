@@ -18,15 +18,17 @@ Get Paid to Contribute
 ------------------------
 Developer time is valuable and its not fair to expect developers to contribute their time without being reasonably compensated. Therefore we have made a policy to compensate the developers, designers or any other contributor who help us with the project. We will make best efforts to Compensate the contibutors. 
 
-The compensation will be similar to how freelance developers, desginers are paid / compensated !
+The compensation will be similar to how freelance developers, desginers are paid / compensated ! You will be paid on hourly basis. If your contribution is accepted in the original project. 
 
-To know how to contribute please visit https://nearbyshops.org/contribute/
+To know how to contribute please visit [ link coming soon]
 
 
 Screenshots
 --------------
 
-<img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181246-512x1024.png" width="208"> <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181259-512x1024.png" width="208"> <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181405-512x1024.png" width="208"> 
+<img src="https://nearbyshops.org/images/gifs/items_new_compressed.gif" width="208"> 
+<img src="https://nearbyshops.org/images/gifs/shops_compressed.gif" width="208"> 
+<img src="https://nearbyshops.org/images/gifs/orders_compressed.gif" width="208"> 
 
 <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181453-512x1024.png" width="208"> <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181504-512x1024.png" width="208"> <img src="https://nearbyshops.org/wp-content/uploads/2018/12/Screenshot_20181222-181513-512x1024.png" width="208">
 
@@ -69,11 +71,11 @@ Nearby Shops has latest integrations for SMS-OTP verification(MSG91), E-mail (ma
 
 
 Community - Need Help
------------
+------------------------
 
-If you want any help regarding anything. Feel free to contact us. Send a message through our website or you can simply post an issue. Your issues will not be ignored and you will surely receive help. 
+If you want any help regarding anything. Feel free to contact us. Send a message through our forum or you can simply post an issue. Your issues will not be ignored and you will surely receive help. 
 
-Please Visit - https://nearbyshops.org/community
+Please Visit - https://forum.nearbyshops.org
 
 
 Source code for Shop-Owner, Admin app and Server Side
@@ -90,7 +92,7 @@ Source code for Server Side JSON Based REST API is available in this repository 
 License
 =======
 
-    Copyright 2017 Bluetree Software LLP, Inc.
+    Copyright 2017-19 Bluetree Software LLP, Inc.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
