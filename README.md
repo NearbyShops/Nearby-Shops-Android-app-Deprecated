@@ -33,7 +33,7 @@ Developer time is valuable and its not fair to expect developers to contribute t
 
 The compensation will be similar to how freelance developers, desginers are paid / compensated ! You will be paid on hourly basis if your contribution is accepted in the original project. 
 
-To know how to contribute please visit [ link coming soon]
+We are currently working on a policy for how to compensate developers. Stay in touch with us ... we will let you know when we start.
 
 
 
