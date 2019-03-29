@@ -40,15 +40,15 @@ Get it from Google play store
 Instructions for Demo
 ------------------------
 
-Download the nearby shops android app from the above link and then set a fake location. 
+Login credentials for end-user app are :  9490523891 (Username) | password (password)
+Login to the end-user app with the above login credentials and enjoy the demo.
+
+For a better experience set a fake location. 
 
 The nearby shops currently have shops available in only few cities. If you are living in a city where shops are not available. You need to fake your location and set it to some location where the shops are available. 
 
 Use any location faker app which you can download from playstore and set your location to "Hyderabad, India". You will see some shops and items visible in the nearby shops app. 
 
-Login credentials for end-user app are :  9490523891 (Username) | password (password)
-
-Login to the end-user app with the above login credentials and enjoy the demo.
 
 
 
