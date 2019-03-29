@@ -27,14 +27,6 @@ Licensed under a permissive MIT license allows you to use this software even for
 
 
 
-Get Paid to Contribute
-------------------------
-Developer time is valuable and its not fair to expect developers to contribute their time without being reasonably compensated. Therefore we have made a policy to compensate the developers, designers or any other contributor who help us with the project. We will make best efforts to Compensate the contibutors. 
-
-The compensation will be similar to how freelance developers, desginers are paid / compensated ! You will be paid on hourly basis if your contribution is accepted in the original project. 
-
-We are currently working on a policy for how to compensate developers. Stay in touch with us ... we will let you know when we start.
-
 
 
 Download
