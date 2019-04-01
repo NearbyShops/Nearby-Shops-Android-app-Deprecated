@@ -1173,8 +1173,8 @@ TextView messageChangePassword;
     {
 
 
-        saveButton.setVisibility(View.INVISIBLE);
-        progressBar.setVisibility(View.VISIBLE);
+//        saveButton.setVisibility(View.INVISIBLE);
+//        progressBar.setVisibility(View.VISIBLE);
 
 
         Call<ResponseBody> call = userService.deleteImage(PrefLogin.getAuthorizationHeaders(getContext()),filename);
@@ -1201,8 +1201,8 @@ TextView messageChangePassword;
 
 
 
-                saveButton.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.INVISIBLE);
+//                saveButton.setVisibility(View.VISIBLE);
+//                progressBar.setVisibility(View.INVISIBLE);
 
 
             }
@@ -1220,8 +1220,8 @@ TextView messageChangePassword;
 
 
 
-                saveButton.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.INVISIBLE);
+//                saveButton.setVisibility(View.VISIBLE);
+//                progressBar.setVisibility(View.INVISIBLE);
 
             }
         });

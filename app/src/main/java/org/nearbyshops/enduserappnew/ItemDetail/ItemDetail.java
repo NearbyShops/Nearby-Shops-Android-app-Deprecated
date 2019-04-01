@@ -830,8 +830,8 @@ public class ItemDetail extends AppCompatActivity implements
         if(PrefLogin.getUser(this)==null)
         {
             // User Not logged In.
-//            showMessageSnackBar("Please Login to use this Feature !");
-            showToastMessage("Please Login to use this Feature !");
+//            showMessageSnackBar("Please LoginUsingOTP to use this Feature !");
+            showToastMessage("Please LoginUsingOTP to use this Feature !");
             showLoginDialog();
         }else
         {

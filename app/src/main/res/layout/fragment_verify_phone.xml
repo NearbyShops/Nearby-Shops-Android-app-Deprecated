@@ -77,7 +77,7 @@
             <TextView
                 android:textStyle="normal"
                 android:id="@+id/header"
-                android:text="Step 4 : Verify your E-mail"
+                android:text="Step 4 : Verify your Phone"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content">
 
                 <android.support.design.widget.TextInputEditText
-                    android:inputType="text"
+                    android:inputType="number"
                     android:hint="Verification Code"
                     android:id="@+id/verification_code"
                     android:layout_width="match_parent"

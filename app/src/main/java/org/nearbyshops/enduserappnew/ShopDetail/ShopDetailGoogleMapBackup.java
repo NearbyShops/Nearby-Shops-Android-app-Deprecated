@@ -32,7 +32,7 @@
 //import com.squareup.picasso.Target;
 //
 //import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-//import org.nearbyshops.enduserappnew.LoginNew.Login;
+//import org.nearbyshops.enduserappnew.LoginNew.LoginUsingOTP;
 //import org.nearbyshops.enduserappnew.Model.Shop;
 //import org.nearbyshops.enduserappnew.ModelEndPoints.FavouriteShopEndpoint;
 //import org.nearbyshops.enduserappnew.ModelEndPoints.ShopReviewEndPoint;
@@ -595,8 +595,8 @@
 //        if(PrefLogin.getUser(this)==null)
 //        {
 //            // User Not logged In.
-////            showMessageSnackBar("Please Login to add shop to Favourites !");
-//            showToastMessage("Please Login to use this Feature !");
+////            showMessageSnackBar("Please LoginUsingOTP to add shop to Favourites !");
+//            showToastMessage("Please LoginUsingOTP to use this Feature !");
 //
 //            showLoginDialog();
 //
@@ -616,7 +616,7 @@
 ////        LoginDialog loginDialog = new LoginDialog();
 ////        loginDialog.show(fm,"serviceUrl");
 //
-//        Intent intent = new Intent(this,Login.class);
+//        Intent intent = new Intent(this,LoginUsingOTP.class);
 //        startActivity(intent);
 //    }
 //

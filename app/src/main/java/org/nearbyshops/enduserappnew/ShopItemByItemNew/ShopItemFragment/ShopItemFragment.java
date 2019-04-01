@@ -23,6 +23,7 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail;
+import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
@@ -50,6 +51,8 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_OK;
 
 //import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.AdapterSimple;
 
@@ -168,7 +171,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
         {
 //            onViewStateRestored(savedInstanceState);
             setupRecyclerView();
-            adapter.makeNetworkCall();
+            adapter.getCartStats();
         }
 
 
@@ -291,6 +294,10 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     void fetchNewCartItems()
     {
+        // fetch shop items from shops with carts not filled
+
+
+
 
         User endUser = PrefLogin.getUser(getActivity());
 
@@ -407,7 +414,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public void onRefresh() {
         clearDataset = true;
-        makeNetworkCall();
+        fetchFilledCartItems();
         fetchNewCartItems();
     }
 
@@ -415,8 +422,10 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-    void makeNetworkCall()
+    void fetchFilledCartItems()
     {
+            // fetch shop items from shops with filled carts
+
 
             User endUser = PrefLogin.getUser(getActivity());
 
@@ -482,7 +491,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
                             dataset.addAll(0,response.body().getResults());
 
-                            adapter.makeNetworkCall();
+                            adapter.getCartStats();
                             adapter.notifyDataSetChanged();
                             swipeContainer.setRefreshing(false);
 
@@ -655,6 +664,32 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
+
+
+
+
+
+
+    @Override
+    public void showLoginScreen() {
+
+        Intent intent = new Intent(getActivity(), Login.class);
+        startActivityForResult(intent,123);
+    }
+
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==123 && resultCode == RESULT_OK)
+        {
+            // login success
+            adapter.getCartStats();
+        }
+    }
 
 
 

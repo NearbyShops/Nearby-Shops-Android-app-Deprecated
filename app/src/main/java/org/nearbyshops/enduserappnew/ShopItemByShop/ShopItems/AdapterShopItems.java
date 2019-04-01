@@ -511,7 +511,7 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
                     if(endUser==null)
                     {
 
-                        Toast.makeText(context, "Please Login to continue ...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Please LoginUsingOTP to continue ...", Toast.LENGTH_SHORT).show();
                         showLoginDialog();
 
                         return;

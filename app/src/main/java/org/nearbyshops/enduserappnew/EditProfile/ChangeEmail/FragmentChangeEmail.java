@@ -47,23 +47,16 @@ public class FragmentChangeEmail extends Fragment {
     TextView nextButton;
 
 
-    @BindView(R.id.text_input_email)
-    TextInputLayout emailLayout;
+    @BindView(R.id.text_input_email) TextInputLayout emailLayout;
 
-    @BindView(R.id.email)
-    TextInputEditText email;
-    @BindView(R.id.password)
-    TextInputEditText password;
+    @BindView(R.id.email) TextInputEditText email;
+    @BindView(R.id.password) TextInputEditText password;
 
-    @BindView(R.id.check_icon)
-    ImageView checkIcon;
-    @BindView(R.id.cross_icon)
-    ImageView crossIcon;
-    @BindView(R.id.message)
-    TextView textAvailable;
+    @BindView(R.id.check_icon) ImageView checkIcon;
+    @BindView(R.id.cross_icon) ImageView crossIcon;
+    @BindView(R.id.message) TextView textAvailable;
 
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
     boolean emailIsAvailable = false;
@@ -189,6 +182,9 @@ public class FragmentChangeEmail extends Fragment {
 
     boolean validatePassword(boolean showError)
     {
+
+
+
         boolean isValid = true;
 
         if(password.getText().toString().length()==0)
@@ -316,10 +312,13 @@ public class FragmentChangeEmail extends Fragment {
             return;
         }
 
-        if(!validatePassword(true))
-        {
-            return;
-        }
+
+
+
+//        if(!validatePassword(true))
+//        {
+//            return;
+//        }
 
 
 

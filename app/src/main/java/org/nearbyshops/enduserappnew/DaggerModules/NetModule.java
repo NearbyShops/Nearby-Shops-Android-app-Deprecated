@@ -131,66 +131,52 @@ public class NetModule {
     ShopItemService provideShopItemService(Retrofit retrofit)
     {
 
-        ShopItemService shopItemService = retrofit.create(ShopItemService.class);
+        //        Log.d("applog","ShopItemService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
 
-//        Log.d("applog","ShopItemService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
-
-        return shopItemService;
+        return retrofit.create(ShopItemService.class);
     }
 
 
     @Provides
     CartService provideCartService(Retrofit retrofit)
     {
-        CartService cartService = retrofit.create(CartService.class);
 
 //        Log.d("applog","CartService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
 
-        return cartService;
+        return retrofit.create(CartService.class);
     }
 
 
     @Provides
     CartItemService provideCartItemService(Retrofit retrofit)
     {
-        CartItemService cartItemService = retrofit.create(CartItemService.class);
 
 //        Log.d("applog","CartItemService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
 
-        return  cartItemService;
+        return retrofit.create(CartItemService.class);
     }
 
 
     @Provides
     CartStatsService provideCartStatsService(Retrofit retrofit)
     {
-        CartStatsService service = retrofit.create(CartStatsService.class);
-
 //        Log.d("applog","CartStatsService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
-
-        return service;
+        return retrofit.create(CartStatsService.class);
     }
 
     @Provides
     DeliveryAddressService provideDeliveryAddressService(Retrofit retrofit)
     {
-
-        DeliveryAddressService service = retrofit.create(DeliveryAddressService.class);
-
-//        Log.d("applog","DeliveryAddressService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
-
-        return service;
+        //        Log.d("applog","DeliveryAddressService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
+        return retrofit.create(DeliveryAddressService.class);
     }
 
 
     @Provides
     OrderService provideOrderService(Retrofit retrofit)
     {
-        OrderService service = retrofit.create(OrderService.class);
-
 //        Log.d("applog","OrderServicePFS : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
-
-        return service;
+        return retrofit.create(OrderService.class);
     }
 
 
@@ -261,11 +247,8 @@ public class NetModule {
     @Provides
     ShopService shopService(Retrofit retrofit)
     {
-
-        ShopService shopService = retrofit.create(ShopService.class);
-        return shopService;
+        return retrofit.create(ShopService.class);
     }
-
 
 
 

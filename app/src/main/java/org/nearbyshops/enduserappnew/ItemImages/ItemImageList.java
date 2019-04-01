@@ -32,6 +32,9 @@ public class ItemImageList extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 
 
+
+
+
         if(savedInstanceState==null)
         {
             getSupportFragmentManager()
@@ -42,6 +45,8 @@ public class ItemImageList extends AppCompatActivity {
 
 
     }
+
+
 
 
 
@@ -57,12 +62,6 @@ public class ItemImageList extends AppCompatActivity {
     {
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
-
-
-
-
-
-
 
 
 

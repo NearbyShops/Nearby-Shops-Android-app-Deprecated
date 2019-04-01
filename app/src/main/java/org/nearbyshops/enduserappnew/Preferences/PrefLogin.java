@@ -92,8 +92,7 @@ public class PrefLogin {
         context = MyApplication.getAppContext();
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String service_url = sharedPref.getString("username", "");
-        return service_url;
+        return sharedPref.getString("username", "");
     }
 
     public static String getPassword(Context context)
@@ -101,8 +100,7 @@ public class PrefLogin {
         context = MyApplication.getAppContext();
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String service_url = sharedPref.getString("password", "");
-        return service_url;
+        return sharedPref.getString("password", "");
     }
 
 
