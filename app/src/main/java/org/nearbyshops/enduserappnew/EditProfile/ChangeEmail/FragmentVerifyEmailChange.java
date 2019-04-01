@@ -300,8 +300,13 @@ public class FragmentVerifyEmailChange extends Fragment {
             user.setRt_email_verification_code(verificationCode.getText().toString());
 
 
-            Gson gson = new Gson();
-            logMessage(gson.toJson(user));
+//            Gson gson = new Gson();
+//            logMessage(gson.toJson(user));
+
+            user.setPassword(PrefLogin.getPassword(getActivity()));
+
+
+
 
 
             Call<ResponseBody> call = userService.updateEmail(PrefLogin.getAuthorizationHeaders(getActivity()),

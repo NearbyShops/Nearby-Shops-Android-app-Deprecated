@@ -182,7 +182,7 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
 
             if(endUser==null)
             {
-//                showToastMessage("Please Login to use this feature !");
+//                showToastMessage("Please LoginUsingOTP to use this feature !");
 
                 if(context instanceof NotifyLoginByAdapter)
                 {

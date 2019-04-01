@@ -46,20 +46,15 @@ public class FragmentChangePhone extends Fragment {
 
 //    @BindView(R.id.text_input_email) TextInputLayout emailLayout;
 
-    @BindView(R.id.email)
-    TextInputEditText email;
-    @BindView(R.id.password)
-    TextInputEditText password;
+    @BindView(R.id.phone) TextInputEditText phone;
+    @BindView(R.id.password) TextInputEditText password;
 
-    @BindView(R.id.check_icon)
-    ImageView checkIcon;
-    @BindView(R.id.cross_icon)
-    ImageView crossIcon;
-    @BindView(R.id.message)
-    TextView textAvailable;
+    @BindView(R.id.check_icon) ImageView checkIcon;
+    @BindView(R.id.cross_icon) ImageView crossIcon;
+    @BindView(R.id.message) TextView textAvailable;
 
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
+
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
     boolean emailIsAvailable = false;
@@ -96,7 +91,7 @@ public class FragmentChangePhone extends Fragment {
         }
 
 
-        email.requestFocus();
+        phone.requestFocus();
         bindViews();
         textInputChanged();
 
@@ -108,7 +103,7 @@ public class FragmentChangePhone extends Fragment {
 
     void bindViews()
     {
-        email.setText(user.getEmail());
+        phone.setText(user.getEmail());
     }
 
 
@@ -117,13 +112,13 @@ public class FragmentChangePhone extends Fragment {
 
     void saveDataFromViews()
     {
-        user.setPhone(email.getText().toString());
+        user.setPhone(phone.getText().toString());
         user.setPassword(password.getText().toString());
     }
 
 
 
-    @OnTextChanged({R.id.email})
+    @OnTextChanged({R.id.phone})
     void textInputChanged()
     {
         // reset flags
@@ -158,23 +153,23 @@ public class FragmentChangePhone extends Fragment {
 
         // validate phone
 
-        if(email.getText().toString().equals(""))
+        if(phone.getText().toString().equals(""))
         {
             if(showError)
             {
-                email.requestFocus();
-                email.setError("Phone cannot be empty !");
+                phone.requestFocus();
+                phone.setError("Phone cannot be empty !");
             }
 
             isValid= false;
 
         }
-        else if(email.getText().toString().length()!=10)
+        else if(phone.getText().toString().length()!=10)
         {
             if(showError)
             {
-                email.requestFocus();
-                email.setError("Phone should have 10 digits");
+                phone.requestFocus();
+                phone.setError("Phone should have 10 digits");
             }
 
             isValid=false;
@@ -234,7 +229,7 @@ public class FragmentChangePhone extends Fragment {
     {
         String inputName = "";
 
-        inputName = email.getText().toString();
+        inputName = phone.getText().toString();
 
 
 
@@ -254,7 +249,7 @@ public class FragmentChangePhone extends Fragment {
                     // username is not unique and already exist
 
 
-                    email.setError("An account already with that Phone. Please use another phone !");
+                    phone.setError("An account already with that Phone. Please use another phone !");
 
                     checkIcon.setVisibility(View.INVISIBLE);
                     crossIcon.setVisibility(View.VISIBLE);
@@ -315,10 +310,12 @@ public class FragmentChangePhone extends Fragment {
             return;
         }
 
-        if(!validatePassword(true))
-        {
-            return;
-        }
+
+
+//        if(!validatePassword(true))
+//        {
+//            return;
+//        }
 
 
 
@@ -363,10 +360,6 @@ public class FragmentChangePhone extends Fragment {
                     }
                 })
                 .show();
-
-
-
-
     }
 
 

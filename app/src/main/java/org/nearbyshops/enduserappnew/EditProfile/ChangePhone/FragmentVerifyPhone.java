@@ -22,6 +22,7 @@ import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
@@ -58,25 +59,17 @@ public class FragmentVerifyPhone extends Fragment {
 
 
 
-    @BindView(R.id.check_icon)
-    ImageView checkIcon;
-    @BindView(R.id.cross_icon)
-    ImageView crossIcon;
-    @BindView(R.id.message)
-    TextView textAvailable;
+    @BindView(R.id.check_icon) ImageView checkIcon;
+    @BindView(R.id.cross_icon) ImageView crossIcon;
+    @BindView(R.id.message) TextView textAvailable;
 
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
-    @BindView(R.id.verification_code)
-    TextInputEditText verificationCode;
-    @BindView(R.id.email_text)
-    TextView emailText;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
+    @BindView(R.id.verification_code) TextInputEditText verificationCode;
+    @BindView(R.id.email_text) TextView emailText;
 
 
-    @BindView(R.id.progress_bar_resend)
-    ProgressBar progressBarResend;
-    @BindView(R.id.message_resend)
-    TextView messageResend;
+    @BindView(R.id.progress_bar_resend) ProgressBar progressBarResend;
+    @BindView(R.id.message_resend) TextView messageResend;
 
 
     SmsVerifyCatcher smsVerifyCatcher;
@@ -338,19 +331,24 @@ public class FragmentVerifyPhone extends Fragment {
 
 
 
-        createAccount();
+        changePhone();
     }
 
 
-    void createAccount()
+    void changePhone()
     {
 
 
             user.setRt_phone_verification_code(verificationCode.getText().toString());
 
 
-            Gson gson = new Gson();
-            logMessage(gson.toJson(user));
+//            Gson gson = new Gson();
+//            logMessage(gson.toJson(user));
+
+
+
+            user.setPassword(PrefLogin.getPassword(getActivity()));
+
 
 
             Call<ResponseBody> call = userService.updatePhone(PrefLogin.getAuthorizationHeaders(getActivity()) ,
@@ -383,7 +381,7 @@ public class FragmentVerifyPhone extends Fragment {
                     else if(response.code()==304)
                     {
 
-                        showToastMessage("Failed to change e-mail");
+                        showToastMessage("Failed to change Phone");
                     }
                     else
                     {

@@ -65,6 +65,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     @BindView(R.id.user_profile) LinearLayout profileBlock;
     @BindView(R.id.profile_image) ImageView profileImage;
+
+
     @BindView(R.id.user_name) TextView userName;
     @BindView(R.id.phone) TextView phone;
     @BindView(R.id.user_id) TextView userID;
@@ -381,14 +383,20 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         }
 
 
+
+
         userID.setText("User ID : " + String.valueOf(user.getUserID()));
 
         profileBlock.setVisibility(View.VISIBLE);
         profileImage.setVisibility(View.VISIBLE);
 
 
+
         Drawable placeholder = ContextCompat.getDrawable(getActivity(),R.drawable.ic_nature_people_white_48px);
         String imagePath = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/User/Image/" + "five_hundred_"+ user.getProfileImagePath() + ".jpg";
+
+
+
 
         showLogMessage("Profile Screen : User Image Path : " + imagePath);
 

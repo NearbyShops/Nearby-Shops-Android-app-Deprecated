@@ -105,12 +105,12 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.context = context;
         this.fragment = fragment;
 
-        makeNetworkCall(false,0,true);
+        getCartStats(false,0,true);
     }
 
 
 
-    void makeNetworkCall(final boolean notifyChange, final int position, final boolean notifyDatasetChanged)
+    void getCartStats(final boolean notifyChange, final int position, final boolean notifyDatasetChanged)
     {
 
         cartItemMap.clear();
@@ -337,6 +337,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         return -1;
     }
+
+
+
 
     @Override
     public int getItemCount() {
@@ -767,7 +770,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                     if(endUser==null)
                     {
 
-//                        Toast.makeText(context, "Please Login to continue ...", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "Please LoginUsingOTP to continue ...", Toast.LENGTH_SHORT).show();
                         showLoginDialog();
 
                         return;
@@ -796,7 +799,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                                 Toast.makeText(context, "Add to cart successful !", Toast.LENGTH_SHORT).show();
 
-                                makeNetworkCall(true,getLayoutPosition(),false);
+                                getCartStats(true,getLayoutPosition(),false);
 
                                 addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
                                 itemTotal.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
@@ -864,7 +867,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                                 addToCartText.setText("Add to Cart");
 
-                                makeNetworkCall(true,getLayoutPosition(),false);
+                                getCartStats(true,getLayoutPosition(),false);
 
                                 //makeNetworkCall();
 
@@ -929,7 +932,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                                 if (response.code() == 200) {
 
                                     Toast.makeText(context, "Update cart successful !", Toast.LENGTH_SHORT).show();
-                                    makeNetworkCall(false,getLayoutPosition(),false);
+                                    getCartStats(false,getLayoutPosition(),false);
 
                                     addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
                                     itemTotal.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
@@ -1212,8 +1215,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 //        }
 
 
-        Intent intent = new Intent(context,Login.class);
-        context.startActivity(intent);
+        notificationReceiver.showLogin();
+
 
     }
 
@@ -1225,6 +1228,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         // method for notifying the list object to request sub category
         void notifyRequestSubCategory(ItemCategory itemCategory);
         void notifyItemImageClick(Item item);
+        void showLogin();
     }
 
 

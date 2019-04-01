@@ -145,7 +145,7 @@
                 android:layout_height="wrap_content">
 
                 <android.support.design.widget.TextInputEditText
-                    android:inputType="text"
+                    android:inputType="number"
                     android:hint="Verification Code"
                     android:id="@+id/verification_code"
                     android:layout_width="match_parent"

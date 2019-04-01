@@ -20,6 +20,7 @@ import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.Interfaces.NotifyIndicatorChanged;
+import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -43,6 +44,8 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by sumeet on 2/12/16.
@@ -253,6 +256,9 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
         makeRequestItemCategory();
         makeRequestShopItem(true,true);
+
+        listAdapter.getCartStats(true,0,true);
+
     }
 
 
@@ -709,6 +715,36 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         Intent intent = new Intent(getActivity(), ItemDetail.class);
         intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
         getActivity().startActivity(intent);
+    }
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public void showLogin() {
+
+        Intent intent = new Intent(getActivity(), Login.class);
+        startActivityForResult(intent,123);
+    }
+
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==123 && resultCode == RESULT_OK)
+        {
+            // login success
+            listAdapter.getCartStats(true,0,true);
+        }
     }
 
 }

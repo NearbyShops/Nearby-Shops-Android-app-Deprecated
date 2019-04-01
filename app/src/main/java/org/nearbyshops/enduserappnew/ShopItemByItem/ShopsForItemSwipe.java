@@ -190,7 +190,7 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
 
         if(endUser == null)
         {
-            showToastMessage("Please Login to continue ...");
+            showToastMessage("Please LoginUsingOTP to continue ...");
 
             return;
         }

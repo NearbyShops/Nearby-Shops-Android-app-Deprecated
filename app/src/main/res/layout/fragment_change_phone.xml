@@ -175,7 +175,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:inputType="phone"
                     android:hint="Enter Phone"
-                    android:id="@+id/email"
+                    android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -248,6 +248,7 @@
 
 
             <TextView
+                android:visibility="gone"
                 android:textSize="15sp"
                 android:layout_marginTop="20dp"
                 android:id="@+id/header_password"
@@ -261,6 +262,7 @@
 
 
             <android.support.design.widget.TextInputLayout
+                android:visibility="gone"
                 android:id="@+id/text_input_password"
                 android:layout_marginTop="10dp"
                 app:layout_constraintRight_toRightOf="parent"

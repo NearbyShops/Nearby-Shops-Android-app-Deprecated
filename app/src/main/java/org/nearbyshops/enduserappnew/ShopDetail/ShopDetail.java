@@ -586,8 +586,8 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 
         if (PrefLogin.getUser(this) == null) {
             // User Not logged In.
-//            showMessageSnackBar("Please Login to add shop to Favourites !");
-            showToastMessage("Please Login to use this Feature !");
+//            showMessageSnackBar("Please LoginUsingOTP to add shop to Favourites !");
+            showToastMessage("Please LoginUsingOTP to use this Feature !");
 
             showLoginDialog();
 

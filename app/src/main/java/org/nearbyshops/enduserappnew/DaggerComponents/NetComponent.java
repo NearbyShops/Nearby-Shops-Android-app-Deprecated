@@ -38,7 +38,10 @@ import org.nearbyshops.enduserappnew.ItemsInShop.ShopItems.FragmentItemsInShop;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.AdapterItemsInShop;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCatFragment;
 import org.nearbyshops.enduserappnew.Login.LoginFragment;
+import org.nearbyshops.enduserappnew.Login.LoginUsingOTPFragment;
 import org.nearbyshops.enduserappnew.Login.ServiceIndicatorFragment;
+import org.nearbyshops.enduserappnew.LoginUsingOTP.InsertPhoneFragment;
+import org.nearbyshops.enduserappnew.LoginUsingOTP.WelcomeFragment;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.OrderDetail.FragmentOrderDetail;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Complete.CompleteOrdersFragment;
@@ -112,7 +115,6 @@ public interface NetComponent {
 
     void Inject(FragmentShop shopFragment);
 
-
     void Inject(ItemCategoriesFragment itemCategoriesFragment);
 
     void Inject(org.nearbyshops.enduserappnew.ShopsByCategory.Shops.FragmentShop fragmentShop);
@@ -120,7 +122,6 @@ public interface NetComponent {
     void Inject(ItemCategoriesFragmentItem itemCategoriesFragmentItem);
 
     void Inject(FragmentItem_ItemByCategory fragmentItem_itemByCategory);
-
 
     void Inject(ShopDetail shopDetail);
 
@@ -164,8 +165,6 @@ public interface NetComponent {
 
     void Inject(AdapterItemsInShop adapterItemsInShop);
 
-
-
     void Inject(ShopsByCatFragment shopsByCatFragment);
 
     void Inject(CompleteOrdersFragment completeOrdersFragment);
@@ -198,7 +197,6 @@ public interface NetComponent {
 
     void Inject(FragmentVerifyEmailSignUp fragmentVerifyEmailSignUp);
 
-
     void Inject(Home homeNew);
 
     void Inject(ServiceIndicatorFragment serviceIndicatorFragment);
@@ -230,4 +228,11 @@ public interface NetComponent {
     void Inject(ShopItemFragment shopItemFragment);
 
     void Inject(AdapterShopItem adapterShopItem);
+
+
+    void Inject(WelcomeFragment welcomeFragment);
+
+    void Inject(InsertPhoneFragment insertPhoneFragment);
+
+    void Inject(LoginUsingOTPFragment loginUsingOTPFragment);
 }

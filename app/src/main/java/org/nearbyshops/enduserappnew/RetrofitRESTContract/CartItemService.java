@@ -40,4 +40,5 @@ public interface CartItemService {
     Call<ResponseBody> createCartItem(@Body CartItem cartItem,
                                       @Query("EndUserID") int endUserID, @Query("ShopID") int shopID);
 
+
 }

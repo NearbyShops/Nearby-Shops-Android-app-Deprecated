@@ -92,7 +92,7 @@ public class AdapterShopItem extends RecyclerView.Adapter<AdapterShopItem.ViewHo
 
 
 
-    void makeNetworkCall()
+    void getCartStats()
     {
 
         cartItemMap.clear();
@@ -650,7 +650,7 @@ public class AdapterShopItem extends RecyclerView.Adapter<AdapterShopItem.ViewHo
                             if (response.code() == 201) {
                                 Toast.makeText(context, "Add to cart successful !", Toast.LENGTH_SHORT).show();
 
-                                makeNetworkCall();
+                                getCartStats();
 
                             }
                         }
@@ -720,7 +720,7 @@ public class AdapterShopItem extends RecyclerView.Adapter<AdapterShopItem.ViewHo
 
                             }else
                             {
-                                makeNetworkCall();
+                                getCartStats();
                             }
 
                         }
@@ -967,7 +967,7 @@ public class AdapterShopItem extends RecyclerView.Adapter<AdapterShopItem.ViewHo
 
     void cartDataChanged()
     {
-        makeNetworkCall();
+        getCartStats();
     }
 
 
@@ -976,6 +976,7 @@ public class AdapterShopItem extends RecyclerView.Adapter<AdapterShopItem.ViewHo
     {
         void notifyCartDataChanged();
         void notifyShopLogoClick(Shop shop);
+        void showLoginScreen();
     }
 
 
@@ -986,8 +987,7 @@ public class AdapterShopItem extends RecyclerView.Adapter<AdapterShopItem.ViewHo
 //        LoginDialog loginDialog = new LoginDialog();
 //        loginDialog.show(fm,"serviceUrl");
 
-        Intent intent = new Intent(context,Login.class);
-        context.startActivity(intent);
+        notifyFilledCart.showLoginScreen();
     }
 
 

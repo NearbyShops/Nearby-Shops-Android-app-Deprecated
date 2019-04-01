@@ -31,14 +31,14 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.white));
-//        toolbar.setTitle("Login");
+//        toolbar.setTitle("LoginUsingOTP");
 //        setSupportActionBar(toolbar);
 
         if(savedInstanceState==null)
         {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container,new LoginFragment(),TAG_STEP_ONE)
+                    .replace(R.id.fragment_container,new LoginUsingOTPFragment(),TAG_STEP_ONE)
                     .commitNow();
         }
 
@@ -92,6 +92,7 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
 
     @Override
     public void loginSuccess() {
+
 
         setResult(RESULT_OK);
         finish();
