@@ -138,14 +138,14 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             LoadingViewHolder viewHolder = (LoadingViewHolder) holder;
 
 
-            Log.d("adapter_item_cat","Hello from LoadingViewHolder");
+//            Log.d("adapter_item_cat","Hello from LoadingViewHolder");
 
             if(fragment instanceof ItemCategoriesFragmentSimple)
             {
                 int fetched_count  = ((ItemCategoriesFragmentSimple) fragment).fetched_items_count;
                 int items_count = ((ItemCategoriesFragmentSimple) fragment).item_count_item;
 
-                Log.d("adapter_item_cat","Fetched Count : "  + String.valueOf(fetched_count) + " Items Count : "  + String.valueOf(items_count));
+//                Log.d("adapter_item_cat","Fetched Count : "  + String.valueOf(fetched_count) + " Items Count : "  + String.valueOf(items_count));
 
 
 
@@ -311,8 +311,8 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             String currency = "";
             currency = PrefGeneral.getCurrencySymbol(context);
 
-            holder.priceRange.setText("Price Range :\n" + currency + ". " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
-            holder.priceAverage.setText("Price Average :\n" + currency + ". " + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
+            holder.priceRange.setText("Price Range :\n" + currency + " " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
+            holder.priceAverage.setText("Price Average :\n" + currency + " " + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
             holder.shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
 //            System.out.println("Rating : " + itemStats.getRating_avg() + " : Ratings Count " + itemStats.getRatingCount());
         }

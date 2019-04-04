@@ -22,7 +22,7 @@ import retrofit2.http.Query;
 public interface ServiceConfigurationService {
 
 
-    @GET("/api/ServiceConfiguration")
+    @GET("/api/serviceconfiguration")
     Call<ServiceConfigurationLocal> getServiceConfiguration(@Query("latCenter")Double latCenter,
                                                             @Query("lonCenter")Double lonCenter);
 

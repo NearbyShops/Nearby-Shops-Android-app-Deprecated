@@ -25,10 +25,12 @@ public interface OrderService {
     Call<ResponseBody> postOrder(@Body Order order,@Query("CartID") int cartID);
 
 
+
     @GET("/api/Order")
     Call<OrderEndPoint> getOrders(@Header("Authorization") String headers,
                                   @Query("OrderID")Integer orderID,
                                   @Query("ShopID")Integer shopID,
+                                  @Query("FilterByUserID")boolean filterByUserID,
                                   @Query("PickFromShop") Boolean pickFromShop,
                                   @Query("StatusHomeDelivery")Integer homeDeliveryStatus,
                                   @Query("StatusPickFromShopStatus")Integer pickFromShopStatus,

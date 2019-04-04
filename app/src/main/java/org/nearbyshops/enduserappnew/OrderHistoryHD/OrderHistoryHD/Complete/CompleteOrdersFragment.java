@@ -252,7 +252,9 @@ public class CompleteOrdersFragment extends Fragment implements AdapterComplete.
 
         Call<OrderEndPoint> call = orderServiceShopStaff.getOrders(
                     PrefLogin.getAuthorizationHeaders(getActivity()),
-                    null,shopID,false,
+                    null,shopID,
+                true,
+                true,
                     null,
                     null,null,
                     null,null,

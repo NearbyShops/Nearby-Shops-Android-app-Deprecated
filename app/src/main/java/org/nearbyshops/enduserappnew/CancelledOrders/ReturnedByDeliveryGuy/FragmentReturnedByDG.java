@@ -262,7 +262,10 @@ public class FragmentReturnedByDG extends Fragment
                 .getOrders(
                         PrefLogin.getAuthorizationHeaders(getActivity()),
                         null,
-                        shopID,false, OrderStatusHomeDeliveryOld.RETURNED,
+                        shopID,
+                        true,
+                        false,
+                        OrderStatusHomeDeliveryOld.RETURNED,
                         null,null,null,null,
                         null,null,null,
                         limit,offset,null

@@ -263,7 +263,9 @@ public class FragmentCancelledByUser extends Fragment
                     .getOrders(
                             PrefLogin.getAuthorizationHeaders(getActivity()),
                             null,
-                            shopID,false, OrderStatusHomeDeliveryOld.CANCELLED_BY_USER,
+                            shopID,
+                            true,
+                            false, OrderStatusHomeDeliveryOld.CANCELLED_BY_USER,
                             null,null,null,
                             null,null,null,null,
                             limit,offset,null

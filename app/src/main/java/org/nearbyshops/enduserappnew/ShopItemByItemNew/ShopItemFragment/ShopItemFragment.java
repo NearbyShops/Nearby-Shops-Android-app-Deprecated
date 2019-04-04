@@ -620,8 +620,8 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
             String currency = "";
             currency = PrefGeneral.getCurrencySymbol(getActivity());
 
-            priceRange.setText("Price Range :\n" + currency + ". " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
-            priceAverage.setText("Price Average :\n" + currency + ". " + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
+            priceRange.setText("Price Range :\n" + currency + " " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
+            priceAverage.setText("Price Average :\n" + currency + " " + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
             shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
         }
 

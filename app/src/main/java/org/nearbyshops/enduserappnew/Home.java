@@ -30,11 +30,13 @@ import org.nearbyshops.enduserappnew.LoginPlaceholder.FragmentSignInMessage;
 import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragmentNew;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Shops.ListFragment.FragmentShopNew;
 import org.nearbyshops.enduserappnew.TabProfile.ProfileFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
-
+import java.util.Currency;
+import java.util.Locale;
 
 
 public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutLogin {
@@ -70,6 +72,10 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
     }
 
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +85,10 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 //        bottomBar.setDefaultTab(R.id.tab_search);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
+
+
+        Currency currency = Currency.getInstance(new Locale("","AD"));
+        PrefGeneral.saveCurrencySymbol(currency.getSymbol(),this);
 
 
 
