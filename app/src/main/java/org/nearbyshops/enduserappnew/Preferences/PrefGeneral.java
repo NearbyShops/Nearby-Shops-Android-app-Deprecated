@@ -14,6 +14,9 @@ import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLoca
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.R;
 
+import java.util.Currency;
+import java.util.Locale;
+
 import static android.content.Context.MODE_PRIVATE;
 
 /**
@@ -35,9 +38,9 @@ public class PrefGeneral {
 
 
 
-
     private static final String TAG_PREF_CURRENCY = "currency_symbol";
     private static final String TAG_PREF_CONFIG = "configuration";
+    private static final String TAG_MULTI_MARKET_MODE = "multi_market_mode";
 
 
 //    public static final String LAT_CENTER_KEY = "latCenterKey";
@@ -46,6 +49,28 @@ public class PrefGeneral {
 //    public static final String DELIVERY_RANGE_MIN_KEY = "deliveryRagneMinKey";
 //    public static final String PROXIMITY_KEY = "proximityKey";
 
+
+
+
+
+
+    public static boolean getMultiMarketMode(Context context)
+    {
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        return sharedPref.getBoolean(TAG_MULTI_MARKET_MODE, false);
+    }
+
+
+
+
+    public static void saveMultiMarketMode(boolean enabled, Context context)
+    {
+        //Creating a shared preference
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = sharedPref.edit();
+        prefsEditor.putBoolean(TAG_MULTI_MARKET_MODE, enabled);
+        prefsEditor.apply();
+    }
 
 
 
@@ -209,6 +234,25 @@ public class PrefGeneral {
 
 
 
+    public static String getServiceName(Context context)
+    {
+        ServiceConfigurationLocal serviceConfigurationLocal = getConfiguration(context);
+
+
+        if(serviceConfigurationLocal==null)
+        {
+            return null;
+        }
+        else
+        {
+            return serviceConfigurationLocal.getServiceName() + " - " + serviceConfigurationLocal.getCity();
+        }
+    }
+
+
+
+
+
 
 
 
@@ -247,20 +291,33 @@ public class PrefGeneral {
         //Creating a shared preference
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = sharedPref.edit();
-        Gson gson = UtilityFunctions.provideGson();
 
-        String json = gson.toJson(symbol);
-        prefsEditor.putString(TAG_PREF_CURRENCY, json);
+//        Gson gson = UtilityFunctions.provideGson();
+//        String json = gson.toJson(symbol);
+
+
+        prefsEditor.putString(TAG_PREF_CURRENCY, symbol);
         prefsEditor.apply();
     }
+
+
+
+
+
 
 
     public static String getCurrencySymbol(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        Gson gson = UtilityFunctions.provideGson();
+//        Gson gson = UtilityFunctions.provideGson();
+//        context.getString(R.string.rupee_symbol)
+
 
         return sharedPref.getString(TAG_PREF_CURRENCY, context.getString(R.string.rupee_symbol));
     }
+
+
+
+
 
 }

@@ -22,6 +22,7 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopEndPoint;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduserappnew.Shops.Interfaces.GetDataset;
@@ -83,6 +84,13 @@ public class FragmentShopNew extends Fragment implements
 
     @BindView(R.id.empty_screen) LinearLayout emptyScreen;
     @BindView(R.id.progress_bar_fetching_location) LinearLayout progressBarFetchingLocation;
+
+
+    @BindView(R.id.service_name) TextView serviceName;
+
+
+
+
 
 
 
@@ -150,10 +158,31 @@ public class FragmentShopNew extends Fragment implements
 
 
             Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-            toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-            toolbar.setTitle("Nearby Shops");
             ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+
+//            toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+//            toolbar.setTitle(getString(R.string.app_name));
+
+
+
+
     //
+
+
+
+            if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefGeneral.getServiceName(getActivity())!=null)
+            {
+                serviceName.setVisibility(View.VISIBLE);
+                serviceName.setText(PrefGeneral.getServiceName(getActivity()));
+            }
+            else
+            {
+                serviceName.setVisibility(View.GONE);
+            }
+
+
+
 
             if(savedInstanceState==null && !switchMade)
             {
@@ -276,7 +305,7 @@ public class FragmentShopNew extends Fragment implements
 
             if(getChildFragmentManager().findFragmentByTag(TAG_SLIDING)==null)
             {
-                System.out.println("Item Cat Simple : New Sliding Layer Loaded !");
+//                System.out.println("Item Cat Simple : New Sliding Layer Loaded !");
                 getChildFragmentManager()
                         .beginTransaction()
                         .replace(R.id.slidinglayerfragment,new SlidingLayerSortShops(),TAG_SLIDING)

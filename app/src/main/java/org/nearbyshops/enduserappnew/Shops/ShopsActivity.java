@@ -352,14 +352,19 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
 
-        MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.action_search), new MenuItemCompat.OnActionExpandListener() {
+
+        MenuItem item = menu.findItem(R.id.action_search);
+
+        item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
+
                 return true;
             }
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
+
 
                 Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_SHOP_FRAGMENT);
 
@@ -368,12 +373,29 @@ public class ShopsActivity extends AppCompatActivity implements NotifyTitleChang
                     ((NotifySearch) fragment).endSearchMode();
                 }
 
-//                Toast.makeText(ShopsActivity.this, "onCollapsed Called ", Toast.LENGTH_SHORT).show();
-
                 return true;
             }
         });
 
+
+
+
+
+//        MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.action_search), new MenuItemCompat.OnActionExpandListener() {
+//            @Override
+//            public boolean onMenuItemActionExpand(MenuItem item) {
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onMenuItemActionCollapse(MenuItem item) {
+//
+//
+////                Toast.makeText(ShopsActivity.this, "onCollapsed Called ", Toast.LENGTH_SHORT).show();
+//
+//                return true;
+//            }
+//        });
 
 
 

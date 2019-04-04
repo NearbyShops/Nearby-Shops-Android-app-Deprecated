@@ -503,7 +503,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                 currency = PrefGeneral.getCurrencySymbol(context);
 
                 holder.itemName.setText(item.getItemName());
-                holder.itemPrice.setText(currency + ". " + String.format("%.2f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
+                holder.itemPrice.setText(currency + " " + String.format("%.2f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
 
                 if(item.getRt_rating_count()==0)
                 {

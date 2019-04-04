@@ -51,6 +51,7 @@ import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemEndPoint;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
@@ -121,6 +122,9 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
     @BindView(R.id.progress_bar_fetching_location) LinearLayout progressBarFetchingLocation;
 
 
+    @BindView(R.id.service_name) TextView serviceName;
+
+
 
 
     public ItemCategoriesFragmentSimple() {
@@ -153,10 +157,31 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
 
 
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-//        toolbar.setTitle("Nearby Shops");
-        toolbar.setTitle(getString(R.string.app_name));
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+
+//        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+//        toolbar.setTitle("Nearby Shops");
+//        toolbar.setTitle(getString(R.string.app_name));
+
+
+
+
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefGeneral.getServiceName(getActivity())!=null)
+        {
+            serviceName.setVisibility(View.VISIBLE);
+            serviceName.setText(PrefGeneral.getServiceName(getActivity()));
+        }
+        else
+        {
+            serviceName.setVisibility(View.GONE);
+        }
+
+
+
+
 
 
 
@@ -177,12 +202,27 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
 
 
 //        getActivity().startService(new Intent(getActivity(),LocationUpdateServiceLocal.class));
-
-
         requestLocationUpdates();
 
         return rootView;
     }
+
+
+
+
+
+
+
+
+
+    @OnClick(R.id.toolbar)
+    void toolbarClicked()
+    {
+//        showToastMessage("Toolbar Clicked !");
+    }
+
+
+
 
 
     void setupSlidingLayer()
@@ -265,6 +305,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
         }
 
     }
+
+
+
+
 
 
 

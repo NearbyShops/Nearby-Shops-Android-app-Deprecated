@@ -134,7 +134,7 @@ public class ShopHome extends AppCompatActivity {
             String currency = "";
             currency = PrefGeneral.getCurrencySymbol(this);
 
-            delivery.setText("Delivery : " + currency + ". " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
+            delivery.setText("Delivery : " + currency + " " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
             distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
 
 

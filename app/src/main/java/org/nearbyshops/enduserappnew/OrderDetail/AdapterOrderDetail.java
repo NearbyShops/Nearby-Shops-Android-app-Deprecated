@@ -333,8 +333,9 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                         .placeholder(placeholder)
                         .into(holder.shopLogo);
 
-                holder.delivery.setText("Delivery : Rs " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
+                holder.delivery.setText("Delivery : " + PrefGeneral.getCurrencySymbol(context) + " " +  String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
                 holder.distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
+
 
 
                 if(shop.getRt_rating_count()==0)
