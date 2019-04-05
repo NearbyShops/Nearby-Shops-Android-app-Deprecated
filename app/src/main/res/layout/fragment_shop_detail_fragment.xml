@@ -533,6 +533,7 @@
 
                     <RelativeLayout
                         android:visibility="gone"
+                        android:layout_marginTop="15sp"
                         app:layout_constraintTop_toBottomOf="@id/user_rating_review"
                         android:animateLayoutChanges="true"
                         android:paddingTop="5dp"
