@@ -70,7 +70,7 @@ import retrofit2.Response;
 import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
 
-public class ItemDetail extends AppCompatActivity implements
+public class ItemDetail_ extends AppCompatActivity implements
         Target, RatingBar.OnRatingBarChangeListener, NotifyReviewUpdate, AdapterItemImages.notificationsFromAdapter {
 
 
@@ -93,6 +93,7 @@ public class ItemDetail extends AppCompatActivity implements
 //    Marker currentMarker;
 
     Item item;
+
 
 
     @BindView(R.id.image_count) TextView imagesCount;
@@ -157,7 +158,7 @@ public class ItemDetail extends AppCompatActivity implements
 //    Unbinder unbinder;
 
 
-    public ItemDetail() {
+    public ItemDetail_() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -618,7 +619,7 @@ public class ItemDetail extends AppCompatActivity implements
                                         .create(getResources(),
                                                 R.drawable.ic_nature_people_white_48px, getTheme());
 
-                                Picasso.with(ItemDetail.this).load(imagepath)
+                                Picasso.with(ItemDetail_.this).load(imagepath)
                                         .placeholder(placeholder)
                                         .into(member_profile_image);
 
@@ -837,7 +838,7 @@ public class ItemDetail extends AppCompatActivity implements
         {
             // User Not logged In.
 //            showMessageSnackBar("Please LoginUsingOTP to use this Feature !");
-            showToastMessage("Please LoginUsingOTP to use this Feature !");
+            showToastMessage("Please Login to use this Feature !");
             showLoginDialog();
         }else
         {
@@ -985,8 +986,6 @@ public class ItemDetail extends AppCompatActivity implements
     }
 
 
-
-
     void setFavouriteIcon(boolean isFavourite)
     {
 
@@ -1006,9 +1005,6 @@ public class ItemDetail extends AppCompatActivity implements
             fab.setImageDrawable(drawable2);
         }
     }
-
-
-
 
 
     void checkFavourite()

@@ -603,6 +603,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
 
+        <activity
+            android:name=".ItemDetailNew.ItemDetailNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
 
     </application>
 
