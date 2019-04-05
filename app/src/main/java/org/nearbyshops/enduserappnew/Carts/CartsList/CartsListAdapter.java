@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.Carts.CartItem.CartItemListActivity;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 
@@ -172,8 +173,16 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
 
                     Intent intent = new Intent(context,CartItemListActivity.class);
 
-                    intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,dataset.get(getLayoutPosition()).getShop());
-                    intent.putExtra(CartItemListActivity.CART_STATS_INTENT_KEY,dataset.get(getLayoutPosition()));
+//                    intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,dataset.get(getLayoutPosition()).getShop());
+//                    intent.putExtra(CartItemListActivity.CART_STATS_INTENT_KEY,dataset.get(getLayoutPosition()));
+
+
+                    String shopJson = UtilityFunctions.provideGson().toJson(dataset.get(getLayoutPosition()).getShop());
+                    intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,shopJson);
+
+                    String cartStatsJson = UtilityFunctions.provideGson().toJson(dataset.get(getLayoutPosition()));
+                    intent.putExtra(CartItemListActivity.CART_STATS_INTENT_KEY,cartStatsJson);
+
 
                     context.startActivity(intent);
 

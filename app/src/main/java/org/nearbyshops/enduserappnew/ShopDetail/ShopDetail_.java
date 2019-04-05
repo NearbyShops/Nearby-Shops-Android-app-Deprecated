@@ -13,7 +13,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
@@ -38,10 +37,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ItemImages.ItemImageList;
 import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.enduserappnew.Model.Endpoints.ItemImageEndPoint;
-import org.nearbyshops.enduserappnew.Model.ItemImage;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopImage;
 import org.nearbyshops.enduserappnew.ModelEndPoints.FavouriteShopEndpoint;
@@ -55,7 +51,6 @@ import org.nearbyshops.enduserappnew.RetrofitRESTContract.FavouriteShopService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopImageService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduserappnew.ShopImages.ShopImageList;
-import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
@@ -73,7 +68,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ShopDetail extends AppCompatActivity implements Target, RatingBar.OnRatingBarChangeListener ,NotifyReviewUpdate {
+
+
+public class ShopDetail_ extends AppCompatActivity implements Target, RatingBar.OnRatingBarChangeListener ,NotifyReviewUpdate {
 
     public final static String SHOP_DETAIL_INTENT_KEY = "intent_key_shop_detail";
 
@@ -156,7 +153,7 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 //    Unbinder unbinder;
 
 
-    public ShopDetail() {
+    public ShopDetail_() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -385,15 +382,20 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
                                 User member = response.body().getResults().get(0).getRt_end_user_profile();
                                 member_name.setText(member.getName());
 
-                                String imagePath = PrefGeneral.getImageEndpointURL(ShopDetail.this)
-                                        + member.getProfileImagePath();
+//                                String imagePath = PrefGeneral.getImageEndpointURL(ShopDetail_.this)
+//                                        + member.getProfileImagePath();
+
+
+
+                                String imagepath = PrefGeneral.getServiceURL(getApplicationContext()) + "/api/v1/User/Image/five_hundred_"
+                                        + member.getProfileImagePath() + ".jpg";
 
 
                                 Drawable placeholder = VectorDrawableCompat
                                         .create(getResources(),
                                                 R.drawable.ic_nature_people_white_48px, getTheme());
 
-                                Picasso.with(ShopDetail.this).load(imagePath)
+                                Picasso.with(ShopDetail_.this).load(imagepath)
                                         .placeholder(placeholder)
                                         .into(member_profile_image);
 
@@ -564,9 +566,9 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
     @OnClick(R.id.read_all_reviews_button)
     void readAllReviewsButton() {
 
-        Intent intent = new Intent(this, ShopReviews.class);
-        intent.putExtra(ShopReviews.SHOP_INTENT_KEY, shop);
-        startActivity(intent);
+//        Intent intent = new Intent(this, ShopReviews.class);
+//        intent.putExtra(ShopReviews.SHOP_INTENT_KEY, shop);
+//        startActivity(intent);
 
     }
 
@@ -619,7 +621,7 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 
         if (shop != null && PrefLogin.getUser(this) != null) {
 
-            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteBooks(shop.getShopID(), PrefLogin.getUser(this).getUserID()
+            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteShops(shop.getShopID(), PrefLogin.getUser(this).getUserID()
                     , null, null, null, null);
 
 
@@ -658,7 +660,7 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
             favouriteBook.setShopID(shop.getShopID());
             favouriteBook.setEndUserID(PrefLogin.getUser(this).getUserID());
 
-            Call<FavouriteShop> call = favouriteShopService.insertFavouriteBook(favouriteBook);
+            Call<FavouriteShop> call = favouriteShopService.insertFavouriteShop(favouriteBook);
 
             call.enqueue(new Callback<FavouriteShop>() {
                 @Override
@@ -686,7 +688,7 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
     void deleteFavourite() {
 
         if (shop != null && PrefLogin.getUser(this) != null) {
-            Call<ResponseBody> call = favouriteShopService.deleteFavouriteBook(shop.getShopID(),
+            Call<ResponseBody> call = favouriteShopService.deleteFavouriteShop(shop.getShopID(),
                     PrefLogin.getUser(this).getUserID());
 
 
@@ -733,7 +735,7 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 
         if (shop != null && PrefLogin.getUser(this) != null) {
 
-            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteBooks(shop.getShopID(), PrefLogin.getUser(this).getUserID()
+            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteShops(shop.getShopID(), PrefLogin.getUser(this).getUserID()
                     , null, null, null, null);
 
 
@@ -834,8 +836,6 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
 
     void getShopImageCount()
     {
-
-
         Call<ShopImageEndPoint> call = shopImageService.getShopImages(
                 shop.getShopID(), ShopImage.IMAGE_ORDER,
                 null,null,
@@ -904,6 +904,12 @@ public class ShopDetail extends AppCompatActivity implements Target, RatingBar.O
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
     }
+
+
+
+
+
+
 
 
 }

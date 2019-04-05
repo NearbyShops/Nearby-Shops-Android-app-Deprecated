@@ -52,13 +52,14 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ViewHolder> {
 
 //        Log.d("applog","on BInd()");
 
-        String imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                + dataset.get(position).getLogoImagePath();
 
-        Picasso.with(context)
-                .load(imagePath)
-                .placeholder(R.drawable.nature_people)
-                .into(holder.shopImage);
+//        String imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                + dataset.get(position).getLogoImagePath();
+//
+//        Picasso.with(context)
+//                .load(imagePath)
+//                .placeholder(R.drawable.nature_people)
+//                .into(holder.shopImage);
 
 
     }

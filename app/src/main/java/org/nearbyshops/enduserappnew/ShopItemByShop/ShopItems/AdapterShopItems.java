@@ -51,6 +51,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
+
 /**
  * Created by sumeet on 25/5/16.
  */
@@ -305,22 +307,27 @@ public class AdapterShopItems extends RecyclerView.Adapter<AdapterShopItems.View
 
 
 
-            imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                    + item.getItemImageURL();
+
 
 
         }
 
 
-        Drawable placeholder = VectorDrawableCompat
-                .create(context.getResources(),
-                        R.drawable.ic_nature_people_white_48px, context.getTheme());
+
+//        String imagepath = PrefGeneral.getServiceURL(getApplicationContext()) + "/api/v1/User/Image/five_hundred_"
+//                + it + ".jpg";
 
 
-        Picasso.with(context)
-                .load(imagePath)
-                .placeholder(placeholder)
-                .into(holder.itemImage);
+//
+//        Drawable placeholder = VectorDrawableCompat
+//                .create(context.getResources(),
+//                        R.drawable.ic_nature_people_white_48px, context.getTheme());
+//
+//
+//        Picasso.with(context)
+//                .load(imagePath)
+//                .placeholder(placeholder)
+//                .into(holder.itemImage);
 
 
 //        holder.rating.setText(String.format("%.2f",));

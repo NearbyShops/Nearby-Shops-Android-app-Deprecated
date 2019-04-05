@@ -7,49 +7,8 @@ import java.sql.Timestamp;
  */
 public class ShopImage {
 
-    
-    // Table Name
-    public static final String TABLE_NAME = "SHOP_IMAGES";
 
-    // column names
-    public static final String SHOP_IMAGE_ID = "SHOP_IMAGE_ID";
-    public static final String SHOP_ID = "SHOP_ID";
-    public static final String IMAGE_FILENAME = "IMAGE_FILENAME";
-
-    public static final String TIMESTAMP_CREATED = "TIMESTAMP_CREATED";
-    public static final String TIMESTAMP_UPDATED = "TIMESTAMP_UPDATED";
-
-    public static final String CAPTION_TITLE = "CAPTION_TITLE";
-    public static final String CAPTION = "CAPTION";
-    public static final String COPYRIGHTS = "COPYRIGHTS";
     public static final String IMAGE_ORDER = "IMAGE_ORDER";
-
-
-
-
-    // create table statement
-    public static final String createTablePostgres = "CREATE TABLE IF NOT EXISTS "
-
-            + ShopImage.TABLE_NAME + "("
-
-            + " " + ShopImage.SHOP_IMAGE_ID + " SERIAL PRIMARY KEY,"
-            + " " + ShopImage.SHOP_ID + " int,"
-            + " " + ShopImage.IMAGE_FILENAME + " text,"
-
-            + " " + ShopImage.TIMESTAMP_CREATED + " timestamp with time zone NOT NULL DEFAULT now(),"
-            + " " + ShopImage.TIMESTAMP_UPDATED + " timestamp with time zone,"
-
-            + " " + ShopImage.CAPTION_TITLE + " text,"
-            + " " + ShopImage.CAPTION + " text,"
-            + " " + ShopImage.COPYRIGHTS + " text,"
-            + " " + ShopImage.IMAGE_ORDER + " int,"
-
-            + " FOREIGN KEY(" + ShopImage.SHOP_ID +") REFERENCES " + Shop.TABLE_NAME + "(" + Shop.SHOP_ID + ") ON DELETE SET NULL "
-            + ")";
-
-
-
-
 
 
     // instance variables

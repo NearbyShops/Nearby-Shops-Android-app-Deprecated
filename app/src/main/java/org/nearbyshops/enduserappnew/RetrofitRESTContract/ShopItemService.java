@@ -12,8 +12,8 @@ import retrofit2.http.Query;
 public interface ShopItemService {
 
 
-//    @GET("/api/v1/ShopItem/Deprecated")
-//    Call<List<ShopItem>> getShopItems(
+//    @GET("/api/v1/ShopItemParcelable/Deprecated")
+//    Call<List<ShopItemParcelable>> getShopItems(
 //            @Query("ShopID")Integer ShopID, @Query("ItemID") Integer itemID,
 //            @Query("latCenter")Double latCenter,@Query("lonCenter")Double lonCenter,
 //            @Query("deliveryRangeMax")Double deliveryRangeMax,
@@ -46,13 +46,13 @@ public interface ShopItemService {
 
 
 //
-//    @POST("/api/v1/ShopItem")
-//    Call<ResponseBody> postShopItem(@Body ShopItem shopItem);
+//    @POST("/api/v1/ShopItemParcelable")
+//    Call<ResponseBody> postShopItem(@Body ShopItemParcelable shopItem);
 //
-//    @PUT("/api/v1/ShopItem")
-//    Call<ResponseBody> putShopItem(@Body ShopItem shopItem);
+//    @PUT("/api/v1/ShopItemParcelable")
+//    Call<ResponseBody> putShopItem(@Body ShopItemParcelable shopItem);
 //
-//    @DELETE("/api/v1/ShopItem")
+//    @DELETE("/api/v1/ShopItemParcelable")
 //    Call<ResponseBody> deleteShopItem(@Query("ShopID") int ShopID, @Query("ItemID") int itemID);
 
 }

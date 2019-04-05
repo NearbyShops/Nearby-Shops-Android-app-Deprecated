@@ -29,28 +29,6 @@ public class ShopReview{
     // review_date, title
 
 
-    // create Table statement
-    public static final String createTableShopReviewPostgres =
-
-            "CREATE TABLE IF NOT EXISTS " + ShopReview.TABLE_NAME + "("
-
-            + " " + ShopReview.SHOP_REVIEW_ID + " SERIAL PRIMARY KEY,"
-            + " " + ShopReview.SHOP_ID + " INT,"
-            + " " + ShopReview.END_USER_ID + " INT,"
-            + " " + ShopReview.RATING + " INT,"
-            + " " + ShopReview.REVIEW_TEXT + " text,"
-            + " " + ShopReview.REVIEW_TITLE + " text,"
-            + " " + ShopReview.REVIEW_DATE + "  timestamp with time zone NOT NULL DEFAULT now(),"
-
-            + " FOREIGN KEY(" + ShopReview.SHOP_ID +") REFERENCES " + Shop.TABLE_NAME + "(" + Shop.SHOP_ID + "),"
-            + " FOREIGN KEY(" + ShopReview.END_USER_ID +") REFERENCES " + User.TABLE_NAME + "(" + User.USER_ID + "),"
-            + " UNIQUE (" + ShopReview.SHOP_ID + "," + ShopReview.END_USER_ID + ")"
-            + ")";
-
-    public ShopReview() {
-    }
-
-
     // Instance Variables
 
     private int shopReviewID;

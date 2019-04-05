@@ -62,11 +62,13 @@ import retrofit2.Response;
 
 public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-//    Map<Integer,ShopItem> shopItemMap = new HashMap<>();
+//    Map<Integer,ShopItemParcelable> shopItemMap = new HashMap<>();
 //    Map<Integer,Item> selectedItems = new HashMap<>();
 
     private Map<Integer,CartItem> cartItemMap = new HashMap<>();
     private Map<Integer,CartStats> cartStatsMap = new HashMap<>();
+
+
 
     @Inject
     CartItemService cartItemService;

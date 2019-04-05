@@ -16,10 +16,13 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.CancelledOrders.CancelledOrdersHomeDelivery;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
+
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
+import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetail;
+import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetailFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -97,8 +100,16 @@ public class OrderHome extends AppCompatActivity {
     {
         shop = PrefShopHome.getShop(this);
         Intent intent = new Intent(this, ShopDetail.class);
-        intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
+//        intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
+
+
+
+
+        String jsonString = UtilityFunctions.provideGson().toJson(shop);
+        intent.putExtra(ShopDetailFragment.TAG_JSON_STRING,jsonString);
         startActivity(intent);
+
+
     }
 
 

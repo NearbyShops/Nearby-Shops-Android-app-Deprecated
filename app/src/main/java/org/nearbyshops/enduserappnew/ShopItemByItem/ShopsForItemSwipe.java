@@ -97,8 +97,8 @@ public class ShopsForItemSwipe extends AppCompatActivity implements Target, Noti
 
         if(item!=null)
         {
-            String imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                    + item.getItemImageURL();
+//            String imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                    + item.getItemImageURL();
 
 //            Picasso.with(this).load(imagePath).placeholder(R.drawable.nature_people).into(actionBarImage);
 //            Picasso.with(this).load(imagePath).placeholder(R.drawable.nature_people).into(this);

@@ -8,9 +8,7 @@ import org.nearbyshops.enduserappnew.Model.Shop;
 /**
  * Created by sumeet on 1/6/16.
  */
-public class CartStats implements Parcelable{
-
-
+public class CartStats{
 
 
     private int cartID;
@@ -23,48 +21,7 @@ public class CartStats implements Parcelable{
 
 
 
-
-    // Parcelable Implementation
-
-    protected CartStats(Parcel in) {
-        cartID = in.readInt();
-        itemsInCart = in.readInt();
-        cart_Total = in.readDouble();
-        shopID = in.readInt();
-        shop = in.readParcelable(Shop.class.getClassLoader());
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(cartID);
-        dest.writeInt(itemsInCart);
-        dest.writeDouble(cart_Total);
-        dest.writeInt(shopID);
-        dest.writeParcelable(shop, flags);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<CartStats> CREATOR = new Creator<CartStats>() {
-        @Override
-        public CartStats createFromParcel(Parcel in) {
-            return new CartStats(in);
-        }
-
-        @Override
-        public CartStats[] newArray(int size) {
-            return new CartStats[size];
-        }
-    };
-
-
-
     // Getter and Setter Methods
-
-
     public int getCartID() {
         return cartID;
     }

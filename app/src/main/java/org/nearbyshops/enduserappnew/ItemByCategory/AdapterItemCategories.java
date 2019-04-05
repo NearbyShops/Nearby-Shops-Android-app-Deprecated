@@ -77,13 +77,13 @@ public class AdapterItemCategories extends RecyclerView.Adapter<AdapterItemCateg
         holder.categoryDescription.setText(dataset.get(position).getCategoryDescription());
 
 
-        String imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                + dataset.get(position).getImagePath();
+//        String imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                + dataset.get(position).getImagePath();
 
-        Picasso.with(context)
-                .load(imagePath)
-                .placeholder(R.drawable.nature_people)
-                .into(holder.categoryImage);
+//        Picasso.with(context)
+//                .load(imagePath)
+//                .placeholder(R.drawable.nature_people)
+//                .into(holder.categoryImage);
 
 //        Log.d("applog",imagePath);
 

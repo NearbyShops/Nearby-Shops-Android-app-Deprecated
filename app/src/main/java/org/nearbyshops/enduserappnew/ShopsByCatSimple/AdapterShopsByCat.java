@@ -40,7 +40,7 @@ import butterknife.OnClick;
 
 public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-//    Map<Integer,ShopItem> shopItemMap = new HashMap<>();
+//    Map<Integer,ShopItemParcelable> shopItemMap = new HashMap<>();
 //    Map<Integer,Item> selectedItems = new HashMap<>();
 
     private List<Object> dataset;

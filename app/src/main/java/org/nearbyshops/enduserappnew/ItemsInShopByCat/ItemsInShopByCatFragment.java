@@ -54,7 +54,7 @@ import static android.app.Activity.RESULT_OK;
 public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterItemsInShop.NotificationsFromAdapter , NotifyBackPressed, NotifySort, NotifySearch {
 
 
-//    Map<Integer,ShopItem> shopItemMapTemp = new HashMap<>();
+//    Map<Integer,ShopItemParcelable> shopItemMapTemp = new HashMap<>();
 
     boolean isDestroyed = false;
     boolean show = true;
@@ -544,6 +544,18 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                 }
 
 
+                if(response.code()==200)
+                {
+
+
+                }
+                else
+                {
+                    showToastMessage("Failed : code : " + String.valueOf(response.code()));
+                }
+
+
+
                 if(clearDataset)
                 {
 
@@ -590,7 +602,6 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
                 notifyItemIndicatorChanged();
-
 
             }
 

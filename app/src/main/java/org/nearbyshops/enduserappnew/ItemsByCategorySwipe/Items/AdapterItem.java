@@ -109,8 +109,8 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
-                imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                        + dataset.get(position).getItemImageURL();
+//                imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                        + dataset.get(position).getItemImageURL();
             }
 
 

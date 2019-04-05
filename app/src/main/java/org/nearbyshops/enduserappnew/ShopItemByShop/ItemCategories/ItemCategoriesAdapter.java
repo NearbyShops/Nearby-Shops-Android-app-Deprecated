@@ -95,16 +95,16 @@ public class ItemCategoriesAdapter extends RecyclerView.Adapter<ItemCategoriesAd
 
 
 
-        String imagePath = PrefGeneral.getImageEndpointURL(context)
-                + dataset.get(position).getImagePath();
-
-        Drawable placeholder = VectorDrawableCompat
-                .create(context.getResources(),
-                        R.drawable.ic_nature_people_white_48px, context.getTheme());
-
-        Picasso.with(context).load(imagePath)
-                .placeholder(placeholder)
-                .into(holder.categoryImage);
+//        String imagePath = PrefGeneral.getImageEndpointURL(context)
+//                + dataset.get(position).getImagePath();
+//
+//        Drawable placeholder = VectorDrawableCompat
+//                .create(context.getResources(),
+//                        R.drawable.ic_nature_people_white_48px, context.getTheme());
+//
+//        Picasso.with(context).load(imagePath)
+//                .placeholder(placeholder)
+//                .into(holder.categoryImage);
 
     }
 

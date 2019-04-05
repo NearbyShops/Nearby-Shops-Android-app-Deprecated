@@ -42,6 +42,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
+
 /**
  * Created by sumeet on 12/8/16.
  */
@@ -80,6 +82,8 @@ public class RateReviewDialog extends DialogFragment {
 
     @BindView(R.id.smile_rating)
     SmileRating smileRating;
+
+    @BindView(R.id.member_rating) RatingBar memberRatingIndicator;
 
 
     int book_id;
@@ -132,20 +136,37 @@ public class RateReviewDialog extends DialogFragment {
 
             ratingBar.setRating(review_for_edit.getRating());
 //            smileRating.setSelectedSmile(review_for_edit.getRating());
+            memberRatingIndicator.setRating(review_for_edit.getRating());
             smileRating.setSelectedSmile(review_for_edit.getRating()-1);
-            itemRatingText.setText(String.valueOf((float)review_for_edit.getRating()));
+            itemRatingText.setText(String.valueOf((float)review_for_edit.getRating()) + " Star");
 
-            String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
-                    + review_for_edit.getRt_end_user_profile().getProfileImagePath();
+//            String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
+//                    + review_for_edit.getRt_end_user_profile().getProfileImagePath();
+
+
+
+            String imagepath = PrefGeneral.getServiceURL(getApplicationContext()) + "/api/v1/User/Image/five_hundred_"
+                    + review_for_edit.getRt_end_user_profile().getProfileImagePath() + ".jpg";
 
 
             Drawable placeholder = VectorDrawableCompat
                     .create(getResources(),
                             R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
-            Picasso.with(getActivity()).load(imagePath)
+            Picasso.with(getActivity()).load(imagepath)
                     .placeholder(placeholder)
                     .into(member_profile_image);
+        }
+        else
+        {
+
+            ratingBar.setRating(3);
+//            smileRating.setSelectedSmile(review_for_edit.getRating());
+            smileRating.setSelectedSmile(3-1);
+            itemRatingText.setText(String.valueOf((float)3) + " Star");
+            memberRatingIndicator.setRating(3);
+
+
         }
 
 
@@ -173,7 +194,8 @@ public class RateReviewDialog extends DialogFragment {
             @Override
             public void onSmileySelected(int smiley, boolean reselected) {
 
-                itemRatingText.setText(String.valueOf(smiley));
+                itemRatingText.setText(String.valueOf(smiley + 1 ) + " Star");
+                memberRatingIndicator.setRating(smiley + 1);
             }
         });
 
@@ -250,6 +272,10 @@ public class RateReviewDialog extends DialogFragment {
 
 
 
+
+
+
+
     void setMember()
     {
 
@@ -261,24 +287,31 @@ public class RateReviewDialog extends DialogFragment {
             member_name.setText(" by " + endUser.getName());
 
 
-            String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
-                    + endUser.getProfileImagePath();
+//            String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
+//                    + endUser.getProfileImagePath();
+
+
+
+
+            String imagepath = PrefGeneral.getServiceURL(getApplicationContext()) + "/api/v1/User/Image/five_hundred_"
+                    + endUser.getProfileImagePath() + ".jpg";
 
 
             Drawable placeholder = VectorDrawableCompat
                     .create(getResources(),
-                            R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
+                            R.drawable.ic_nature_people_white_48px, null);
 
-            Picasso.with(getActivity()).load(imagePath)
+            Picasso.with(getActivity()).load(imagepath)
                     .placeholder(placeholder)
                     .into(member_profile_image);
         }
 
 
-
-
-
     }
+
+
+
+
 
 
     @OnClick(R.id.submit_button)
@@ -295,9 +328,16 @@ public class RateReviewDialog extends DialogFragment {
     }
 
 
+
+
+
     @OnClick(R.id.cancel_button)
     void cancel_delete_click()
     {
+
+//        showToastMessage("Delete Click !");
+
+
         if(isModeEdit)
         {
             // delete the review
@@ -313,9 +353,9 @@ public class RateReviewDialog extends DialogFragment {
                         showToastMessage("Deleted !");
 
 
-                        if(getActivity() instanceof NotifyReviewUpdate)
+                        if(getParentFragment() instanceof NotifyReviewUpdate)
                         {
-                            ((NotifyReviewUpdate)getActivity()).notifyReviewDeleted();
+                            ((NotifyReviewUpdate)getParentFragment()).notifyReviewDeleted();
                         }
 
                         dismiss();
@@ -357,9 +397,9 @@ public class RateReviewDialog extends DialogFragment {
                 {
                     showToastMessage("Submitted !");
 
-                    if(getActivity() instanceof NotifyReviewUpdate)
+                    if(getParentFragment() instanceof NotifyReviewUpdate)
                     {
-                        ((NotifyReviewUpdate)getActivity()).notifyReviewSubmitted();
+                        ((NotifyReviewUpdate)getParentFragment()).notifyReviewSubmitted();
                     }
 
                     dismiss();
@@ -407,9 +447,9 @@ public class RateReviewDialog extends DialogFragment {
                     {
                         showToastMessage(getString(R.string.udate_successful_api_response));
 
-                        if(getActivity() instanceof NotifyReviewUpdate)
+                        if(getParentFragment() instanceof NotifyReviewUpdate)
                         {
-                            ((NotifyReviewUpdate)getActivity()).notifyReviewUpdated();
+                            ((NotifyReviewUpdate)getParentFragment()).notifyReviewUpdated();
                         }
 
                         dismiss();

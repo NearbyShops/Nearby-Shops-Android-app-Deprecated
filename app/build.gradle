@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        maven { url 'https://plugins.gradle.org/m2/'}
+        maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
         classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:0.12.1'
@@ -14,21 +14,17 @@ apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 //    maven { url 'https://maven.google.com' }
 //}
 
-
 //plugins {
 //    id 'com.onesignal.androidsdk.onesignal-gradle-plugin' version '0.8.1'
 //}
 //apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
 
-
 apply plugin: 'com.android.application'
 //apply plugin: 'android-apt'
 
 
-
 android {
-
 
 //    signingConfigs {
 //        release {
@@ -40,19 +36,11 @@ android {
 //        }
 //    }
 
-
-
-
-
-    
-
 //
 //    defaultConfig {
 //
 //    }
 //
-
-
 
 
     compileOptions {
@@ -79,7 +67,7 @@ android {
         vectorDrawables.useSupportLibrary = true
 //        signingConfig signingConfigs.release
 
-        manifestPlaceholders = [onesignal_app_id: "b6fe253c-2a93-4452-8cd7-36555aa046ca",
+        manifestPlaceholders = [onesignal_app_id               : "b6fe253c-2a93-4452-8cd7-36555aa046ca",
                                 // Project number pulled from dashboard, local value is ignored.
                                 onesignal_google_project_number: "REMOTE"]
     }
@@ -137,17 +125,11 @@ android {
 
 }
 
-
-
-
-
 //
 //configurations {
 ////    all*.exclude module: 'javax.inject.Inject'
 ////    all*.exclude group: 'javax.inject', module: 'javax.inject'
 //}
-
-
 
 
 dependencies {
@@ -161,11 +143,8 @@ dependencies {
 //    }
 
 
-
-
-    
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:6.5.0'
-    
+
     implementation 'com.github.sujithkanna:smileyrating:1.6.8'
     implementation 'com.alexvasilkov:gesture-views:2.4.0'
     implementation 'com.github.stfalcon:smsverifycatcher:0.3.2'
@@ -209,10 +188,8 @@ dependencies {
 //    implementation 'com.google.firebase:firebase-messaging:17.3.4'
 //    implementation 'com.google.android.gms:play-services-location:16.0.0'
 
-
 //    implementation 'com.google.firebase:firebase-messaging:11.6.0'
 //    implementation 'com.google.android.gms:play-services-location:15.0.0'
-
 
 //    implementation 'com.onesignal:OneSignal:3.10.0'
 
@@ -224,8 +201,6 @@ dependencies {
     implementation 'com.hbb20:ccp:2.2.6'
 
 }
-
-
 
 //apply plugin: 'com.google.gms.google-services'
 

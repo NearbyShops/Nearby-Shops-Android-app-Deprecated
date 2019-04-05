@@ -1,17 +1,29 @@
-package org.nearbyshops.enduserappnew.Model;
+package org.nearbyshops.enduserappnew.Model.parcelable;
 
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.nearbyshops.enduserappnew.Model.Item;
+import org.nearbyshops.enduserappnew.Model.Shop;
+
 import java.sql.Timestamp;
 
-public class ShopItem{
+public class ShopItemParcelable implements Parcelable{
+	
+	public static final String UNIT_KG = "Kg.";
+	public static final String UNIT_GRAMS = "Grams.";
+	
+	//int shopID;
+
+	public ShopItemParcelable() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 
 	// Table Name
 	public static final String TABLE_NAME = "SHOP_ITEM";
-
 
 	// column Names
 	public static final String SHOP_ID = "SHOP_ID";
@@ -28,6 +40,10 @@ public class ShopItem{
 	public static final String DATE_TIME_ADDED = "DATE_TIME_ADDED";
 	public static final String LAST_UPDATE_DATE_TIME = "LAST_UPDATE_DATE_TIME";
 	public static final String EXTRA_DELIVERY_CHARGE = "EXTRA_DELIVERY_CHARGE";
+
+
+
+
 
 
 
@@ -67,9 +83,43 @@ public class ShopItem{
 	private Timestamp lastUpdateDateTime;
 
 
+	protected ShopItemParcelable(Parcel in) {
+		shop = in.readParcelable(Shop.class.getClassLoader());
+		item = in.readParcelable(Item.class.getClassLoader());
+		shopID = in.readInt();
+		itemID = in.readInt();
+		availableItemQuantity = in.readInt();
+		itemPrice = in.readDouble();
+		extraDeliveryCharge = in.readInt();
+	}
 
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+//		dest.writeParcelable(shop, flags);
+		dest.writeParcelable(item, flags);
+		dest.writeInt(shopID);
+		dest.writeInt(itemID);
+		dest.writeInt(availableItemQuantity);
+		dest.writeDouble(itemPrice);
+		dest.writeInt(extraDeliveryCharge);
+	}
 
+	@Override
+	public int describeContents() {
+		return 0;
+	}
 
+	public static final Creator<ShopItemParcelable> CREATOR = new Creator<ShopItemParcelable>() {
+		@Override
+		public ShopItemParcelable createFromParcel(Parcel in) {
+			return new ShopItemParcelable(in);
+		}
+
+		@Override
+		public ShopItemParcelable[] newArray(int size) {
+			return new ShopItemParcelable[size];
+		}
+	};
 
 	public int getExtraDeliveryCharge() {
 		return extraDeliveryCharge;

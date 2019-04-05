@@ -19,6 +19,7 @@ import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartStatsService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.OrderService;
@@ -129,7 +130,11 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
         // Bind View Ends
 
 
-        cartStats = getIntent().getParcelableExtra(CART_STATS_INTENT_KEY);
+//        cartStats = getIntent().getParcelableExtra(CART_STATS_INTENT_KEY);
+
+        String cartStatsJson = getIntent().getStringExtra(CART_STATS_INTENT_KEY);
+        cartStats = UtilityFunctions.provideGson().fromJson(cartStatsJson,CartStats.class);
+
 
         if(savedInstanceState!=null)
         {

@@ -77,10 +77,10 @@
         <TextView
             android:id="@+id/item_rating_text"
             android:layout_marginTop="5dp"
-            android:paddingLeft="3dp"
-            android:paddingStart="3dp"
-            android:paddingRight="3dp"
-            android:paddingEnd="3dp"
+            android:paddingLeft="5dp"
+            android:paddingStart="5dp"
+            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:gravity="center"
             android:textColor="@color/white"
             android:background="@color/gplus_color_2"
@@ -90,10 +90,22 @@
             android:layout_toRightOf="@id/member_profile_image"
             android:layout_below="@id/member_name"
             android:layout_alignBottom="@id/member_profile_image"
-            android:text="4.6"
+            android:text=" - "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+
+
+        <RatingBar
+            android:numStars="5"
+            android:isIndicator="true"
+            android:id="@+id/member_rating"
+            android:layout_marginStart="10dp"
+            android:layout_alignBottom="@id/member_profile_image"
+            android:layout_toEndOf="@id/item_rating_text"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
 
 
