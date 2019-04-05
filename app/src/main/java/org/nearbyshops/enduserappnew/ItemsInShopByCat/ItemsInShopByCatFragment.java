@@ -16,7 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail;
+import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailFragment;
+import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailNew;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.Interfaces.NotifyIndicatorChanged;
@@ -27,6 +28,7 @@ import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopItemService;
@@ -723,8 +725,11 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     @Override
     public void notifyItemImageClick(Item item) {
 
-        Intent intent = new Intent(getActivity(), ItemDetail.class);
-        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
+        Intent intent = new Intent(getActivity(), ItemDetailNew.class);
+//        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
+
+        String itemJson = UtilityFunctions.provideGson().toJson(item);
+        intent.putExtra(ItemDetailFragment.TAG_JSON_STRING,itemJson);
         getActivity().startActivity(intent);
     }
 

@@ -22,7 +22,8 @@ import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail;
+import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailFragment;
+import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailNew;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -588,8 +589,12 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
     void listItemClick()
     {
 
-        Intent intent = new Intent(getActivity(), ItemDetail.class);
-        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
+        Intent intent = new Intent(getActivity(), ItemDetailNew.class);
+//        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
+
+        String itemJson = UtilityFunctions.provideGson().toJson(item);
+        intent.putExtra(ItemDetailFragment.TAG_JSON_STRING,itemJson);
+
         getActivity().startActivity(intent);
 
 

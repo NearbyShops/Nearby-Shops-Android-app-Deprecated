@@ -99,7 +99,6 @@
 
         <android.support.v7.widget.RecyclerView
             android:layout_marginTop="10dp"
-
             android:layout_below="@id/item_specifications"
             android:id="@+id/recyclerview_item_specifications"
             android:layout_width="match_parent"

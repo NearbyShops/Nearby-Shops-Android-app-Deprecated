@@ -14,13 +14,14 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail;
+
+import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailFragment;
+import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailNew;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
-import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopItemByItem.ShopsForItemSwipe;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 
 import java.util.List;
 
@@ -168,13 +169,13 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             }
         }
-
-
-
-
-
-
     }
+
+
+
+
+
+
 
     @Override
     public int getItemCount() {
@@ -265,10 +266,17 @@ public class AdapterItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     break;
 
 
+
+
+
                 case R.id.itemImage:
 
-                    Intent intent = new Intent(context, ItemDetail.class);
-                    intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
+                    Intent intent = new Intent(context, ItemDetailNew.class);
+//                    intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
+
+                    String itemJson = UtilityFunctions.provideGson().toJson(dataset.get(getLayoutPosition()));
+                    intent.putExtra(ItemDetailFragment.TAG_JSON_STRING,itemJson);
+
                     context.startActivity(intent);
 
                     break;

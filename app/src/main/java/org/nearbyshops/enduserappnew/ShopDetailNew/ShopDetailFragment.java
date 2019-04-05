@@ -68,7 +68,6 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
 
-
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -95,6 +94,10 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
     @BindView(R.id.shop_profile_photo) ImageView shopProfilePhoto;
+    @BindView(R.id.image_count) TextView imagesCount;
+
+    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
+    @BindView(R.id.fab) FloatingActionButton fab;
 
 
     @BindView(R.id.shop_name) TextView shopName;
@@ -106,6 +109,8 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
     @BindView(R.id.phone) TextView shopPhone;
 
     @BindView(R.id.shop_description) TextView shopDescription;
+    @BindView(R.id.read_full_button) TextView readFullDescription;
+
 
     @BindView(R.id.shop_address) TextView shopAddress;
 //    @BindView(R.id.get_directions) TextView getDirections;
@@ -120,22 +125,11 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
 
-    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
-    @BindView(R.id.fab) FloatingActionButton fab;
 
+    @BindView(R.id.user_rating_review) LinearLayout user_review_ratings_block;
+    @BindView(R.id.edit_review_text) TextView edit_review_text;
+    @BindView(R.id.ratingBar_rate) RatingBar ratingBar_rate;
 
-    @BindView(R.id.image_count) TextView imagesCount;
-
-
-
-    @BindView(R.id.user_rating_review)
-    LinearLayout user_review_ratings_block;
-
-    @BindView(R.id.edit_review_text)
-    TextView edit_review_text;
-
-    @BindView(R.id.ratingBar_rate)
-    RatingBar ratingBar_rate;
 
     Shop shop;
 
@@ -190,6 +184,9 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
 
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -197,7 +194,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_shop_detail_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_shop_detail, container, false);
         ButterKnife.bind(this,rootView);
 
 
@@ -490,9 +487,6 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
 
-    @BindView(R.id.read_full_button)
-    TextView readFullDescription;
-
     @OnClick(R.id.read_full_button)
     void readFullButtonClick() {
 /*
@@ -670,6 +664,8 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
         }
 
 
+        this.isFavourite = isFavourite;
+
 
         if (isFavourite) {
 
@@ -712,12 +708,12 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
                         if (response.body().getItemCount() >= 1) {
 
                             setFavouriteIcon(true);
-                            isFavourite = true;
+//                            isFavourite = true;
 
                         } else if (response.body().getItemCount() == 0) {
 
                             setFavouriteIcon(false);
-                            isFavourite = false;
+//                            isFavourite = false;
                         }
                     }
 
@@ -756,7 +752,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
                         // created successfully
 
                         setFavouriteIcon(true);
-                        isFavourite = true;
+//                        isFavourite = true;
                     }
                 }
 
@@ -789,7 +785,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
                     if (response.code() == 200) {
                         setFavouriteIcon(false);
-                        isFavourite = false;
+//                        isFavourite = false;
                     }
 
                 }
@@ -802,6 +798,10 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
             });
         }
     }
+
+
+
+
 
 
     @Override
@@ -829,7 +829,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
 
-    
+
 
     @OnClick({R.id.edit_review_text, R.id.ratingBar_rate})
     void write_review_click() {

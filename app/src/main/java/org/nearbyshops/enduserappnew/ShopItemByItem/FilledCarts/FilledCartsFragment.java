@@ -21,14 +21,17 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail;
+
 //import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.AdapterSimple;
+import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailFragment;
+import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailNew;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduserappnew.ShopHome.ShopHome;
@@ -447,8 +450,13 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     void listItemClick()
     {
 
-        Intent intent = new Intent(getActivity(), ItemDetail.class);
-        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
+
+        Intent intent = new Intent(getActivity(), ItemDetailNew.class);
+//        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
+
+
+        String itemJson = UtilityFunctions.provideGson().toJson(item);
+        intent.putExtra(ItemDetailFragment.TAG_JSON_STRING,itemJson);
         getActivity().startActivity(intent);
 
 

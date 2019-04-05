@@ -23,11 +23,12 @@ import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.FilterItemsBySpecifications.FilterItemsFragment;
 import org.nearbyshops.enduserappnew.FilterShopDialog.FilterShopsDialog;
 import org.nearbyshops.enduserappnew.Home;
+import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail_;
+import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemImages.ItemImageListFragment;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.AdapterSimple;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduserappnew.ItemByCategory.FragmentShop;
-import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail;
 import org.nearbyshops.enduserappnew.ItemDetail.RateReviewItemDialog;
 import org.nearbyshops.enduserappnew.Items.ItemsList.FragmentItemsList;
 import org.nearbyshops.enduserappnew.ItemsByCategorySwipe.ItemCategories.ItemCategoriesFragmentItem;
@@ -137,8 +138,6 @@ public interface NetComponent {
 
     void Inject(ShopReviewAdapter shopReviewAdapter);
 
-    void Inject(ItemDetail itemDetail);
-
     void Inject(RateReviewItemDialog rateReviewItemDialog);
 
     void Inject(ShopReviewStats shopReviewStats);
@@ -239,4 +238,9 @@ public interface NetComponent {
     void Inject(LoginUsingOTPFragment loginUsingOTPFragment);
 
     void Inject(ShopDetailFragment shopDetailFragment);
+
+    void Inject(ItemDetailFragment itemDetailFragment);
+
+
+    void Inject(ItemDetail_ itemDetail_);
 }
