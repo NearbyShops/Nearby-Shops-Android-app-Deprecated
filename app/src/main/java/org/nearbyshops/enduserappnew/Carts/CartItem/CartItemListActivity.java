@@ -23,6 +23,7 @@ import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartItemService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartStatsService;
@@ -128,8 +129,22 @@ public class CartItemListActivity extends AppCompatActivity
 
         // get shop from intent
 
-        shop = getIntent().getParcelableExtra(SHOP_INTENT_KEY);
-        cartStats = getIntent().getParcelableExtra(CART_STATS_INTENT_KEY);
+//        shop = getIntent().getParcelableExtra(SHOP_INTENT_KEY);
+//        cartStats = getIntent().getParcelableExtra(CART_STATS_INTENT_KEY);
+
+
+        String shopJson = getIntent().getStringExtra(SHOP_INTENT_KEY);
+        shop = UtilityFunctions.provideGson().fromJson(shopJson,Shop.class);
+
+
+        String cartStatsJson = getIntent().getStringExtra(CART_STATS_INTENT_KEY);
+        cartStats = UtilityFunctions.provideGson().fromJson(cartStatsJson,CartStats.class);
+
+
+
+
+
+
 
         if(cartStats==null)
         {
@@ -228,7 +243,11 @@ public class CartItemListActivity extends AppCompatActivity
     void confirmItemsClick()
     {
         Intent intent = new Intent(this,PlaceOrderActivity.class);
-        intent.putExtra(PlaceOrderActivity.CART_STATS_INTENT_KEY,cartStats);
+        //        intent.putExtra(PlaceOrderActivity.CART_STATS_INTENT_KEY,cartStats);
+
+        String cartStatsJson = UtilityFunctions.provideGson().toJson(cartStats);
+        intent.putExtra(PlaceOrderActivity.CART_STATS_INTENT_KEY,cartStatsJson);
+
 
         startActivity(intent);
     }

@@ -18,7 +18,7 @@ import retrofit2.http.Query;
 public interface FavouriteShopService {
 
     @GET("/api/v1/FavouriteShop")
-    Call<FavouriteShopEndpoint> getFavouriteBooks(
+    Call<FavouriteShopEndpoint> getFavouriteShops(
             @Query("ShopID") Integer bookID,
             @Query("EndUserID") Integer memberID,
             @Query("SortBy") String sortBy,
@@ -28,10 +28,12 @@ public interface FavouriteShopService {
 
 
     @POST("/api/v1/FavouriteShop")
-    Call<FavouriteShop> insertFavouriteBook(@Body FavouriteShop book);
+    Call<FavouriteShop> insertFavouriteShop(@Body FavouriteShop book);
 
     @DELETE("/api/v1/FavouriteShop")
-    Call<ResponseBody> deleteFavouriteBook(@Query("ShopID") Integer bookID,
+    Call<ResponseBody> deleteFavouriteShop(@Query("ShopID") Integer bookID,
                                            @Query("EndUserID") Integer memberID);
+
+
 
 }

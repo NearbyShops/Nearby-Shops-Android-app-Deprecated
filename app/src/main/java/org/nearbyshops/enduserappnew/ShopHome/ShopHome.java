@@ -17,12 +17,14 @@ import org.nearbyshops.enduserappnew.Carts.CartItem.CartItemListActivity;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
+import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.OrderHistoryNew;
-import org.nearbyshops.enduserappnew.OrdersHomeDelivery.OrderHome;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
+
+import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetail;
+import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetailFragment;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
@@ -31,7 +33,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD.IS_FILTER_BY_SHOP;
+
+
 
 public class ShopHome extends AppCompatActivity {
 
@@ -185,10 +188,19 @@ public class ShopHome extends AppCompatActivity {
         }
 
 
+
         Intent intent = new Intent(this,CartItemListActivity.class);
-        intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,shop);
+//        intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,shop);
+
+
+        String jsonString = UtilityFunctions.provideGson().toJson(shop);
+        intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,jsonString);
         startActivity(intent);
     }
+
+
+
+
 
 
 
@@ -234,7 +246,13 @@ public class ShopHome extends AppCompatActivity {
     void shopCardClick()
     {
             Intent intent = new Intent(this, ShopDetail.class);
-            intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
+//            intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
+
+
+            String jsonString = UtilityFunctions.provideGson().toJson(shop);
+            intent.putExtra(ShopDetailFragment.TAG_JSON_STRING,jsonString);
+
+
             startActivity(intent);
     }
 
@@ -244,7 +262,11 @@ public class ShopHome extends AppCompatActivity {
     void shopReviews()
     {
         Intent intent = new Intent(this, ShopReviews.class);
-        intent.putExtra(ShopReviews.SHOP_INTENT_KEY, shop);
+//        intent.putExtra(ShopReviews.SHOP_INTENT_KEY, shop);
+
+        String jsonString = UtilityFunctions.provideGson().toJson(shop);
+        intent.putExtra(ShopReviews.SHOP_INTENT_KEY,jsonString);
+
         startActivity(intent);
     }
 
@@ -254,6 +276,9 @@ public class ShopHome extends AppCompatActivity {
     {
         showToastMessage("Feature coming soon !");
     }
+
+
+
 
 
     void showToastMessage(String message)

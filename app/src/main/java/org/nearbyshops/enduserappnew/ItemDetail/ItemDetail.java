@@ -67,6 +67,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
 
 public class ItemDetail extends AppCompatActivity implements
@@ -603,8 +604,13 @@ public class ItemDetail extends AppCompatActivity implements
                                 User member = response.body().getResults().get(0).getRt_end_user_profile();
                                 member_name.setText(member.getName());
 
-                                String imagePath = PrefGeneral.getImageEndpointURL(ItemDetail.this)
-                                        + member.getProfileImagePath();
+//                                String imagePath = PrefGeneral.getImageEndpointURL(ItemDetail.this)
+//                                        + member.getProfileImagePath();
+
+
+
+                                String imagepath = PrefGeneral.getServiceURL(getApplicationContext()) + "/api/v1/User/Image/five_hundred_"
+                                        + member.getProfileImagePath() + ".jpg";
 
 
 
@@ -612,7 +618,7 @@ public class ItemDetail extends AppCompatActivity implements
                                         .create(getResources(),
                                                 R.drawable.ic_nature_people_white_48px, getTheme());
 
-                                Picasso.with(ItemDetail.this).load(imagePath)
+                                Picasso.with(ItemDetail.this).load(imagepath)
                                         .placeholder(placeholder)
                                         .into(member_profile_image);
 

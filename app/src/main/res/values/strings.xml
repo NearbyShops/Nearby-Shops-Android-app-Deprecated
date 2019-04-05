@@ -1,4 +1,4 @@
-<resources >
+<resources>
 
 
     <string name="app_name">Nearby Shops</string>
@@ -38,7 +38,6 @@
     <string name="not_yet_rated">Not Yet Rated !</string>
     <string name="shop_review_be_the_first_to_review">"Be the first to review and rate this Shop. "</string>
     <string name="item_review_be_the_first_to_review">"Be the first to review and rate this Item. "</string>
-
 
 
     <string name="title_activity_scrolling">Scrolling</string>

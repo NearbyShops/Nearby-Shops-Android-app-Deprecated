@@ -597,6 +597,13 @@
 
 
 
+
+        <activity
+            android:name=".ShopDetailNew.ShopDetail"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+
     </application>
 
 

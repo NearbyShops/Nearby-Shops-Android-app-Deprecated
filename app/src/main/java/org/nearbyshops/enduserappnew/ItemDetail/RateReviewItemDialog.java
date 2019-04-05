@@ -41,6 +41,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
+
 /**
  * Created by sumeet on 12/8/16.
  */
@@ -132,9 +134,13 @@ public class RateReviewItemDialog extends DialogFragment {
 //            itemRatingText.setText(String.format("%.0f",review_for_edit.getRating()));
             itemRatingText.setText(String.valueOf((float)review_for_edit.getRating()));
 
-            String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
-                    + review_for_edit.getRt_end_user_profile().getProfileImagePath();
+//            String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
+//                    + review_for_edit.getRt_end_user_profile().getProfileImagePath();
 
+
+
+            String imagepath = PrefGeneral.getServiceURL(getApplicationContext()) + "/api/v1/Item/Image/five_hundred_"
+                    + review_for_edit.getRt_end_user_profile().getProfileImagePath() + ".jpg";
 
 
 
@@ -142,7 +148,7 @@ public class RateReviewItemDialog extends DialogFragment {
                     .create(getResources(),
                             R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
-            Picasso.with(getActivity()).load(imagePath)
+            Picasso.with(getActivity()).load(imagepath)
                     .placeholder(placeholder)
                     .into(member_profile_image);
 
@@ -289,15 +295,19 @@ public class RateReviewItemDialog extends DialogFragment {
             member_name.setText(" by " + endUser.getName());
 
 
-            String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
-                    + endUser.getProfileImagePath();
+//            String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
+//                    + endUser.getProfileImagePath();
+
+
+            String imagepath = PrefGeneral.getServiceURL(getApplicationContext()) + "/api/v1/Item/Image/five_hundred_"
+                    + review_for_edit.getRt_end_user_profile().getProfileImagePath() + ".jpg";
 
 
             Drawable placeholder = VectorDrawableCompat
                     .create(getResources(),
                             R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
-            Picasso.with(getActivity()).load(imagePath)
+            Picasso.with(getActivity()).load(imagepath)
                     .placeholder(placeholder)
                     .into(member_profile_image);
         }

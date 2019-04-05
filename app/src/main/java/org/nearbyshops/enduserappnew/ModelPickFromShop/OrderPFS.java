@@ -18,63 +18,8 @@ public class OrderPFS {
 
     // Column names for Distributor
     public static final String ORDER_ID_PFS = "ORDER_ID_PFS";
-    public static final String END_USER_ID = "END_USER_ID"; // foreign Key
-    public static final String SHOP_ID = "SHOP_ID"; // foreign Key
-
-    public static final String ORDER_TOTAL = "ORDER_TOTAL";
-    public static final String ITEM_COUNT = "ITEM_COUNT";
-    public static final String APP_SERVICE_CHARGE = "APP_SERVICE_CHARGE";
-
-    public static final String DELIVERY_ADDRESS_ID = "DELIVERY_ADDRESS_ID";
-
-    public static final String STATUS_PICK_FROM_SHOP = "STATUS_PICK_FROM_SHOP";
-
-    public static final String DELIVERY_RECEIVED = "DELIVERY_RECEIVED";
-    public static final String PAYMENT_RECEIVED = "PAYMENT_RECEIVED";
-
-    public static final String REASON_FOR_CANCELLED_BY_USER = "REASON_FOR_CANCELLED_BY_USER";
-    public static final String REASON_FOR_CANCELLED_BY_SHOP = "REASON_FOR_CANCELLED_BY_SHOP";
-
-    public static final String TIMESTAMP_PLACED = "TIMESTAMP_PLACED";
-    public static final String TIMESTAMP_PFS_CONFIRMED = "TIMESTAMP_PFS_CONFIRMED";
-    public static final String TIMESTAMP_PFS_PACKED = "TIMESTAMP_PFS_PACKED";
-    public static final String TIMESTAMP_PFS_READY_FOR_PICKUP = "TIMESTAMP_PFS_READY_FOR_PICKUP";
-    public static final String TIMESTAMP_PFS_DELIVERED = "TIMESTAMP_PFS_DELIVERED";
 
 
-
-
-    // Create Table OrderPFS In postgres
-
-    public static final String createTableOrderPFSPostgres = "CREATE TABLE IF NOT EXISTS " + OrderPFS.TABLE_NAME + "("
-            + " " + OrderPFS.ORDER_ID_PFS + " SERIAL PRIMARY KEY,"
-            + " " + OrderPFS.END_USER_ID + " INT,"
-            + " " + OrderPFS.SHOP_ID + " INT,"
-
-            + " " + OrderPFS.ORDER_TOTAL + " INT,"
-            + " " + OrderPFS.ITEM_COUNT + " INT,"
-            + " " + OrderPFS.APP_SERVICE_CHARGE + " INT,"
-
-            + " " + OrderPFS.DELIVERY_ADDRESS_ID + " INT,"
-
-            + " " + OrderPFS.STATUS_PICK_FROM_SHOP + " INT,"
-
-            + " " + OrderPFS.DELIVERY_RECEIVED + " boolean,"
-            + " " + OrderPFS.PAYMENT_RECEIVED + " boolean,"
-
-            + " " + OrderPFS.REASON_FOR_CANCELLED_BY_SHOP + " text,"
-            + " " + OrderPFS.REASON_FOR_CANCELLED_BY_USER + " text,"
-
-            + " " + OrderPFS.TIMESTAMP_PLACED + " timestamp with time zone NOT NULL DEFAULT now(),"
-            + " " + OrderPFS.TIMESTAMP_PFS_CONFIRMED + " timestamp with time zone,"
-            + " " + OrderPFS.TIMESTAMP_PFS_PACKED + " timestamp with time zone,"
-            + " " + OrderPFS.TIMESTAMP_PFS_READY_FOR_PICKUP + " timestamp with time zone,"
-            + " " + OrderPFS.TIMESTAMP_PFS_DELIVERED + " timestamp with time zone,"
-
-            + " FOREIGN KEY(" + OrderPFS.END_USER_ID +") REFERENCES " + User.TABLE_NAME + "(" + User.USER_ID + "),"
-            + " FOREIGN KEY(" + OrderPFS.SHOP_ID +") REFERENCES " + Shop.TABLE_NAME + "(" + Shop.SHOP_ID + "),"
-            + " FOREIGN KEY(" + OrderPFS.DELIVERY_ADDRESS_ID +") REFERENCES " + DeliveryAddress.TABLE_NAME + "(" + DeliveryAddress.ID + ")"
-            + ")";
 
 
 

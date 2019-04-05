@@ -472,8 +472,8 @@ public class AdapterNewCarts extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-            imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                    + ((Item)dataset.get(position)).getItemImageURL();
+//            imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                    + ((Item)dataset.get(position)).getItemImageURL();
 
         }
 

@@ -22,6 +22,7 @@ import org.nearbyshops.enduserappnew.ModelEndPoints.ShopReviewThanksEndpoint;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReviewThanks;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewThanksService;
@@ -124,7 +125,13 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 //        chart = (HorizontalBarChart) findViewById(R.id.chart);
 
 
-        shop = getIntent().getParcelableExtra(SHOP_INTENT_KEY);
+//        shop = getIntent().getParcelableExtra(SHOP_INTENT_KEY);
+
+
+        String shopJson = getIntent().getStringExtra(SHOP_INTENT_KEY);
+        shop = UtilityFunctions.provideGson().fromJson(shopJson,Shop.class);
+
+
 
         if(shop !=null)
         {
@@ -188,24 +195,24 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
 
 
-
-
-    ShopReviewStats fragmentStats = new ShopReviewStats();
-
-    void setStatFragment()
-    {
-
-        Bundle args = new Bundle();
-        args.putParcelable("shopExtra",shop);
-        fragmentStats.setArguments(args);
-
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.review_stat_fragment,fragmentStats)
-                .commit();
-    }
-
+//
+//
+//    ShopReviewStats fragmentStats = new ShopReviewStats();
+//
+//    void setStatFragment()
+//    {
+//
+//        Bundle args = new Bundle();
+//        args.putParcelable("shopExtra",shop);
+//        fragmentStats.setArguments(args);
+//
+//
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.review_stat_fragment,fragmentStats)
+//                .commit();
+//    }
+//
 
 
 

@@ -84,13 +84,16 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
 //            Log.d("applog","Item Stats :" + dataset.get(position).getItemStats().getShopCount());
         }
 
-        String imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
-                + dataset.get(position).getItemImageURL();
 
-        Picasso.with(context)
-                .load(imagePath)
-                .placeholder(R.drawable.nature_people)
-                .into(holder.itemImage);
+
+
+//        String imagePath = PrefGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                + dataset.get(position).getItemImageURL();
+//
+//        Picasso.with(context)
+//                .load(imagePath)
+//                .placeholder(R.drawable.nature_people)
+//                .into(holder.itemImage);
 
 
     }

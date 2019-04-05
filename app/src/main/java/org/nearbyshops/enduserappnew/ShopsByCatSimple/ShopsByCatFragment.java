@@ -48,7 +48,7 @@ import retrofit2.Response;
 public class ShopsByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterShopsByCat.NotificationsFromAdapter , NotifyBackPressed, NotifySort, NotifySearch {
 
 
-//    Map<Integer,ShopItem> shopItemMapTemp = new HashMap<>();
+//    Map<Integer,ShopItemParcelable> shopItemMapTemp = new HashMap<>();
 
     boolean isDestroyed = false;
     boolean show = true;

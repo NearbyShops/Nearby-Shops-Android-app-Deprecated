@@ -129,10 +129,10 @@ public class PrefGeneral {
 //    }
 
 
-    public static String getImageEndpointURL(Context context)
-    {
-        return PrefGeneral.getServiceURL(context) + "/api/Images";
-    }
+//    public static String getImageEndpointURL(Context context)
+//    {
+//        return PrefGeneral.getServiceURL(context) + "/api/Images";
+//    }
 
 
 //    public static String getConfigImageEndpointURL(Context context)

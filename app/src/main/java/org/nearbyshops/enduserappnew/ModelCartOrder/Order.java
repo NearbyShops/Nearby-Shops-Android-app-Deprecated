@@ -14,6 +14,8 @@ import java.sql.Timestamp;
 public class Order {
 
 
+
+
     // Table Name for Distributor
     public static final String TABLE_NAME = "CUSTOMER_ORDER";
 
@@ -32,7 +34,7 @@ public class Order {
     public static final String ITEM_TOTAL = "ITEM_TOTAL";
     public static final String APP_SERVICE_CHARGE = "APP_SERVICE_CHARGE";
     public static final String DELIVERY_CHARGES = "DELIVERY_CHARGES";
-//    public static final String TAX_AMOUNT = "TAX_AMOUNT";
+    //    public static final String TAX_AMOUNT = "TAX_AMOUNT";
     public static final String NET_PAYABLE = "NET_PAYABLE";
 
     public static final String IS_CANCELLED_BY_END_USER = "CANCELLED_BY";   // true implies the order is cancelled by end-user and false implies the order is cancelled by shop
@@ -51,57 +53,6 @@ public class Order {
     public static final String STATUS_PICK_FROM_SHOP = "STATUS_PICK_FROM_SHOP";
 
 
-
-    // deprecated columns
-//    public static final String DELIVERY_RECEIVED = "DELIVERY_RECEIVED";
-//    public static final String PAYMENT_RECEIVED = "PAYMENT_RECEIVED";
-
-
-    // Create Table OrderPFS In postgres
-    public static final String createTableOrderPostgres = "CREATE TABLE IF NOT EXISTS " + Order.TABLE_NAME + "("
-
-            + " " + Order.ORDER_ID + " SERIAL PRIMARY KEY,"
-
-            + " " + Order.END_USER_ID + " int not null,"
-            + " " + Order.SHOP_ID + " int not null,"
-            + " " + Order.DELIVERY_ADDRESS_ID + " int not null,"
-            + " " + Order.DELIVERY_GUY_SELF_ID + " int,"
-
-            + " " + Order.DELIVERY_OTP + " int not null default 0,"
-
-            + " " + Order.ITEM_COUNT + " int not null default 0,"
-
-            + " " + Order.ITEM_TOTAL + " float not null default 0,"
-            + " " + Order.APP_SERVICE_CHARGE + " float not null default 0,"
-            + " " + Order.DELIVERY_CHARGES + " float not null default 0,"
-//            + " " + Order.TAX_AMOUNT + " float not null default 0,"
-            + " " + Order.NET_PAYABLE + " float not null default 0,"
-
-            + " " + Order.IS_CANCELLED_BY_END_USER + " boolean not null default 't',"
-            + " " + Order.REASON_FOR_CANCELLED_BY_SHOP + " text,"
-            + " " + Order.REASON_FOR_CANCELLED_BY_USER + " text,"
-            + " " + Order.REASON_FOR_ORDER_RETURNED + " text,"
-
-            + " " + Order.DATE_TIME_PLACED + " timestamp with time zone NOT NULL DEFAULT now(),"
-            + " " + Order.TIMESTAMP_HD_CONFIRMED + " timestamp with time zone,"
-            + " " + Order.TIMESTAMP_HD_PACKED + " timestamp with time zone,"
-            + " " + Order.TIMESTAMP_HD_OUT_FOR_DELIVERY + " timestamp with time zone,"
-            + " " + Order.TIMESTAMP_HD_DELIVERED + " timestamp with time zone,"
-
-            + " " + Order.PICK_FROM_SHOP + " boolean NOT NULL default 'f',"
-            + " " + Order.STATUS_HOME_DELIVERY + " int not null default 0,"
-            + " " + Order.STATUS_PICK_FROM_SHOP + " int not null default 0,"
-
-            + " FOREIGN KEY(" + Order.END_USER_ID +") REFERENCES " + User.TABLE_NAME + "(" + User.USER_ID + "),"
-            + " FOREIGN KEY(" + Order.SHOP_ID +") REFERENCES " + Shop.TABLE_NAME + "(" + Shop.SHOP_ID + "),"
-            + " FOREIGN KEY(" + Order.DELIVERY_ADDRESS_ID +") REFERENCES " + DeliveryAddress.TABLE_NAME + "(" + DeliveryAddress.ID + "),"
-            + " FOREIGN KEY(" + Order.DELIVERY_GUY_SELF_ID +") REFERENCES " + User.TABLE_NAME + "(" + User.USER_ID + ")"
-            + ")";
-
-
-
-//    + " " + Order.DELIVERY_RECEIVED + " boolean,"
-//            + " " + Order.PAYMENT_RECEIVED + " boolean,"
 
 
 

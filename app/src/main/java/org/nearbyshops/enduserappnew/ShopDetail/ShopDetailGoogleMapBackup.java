@@ -638,7 +638,7 @@
 //        if(shop !=null && PrefLogin.getUser(this)!=null)
 //        {
 //
-//            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteBooks(shop.getShopID(), PrefLogin.getUser(this).getUserID()
+//            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteShops(shop.getShopID(), PrefLogin.getUser(this).getUserID()
 //                    ,null,null,null,null);
 //
 //
@@ -683,7 +683,7 @@
 //            favouriteBook.setShopID(shop.getShopID());
 //            favouriteBook.setEndUserID(PrefLogin.getUser(this).getUserID());
 //
-//            Call<FavouriteShop> call = favouriteShopService.insertFavouriteBook(favouriteBook);
+//            Call<FavouriteShop> call = favouriteShopService.insertFavouriteShop(favouriteBook);
 //
 //            call.enqueue(new Callback<FavouriteShop>() {
 //                @Override
@@ -714,7 +714,7 @@
 //
 //        if(shop !=null && PrefLogin.getUser(this)!=null)
 //        {
-//            Call<ResponseBody> call = favouriteShopService.deleteFavouriteBook(shop.getShopID(),
+//            Call<ResponseBody> call = favouriteShopService.deleteFavouriteShop(shop.getShopID(),
 //                    PrefLogin.getUser(this).getUserID());
 //
 //
@@ -771,7 +771,7 @@
 //        if(shop !=null && PrefLogin.getUser(this)!=null)
 //        {
 //
-//            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteBooks(shop.getShopID(), PrefLogin.getUser(this).getUserID()
+//            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteShops(shop.getShopID(), PrefLogin.getUser(this).getUserID()
 //                    ,null,null,null,null);
 //
 //

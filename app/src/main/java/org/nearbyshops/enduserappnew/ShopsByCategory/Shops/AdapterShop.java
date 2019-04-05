@@ -16,7 +16,8 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
+import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail_;
+import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetail;
 import org.nearbyshops.enduserappnew.ShopHome.ShopHome;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
@@ -193,7 +194,8 @@ public class AdapterShop extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 case R.id.shopImage:
 
                     Intent intent = new Intent(context, ShopDetail.class);
-                    intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
+//                    intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
+
                     context.startActivity(intent);
 
                     break;
