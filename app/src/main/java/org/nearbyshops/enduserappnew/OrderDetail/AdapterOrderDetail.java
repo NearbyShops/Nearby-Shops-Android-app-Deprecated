@@ -166,6 +166,11 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         @BindView(R.id.shop_info_card) ConstraintLayout list_item;
 
 
+        @BindView(R.id.indicator_pick_from_shop) TextView pickFromShopIndicator;
+        @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
+
+
+
 
         public ViewHolderOrder(View itemView) {
             super(itemView);
@@ -362,6 +367,27 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 if(shop.getShortDescription()!=null)
                 {
                     holder.description.setText(shop.getShortDescription());
+                }
+
+
+                if(shop.getPickFromShopAvailable())
+                {
+                    holder.pickFromShopIndicator.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    holder.pickFromShopIndicator.setVisibility(View.GONE);
+                }
+
+
+
+                if(shop.getHomeDeliveryAvailable())
+                {
+                    holder.homeDeliveryIndicator.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    holder.homeDeliveryIndicator.setVisibility(View.GONE);
                 }
 
             }

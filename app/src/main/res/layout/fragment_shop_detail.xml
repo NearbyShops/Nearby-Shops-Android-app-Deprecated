@@ -147,8 +147,8 @@
 
 
 
-
                     <TextView
+                        android:text="Daily Needs"
                         android:textSize="30sp"
                         android:id="@+id/shop_name"
                         app:layout_constraintStart_toStartOf="parent"
@@ -158,10 +158,52 @@
 
 
 
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="2"
+                        android:id="@+id/labels_delivery"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/indicator_pick_from_shop"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="2dp"
+                            android:paddingTop="2dp"
+                            android:layout_marginEnd="5dp"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:background="@color/orangeDark"
+                            android:text="Pick from shop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/indicator_home_delivery"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="2dp"
+                            android:paddingTop="2dp"
+                            android:layout_marginStart="0dp"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:background="@color/phonographyBlue"
+                            android:text="Home Delivery"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+
 
                     <LinearLayout
                         android:gravity="center_vertical"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         app:layout_constraintTop_toBottomOf="@+id/shop_name"
                         app:layout_constraintLeft_toLeftOf="parent"
                         android:id="@+id/rating_block"
@@ -209,9 +251,13 @@
 
 
 
+
+
+
+
                     <LinearLayout
                         android:gravity="center_vertical"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         android:id="@+id/phone_block"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/rating_block"
@@ -394,88 +440,91 @@
                         android:layout_height="1dp" />
 
 
-                    <TextView
-                        android:textSize="17sp"
-                        android:textColor="@color/buttonColorDark"
-                        android:layout_marginTop="15dp"
-                        android:text="Delivery Information"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-
                     <LinearLayout
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/delivery_helpline"
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/delivery_block"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
 
-                        <ImageView
-                            android:layout_marginStart="0dp"
-                            android:id="@+id/phone_icon_delivery"
-                            app:srcCompat="@drawable/ic_call_black_24px"
-                            android:layout_width="wrap_content"
-                            android:layout_height="17dp" />
 
                         <TextView
-                            android:layout_marginStart="5dp"
-                            android:textColor="#000000"
-                            android:layout_marginTop="0dp"
-                            android:textSize="20sp"
+                            android:textSize="17sp"
+                            android:textColor="@color/buttonColorDark"
+                            android:layout_marginTop="15dp"
+                            android:text="Delivery Information"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+                        <LinearLayout
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/delivery_helpline"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageView
+                                android:layout_marginStart="0dp"
+                                android:id="@+id/phone_icon_delivery"
+                                app:srcCompat="@drawable/ic_call_black_24px"
+                                android:layout_width="wrap_content"
+                                android:layout_height="17dp" />
+
+                            <TextView
+                                android:layout_marginStart="5dp"
+                                android:textColor="#000000"
+                                android:layout_marginTop="0dp"
+                                android:textSize="20sp"
+                                android:text=" - "
+                                android:id="@+id/phone_delivery"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+
+
+
+
+                            <TextView
+                                android:layout_marginBottom="0dp"
+                                android:gravity="center"
+                                android:layout_marginStart="10dp"
+                                android:text="Delivery Helpline"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent" />
+
+                        </LinearLayout>
+
+
+
+
+                        <TextView
+                            android:id="@+id/delivery_charge_text"
+                            android:layout_marginTop="10dp"
                             android:text=" - "
-                            android:id="@+id/phone_delivery"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
 
 
+                        <TextView
+                            android:id="@+id/free_delivery_info"
+                            android:layout_marginTop="5dp"
+                            android:text=" - "
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
 
                         <TextView
-                            android:layout_marginBottom="0dp"
-                            android:gravity="center"
-                            android:layout_marginStart="10dp"
-                            android:text="Delivery Helpline"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent" />
+                            android:layout_marginTop="15dp"
+                            android:background="#22000000"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp" />
+
 
                     </LinearLayout>
-
-
-
-
-                    <TextView
-                        android:id="@+id/delivery_charge_text"
-                        android:layout_marginTop="10dp"
-                        android:text=" - "
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-
-
-                    <TextView
-                        android:id="@+id/free_delivery_info"
-                        android:layout_marginTop="5dp"
-                        android:text=" - "
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-
-
-
-
-
-
-
-                    <TextView
-                        android:layout_marginTop="15dp"
-                        android:background="#22000000"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp" />
-
-
 
 
 

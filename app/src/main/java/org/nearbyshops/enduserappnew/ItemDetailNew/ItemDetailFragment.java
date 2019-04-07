@@ -33,7 +33,9 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ItemDetail.AdapterItemSpecifications;
 import org.nearbyshops.enduserappnew.ItemImages.ItemImageList;
 import org.nearbyshops.enduserappnew.Login.Login;
+import org.nearbyshops.enduserappnew.Model.Endpoints.ItemImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.Item;
+import org.nearbyshops.enduserappnew.Model.ItemImage;
 import org.nearbyshops.enduserappnew.ModelItemSpecs.ItemSpecificationName;
 import org.nearbyshops.enduserappnew.ModelReviewItem.FavouriteItem;
 import org.nearbyshops.enduserappnew.ModelReviewItem.FavouriteItemEndpoint;
@@ -133,10 +135,7 @@ public class ItemDetailFragment extends Fragment implements Target {
 
         bindViews();
         setupRecyclerViewSpecs();
-
-
-
-
+        getItemImageCount();
         checkFavourite();
 
 
@@ -531,9 +530,9 @@ public class ItemDetailFragment extends Fragment implements Target {
                 }
             });
         }
-
-
     }
+
+
 
     void deleteFavourite()
     {
@@ -592,8 +591,6 @@ public class ItemDetailFragment extends Fragment implements Target {
             fab.setImageResource(R.drawable.ic_favorite_border_white_24px);
         }
     }
-
-
 
 
 
@@ -657,6 +654,58 @@ public class ItemDetailFragment extends Fragment implements Target {
         }
     }
 
+
+
+    void getItemImageCount()
+    {
+
+        Call<ItemImageEndPoint> call = itemImageService.getItemImages(
+                item.getItemID(), ItemImage.IMAGE_ORDER,
+                null,null,
+                true
+        );
+
+
+        call.enqueue(new Callback<ItemImageEndPoint>() {
+            @Override
+            public void onResponse(Call<ItemImageEndPoint> call, Response<ItemImageEndPoint> response) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+                if(response.body()!=null)
+                {
+                    int count = response.body().getItemCount();
+
+
+                    if(count==0)
+                    {
+                        imagesCount.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        imagesCount.setText(String.valueOf(count) + " Photos");
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ItemImageEndPoint> call, Throwable t) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
+                showToastMessage("Loading Images Failed !");
+            }
+        });
+    }
 
 
 
