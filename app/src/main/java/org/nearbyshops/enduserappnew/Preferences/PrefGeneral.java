@@ -75,6 +75,55 @@ public class PrefGeneral {
 
 
 
+    public static String getServiceURL(Context context) {
+
+        context = MyApplication.getAppContext();
+
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+
+        //service_url = "http://localareademo-env.ap-southeast-1.elasticbeanstalk.com";
+
+        return sharedPref.getString(context.getString(R.string.preference_service_url_key), SERVICE_URL_NEARBYSHOPS);
+    }
+
+
+
+
+    public static void saveServiceURL(String service_url, Context context)
+    {
+
+//        Context context = MyApplication.getAppContext();
+        // get a handle to shared Preference
+        SharedPreferences sharedPref;
+
+        sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preference_file_name),
+                MODE_PRIVATE);
+
+        // write to the shared preference
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putString(
+                context.getString(R.string.preference_service_url_key),
+                service_url);
+
+        editor.apply();
+
+
+        // log out the user
+        PrefLogin.saveUserProfile(null,context);
+        PrefLogin.saveCredentials(context,null,null);
+    }
+
+
+
+
+
+
+
+
+
+
 //    public static void saveInSharedPrefFloat(String key,float value)
 //    {
 //        Context context = MyApplication.getAppContext();
@@ -152,49 +201,6 @@ public class PrefGeneral {
 
 
 
-
-
-    public static void saveServiceURL(String service_url, Context context)
-    {
-
-//        Context context = MyApplication.getAppContext();
-        // get a handle to shared Preference
-        SharedPreferences sharedPref;
-
-        sharedPref = context.getSharedPreferences(
-                context.getString(R.string.preference_file_name),
-                MODE_PRIVATE);
-
-        // write to the shared preference
-        SharedPreferences.Editor editor = sharedPref.edit();
-
-        editor.putString(
-                context.getString(R.string.preference_service_url_key),
-                service_url);
-
-        editor.apply();
-
-
-        // log out the user
-        PrefLogin.saveUserProfile(null,context);
-        PrefLogin.saveCredentials(context,null,null);
-    }
-
-
-
-
-
-
-    public static String getServiceURL(Context context) {
-
-        context = MyApplication.getAppContext();
-
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
-        //service_url = "http://localareademo-env.ap-southeast-1.elasticbeanstalk.com";
-
-        return sharedPref.getString(context.getString(R.string.preference_service_url_key), SERVICE_URL_LOCAL_HOTSPOT);
-    }
 
 
 

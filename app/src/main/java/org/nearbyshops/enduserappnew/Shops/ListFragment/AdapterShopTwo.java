@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -126,6 +127,8 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         .into(holder.shopLogo);
 
 
+
+
                 String currency = "";
                 currency = PrefGeneral.getCurrencySymbol(context);
 
@@ -135,12 +138,17 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                 if(shop.getRt_rating_count()==0)
                 {
-                    holder.rating.setText("N/A");
+//                    holder.rating.setText("N/A");
+                    holder.rating.setText(" New ");
+                    holder.rating.setBackgroundColor(ContextCompat.getColor(context,R.color.phonographyBlue));
                     holder.rating_count.setText("( Not Yet Rated )");
+                    holder.rating_count.setVisibility(View.GONE);
 
                 }
                 else
                 {
+                    holder.rating_count.setVisibility(View.VISIBLE);
+                    holder.rating.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_2));
                     holder.rating.setText(String.format("%.2f",shop.getRt_rating_avg()));
                     holder.rating_count.setText("( " + String.format( "%.0f", shop.getRt_rating_count()) + " Ratings )");
                 }

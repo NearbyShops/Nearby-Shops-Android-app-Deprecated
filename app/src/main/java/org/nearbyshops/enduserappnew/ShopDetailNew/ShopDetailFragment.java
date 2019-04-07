@@ -13,8 +13,11 @@ import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -131,6 +134,15 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
     @BindView(R.id.ratingBar_rate) RatingBar ratingBar_rate;
 
 
+    @BindView(R.id.toolbar) Toolbar toolbar;
+
+    @BindView(R.id.delivery_block) LinearLayout deliveryBlock;
+
+
+    @BindView(R.id.indicator_pick_from_shop) TextView pickFromShopIndicator;
+    @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
+
+
     Shop shop;
 
 
@@ -205,6 +217,20 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
         String shopJson = getActivity().getIntent().getStringExtra(TAG_JSON_STRING);
         shop = UtilityFunctions.provideGson().fromJson(shopJson,Shop.class);
+
+
+
+        toolbar.setTitle(shop.getShopName());
+
+
+//        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+//
+//        if(actionBar!=null)
+//        {
+//            actionBar.setTitle(shop.getShopName());
+//        }
+
+
 
 
         bindViews();
@@ -282,7 +308,14 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
         shopPhone.setText(shop.getCustomerHelplineNumber());
         shopDescription.setText(shop.getLongDescription());
 
-        shopAddress.setText(shop.getShopAddress());
+
+
+
+
+        String shop_address = shop.getShopAddress()  + ", " + shop.getCity() + " - " + shop.getPincode() + "\n" + shop.getLandmark();
+
+
+        shopAddress.setText(shop_address);
         phoneDelivery.setText(shop.getDeliveryHelplineNumber());
 
 
@@ -308,6 +341,38 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
                 .load(imagePath)
                 .placeholder(placeholder)
                 .into(this);
+
+
+
+
+
+
+        if(shop.getPickFromShopAvailable())
+        {
+            pickFromShopIndicator.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            pickFromShopIndicator.setVisibility(View.GONE);
+        }
+
+
+
+
+
+        if(shop.getHomeDeliveryAvailable())
+        {
+            homeDeliveryIndicator.setVisibility(View.VISIBLE);
+            deliveryBlock.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            homeDeliveryIndicator.setVisibility(View.GONE);
+            deliveryBlock.setVisibility(View.GONE);
+        }
+
+
+
 
     }
 

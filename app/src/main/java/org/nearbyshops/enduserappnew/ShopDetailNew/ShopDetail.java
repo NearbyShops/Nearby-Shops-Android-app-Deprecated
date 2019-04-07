@@ -12,12 +12,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
+import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.PagerAdapter;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragmentNew;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 
 import butterknife.ButterKnife;
+
+import static org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetailFragment.TAG_JSON_STRING;
 
 
 public class ShopDetail extends AppCompatActivity {
@@ -40,12 +44,18 @@ public class ShopDetail extends AppCompatActivity {
                     .commit();
         }
 
+
+
+//        String shopJson = getIntent().getStringExtra(TAG_JSON_STRING);
+//        Shop shop = UtilityFunctions.provideGson().fromJson(shopJson, Shop.class);
+
+
+//        getSupportActionBar().setTitle(shop.getShopName());
+
+
+
+
     }
-
-
-
-
-
 
 
 
