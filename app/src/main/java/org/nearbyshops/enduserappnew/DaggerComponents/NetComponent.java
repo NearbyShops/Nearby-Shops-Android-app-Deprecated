@@ -49,6 +49,7 @@ import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Complete.Comp
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Pending.PendingOrdersFragment;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragmentNew;
 
+import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail_;
 import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetailFragment;
@@ -243,4 +244,6 @@ public interface NetComponent {
 
 
     void Inject(ItemDetail_ itemDetail_);
+
+    void Inject(UpdateServiceConfiguration updateServiceConfiguration);
 }

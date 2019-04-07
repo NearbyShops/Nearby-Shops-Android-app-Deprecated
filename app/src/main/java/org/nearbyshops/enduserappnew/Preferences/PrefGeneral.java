@@ -39,7 +39,6 @@ public class PrefGeneral {
 
 
     private static final String TAG_PREF_CURRENCY = "currency_symbol";
-    private static final String TAG_PREF_CONFIG = "configuration";
     private static final String TAG_MULTI_MARKET_MODE = "multi_market_mode";
 
 
@@ -201,59 +200,6 @@ public class PrefGeneral {
 
 
 
-
-
-
-
-
-    public static void saveConfiguration(ServiceConfigurationLocal configuration, Context context)
-    {
-        //Creating a shared preference
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
-        SharedPreferences.Editor prefsEditor = sharedPref.edit();
-        Gson gson = UtilityFunctions.provideGson();
-        String json = gson.toJson(configuration);
-        prefsEditor.putString(TAG_PREF_CONFIG, json);
-        prefsEditor.apply();
-    }
-
-
-
-
-
-
-    public static ServiceConfigurationLocal getConfiguration(Context context)
-    {
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
-
-        String json = sharedPref.getString(TAG_PREF_CONFIG, null);
-        Gson gson = UtilityFunctions.provideGson();
-
-        return gson.fromJson(json, ServiceConfigurationLocal.class);
-
-    }
-
-
-
-
-
-
-    public static String getServiceName(Context context)
-    {
-        ServiceConfigurationLocal serviceConfigurationLocal = getConfiguration(context);
-
-
-        if(serviceConfigurationLocal==null)
-        {
-            return null;
-        }
-        else
-        {
-            return serviceConfigurationLocal.getServiceName() + " - " + serviceConfigurationLocal.getCity();
-        }
-    }
 
 
 

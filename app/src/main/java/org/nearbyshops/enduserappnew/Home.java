@@ -31,6 +31,8 @@ import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragmentNew;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.Shops.ListFragment.FragmentShopNew;
 import org.nearbyshops.enduserappnew.TabProfile.ProfileFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
@@ -85,10 +87,6 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 //        bottomBar.setDefaultTab(R.id.tab_search);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
-
-
-        Currency currency = Currency.getInstance(new Locale("","AD"));
-        PrefGeneral.saveCurrencySymbol(currency.getSymbol(),this);
 
 
 
@@ -161,6 +159,19 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
         if (PrefOneSignal.getToken(this) != null) {
             startService(new Intent(getApplicationContext(), UpdateOneSignalID.class));
         }
+
+
+
+
+        if(PrefServiceConfig.getServiceConfigLocal(this)==null)
+        {
+            // get service configuration when its null ... fetches config at first install or changing service
+            startService(new Intent(getApplicationContext(), UpdateServiceConfiguration.class));
+        }
+
+
+
+
     }
 
 

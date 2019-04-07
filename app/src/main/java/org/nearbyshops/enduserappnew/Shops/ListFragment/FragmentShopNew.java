@@ -23,6 +23,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduserappnew.Shops.Interfaces.GetDataset;
@@ -171,10 +172,10 @@ public class FragmentShopNew extends Fragment implements
 
 
 
-            if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefGeneral.getServiceName(getActivity())!=null)
+            if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
             {
                 serviceName.setVisibility(View.VISIBLE);
-                serviceName.setText(PrefGeneral.getServiceName(getActivity()));
+                serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
             }
             else
             {
