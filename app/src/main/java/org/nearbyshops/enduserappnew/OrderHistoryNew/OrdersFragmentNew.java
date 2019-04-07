@@ -133,8 +133,8 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-        toolbar.setTitle(getString(R.string.app_name));
+//        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+//        toolbar.setTitle(getString(R.string.app_name));
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 //
 
