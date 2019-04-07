@@ -86,7 +86,7 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+//        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 //        toolbar.setTitle("Nearby Shops");
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 //

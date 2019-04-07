@@ -61,8 +61,6 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
 
 
-
-
     @BindView(R.id.user_profile) LinearLayout profileBlock;
     @BindView(R.id.profile_image) ImageView profileImage;
 
@@ -95,8 +93,9 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         ButterKnife.bind(this,rootView);
 
+
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+//        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(),R.color.white));
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
 
