@@ -43,6 +43,12 @@
             android:exported="false" />
 
 
+
+        <service
+            android:name=".Services.UpdateServiceConfiguration"
+            android:exported="false" />
+
+
         <!--<service-->
             <!--android:name=".AndroidServices.LocationUpdateServiceGoogle"-->
             <!--android:exported="false" />-->

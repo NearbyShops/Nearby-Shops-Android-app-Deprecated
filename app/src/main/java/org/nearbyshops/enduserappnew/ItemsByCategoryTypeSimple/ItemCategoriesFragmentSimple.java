@@ -52,6 +52,7 @@ import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemEndPoint;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
@@ -169,10 +170,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
 
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefGeneral.getServiceName(getActivity())!=null)
+        if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
         {
             serviceName.setVisibility(View.VISIBLE);
-            serviceName.setText(PrefGeneral.getServiceName(getActivity()));
+            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
         }
         else
         {
