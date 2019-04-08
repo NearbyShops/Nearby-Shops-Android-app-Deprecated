@@ -210,29 +210,29 @@ public class PrefGeneral {
 
 
 
-//    public static void saveServiceLightStatus(Context context, int status)
-//    {
-//
-//        // get a handle to shared Preference
-//        SharedPreferences sharedPref;
-//
-//        sharedPref = context.getSharedPreferences(
-//                context.getString(R.string.preference_file_name),
-//                MODE_PRIVATE);
-//
-//        // write to the shared preference
-//        SharedPreferences.Editor editor = sharedPref.edit();
-//        editor.putInt("service_light_status",status);
-//        editor.apply();
-//    }
-//
-//
-//
-//    public static int getServiceLightStatus(Context context)
-//    {
-//        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-//        return sharedPref.getInt("service_light_status", 3);
-//    }
+    public static void saveServiceLightStatus(Context context, int status)
+    {
+
+        // get a handle to shared Preference
+        SharedPreferences sharedPref;
+
+        sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preference_file_name),
+                MODE_PRIVATE);
+
+        // write to the shared preference
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("service_light_status",status);
+        editor.apply();
+    }
+
+
+
+    public static int getServiceLightStatus(Context context)
+    {
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        return sharedPref.getInt("service_light_status", 3);
+    }
 
 
 

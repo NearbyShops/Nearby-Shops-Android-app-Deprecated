@@ -614,6 +614,16 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
 
+        <activity
+            android:name=".SelectService.SelectService"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+        <activity
+            android:name=".Services.ServicesActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
 
     </application>
 
