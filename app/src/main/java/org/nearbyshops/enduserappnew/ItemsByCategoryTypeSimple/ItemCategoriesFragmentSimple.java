@@ -58,6 +58,7 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.Services.ServicesActivity;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.UtilitySortItemsByCategory;
 
@@ -85,7 +86,10 @@ import static org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCatego
 
 
 
-public class ItemCategoriesFragmentSimple extends Fragment implements Home.PermissionGranted, SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort,NotifySearch {
+public class ItemCategoriesFragmentSimple extends Fragment implements
+        Home.PermissionGranted,
+        SwipeRefreshLayout.OnRefreshListener,
+        AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort,NotifySearch {
 
     boolean isDestroyed = false;
 
@@ -220,6 +224,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements Home.Permi
     void toolbarClicked()
     {
 //        showToastMessage("Toolbar Clicked !");
+
+        startActivity(new Intent(getActivity(),ServicesActivity.class));
     }
 
 

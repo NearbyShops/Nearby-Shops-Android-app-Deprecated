@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -30,10 +31,17 @@ public class PrefServiceConfig {
 
 
 
-    public static final String DEFAULT_SDS_URL = "http://sds.taxireferralservice.com:5600";
+
+
+    public static final String DEFAULT_SDS_URL = "http://sds.taxireferralservice.com";
+    public static final String DEFAULT_SDS_URL_LOCAL_HOTSPOT = "http://192.168.43.73:5125";
+
+
     public static final String DEFAULT_SDS_URL_BACKUP = "http://192.168.1.36:5600";
 
     private static final String TAG_PREF_CONFIG = "configuration";
+
+    private static final String TAG_SDS_URL = "url_for_sds";
 
 
 
@@ -144,6 +152,49 @@ public class PrefServiceConfig {
             return serviceConfigurationLocal.getServiceName() + " - " + serviceConfigurationLocal.getCity();
         }
     }
+
+
+
+
+
+
+
+    public static String getServiceURL_SDS(Context context) {
+
+        context = MyApplication.getAppContext();
+
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+
+        //service_url = "http://localareademo-env.ap-southeast-1.elasticbeanstalk.com";
+
+        return sharedPref.getString(TAG_SDS_URL, DEFAULT_SDS_URL_LOCAL_HOTSPOT);
+    }
+
+
+
+
+
+
+
+    public static void saveServiceURL_SDS(String service_url, Context context)
+    {
+//        Context context = MyApplication.getAppContext();
+        // get a handle to shared Preference
+        SharedPreferences sharedPref;
+
+        sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preference_file_name),
+                MODE_PRIVATE);
+
+
+
+        // write to the shared preference
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(TAG_SDS_URL, service_url);
+
+        editor.apply();
+    }
+
 
 
 
