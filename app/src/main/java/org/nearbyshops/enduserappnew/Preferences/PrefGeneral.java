@@ -29,10 +29,12 @@ public class PrefGeneral {
     //    public static final String DEFAULT_SERVICE_URL = "http://taxireferral.org";
     public static final String DEFAULT_SERVICE_URL = "http://example.com";
 
-    public static final String SERVICE_URL_TEST_HYD = "http://192.168.1.33:5500";
-    public static final String SERVICE_URL_LOCAL_HOTSPOT = "http://192.168.43.73:5121";
-    public static final String SERVICE_URL_LOCAL = "http://192.168.0.5:5120";
+
+    public static final String SERVICE_URL_LOCAL_HOTSPOT = "http://192.168.43.74:5121";
     public static final String SERVICE_URL_NEARBYSHOPS = "http://api.nearbyshops.org";
+
+
+    public static final String SERVICE_URL_LOCAL = "http://192.168.0.5:5120";
 
 
 
@@ -56,7 +58,7 @@ public class PrefGeneral {
     public static boolean getMultiMarketMode(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        return sharedPref.getBoolean(TAG_MULTI_MARKET_MODE, false);
+        return sharedPref.getBoolean(TAG_MULTI_MARKET_MODE, true);
     }
 
 
@@ -82,8 +84,12 @@ public class PrefGeneral {
 
         //service_url = "http://localareademo-env.ap-southeast-1.elasticbeanstalk.com";
 
-        return sharedPref.getString(context.getString(R.string.preference_service_url_key), SERVICE_URL_NEARBYSHOPS);
+        return sharedPref.getString(context.getString(R.string.preference_service_url_key), null);
     }
+
+
+
+
 
 
 

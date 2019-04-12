@@ -49,67 +49,72 @@
             android:layout_height="wrap_content"/>
 
 
-        <LinearLayout
-            android:visibility="gone"
-            android:layout_marginTop="10dp"
-            android:id="@+id/select_service_block"
-            app:layout_constraintTop_toBottomOf="@+id/service_indicator"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
-
-
-            <TextView
-                android:gravity="center"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:id="@+id/select_service"
-                android:textSize="15sp"
-                android:padding="7dp"
-                android:textColor="@color/white"
-                android:text="Search Automatic"
-                android:background="@color/backgroundTinted"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
 
 
 
 
-            <TextView
-                android:gravity="center"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:id="@+id/clear"
-                android:textSize="15sp"
-                android:padding="7dp"
-                android:textColor="@color/white"
-                android:text="Clear"
-                android:background="@color/phonographyBlue"
-                app:layout_constraintTop_toBottomOf="@+id/service_indicator"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
 
 
-        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:visibility="gone"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:id="@+id/select_service_block"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/service_indicator"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content">-->
+
+
+            <!--<TextView-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:id="@+id/select_service"-->
+                <!--android:textSize="15sp"-->
+                <!--android:padding="7dp"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:text="Search Automatic"-->
+                <!--android:background="@color/backgroundTinted"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+
+
+            <!--<TextView-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginStart="5dp"-->
+                <!--android:id="@+id/clear"-->
+                <!--android:textSize="15sp"-->
+                <!--android:padding="7dp"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:text="Clear"-->
+                <!--android:background="@color/phonographyBlue"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/service_indicator"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+        <!--</LinearLayout>-->
 
 
 
 
         <TextView
-            android:visibility="gone"
             android:layout_marginTop="10dp"
             android:gravity="start"
             android:id="@+id/change_city"
             android:textSize="15sp"
             android:padding="10dp"
             android:textColor="@color/white"
-            android:text="Select / Change City"
+            android:text="Change Market"
             android:background="@color/phonographyBlue"
             app:layout_constraintTop_toBottomOf="@+id/service_indicator"
             app:layout_constraintRight_toRightOf="parent"
@@ -369,9 +374,10 @@
 
 
 
+
         <TextView
             android:id="@+id/forgot_password"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@+id/login_buttons"
             android:text="Forgot Password !"

@@ -1,9 +1,14 @@
 package org.nearbyshops.enduserappnew.Login;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.widget.Toast;
 
+import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 
 
@@ -16,6 +21,10 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
     public static final String TAG_STEP_FOUR = "tag_step_four";
 
     public static final String TAG_SELECT_SERVICE = "select_service";
+
+
+
+
 
 
 
@@ -34,15 +43,69 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
 //        toolbar.setTitle("LoginUsingOTP");
 //        setSupportActionBar(toolbar);
 
-        if(savedInstanceState==null)
+        ServiceConfigurationLocal configurationLocal = PrefServiceConfig.getServiceConfigLocal(this);
+
+
+
+        if(PrefGeneral.getMultiMarketMode(this))
         {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container,new LoginUsingOTPFragment(),TAG_STEP_ONE)
-                    .commitNow();
+
+
+        }
+        else
+        {
+            if(configurationLocal!=null)
+            {
+                if(configurationLocal.isRt_login_using_otp_enabled())
+                {
+
+                    if(savedInstanceState==null)
+                    {
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_container,new LoginUsingOTPFragment(),TAG_STEP_ONE)
+                                .commitNow();
+                    }
+
+                }
+                else
+                {
+                    if(savedInstanceState==null)
+                    {
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_container,new LoginFragment(),TAG_STEP_ONE)
+                                .commitNow();
+                    }
+                }
+
+            }
+            else
+            {
+
+                if(savedInstanceState==null)
+                {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container,new LoginFragment(),TAG_STEP_ONE)
+                            .commitNow();
+                }
+//                showToastMessage(" ... try again later !");
+//                finish();
+            }
         }
 
+
     }
+
+
+
+
+    void showToastMessage(String message)
+    {
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+
 
 
 

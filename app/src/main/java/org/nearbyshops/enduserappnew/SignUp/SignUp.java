@@ -119,7 +119,7 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                .replace(R.id.fragment_container,new FragmentVerifyEmailSignUp(),TAG_STEP_THREE)
+                .replace(R.id.fragment_container,new FragmentVerifyPhoneOREmailSignUp(),TAG_STEP_THREE)
                 .addToBackStack("step_three")
                 .commit();
     }

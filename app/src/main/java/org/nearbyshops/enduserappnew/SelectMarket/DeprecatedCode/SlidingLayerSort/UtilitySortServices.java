@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Services.SlidingLayerSort;
+package org.nearbyshops.enduserappnew.SelectMarket.DeprecatedCode.SlidingLayerSort;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -34,10 +34,13 @@ public class UtilitySortServices {
 
     public static String getSort(Context context)
     {
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String sort_by = sharedPref.getString("sort_services", SlidingLayerSortServices.SORT_BY_CREATED);
+        if(context==null)
+        {
+            return null;
+        }
 
-        return sort_by;
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        return sharedPref.getString("sort_services", SlidingLayerSortServices.SORT_BY_CREATED);
     }
 
 

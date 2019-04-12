@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Services.SubmitURLDialog;
+package org.nearbyshops.enduserappnew.SelectMarket;
 
 import android.app.Dialog;
 import android.content.ClipboardManager;
@@ -22,7 +22,6 @@ import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.ServiceConfigService;
@@ -52,6 +51,8 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
 
     ProgressBar progressBar;
 
+    TextView createMarketMessage;
+
 //    @Inject
 //    ServiceConfigService serviceConfigService;
 
@@ -78,7 +79,7 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
 
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View view = inflater.inflate(R.layout.dialog_submit_url, container);
+        View view = inflater.inflate(R.layout.dialog_submit_url_new, container);
 
         dismiss_dialog_button = (ImageView) view.findViewById(R.id.dialog_dismiss_icon);
         cancel_button = (TextView) view.findViewById(R.id.cancel_button);
@@ -87,6 +88,14 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
 //        password = (EditText) view.findViewById(R.id.password);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
+        createMarketMessage = view.findViewById(R.id.create_market_message);
+
+
+
+
+
+
+        createMarketMessage.setOnClickListener(this);
         cancel_button.setOnClickListener(this);
         submit_button.setOnClickListener(this);
         dismiss_dialog_button.setOnClickListener(this);
@@ -129,6 +138,14 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
 
                 break;
 
+
+            case R.id.create_market_message:
+
+
+                createMarketMessage();
+
+                break;
+
             default:
                 break;
         }
@@ -138,6 +155,11 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
 
 
 
+
+    void createMarketMessage()
+    {
+        showToastMessage("Create market click !");
+    }
 
 
 
@@ -155,6 +177,7 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
         Call<ResponseBody> call = retrofit.create(ServiceConfigService.class).saveService(service_url.getText().toString());
 
         progressBar.setVisibility(View.VISIBLE);
+        submit_button.setVisibility(View.INVISIBLE);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -174,12 +197,14 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
                 }
 
                 progressBar.setVisibility(View.INVISIBLE);
+                submit_button.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
                 progressBar.setVisibility(View.INVISIBLE);
+                submit_button.setVisibility(View.VISIBLE);
                 showToastMessage("Failed !");
             }
         });

@@ -117,11 +117,20 @@ public class NetModule {
 
 //        Log.d("applog","Retrofit: " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
 
-        return new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
-                .client(okHttpClient)
-                .build();
+
+        if(PrefGeneral.getServiceURL(MyApplication.getAppContext())!=null)
+        {
+            return new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
+                    .client(okHttpClient)
+                    .build();
+
+        }
+        else
+        {
+            return null;
+        }
     }
 
 

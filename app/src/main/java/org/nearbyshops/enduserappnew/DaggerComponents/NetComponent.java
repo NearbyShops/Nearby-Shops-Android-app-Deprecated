@@ -49,8 +49,10 @@ import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Complete.Comp
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Pending.PendingOrdersFragment;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragmentNew;
 
-import org.nearbyshops.enduserappnew.Services.ServiceFragment.ServicesFragment;
-import org.nearbyshops.enduserappnew.Services.SubmitURLDialog.SubmitURLDialog;
+
+import org.nearbyshops.enduserappnew.SelectMarket.AdapterNew;
+import org.nearbyshops.enduserappnew.SelectMarket.ServicesFragment;
+import org.nearbyshops.enduserappnew.SelectMarket.SubmitURLDialog;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail_;
@@ -78,7 +80,7 @@ import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentEnterCredenti
 import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentResetPassword;
 import org.nearbyshops.enduserappnew.SignUp.FragmentEmailOrPhone;
 import org.nearbyshops.enduserappnew.SignUp.FragmentEnterPassword;
-import org.nearbyshops.enduserappnew.SignUp.FragmentVerifyEmailSignUp;
+import org.nearbyshops.enduserappnew.SignUp.FragmentVerifyPhoneOREmailSignUp;
 import org.nearbyshops.enduserappnew.TabProfile.ProfileFragment;
 
 
@@ -199,7 +201,7 @@ public interface NetComponent {
 
     void Inject(FragmentResetPassword fragmentResetPassword);
 
-    void Inject(FragmentVerifyEmailSignUp fragmentVerifyEmailSignUp);
+    void Inject(FragmentVerifyPhoneOREmailSignUp fragmentVerifyPhoneOREmailSignUp);
 
     void Inject(Home homeNew);
 
@@ -252,4 +254,6 @@ public interface NetComponent {
     void Inject(ServicesFragment servicesFragment);
 
     void Inject(SubmitURLDialog submitURLDialog);
+
+    void Inject(AdapterNew adapterNew);
 }

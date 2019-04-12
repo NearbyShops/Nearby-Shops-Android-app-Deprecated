@@ -36,6 +36,7 @@
                 android:layout_height="match_parent" />
 
             <TextView
+                android:textColor="@color/white"
                 android:id="@+id/text_sort"
                 android:padding="5dp"
                 android:text="Filter / Sort"
@@ -49,6 +50,15 @@
 
 
         </LinearLayout>
+
+
+        <!--<android.support.design.widget.TabLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!---->
+
+        <!--</android.support.design.widget.TabLayout>-->
 
     </android.support.design.widget.AppBarLayout>
 

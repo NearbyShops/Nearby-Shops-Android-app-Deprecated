@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Login;
+package org.nearbyshops.enduserappnew.LoginUsingOTP;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,18 +15,19 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Login.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.Login.ServiceIndicatorFragment;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
 import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.ForgotPassword;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceForgotPassword;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
 import org.nearbyshops.enduserappnew.SignUp.SignUp;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 import javax.inject.Inject;
 
@@ -45,27 +46,30 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by sumeet on 19/4/17.
  */
 
-public class LoginFragment extends Fragment {
+public class InsertPhoneFragment extends Fragment {
 
     public static final String TAG_SERVICE_INDICATOR = "service_indicator";
 
     boolean isDestroyed = false;
 
-    @Inject
-    Gson gson;
-//    @BindView(R.id.ccp) CountryCodePicker ccp;
-    @BindView(R.id.username)
-TextInputEditText username;
-    @BindView(R.id.password)
-    TextInputEditText password;
-    @BindView(R.id.progress_bar_login)
-    ProgressBar progressBar;
 
-//    @BindView(R.id.clear)TextView clear;
+
+
+    @Inject Gson gson;
+//    @BindView(R.id.ccp) CountryCodePicker ccp;
+    @BindView(R.id.username) TextInputEditText username;
+    @BindView(R.id.password) TextInputEditText password;
+    @BindView(R.id.progress_bar_login) ProgressBar progressBar;
+
+//    @BindView(R.id.clear) TextView clear;
 //    @BindView(R.id.select_service) TextView selectAutomatic;
 
 
-    public LoginFragment() {
+    @BindView(R.id.login) Button loginButton;
+
+
+
+    public InsertPhoneFragment() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -81,7 +85,7 @@ TextInputEditText username;
         super.onCreateView(inflater, container, savedInstanceState);
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_login, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_login_using_otp_insert_phone, container, false);
         ButterKnife.bind(this,rootView);
 
 
@@ -156,46 +160,6 @@ TextInputEditText username;
 
 
 
-    @OnClick(R.id.sign_up)
-    void signUp()
-    {
-
-        PrefrenceSignUp.saveUser(null,getActivity());
-        Intent intent = new Intent(getActivity(), SignUp.class);
-        startActivity(intent);
-    }
-
-
-
-
-
-    @OnClick(R.id.forgot_password)
-    void forgotPasswordClick()
-    {
-
-        PrefrenceForgotPassword.saveUser(null,getActivity());
-        Intent intent = new Intent(getActivity(), ForgotPassword.class);
-        startActivity(intent);
-    }
-
-
-
-
-
-    @OnTextChanged(R.id.username)
-    void usernameChanged()
-    {
-//        UtilityLogin.saveUsername(getActivity(),username.getText().toString());
-    }
-
-
-
-    @OnTextChanged(R.id.password)
-    void passwordChanged()
-    {
-//        UtilityLogin.savePassword(getActivity(),password.getText().toString());
-    }
-
 
 
     boolean validateData()
@@ -242,6 +206,9 @@ TextInputEditText username;
 
 
 
+
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -261,10 +228,6 @@ TextInputEditText username;
 
 
 
-    @BindView(R.id.login)
-    Button loginButton;
-
-
 
 
 
@@ -277,8 +240,6 @@ TextInputEditText username;
             // validation failed return
             return;
         }
-
-
 
 
 
@@ -398,8 +359,8 @@ TextInputEditText username;
                 }
                 else
                 {
-                    showToastMessage("Login Failed : Username or password is incorrect !");
-                    System.out.println("Login Failed : Code " + String.valueOf(response.code()));
+                    showToastMessage("LoginUsingOTP Failed : Username or password is incorrect !");
+                    System.out.println("LoginUsingOTP Failed : Code " + String.valueOf(response.code()));
                 }
 
             }

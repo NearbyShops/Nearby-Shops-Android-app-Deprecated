@@ -18,6 +18,7 @@ import org.nearbyshops.enduserappnew.EventBus.NotificationEvent;
 import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.Preferences.PrefBadgeCount;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 
 /**
  * Created by sumeet on 12/5/16.
@@ -183,7 +184,13 @@ public class MyApplication extends MultiDexApplication{
                 PrefOneSignal.saveLastToken(getApplicationContext(),userId);
                 PrefOneSignal.saveToken(getApplicationContext(),userId);
 
-                getApplicationContext().startService(new Intent(getApplicationContext(), UpdateOneSignalID.class));
+
+
+                if (PrefGeneral.getServiceURL(getApplicationContext())!=null) {
+                    startService(new Intent(getApplicationContext(), UpdateOneSignalID.class));
+                }
+
+//                getApplicationContext().startService(new Intent(getApplicationContext(), UpdateOneSignalID.class));
             }
 
         });

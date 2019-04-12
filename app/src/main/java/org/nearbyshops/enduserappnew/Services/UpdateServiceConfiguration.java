@@ -3,8 +3,6 @@ package org.nearbyshops.enduserappnew.Services;
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.view.View;
 
 import com.google.gson.Gson;
 
@@ -13,7 +11,6 @@ import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLoca
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ServiceConfigurationService;
 
 import java.util.Currency;
@@ -21,7 +18,6 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import butterknife.OnClick;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
