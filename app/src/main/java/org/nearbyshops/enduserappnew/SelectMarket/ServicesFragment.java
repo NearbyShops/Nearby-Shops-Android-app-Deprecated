@@ -1,12 +1,13 @@
-package org.nearbyshops.enduserappnew.Services.ServiceFragment;
+package org.nearbyshops.enduserappnew.SelectMarket;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,24 +18,31 @@ import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
-import org.nearbyshops.enduserappnew.Interfaces.ToggleFab;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.RetrofitRESTContract.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.ServiceConfigService;
-import org.nearbyshops.enduserappnew.Services.SlidingLayerSort.UtilitySortServices;
+import org.nearbyshops.enduserappnew.SelectMarket.DeprecatedCode.SlidingLayerSort.UtilitySortServices;
+import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
 
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,8 +50,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
-public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmOrder,
+
+public class ServicesFragment extends Fragment implements AdapterNew.NoticationsFromServiceAdapter,
         SwipeRefreshLayout.OnRefreshListener , NotifySort, NotifySearch {
 
 
@@ -55,7 +65,7 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
 //    @Inject ServiceConfigService serviceConfigService;
 
     RecyclerView recyclerView;
-    Adapter adapter;
+    AdapterNew adapter;
 
     public List<ServiceConfigurationGlobal> dataset = new ArrayList<>();
 
@@ -114,6 +124,12 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
         setupSwipeContainer();
 
 
+
+
+        ButterKnife.bind(this,rootView);
+
+
+
         return rootView;
     }
 
@@ -138,9 +154,17 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
     void setupRecyclerView()
     {
 
-        adapter = new Adapter(dataset,this,this);
+        adapter = new AdapterNew(dataset,this,this);
 
         recyclerView.setAdapter(adapter);
+
+
+
+        recyclerView.addItemDecoration(
+                new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL_LIST)
+        );
+
+
 
         layoutManager = new GridLayoutManager(getActivity(),1);
         recyclerView.setLayoutManager(layoutManager);
@@ -149,6 +173,8 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
 //        layoutManager.setSpanCount(metrics.widthPixels/400);
+
+
 
 
 
@@ -163,47 +189,47 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                if(dy > 20)
-                {
-
-                    boolean previous = show;
-
-                    show = false ;
-
-                    if(show!=previous)
-                    {
-                        // changed
-                        Log.d("scrolllog","show");
-
-                        if(getActivity() instanceof ToggleFab)
-                        {
-                            ((ToggleFab)getActivity()).hideFab();
-                        }
-                    }
-
-                }else if(dy < -20)
-                {
-
-                    boolean previous = show;
-
-                    show = true;
-
-                    if(show!=previous)
-                    {
-                        Log.d("scrolllog","hide");
-
-                        if(getActivity() instanceof ToggleFab)
-                        {
-                            ((ToggleFab)getActivity()).showFab();
-                        }
-                    }
-                }
-
-            }
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//
+//                if(dy > 20)
+//                {
+//
+//                    boolean previous = show;
+//
+//                    show = false ;
+//
+//                    if(show!=previous)
+//                    {
+//                        // changed
+//                        Log.d("scrolllog","show");
+//
+//                        if(getActivity() instanceof ToggleFab)
+//                        {
+//                            ((ToggleFab)getActivity()).hideFab();
+//                        }
+//                    }
+//
+//                }else if(dy < -20)
+//                {
+//
+//                    boolean previous = show;
+//
+//                    show = true;
+//
+//                    if(show!=previous)
+//                    {
+//                        Log.d("scrolllog","hide");
+//
+//                        if(getActivity() instanceof ToggleFab)
+//                        {
+//                            ((ToggleFab)getActivity()).showFab();
+//                        }
+//                    }
+//                }
+//
+//            }
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -303,9 +329,6 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
 
 
 
-
-
-
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
@@ -314,15 +337,23 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
 
 
 
+
+
         Call<ServiceConfigurationEndPoint> call = retrofit.create(ServiceConfigService.class).getShopListSimple(
-                    PrefLocation.getLatitude(getActivity()),
-                    PrefLocation.getLongitude(getActivity()),
+                PrefLocation.getLatitude(getActivity()),
+                PrefLocation.getLongitude(getActivity()),
                     null,null,
                     searchQuery,
-                    filterOfficial,filterVerified,
-                    serviceType,
+                    null,null,
+                null,
                     current_sort,limit,offset);
 
+
+//        PrefLocation.getLatitude(getActivity()),
+//                PrefLocation.getLongitude(getActivity()),
+
+//        filterOfficial,filterVerified,
+//                serviceType,
 
             call.enqueue(new Callback<ServiceConfigurationEndPoint>() {
                 @Override
@@ -416,6 +447,8 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
 
 
 
+
+
     // Refresh the Confirmed PlaceholderFragment
 
     private static String makeFragmentName(int viewId, int index) {
@@ -423,13 +456,6 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
     }
 
 
-
-
-    @Override
-    public void notifyServiceClick(ServiceConfigurationGlobal order) {
-//        UtilityServiceDetail.saveService(order,getActivity());
-//        getActivity().startActivity(new Intent(getActivity(), ServiceDetail.class));
-    }
 
 
     @Override
@@ -453,6 +479,42 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
         searchQuery = null;
         makeRefreshNetworkCall();
     }
+
+    @Override
+    public void notifyListItemClick(ServiceConfigurationGlobal serviceConfigurationGlobal) {
+
+        showToastMessage("List item click !");
+    }
+
+    @Override
+    public void selectMarketClick(ServiceConfigurationGlobal serviceConfigurationGlobal) {
+
+
+
+
+//        getActivity().startService(new Intent(getApplicationContext(), UpdateServiceConfiguration.class));
+
+
+        if(getActivity() instanceof MarketSelected)
+        {
+            ((MarketSelected) getActivity()).marketSelected();
+//            showToastMessage("Market Selected !");
+        }
+
+
+
+//        if(PrefServiceConfig.getServiceConfigLocal(this)==null && PrefGeneral.getServiceURL(this)!=null)
+//        {
+//            // get service configuration when its null ... fetches config at first install or changing service
+//            startService(new Intent(getApplicationContext(), UpdateServiceConfiguration.class));
+//        }
+    }
+
+
+
+
+
+
 
 
 
@@ -522,6 +584,36 @@ public class ServicesFragment extends Fragment implements Adapter.NotifyConfirmO
 //
 //    }
 
+
+
+    public interface MarketSelected
+    {
+        void marketSelected();
+    }
+
+
+
+
+
+
+    @OnClick(R.id.fab)
+    void fabClick()
+    {
+
+//        showToastMessage("Fab clicked !");
+        showDialogSubmitURL();
+    }
+
+
+
+
+
+    private void showDialogSubmitURL()
+    {
+        FragmentManager fm = getChildFragmentManager();
+        SubmitURLDialog submitURLDialog = new SubmitURLDialog();
+        submitURLDialog.show(fm,"serviceUrl");
+    }
 
 
 }

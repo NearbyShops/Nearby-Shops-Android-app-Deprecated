@@ -33,8 +33,10 @@ public class PrefServiceConfig {
 
 
 
-    public static final String DEFAULT_SDS_URL = "http://sds.taxireferralservice.com";
-    public static final String DEFAULT_SDS_URL_LOCAL_HOTSPOT = "http://192.168.43.73:5125";
+    public static final String DEFAULT_SDS_URL = "http://sds.nearbyshops.org";
+    public static final String DEFAULT_SDS_URL_LOCAL_HOTSPOT = "http://192.168.43.74:5125";
+
+
 
 
     public static final String DEFAULT_SDS_URL_BACKUP = "http://192.168.1.36:5600";
@@ -152,8 +154,6 @@ public class PrefServiceConfig {
             return serviceConfigurationLocal.getServiceName() + " - " + serviceConfigurationLocal.getCity();
         }
     }
-
-
 
 
 

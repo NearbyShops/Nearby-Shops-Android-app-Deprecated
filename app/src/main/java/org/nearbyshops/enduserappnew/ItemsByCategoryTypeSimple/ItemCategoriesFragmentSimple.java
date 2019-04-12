@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -53,12 +51,11 @@ import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemEndPoint;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
-import org.nearbyshops.enduserappnew.Services.ServicesActivity;
+import org.nearbyshops.enduserappnew.SelectMarket.ServicesFragment;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.UtilitySortItemsByCategory;
 
@@ -73,6 +70,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static org.nearbyshops.enduserappnew.Home.TAG_MARKET_FRAGMENT;
 import static org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesSimple.TAG_SLIDING;
 
 /**
@@ -225,7 +223,25 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
     {
 //        showToastMessage("Toolbar Clicked !");
 
-        startActivity(new Intent(getActivity(),ServicesActivity.class));
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            if(getActivity().getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT)==null)
+            {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container,new ServicesFragment(),TAG_MARKET_FRAGMENT)
+                        .commit();
+            }
+
+
+//            .addToBackStack("select_market")
+
+        }
+
+
+//        startActivity(new Intent(getActivity(),ServicesActivity.class));
+
     }
 
 
@@ -578,11 +594,12 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
+
         Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
                 null,
                 currentCategory.getItemCategoryID(),
                 null,
-                PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
+                PrefLocation.getLatitude(getContext()), PrefLocation.getLongitude(getContext()),
                 null,null,null,
                 true,
                 ItemCategory.CATEGORY_ORDER,null,null,false);

@@ -17,10 +17,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.gson.Gson;
+
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.SignUp.Interfaces.ShowFragmentSignUp;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
 
@@ -31,10 +37,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by sumeet on 27/6/17.
@@ -43,32 +52,27 @@ import retrofit2.Response;
 public class FragmentEmailOrPhone extends Fragment {
 
 
-    @BindView(R.id.select_email)
-    TextView selectPhone;
-    @BindView(R.id.select_phone)
-    TextView selectEmail;
+    @BindView(R.id.select_email) TextView selectPhone;
+    @BindView(R.id.select_phone) TextView selectEmail;
 
-    @BindView(R.id.text_input_phone)
-    TextInputLayout phoneLayout;
-    @BindView(R.id.text_input_email)
-    TextInputLayout emailLayout;
+    @BindView(R.id.text_input_phone) TextInputLayout phoneLayout;
+    @BindView(R.id.text_input_email) TextInputLayout emailLayout;
 
 
 //    @BindView(R.id.ccp) CountryCodePicker ccp;
-    @BindView(R.id.phone)
-TextInputEditText phone;
-    @BindView(R.id.email)
-    TextInputEditText email;
+    @BindView(R.id.phone) TextInputEditText phone;
+    @BindView(R.id.email) TextInputEditText email;
 
-    @BindView(R.id.check_icon)
-    ImageView checkIcon;
-    @BindView(R.id.cross_icon)
-    ImageView crossIcon;
-    @BindView(R.id.message)
-    TextView textAvailable;
+    @BindView(R.id.check_icon) ImageView checkIcon;
+    @BindView(R.id.cross_icon) ImageView crossIcon;
+    @BindView(R.id.message) TextView textAvailable;
 
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
+
+
+
+
+    @Inject Gson gson;
 
 
 //    int phoneOrEmail = 1; // flag for indicating the input mode 1 for phone and 2 for email
@@ -380,7 +384,32 @@ TextInputEditText phone;
             inputName = email.getText().toString();
         }
 
-        Call<ResponseBody> call = userService.checkUsernameExists(inputName);
+
+
+
+        Call<ResponseBody> call;
+
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            // multi market mode enabled ... so use a global endpoint
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            call = retrofit.create(UserServiceGlobal.class).checkUsernameExists(inputName);
+
+        }
+        else
+        {
+            call = userService.checkUsernameExists(inputName);
+        }
+
 
 
         progressBar.setVisibility(View.VISIBLE);
@@ -397,11 +426,13 @@ TextInputEditText phone;
 
                     if(user.getRt_registration_mode()==User.REGISTRATION_MODE_PHONE)
                     {
-                        phone.setError("Somebody has already registered using that phone !");
+                        phone.setError("An account already exist with that phone. Please use another phone or reset the password for that phone !");
+
+//                        Somebody has already registered using that phone !
                     }
                     else if(user.getRt_registration_mode()==User.REGISTRATION_MODE_EMAIL)
                     {
-                        email.setError("Somebody has already registered using that E-mail !");
+                        email.setError("An account already exist with that e-mail. Please use another phone or reset the password for that e-mail !");
                     }
 
 

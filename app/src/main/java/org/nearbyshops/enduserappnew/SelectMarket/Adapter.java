@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Services.ServiceFragment;
+package org.nearbyshops.enduserappnew.SelectMarket;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -20,9 +20,9 @@ import com.squareup.picasso.Picasso;
 
 
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.SelectMarket.ServicesFragment;
 
 import java.util.List;
 
@@ -170,7 +170,7 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
                 String imagePath = PrefServiceConfig.getServiceURL_SDS(fragment.getActivity())
-                        + "/api/v1/serviceconfiguration/Image/three_hundred_" + service.getLogoImagePath() + ".jpg";
+                        + "/api/v1/ServiceConfiguration/Image/three_hundred_" + service.getLogoImagePath() + ".jpg";
 
 //                System.out.println("Service LOGO : " + imagePath);
 

@@ -73,6 +73,8 @@ public class UpdateOneSignalID extends IntentService {
                     {
                         PrefOneSignal.saveToken(getApplicationContext(),null);
                         logMessage("Update OneSignalToken : OneSignal token updated " );
+
+
                     }
                     else
                     {

@@ -48,11 +48,22 @@
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
             android:textSize="25dp"
-            android:text="Submit Service"
+            android:text="Submit a Market"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
 
+
+
+
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/header_title_submit"
+            android:text="You can create your your local market. To create your own market ... Please click here ..."
+            android:id="@+id/create_market_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
 
@@ -73,7 +84,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_marginTop="30dp"
-            app:layout_constraintTop_toBottomOf="@+id/header_title_submit"
+            app:layout_constraintTop_toBottomOf="@+id/create_market_message"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:id="@+id/text_input_username"
@@ -117,6 +128,7 @@
 
 
         <TextView
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/text_input_username"
             app:layout_constraintLeft_toLeftOf="parent"
             android:id="@+id/cancel_button"

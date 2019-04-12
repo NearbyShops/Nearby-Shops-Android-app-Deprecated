@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Services;
+package org.nearbyshops.enduserappnew.SelectMarket.DeprecatedCode.SlidingLayerSort;
 
 import android.app.SearchManager;
 import android.content.Intent;
@@ -20,9 +20,8 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.ToggleFab;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.Services.ServiceFragment.ServicesFragment;
-import org.nearbyshops.enduserappnew.Services.SlidingLayerSort.SlidingLayerSortServices;
-import org.nearbyshops.enduserappnew.Services.SubmitURLDialog.SubmitURLDialog;
+import org.nearbyshops.enduserappnew.SelectMarket.ServicesFragment;
+import org.nearbyshops.enduserappnew.SelectMarket.SubmitURLDialog;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 
 

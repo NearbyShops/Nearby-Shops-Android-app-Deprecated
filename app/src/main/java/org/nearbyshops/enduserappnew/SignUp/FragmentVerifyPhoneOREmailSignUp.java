@@ -22,8 +22,12 @@ import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.SignUp.Interfaces.ShowFragmentSignUp;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
 
@@ -33,16 +37,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by sumeet on 27/6/17.
  */
 
-public class FragmentVerifyEmailSignUp extends Fragment {
+public class FragmentVerifyPhoneOREmailSignUp extends Fragment {
 
 
     @BindView(R.id.check_icon)
@@ -64,6 +71,11 @@ public class FragmentVerifyEmailSignUp extends Fragment {
     TextView header;
 
 
+
+    @Inject
+    Gson gson;
+
+
     @BindView(R.id.progress_bar_resend)
     ProgressBar progressBarResend;
     @BindView(R.id.message_resend)
@@ -81,7 +93,7 @@ public class FragmentVerifyEmailSignUp extends Fragment {
 //    boolean verificationCodeValid = false; // flag to keep record of verification code
 
 
-    public FragmentVerifyEmailSignUp() {
+    public FragmentVerifyPhoneOREmailSignUp() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -280,9 +292,32 @@ public class FragmentVerifyEmailSignUp extends Fragment {
         textAvailable.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
-        Call<ResponseBody> call = userService.checkPhoneVerificationCode(
-                user.getPhone(),verificationCode.getText().toString()
-        );
+        Call<ResponseBody> call;
+
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            // multi market mode enabled ... so use a global endpoint
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+            call = retrofit.create(UserServiceGlobal.class).checkPhoneVerificationCode(user.getPhone(),verificationCode.getText().toString());
+
+        }
+        else
+        {
+            call = userService.checkPhoneVerificationCode(user.getPhone(),verificationCode.getText().toString());
+        }
+
+
+
+
+
 
 
         call.enqueue(new Callback<ResponseBody>() {
@@ -370,9 +405,28 @@ public class FragmentVerifyEmailSignUp extends Fragment {
         textAvailable.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
-        Call<ResponseBody> call = userService.checkEmailVerificationCode(
-            user.getEmail(),verificationCode.getText().toString()
-        );
+        Call<ResponseBody> call;
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            // multi market mode enabled ... so use a global endpoint
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+            call = retrofit.create(UserServiceGlobal.class).checkPhoneVerificationCode(user.getPhone(),verificationCode.getText().toString());
+        }
+        else
+        {
+            call = userService.checkEmailVerificationCode(user.getEmail(),verificationCode.getText().toString());
+        }
+
+
+
 
 
         call.enqueue(new Callback<ResponseBody>() {
@@ -500,6 +554,10 @@ public class FragmentVerifyEmailSignUp extends Fragment {
     }
 
 
+
+
+
+
     void createAccount()
     {
 
@@ -524,9 +582,30 @@ public class FragmentVerifyEmailSignUp extends Fragment {
 //            logMessage(gson.toJson(user));
 
 
-            Call<User> call = userService.endUserRegistration(user);
+        Call<User> call;
 
-            call.enqueue(new Callback<User>() {
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            // multi market mode enabled ... so use a global endpoint
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+            call = retrofit.create(UserServiceGlobal.class).endUserRegistration(user);;
+        }
+        else
+        {
+            call = userService.endUserRegistration(user);
+        }
+
+
+
+        call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
 
@@ -615,7 +694,32 @@ public class FragmentVerifyEmailSignUp extends Fragment {
         messageResend.setText("Sending verification code ... ");
 
 
-        Call<ResponseBody> call = userService.sendVerificationEmail(user.getEmail());
+        Call<ResponseBody> call;
+
+
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            // multi market mode enabled ... so use a global endpoint
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            call = retrofit.create(UserServiceGlobal.class).sendVerificationEmail(user.getEmail());
+        }
+        else
+        {
+            call  = userService.sendVerificationEmail(user.getEmail());
+        }
+
+
+
+
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -658,7 +762,29 @@ public class FragmentVerifyEmailSignUp extends Fragment {
         messageResend.setText("Sending verification code ... ");
 
 
-        Call<ResponseBody> call = userService.sendVerificationPhone(user.getPhone());
+        Call<ResponseBody> call;
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            // multi market mode enabled ... so use a global endpoint
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            call = retrofit.create(UserServiceGlobal.class).sendVerificationPhone(user.getPhone());
+        }
+        else
+        {
+            call  = userService.sendVerificationPhone(user.getPhone());
+        }
+
+
+
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override

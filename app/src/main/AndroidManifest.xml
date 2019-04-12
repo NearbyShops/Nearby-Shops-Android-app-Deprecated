@@ -620,7 +620,7 @@
 
 
         <activity
-            android:name=".Services.ServicesActivity"
+            android:name=".SelectMarket.DeprecatedCode.SlidingLayerSort.ServicesActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
 

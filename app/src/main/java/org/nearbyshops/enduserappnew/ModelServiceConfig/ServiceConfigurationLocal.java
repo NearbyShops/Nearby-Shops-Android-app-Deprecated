@@ -131,69 +131,17 @@ public class ServiceConfigurationLocal {
     private double rt_distance;
 
 
-    public String getDescriptionShort() {
-        return descriptionShort;
-    }
+    private boolean rt_login_using_otp_enabled;
 
-    public void setDescriptionShort(String descriptionShort) {
-        this.descriptionShort = descriptionShort;
-    }
 
-    public String getDescriptionLong() {
-        return descriptionLong;
-    }
 
-    public void setDescriptionLong(String descriptionLong) {
-        this.descriptionLong = descriptionLong;
-    }
 
-    public String getISOCurrencyCode() {
-        return ISOCurrencyCode;
-    }
 
-    public void setISOCurrencyCode(String ISOCurrencyCode) {
-        this.ISOCurrencyCode = ISOCurrencyCode;
-    }
 
-    public Timestamp getCreated() {
-        return created;
-    }
 
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
 
-    public Timestamp getUpdated() {
-        return updated;
-    }
+    // getter and setter
 
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
-    }
-
-    public Double getRt_distance() {
-        return rt_distance;
-    }
-
-    public void setRt_distance(Double rt_distance) {
-        this.rt_distance = rt_distance;
-    }
-
-    public String getISOCountryCode() {
-        return ISOCountryCode;
-    }
-
-    public void setISOCountryCode(String ISOCountryCode) {
-        this.ISOCountryCode = ISOCountryCode;
-    }
-
-    public String getISOLanguageCode() {
-        return ISOLanguageCode;
-    }
-
-    public void setISOLanguageCode(String ISOLanguageCode) {
-        this.ISOLanguageCode = ISOLanguageCode;
-    }
 
     public int getServiceID() {
         return serviceID;
@@ -202,7 +150,6 @@ public class ServiceConfigurationLocal {
     public void setServiceID(int serviceID) {
         this.serviceID = serviceID;
     }
-
 
     public String getLogoImagePath() {
         return logoImagePath;
@@ -234,6 +181,22 @@ public class ServiceConfigurationLocal {
 
     public void setHelplineNumber(String helplineNumber) {
         this.helplineNumber = helplineNumber;
+    }
+
+    public String getDescriptionShort() {
+        return descriptionShort;
+    }
+
+    public void setDescriptionShort(String descriptionShort) {
+        this.descriptionShort = descriptionShort;
+    }
+
+    public String getDescriptionLong() {
+        return descriptionLong;
+    }
+
+    public void setDescriptionLong(String descriptionLong) {
+        this.descriptionLong = descriptionLong;
     }
 
     public String getAddress() {
@@ -284,6 +247,29 @@ public class ServiceConfigurationLocal {
         this.country = country;
     }
 
+    public String getISOCountryCode() {
+        return ISOCountryCode;
+    }
+
+    public void setISOCountryCode(String ISOCountryCode) {
+        this.ISOCountryCode = ISOCountryCode;
+    }
+
+    public String getISOLanguageCode() {
+        return ISOLanguageCode;
+    }
+
+    public void setISOLanguageCode(String ISOLanguageCode) {
+        this.ISOLanguageCode = ISOLanguageCode;
+    }
+
+    public String getISOCurrencyCode() {
+        return ISOCurrencyCode;
+    }
+
+    public void setISOCurrencyCode(String ISOCurrencyCode) {
+        this.ISOCurrencyCode = ISOCurrencyCode;
+    }
 
     public Integer getServiceType() {
         return serviceType;
@@ -301,19 +287,19 @@ public class ServiceConfigurationLocal {
         this.serviceLevel = serviceLevel;
     }
 
-    public Double getLatCenter() {
+    public double getLatCenter() {
         return latCenter;
     }
 
-    public void setLatCenter(Double latCenter) {
+    public void setLatCenter(double latCenter) {
         this.latCenter = latCenter;
     }
 
-    public Double getLonCenter() {
+    public double getLonCenter() {
         return lonCenter;
     }
 
-    public void setLonCenter(Double lonCenter) {
+    public void setLonCenter(double lonCenter) {
         this.lonCenter = lonCenter;
     }
 
@@ -325,35 +311,35 @@ public class ServiceConfigurationLocal {
         this.serviceRange = serviceRange;
     }
 
-//    public Double getLatMax() {
-//        return latMax;
-//    }
-//
-//    public void setLatMax(Double latMax) {
-//        this.latMax = latMax;
-//    }
-//
-//    public Double getLonMax() {
-//        return lonMax;
-//    }
-//
-//    public void setLonMax(Double lonMax) {
-//        this.lonMax = lonMax;
-//    }
-//
-//    public Double getLatMin() {
-//        return latMin;
-//    }
-//
-//    public void setLatMin(Double latMin) {
-//        this.latMin = latMin;
-//    }
-//
-//    public Double getLonMin() {
-//        return lonMin;
-//    }
-//
-//    public void setLonMin(Double lonMin) {
-//        this.lonMin = lonMin;
-//    }
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
+    }
+
+    public Timestamp getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Timestamp updated) {
+        this.updated = updated;
+    }
+
+    public double getRt_distance() {
+        return rt_distance;
+    }
+
+    public void setRt_distance(double rt_distance) {
+        this.rt_distance = rt_distance;
+    }
+
+    public boolean isRt_login_using_otp_enabled() {
+        return rt_login_using_otp_enabled;
+    }
+
+    public void setRt_login_using_otp_enabled(boolean rt_login_using_otp_enabled) {
+        this.rt_login_using_otp_enabled = rt_login_using_otp_enabled;
+    }
 }
