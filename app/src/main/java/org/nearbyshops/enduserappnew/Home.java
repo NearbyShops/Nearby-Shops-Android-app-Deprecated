@@ -305,10 +305,6 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
             }
 
 
-
-
-
-
             if (getSupportFragmentManager().findFragmentByTag(TAG_PROFILE) == null) {
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -316,6 +312,12 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
                         .commit();
             }
         }
+
+
+
+
+
+
 
 
         @Override
@@ -382,6 +384,11 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
                         .commit();
             }
         }
+
+
+
+
+
 
 
         @Override

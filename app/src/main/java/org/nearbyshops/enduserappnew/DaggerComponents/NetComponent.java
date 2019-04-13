@@ -39,6 +39,7 @@ import org.nearbyshops.enduserappnew.ItemsInShop.ShopItems.FragmentItemsInShop;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.AdapterItemsInShop;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCatFragment;
 import org.nearbyshops.enduserappnew.Login.LoginFragment;
+import org.nearbyshops.enduserappnew.Login.LoginGlobalFragment;
 import org.nearbyshops.enduserappnew.Login.LoginUsingOTPFragment;
 import org.nearbyshops.enduserappnew.Login.ServiceIndicatorFragment;
 import org.nearbyshops.enduserappnew.LoginUsingOTP.InsertPhoneFragment;
@@ -235,7 +236,6 @@ public interface NetComponent {
 
     void Inject(AdapterShopItem adapterShopItem);
 
-
     void Inject(WelcomeFragment welcomeFragment);
 
     void Inject(InsertPhoneFragment insertPhoneFragment);
@@ -246,7 +246,6 @@ public interface NetComponent {
 
     void Inject(ItemDetailFragment itemDetailFragment);
 
-
     void Inject(ItemDetail_ itemDetail_);
 
     void Inject(UpdateServiceConfiguration updateServiceConfiguration);
@@ -256,4 +255,6 @@ public interface NetComponent {
     void Inject(SubmitURLDialog submitURLDialog);
 
     void Inject(AdapterNew adapterNew);
+
+    void Inject(LoginGlobalFragment loginGlobalFragment);
 }

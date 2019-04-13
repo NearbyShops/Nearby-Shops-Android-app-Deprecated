@@ -7,9 +7,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
+    android:layout_margin="5dp"
     android:id="@+id/service_new"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -111,7 +109,7 @@
 
     <android.support.constraint.Guideline
         android:id="@+id/vertical_guide"
-        app:layout_constraintGuide_percent="0.45"
+        app:layout_constraintGuide_percent="0.4"
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="0dp"

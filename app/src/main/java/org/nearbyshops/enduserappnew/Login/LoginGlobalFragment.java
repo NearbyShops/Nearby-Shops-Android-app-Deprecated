@@ -10,23 +10,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.RetrofitRESTContract.LoginUsingOTPService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.ForgotPassword;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceForgotPassword;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
 import org.nearbyshops.enduserappnew.SignUp.SignUp;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 import javax.inject.Inject;
 
@@ -41,11 +43,16 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
+
 /**
  * Created by sumeet on 19/4/17.
  */
 
-public class LoginFragment extends Fragment {
+
+
+
+public class LoginGlobalFragment extends Fragment {
 
     public static final String TAG_SERVICE_INDICATOR = "service_indicator";
 
@@ -62,7 +69,7 @@ public class LoginFragment extends Fragment {
 //    @BindView(R.id.select_service) TextView selectAutomatic;
 
 
-    public LoginFragment() {
+    public LoginGlobalFragment() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -77,18 +84,28 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
+
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_login, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_login_global, container, false);
         ButterKnife.bind(this,rootView);
 
 
-        if(getChildFragmentManager().findFragmentByTag(TAG_SERVICE_INDICATOR)==null)
+
+
+
+
+
+        if(PrefGeneral.getServiceURL(MyApplication.getAppContext())!=null)
         {
-            getChildFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.service_indicator,new ServiceIndicatorFragment(),TAG_SERVICE_INDICATOR)
-                    .commit();
+            if(getChildFragmentManager().findFragmentByTag(TAG_SERVICE_INDICATOR)==null)
+            {
+                getChildFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.service_indicator,new ServiceIndicatorFragment(),TAG_SERVICE_INDICATOR)
+                        .commit();
+            }
         }
+
 
 
 
@@ -269,6 +286,28 @@ public class LoginFragment extends Fragment {
     void makeRequestLogin()
     {
 
+        if(PrefGeneral.getServiceURL(MyApplication.getAppContext())==null)
+        {
+
+            loginToGlobalEndpoint();
+        }
+        else
+        {
+
+            loginToLocalEndpoint();
+        }
+
+
+    }
+
+
+
+
+
+
+
+    void loginToGlobalEndpoint()
+    {
         if(!validateData())
         {
             // validation failed return
@@ -288,13 +327,12 @@ public class LoginFragment extends Fragment {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
+                .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
                 .client(new OkHttpClient().newBuilder().build())
                 .build();
 
 
-
-        Call<User> call = retrofit.create(UserService.class).getProfile(
+        Call<User> call = retrofit.create(UserServiceGlobal.class).getProfile(
                 PrefLogin.baseEncoding(phoneWithCode,password.getText().toString())
         );
 
@@ -327,7 +365,8 @@ public class LoginFragment extends Fragment {
 //                    }
 
 
-                    PrefLogin.saveCredentials(
+
+                    PrefLoginGlobal.saveCredentials(
                             getActivity(),
                             phoneWithCode,
                             password.getText().toString()
@@ -347,7 +386,7 @@ public class LoginFragment extends Fragment {
 
 
                     // save user profile information
-                    PrefLogin.saveUserProfile(
+                    PrefLoginGlobal.saveUserProfile(
                             response.body(),
                             getActivity()
                     );
@@ -417,8 +456,191 @@ public class LoginFragment extends Fragment {
             }
         });
 
+
+
     }
 
+
+
+
+
+
+
+    void loginToLocalEndpoint()
+    {
+        if(!validateData())
+        {
+            // validation failed return
+            return;
+        }
+
+
+
+
+        final String phoneWithCode = username.getText().toString();
+//        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
+
+        progressBar.setVisibility(View.VISIBLE);
+        loginButton.setVisibility(View.INVISIBLE);
+
+
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
+                .client(new OkHttpClient().newBuilder().build())
+                .build();
+
+
+
+        Call<User> call = retrofit.create(LoginUsingOTPService.class).loginWithGlobalCredentials(
+                PrefLogin.baseEncoding(phoneWithCode,password.getText().toString()),
+                PrefServiceConfig.getServiceURL_SDS(getActivity()),
+                123
+        );
+
+
+
+
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+                progressBar.setVisibility(View.GONE);
+                loginButton.setVisibility(View.VISIBLE);
+
+                if(response.code()==200)
+                {
+                    // save username and password
+
+
+
+//                    if(response.body().getRole()!=User.ROLE_END_USER_CODE)
+//                    {
+//                        showToastMessage("Only an End-User is allowed to login");
+//                        return;
+//                    }
+
+
+
+
+                    PrefLoginGlobal.saveCredentials(
+                            getActivity(),
+                            phoneWithCode,
+                            password.getText().toString()
+
+                    );
+
+
+
+
+                    User user = response.body();
+
+                    PrefLogin.saveCredentials(
+                            getActivity(),
+                            user.getPhone(),
+                            user.getPassword()
+                    );
+
+
+
+
+
+                    // save token and token expiry timestamp
+//                    PrefLogin.saveToken(
+//                            getActivity(),
+//                            response.body().getToken(),
+//                            response.body().getTimestampTokenExpires()
+//                    );
+
+
+                    // save user profile information
+                    PrefLogin.saveUserProfile(
+                            response.body(),
+                            getActivity()
+                    );
+
+
+
+
+                    if(PrefLoginGlobal.getUser(getActivity())==null)
+                    {
+                        PrefLoginGlobal.saveUserProfile(
+                                response.body(),
+                                getActivity()
+                        );
+                    }
+
+
+
+
+
+
+
+//                    PrefOneSignal.saveToken(getActivity(),PrefOneSignal.getLastToken(getActivity()));
+//
+//                    if(PrefOneSignal.getToken(getActivity())!=null)
+//                    {
+//                        // update one signal id if its not updated
+//                        getActivity().startService(new Intent(getActivity(), UpdateOneSignalID.class));
+//                    }
+
+
+
+
+
+
+
+
+
+
+                    if(getActivity() instanceof NotifyAboutLogin)
+                    {
+//                        showToastMessage("Notify about login !");
+                        ((NotifyAboutLogin) getActivity()).loginSuccess();
+                    }
+
+
+
+//                        getActivity().finish();
+
+
+//                    showToastMessage("LoginUsingOTP success : code : " + String.valueOf(response.code()));
+
+
+
+                }
+                else
+                {
+                    showToastMessage("Login Failed : Username or password is incorrect !");
+                    System.out.println("Login Failed : Code " + String.valueOf(response.code()));
+                }
+
+            }
+
+
+
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+                showToastMessage("Network connection problem !");
+                progressBar.setVisibility(View.GONE);
+                loginButton.setVisibility(View.VISIBLE);
+            }
+        });
+    }
 
 
 
