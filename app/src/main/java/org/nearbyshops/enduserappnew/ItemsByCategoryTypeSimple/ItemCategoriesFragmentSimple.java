@@ -49,6 +49,7 @@ import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemEndPoint;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
@@ -599,10 +600,11 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
                 null,
                 currentCategory.getItemCategoryID(),
                 null,
-                PrefLocation.getLatitude(getContext()), PrefLocation.getLongitude(getContext()),
+                PrefLocation.getLatitude(MyApplication.getAppContext()), PrefLocation.getLongitude(MyApplication.getAppContext()),
                 null,null,null,
                 true,
                 ItemCategory.CATEGORY_ORDER,null,null,false);
+
 
 
 

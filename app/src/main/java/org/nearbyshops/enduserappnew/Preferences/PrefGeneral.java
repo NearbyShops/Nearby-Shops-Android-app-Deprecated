@@ -55,23 +55,31 @@ public class PrefGeneral {
 
 
 
+
     public static boolean getMultiMarketMode(Context context)
     {
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        return sharedPref.getBoolean(TAG_MULTI_MARKET_MODE, true);
+        return true;
     }
 
 
 
 
-    public static void saveMultiMarketMode(boolean enabled, Context context)
-    {
-        //Creating a shared preference
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        SharedPreferences.Editor prefsEditor = sharedPref.edit();
-        prefsEditor.putBoolean(TAG_MULTI_MARKET_MODE, enabled);
-        prefsEditor.apply();
-    }
+
+//    public static boolean getMultiMarketMode(Context context)
+//    {
+//        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+//        return sharedPref.getBoolean(TAG_MULTI_MARKET_MODE, false);
+//    }
+
+
+//    public static void saveMultiMarketMode(boolean enabled, Context context)
+//    {
+//        //Creating a shared preference
+//        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+//        SharedPreferences.Editor prefsEditor = sharedPref.edit();
+//        prefsEditor.putBoolean(TAG_MULTI_MARKET_MODE, enabled);
+//        prefsEditor.apply();
+//    }
 
 
 

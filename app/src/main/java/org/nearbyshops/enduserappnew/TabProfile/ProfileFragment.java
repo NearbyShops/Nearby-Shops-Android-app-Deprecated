@@ -29,7 +29,9 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
+import org.nearbyshops.enduserappnew.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
@@ -250,22 +252,35 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
+
+
+
     void logout()
     {
         // log out
         PrefLogin.saveUserProfile(null,getActivity());
         PrefLogin.saveCredentials(getActivity(),null,null);
 
+        PrefLoginGlobal.saveUserProfile(null,getActivity());
+        PrefLoginGlobal.saveCredentials(getActivity(),null,null);
+
+
+
+
         // stop location update service
 //        stopService();
 
+//
+//        if(getActivity() instanceof ShowFragment)
+//        {
+//            ((ShowFragment) getActivity()).showLoginFragment();
+//        }
 
-
-        
-        if(getActivity() instanceof ShowFragment)
+        if(getActivity() instanceof NotifyAboutLogin)
         {
-            ((ShowFragment) getActivity()).showLoginFragment();
+            ((NotifyAboutLogin) getActivity()).loggedOut();
         }
+
     }
 
 
@@ -369,6 +384,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
+
+
     void bindUserProfile()
     {
 
@@ -433,11 +450,6 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         );
 
     }
-
-
-
-
-
 
 
 

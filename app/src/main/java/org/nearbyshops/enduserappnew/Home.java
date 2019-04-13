@@ -66,6 +66,9 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
     boolean isFirstLaunch = true;
 
 
+
+
+
     public Home() {
 
         DaggerComponentBuilder.getInstance()
@@ -86,6 +89,22 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
 //        bottomBar.setDefaultTab(R.id.tab_search);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
+
+
+
+
+
+
+        if(PrefGeneral.getMultiMarketMode(this))
+        {
+            bottomBar.getTabWithId(R.id.tab_profile).setTitle("Markets");
+        }
+        else
+        {
+            bottomBar.getTabWithId(R.id.tab_profile).setTitle("Profile");
+        }
+
 
 
 
@@ -158,9 +177,6 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
 
 
-
-
-
         if(PrefGeneral.getServiceURL(this)!=null)
         {
             if (PrefOneSignal.getToken(this) != null ) {
@@ -170,7 +186,6 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 //                showToastMessage("Update One Signal ID !");
             }
         }
-
 
 
 
@@ -190,12 +205,28 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
     }
 
 
+
+
+
     @Override
     public void loginSuccess() {
-
         showProfileFragment();
         bottomBar.selectTabWithId(R.id.tab_profile);
+//        bottomBar.getTabWithId(R.id.tab_profile).setTitle("Profile");
     }
+
+
+
+
+    @Override
+    public void loggedOut() {
+//        bottomBar.selectTabWithId(R.id.tab_profile);
+
+//        bottomBar.getTabWithId(R.id.tab_profile).setTitle("Markets");
+        showProfileFragment();
+    }
+
+
 
 
     @Override
@@ -284,33 +315,45 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
 
 
+
+
+
         @Override
         public void showProfileFragment ()
         {
 
-            if (PrefLogin.getUser(getBaseContext()) == null) {
+            if(PrefGeneral.getMultiMarketMode(this))
+            {
+                // no market selected therefore show available markets in users area
+                if(getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT)==null)
+                {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container,new ServicesFragment(),TAG_MARKET_FRAGMENT)
+                            .commit();
 
-                 showLoginFragment();
+                }
 
-//                if(getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT)==null)
-//                {
-//                    getSupportFragmentManager()
-//                            .beginTransaction()
-//                            .replace(R.id.fragment_container,new ServicesFragment(),TAG_MARKET_FRAGMENT)
-//                            .commit();
-//
-//                }
+            }
+            else
+            {
+                // single market mode
 
-                return;
+                if (PrefLogin.getUser(getBaseContext()) == null) {
+
+
+                    showLoginFragment();
+
+                }
+                else if (getSupportFragmentManager().findFragmentByTag(TAG_PROFILE) == null) {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, new ProfileFragment(), TAG_PROFILE)
+                            .commit();
+                }
+
             }
 
-
-            if (getSupportFragmentManager().findFragmentByTag(TAG_PROFILE) == null) {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, new ProfileFragment(), TAG_PROFILE)
-                        .commit();
-            }
         }
 
 
@@ -577,11 +620,38 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
 
 
+
+
+
         @Override
         public void marketSelected() {
 
-            bottomBar.selectTabWithId(R.id.tab_items);
-            showItemsFragment();
+//            bottomBar.selectTabWithId(R.id.tab_items);
+//            bottomBar.selectTabAtPosition(bottomBar.getCurrentTabPosition());
+//            showItemsFragment();
+
+            int tabId = bottomBar.getCurrentTabId();
+
+
+            if (tabId == R.id.tab_items) {
+                showItemsFragment();
+            } else if (tabId == R.id.tab_shops) {
+
+                showShopsFragment();
+            } else if (tabId == R.id.tab_cart) {
+
+                showCartFragment();
+            } else if (tabId == R.id.tab_orders) {
+
+                showOrdersFragment();
+            } else if (tabId == R.id.tab_profile) {
+
+//                showProfileFragment();
+//                showItemsFragment();
+                bottomBar.selectTabWithId(R.id.tab_items);
+
+            }
+
         }
 
 

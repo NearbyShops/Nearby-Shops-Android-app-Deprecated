@@ -57,6 +57,6 @@
     <tab
         id="@+id/tab_profile"
         icon="@drawable/ic_face_black_24px"
-        title="Profile" />
+        title="Markets" />
 
 </tabs>
