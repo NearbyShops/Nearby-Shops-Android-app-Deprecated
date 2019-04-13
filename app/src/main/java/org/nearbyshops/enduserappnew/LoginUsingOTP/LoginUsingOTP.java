@@ -100,8 +100,10 @@ public class LoginUsingOTP extends AppCompatActivity implements ShowFragmentSele
         finish();
     }
 
+    @Override
+    public void loggedOut() {
 
-
+    }
 
 
 }

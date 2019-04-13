@@ -7,5 +7,6 @@ package org.nearbyshops.enduserappnew.Login;
 public interface NotifyAboutLogin {
 
     void loginSuccess();
+    void loggedOut();
 
 }

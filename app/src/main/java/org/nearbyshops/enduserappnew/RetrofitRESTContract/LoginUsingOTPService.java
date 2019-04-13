@@ -51,4 +51,16 @@ public interface LoginUsingOTPService {
 
 
 
+
+
+
+    @GET ("/api/v1/User/LoginUsingOTP/LoginUsingGlobalCredentials")
+    Call<User> loginWithGlobalCredentials(
+            @Header("Authorization")String headerParam,
+            @Query("ServiceURLSDS")String serviceURLForSDS,
+            @Query("MarketID")int marketID,
+            @Query("GetServiceConfiguration")boolean getServiceConfig
+    );
+
+
 }

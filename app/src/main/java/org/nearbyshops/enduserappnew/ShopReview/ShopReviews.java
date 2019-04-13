@@ -655,4 +655,10 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
 
 
+
+
+    @Override
+    public void loggedOut() {
+
+    }
 }

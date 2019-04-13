@@ -170,8 +170,10 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
         finish();
     }
 
+    @Override
+    public void loggedOut() {
 
-
+    }
 
 
 }

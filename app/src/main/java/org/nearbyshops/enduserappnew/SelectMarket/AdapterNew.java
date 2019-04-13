@@ -303,18 +303,18 @@ public class AdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ServiceConfigurationGlobal configurationGlobal = dataset.get(getLayoutPosition());
 
 
+
             if(PrefLoginGlobal.getUser(getApplicationContext())==null)
             {
                 // user not logged in so just fetch configuration
-
                 fetchConfiguration(configurationGlobal);
             }
             else
             {
                 // user logged in so make an attempt to login to local service
-
-                loginToLocalEndpoint();
+                loginToLocalEndpoint(configurationGlobal);
             }
+
 
 
         }
@@ -325,6 +325,9 @@ public class AdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         public void onClick(View v) {
             notications.notifyListItemClick(dataset.get(getLayoutPosition()));
         }
+
+
+
 
 
 
@@ -422,7 +425,7 @@ public class AdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 
-        void loginToLocalEndpoint()
+        void loginToLocalEndpoint(ServiceConfigurationGlobal configurationGlobal)
         {
 
 //        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
@@ -437,9 +440,10 @@ public class AdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))
-                    .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
+                    .baseUrl(configurationGlobal.getServiceURL())
                     .client(new OkHttpClient().newBuilder().build())
                     .build();
+
 
 
 
@@ -447,8 +451,9 @@ public class AdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             Call<User> call = retrofit.create(LoginUsingOTPService.class).loginWithGlobalCredentials(
                     PrefLoginGlobal.getAuthorizationHeaders(getApplicationContext()),
                     PrefServiceConfig.getServiceURL_SDS(getApplicationContext()),
-                    123
+                    123,true
             );
+
 
 
 
@@ -471,6 +476,9 @@ public class AdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                         // save username and password
 
 
+
+
+                        PrefGeneral.saveServiceURL(configurationGlobal.getServiceURL(),getApplicationContext());
 
 
 
@@ -520,7 +528,17 @@ public class AdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 
+                        ServiceConfigurationLocal configurationLocal = user.getServiceConfigurationLocal();
 
+                        PrefServiceConfig.saveServiceConfigLocal(configurationLocal,getApplicationContext());
+
+
+
+                        if(configurationLocal!=null)
+                        {
+                            Currency currency = Currency.getInstance(new Locale("",configurationLocal.getISOCountryCode()));
+                            PrefGeneral.saveCurrencySymbol(currency.getSymbol(),getApplicationContext());
+                        }
 
 
 

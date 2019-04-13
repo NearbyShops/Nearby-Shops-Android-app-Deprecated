@@ -3,6 +3,8 @@ package org.nearbyshops.enduserappnew.ModelRoles;
 
 
 
+import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
+
 import java.sql.Timestamp;
 
 /**
@@ -208,9 +210,26 @@ public class User {
 
 
 
+    private ServiceConfigurationLocal serviceConfigurationLocal;
+
+
+
+
+
+
+
+
 
     // Getters and Setters
 
+
+    public ServiceConfigurationLocal getServiceConfigurationLocal() {
+        return serviceConfigurationLocal;
+    }
+
+    public void setServiceConfigurationLocal(ServiceConfigurationLocal serviceConfigurationLocal) {
+        this.serviceConfigurationLocal = serviceConfigurationLocal;
+    }
 
     public double getServiceRequestsBalance() {
         return serviceRequestsBalance;
