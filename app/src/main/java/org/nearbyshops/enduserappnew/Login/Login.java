@@ -47,9 +47,18 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
 
 
 
+
+
+
         if(PrefGeneral.getMultiMarketMode(this))
         {
-
+            if(savedInstanceState==null)
+            {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container,new LoginGlobalFragment(),TAG_STEP_ONE)
+                        .commitNow();
+            }
 
         }
         else

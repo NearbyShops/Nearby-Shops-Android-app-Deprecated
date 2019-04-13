@@ -30,7 +30,7 @@ public class PrefGeneral {
     public static final String DEFAULT_SERVICE_URL = "http://example.com";
 
 
-    public static final String SERVICE_URL_LOCAL_HOTSPOT = "http://192.168.43.74:5121";
+    public static final String SERVICE_URL_LOCAL_HOTSPOT = "http://192.168.43.73:5121";
     public static final String SERVICE_URL_NEARBYSHOPS = "http://api.nearbyshops.org";
 
 

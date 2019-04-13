@@ -16,11 +16,17 @@ import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Login.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.RetrofitRESTContract.LoginUsingOTPService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ServiceConfigurationService;
 
 import java.util.Currency;
@@ -297,6 +303,36 @@ public class AdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ServiceConfigurationGlobal configurationGlobal = dataset.get(getLayoutPosition());
 
 
+            if(PrefLoginGlobal.getUser(getApplicationContext())==null)
+            {
+                // user not logged in so just fetch configuration
+
+                fetchConfiguration(configurationGlobal);
+            }
+            else
+            {
+                // user logged in so make an attempt to login to local service
+
+                loginToLocalEndpoint();
+            }
+
+
+        }
+
+
+
+        @Override
+        public void onClick(View v) {
+            notications.notifyListItemClick(dataset.get(getLayoutPosition()));
+        }
+
+
+
+
+
+        void fetchConfiguration(ServiceConfigurationGlobal configurationGlobal)
+        {
+
 //            PrefGeneral.saveServiceURL(configurationGlobal.getServiceURL(),getApplicationContext());
 //            PrefServiceConfig.saveServiceConfigLocal(null,getApplicationContext());
 
@@ -381,15 +417,160 @@ public class AdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 //                    PrefServiceConfig.saveServiceConfigLocal(null,getApplicationContext());
                 }
             });
-
         }
 
 
 
-        @Override
-        public void onClick(View v) {
-            notications.notifyListItemClick(dataset.get(getLayoutPosition()));
+
+        void loginToLocalEndpoint()
+        {
+
+//        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
+
+
+
+
+            selectMarket.setVisibility(View.INVISIBLE);
+            progressBarSelect.setVisibility(View.VISIBLE);
+
+
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+
+            Call<User> call = retrofit.create(LoginUsingOTPService.class).loginWithGlobalCredentials(
+                    PrefLoginGlobal.getAuthorizationHeaders(getApplicationContext()),
+                    PrefServiceConfig.getServiceURL_SDS(getApplicationContext()),
+                    123
+            );
+
+
+
+
+
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+
+
+
+
+                    selectMarket.setVisibility(View.VISIBLE);
+                    progressBarSelect.setVisibility(View.INVISIBLE);
+
+
+
+                    if(response.code()==200)
+                    {
+                        // save username and password
+
+
+
+
+
+                        User user = response.body();
+
+                        PrefLogin.saveCredentials(
+                                getApplicationContext(),
+                                user.getPhone(),
+                                user.getPassword()
+                        );
+
+
+
+
+
+                        // save user profile information
+                        PrefLogin.saveUserProfile(
+                                response.body(),
+                                getApplicationContext()
+                        );
+
+
+
+
+
+//                        if(PrefLoginGlobal.getUser(getApplicationContext())==null)
+//                        {
+//                            PrefLoginGlobal.saveUserProfile(
+//                                    response.body(),
+//                                    getApplicationContext()
+//                            );
+//                        }
+
+
+
+
+
+
+
+//                    PrefOneSignal.saveToken(getActivity(),PrefOneSignal.getLastToken(getActivity()));
+//
+//                    if(PrefOneSignal.getToken(getActivity())!=null)
+//                    {
+//                        // update one signal id if its not updated
+//                        getActivity().startService(new Intent(getActivity(), UpdateOneSignalID.class));
+//                    }
+
+
+
+
+
+
+
+
+
+//
+//                        if( instanceof NotifyAboutLogin)
+//                        {
+////                        showToastMessage("Notify about login !");
+//                            ((NotifyAboutLogin) getActivity()).loginSuccess();
+//                        }
+
+
+
+                        notications.selectMarketClick(dataset.get(getLayoutPosition()));
+
+//                        getActivity().finish();
+
+
+//                    showToastMessage("LoginUsingOTP success : code : " + String.valueOf(response.code()));
+
+
+
+                    }
+                    else
+                    {
+                        showToastMessage("Login Failed : Username or password is incorrect !");
+                        System.out.println("Login Failed : Code " + String.valueOf(response.code()));
+                    }
+
+                }
+
+
+
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+
+
+
+                    showToastMessage("Failed ... Please check your network connection !");
+
+                    selectMarket.setVisibility(View.VISIBLE);
+                    progressBarSelect.setVisibility(View.INVISIBLE);
+
+
+                }
+            });
         }
+
 
 
 

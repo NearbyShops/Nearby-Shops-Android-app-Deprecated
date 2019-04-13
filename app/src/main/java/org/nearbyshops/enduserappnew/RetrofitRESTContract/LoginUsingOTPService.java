@@ -40,4 +40,15 @@ public interface LoginUsingOTPService {
                                                   @Query("VerificationCode") String verificationCode);
 
 
+
+
+    @GET ("/api/v1/User/LoginUsingOTP/LoginUsingGlobalCredentials")
+    Call<User> loginWithGlobalCredentials(
+            @Header("Authorization")String headerParam,
+            @Query("ServiceURLSDS")String serviceURLForSDS,
+            @Query("MarketID")int marketID
+    );
+
+
+
 }
