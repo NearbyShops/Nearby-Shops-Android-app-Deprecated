@@ -172,6 +172,7 @@
 
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:weightSum="2"

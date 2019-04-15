@@ -1,6 +1,5 @@
 package org.nearbyshops.enduserappnew.SelectMarket;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,27 +16,26 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Home;
+import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.ServiceConfigService;
-import org.nearbyshops.enduserappnew.SelectMarket.DeprecatedCode.SlidingLayerSort.UtilitySortServices;
-import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
 
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -50,11 +48,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
+
+public class MarketsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch,
+        ViewHolderMarket.VHMarketNotifications, LocationUpdated {
 
 
-public class ServicesFragment extends Fragment implements AdapterNew.NoticationsFromServiceAdapter,
-        SwipeRefreshLayout.OnRefreshListener , NotifySort, NotifySearch {
 
 
 //    @Inject
@@ -65,12 +63,13 @@ public class ServicesFragment extends Fragment implements AdapterNew.Notications
 //    @Inject ServiceConfigService serviceConfigService;
 
     RecyclerView recyclerView;
-    AdapterNew adapter;
+    AdapterMarkets adapter;
 
-    public List<ServiceConfigurationGlobal> dataset = new ArrayList<>();
+    public List<Object> dataset = new ArrayList<>();
 
     GridLayoutManager layoutManager;
     SwipeRefreshLayout swipeContainer;
+
 
 
     boolean show = true;
@@ -82,7 +81,10 @@ public class ServicesFragment extends Fragment implements AdapterNew.Notications
 
 
 
-    public ServicesFragment() {
+
+
+
+    public MarketsFragment() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -91,8 +93,8 @@ public class ServicesFragment extends Fragment implements AdapterNew.Notications
     }
 
 
-    public static ServicesFragment newInstance() {
-        ServicesFragment fragment = new ServicesFragment();
+    public static MarketsFragment newInstance() {
+        MarketsFragment fragment = new MarketsFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -154,10 +156,10 @@ public class ServicesFragment extends Fragment implements AdapterNew.Notications
     void setupRecyclerView()
     {
 
-        adapter = new AdapterNew(dataset,this,this);
+        adapter = new AdapterMarkets(dataset,this);
+
 
         recyclerView.setAdapter(adapter);
-
 
 
         recyclerView.addItemDecoration(
@@ -256,6 +258,12 @@ public class ServicesFragment extends Fragment implements AdapterNew.Notications
                     {
                         offset = offset + limit;
                         makeNetworkCall(false);
+
+                        adapter.setLoadMore(true);
+                    }
+                    else
+                    {
+                        adapter.setLoadMore(false);
                     }
 
 //                    previous_position = layoutManager.findLastVisibleItemPosition();
@@ -295,35 +303,40 @@ public class ServicesFragment extends Fragment implements AdapterNew.Notications
     }
 
 
+
+
+
+
+
     void makeNetworkCall(final boolean clearDataset)
     {
 
 //            Shop currentShop = UtilityShopHome.getShop(getContext());
-
-        String current_sort = "";
-        current_sort = UtilitySortServices.getSort(getContext()) + " " + UtilitySortServices.getAscending(getContext());
-
-//        showToastMessage(UtilityLogin.getAuthorizationHeaders(getActivity()));
-
-        Boolean filterOfficial = null;
-        Boolean filterVerified = null;
-
-        if(UtilitySortServices.getOfficial(getActivity()))
-        {
-            filterOfficial = true;
-        }
-
-        if(UtilitySortServices.getVerified(getActivity()))
-        {
-            filterVerified = true;
-        }
-
-        Integer serviceType = null;
-
-        if(UtilitySortServices.getServiceType(getActivity())!=-1)
-        {
-            serviceType = UtilitySortServices.getServiceType(getActivity());
-        }
+//
+//        String current_sort = "";
+//        current_sort = UtilitySortServices.getSort(getContext()) + " " + UtilitySortServices.getAscending(getContext());
+//
+////        showToastMessage(UtilityLogin.getAuthorizationHeaders(getActivity()));
+//
+//        Boolean filterOfficial = null;
+//        Boolean filterVerified = null;
+//
+//        if(UtilitySortServices.getOfficial(getActivity()))
+//        {
+//            filterOfficial = true;
+//        }
+//
+//        if(UtilitySortServices.getVerified(getActivity()))
+//        {
+//            filterVerified = true;
+//        }
+//
+//        Integer serviceType = null;
+//
+//        if(UtilitySortServices.getServiceType(getActivity())!=-1)
+//        {
+//            serviceType = UtilitySortServices.getServiceType(getActivity());
+//        }
 
 
 
@@ -346,7 +359,7 @@ public class ServicesFragment extends Fragment implements AdapterNew.Notications
                     searchQuery,
                     null,null,
                 null,
-                    current_sort,limit,offset);
+                    null,limit,offset);
 
 
 //        PrefLocation.getLatitude(getActivity()),
@@ -367,21 +380,56 @@ public class ServicesFragment extends Fragment implements AdapterNew.Notications
                     if(response.body()!= null)
                     {
                         item_count = response.body().getItemCount();
+//                        adapter.setTotalItemsCount(item_count);
+
 
                         if(clearDataset)
                         {
                             dataset.clear();
+
+
+//                            dataset.add(PrefServiceConfig.getServiceConfigLocal(getActivity()));
+
+                            ServiceConfigurationLocal configurationLocal = PrefServiceConfig.getServiceConfigLocal(getActivity());
+
+                            if(configurationLocal!=null)
+                            {
+                                dataset.add(configurationLocal);
+                            }
+
+
+                            User user = PrefLoginGlobal.getUser(getActivity());
+
+                            if(user!=null)
+                            {
+                                dataset.add(user);
+                            }
+
+
+
+                            if(item_count>0)
+                            {
+                                dataset.add(new HeaderItemsList());
+                            }
+
                         }
 
                         if(response.body().getResults()!=null)
                         {
                             dataset.addAll(response.body().getResults());
                         }
+
+
                         adapter.notifyDataSetChanged();
                         notifyTitleChanged();
 
                     }
 
+
+
+
+
+//                    showToastMessage("Item Count : " + String.valueOf(item_count));
                     swipeContainer.setRefreshing(false);
 
                 }
@@ -400,6 +448,10 @@ public class ServicesFragment extends Fragment implements AdapterNew.Notications
             });
 
     }
+
+
+
+
 
 
     @Override
@@ -480,110 +532,44 @@ public class ServicesFragment extends Fragment implements AdapterNew.Notications
         makeRefreshNetworkCall();
     }
 
-    @Override
-    public void notifyListItemClick(ServiceConfigurationGlobal serviceConfigurationGlobal) {
 
+
+
+
+    @Override
+    public void listItemClick(ServiceConfigurationGlobal configurationGlobal, int position) {
         showToastMessage("List item click !");
     }
 
     @Override
-    public void selectMarketClick(ServiceConfigurationGlobal serviceConfigurationGlobal) {
-
-
-
-
-//        getActivity().startService(new Intent(getApplicationContext(), UpdateServiceConfiguration.class));
-
+    public void selectMarketSuccessful(ServiceConfigurationGlobal configurationGlobal, int position) {
 
         if(getActivity() instanceof MarketSelected)
         {
             ((MarketSelected) getActivity()).marketSelected();
-//            showToastMessage("Market Selected !");
         }
+    }
 
-
-
-//        if(PrefServiceConfig.getServiceConfigLocal(this)==null && PrefGeneral.getServiceURL(this)!=null)
-//        {
-//            // get service configuration when its null ... fetches config at first install or changing service
-//            startService(new Intent(getApplicationContext(), UpdateServiceConfiguration.class));
-//        }
+    @Override
+    public void showMessage(String message) {
+        showToastMessage(message);
     }
 
 
 
 
 
+    @Override
+    public void permissionGranted() {
+
+    }
 
 
 
-
-
-//    @Override
-//    public void notifyCancelOrder(final Order order) {
-//
-//
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//
-//        builder.setTitle("Confirm Cancel Order !")
-//                .setMessage("Are you sure you want to cancel this order !")
-//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-//                        cancelOrder(order);
-//                    }
-//                })
-//                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-//                        showToastMessage(" Not Cancelled !");
-//                    }
-//                })
-//                .show();
-//    }
-
-
-//    private void cancelOrder(Order order) {
-//
-//
-////        Call<ResponseBody> call = orderService.cancelOrderByShop(order.getOrderID());
-//
-//        Call<ResponseBody> call = serviceConfigService.cancelledByEndUser(
-//                UtilityLogin.getAuthorizationHeaders(getActivity()),
-//                order.getOrderID()
-//        );
-//
-//
-//        call.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//
-//                if(response.code() == 200 )
-//                {
-//                    showToastMessage("Successful");
-//                    makeRefreshNetworkCall();
-//                }
-//                else if(response.code() == 304)
-//                {
-//                    showToastMessage("Not Cancelled !");
-//                }
-//                else
-//                {
-//                    showToastMessage("Server Error");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//                showToastMessage("Network Request Failed. Check your internet connection !");
-//            }
-//        });
-//
-//    }
-
+    @Override
+    public void locationUpdated() {
+        makeRefreshNetworkCall();
+    }
 
 
     public interface MarketSelected
@@ -599,8 +585,6 @@ public class ServicesFragment extends Fragment implements AdapterNew.Notications
     @OnClick(R.id.fab)
     void fabClick()
     {
-
-//        showToastMessage("Fab clicked !");
         showDialogSubmitURL();
     }
 

@@ -20,7 +20,7 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.ToggleFab;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SelectMarket.ServicesFragment;
+import org.nearbyshops.enduserappnew.SelectMarket.MarketsFragment;
 import org.nearbyshops.enduserappnew.SelectMarket.SubmitURLDialog;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 
@@ -76,7 +76,7 @@ public class ServicesActivity extends AppCompatActivity implements NotifySort, T
         {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container,new ServicesFragment(),TAG_FRAGMENT)
+                    .replace(R.id.fragment_container,new MarketsFragment(),TAG_FRAGMENT)
                     .commit();
         }
 

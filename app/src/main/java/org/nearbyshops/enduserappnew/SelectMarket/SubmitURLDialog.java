@@ -92,9 +92,6 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
 
 
 
-
-
-
         createMarketMessage.setOnClickListener(this);
         cancel_button.setOnClickListener(this);
         submit_button.setOnClickListener(this);

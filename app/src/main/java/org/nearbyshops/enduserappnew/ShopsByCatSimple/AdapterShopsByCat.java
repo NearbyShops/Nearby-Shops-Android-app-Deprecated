@@ -57,6 +57,8 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
 
+
+
     public AdapterShopsByCat(List<Object> dataset,
                              Context context,
                              NotificationsFromAdapter notificationReceiver,
@@ -69,6 +71,12 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.context = context;
         this.fragment = fragment;
     }
+
+
+
+
+
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -187,6 +195,11 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
         return -1;
     }
 
+
+
+
+
+
     @Override
     public int getItemCount() {
 
@@ -304,9 +317,13 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
 
+
+
+
         @OnClick(R.id.shop_info_card)
         void listItemClick()
         {
+
             if (dataset.get(getLayoutPosition()) instanceof Shop)
             {
                 Shop shop = (Shop) dataset.get(getLayoutPosition());
@@ -378,6 +395,9 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
+
+
+
 
     }// ViewHolderShopItem Class declaration ends
 

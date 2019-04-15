@@ -22,7 +22,6 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SelectMarket.ServicesFragment;
 
 import java.util.List;
 
@@ -195,9 +194,9 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             LoadingViewHolder viewHolder = (LoadingViewHolder) holderVH;
 
-            if(fragment instanceof ServicesFragment)
+            if(fragment instanceof MarketsFragment)
             {
-                int items_count = ((ServicesFragment) fragment).item_count;
+                int items_count = ((MarketsFragment) fragment).item_count;
 
                 if(dataset.size() == items_count)
                 {
