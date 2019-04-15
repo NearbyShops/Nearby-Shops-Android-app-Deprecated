@@ -16,11 +16,9 @@ import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
-import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
@@ -28,6 +26,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.LoginUsingOTPService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ServiceConfigurationService;
+import org.nearbyshops.enduserappnew.SelectMarket.MarketsFragment;
 
 import java.util.Currency;
 import java.util.List;
@@ -50,7 +49,7 @@ import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 /**
  * Created by sumeet on 13/6/16.
  */
-public class AdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class AdapterNewBackup extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private List<ServiceConfigurationGlobal> dataset = null;
     private NoticationsFromServiceAdapter notications;
@@ -71,7 +70,7 @@ public class AdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 
-    AdapterNew(List<ServiceConfigurationGlobal> dataset, NoticationsFromServiceAdapter notificationsFromAdapter, Fragment fragment) {
+    AdapterNewBackup(List<ServiceConfigurationGlobal> dataset, NoticationsFromServiceAdapter notificationsFromAdapter, Fragment fragment) {
         this.dataset = dataset;
         this.notications = notificationsFromAdapter;
         this.fragment = fragment;
@@ -205,9 +204,9 @@ public class AdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             LoadingViewHolder viewHolder = (LoadingViewHolder) holderVH;
 
-            if(fragment instanceof ServicesFragment)
+            if(fragment instanceof MarketsFragment)
             {
-                int items_count = ((ServicesFragment) fragment).item_count;
+                int items_count = ((MarketsFragment) fragment).item_count;
 
                 if(dataset.size() == items_count)
                 {

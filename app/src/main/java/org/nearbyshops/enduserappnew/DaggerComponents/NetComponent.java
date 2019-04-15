@@ -51,9 +51,11 @@ import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Pending.Pendi
 import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragmentNew;
 
 
-import org.nearbyshops.enduserappnew.SelectMarket.AdapterNew;
-import org.nearbyshops.enduserappnew.SelectMarket.ServicesFragment;
+import org.nearbyshops.enduserappnew.SelectMarket.AdapterMarkets;
+import org.nearbyshops.enduserappnew.SelectMarket.AdapterNewBackup;
+import org.nearbyshops.enduserappnew.SelectMarket.MarketsFragment;
 import org.nearbyshops.enduserappnew.SelectMarket.SubmitURLDialog;
+import org.nearbyshops.enduserappnew.SelectMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail_;
@@ -250,11 +252,16 @@ public interface NetComponent {
 
     void Inject(UpdateServiceConfiguration updateServiceConfiguration);
 
-    void Inject(ServicesFragment servicesFragment);
+    void Inject(MarketsFragment marketsFragment);
 
     void Inject(SubmitURLDialog submitURLDialog);
 
-    void Inject(AdapterNew adapterNew);
+    void Inject(AdapterMarkets adapterMarkets);
 
     void Inject(LoginGlobalFragment loginGlobalFragment);
+
+    void Inject(AdapterNewBackup adapterNewBackup);
+
+
+    void Inject(ViewHolderMarket viewHolderMarket);
 }

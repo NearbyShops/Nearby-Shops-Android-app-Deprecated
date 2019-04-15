@@ -1,9 +1,14 @@
 package org.nearbyshops.enduserappnew;
 
 
+import android.Manifest;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.ActivityCompat;
@@ -21,6 +26,7 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
 import org.nearbyshops.enduserappnew.Carts.CartsList.CartsListFragment;
+import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
@@ -31,15 +37,16 @@ import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragmentNew;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.SelectMarket.ServicesFragment;
+import org.nearbyshops.enduserappnew.SelectMarket.MarketsFragment;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.Shops.ListFragment.FragmentShopNew;
 import org.nearbyshops.enduserappnew.TabProfile.ProfileFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 
-public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutLogin ,ServicesFragment.MarketSelected{
+public class Home extends AppCompatActivity implements ShowFragment, NotifyAboutLogin, MarketsFragment.MarketSelected {
 
 
     public static final String TAG_LOGIN = "tag_login";
@@ -59,14 +66,15 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
     BottomBar bottomBar;
 
 
+
+    LocationManager locationManager;
+    LocationListener locationListener;
+
     // fragments
     ItemCategoriesFragmentSimple itemsFragment;
 
 
     boolean isFirstLaunch = true;
-
-
-
 
 
     public Home() {
@@ -75,10 +83,6 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
                 .getNetComponent()
                 .Inject(this);
     }
-
-
-
-
 
 
     @Override
@@ -91,22 +95,11 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
 
-
-
-
-
-
-        if(PrefGeneral.getMultiMarketMode(this))
-        {
+        if (PrefGeneral.getMultiMarketMode(this)) {
             bottomBar.getTabWithId(R.id.tab_profile).setTitle("Markets");
-        }
-        else
-        {
+        } else {
             bottomBar.getTabWithId(R.id.tab_profile).setTitle("Profile");
         }
-
-
-
 
 
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
@@ -174,12 +167,11 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
         checkPermissions();
 
+        fetchLocation();
 
 
-
-        if(PrefGeneral.getServiceURL(this)!=null)
-        {
-            if (PrefOneSignal.getToken(this) != null ) {
+        if (PrefGeneral.getServiceURL(this) != null) {
+            if (PrefOneSignal.getToken(this) != null) {
 
                 startService(new Intent(getApplicationContext(), UpdateOneSignalID.class));
 
@@ -188,16 +180,11 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
         }
 
 
-
-
-        if(PrefServiceConfig.getServiceConfigLocal(this)==null && PrefGeneral.getServiceURL(this)!=null)
-        {
+        if (PrefServiceConfig.getServiceConfigLocal(this) == null && PrefGeneral.getServiceURL(this) != null) {
             // get service configuration when its null ... fetches config at first install or changing service
             startService(new Intent(getApplicationContext(), UpdateServiceConfiguration.class));
         }
     }
-
-
 
 
     void showLogMessage(String message) {
@@ -205,17 +192,16 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
     }
 
 
-
-
-
     @Override
     public void loginSuccess() {
-        showProfileFragment();
-        bottomBar.selectTabWithId(R.id.tab_profile);
+
+//        showProfileFragment();
 //        bottomBar.getTabWithId(R.id.tab_profile).setTitle("Profile");
+
+
+//        bottomBar.selectTabWithId(R.id.tab_profile);
+        marketSelected();
     }
-
-
 
 
     @Override
@@ -225,8 +211,6 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 //        bottomBar.getTabWithId(R.id.tab_profile).setTitle("Markets");
         showProfileFragment();
     }
-
-
 
 
     @Override
@@ -239,11 +223,6 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
                     .commit();
         }
     }
-
-
-
-
-
 
 
     void checkPermissions() {
@@ -266,16 +245,8 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
             return;
         }
 
-    }
 
-
-
-
-
-
-    public interface PermissionGranted
-    {
-        void permissionGranted();
+//        fetchLocation();
     }
 
 
@@ -297,11 +268,18 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
 
             showToastMessage("Permission Granted !");
 
-            Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_ITEMS_FRAGMENT);
+//            Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_ITEMS_FRAGMENT);
 
-            if (fragment instanceof PermissionGranted) {
-                ((PermissionGranted) fragment).permissionGranted();
+
+            Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
+
+            if (fragment instanceof LocationUpdated) {
+                ((LocationUpdated) fragment).permissionGranted();
             }
+
+
+            fetchLocation();
 
         } else {
             // permission denied, boo! Disable the
@@ -313,346 +291,390 @@ public class Home extends AppCompatActivity implements ShowFragment,NotifyAboutL
     }
 
 
+    @Override
+    public void showProfileFragment() {
 
-
-
-
-
-        @Override
-        public void showProfileFragment ()
-        {
-
-            if(PrefGeneral.getMultiMarketMode(this))
-            {
-                // no market selected therefore show available markets in users area
-                if(getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT)==null)
-                {
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container,new ServicesFragment(),TAG_MARKET_FRAGMENT)
-                            .commit();
-
-                }
-
-            }
-            else
-            {
-                // single market mode
-
-                if (PrefLogin.getUser(getBaseContext()) == null) {
-
-
-                    showLoginFragment();
-
-                }
-                else if (getSupportFragmentManager().findFragmentByTag(TAG_PROFILE) == null) {
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, new ProfileFragment(), TAG_PROFILE)
-                            .commit();
-                }
+        if (PrefGeneral.getMultiMarketMode(this)) {
+            // no market selected therefore show available markets in users area
+            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new MarketsFragment(), TAG_MARKET_FRAGMENT)
+                        .commit();
 
             }
 
-        }
+        } else {
+            // single market mode
 
+            if (PrefLogin.getUser(getBaseContext()) == null) {
 
-
-
-
-
-
-
-        @Override
-        public void showOrdersFragment () {
-
-
-            if(PrefGeneral.getMultiMarketMode(this) && PrefGeneral.getServiceURL(this)==null)
-            {
-                // no market selected therefore show available markets in users area
-                if(getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT)==null)
-                {
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container,new ServicesFragment(),TAG_MARKET_FRAGMENT)
-                            .commit();
-
-                }
-
-            }
-            else if (PrefLogin.getUser(getBaseContext()) == null) {
 
                 showLoginFragment();
 
-                return;
-            }
-            else if (getSupportFragmentManager().findFragmentByTag(TAG_ORDERS_FRAGMENT) == null) {
-
+            } else if (getSupportFragmentManager().findFragmentByTag(TAG_PROFILE) == null) {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, new OrdersFragmentNew(), TAG_ORDERS_FRAGMENT)
+                        .replace(R.id.fragment_container, new ProfileFragment(), TAG_PROFILE)
                         .commit();
             }
+
         }
 
-
-        @Override
-        public void showCartFragment () {
+    }
 
 
-            if(PrefGeneral.getMultiMarketMode(this) && PrefGeneral.getServiceURL(this)==null)
-            {
-                // no market selected therefore show available markets in users area
-                if(getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT)==null)
-                {
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container,new ServicesFragment(),TAG_MARKET_FRAGMENT)
-                            .commit();
+    @Override
+    public void showOrdersFragment() {
 
-                }
 
-            }
-            else if (PrefLogin.getUser(getBaseContext()) == null) {
-
-                showLoginFragment();
-                return;
-
-            }
-            else if (getSupportFragmentManager().findFragmentByTag(TAG_CARTS_FRAGMENT) == null) {
-
+        if (PrefGeneral.getMultiMarketMode(this) && PrefGeneral.getServiceURL(this) == null) {
+            // no market selected therefore show available markets in users area
+            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, new CartsListFragment(), TAG_CARTS_FRAGMENT)
+                        .replace(R.id.fragment_container, new MarketsFragment(), TAG_MARKET_FRAGMENT)
+                        .commit();
+
+            }
+
+        } else if (PrefLogin.getUser(getBaseContext()) == null) {
+
+            showLoginFragment();
+
+            return;
+        } else if (getSupportFragmentManager().findFragmentByTag(TAG_ORDERS_FRAGMENT) == null) {
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new OrdersFragmentNew(), TAG_ORDERS_FRAGMENT)
+                    .commit();
+        }
+    }
+
+
+    @Override
+    public void showCartFragment() {
+
+
+        if (PrefGeneral.getMultiMarketMode(this) && PrefGeneral.getServiceURL(this) == null) {
+            // no market selected therefore show available markets in users area
+            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new MarketsFragment(), TAG_MARKET_FRAGMENT)
+                        .commit();
+
+            }
+
+        } else if (PrefLogin.getUser(getBaseContext()) == null) {
+
+            showLoginFragment();
+            return;
+
+        } else if (getSupportFragmentManager().findFragmentByTag(TAG_CARTS_FRAGMENT) == null) {
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new CartsListFragment(), TAG_CARTS_FRAGMENT)
+                    .commit();
+        }
+    }
+
+
+    @Override
+    public void showShopsFragment() {
+
+
+        if (PrefGeneral.getMultiMarketMode(this) && PrefGeneral.getServiceURL(this) == null) {
+            // no market selected therefore show available markets in users area
+            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new MarketsFragment(), TAG_MARKET_FRAGMENT)
+                        .commit();
+
+            }
+
+        } else {
+            if (getSupportFragmentManager().findFragmentByTag(TAG_SHOPS_FRAGMENT) == null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, FragmentShopNew.newInstance(false), TAG_SHOPS_FRAGMENT)
                         .commit();
             }
-        }
-
-
-
-
-
-
-
-        @Override
-        public void showShopsFragment () {
-
-
-
-            if(PrefGeneral.getMultiMarketMode(this) && PrefGeneral.getServiceURL(this)==null)
-            {
-                // no market selected therefore show available markets in users area
-                if(getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT)==null)
-                {
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container,new ServicesFragment(),TAG_MARKET_FRAGMENT)
-                            .commit();
-
-                }
-
-            }
-            else
-            {
-                if (getSupportFragmentManager().findFragmentByTag(TAG_SHOPS_FRAGMENT) == null) {
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, FragmentShopNew.newInstance(false), TAG_SHOPS_FRAGMENT)
-                            .commit();
-                }
-
-            }
 
         }
 
+    }
 
 
+    @Override
+    public void showItemsFragment() {
 
-
-        @Override
-        public void showItemsFragment () {
-
-            if(PrefGeneral.getMultiMarketMode(this)&&PrefGeneral.getServiceURL(this)==null)
-            {
-                // no market selected therefore show available markets in users area
-                if(getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT)==null)
-                {
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container,new ServicesFragment(),TAG_MARKET_FRAGMENT)
-                            .commit();
-
-                }
-
+        if (PrefGeneral.getMultiMarketMode(this) && PrefGeneral.getServiceURL(this) == null) {
+            // no market selected therefore show available markets in users area
+            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new MarketsFragment(), TAG_MARKET_FRAGMENT)
+                        .commit();
 
             }
-            else
-            {
 
-                if (getSupportFragmentManager().findFragmentByTag(TAG_ITEMS_FRAGMENT) == null) {
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, new ItemCategoriesFragmentSimple(), TAG_ITEMS_FRAGMENT)
-                            .commit();
-                }
-                else
-                {
-                    getSupportFragmentManager().popBackStack();
-                }
+
+        } else {
+
+            if (getSupportFragmentManager().findFragmentByTag(TAG_ITEMS_FRAGMENT) == null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new ItemCategoriesFragmentSimple(), TAG_ITEMS_FRAGMENT)
+                        .commit();
+            } else {
+                getSupportFragmentManager().popBackStack();
             }
         }
+    }
 
 
+    void showToastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 
 
+    boolean isDestroyed = false;
 
-        void showToastMessage (String message)
-        {
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+    @Override
+    public void onBackPressed() {
+
+        Fragment fragment = getSupportFragmentManager()
+                .findFragmentByTag(TAG_ITEMS_FRAGMENT);
+
+
+        if (fragment == null) {
+            fragment = getSupportFragmentManager()
+                    .findFragmentByTag(TAG_SHOPS_FRAGMENT);
         }
 
+        //notifyBackPressed !=null
 
-        boolean isDestroyed = false;
-
-
-        @Override
-        public void onBackPressed () {
-
-            Fragment fragment = getSupportFragmentManager()
-                    .findFragmentByTag(TAG_ITEMS_FRAGMENT);
-
-
-            if (fragment == null) {
-                fragment = getSupportFragmentManager()
-                        .findFragmentByTag(TAG_SHOPS_FRAGMENT);
-            }
-
-            //notifyBackPressed !=null
-
-            if (fragment instanceof NotifyBackPressed) {
+        if (fragment instanceof NotifyBackPressed) {
 //            showLogMessage("Fragment Instanceof NotifyBackPressed !");
 
-                if (((NotifyBackPressed) fragment).backPressed()) {
-                    super.onBackPressed();
-                }
-            } else {
+            if (((NotifyBackPressed) fragment).backPressed()) {
                 super.onBackPressed();
             }
+        } else {
+            super.onBackPressed();
         }
+    }
 
 
-        @Override
-        public boolean onCreateOptionsMenu (Menu menu){
-            super.onCreateOptionsMenu(menu);
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.menu_items_by_cat_simple, menu);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_items_by_cat_simple, menu);
 
 
-            // Associate searchable configuration with the SearchView
-            SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-            SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        // Associate searchable configuration with the SearchView
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
 
-            MenuItem item = menu.findItem(R.id.action_search);
+        MenuItem item = menu.findItem(R.id.action_search);
 
-            item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-                @Override
-                public boolean onMenuItemActionExpand(MenuItem item) {
+        item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
 
-                    return true;
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+
+                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
+                if (fragment instanceof NotifySearch) {
+                    ((NotifySearch) fragment).endSearchMode();
                 }
-
-                @Override
-                public boolean onMenuItemActionCollapse(MenuItem item) {
-
-                    Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-
-                    if (fragment instanceof NotifySearch) {
-                        ((NotifySearch) fragment).endSearchMode();
-                    }
 
 //                Toast.makeText(Home.this, "onCollapsed Called ", Toast.LENGTH_SHORT).show();
 
-                    return true;
-                }
-            });
+                return true;
+            }
+        });
 
 
-            return true;
-        }
+        return true;
+    }
 
 
-        void showToast (String message)
-        {
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        }
+    void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 
 
-        @Override
-        protected void onNewIntent (Intent intent){
-            super.onNewIntent(intent);
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
 
-            handleIntent(intent);
-        }
-
-
+        handleIntent(intent);
+    }
 
 
-        private void handleIntent (Intent intent){
+    private void handleIntent(Intent intent) {
 
-            if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-                String query = intent.getStringExtra(SearchManager.QUERY);
-                //use the query to search your data somehow
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //use the query to search your data somehow
 
 //            Toast.makeText(this,query,Toast.LENGTH_SHORT).show();
 
 
-                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+            Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
 
-                if (fragment instanceof NotifySearch) {
-                    ((NotifySearch) fragment).search(query);
-                }
+            if (fragment instanceof NotifySearch) {
+                ((NotifySearch) fragment).search(query);
             }
         }
+    }
 
 
-
-
-
-
-
-        @Override
-        public void marketSelected() {
+    @Override
+    public void marketSelected() {
 
 //            bottomBar.selectTabWithId(R.id.tab_items);
 //            bottomBar.selectTabAtPosition(bottomBar.getCurrentTabPosition());
 //            showItemsFragment();
 
-            int tabId = bottomBar.getCurrentTabId();
+        int tabId = bottomBar.getCurrentTabId();
 
 
-            if (tabId == R.id.tab_items) {
-                showItemsFragment();
-            } else if (tabId == R.id.tab_shops) {
+        if (tabId == R.id.tab_items) {
+            showItemsFragment();
+        } else if (tabId == R.id.tab_shops) {
 
-                showShopsFragment();
-            } else if (tabId == R.id.tab_cart) {
+            showShopsFragment();
+        } else if (tabId == R.id.tab_cart) {
 
-                showCartFragment();
-            } else if (tabId == R.id.tab_orders) {
+            showCartFragment();
+        } else if (tabId == R.id.tab_orders) {
 
-                showOrdersFragment();
-            } else if (tabId == R.id.tab_profile) {
+            showOrdersFragment();
+        } else if (tabId == R.id.tab_profile) {
 
 //                showProfileFragment();
 //                showItemsFragment();
-                bottomBar.selectTabWithId(R.id.tab_items);
-
-            }
+            bottomBar.selectTabWithId(R.id.tab_items);
 
         }
+
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopLocationUpdates();
+    }
+
+
+
+
+
+
+    void fetchLocation() {
+
+        // Acquire a reference to the system Location Manager
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        // Define a listener that responds to location updates
+        locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                // Called when a new location is found by the network location provider.
+
+                saveLocation(location);
+                stopLocationUpdates();
+            }
+
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+            }
+
+            public void onProviderEnabled(String provider) {
+            }
+
+            public void onProviderDisabled(String provider) {
+            }
+        };
+
+
+            // Register the listener with the Location Manager to receive location updates
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+
+
+            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+
+
+            if(location==null)
+            {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 100, locationListener);
+            }
+            else
+            {
+                saveLocation(location);
+            }
+
+    }
+
+
+
+
+    void saveLocation(Location location)
+    {
+        PrefLocation.saveLatitude((float) location.getLatitude(), Home.this);
+        PrefLocation.saveLongitude((float) location.getLongitude(), Home.this);
+
+
+
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
+        if (fragment instanceof LocationUpdated) {
+            ((LocationUpdated) fragment).permissionGranted();
+        }
+    }
+
+
+
+    protected void stopLocationUpdates() {
+
+
+
+//        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        if(locationManager!=null && locationListener!=null)
+        {
+            locationManager.removeUpdates(locationListener);
+        }
+
+//        stopSelf();
+    }
+
+
 
 
 }

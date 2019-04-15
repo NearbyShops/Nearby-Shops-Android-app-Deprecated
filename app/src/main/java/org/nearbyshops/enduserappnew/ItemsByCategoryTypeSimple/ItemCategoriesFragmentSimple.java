@@ -40,6 +40,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EventBus.LocationPermissionGranted;
 import org.nearbyshops.enduserappnew.FilterItemsBySpecifications.FilterItemsActivity;
 import org.nearbyshops.enduserappnew.Home;
+import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
@@ -56,7 +57,7 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
-import org.nearbyshops.enduserappnew.SelectMarket.ServicesFragment;
+import org.nearbyshops.enduserappnew.SelectMarket.MarketsFragment;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.UtilitySortItemsByCategory;
 
@@ -86,7 +87,7 @@ import static org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCatego
 
 
 public class ItemCategoriesFragmentSimple extends Fragment implements
-        Home.PermissionGranted,
+        LocationUpdated,
         SwipeRefreshLayout.OnRefreshListener,
         AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort,NotifySearch {
 
@@ -231,7 +232,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
             {
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container,new ServicesFragment(),TAG_MARKET_FRAGMENT)
+                        .replace(R.id.fragment_container,new MarketsFragment(),TAG_MARKET_FRAGMENT)
                         .commit();
             }
 
@@ -1268,15 +1269,22 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
+
+
+
     @Override
     public void permissionGranted() {
-
 //        showToastMessage("Granted interface !");
-        requestLocationUpdates();
+//        requestLocationUpdates();
     }
 
 
 
+
+    @Override
+    public void locationUpdated() {
+        makeRefreshNetworkCall();
+    }
 
 
 
