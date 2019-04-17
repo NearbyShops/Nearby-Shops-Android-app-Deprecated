@@ -3,6 +3,7 @@ package org.nearbyshops.enduserappnew.DaggerModules;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -112,6 +113,8 @@ public class NetModule {
 
 
 
+
+
     @Provides
     Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
 
@@ -129,9 +132,17 @@ public class NetModule {
         }
         else
         {
-            return null;
+            // a dummy method place here only to prevent returning null
+            return new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl("http://example.com")
+                    .client(okHttpClient)
+                    .build();
         }
     }
+
+
+
 
 
 

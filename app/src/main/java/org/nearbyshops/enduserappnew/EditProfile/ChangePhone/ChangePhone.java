@@ -23,6 +23,7 @@ public class ChangePhone extends AppCompatActivity implements ShowFragmentChange
 
     SmsVerifyCatcher smsVerifyCatcher;
 
+    public static final String TAG_IS_GLOBAL_PROFILE = "is_global_profile";
 
 
     @Override

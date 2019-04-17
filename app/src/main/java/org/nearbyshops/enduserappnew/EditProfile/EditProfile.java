@@ -22,6 +22,7 @@ public class EditProfile extends AppCompatActivity implements NotifyChangePasswo
 //    @BindView(R.id.appbar) AppBarLayout appBar;
 
 
+    public static final String TAG_IS_GLOBAL_PROFILE = "is_global_profile";
 
 
     @Override
@@ -33,6 +34,9 @@ public class EditProfile extends AppCompatActivity implements NotifyChangePasswo
 
 
 
+        boolean isGlobalProfile = getIntent().getBooleanExtra(TAG_IS_GLOBAL_PROFILE,false);
+
+
 
 //        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
         setContentView(R.layout.activity_edit_profile_driver);
@@ -41,15 +45,38 @@ public class EditProfile extends AppCompatActivity implements NotifyChangePasswo
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 //
         if(getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT_EDIT)==null)
         {
+
+
+//            if(isGlobalProfile)
+//            {
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .add(R.id.fragment_container,new FragmentEditProfileGlobal(),TAG_FRAGMENT_EDIT)
+//                        .commit();
+//
+//            }
+//            else
+//            {
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .add(R.id.fragment_container,new FragmentEditProfile(),TAG_FRAGMENT_EDIT)
+//                        .commit();
+//            }
+
+
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragment_container,new FragmentEditProfile(),TAG_FRAGMENT_EDIT)
+                    .add(R.id.fragment_container,new FragmentEditProfileGlobal(),TAG_FRAGMENT_EDIT)
                     .commit();
         }
     }
+
+
 
 
     @Override

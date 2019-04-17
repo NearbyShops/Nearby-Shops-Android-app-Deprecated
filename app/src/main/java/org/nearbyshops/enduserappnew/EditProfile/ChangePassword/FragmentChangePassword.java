@@ -13,21 +13,31 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
+import com.google.gson.Gson;
+
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by sumeet on 15/4/17.
@@ -47,6 +57,10 @@ public class FragmentChangePassword extends Fragment {
 
     /* Token renewal variables : END */
 
+
+
+    @Inject
+    Gson gson;
 
 
 
@@ -142,12 +156,30 @@ public class FragmentChangePassword extends Fragment {
 
 
 
-        if(!password.getText().toString().equals(PrefLogin.getPassword(getContext())))
+
+        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
+
+        if(isGlobalProfile)
         {
-            password.requestFocus();
-            password.setError("Wrong Password !");
-            isValid = false;
+            if(!password.getText().toString().equals(PrefLoginGlobal.getPassword(getContext())))
+            {
+                password.requestFocus();
+                password.setError("Wrong Password !");
+                isValid = false;
+            }
+
         }
+        else
+        {
+            if(!password.getText().toString().equals(PrefLogin.getPassword(getContext())))
+            {
+                password.requestFocus();
+                password.setError("Wrong Password !");
+                isValid = false;
+            }
+        }
+
+
 
 
         if(password.getText().toString().length()==0)
@@ -195,8 +227,41 @@ public class FragmentChangePassword extends Fragment {
 
         progressBar.setVisibility(View.VISIBLE);
 
-        Call<ResponseBody> call  = userService.changePassword(
-                PrefLogin.getAuthorizationHeaders(getContext()),user,password.getText().toString());
+
+        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
+
+        Call<ResponseBody> call;
+
+
+        if(isGlobalProfile)
+        {
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+            call = retrofit.create(UserServiceGlobal.class).changePassword(
+                    PrefLoginGlobal.getAuthorizationHeaders(getContext()),
+                    user,password.getText().toString()
+            );
+
+
+        }
+        else
+        {
+            call  = userService.changePassword(
+                    PrefLogin.getAuthorizationHeaders(getContext()),
+                    user,password.getText().toString()
+            );
+
+        }
+
+
+
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -215,7 +280,18 @@ public class FragmentChangePassword extends Fragment {
                     // update the new password so the tokens can be renewed without error
 //                    UtilityLoginOld.saveCredentials(getContext(),UtilityLoginOld.getUsername(getContext()),passwordNew.getText().toString());
 
-                    PrefLogin.savePassword(getActivity(),passwordNew.getText().toString());
+                    if(isGlobalProfile)
+                    {
+
+                        PrefLoginGlobal.savePassword(getActivity(),passwordNew.getText().toString());
+                    }
+                    else
+                    {
+                        PrefLogin.savePassword(getActivity(),passwordNew.getText().toString());
+                    }
+
+
+
 
                 }
                 else if(response.code()==304)

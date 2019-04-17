@@ -16,10 +16,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.gson.Gson;
+
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 
 import javax.inject.Inject;
 
@@ -27,10 +33,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by sumeet on 27/6/17.
@@ -63,6 +72,16 @@ public class FragmentChangePhone extends Fragment {
 
     @Inject
     UserService userService;
+
+
+    @Inject
+    Gson gson;
+
+
+    boolean isDestroyed = false;
+
+
+
 
 
 
@@ -216,10 +235,33 @@ public class FragmentChangePhone extends Fragment {
 
         public void onFinish() {
 
+            if(isDestroyed)
+            {
+                return;
+            }
+
            checkUsernameExist();
         }
     };
 
+
+
+
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isDestroyed = true;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        isDestroyed = false;
+    }
 
 
 
@@ -233,7 +275,30 @@ public class FragmentChangePhone extends Fragment {
 
 
 
-        Call<ResponseBody> call = userService.checkUsernameExists(inputName);
+        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
+
+        Call<ResponseBody> call;
+
+        if(isGlobalProfile)
+        {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+            call = retrofit.create(UserServiceGlobal.class).checkUsernameExists(inputName);
+
+        }
+        else
+        {
+            call = userService.checkUsernameExists(inputName);
+        }
+
+
+
 
 
         progressBar.setVisibility(View.VISIBLE);
@@ -372,9 +437,35 @@ public class FragmentChangePhone extends Fragment {
         progressBarButton.setVisibility(View.VISIBLE);
         nextButton.setVisibility(View.INVISIBLE);
 
-        Call<ResponseBody> call = userService.sendVerificationPhone(
-                user.getPhone()
-        );
+
+
+
+        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
+
+        Call<ResponseBody> call;
+
+        if(isGlobalProfile) {
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            call = retrofit.create(UserServiceGlobal.class).sendVerificationPhone(
+                        user.getPhone()
+                    );
+
+        }
+        else
+        {
+            call = userService.sendVerificationPhone(
+                    user.getPhone()
+            );
+        }
+
+
 
 
         call.enqueue(new Callback<ResponseBody>() {

@@ -206,7 +206,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_market_detail, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_shop_detail, container, false);
         ButterKnife.bind(this,rootView);
 
 
