@@ -100,7 +100,7 @@ public class OrderHome extends AppCompatActivity {
     {
         shop = PrefShopHome.getShop(this);
         Intent intent = new Intent(this, ShopDetail.class);
-//        intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
+//        intent.putExtra(MarketDetail.SHOP_DETAIL_INTENT_KEY,shop);
 
 
 

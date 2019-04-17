@@ -280,8 +280,8 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //        @OnClick(R.id.shop_logo)
         void shopLogoClick()
         {
-//            Intent intent = new Intent(context, ShopDetail.class);
-//            intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
+//            Intent intent = new Intent(context, MarketDetail.class);
+//            intent.putExtra(MarketDetail.SHOP_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
 //            context.startActivity(intent);
         }
 

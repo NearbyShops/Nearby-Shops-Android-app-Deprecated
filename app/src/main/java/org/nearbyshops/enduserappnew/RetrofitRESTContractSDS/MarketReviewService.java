@@ -2,6 +2,8 @@ package org.nearbyshops.enduserappnew.RetrofitRESTContractSDS;
 
 import org.nearbyshops.enduserappnew.ModelReviewItem.ItemReview;
 import org.nearbyshops.enduserappnew.ModelReviewItem.ItemReviewEndPoint;
+import org.nearbyshops.enduserappnew.ModelReviewMarket.MarketReview;
+import org.nearbyshops.enduserappnew.ModelReviewMarket.MarketReviewEndPoint;
 
 import java.util.List;
 
@@ -19,10 +21,11 @@ import retrofit2.http.Query;
  * Created by sumeet on 2/4/16.
  */
 
-public interface ItemReviewService {
+public interface MarketReviewService {
 
-    @GET("/api/v1/ItemReview")
-    Call<ItemReviewEndPoint> getReviews(
+
+    @GET("/api/v1/MarketReview")
+    Call<MarketReviewEndPoint> getReviews(
             @Query("ItemID") Integer itemID,
             @Query("EndUserID") Integer endUserID,
             @Query("GetEndUser") Boolean getEndUser,
@@ -32,19 +35,20 @@ public interface ItemReviewService {
     );
 
 
-    @GET("/api/v1/ItemReview/{id}")
-    Call<ItemReview> getItemReview(@Path("id") int itemReviewID);
+    @GET("/api/v1/MarketReview/{id}")
+    Call<MarketReview> getItemReview(@Path("id") int itemReviewID);
 
-    @POST("/api/v1/ItemReview")
-    Call<ItemReview> insertItemReview(@Body ItemReview book);
 
-    @PUT("/api/v1/ItemReview/{id}")
-    Call<ResponseBody> updateItemReview(@Body ItemReview itemReview, @Path("id") int id);
+    @POST("/api/v1/MarketReview")
+    Call<MarketReview> insertItemReview(@Body MarketReview book);
 
-    @PUT("/api/v1/ItemReview/")
-    Call<ResponseBody> updateItemReviewBulk(@Body List<ItemReview> itemReviewList);
+    @PUT("/api/v1/MarketReview/{id}")
+    Call<ResponseBody> updateItemReview(@Body MarketReview itemReview, @Path("id") int id);
 
-    @DELETE("/api/v1/ItemReview/{id}")
+    @PUT("/api/v1/MarketReview/")
+    Call<ResponseBody> updateItemReviewBulk(@Body List<MarketReview> itemReviewList);
+
+    @DELETE("/api/v1/MarketReview/{id}")
     Call<ResponseBody> deleteItemReview(@Path("id") int id);
 
 }

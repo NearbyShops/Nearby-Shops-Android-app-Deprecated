@@ -36,6 +36,8 @@
     <string name="date_of_publish">"Date of Publish : "</string>
     <string name="rating_not_available">Rating : N/A</string>
     <string name="not_yet_rated">Not Yet Rated !</string>
+
+    <string name="market_review_be_the_first_to_review">"Be the first to review and rate this Market. "</string>
     <string name="shop_review_be_the_first_to_review">"Be the first to review and rate this Shop. "</string>
     <string name="item_review_be_the_first_to_review">"Be the first to review and rate this Item. "</string>
 

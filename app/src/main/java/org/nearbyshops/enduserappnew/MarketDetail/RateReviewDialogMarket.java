@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ShopDetail;
+package org.nearbyshops.enduserappnew.MarketDetail;
 
 import android.app.Dialog;
 import android.graphics.drawable.Drawable;
@@ -17,30 +17,33 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.hsalf.smilerating.SmileRating;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
+import org.nearbyshops.enduserappnew.ModelReviewMarket.MarketReview;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.MarketReviewService;
+import org.nearbyshops.enduserappnew.ShopDetail.NotifyReviewUpdate;
 
 import java.text.SimpleDateFormat;
 
 import javax.inject.Inject;
 
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
@@ -51,7 +54,7 @@ import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
 
 
-public class RateReviewDialog extends DialogFragment {
+public class RateReviewDialogMarket extends DialogFragment {
 
 
     @BindView(R.id.dialog_dismiss_icon)
@@ -92,23 +95,28 @@ public class RateReviewDialog extends DialogFragment {
     int book_id;
 
 
-    ShopReview review_for_edit;
+    MarketReview review_for_edit;
     boolean isModeEdit = false;
 
 
-    @Inject
-    ShopReviewService bookReviewService;
+
+    @Inject Gson gson;
+
+
+
+
 
 
 //    @Inject
 //    UserService endUserService;
 
 
-    public RateReviewDialog() {
+    public RateReviewDialogMarket() {
         super();
 
         DaggerComponentBuilder.getInstance()
-                .getNetComponent().Inject(this);
+                .getNetComponent()
+                .Inject(this);
     }
 
 
@@ -148,7 +156,7 @@ public class RateReviewDialog extends DialogFragment {
 
 
 
-            String imagepath = PrefGeneral.getServiceURL(getApplicationContext()) + "/api/v1/User/Image/five_hundred_"
+            String imagepath = PrefServiceConfig.getServiceURL_SDS(getApplicationContext()) + "/api/v1/User/Image/five_hundred_"
                     + review_for_edit.getRt_end_user_profile().getProfileImagePath() + ".jpg";
 
 
@@ -265,7 +273,7 @@ public class RateReviewDialog extends DialogFragment {
     }
 
 
-    public void setMode(ShopReview reviewForUpdate,boolean isModeEdit, int book_id)
+    public void setMode(MarketReview reviewForUpdate,boolean isModeEdit, int book_id)
     {
 
         this.book_id = book_id;
@@ -282,7 +290,7 @@ public class RateReviewDialog extends DialogFragment {
     void setMember()
     {
 
-        User endUser = PrefLogin.getUser(getActivity());
+        User endUser = PrefLoginGlobal.getUser(getActivity());
 
 
         if(endUser!=null)
@@ -296,7 +304,7 @@ public class RateReviewDialog extends DialogFragment {
 
 
 
-            String imagepath = PrefGeneral.getServiceURL(getApplicationContext()) + "/api/v1/User/Image/five_hundred_"
+            String imagepath = PrefServiceConfig.getServiceURL_SDS(getApplicationContext()) + "/api/v1/User/Image/five_hundred_"
                     + endUser.getProfileImagePath() + ".jpg";
 
 
@@ -345,7 +353,17 @@ public class RateReviewDialog extends DialogFragment {
         {
             // delete the review
 
-            Call<ResponseBody> call = bookReviewService.deleteShopReview(review_for_edit.getShopReviewID());
+
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(getActivity()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+            Call<ResponseBody> call = retrofit.create(MarketReviewService.class).deleteItemReview(review_for_edit.getItemReviewID());
 
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
@@ -382,19 +400,33 @@ public class RateReviewDialog extends DialogFragment {
 
     void submitReview()
     {
-        ShopReview bookReview = new ShopReview();
+        MarketReview bookReview = new MarketReview();
 //        bookReview.setReviewDate(new java.sql.Date(System.currentTimeMillis()));
         bookReview.setRating((int) smileRating.getRating());
         bookReview.setReviewTitle(review_title.getText().toString());
         bookReview.setReviewText(review_text.getText().toString());
-        bookReview.setShopID(book_id);
-        bookReview.setEndUserID(PrefLogin.getUser(getActivity()).getUserID());
+        bookReview.setItemID(book_id);
+        bookReview.setEndUserID(PrefLoginGlobal.getUser(getActivity()).getUserID());
 
-        Call<ShopReview> call = bookReviewService.insertShopReview(bookReview);
 
-        call.enqueue(new Callback<ShopReview>() {
+
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(PrefServiceConfig.getServiceURL_SDS(getActivity()))
+                .client(new OkHttpClient().newBuilder().build())
+                .build();
+
+
+
+
+        Call<MarketReview> call = retrofit.create(MarketReviewService.class).insertItemReview(bookReview);
+
+
+        call.enqueue(new Callback<MarketReview>() {
             @Override
-            public void onResponse(Call<ShopReview> call, Response<ShopReview> response) {
+            public void onResponse(Call<MarketReview> call, Response<MarketReview> response) {
 
                 if(response.code()==201)
                 {
@@ -411,13 +443,14 @@ public class RateReviewDialog extends DialogFragment {
             }
 
             @Override
-            public void onFailure(Call<ShopReview> call, Throwable t) {
-
+            public void onFailure(Call<MarketReview> call, Throwable t) {
 
                 showToastMessage("Failed !");
-
             }
         });
+
+
+
     }
 
 
@@ -440,7 +473,23 @@ public class RateReviewDialog extends DialogFragment {
 
 //            review_for_edit.setReviewDate(new java.sql.Date(date));
 
-            Call<ResponseBody> call = bookReviewService.updateShopReview(review_for_edit,review_for_edit.getShopReviewID());
+
+
+
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(getActivity()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+            Call<ResponseBody> call = retrofit.create(MarketReviewService.class).updateItemReview(
+                    review_for_edit,review_for_edit.getItemReviewID()
+            );
+
+
 
             call.enqueue(new Callback<ResponseBody>() {
                 @Override

@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.SelectMarket;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +21,8 @@ import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
+import org.nearbyshops.enduserappnew.MarketDetail.MarketDetail;
+import org.nearbyshops.enduserappnew.MarketDetail.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
@@ -28,6 +31,7 @@ import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.ServiceConfigService;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
@@ -538,7 +542,17 @@ public class MarketsFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     @Override
     public void listItemClick(ServiceConfigurationGlobal configurationGlobal, int position) {
-        showToastMessage("List item click !");
+
+
+        //        showToastMessage("List item click !");
+        //        showToastMessage(json);
+
+
+        String json = UtilityFunctions.provideGson().toJson(configurationGlobal);
+        Intent intent = new Intent(getActivity(), MarketDetail.class);
+        intent.putExtra(MarketDetailFragment.TAG_JSON_STRING,json);
+        startActivity(intent);
+
     }
 
     @Override

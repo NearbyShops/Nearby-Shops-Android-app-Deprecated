@@ -44,6 +44,8 @@ import org.nearbyshops.enduserappnew.Login.LoginUsingOTPFragment;
 import org.nearbyshops.enduserappnew.Login.ServiceIndicatorFragment;
 import org.nearbyshops.enduserappnew.LoginUsingOTP.InsertPhoneFragment;
 import org.nearbyshops.enduserappnew.LoginUsingOTP.WelcomeFragment;
+import org.nearbyshops.enduserappnew.MarketDetail.MarketDetailFragment;
+import org.nearbyshops.enduserappnew.MarketDetail.RateReviewDialogMarket;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.OrderDetail.FragmentOrderDetail;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Complete.CompleteOrdersFragment;
@@ -262,6 +264,9 @@ public interface NetComponent {
 
     void Inject(AdapterNewBackup adapterNewBackup);
 
-
     void Inject(ViewHolderMarket viewHolderMarket);
+
+    void Inject(MarketDetailFragment marketDetailFragment);
+
+    void Inject(RateReviewDialogMarket rateReviewDialogMarket);
 }

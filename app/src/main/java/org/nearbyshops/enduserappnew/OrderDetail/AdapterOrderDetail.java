@@ -195,7 +195,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
                 Intent intent = new Intent(context, ShopDetail.class);
-//                intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
+//                intent.putExtra(MarketDetail.SHOP_DETAIL_INTENT_KEY,shop);
 
 
                 String shopJson = UtilityFunctions.provideGson().toJson(shop);

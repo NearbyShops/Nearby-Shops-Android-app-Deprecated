@@ -246,7 +246,7 @@ public class ShopHome extends AppCompatActivity {
     void shopCardClick()
     {
             Intent intent = new Intent(this, ShopDetail.class);
-//            intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
+//            intent.putExtra(MarketDetail.SHOP_DETAIL_INTENT_KEY,shop);
 
 
             String jsonString = UtilityFunctions.provideGson().toJson(shop);

@@ -3,7 +3,6 @@
 <LinearLayout
     android:layout_margin="5dp"
     android:padding="0dp"
-    android:background="@color/phonographyBlue"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -12,7 +11,9 @@
 
 
 
+
     <TextView
+        android:background="@color/phonographyBlue"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:paddingBottom="10dp"
@@ -22,12 +23,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:padding="0dp"
         android:background="@color/mapbox_blue"
         android:orientation="horizontal"

@@ -157,6 +157,35 @@ public class ServiceConfigurationGlobal {
     // real time variables : the values of these variables are generated in real time.
     private Double rt_distance;
 
+    private float rt_rating_avg;
+    private float rt_rating_count;
+
+
+
+
+
+
+
+
+
+    // getter and setters
+
+
+    public float getRt_rating_avg() {
+        return rt_rating_avg;
+    }
+
+    public void setRt_rating_avg(float rt_rating_avg) {
+        this.rt_rating_avg = rt_rating_avg;
+    }
+
+    public float getRt_rating_count() {
+        return rt_rating_count;
+    }
+
+    public void setRt_rating_count(float rt_rating_count) {
+        this.rt_rating_count = rt_rating_count;
+    }
 
     public String getDescriptionShort() {
         return descriptionShort;

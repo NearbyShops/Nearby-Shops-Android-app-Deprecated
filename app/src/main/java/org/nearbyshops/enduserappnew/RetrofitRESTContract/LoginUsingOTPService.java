@@ -47,6 +47,7 @@ public interface LoginUsingOTPService {
             @Header("Authorization")String headerParam,
             @Query("ServiceURLSDS")String serviceURLForSDS,
             @Query("MarketID")int marketID
+
     );
 
 
@@ -59,7 +60,8 @@ public interface LoginUsingOTPService {
             @Header("Authorization")String headerParam,
             @Query("ServiceURLSDS")String serviceURLForSDS,
             @Query("MarketID")int marketID,
-            @Query("GetServiceConfiguration")boolean getServiceConfig
+            @Query("GetServiceConfiguration")boolean getServiceConfig,
+            @Query("GetUserProfileGlobal")boolean getUserProfileGlobal
     );
 
 

@@ -497,7 +497,7 @@ public class LoginGlobalFragment extends Fragment {
         Call<User> call = retrofit.create(LoginUsingOTPService.class).loginWithGlobalCredentials(
                 PrefLogin.baseEncoding(phoneWithCode,password.getText().toString()),
                 PrefServiceConfig.getServiceURL_SDS(getActivity()),
-                123
+                123,false,true
         );
 
 
@@ -570,10 +570,14 @@ public class LoginGlobalFragment extends Fragment {
 
 
 
+
+
+
                     if(PrefLoginGlobal.getUser(getActivity())==null)
                     {
+
                         PrefLoginGlobal.saveUserProfile(
-                                response.body(),
+                                response.body().getUserProfileGlobal(),
                                 getActivity()
                         );
                     }

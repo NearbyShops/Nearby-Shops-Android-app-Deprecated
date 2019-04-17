@@ -194,7 +194,7 @@ public class AdapterShop extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 case R.id.shopImage:
 
                     Intent intent = new Intent(context, ShopDetail.class);
-//                    intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
+//                    intent.putExtra(MarketDetail.SHOP_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
 
                     context.startActivity(intent);
 
