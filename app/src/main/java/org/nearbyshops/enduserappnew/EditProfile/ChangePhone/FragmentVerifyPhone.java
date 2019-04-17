@@ -22,10 +22,14 @@ import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 
 import javax.inject.Inject;
 
@@ -33,10 +37,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by sumeet on 27/6/17.
@@ -80,6 +87,10 @@ public class FragmentVerifyPhone extends Fragment {
     UserService userService;
 
     User user;
+
+
+
+    @Inject Gson gson;
 
 
 //    boolean verificationCodeValid = false; // flag to keep record of verification code
@@ -256,9 +267,34 @@ public class FragmentVerifyPhone extends Fragment {
         textAvailable.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
-        Call<ResponseBody> call = userService.checkPhoneVerificationCode(
-            user.getPhone(),verificationCode.getText().toString()
-        );
+
+        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
+
+        Call<ResponseBody> call;
+
+        if(isGlobalProfile) {
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+            call = retrofit.create(UserServiceGlobal.class).checkPhoneVerificationCode(
+                    user.getPhone(),verificationCode.getText().toString()
+            );
+
+        }
+        else
+        {
+
+            call = userService.checkPhoneVerificationCode(
+                    user.getPhone(),verificationCode.getText().toString()
+            );
+        }
+
+
+
 
 
         call.enqueue(new Callback<ResponseBody>() {
@@ -347,13 +383,50 @@ public class FragmentVerifyPhone extends Fragment {
 
 
 
-            user.setPassword(PrefLogin.getPassword(getActivity()));
 
 
 
-            Call<ResponseBody> call = userService.updatePhone(PrefLogin.getAuthorizationHeaders(getActivity()) ,
-                    user
-            );
+
+
+
+
+
+
+
+            boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
+
+            Call<ResponseBody> call;
+
+            if(isGlobalProfile) {
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                        .client(new OkHttpClient().newBuilder().build())
+                        .build();
+
+                user.setPassword(PrefLoginGlobal.getPassword(getActivity()));
+
+                call = retrofit.create(UserServiceGlobal.class).updatePhone(
+                        PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                        user
+                );
+
+
+            }
+            else
+            {
+                user.setPassword(PrefLogin.getPassword(getActivity()));
+
+
+
+                call = userService.updatePhone(
+                        PrefLogin.getAuthorizationHeaders(getActivity()) ,
+                        user
+                );
+            }
+
+
 
 
             call.enqueue(new Callback<ResponseBody>() {
@@ -363,10 +436,25 @@ public class FragmentVerifyPhone extends Fragment {
                     if(response.code()==200)
                     {
 
-                        User userDetails = PrefLogin.getUser(getActivity());
-                        userDetails.setPhone(user.getPhone());
-                        PrefLogin.saveUserProfile(userDetails,getActivity());
-                        PrefLogin.saveUsername(getContext(),user.getPhone());
+
+
+
+                        if(isGlobalProfile)
+                        {
+                            User userDetails = PrefLoginGlobal.getUser(getActivity());
+                            userDetails.setPhone(user.getPhone());
+                            PrefLoginGlobal.saveUserProfile(userDetails,getActivity());
+                            PrefLoginGlobal.saveUsername(getActivity(),user.getPhone());
+                        }
+                        else
+                        {
+                            User userDetails = PrefLogin.getUser(getActivity());
+                            userDetails.setPhone(user.getPhone());
+                            PrefLogin.saveUserProfile(userDetails,getActivity());
+                            PrefLogin.saveUsername(getActivity(),user.getPhone());
+                        }
+
+
 
 
                         if(getActivity() instanceof ShowFragmentChangePhone)
@@ -421,7 +509,33 @@ public class FragmentVerifyPhone extends Fragment {
         messageResend.setText("Sending verification code ... ");
 
 
-        Call<ResponseBody> call = userService.sendVerificationPhone(user.getPhone());
+
+        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
+
+        Call<ResponseBody> call;
+
+
+        if(isGlobalProfile) {
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            call = retrofit.create(UserServiceGlobal.class).sendVerificationPhone(
+                    user.getPhone()
+            );
+
+        }
+        else
+        {
+            call = userService.sendVerificationPhone(user.getPhone());
+        }
+
+
+
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override

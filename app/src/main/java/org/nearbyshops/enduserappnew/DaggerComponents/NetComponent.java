@@ -20,6 +20,7 @@ import org.nearbyshops.enduserappnew.EditProfile.ChangePassword.FragmentChangePa
 import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.FragmentChangePhone;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.FragmentVerifyPhone;
 import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
+import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfileGlobal;
 import org.nearbyshops.enduserappnew.FilterItemsBySpecifications.FilterItemsFragment;
 import org.nearbyshops.enduserappnew.FilterShopDialog.FilterShopsDialog;
 import org.nearbyshops.enduserappnew.Home;
@@ -269,4 +270,6 @@ public interface NetComponent {
     void Inject(MarketDetailFragment marketDetailFragment);
 
     void Inject(RateReviewDialogMarket rateReviewDialogMarket);
+
+    void Inject(FragmentEditProfileGlobal fragmentEditProfileGlobal);
 }

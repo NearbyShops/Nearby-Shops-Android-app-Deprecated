@@ -26,10 +26,10 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
-
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.ChangeEmail;
@@ -39,10 +39,14 @@ import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.PrefChangePhone;
 import org.nearbyshops.enduserappnew.EditProfile.Interfaces.NotifyChangePassword;
 import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -57,16 +61,21 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.app.Activity.RESULT_OK;
+import static org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile.GONE;
+import static org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile.VISIBLE;
 
 
-public class FragmentEditProfile extends Fragment {
+public class FragmentEditProfileGlobal extends Fragment {
 
 
 
@@ -138,30 +147,33 @@ public class FragmentEditProfile extends Fragment {
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
+
 //    @BindView(R.id.label_verify_email) TextView messageEmailVerified;
-    @BindView(R.id.label_change_password)
-TextView messageChangePassword;
-    @BindView(R.id.label_add_or_change_email)
-    TextView messageChangeEmail;
-    @BindView(R.id.label_add_or_change_phone)
-    TextView messageChangePhone;
+//    @BindView(R.id.label_change_password)
+//    TextView messageChangePassword;
+//
+//    @BindView(R.id.label_add_or_change_email)
+//    TextView messageChangeEmail;
+//
+//    @BindView(R.id.label_add_or_change_phone)
+//    TextView messageChangePhone;
 
     @BindViews({R.id.label_change_password,R.id.label_add_or_change_email})
     List<TextView> label_instructions;
 
-    static final ButterKnife.Action<View> GONE = new ButterKnife.Action<View>() {
-        @Override
-        public void apply(View view, int index) {
-            view.setVisibility(View.GONE);
-        }
-    };
-
-    static final ButterKnife.Action<View> VISIBLE = new ButterKnife.Action<View>() {
-        @Override
-        public void apply(View view, int index) {
-            view.setVisibility(View.VISIBLE);
-        }
-    };
+//    static final ButterKnife.Action<View> GONE = new ButterKnife.Action<View>() {
+//        @Override
+//        public void apply(View view, int index) {
+//            view.setVisibility(View.GONE);
+//        }
+//    };
+//
+//    static final ButterKnife.Action<View> VISIBLE = new ButterKnife.Action<View>() {
+//        @Override
+//        public void apply(View view, int index) {
+//            view.setVisibility(View.VISIBLE);
+//        }
+//    };
 
     public static final String EDIT_MODE_INTENT_KEY = "edit_mode";
 
@@ -171,11 +183,16 @@ TextView messageChangePassword;
     int current_mode = MODE_ADD;
 
 //    DeliveryGuySelf deliveryGuySelf = new DeliveryGuySelf();
-    User driver = new User();
+    User user = new User();
 
 
 
-    public FragmentEditProfile() {
+    @Inject
+    Gson gson;
+
+
+
+    public FragmentEditProfileGlobal() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -210,9 +227,18 @@ TextView messageChangePassword;
 
             if(current_mode == MODE_UPDATE)
             {
-                driver = PrefLogin.getUser(getContext());
 
-                if(driver !=null) {
+                if(getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false))
+                {
+                    user = PrefLoginGlobal.getUser(getContext());
+                }
+                else
+                {
+                    user = PrefLogin.getUser(getContext());
+                }
+
+
+                if(user !=null) {
                     bindDataToViews();
                 }
             }
@@ -224,8 +250,8 @@ TextView messageChangePassword;
         updateIDFieldVisibility();
 
 
-        if(driver !=null) {
-            loadImage(driver.getProfileImagePath());
+        if(user !=null) {
+            loadImage(user.getProfileImagePath());
             System.out.println("Loading Image !");
 //            showLogMessage("Inside OnCreateView : DeliveryGUySelf : Not Null !");
         }
@@ -280,6 +306,13 @@ TextView messageChangePassword;
     {
         PrefChangePhone.saveUser(null,getActivity());
         Intent intent = new Intent(getActivity(),ChangePhone.class);
+
+        if(getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false))
+        {
+            intent.putExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,true);
+        }
+
+
         startActivityForResult(intent,10);
     }
 
@@ -463,57 +496,59 @@ TextView messageChangePassword;
 
 
 
-    @OnTextChanged(R.id.username)
-    void usernameCheck()
-    {
-
-
-        if(driver !=null && driver.getUsername()!=null
-                &&
-                username.getText().toString().equals(driver.getUsername()))
-        {
-            username.setTextColor(ContextCompat.getColor(getContext(),R.color.gplus_color_1));
-            return;
-        }
-
-
-        saveButton.setVisibility(View.INVISIBLE);
-        progressBar.setVisibility(View.VISIBLE);
-
-
-        Call<ResponseBody> call = userService.checkUsernameExists(username.getText().toString());
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                if(response.code()==200)
-                {
-                    //username already exists
-                    username.setTextColor(ContextCompat.getColor(getContext(),R.color.gplus_color_4));
-                    username.setError("Username already exist !");
-                }
-                else if(response.code() == 204)
-                {
-                    username.setTextColor(ContextCompat.getColor(getContext(),R.color.gplus_color_1));
-                }
-
-
-                saveButton.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.INVISIBLE);
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-
-                saveButton.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.INVISIBLE);
-
-            }
-        });
-    }
+//    @OnTextChanged(R.id.username)
+//    void usernameCheck()
+//    {
+//
+//
+//        if(user !=null && user.getUsername()!=null
+//                &&
+//                username.getText().toString().equals(user.getUsername()))
+//        {
+//            username.setTextColor(ContextCompat.getColor(getContext(),R.color.gplus_color_1));
+//            return;
+//        }
+//
+//
+//        saveButton.setVisibility(View.INVISIBLE);
+//        progressBar.setVisibility(View.VISIBLE);
+//
+//
+//        Call<ResponseBody> call = userService.checkUsernameExists(username.getText().toString());
+//
+//
+//
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//                if(response.code()==200)
+//                {
+//                    //username already exists
+//                    username.setTextColor(ContextCompat.getColor(getContext(),R.color.gplus_color_4));
+//                    username.setError("Username already exist !");
+//                }
+//                else if(response.code() == 204)
+//                {
+//                    username.setTextColor(ContextCompat.getColor(getContext(),R.color.gplus_color_1));
+//                }
+//
+//
+//                saveButton.setVisibility(View.VISIBLE);
+//                progressBar.setVisibility(View.INVISIBLE);
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//
+//                saveButton.setVisibility(View.VISIBLE);
+//                progressBar.setVisibility(View.INVISIBLE);
+//
+//            }
+//        });
+//    }
 
 
 
@@ -551,13 +586,13 @@ TextView messageChangePassword;
 
 
             // delete previous Image from the Server
-            deleteImage(driver.getProfileImagePath());
+            deleteImage(user.getProfileImagePath());
 
 
             if(isImageRemoved)
             {
 
-                driver.setProfileImagePath(null);
+                user.setProfileImagePath(null);
                 retrofitPUTRequest();
 
             }else
@@ -581,20 +616,20 @@ TextView messageChangePassword;
 
     void bindDataToViews()
     {
-        if(driver !=null) {
+        if(user !=null) {
 
-            item_id.setText(String.valueOf(driver.getUserID()));
-            name.setText(driver.getName());
-            username.setText(driver.getUsername());
+            item_id.setText(String.valueOf(user.getUserID()));
+            name.setText(user.getName());
+            username.setText(user.getUsername());
 //            password.setText(user.getPassword());
-            email.setText(driver.getEmail());
-            about.setText(driver.getAbout());
-            phone.setText(driver.getPhone());
+            email.setText(user.getEmail());
+            about.setText(user.getAbout());
+            phone.setText(user.getPhone());
 
 
-            if(driver.getGender()!=null)
+            if(user.getGender()!=null)
             {
-                if(driver.getGender())
+                if(user.getGender())
                 {
                     choiceMale.setChecked(true);
                 }
@@ -612,41 +647,41 @@ TextView messageChangePassword;
     void getDataFromViews()
     {
 
-        driver.setName(name.getText().toString());
-        driver.setUsername(username.getText().toString());
-        driver.setAbout(about.getText().toString());
-        driver.setGender(choiceMale.isChecked());
+        user.setName(name.getText().toString());
+        user.setUsername(username.getText().toString());
+        user.setAbout(about.getText().toString());
+        user.setGender(choiceMale.isChecked());
 
 
 
 
         if(username.getText().toString().length()==0)
         {
-            driver.setUsername(null);
+            user.setUsername(null);
         }
         else
         {
-            driver.setUsername(username.getText().toString());
+            user.setUsername(username.getText().toString());
         }
 
 
 
         if(email.getText().toString().length()==0)
         {
-            driver.setEmail(null);
+            user.setEmail(null);
         }
         else
         {
-            driver.setEmail(email.getText().toString());
+            user.setEmail(email.getText().toString());
         }
 
         if(phone.getText().toString().length()==0)
         {
-            driver.setPhone(null);
+            user.setPhone(null);
         }
         else
         {
-            driver.setPhone(phone.getText().toString());
+            user.setPhone(phone.getText().toString());
         }
 
 
@@ -668,11 +703,41 @@ TextView messageChangePassword;
         progressBar.setVisibility(View.VISIBLE);
 
 
-        // update Item Call
-        Call<ResponseBody> call = userService.updateProfileEndUser(
-                PrefLogin.getAuthorizationHeaders(getActivity()),
-                driver
-        );
+
+        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
+
+        Call<ResponseBody> call;
+
+        if(isGlobalProfile)
+        {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+            call = retrofit.create(UserServiceGlobal.class).updateProfileEndUser(
+                    PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                    user
+            );
+
+
+        }
+        else
+        {
+
+            // update Item Call
+            call = userService.updateProfileEndUser(
+                    PrefLogin.getAuthorizationHeaders(getActivity()),
+                    user
+            );
+        }
+
+
+
+
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -689,9 +754,19 @@ TextView messageChangePassword;
                 {
                     showToastMessage("Update Successful !");
 
+
+
                     if(getActivity().getIntent().getIntExtra(EDIT_MODE_INTENT_KEY,MODE_UPDATE)==MODE_UPDATE)
                     {
-                        PrefLogin.saveUserProfile(driver,getContext());
+
+                        if(isGlobalProfile)
+                        {
+                            PrefLoginGlobal.saveUserProfile(user,getContext());
+                        }
+                        else
+                        {
+                            PrefLogin.saveUserProfile(user,getContext());
+                        }
 
                     }
 
@@ -898,9 +973,9 @@ TextView messageChangePassword;
 
             if(current_mode == MODE_UPDATE)
             {
-                driver = PrefLogin.getUser(getContext());
+                user = PrefLogin.getUser(getContext());
 
-                if(driver !=null) {
+                if(user !=null) {
                     bindDataToViews();
                 }
             }
@@ -1076,8 +1151,40 @@ TextView messageChangePassword;
         progressBar.setVisibility(View.VISIBLE);
 
 
-        Call<Image> imageCall = userService.uploadImage(PrefLogin.getAuthorizationHeaders(getContext()),
-                requestBodyBinary);
+
+
+        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
+
+        Call<Image> imageCall;
+
+        if(isGlobalProfile)
+        {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+            imageCall = retrofit.create(UserServiceGlobal.class).uploadImage(
+                    PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                    requestBodyBinary
+            );
+
+
+        }
+        else
+        {
+
+            imageCall = userService.uploadImage(PrefLogin.getAuthorizationHeaders(getContext()),
+                    requestBodyBinary);
+
+        }
+
+
+
+
 
 
         imageCall.enqueue(new Callback<Image>() {
@@ -1102,20 +1209,20 @@ TextView messageChangePassword;
 
 
 
-                    driver.setProfileImagePath(image.getPath());
+                    user.setProfileImagePath(image.getPath());
 
                 }
                 else if(response.code()==417)
                 {
                     showToastMessage("Cant Upload Image. Image Size should not exceed 2 MB.");
 
-                    driver.setProfileImagePath(null);
+                    user.setProfileImagePath(null);
 
                 }
                 else
                 {
                     showToastMessage("Image Upload failed Code : " + String.valueOf(response.code()));
-                    driver.setProfileImagePath(null);
+                    user.setProfileImagePath(null);
 
                 }
 
@@ -1148,7 +1255,7 @@ TextView messageChangePassword;
 
 
                 showToastMessage("Image Upload failed !");
-                driver.setProfileImagePath(null);
+                user.setProfileImagePath(null);
 
                 if(isModeEdit)
                 {
@@ -1169,6 +1276,9 @@ TextView messageChangePassword;
 
 
 
+
+
+
     void deleteImage(String filename)
     {
 
@@ -1177,7 +1287,45 @@ TextView messageChangePassword;
 //        progressBar.setVisibility(View.VISIBLE);
 
 
-        Call<ResponseBody> call = userService.deleteImage(PrefLogin.getAuthorizationHeaders(getContext()),filename);
+
+
+        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
+
+        Call<ResponseBody> call;
+
+        if(isGlobalProfile)
+        {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+            call = retrofit.create(UserServiceGlobal.class).deleteImage(
+                    PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                    filename
+            );
+
+
+        }
+        else
+        {
+
+            call = userService.deleteImage(
+                    PrefLogin.getAuthorizationHeaders(getContext()),
+                    filename
+            );
+        }
+
+
+
+
+
+
+
+
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
