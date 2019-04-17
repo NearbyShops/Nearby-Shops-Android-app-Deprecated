@@ -208,6 +208,9 @@ public class User {
     private int rt_registration_mode; // 1 for registration by email 2 for registration by phone
 //    private StaffPermissions rt_staff_permissions;
 
+    private User userProfileGlobal;
+
+
 
 
     private ServiceConfigurationLocal serviceConfigurationLocal;
@@ -220,8 +223,18 @@ public class User {
 
 
 
+
+
     // Getters and Setters
 
+
+    public User getUserProfileGlobal() {
+        return userProfileGlobal;
+    }
+
+    public void setUserProfileGlobal(User userProfileGlobal) {
+        this.userProfileGlobal = userProfileGlobal;
+    }
 
     public ServiceConfigurationLocal getServiceConfigurationLocal() {
         return serviceConfigurationLocal;

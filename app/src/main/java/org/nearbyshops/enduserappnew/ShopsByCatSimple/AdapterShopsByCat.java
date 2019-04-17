@@ -342,8 +342,8 @@ public class AdapterShopsByCat extends RecyclerView.Adapter<RecyclerView.ViewHol
             if (dataset.get(getLayoutPosition()) instanceof Shop) {
 //                Shop shop = (Shop) dataset.get(getLayoutPosition());
 
-//                Intent intent = new Intent(context, ShopDetail.class);
-//                intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY, shop);
+//                Intent intent = new Intent(context, MarketDetail.class);
+//                intent.putExtra(MarketDetail.SHOP_DETAIL_INTENT_KEY, shop);
 //                context.startActivity(intent);
             }
         }

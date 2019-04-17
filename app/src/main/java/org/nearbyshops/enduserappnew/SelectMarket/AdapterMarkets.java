@@ -70,33 +70,45 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         if(viewType == view_type_current_market)
         {
-            view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_market_current,parent,false);
+//            view = LayoutInflater.from(parent.getContext())
+//                    .inflate(R.layout.list_item_market_current,parent,false);
+//
+//            return new ViewHolderCurrentMarket(view,fragment.getActivity());
 
-            return new ViewHolderCurrentMarket(view,fragment.getActivity());
+
+            return ViewHolderCurrentMarket.create(parent,fragment.getActivity());
 
         }
         else if(viewType == view_type_user_profile)
         {
-            view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_user_profile,parent,false);
+//            view = LayoutInflater.from(parent.getContext())
+//                    .inflate(R.layout.list_item_user_profile,parent,false);
+//
+//            return new ViewHolderUserProfile(view,fragment.getActivity());
 
-            return new ViewHolderUserProfile(view,fragment.getActivity());
+            return ViewHolderUserProfile.create(parent,fragment.getActivity());
+
         }
         else if(viewType == view_type_markets_header)
         {
-            view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_header_markets,parent,false);
+//            view = LayoutInflater.from(parent.getContext())
+//                    .inflate(R.layout.list_item_header_markets,parent,false);
+//
+//            return new ViewHolderHeaderMarket(view);
 
-            return new ViewHolderHeaderMarket(view);
+            return ViewHolderHeaderMarket.create(parent,fragment.getActivity());
 
         }
         else if (viewType == VIEW_TYPE_Market) {
 
-            view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_market, parent, false);
 
-            return new ViewHolderMarket(view, parent, fragment.getActivity(), (ViewHolderMarket.VHMarketNotifications) fragment);
+//            view = LayoutInflater.from(parent.getContext())
+//                    .inflate(R.layout.list_item_market, parent, false);
+
+//            return new ViewHolderMarket(view, parent, fragment.getActivity(), (ViewHolderMarket.VHMarketNotifications) fragment);
+
+            return ViewHolderMarket.create(parent,fragment.getActivity(), (ViewHolderMarket.VHMarketNotifications) fragment);
+
 
         } else if (viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR) {
 
@@ -141,6 +153,8 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
+
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holderVH, int position) {
 
@@ -159,8 +173,11 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
         else if (holderVH instanceof ViewHolderMarket) {
 
-            ViewHolderMarket holder = (ViewHolderMarket) holderVH;
-            holder.setItem((ServiceConfigurationGlobal) dataset.get(position));
+//            ViewHolderMarket holder = (ViewHolderMarket) holderVH;
+//            holder.setItem((ServiceConfigurationGlobal) dataset.get(position));
+
+
+            ((ViewHolderMarket)holderVH).setItem((ServiceConfigurationGlobal) dataset.get(position));
 
         } else if (holderVH instanceof LoadingViewHolder) {
 

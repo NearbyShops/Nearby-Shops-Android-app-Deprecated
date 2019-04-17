@@ -5,7 +5,9 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +33,19 @@ public class ViewHolderCurrentMarket extends RecyclerView.ViewHolder {
 
     private ServiceConfigurationLocal configurationLocal;
     private Context context;
+
+
+
+
+    public static ViewHolderCurrentMarket create(ViewGroup parent, Context context)
+    {
+
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_item_market_current,parent,false);
+
+        return new ViewHolderCurrentMarket(view,context);
+    }
+
 
 
 

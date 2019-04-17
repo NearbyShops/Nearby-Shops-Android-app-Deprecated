@@ -380,8 +380,8 @@ public class FilledCartsFragment extends Fragment implements SwipeRefreshLayout.
     @Override
     public void notifyShopLogoClick(Shop shop) {
 
-//        Intent intent = new Intent(getActivity(), ShopDetail.class);
-//        intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,shop);
+//        Intent intent = new Intent(getActivity(), MarketDetail.class);
+//        intent.putExtra(MarketDetail.SHOP_DETAIL_INTENT_KEY,shop);
 //        startActivity(intent);
 
 

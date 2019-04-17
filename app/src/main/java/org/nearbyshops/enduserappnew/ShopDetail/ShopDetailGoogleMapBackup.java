@@ -1,4 +1,4 @@
-//package org.nearbyshops.enduserappnew.ShopDetail;
+//package org.nearbyshops.enduserappnew.MarketDetail;
 //
 //import android.Manifest;
 //import android.content.Intent;
@@ -524,7 +524,7 @@
 //
 //        if (reviewForUpdate != null) {
 //            FragmentManager fm = getSupportFragmentManager();
-//            RateReviewDialog dialog = new RateReviewDialog();
+//            RateReviewDialogMarket dialog = new RateReviewDialogMarket();
 //            dialog.show(fm, "rate");
 //            dialog.setMode(reviewForUpdate, true, reviewForUpdate.getShopID());
 //        }
@@ -536,7 +536,7 @@
 //    void write_review_click() {
 //
 //        FragmentManager fm = getSupportFragmentManager();
-//        RateReviewDialog dialog = new RateReviewDialog();
+//        RateReviewDialogMarket dialog = new RateReviewDialogMarket();
 //        dialog.show(fm, "rate");
 //
 //        if (shop != null) {

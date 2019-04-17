@@ -124,8 +124,8 @@ public class AdapterHorizontal extends RecyclerView.Adapter<AdapterHorizontal.Vi
             {
                 case R.id.shopImage:
 
-                    /*Intent intent = new Intent(context, ShopDetail.class);
-                    intent.putExtra(ShopDetail.SHOP_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
+                    /*Intent intent = new Intent(context, MarketDetail.class);
+                    intent.putExtra(MarketDetail.SHOP_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
                     context.startActivity(intent);
 */
                     break;

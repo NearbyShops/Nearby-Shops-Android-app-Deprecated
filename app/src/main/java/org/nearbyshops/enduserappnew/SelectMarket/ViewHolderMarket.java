@@ -3,6 +3,7 @@ package org.nearbyshops.enduserappnew.SelectMarket;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,6 +77,19 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 
 
 
+    public static ViewHolderMarket create(ViewGroup parent, Context context, VHMarketNotifications subscriber)
+    {
+
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_item_market, parent, false);
+
+        return new ViewHolderMarket(view,parent,context,subscriber);
+    }
+
+
+
+
+
 
 
     public ViewHolderMarket(View itemView, ViewGroup parent, Context context, VHMarketNotifications subscriber)
@@ -136,6 +150,21 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
         description.setText(configurationGlobal.getDescriptionShort());
 
 
+        if(configurationGlobal.getRt_rating_count()==0)
+        {
+            rating.setText(" New ");
+            rating.setBackgroundColor(ContextCompat.getColor(context,R.color.phonographyBlue));
+            ratingCount.setVisibility(View.GONE);
+        }
+        else
+        {
+            rating.setText(String.format("%.2f",configurationGlobal.getRt_rating_avg()));
+            ratingCount.setText("( " + String.valueOf((int)configurationGlobal.getRt_rating_count()) + " Ratings )");
+
+            rating.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_2));
+            ratingCount.setVisibility(View.VISIBLE);
+
+        }
 
 
 
@@ -327,7 +356,7 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
         Call<User> call = retrofit.create(LoginUsingOTPService.class).loginWithGlobalCredentials(
                 PrefLoginGlobal.getAuthorizationHeaders(context),
                 PrefServiceConfig.getServiceURL_SDS(context),
-                123,true
+                123,true,false
         );
 
 

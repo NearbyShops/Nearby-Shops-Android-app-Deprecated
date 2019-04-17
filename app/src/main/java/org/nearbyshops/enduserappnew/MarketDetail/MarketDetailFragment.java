@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ShopDetailNew;
+package org.nearbyshops.enduserappnew.MarketDetail;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -12,9 +12,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -28,46 +27,53 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Model.ShopImage;
-import org.nearbyshops.enduserappnew.ModelEndPoints.FavouriteShopEndpoint;
-import org.nearbyshops.enduserappnew.ModelEndPoints.ShopImageEndPoint;
-import org.nearbyshops.enduserappnew.ModelEndPoints.ShopReviewEndPoint;
+import org.nearbyshops.enduserappnew.ModelReviewMarket.FavouriteMarket;
+import org.nearbyshops.enduserappnew.ModelReviewMarket.FavouriteMarketEndpoint;
+import org.nearbyshops.enduserappnew.ModelReviewMarket.MarketReview;
+import org.nearbyshops.enduserappnew.ModelReviewMarket.MarketReviewEndPoint;
 import org.nearbyshops.enduserappnew.ModelReviewShop.FavouriteShop;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.FavouriteShopService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopImageService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.FavouriteMarketService;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.MarketReviewService;
 import org.nearbyshops.enduserappnew.ShopDetail.NotifyReviewUpdate;
-import org.nearbyshops.enduserappnew.ShopDetail.RateReviewDialog;
-import org.nearbyshops.enduserappnew.ShopImages.ShopImageList;
-import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
+
+
+
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.app.Activity.RESULT_OK;
 
 
-public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener , Target, RatingBar.OnRatingBarChangeListener, NotifyReviewUpdate {
-
+public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener ,
+        Target, RatingBar.OnRatingBarChangeListener, NotifyReviewUpdate {
 
 
 
@@ -79,50 +85,51 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
     private String mParam2;
 
 
-    public static final String TAG_JSON_STRING = "shop_json_string";
+    public static final String TAG_JSON_STRING = "market_json_string";
 
 
-//    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
+    @Inject Gson gson;
 
 
-    @Inject
-    ShopReviewService shopReviewService;
+//    @Inject
+//    ShopReviewService shopReviewService;
 
-    @Inject
-    FavouriteShopService favouriteShopService;
-
-    @Inject
-    ShopImageService shopImageService;
+//    @Inject
+//    FavouriteShopService favouriteShopService;
 
 
 
-    @BindView(R.id.shop_profile_photo) ImageView shopProfilePhoto;
+
+    @BindView(R.id.profile_photo) ImageView shopProfilePhoto;
     @BindView(R.id.image_count) TextView imagesCount;
 
     @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
     @BindView(R.id.fab) FloatingActionButton fab;
 
 
-    @BindView(R.id.shop_name) TextView shopName;
+    @BindView(R.id.market_name) TextView shopName;
 
-    @BindView(R.id.shop_rating_numeric) TextView shopRatingNumeric;
-    @BindView(R.id.shop_rating) RatingBar ratingBar;
+    @BindView(R.id.rating_avg) TextView shopRatingNumeric;
+    @BindView(R.id.market_rating) RatingBar ratingBar;
     @BindView(R.id.rating_count) TextView ratingCount;
 
     @BindView(R.id.phone) TextView shopPhone;
 
-    @BindView(R.id.shop_description) TextView shopDescription;
+    @BindView(R.id.market_description) TextView shopDescription;
     @BindView(R.id.read_full_button) TextView readFullDescription;
 
 
-    @BindView(R.id.shop_address) TextView shopAddress;
+    @BindView(R.id.market_address) TextView shopAddress;
 //    @BindView(R.id.get_directions) TextView getDirections;
 //    @BindView(R.id.see_on_map) TextView seeOnMap;
 
-    @BindView(R.id.phone_delivery) TextView phoneDelivery;
 
-    @BindView(R.id.delivery_charge_text) TextView deliveryChargeText;
-    @BindView(R.id.free_delivery_info) TextView freeDeliveryInfo;
+
+
+//    @BindView(R.id.delivery_block) LinearLayout deliveryBlock;
+//    @BindView(R.id.phone_delivery) TextView phoneDelivery;
+//    @BindView(R.id.delivery_charge_text) TextView deliveryChargeText;
+//    @BindView(R.id.free_delivery_info) TextView freeDeliveryInfo;
 
     @BindView(R.id.shop_reviews) RecyclerView shopReviews;
 
@@ -136,29 +143,22 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
     @BindView(R.id.toolbar) Toolbar toolbar;
 
-    @BindView(R.id.delivery_block) LinearLayout deliveryBlock;
-
-
-    @BindView(R.id.indicator_pick_from_shop) TextView pickFromShopIndicator;
-    @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
-
-
-    Shop shop;
 
 
 
-    ShopReview reviewForUpdate;
+//    @BindView(R.id.indicator_pick_from_shop) TextView pickFromShopIndicator;
+//    @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
 
 
 
+    ServiceConfigurationGlobal market;
+
+
+    MarketReview reviewForUpdate;
 
 
 
-
-
-
-
-    public ShopDetailFragment() {
+    public MarketDetailFragment() {
         // Required empty public constructor
 
 
@@ -215,40 +215,45 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 //        setupSwipeContainer();
 
 
-        String shopJson = getActivity().getIntent().getStringExtra(TAG_JSON_STRING);
-        shop = UtilityFunctions.provideGson().fromJson(shopJson,Shop.class);
 
 
+        String json = getActivity().getIntent().getStringExtra(TAG_JSON_STRING);
+        market = UtilityFunctions.provideGson().fromJson(json,ServiceConfigurationGlobal.class);
 
-        toolbar.setTitle(shop.getShopName());
+
+        toolbar.setTitle(market.getServiceName());
+        bindViews();
+
+
 
 
 //        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
 //
 //        if(actionBar!=null)
 //        {
-//            actionBar.setTitle(shop.getShopName());
+//            actionBar.setTitle(market.getShopName());
 //        }
 
 
 
 
-        bindViews();
-
-
-        getShopImageCount();
 
 
 
+//        getShopImageCount();
 
-        if (shop != null) {
+
+
+        if (market != null) {
             checkUserReview();
         }
 
 
-
-
         checkFavourite();
+
+
+
+
 
 
 
@@ -264,15 +269,14 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
     @OnClick(R.id.see_reviews)
     void seeAllReviews()
     {
-
-        Intent intent = new Intent(getActivity(), ShopReviews.class);
-//        intent.putExtra(ShopReviews.SHOP_INTENT_KEY, shop);
-
-        String shopJson = UtilityFunctions.provideGson().toJson(shop);
-        intent.putExtra(ShopReviews.SHOP_INTENT_KEY,shopJson);
-
-        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), ShopReviews.class);
+//        String shopJson = UtilityFunctions.provideGson().toJson(market);
+//        intent.putExtra(ShopReviews.SHOP_INTENT_KEY,shopJson);
+//
+//        startActivity(intent);
     }
+
+
 
 
 
@@ -298,36 +302,62 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
 
+
+
     void bindViews()
     {
-        shopName.setText(shop.getShopName());
-        shopRatingNumeric.setText(String.format("%.2f",shop.getRt_rating_avg()));
-        ratingBar.setRating(shop.getRt_rating_avg());
-        ratingCount.setText("(" + shop.getRt_rating_count() + " ratings )");
-
-        shopPhone.setText(shop.getCustomerHelplineNumber());
-        shopDescription.setText(shop.getLongDescription());
+        shopName.setText(market.getServiceName());
 
 
+        if(market.getRt_rating_count()==0)
+        {
+            shopRatingNumeric.setText(" New ");
+            shopRatingNumeric.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.phonographyBlue));
+
+            ratingCount.setVisibility(View.GONE);
+            ratingBar.setVisibility(View.GONE);
+
+        }
+        else
+        {
+            shopRatingNumeric.setText(String.format("%.2f",market.getRt_rating_avg()));
+            ratingCount.setText("( " + String.valueOf((int)market.getRt_rating_count()) + " Ratings )");
+
+            ratingBar.setVisibility(View.VISIBLE);
+            ratingBar.setRating(market.getRt_rating_avg());
+
+            shopRatingNumeric.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_2));
+            ratingCount.setVisibility(View.VISIBLE);
+        }
 
 
 
-        String shop_address = shop.getShopAddress()  + ", " + shop.getCity() + " - " + shop.getPincode() + "\n" + shop.getLandmark();
-
-
-        shopAddress.setText(shop_address);
-        phoneDelivery.setText(shop.getDeliveryHelplineNumber());
-
-
-        deliveryChargeText.setText("Delivery Charge : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + shop.getDeliveryCharges() + " Per Delivery");
-        freeDeliveryInfo.setText("Free Delivery for orders above " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(shop.getBillAmountForFreeDelivery()));
+//        shopRatingNumeric.setText(String.format("%.2f", market.getRt_rating_avg()));
+//        ratingBar.setRating(market.getRt_rating_avg());
+//        ratingCount.setText("(" + market.getRt_rating_count() + " ratings )");
 
 
 
-        String imagePath = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/Shop/Image/five_hundred_"
-                + shop.getLogoImagePath() + ".jpg";
 
-//            if (!shop.getBookCoverImageURL().equals("")) {
+        shopPhone.setText(market.getHelplineNumber());
+        shopDescription.setText(market.getDescriptionLong());
+
+
+
+        String market_address = market.getAddress()  + ", " + market.getCity() + " - " + market.getPincode() + "\n" + market.getLandmark();
+
+
+        shopAddress.setText(market_address);
+//        phoneDelivery.setText(market.getHelplineNumber());
+
+
+
+//        String imagePath = PrefServiceConfig.getServiceURL_SDS(getActivity()) + "/api/v1/ServiceConfiguration/Image/five_hundred_"
+//                + market.getLogoImagePath() + ".jpg";
+
+        String imagePath = PrefServiceConfig.getServiceURL_SDS(getActivity())
+                + "/api/v1/ServiceConfiguration/Image/three_hundred_" + market.getLogoImagePath() + ".jpg";
+
 
         Drawable placeholder = VectorDrawableCompat
                 .create(getResources(),
@@ -344,105 +374,10 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
 
-
-
-
-        if(shop.getPickFromShopAvailable())
-        {
-            pickFromShopIndicator.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            pickFromShopIndicator.setVisibility(View.GONE);
-        }
-
-
-
-
-
-        if(shop.getHomeDeliveryAvailable())
-        {
-            homeDeliveryIndicator.setVisibility(View.VISIBLE);
-            deliveryBlock.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            homeDeliveryIndicator.setVisibility(View.GONE);
-            deliveryBlock.setVisibility(View.GONE);
-        }
-
-
-
-
     }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    void getShopImageCount()
-    {
-        Call<ShopImageEndPoint> call = shopImageService.getShopImages(
-                shop.getShopID(), ShopImage.IMAGE_ORDER,
-                null,null,
-                true,true
-        );
-
-
-        call.enqueue(new Callback<ShopImageEndPoint>() {
-            @Override
-            public void onResponse(Call<ShopImageEndPoint> call, Response<ShopImageEndPoint> response) {
-
-
-                if(isDestroyed)
-                {
-                    return;
-                }
-
-                if(response.body()!=null)
-                {
-                    int count = response.body().getItemCount();
-
-
-                    if(count==0)
-                    {
-                        imagesCount.setVisibility(View.GONE);
-                    }
-                    else
-                    {
-                        imagesCount.setText(String.valueOf(count)  + " Photos");
-                    }
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ShopImageEndPoint> call, Throwable t) {
-
-
-                if(isDestroyed)
-                {
-                    return;
-                }
-
-
-                showToastMessage("Loading Images Failed !");
-            }
-        });
-
-
-    }
 
 
 
@@ -541,12 +476,17 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
 
-    @OnClick(R.id.shop_profile_photo)
+
+
+    @OnClick(R.id.profile_photo)
     void profileImageClick() {
-        Intent intent = new Intent(getActivity(), ShopImageList.class);
-        intent.putExtra("shop_id", shop.getShopID());
-        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), ShopImageList.class);
+//        intent.putExtra("shop_id", market.getShopID());
+//        startActivity(intent);
     }
+
+
+
 
 
 
@@ -554,12 +494,6 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
     @OnClick(R.id.read_full_button)
     void readFullButtonClick() {
-/*
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.addRule(RelativeLayout.BELOW,R.id.author_name);
-        layoutParams.setMargins(0,10,0,0);
-        bookDescription.setLayoutParams(layoutParams);
-*/
 
         shopDescription.setMaxLines(Integer.MAX_VALUE);
         readFullDescription.setVisibility(View.GONE);
@@ -574,7 +508,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
     @OnClick(R.id.get_directions)
     void getDirectionsPickup()
     {
-        getDirections(shop.getLatCenter(),shop.getLonCenter());
+        getDirections(market.getLatCenter(), market.getLonCenter());
     }
 
 
@@ -585,7 +519,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
     @OnClick(R.id.see_on_map)
     void seeOnMapDestination()
     {
-        seeOnMap(shop.getLatCenter(), shop.getLonCenter(), shop.getShopAddress());
+        seeOnMap(market.getLatCenter(), market.getLonCenter(), market.getAddress());
     }
 
 
@@ -620,17 +554,17 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
     @OnClick({R.id.phone_icon,R.id.phone})
     void phoneClick()
     {
-        dialPhoneNumber(shop.getCustomerHelplineNumber());
+        dialPhoneNumber(market.getHelplineNumber());
     }
 
 
 
 
-    @OnClick({R.id.phone_icon_delivery,R.id.phone_delivery})
-    void phoneDeliveryClick()
-    {
-        dialPhoneNumber(shop.getDeliveryHelplineNumber());
-    }
+//    @OnClick({R.id.phone_icon_delivery,R.id.phone_delivery})
+//    void phoneDeliveryClick()
+//    {
+//        dialPhoneNumber(market.getHelplineNumber());
+//    }
 
 
 
@@ -657,7 +591,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
     @OnClick(R.id.fab)
     void fabClick() {
 
-        if (PrefLogin.getUser(getActivity()) == null) {
+        if (PrefLoginGlobal.getUser(getActivity()) == null) {
 
 //            showToastMessage("Please Login to use this Feature !");
             showLoginDialog();
@@ -680,42 +614,6 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
 
-
-
-
-
-//    void toggleFavourite() {
-//
-//        if (shop != null && PrefLogin.getUser(getActivity()) != null) {
-//
-//            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteShops(shop.getShopID(), PrefLogin.getUser(getActivity()).getUserID()
-//                    , null, null, null, null);
-//
-//
-//            call.enqueue(new Callback<FavouriteShopEndpoint>() {
-//                @Override
-//                public void onResponse(Call<FavouriteShopEndpoint> call, Response<FavouriteShopEndpoint> response) {
-//
-//
-//                    if (response.body() != null) {
-//                        if (response.body().getItemCount() >= 1) {
-//                            deleteFavourite();
-//
-//                        } else if (response.body().getItemCount() == 0) {
-//                            insertFavourite();
-//                        }
-//                    }
-//
-//                }
-//
-//                @Override
-//                public void onFailure(Call<FavouriteShopEndpoint> call, Throwable t) {
-//
-//                    showToastMessage("Network Request failed. Check Network Connection !");
-//                }
-//            });
-//        }
-//    }
 
 
 
@@ -758,16 +656,27 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
         // make a network call to check the favourite
 
-        if (shop != null && PrefLogin.getUser(getActivity()) != null) {
+        if (market != null && PrefLoginGlobal.getUser(getActivity()) != null) {
 
-            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteShops(shop.getShopID(), PrefLogin.getUser(getActivity()).getUserID()
+
+
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(getActivity()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+            Call<FavouriteMarketEndpoint> call = retrofit.create(FavouriteMarketService.class)
+                    .getFavouriteMarkets(market.getServiceID(), PrefLoginGlobal.getUser(getActivity()).getUserID()
                     , null, null, null, null);
 
 
-            call.enqueue(new Callback<FavouriteShopEndpoint>() {
+            call.enqueue(new Callback<FavouriteMarketEndpoint>() {
                 @Override
-                public void onResponse(Call<FavouriteShopEndpoint> call, Response<FavouriteShopEndpoint> response) {
-
+                public void onResponse(Call<FavouriteMarketEndpoint> call, Response<FavouriteMarketEndpoint> response) {
 
                     if (response.body() != null) {
                         if (response.body().getItemCount() >= 1) {
@@ -785,11 +694,13 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
                 }
 
                 @Override
-                public void onFailure(Call<FavouriteShopEndpoint> call, Throwable t) {
+                public void onFailure(Call<FavouriteMarketEndpoint> call, Throwable t) {
 
                     showToastMessage("Network Request failed. Check Network Connection !");
                 }
             });
+
+
 
         }
     }
@@ -798,20 +709,35 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
 
+
     void insertFavourite() {
 
 
-        if (shop != null && PrefLogin.getUser(getActivity()) != null) {
+        if (market != null && PrefLoginGlobal.getUser(getActivity()) != null) {
 
-            FavouriteShop favouriteBook = new FavouriteShop();
-            favouriteBook.setShopID(shop.getShopID());
-            favouriteBook.setEndUserID(PrefLogin.getUser(getActivity()).getUserID());
+            FavouriteMarket favouriteBook = new FavouriteMarket();
+            favouriteBook.setItemID(market.getServiceID());
+            favouriteBook.setEndUserID(PrefLoginGlobal.getUser(getActivity()).getUserID());
 
-            Call<FavouriteShop> call = favouriteShopService.insertFavouriteShop(favouriteBook);
 
-            call.enqueue(new Callback<FavouriteShop>() {
+
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(getActivity()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            Call<FavouriteMarket> call = retrofit.create(FavouriteMarketService.class).insertFavouriteItem(
+                    PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                    favouriteBook
+            );
+
+
+            call.enqueue(new Callback<FavouriteMarket>() {
                 @Override
-                public void onResponse(Call<FavouriteShop> call, Response<FavouriteShop> response) {
+                public void onResponse(Call<FavouriteMarket> call, Response<FavouriteMarket> response) {
 
                     if (response.code() == 201) {
                         // created successfully
@@ -822,12 +748,13 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
                 }
 
                 @Override
-                public void onFailure(Call<FavouriteShop> call, Throwable t) {
+                public void onFailure(Call<FavouriteMarket> call, Throwable t) {
 
                     showToastMessage("Network Request failed !");
-
                 }
             });
+
+
         }
 
 
@@ -839,9 +766,24 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
     void deleteFavourite() {
 
-        if (shop != null && PrefLogin.getUser(getActivity()) != null) {
-            Call<ResponseBody> call = favouriteShopService.deleteFavouriteShop(shop.getShopID(),
-                    PrefLogin.getUser(getActivity()).getUserID());
+        if (market != null && PrefLoginGlobal.getUser(getActivity()) != null) {
+
+
+
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(getActivity()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+
+            Call<ResponseBody> call = retrofit.create(FavouriteMarketService.class).deleteFavouriteItem(
+                    PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                    market.getServiceID(),
+                    PrefLoginGlobal.getUser(getActivity()).getUserID());
 
 
             call.enqueue(new Callback<ResponseBody>() {
@@ -861,6 +803,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
                     showToastMessage("Network Request Failed !");
                 }
             });
+
         }
     }
 
@@ -883,9 +826,9 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
         if (reviewForUpdate != null) {
             FragmentManager fm = getChildFragmentManager();
-            RateReviewDialog dialog = new RateReviewDialog();
+            RateReviewDialogMarket dialog = new RateReviewDialogMarket();
             dialog.show(fm, "rate");
-            dialog.setMode(reviewForUpdate, true, reviewForUpdate.getShopID());
+            dialog.setMode(reviewForUpdate, true, reviewForUpdate.getItemID());
         }
 
     }
@@ -899,7 +842,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
     @OnClick({R.id.edit_review_text, R.id.ratingBar_rate})
     void write_review_click() {
 
-        if(PrefLogin.getUser(getActivity())==null)
+        if(PrefLoginGlobal.getUser(getActivity())==null)
         {
             showToastMessage("Login to rate and review !");
             showLoginDialog();
@@ -908,11 +851,11 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
         FragmentManager fm = getChildFragmentManager();
-        RateReviewDialog dialog = new RateReviewDialog();
+        RateReviewDialogMarket dialog = new RateReviewDialogMarket();
         dialog.show(fm, "rate");
 
-        if (shop != null) {
-            dialog.setMode(null, false, shop.getShopID());
+        if (market != null) {
+            dialog.setMode(null, false, market.getServiceID());
         }
     }
 
@@ -931,7 +874,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
     @Override
     public void notifyReviewDeleted() {
 
-        shop.setRt_rating_count(shop.getRt_rating_count() - 1);
+        market.setRt_rating_count(market.getRt_rating_count() - 1);
         checkUserReview();
     }
 
@@ -941,7 +884,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
     @Override
     public void notifyReviewSubmitted() {
-        shop.setRt_rating_count(shop.getRt_rating_count() + 1);
+        market.setRt_rating_count(market.getRt_rating_count() + 1);
         checkUserReview();
     }
 
@@ -981,7 +924,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
 
-        if (PrefLogin.getUser(getActivity()) == null) {
+        if (PrefLoginGlobal.getUser(getActivity()) == null) {
 
             user_review_ratings_block.setVisibility(View.VISIBLE);
 
@@ -997,24 +940,34 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
 
-            if (shop.getRt_rating_count() == 0) {
+            if (market.getRt_rating_count() == 0) {
 
                 user_review_ratings_block.setVisibility(View.VISIBLE);
                 edit_review_block.setVisibility(View.GONE);
 
-                edit_review_text.setText(R.string.shop_review_be_the_first_to_review);
-            } else if (shop.getRt_rating_count() > 0) {
+                edit_review_text.setText(R.string.market_review_be_the_first_to_review);
+            } else if (market.getRt_rating_count() > 0) {
 
 
-                Call<ShopReviewEndPoint> call = shopReviewService.getReviews(shop.getShopID(),
-                        PrefLogin.getUser(getActivity()).getUserID(), true, "REVIEW_DATE", null, null, null);
 
-//                Log.d("review_check",String.valueOf(UtilityGeneral.getUserID(this)) + " : " + String.valueOf(shop.getBookID()));
 
-                call.enqueue(new Callback<ShopReviewEndPoint>() {
+                Retrofit retrofit = new Retrofit.Builder()
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .baseUrl(PrefServiceConfig.getServiceURL_SDS(getActivity()))
+                        .client(new OkHttpClient().newBuilder().build())
+                        .build();
+
+
+                Call<MarketReviewEndPoint> call = retrofit.create(MarketReviewService.class)
+                        .getReviews(market.getServiceID(),
+                        PrefLoginGlobal.getUser(getActivity()).getUserID(), true, "REVIEW_DATE", null, null, null);
+
+
+
+
+                call.enqueue(new Callback<MarketReviewEndPoint>() {
                     @Override
-                    public void onResponse(Call<ShopReviewEndPoint> call, Response<ShopReviewEndPoint> response) {
-
+                    public void onResponse(Call<MarketReviewEndPoint> call, Response<MarketReviewEndPoint> response) {
 
                         if (response.body() != null) {
                             if (response.body().getItemCount() > 0) {
@@ -1053,7 +1006,8 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 //                                String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
 //                                        + member.getProfileImagePath();
 
-                                String imagepath = PrefGeneral.getServiceURL(getContext()) + "/api/v1/User/Image/five_hundred_"
+
+                                String imagepath = PrefServiceConfig.getServiceURL_SDS(getContext()) + "/api/v1/User/Image/five_hundred_"
                                         + member.getProfileImagePath() + ".jpg";
 
 
@@ -1069,29 +1023,26 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
 
 
                             } else if (response.body().getItemCount() == 0) {
-                                edit_review_text.setText("Rate this shop !");
+                                edit_review_text.setText("Rate this market !");
                                 edit_review_block.setVisibility(View.GONE);
                                 user_review_ratings_block.setVisibility(View.VISIBLE);
 
                             }
                         }
 
-
                     }
 
                     @Override
-                    public void onFailure(Call<ShopReviewEndPoint> call, Throwable t) {
+                    public void onFailure(Call<MarketReviewEndPoint> call, Throwable t) {
 
-
-//                        showToastMessage("Network Request Failed. Check your internet connection !");
-
+                        //                        showToastMessage("Network Request Failed. Check your internet connection !");
                     }
                 });
 
 
             }
 
-            // check shop ratings count
+            // check market ratings count
             // If ratings count is 0 then set message : Be the first to review
 
 
@@ -1100,7 +1051,7 @@ public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.O
             // if Yes
             // Write messsage : Edit your review and rating
             // If NO
-            // Write message : Rate and Review this shop
+            // Write message : Rate and Review this market
 
         }
 
