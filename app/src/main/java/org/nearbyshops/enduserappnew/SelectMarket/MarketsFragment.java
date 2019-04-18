@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.ServiceConfigService;
+import org.nearbyshops.enduserappnew.SelectMarket.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
@@ -53,8 +55,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class MarketsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch,
-        ViewHolderMarket.VHMarketNotifications, LocationUpdated {
+public class MarketsFragment extends Fragment implements listItemMarketNotifications,SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, LocationUpdated {
 
 
 
@@ -70,6 +71,7 @@ public class MarketsFragment extends Fragment implements SwipeRefreshLayout.OnRe
     AdapterMarkets adapter;
 
     public List<Object> dataset = new ArrayList<>();
+//    List<ServiceConfigurationGlobal> savedMarkets = new ArrayList<>();
 
     GridLayoutManager layoutManager;
     SwipeRefreshLayout swipeContainer;
@@ -82,6 +84,10 @@ public class MarketsFragment extends Fragment implements SwipeRefreshLayout.OnRe
     int offset = 0;
     int item_count = 0;
     boolean isDestroyed;
+
+
+
+
 
 
 
@@ -354,16 +360,32 @@ public class MarketsFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
+        Call<ServiceConfigurationEndPoint> call;
 
 
-        Call<ServiceConfigurationEndPoint> call = retrofit.create(ServiceConfigService.class).getShopListSimple(
-                PrefLocation.getLatitude(getActivity()),
-                PrefLocation.getLongitude(getActivity()),
-                    null,null,
+
+        if(PrefLoginGlobal.getUser(getActivity())==null)
+        {
+            call = retrofit.create(ServiceConfigService.class).getShopListSimple(
+                    PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
+                    null,
                     searchQuery,
-                    null,null,
-                null,
                     null,limit,offset);
+        }
+        else
+        {
+
+            call = retrofit.create(ServiceConfigService.class).getShopListSimple(
+                    PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                    PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
+                    null,
+                    searchQuery,
+                    null,limit,offset);
+        }
+
+
+
+
 
 
 //        PrefLocation.getLatitude(getActivity()),
@@ -390,6 +412,7 @@ public class MarketsFragment extends Fragment implements SwipeRefreshLayout.OnRe
                         if(clearDataset)
                         {
                             dataset.clear();
+//                            savedMarkets.clear();
 
 
 //                            dataset.add(PrefServiceConfig.getServiceConfigLocal(getActivity()));
@@ -402,6 +425,23 @@ public class MarketsFragment extends Fragment implements SwipeRefreshLayout.OnRe
                             }
 
 
+
+                            if(response.body().getSavedMarkets()!=null)
+                            {
+//                                savedMarkets.addAll(response.body().getSavedMarkets());
+                                dataset.add(response.body().getSavedMarkets());
+                            }
+
+
+//                        Log.d(UtilityFunctions.TAG_LOG,UtilityFunctions.provideGson().toJson(response.body().getSavedMarkets()));
+//                        Log.d(UtilityFunctions.TAG_LOG,"Saved Markets List Size : " + String.valueOf(savedMarkets.size()));
+
+
+
+
+
+
+
                             User user = PrefLoginGlobal.getUser(getActivity());
 
                             if(user!=null)
@@ -411,17 +451,32 @@ public class MarketsFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
+
+
                             if(item_count>0)
                             {
                                 dataset.add(new HeaderItemsList());
                             }
 
+
+
                         }
+
+
 
                         if(response.body().getResults()!=null)
                         {
                             dataset.addAll(response.body().getResults());
                         }
+
+
+
+
+
+
+
+
+
 
 
                         adapter.notifyDataSetChanged();
@@ -481,6 +536,9 @@ public class MarketsFragment extends Fragment implements SwipeRefreshLayout.OnRe
         }
 
     }
+
+
+
 
 
 
@@ -568,6 +626,8 @@ public class MarketsFragment extends Fragment implements SwipeRefreshLayout.OnRe
     public void showMessage(String message) {
         showToastMessage(message);
     }
+
+
 
 
 

@@ -36,22 +36,38 @@ public interface ServiceConfigService {
                                   @Path("ServiceID") int serviceID);
 
 
+//    @Query("IsOfficial") Boolean isOfficial, @Query("IsVerified") Boolean isVerified,
+//    @Query("ServiceType") Integer serviceType,
+//@Query("proximity") Double proximity,
+
 
     @GET("/api/v1/ServiceConfiguration")
     Call<ServiceConfigurationEndPoint> getShopListSimple(
             @Query("latCenter") Double latCenter, @Query("lonCenter") Double lonCenter,
-            @Query("proximity") Double proximity,
             @Query("ServiceURL") String serviceURL,
             @Query("SearchString") String searchString,
-            @Query("IsOfficial") Boolean isOfficial, @Query("IsVerified") Boolean isVerified,
-            @Query("ServiceType") Integer serviceType,
             @Query("SortBy") String sortBy,
             @Query("Limit") Integer limit, @Query("Offset") int offset
     );
 
 
-    // Image Calls
 
+    @GET("/api/v1/ServiceConfiguration")
+    Call<ServiceConfigurationEndPoint> getShopListSimple(
+            @Header("Authorization") String headers,
+            @Query("latCenter") Double latCenter, @Query("lonCenter") Double lonCenter,
+            @Query("ServiceURL") String serviceURL,
+            @Query("SearchString") String searchString,
+            @Query("SortBy") String sortBy,
+            @Query("Limit") Integer limit, @Query("Offset") int offset
+    );
+
+
+
+
+
+
+    // Image Calls
     @POST("/api/v1/ServiceConfiguration/Image")
     Call<Image> uploadImage(@Header("Authorization") String headers,
                             @Body RequestBody image);

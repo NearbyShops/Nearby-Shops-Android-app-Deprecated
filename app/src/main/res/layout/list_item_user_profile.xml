@@ -49,7 +49,7 @@
             android:id="@+id/header_booked_by"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your User Profile"
+            android:text="Welcome"
             app:layout_constraintLeft_toRightOf="@id/guideline"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/profile_image" />

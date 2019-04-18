@@ -382,7 +382,6 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-
     boolean isDestroyed = false;
 
 
@@ -969,6 +968,13 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
                     @Override
                     public void onResponse(Call<MarketReviewEndPoint> call, Response<MarketReviewEndPoint> response) {
 
+
+                        if(isDestroyed)
+                        {
+                            return;
+                        }
+
+
                         if (response.body() != null) {
                             if (response.body().getItemCount() > 0) {
 
@@ -1034,6 +1040,12 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
                     @Override
                     public void onFailure(Call<MarketReviewEndPoint> call, Throwable t) {
+
+                        if(isDestroyed)
+                        {
+                            return;
+                        }
+
 
                         //                        showToastMessage("Network Request Failed. Check your internet connection !");
                     }

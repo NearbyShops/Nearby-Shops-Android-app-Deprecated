@@ -1,19 +1,37 @@
 package org.nearbyshops.enduserappnew.ModelServiceConfig.Endpoints;
 
+
+
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sumeet on 30/6/16.
  */
 public class ServiceConfigurationEndPoint {
 
-    int itemCount;
-    int offset;
-    int limit;
-    int max_limit;
-    ArrayList<ServiceConfigurationGlobal> results;
+
+    private int itemCount;
+    private int offset;
+    private int limit;
+    private int max_limit;
+    private List<ServiceConfigurationGlobal> savedMarkets;
+    private ArrayList<ServiceConfigurationGlobal> results;
+
+
+
+    // getter and setter methods
+
+
+    public List<ServiceConfigurationGlobal> getSavedMarkets() {
+        return savedMarkets;
+    }
+
+    public void setSavedMarkets(List<ServiceConfigurationGlobal> savedMarkets) {
+        this.savedMarkets = savedMarkets;
+    }
 
     public ArrayList<ServiceConfigurationGlobal> getResults() {
         return results;

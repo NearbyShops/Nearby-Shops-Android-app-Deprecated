@@ -15,7 +15,9 @@ import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.SelectMarket.Interfaces.listItemMarketNotifications;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -33,10 +35,11 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
     private static final int view_type_current_market = 1;
-    private static final int view_type_user_profile = 2;
-    private static final int view_type_markets_header = 3;
-    private static final int VIEW_TYPE_Market = 4;
-    private static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 5;
+    private static final int view_type_saved_markets_list = 2;
+    private static final int view_type_user_profile = 3;
+    private static final int view_type_markets_header = 4;
+    private static final int VIEW_TYPE_Market = 5;
+    private static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 6;
 
 
     @Inject Gson gson;
@@ -79,6 +82,12 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return ViewHolderCurrentMarket.create(parent,fragment.getActivity());
 
         }
+        else if(viewType==view_type_saved_markets_list)
+        {
+
+            return ViewHolderSavedMarketList.create(parent,fragment.getActivity(), (listItemMarketNotifications) fragment);
+
+        }
         else if(viewType == view_type_user_profile)
         {
 //            view = LayoutInflater.from(parent.getContext())
@@ -105,9 +114,9 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //            view = LayoutInflater.from(parent.getContext())
 //                    .inflate(R.layout.list_item_market, parent, false);
 
-//            return new ViewHolderMarket(view, parent, fragment.getActivity(), (ViewHolderMarket.VHMarketNotifications) fragment);
+//            return new ViewHolderMarket(view, parent, fragment.getActivity(), (ViewHolderMarket.listItemMarketNotifications) fragment);
 
-            return ViewHolderMarket.create(parent,fragment.getActivity(), (ViewHolderMarket.VHMarketNotifications) fragment);
+            return ViewHolderMarket.create(parent,fragment.getActivity(), (listItemMarketNotifications) fragment);
 
 
         } else if (viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR) {
@@ -136,6 +145,10 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
             return view_type_current_market;
         }
+        else if(dataset.get(position) instanceof List<?>)
+        {
+            return view_type_saved_markets_list;
+        }
         else if(dataset.get(position) instanceof User)
         {
             return view_type_user_profile;
@@ -163,6 +176,12 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
             ViewHolderCurrentMarket holderCurrentMarket = (ViewHolderCurrentMarket) holderVH;
             holderCurrentMarket.setItem((ServiceConfigurationLocal) dataset.get(position));
+
+        }
+        else if(holderVH instanceof ViewHolderSavedMarketList)
+        {
+
+            ((ViewHolderSavedMarketList) holderVH).setItem((List<ServiceConfigurationGlobal>) dataset.get(position));
 
         }
         else if(holderVH instanceof ViewHolderUserProfile)
@@ -248,6 +267,11 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
+
+
+    public class SavedMarketsMarker{
+
+    }
 
 
 }
