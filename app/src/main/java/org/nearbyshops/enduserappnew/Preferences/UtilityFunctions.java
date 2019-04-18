@@ -9,6 +9,8 @@ import com.google.gson.GsonBuilder;
 
 public class UtilityFunctions {
 
+    public static final String TAG_LOG = "app_log";
+
 
     /* Utility Functions */
 

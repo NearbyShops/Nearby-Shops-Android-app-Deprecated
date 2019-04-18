@@ -59,6 +59,7 @@ import org.nearbyshops.enduserappnew.SelectMarket.AdapterNewBackup;
 import org.nearbyshops.enduserappnew.SelectMarket.MarketsFragment;
 import org.nearbyshops.enduserappnew.SelectMarket.SubmitURLDialog;
 import org.nearbyshops.enduserappnew.SelectMarket.ViewHolderMarket;
+import org.nearbyshops.enduserappnew.SelectMarket.ViewHolderSavedMarket;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail_;
@@ -272,4 +273,6 @@ public interface NetComponent {
     void Inject(RateReviewDialogMarket rateReviewDialogMarket);
 
     void Inject(FragmentEditProfileGlobal fragmentEditProfileGlobal);
+
+    void Inject(ViewHolderSavedMarket viewHolderSavedMarket);
 }

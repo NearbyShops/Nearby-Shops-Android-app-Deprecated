@@ -243,6 +243,33 @@
 
 
 
+    <TextView
+        android:id="@+id/select_market"
+        android:textSize="15sp"
+        android:padding="5dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="Select Market"
+        android:background="@color/mapbox_blue"
+        app:layout_constraintStart_toStartOf="@id/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description"
+        android:textColor="@color/white"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar_select"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="@id/select_market"
+        app:layout_constraintBottom_toBottomOf="@id/select_market"
+        app:layout_constraintStart_toStartOf="@id/select_market"
+        app:layout_constraintEnd_toEndOf="@id/select_market"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+
 
 
     <ImageView
@@ -251,7 +278,7 @@
         android:id="@+id/logo"
         android:minHeight="150dp"
         android:background="@color/backgroundTinted"
-        app:layout_constraintBottom_toBottomOf="@+id/description"
+        app:layout_constraintBottom_toBottomOf="@+id/select_market"
         app:layout_constraintTop_toTopOf="@+id/distance"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_width="0dp"
@@ -275,31 +302,29 @@
 
 
 
+    <!--<TextView-->
+        <!--android:id="@+id/select_market"-->
+        <!--android:textSize="15sp"-->
+        <!--android:padding="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:gravity="center"-->
+        <!--android:text="Select Market"-->
+        <!--android:background="@color/mapbox_blue"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/logo"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
 
 
-    <TextView
-        android:id="@+id/select_market"
-        android:textSize="17sp"
-        android:padding="7dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:text="Select Market"
-        android:background="@color/mapbox_blue"
-        app:layout_constraintTop_toBottomOf="@id/logo"
-        android:textColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-
-    <ProgressBar
-        android:id="@+id/progress_bar_select"
-        android:visibility="invisible"
-        app:layout_constraintTop_toTopOf="@id/select_market"
-        app:layout_constraintBottom_toBottomOf="@id/select_market"
-        app:layout_constraintStart_toStartOf="@id/select_market"
-        app:layout_constraintEnd_toEndOf="@id/select_market"
-        android:layout_width="30dp"
-        android:layout_height="30dp" />
+    <!--<ProgressBar-->
+        <!--android:id="@+id/progress_bar_select"-->
+        <!--android:visibility="invisible"-->
+        <!--app:layout_constraintTop_toTopOf="@id/select_market"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/select_market"-->
+        <!--app:layout_constraintStart_toStartOf="@id/select_market"-->
+        <!--app:layout_constraintEnd_toEndOf="@id/select_market"-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="30dp" />-->
 
 
 
