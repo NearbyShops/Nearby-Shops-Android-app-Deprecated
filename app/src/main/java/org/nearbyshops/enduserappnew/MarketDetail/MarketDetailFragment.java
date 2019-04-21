@@ -17,6 +17,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -655,6 +656,9 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
         // make a network call to check the favourite
 
+        Log.d("app_log","Inside Check Favourite : " );
+
+
         if (market != null && PrefLoginGlobal.getUser(getActivity()) != null) {
 
 
@@ -677,7 +681,13 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
                 @Override
                 public void onResponse(Call<FavouriteMarketEndpoint> call, Response<FavouriteMarketEndpoint> response) {
 
+
+
                     if (response.body() != null) {
+
+
+                        Log.d("app_log","Item Count Favourite : " + String.valueOf(response.body().getItemCount()));
+
                         if (response.body().getItemCount() >= 1) {
 
                             setFavouriteIcon(true);

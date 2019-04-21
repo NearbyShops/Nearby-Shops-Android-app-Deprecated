@@ -15,7 +15,7 @@ import org.nearbyshops.enduserappnew.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduserappnew.DaggerModules.AppModule;
 import org.nearbyshops.enduserappnew.DaggerModules.NetModule;
 import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.FragmentChangeEmail;
-import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.FragmentVerifyEmailChange;
+import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.FragmentVerifyEmail;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePassword.FragmentChangePassword;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.FragmentChangePhone;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.FragmentVerifyPhone;
@@ -24,6 +24,7 @@ import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfileGlobal;
 import org.nearbyshops.enduserappnew.FilterItemsBySpecifications.FilterItemsFragment;
 import org.nearbyshops.enduserappnew.FilterShopDialog.FilterShopsDialog;
 import org.nearbyshops.enduserappnew.Home;
+import org.nearbyshops.enduserappnew.HomeNew;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail_;
 import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemImages.ItemImageListFragment;
@@ -47,6 +48,8 @@ import org.nearbyshops.enduserappnew.LoginUsingOTP.InsertPhoneFragment;
 import org.nearbyshops.enduserappnew.LoginUsingOTP.WelcomeFragment;
 import org.nearbyshops.enduserappnew.MarketDetail.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.MarketDetail.RateReviewDialogMarket;
+import org.nearbyshops.enduserappnew.Markets.ViewModels.MarketViewModel;
+import org.nearbyshops.enduserappnew.Markets.MarketsFragmentNew;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.OrderDetail.FragmentOrderDetail;
 import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Complete.CompleteOrdersFragment;
@@ -54,12 +57,12 @@ import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Pending.Pendi
 import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragmentNew;
 
 
-import org.nearbyshops.enduserappnew.SelectMarket.AdapterMarkets;
-import org.nearbyshops.enduserappnew.SelectMarket.AdapterNewBackup;
-import org.nearbyshops.enduserappnew.SelectMarket.MarketsFragment;
-import org.nearbyshops.enduserappnew.SelectMarket.SubmitURLDialog;
-import org.nearbyshops.enduserappnew.SelectMarket.ViewHolderMarket;
-import org.nearbyshops.enduserappnew.SelectMarket.ViewHolderSavedMarket;
+import org.nearbyshops.enduserappnew.Markets.ViewHolders.AdapterMarkets;
+import org.nearbyshops.enduserappnew.Markets.DeprecatedCode.AdapterNewBackup;
+import org.nearbyshops.enduserappnew.Markets.MarketsFragment;
+import org.nearbyshops.enduserappnew.Markets.SubmitURLDialog;
+import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderMarket;
+import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderSavedMarket;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail_;
@@ -87,7 +90,7 @@ import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentEnterCredenti
 import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentResetPassword;
 import org.nearbyshops.enduserappnew.SignUp.FragmentEmailOrPhone;
 import org.nearbyshops.enduserappnew.SignUp.FragmentEnterPassword;
-import org.nearbyshops.enduserappnew.SignUp.FragmentVerifyPhoneOREmailSignUp;
+import org.nearbyshops.enduserappnew.SignUp.FragmentVerify;
 import org.nearbyshops.enduserappnew.TabProfile.ProfileFragment;
 
 
@@ -208,7 +211,7 @@ public interface NetComponent {
 
     void Inject(FragmentResetPassword fragmentResetPassword);
 
-    void Inject(FragmentVerifyPhoneOREmailSignUp fragmentVerifyPhoneOREmailSignUp);
+    void Inject(FragmentVerify fragmentVerify);
 
     void Inject(Home homeNew);
 
@@ -218,7 +221,7 @@ public interface NetComponent {
 
     void Inject(CartItemAdapter cartItemAdapter);
 
-    void Inject(FragmentVerifyEmailChange fragmentVerifyEmailChange);
+    void Inject(FragmentVerifyEmail fragmentVerifyEmail);
 
     void Inject(FragmentVerifyPhone fragmentVerifyPhone);
 
@@ -275,4 +278,10 @@ public interface NetComponent {
     void Inject(FragmentEditProfileGlobal fragmentEditProfileGlobal);
 
     void Inject(ViewHolderSavedMarket viewHolderSavedMarket);
+
+    void Inject(MarketsFragmentNew marketsFragmentNew);
+
+    void Inject(MarketViewModel marketViewModel);
+
+    void Inject(HomeNew homeNew);
 }

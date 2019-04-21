@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SelectMarket;
+package org.nearbyshops.enduserappnew.Markets.DeprecatedCode;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 
+import org.nearbyshops.enduserappnew.Markets.MarketsFragment;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
@@ -196,18 +197,18 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             if(fragment instanceof MarketsFragment)
             {
-                int items_count = ((MarketsFragment) fragment).item_count;
+//                int items_count = ((MarketsFragment) fragment).item_count;
 
-                if(dataset.size() == items_count)
-                {
-                    viewHolder.progressBar.setVisibility(View.GONE);
-                }
-                else
-                {
-                    viewHolder.progressBar.setVisibility(View.VISIBLE);
-                    viewHolder.progressBar.setIndeterminate(true);
-
-                }
+//                if(dataset.size() == items_count)
+//                {
+//                    viewHolder.progressBar.setVisibility(View.GONE);
+//                }
+//                else
+//                {
+//                    viewHolder.progressBar.setVisibility(View.VISIBLE);
+//                    viewHolder.progressBar.setIndeterminate(true);
+//
+//                }
             }
         }
 

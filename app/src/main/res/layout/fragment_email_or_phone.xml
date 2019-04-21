@@ -31,6 +31,18 @@
 
 
 
+    <ProgressBar
+        app:layout_constraintBottom_toBottomOf="@id/next"
+        app:layout_constraintTop_toTopOf="@id/next"
+        app:layout_constraintEnd_toEndOf="@id/next"
+        app:layout_constraintStart_toStartOf="@id/next"
+        android:id="@+id/progress_bar_next"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+
+
+
 
     <!--<Button-->
         <!--android:layout_marginBottom="0dp"-->
@@ -89,18 +101,11 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
-
+        android:layout_height="0dp">
 
 
 
         <android.support.constraint.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:padding="0dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -148,32 +153,31 @@
 
 
             <TextView
-                android:visibility="gone"
                 android:gravity="center"
                 android:textSize="15sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="1dp"
                 android:padding="10dp"
                 android:background="@color/phonographyBlue"
+                app:layout_constraintRight_toLeftOf="@+id/select_email"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/header_title"
                 android:text="Phone"
                 android:textColor="@color/white"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintRight_toLeftOf="@+id/select_email"
+
                 android:id="@+id/select_phone" />
 
 
-
             <TextView
-                android:visibility="gone"
                 android:gravity="center"
                 android:textSize="15sp"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
                 android:padding="10dp"
                 android:background="@color/light_grey"
+                app:layout_constraintLeft_toRightOf="@+id/select_phone"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/header_title"
                 android:text="E-mail"
@@ -181,7 +185,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/select_email"
-                app:layout_constraintLeft_toRightOf="@+id/select_phone" />
+                 />
 
 
 
@@ -212,7 +216,7 @@
 
 
             <!--<com.hbb20.CountryCodePicker-->
-                <!--android:layout_marginTop="33dp"-->
+                <!--android:layout_marginTop="20dp"-->
                 <!--app:layout_constraintStart_toStartOf="parent"-->
                 <!--app:layout_constraintTop_toBottomOf="@id/select_phone"-->
                 <!--android:paddingTop="2dp"-->
@@ -226,6 +230,7 @@
 
 
 
+            <!--app:layout_constraintStart_toEndOf="@id/ccp"-->
             <!--app:layout_constraintLeft_toRightOf="@id/ccp"-->
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/text_input_phone"
@@ -238,10 +243,24 @@
                 android:layout_height="wrap_content">
 
 
-                <!--<LinearLayout-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content">-->
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+
+                    <com.hbb20.CountryCodePicker
+                        android:paddingTop="2dp"
+                        android:id="@+id/ccp"
+                        app:ccp_showFlag="true"
+                        app:ccp_showNameCode="false"
+                        app:ccp_showPhoneCode="true"
+                        app:ccp_defaultPhoneCode="91"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
 
 
@@ -252,21 +271,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                <!--</LinearLayout>-->
+                </LinearLayout>
 
 
 
-
-
-                <!--<com.hbb20.CountryCodePicker-->
-                    <!--android:paddingTop="2dp"-->
-                    <!--android:id="@+id/ccp"-->
-                    <!--app:ccp_showFlag="true"-->
-                    <!--app:ccp_showNameCode="false"-->
-                    <!--app:ccp_showPhoneCode="true"-->
-                    <!--app:ccp_defaultPhoneCode="91"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content" />-->
 
 
                 <!--<android.support.design.widget.TextInputEditText-->

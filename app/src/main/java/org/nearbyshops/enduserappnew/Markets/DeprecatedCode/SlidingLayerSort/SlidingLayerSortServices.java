@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SelectMarket.DeprecatedCode.SlidingLayerSort;
+package org.nearbyshops.enduserappnew.Markets.DeprecatedCode.SlidingLayerSort;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

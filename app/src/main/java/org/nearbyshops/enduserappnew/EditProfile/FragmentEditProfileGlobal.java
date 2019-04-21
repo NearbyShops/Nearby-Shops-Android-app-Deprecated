@@ -228,7 +228,10 @@ public class FragmentEditProfileGlobal extends Fragment {
             if(current_mode == MODE_UPDATE)
             {
 
-                if(getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false))
+//                getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false)
+
+
+                if(PrefGeneral.getMultiMarketMode(getActivity()))
                 {
                     user = PrefLoginGlobal.getUser(getContext());
                 }
@@ -307,10 +310,10 @@ public class FragmentEditProfileGlobal extends Fragment {
         PrefChangePhone.saveUser(null,getActivity());
         Intent intent = new Intent(getActivity(),ChangePhone.class);
 
-        if(getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false))
-        {
-            intent.putExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,true);
-        }
+//        if(getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false))
+//        {
+//            intent.putExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,true);
+//        }
 
 
         startActivityForResult(intent,10);
@@ -408,12 +411,24 @@ public class FragmentEditProfileGlobal extends Fragment {
 
     void loadImage(String imagePath) {
 
-        String iamgepath = PrefGeneral.getServiceURL(getContext()) + "/api/v1/User/Image/five_hundred_" + imagePath + ".jpg";
+        String imagePathLocal = "";
 
-        System.out.println(iamgepath);
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            imagePathLocal = PrefServiceConfig.getServiceURL_SDS(getContext()) + "/api/v1/User/Image/five_hundred_" + imagePath + ".jpg";
+        }
+        else
+        {
+            imagePathLocal = PrefGeneral.getServiceURL(getContext()) + "/api/v1/User/Image/five_hundred_" + imagePath + ".jpg";
+        }
+
+
+//        System.out.println(iamgepath);
 
         Picasso.with(getContext())
-                .load(iamgepath)
+                .load(imagePathLocal)
                 .into(resultView);
     }
 
@@ -704,11 +719,12 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
-        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
+//        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
 
         Call<ResponseBody> call;
 
-        if(isGlobalProfile)
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))
@@ -759,7 +775,8 @@ public class FragmentEditProfileGlobal extends Fragment {
                     if(getActivity().getIntent().getIntExtra(EDIT_MODE_INTENT_KEY,MODE_UPDATE)==MODE_UPDATE)
                     {
 
-                        if(isGlobalProfile)
+
+                        if(PrefGeneral.getMultiMarketMode(getActivity()))
                         {
                             PrefLoginGlobal.saveUserProfile(user,getContext());
                         }
@@ -1153,11 +1170,12 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
-        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
+//        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
 
         Call<Image> imageCall;
 
-        if(isGlobalProfile)
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))
@@ -1177,8 +1195,10 @@ public class FragmentEditProfileGlobal extends Fragment {
         else
         {
 
-            imageCall = userService.uploadImage(PrefLogin.getAuthorizationHeaders(getContext()),
-                    requestBodyBinary);
+            imageCall = userService.uploadImage(
+                    PrefLogin.getAuthorizationHeaders(getContext()),
+                    requestBodyBinary
+            );
 
         }
 
@@ -1289,11 +1309,12 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
-        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
+//        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
 
         Call<ResponseBody> call;
 
-        if(isGlobalProfile)
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))

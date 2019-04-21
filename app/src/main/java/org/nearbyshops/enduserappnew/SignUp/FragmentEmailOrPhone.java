@@ -18,6 +18,10 @@ import android.widget.Toast;
 
 
 import com.google.gson.Gson;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+import com.hbb20.CountryCodePicker;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
@@ -30,6 +34,8 @@ import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.SignUp.Interfaces.ShowFragmentSignUp;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
 
+
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
@@ -59,7 +65,7 @@ public class FragmentEmailOrPhone extends Fragment {
     @BindView(R.id.text_input_email) TextInputLayout emailLayout;
 
 
-//    @BindView(R.id.ccp) CountryCodePicker ccp;
+    @BindView(R.id.ccp) CountryCodePicker ccp;
     @BindView(R.id.phone) TextInputEditText phone;
     @BindView(R.id.email) TextInputEditText email;
 
@@ -70,6 +76,11 @@ public class FragmentEmailOrPhone extends Fragment {
     @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
+    boolean isDestroyed = false;
+
+
+    @BindView(R.id.next) TextView nextButton;
+    @BindView(R.id.progress_bar_next) ProgressBar progressBarNext;
 
 
     @Inject Gson gson;
@@ -119,28 +130,68 @@ public class FragmentEmailOrPhone extends Fragment {
         }
         else
         {
-            selectPhoneClick();
+            selectEmailClick();
         }
 
 
+
+
 //
-//        if(PrefServiceConfig.getServiceConfig(getActivity())!=null)
-//        {
-//            ccp.setCountryForNameCode(PrefServiceConfig.getServiceConfig(getActivity()).getISOCountryCode());
-//        }
-//
-//
-//
-//        ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
-//            @Override
-//            public void onCountrySelected() {
-//                textInputChanged();
+//        ccp.setCustomMasterCountries();
+
+
+        if(user.getRt_phone_country_code()!=null)
+        {
+            ccp.setCountryForPhoneCode(Integer.parseInt(user.getRt_phone_country_code()));
+
+//            if(PrefGeneral.getMultiMarketMode(getActivity()))
+//            {
+//                ccp.setCcpClickable(false);
 //            }
-//        });
-//
-//
-//        ccp.registerCarrierNumberEditText(phone);
-//        ccp.setNumberAutoFormattingEnabled(false);
+//            else
+//            {
+//                ccp.setCcpClickable(true);
+//            }
+
+        }
+        else if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            ccp.setCountryForNameCode("IN");
+//            ccp.setCcpClickable(false);
+        }
+        else
+        {
+            ccp.setCcpClickable(true);
+
+            if(PrefServiceConfig.getServiceConfigLocal(getActivity())!=null)
+            {
+                ccp.setCountryForNameCode(PrefServiceConfig.getServiceConfigLocal(getActivity()).getISOCountryCode());
+            }
+        }
+
+
+
+
+
+//        if(PrefServiceConfig.getServiceConfigLocal(getActivity())!=null)
+//        {
+//            ccp.setCountryForNameCode(PrefServiceConfig.getServiceConfigLocal(getActivity()).getISOCountryCode());
+//        }
+
+
+
+
+
+        ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
+            @Override
+            public void onCountrySelected() {
+                textInputChanged();
+            }
+        });
+
+
+        ccp.registerCarrierNumberEditText(phone);
+        ccp.setNumberAutoFormattingEnabled(false);
 
 
 
@@ -176,7 +227,7 @@ public class FragmentEmailOrPhone extends Fragment {
 //        phoneOrEmail = 2;  // set flag
 
 
-        bindViews();
+//        bindViews();
 
         checkIcon.setVisibility(View.INVISIBLE);
         crossIcon.setVisibility(View.INVISIBLE);
@@ -240,12 +291,21 @@ public class FragmentEmailOrPhone extends Fragment {
     {
 
 //            user.setPhone(ccp.getSelectedCountryCode()+phone.getText().toString());
+//            user.setPhone(phone.getText().toString());
+
             user.setPhone(phone.getText().toString());
             user.setEmail(email.getText().toString());
 
-//            showToastMessage("Phone : " + user.getPhone());
+
+            user.setRt_phone_country_code(ccp.getSelectedCountryCode());
+
+
+
+//            showToastMessage("Phone : " + user.getRt_phone_country_code() + "-" + user.getPhone());
 
     }
+
+
 
 
 
@@ -266,26 +326,43 @@ public class FragmentEmailOrPhone extends Fragment {
             return;
         }
 
+
+
         saveDataFromViews();
+
 
 
 //        checkUsernameExist();
 
 
-        progressBar.setVisibility(View.VISIBLE);
-        countDownTimer.cancel();  // restart the timer
-        countDownTimer.start();
+//        progressBar.setVisibility(View.VISIBLE);
+//        countDownTimer.cancel();  // restart the timer
+//        countDownTimer.start();
+
+
     }
 
 
 
-    boolean isDataValid(boolean showError)
-    {
+    boolean isDataValid(boolean showError){
         boolean isValid = true;
 
         if(user.getRt_registration_mode()==User.REGISTRATION_MODE_PHONE)
         {
             // validate phone
+
+
+            PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+
+
+            Phonenumber.PhoneNumber phoneNumber = null;
+
+            try {
+                phoneNumber = phoneUtil.parse(phone.getText().toString(),ccp.getSelectedCountryNameCode());
+            } catch (NumberParseException e) {
+                e.printStackTrace();
+            }
+
 
             if(phone.getText().toString().equals(""))
             {
@@ -298,12 +375,27 @@ public class FragmentEmailOrPhone extends Fragment {
                 isValid= false;
 
             }
-            else if(phone.getText().toString().length()!=10)
+            else if(phoneNumber!=null && !phoneUtil.isValidNumberForRegion(phoneNumber,ccp.getSelectedCountryNameCode()))
             {
+//                isValidMobile(phone.getText().toString())
+//                phone.getText().toString().length()!=10
+
+
                 if(showError)
                 {
                     phone.requestFocus();
-                    phone.setError("Phone should have 10 digits");
+                    phone.setError("Phone is not valid !");
+                }
+
+                isValid=false;
+            }
+            else if(phoneNumber==null)
+            {
+
+                if(showError)
+                {
+                    phone.requestFocus();
+                    phone.setError("Phone invalid !");
                 }
 
                 isValid=false;
@@ -342,6 +434,21 @@ public class FragmentEmailOrPhone extends Fragment {
 
 
 
+    private boolean isValidMobile(String phone) {
+        boolean check=false;
+        if(!Pattern.matches("[a-zA-Z]+", phone)) {
+            if(phone.length() < 6 || phone.length() > 13) {
+                // if(phone.length() != 10) {
+                check = false;
+            } else {
+                check = true;
+            }
+        } else {
+            check=false;
+        }
+        return check;
+    }
+
 
 
 
@@ -355,7 +462,13 @@ public class FragmentEmailOrPhone extends Fragment {
 
         public void onFinish() {
 
-           checkUsernameExist();
+
+            if(isDestroyed)
+            {
+                return;
+            }
+
+//           checkUsernameExist();
         }
     };
 
@@ -364,7 +477,10 @@ public class FragmentEmailOrPhone extends Fragment {
 
 
 
-    void checkUsernameExist()
+
+
+
+    void checkUsernameExist(boolean initiateNext, boolean showNextButtonProgress)
     {
         String inputName = "";
 
@@ -372,9 +488,13 @@ public class FragmentEmailOrPhone extends Fragment {
         {
             // check for phone
 
-            inputName =  phone.getText().toString();
+//            inputName =  phone.getText().toString();
 //            inputName = ccp.getSelectedCountryCode() + phone.getText().toString();
 
+
+            inputName = ccp.getFullNumber();
+
+//            showToastMessage("Phone : " + inputName);
 
         }
         else if(user.getRt_registration_mode() == User.REGISTRATION_MODE_EMAIL)
@@ -412,11 +532,33 @@ public class FragmentEmailOrPhone extends Fragment {
 
 
 
+        if(showNextButtonProgress)
+        {
+            progressBarNext.setVisibility(View.VISIBLE);
+            nextButton.setVisibility(View.INVISIBLE);
+        }
+
+
         progressBar.setVisibility(View.VISIBLE);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
+
+                if(showNextButtonProgress)
+                {
+                    progressBarNext.setVisibility(View.INVISIBLE);
+                    nextButton.setVisibility(View.VISIBLE);
+                }
+
+
 
                 progressBar.setVisibility(View.INVISIBLE);
 
@@ -432,7 +574,7 @@ public class FragmentEmailOrPhone extends Fragment {
                     }
                     else if(user.getRt_registration_mode()==User.REGISTRATION_MODE_EMAIL)
                     {
-                        email.setError("An account already exist with that e-mail. Please use another phone or reset the password for that e-mail !");
+                        email.setError("An account already exist with that e-mail. Please use another email or reset the password for that e-mail !");
                     }
 
 
@@ -473,11 +615,34 @@ public class FragmentEmailOrPhone extends Fragment {
                     }
 
 
+
+                    if(initiateNext)
+                    {
+                        initiateNext();
+                    }
+
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
+
+
+                if(showNextButtonProgress)
+                {
+                    progressBarNext.setVisibility(View.INVISIBLE);
+                    nextButton.setVisibility(View.VISIBLE);
+                }
+
+
 
                 progressBar.setVisibility(View.INVISIBLE);
             }
@@ -494,6 +659,23 @@ public class FragmentEmailOrPhone extends Fragment {
 
     @OnClick(R.id.next)
     void nextClick()
+    {
+
+
+        if(!isDataValid(true))
+        {
+            return;
+        }
+
+        checkUsernameExist(true,true);
+    }
+
+
+
+
+
+
+    void initiateNext()
     {
         if(!isDataValid(true))
         {
@@ -555,4 +737,19 @@ public class FragmentEmailOrPhone extends Fragment {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
 
+
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isDestroyed = true;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isDestroyed = false;
+    }
 }

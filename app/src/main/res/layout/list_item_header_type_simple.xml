@@ -23,7 +23,11 @@
         android:id="@+id/border_one"
         android:background="@color/grey800"
         android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        android:layout_height="1dp" />
+
+    <!--android:background="@color/blueGrey800"-->
+    <!--android:textColor="@color/white"-->
+
 
     <TextView
         android:textColor="@color/white"
@@ -42,7 +46,7 @@
         android:layout_below="@id/header"
         android:id="@+id/border_two"
         android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        android:layout_height="1dp" />
 
 
 </LinearLayout>

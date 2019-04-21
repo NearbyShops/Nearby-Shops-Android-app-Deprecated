@@ -15,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,9 +40,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EventBus.LocationPermissionGranted;
 import org.nearbyshops.enduserappnew.FilterItemsBySpecifications.FilterItemsActivity;
-import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
+import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyHeaderChanged;
@@ -57,7 +58,7 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemService;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
-import org.nearbyshops.enduserappnew.SelectMarket.MarketsFragment;
+import org.nearbyshops.enduserappnew.Markets.MarketsFragment;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.UtilitySortItemsByCategory;
 
@@ -207,7 +208,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 //        getActivity().startService(new Intent(getActivity(),LocationUpdateServiceLocal.class));
-        requestLocationUpdates();
+//        requestLocationUpdates();
 
         return rootView;
     }
@@ -226,24 +227,29 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 //        showToastMessage("Toolbar Clicked !");
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
-        {
-            if(getActivity().getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT)==null)
-            {
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container,new MarketsFragment(),TAG_MARKET_FRAGMENT)
-                        .commit();
-            }
-
-
-//            .addToBackStack("select_market")
-
-        }
+//        if(PrefGeneral.getMultiMarketMode(getActivity()))
+//        {
+//            if(getActivity().getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT)==null)
+//            {
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fragment_container,new MarketsFragment(),TAG_MARKET_FRAGMENT)
+//                        .commit();
+//            }
+//
+//
+////            .addToBackStack("select_market")
+//
+//        }
 
 
 //        startActivity(new Intent(getActivity(),ServicesActivity.class));
 
+
+        if(getActivity() instanceof ShowFragment)
+        {
+            ((ShowFragment) getActivity()).showProfileFragment();
+        }
     }
 
 
@@ -477,6 +483,9 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
                     if((offset_item + limit_item)<=item_count_item)
                     {
                         offset_item = offset_item + limit_item;
+
+
+//                        Log.d("item_requests","Item Fetched from API");
 
                         makeRequestItem(false,false);
                     }
@@ -1068,7 +1077,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
     public void permissionGranted(LocationPermissionGranted granted) {
 
 //        showToastMessage("Granted event bus !");
-        requestLocationUpdates();
+//        requestLocationUpdates();
     }
 
 
@@ -1277,6 +1286,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 //        showToastMessage("Granted interface !");
 //        requestLocationUpdates();
     }
+
+
 
 
 

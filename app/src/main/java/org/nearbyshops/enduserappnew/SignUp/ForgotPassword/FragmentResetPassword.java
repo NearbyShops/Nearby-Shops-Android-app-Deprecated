@@ -17,8 +17,12 @@ import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.SignUp.Interfaces.ShowFragmentForgotPassword;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceForgotPassword;
 
@@ -27,10 +31,13 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by sumeet on 27/6/17.
@@ -67,6 +74,9 @@ public class FragmentResetPassword extends Fragment {
     UserService userService;
 
     User user;
+
+    boolean isDestroyed = false;
+
 
 
 //    boolean verificationCodeValid = false; // flag to keep record of verification code
@@ -164,11 +174,43 @@ public class FragmentResetPassword extends Fragment {
         resetButton.setVisibility(View.INVISIBLE);
 
 
-            Call<ResponseBody> call = userService.resetPassword(user);
+
+
+            Call<ResponseBody> call;
+
+
+            if(PrefGeneral.getMultiMarketMode(getActivity()))
+            {
+                // multi market mode enabled ... so use a global endpoint
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                        .client(new OkHttpClient().newBuilder().build())
+                        .build();
+
+
+                call = retrofit.create(UserServiceGlobal.class).resetPassword(user);
+            }
+            else
+            {
+                call = userService.resetPassword(user);
+            }
+
+
+
+
 
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+                    if(isDestroyed)
+                    {
+                        return;
+                    }
+
 
                     progressBarButton.setVisibility(View.INVISIBLE);
                     resetButton.setVisibility(View.VISIBLE);
@@ -197,6 +239,13 @@ public class FragmentResetPassword extends Fragment {
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable throwable) {
 
+
+                    if(isDestroyed)
+                    {
+                        return;
+                    }
+
+
                     progressBarButton.setVisibility(View.INVISIBLE);
 
                     showToastMessage("Network failure !");
@@ -211,5 +260,23 @@ public class FragmentResetPassword extends Fragment {
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
+
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isDestroyed = false;
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isDestroyed = true;
+    }
+
+
 
 }

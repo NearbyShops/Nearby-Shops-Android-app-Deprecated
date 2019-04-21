@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SelectMarket;
+package org.nearbyshops.enduserappnew.Markets.DeprecatedCode;
 
 import android.graphics.drawable.Drawable;
 import android.support.graphics.drawable.VectorDrawableCompat;
@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Markets.MarketsFragment;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
@@ -26,7 +27,6 @@ import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.LoginUsingOTPService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ServiceConfigurationService;
-import org.nearbyshops.enduserappnew.SelectMarket.MarketsFragment;
 
 import java.util.Currency;
 import java.util.List;
@@ -206,18 +206,18 @@ public class AdapterNewBackup extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             if(fragment instanceof MarketsFragment)
             {
-                int items_count = ((MarketsFragment) fragment).item_count;
-
-                if(dataset.size() == items_count)
-                {
-                    viewHolder.progressBar.setVisibility(View.GONE);
-                }
-                else
-                {
-                    viewHolder.progressBar.setVisibility(View.VISIBLE);
-                    viewHolder.progressBar.setIndeterminate(true);
-
-                }
+//                int items_count = ((MarketsFragment) fragment).item_count;
+//
+//                if(dataset.size() == items_count)
+//                {
+//                    viewHolder.progressBar.setVisibility(View.GONE);
+//                }
+//                else
+//                {
+//                    viewHolder.progressBar.setVisibility(View.VISIBLE);
+//                    viewHolder.progressBar.setIndeterminate(true);
+//
+//                }
             }
         }
     }

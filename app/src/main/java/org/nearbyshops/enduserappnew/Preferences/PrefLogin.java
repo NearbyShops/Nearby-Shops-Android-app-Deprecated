@@ -109,33 +109,6 @@ public class PrefLogin {
 
 
 
-    public static void setRoleID(Context context, int role_id)
-    {
-        // get a handle to shared Preference
-        SharedPreferences sharedPref;
-
-        sharedPref = context.getSharedPreferences(
-                context.getString(R.string.preference_file_name),
-                MODE_PRIVATE);
-
-        // write to the shared preference
-        SharedPreferences.Editor editor = sharedPref.edit();
-
-        editor.putInt("role", role_id);
-
-        editor.apply();
-    }
-
-
-    public static int getRoleID(Context context) {
-
-        context = MyApplication.getAppContext();
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        int role_id = sharedPref.getInt("role", -1);
-        return role_id;
-    }
-
-
 
     public static String baseEncoding(String username,String password)
     {
@@ -156,60 +129,6 @@ public class PrefLogin {
                 PrefLogin.getPassword(context));
 
     }
-
-
-
-//    public static void saveEndUser(EndUser endUser, Context context)
-//    {
-//
-//        if(context == null)
-//        {
-//            return;
-//        }
-//
-//        //Creating a shared preference
-//
-//        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-//
-//        SharedPreferences.Editor prefsEditor = sharedPref.edit();
-//
-//        if(endUser == null)
-//        {
-//            prefsEditor.putString("admin", "null");
-//
-//        }
-//        else
-//        {
-//            Gson gson = new Gson();
-//            String json = gson.toJson(endUser);
-//            prefsEditor.putString("admin", json);
-//        }
-//
-//        prefsEditor.apply();
-//    }
-//
-//
-//    public static EndUser getEndUser(Context context)
-//    {
-//        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-//
-//        Gson gson = new Gson();
-//        String json = sharedPref.getString("admin", "null");
-//
-//        if(json.equals("null"))
-//        {
-//
-//            return null;
-//
-//        }else
-//        {
-//            return gson.fromJson(json, EndUser.class);
-//        }
-//
-//    }
-//
-
-
 
 
 
@@ -245,6 +164,36 @@ public class PrefLogin {
         return gson.fromJson(json, User.class);
     }
 
+
+
+
+
+
+    public static void setRoleID(Context context, int role_id)
+    {
+        // get a handle to shared Preference
+        SharedPreferences sharedPref;
+
+        sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preference_file_name),
+                MODE_PRIVATE);
+
+        // write to the shared preference
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putInt("role", role_id);
+
+        editor.apply();
+    }
+
+
+    public static int getRoleID(Context context) {
+
+        context = MyApplication.getAppContext();
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        int role_id = sharedPref.getInt("role", -1);
+        return role_id;
+    }
 
 
 

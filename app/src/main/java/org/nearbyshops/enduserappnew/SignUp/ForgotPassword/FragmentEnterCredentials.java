@@ -19,10 +19,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.gson.Gson;
+
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.SignUp.Interfaces.ShowFragmentForgotPassword;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceForgotPassword;
 
@@ -33,10 +39,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by sumeet on 27/6/17.
@@ -93,6 +102,14 @@ TextInputEditText phone;
     @Inject
     UserService userService;
 
+
+
+    @Inject Gson gson;
+
+
+
+
+    boolean isDestroyed = false;
 
 
 
@@ -299,17 +316,17 @@ TextInputEditText phone;
                 }
 
                 isValid= false;
-
             }
-            else if(phone.getText().toString().length()!=10)
-            {
-                if(showError)
-                {
-                    phone.setError("Phone should have 10 digits");
-                }
 
-                isValid=false;
-            }
+//            else if(phone.getText().toString().length()!=10)
+//            {
+//                if(showError)
+//                {
+//                    phone.setError("Phone should have 10 digits");
+//                }
+//
+//                isValid=false;
+//            }
 
         }
         else if (user.getRt_registration_mode()==User.REGISTRATION_MODE_EMAIL)
@@ -347,6 +364,13 @@ TextInputEditText phone;
 
         public void onTick(long millisUntilFinished) {
 
+
+            if(isDestroyed)
+            {
+                return;
+            }
+
+
             textAvailable.setVisibility(View.INVISIBLE);
             checkIcon.setVisibility(View.INVISIBLE);
             crossIcon.setVisibility(View.INVISIBLE);
@@ -354,7 +378,13 @@ TextInputEditText phone;
 
         public void onFinish() {
 
-           checkUsernameExist();
+            if(isDestroyed)
+            {
+                return;
+            }
+
+
+            checkUsernameExist();
         }
     };
 
@@ -381,8 +411,28 @@ TextInputEditText phone;
         }
 
 
+        Call<ResponseBody> call;
 
-        Call<ResponseBody> call = userService.checkUsernameExists(username);
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            // multi market mode enabled ... so use a global endpoint
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            call = retrofit.create(UserServiceGlobal.class).checkUsernameExists(username);
+        }
+        else
+        {
+            call = userService.checkUsernameExists(username);
+        }
+
+
+
 
 
         progressBar.setVisibility(View.VISIBLE);
@@ -394,6 +444,13 @@ TextInputEditText phone;
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
                 progressBar.setVisibility(View.INVISIBLE);
 
@@ -457,6 +514,13 @@ TextInputEditText phone;
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
                 progressBar.setVisibility(View.INVISIBLE);
             }
@@ -565,11 +629,41 @@ TextInputEditText phone;
         nextButton.setVisibility(View.INVISIBLE);
 
 
-        Call<ResponseBody> call = userService.generateResetCode(user);
+        Call<ResponseBody> call;
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            // multi market mode enabled ... so use a global endpoint
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            call = retrofit.create(UserServiceGlobal.class).generateResetCode(user);
+        }
+        else
+        {
+
+            call = userService.generateResetCode(user);
+
+        }
+
+
+
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
 
                 progressBarButton.setVisibility(View.INVISIBLE);
@@ -591,6 +685,13 @@ TextInputEditText phone;
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable throwable) {
 
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
                 progressBarButton.setVisibility(View.INVISIBLE);
                 nextButton.setVisibility(View.VISIBLE);
 
@@ -609,4 +710,19 @@ TextInputEditText phone;
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
 
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isDestroyed = false;
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isDestroyed = true;
+    }
 }

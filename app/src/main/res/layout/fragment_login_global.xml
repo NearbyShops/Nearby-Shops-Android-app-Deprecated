@@ -16,6 +16,57 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:padding="10dp">
 
+
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:id="@+id/text_welcome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="@color/mapbox_blue"
+                android:text="Welcome !"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Explore local markets in your area and shop locally !"
+                android:layout_width="wrap_content"/>
+
+
+
+
+            <!--<TextView-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:text="Please Enter your phone number to proceed"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintBottom_toTopOf="@id/input_phone"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+        </LinearLayout>
+
+
+
+
+
+
         <!--<TextView-->
             <!--android:id="@+id/header_service"-->
             <!--android:textSize="17sp"-->
@@ -40,13 +91,13 @@
             <!--layout="@layout/list_item_service_config"/>-->
 
 
-        <FrameLayout
-            android:id="@+id/service_indicator"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+        <!--<FrameLayout-->
+            <!--android:id="@+id/service_indicator"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"/>-->
 
 
 
@@ -107,28 +158,31 @@
 
 
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:gravity="start"
-            android:id="@+id/change_city"
-            android:textSize="15sp"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:text="Change Market"
-            android:background="@color/phonographyBlue"
-            app:layout_constraintTop_toBottomOf="@+id/service_indicator"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+
+        <!--<TextView-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:gravity="start"-->
+            <!--android:id="@+id/change_city"-->
+            <!--android:textSize="15sp"-->
+            <!--android:padding="10dp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:text="Change Market"-->
+            <!--android:background="@color/phonographyBlue"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/service_indicator"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content" />-->
+
+
 
 
 
 
         <TextView
             android:id="@+id/border_one"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/change_city"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/text_welcome"
             android:background="@color/blueGrey800"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -136,14 +190,15 @@
             android:layout_height="1dp" />
 
 
+
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/header_login"
             android:layout_marginTop="5dp"
             android:textSize="24sp"
             android:padding="10dp"
-            android:textColor="@color/white"
-            android:background="@color/gplus_color_2"
-            android:text="Login | Global"
+            android:background="@color/mapboxBlue"
+            android:text="Login"
             app:layout_constraintTop_toBottomOf="@+id/border_one"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -247,6 +302,16 @@
 
 
         <!--<TextView-->
+            <!--android:textSize="15sp"-->
+            <!--android:id="@+id/user_option"-->
+            <!--android:text="Use e-mail for login"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/username_text_input"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+
+        <!--<TextView-->
             <!--android:id="@+id/switch_phone_or_email"-->
             <!--android:layout_marginStart="10dp"-->
             <!--android:layout_marginTop="10dp"-->
@@ -255,6 +320,8 @@
             <!--android:text="LoginUsingOTP using E-mail"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content" />-->
+
+
 
 
 

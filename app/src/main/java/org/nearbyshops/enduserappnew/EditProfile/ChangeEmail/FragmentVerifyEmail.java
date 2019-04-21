@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,9 +19,14 @@ import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 
 import javax.inject.Inject;
 
@@ -28,16 +34,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by sumeet on 27/6/17.
  */
 
-public class FragmentVerifyEmailChange extends Fragment {
+public class FragmentVerifyEmail extends Fragment {
 
 
     /* Token renewal variables : BEGIN */
@@ -61,12 +70,9 @@ public class FragmentVerifyEmailChange extends Fragment {
     @BindView(R.id.message)
     TextView textAvailable;
 
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
-    @BindView(R.id.verification_code)
-    TextInputEditText verificationCode;
-    @BindView(R.id.email_text)
-    TextView emailText;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
+    @BindView(R.id.verification_code) TextInputEditText verificationCode;
+    @BindView(R.id.email_text) TextView emailText;
 
 
     @BindView(R.id.progress_bar_resend)
@@ -75,8 +81,17 @@ public class FragmentVerifyEmailChange extends Fragment {
     TextView messageResend;
 
 
-    @Inject
-    UserService userService;
+    @Inject UserService userService;
+
+    @Inject Gson gson;
+
+
+    @BindView(R.id.progress_bar_update) ProgressBar progressBarUpdate;
+    @BindView(R.id.update_email) Button updateEmailButton;
+
+
+
+
 
     User user;
 
@@ -84,7 +99,7 @@ public class FragmentVerifyEmailChange extends Fragment {
 //    boolean verificationCodeValid = false; // flag to keep record of verification code
 
 
-    public FragmentVerifyEmailChange() {
+    public FragmentVerifyEmail() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -110,6 +125,19 @@ public class FragmentVerifyEmailChange extends Fragment {
     }
 
 
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isDestroyed = true;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isDestroyed= false;
+    }
 
 
 
@@ -194,6 +222,11 @@ public class FragmentVerifyEmailChange extends Fragment {
 
         public void onFinish() {
 
+            if(isDestroyed)
+            {
+                return;
+            }
+
             logMessage("Timer onFinish() ");
 
             verifyEmailCode(false);
@@ -214,14 +247,47 @@ public class FragmentVerifyEmailChange extends Fragment {
         textAvailable.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
-        Call<ResponseBody> call = userService.checkEmailVerificationCode(
-            user.getEmail(),verificationCode.getText().toString()
-        );
+
+        Call<ResponseBody> call;
+
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            // multi market mode enabled ... so use a global endpoint
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            call = retrofit.create(UserServiceGlobal.class).checkEmailVerificationCode(
+                    user.getEmail(),verificationCode.getText().toString()
+            );
+
+
+        }
+        else
+        {
+            call = userService.checkEmailVerificationCode(
+                    user.getEmail(),verificationCode.getText().toString()
+            );
+        }
+
+
+
 
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
 
                 progressBar.setVisibility(View.INVISIBLE);
 
@@ -253,6 +319,12 @@ public class FragmentVerifyEmailChange extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
 
                 progressBar.setVisibility(View.INVISIBLE);
 
@@ -303,28 +375,89 @@ public class FragmentVerifyEmailChange extends Fragment {
 //            Gson gson = new Gson();
 //            logMessage(gson.toJson(user));
 
-            user.setPassword(PrefLogin.getPassword(getActivity()));
 
 
 
 
 
-            Call<ResponseBody> call = userService.updateEmail(PrefLogin.getAuthorizationHeaders(getActivity()),
-                    user
-            );
+
+            Call<ResponseBody> call;
+
+
+            if(PrefGeneral.getMultiMarketMode(getActivity()))
+            {
+                user.setPassword(PrefLoginGlobal.getPassword(getActivity()));
+
+                // multi market mode enabled ... so use a global endpoint
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                        .client(new OkHttpClient().newBuilder().build())
+                        .build();
+
+
+                call = retrofit.create(UserServiceGlobal.class).updateEmail(
+                        PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                        user
+                );
+
+
+            }
+            else
+            {
+                user.setPassword(PrefLogin.getPassword(getActivity()));
+
+                call = userService.updateEmail(
+                        PrefLogin.getAuthorizationHeaders(getActivity()),
+                        user
+                );
+
+            }
+
+
+            progressBarUpdate.setVisibility(View.VISIBLE);
+            updateEmailButton.setVisibility(View.INVISIBLE);
+
+
 
 
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+
+                    if(isDestroyed)
+                    {
+                        return;
+                    }
+
+
+                    progressBarUpdate.setVisibility(View.INVISIBLE);
+                    updateEmailButton.setVisibility(View.VISIBLE);
+
+
                     if(response.code()==200)
                     {
 
-                        User userDetails = PrefLogin.getUser(getActivity());
-                        userDetails.setEmail(user.getEmail());
-                        PrefLogin.saveUserProfile(userDetails,getActivity());
-                        PrefLogin.saveUsername(getContext(),user.getEmail());
+
+                        if(PrefGeneral.getMultiMarketMode(getActivity()))
+                        {
+                            User userDetails = PrefLoginGlobal.getUser(getActivity());
+                            userDetails.setEmail(user.getEmail());
+                            PrefLoginGlobal.saveUserProfile(userDetails,getActivity());
+                            PrefLoginGlobal.saveUsername(getContext(),user.getEmail());
+
+                        }
+                        else
+                        {
+                            User userDetails = PrefLogin.getUser(getActivity());
+                            userDetails.setEmail(user.getEmail());
+                            PrefLogin.saveUserProfile(userDetails,getActivity());
+                            PrefLogin.saveUsername(getContext(),user.getEmail());
+                        }
+
+
 
 
                         if(getActivity() instanceof ShowFragmentChangeEmail)
@@ -355,6 +488,18 @@ public class FragmentVerifyEmailChange extends Fragment {
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+
+                    if(isDestroyed)
+                    {
+                        return;
+                    }
+
+
+
+                    progressBarUpdate.setVisibility(View.INVISIBLE);
+                    updateEmailButton.setVisibility(View.VISIBLE);
+
+
                     showToastMessage("Network failure !");
                 }
             });
@@ -383,11 +528,42 @@ public class FragmentVerifyEmailChange extends Fragment {
         messageResend.setText("Sending verification code ... ");
 
 
-        Call<ResponseBody> call = userService.sendVerificationEmail(user.getEmail());
+        Call<ResponseBody> call;
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            // multi market mode enabled ... so use a global endpoint
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            call = retrofit.create(UserServiceGlobal.class).sendVerificationEmail(
+                    user.getEmail()
+            );
+
+
+        }
+        else
+        {
+            call = userService.sendVerificationEmail(user.getEmail());
+        }
+
+
+
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
 
                 progressBarResend.setVisibility(View.INVISIBLE);
                 messageResend.setVisibility(View.VISIBLE);
@@ -408,13 +584,17 @@ public class FragmentVerifyEmailChange extends Fragment {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
                 progressBarResend.setVisibility(View.INVISIBLE);
                 messageResend.setText("Network failure please check your internet connection!");
             }
         });
     }
-
-
 
 
 }
