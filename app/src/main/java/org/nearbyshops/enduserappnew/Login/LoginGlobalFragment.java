@@ -91,24 +91,6 @@ public class LoginGlobalFragment extends Fragment {
 
 
 
-
-
-
-
-        if(PrefGeneral.getServiceURL(MyApplication.getAppContext())!=null)
-        {
-            if(getChildFragmentManager().findFragmentByTag(TAG_SERVICE_INDICATOR)==null)
-            {
-                getChildFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.service_indicator,new ServiceIndicatorFragment(),TAG_SERVICE_INDICATOR)
-                        .commit();
-            }
-        }
-
-
-
-
         return rootView;
     }
 
@@ -545,9 +527,10 @@ public class LoginGlobalFragment extends Fragment {
 
                     PrefLogin.saveCredentials(
                             getActivity(),
-                            user.getPhone(),
+                            phoneWithCode,
                             user.getPassword()
                     );
+
 
 
 

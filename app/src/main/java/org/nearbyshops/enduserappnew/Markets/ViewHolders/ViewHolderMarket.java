@@ -1,9 +1,9 @@
-package org.nearbyshops.enduserappnew.SelectMarket;
+package org.nearbyshops.enduserappnew.Markets.ViewHolders;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
 import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
@@ -27,7 +26,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.LoginUsingOTPService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.ServiceConfigurationService;
-import org.nearbyshops.enduserappnew.SelectMarket.Interfaces.listItemMarketNotifications;
+import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 
 import java.util.Currency;
 import java.util.Locale;
@@ -44,23 +43,33 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
 
 
-    @BindView(R.id.market_photo) ImageView marketPhoto;
-    @BindView(R.id.market_name) TextView marketName;
-    @BindView(R.id.market_city) TextView marketCity;
+
+
+
+
+
+public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+
+    @BindView(R.id.service_name) TextView serviceName;
+    @BindView(R.id.address) TextView serviceAddress;
+    @BindView(R.id.indicator_category) TextView indicatorCategory;
+    @BindView(R.id.indicator_verified) TextView indicatorVerified;
+    @BindView(R.id.distance) TextView distance;
+    @BindView(R.id.rating) TextView rating;
+    @BindView(R.id.rating_count) TextView ratingCount;
+    @BindView(R.id.description) TextView description;
+    @BindView(R.id.logo) ImageView serviceLogo;
 
     @BindView(R.id.progress_bar_select) ProgressBar progressBarSelect;
     @BindView(R.id.select_market) TextView selectMarket;
 
 
-
     private ServiceConfigurationGlobal configurationGlobal;
-    private Context context;
-
-
     private listItemMarketNotifications subscriber;
+    private Context context;
 
 
     @Inject Gson gson;
@@ -69,25 +78,38 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
 
 
 
-
-    public static ViewHolderSavedMarket create(ViewGroup parent, Context context, listItemMarketNotifications subscriber)
+    public static ViewHolderMarket create(ViewGroup parent, Context context, listItemMarketNotifications subscriber)
     {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_market_saved_type_two,parent,false);
+                .inflate(R.layout.list_item_market, parent, false);
 
-        return new ViewHolderSavedMarket(view,context,subscriber);
+        return new ViewHolderMarket(view,parent,context,subscriber);
     }
 
 
 
 
-    public ViewHolderSavedMarket(@NonNull View itemView, Context context, listItemMarketNotifications subscriber) {
+
+
+
+    public ViewHolderMarket(View itemView, ViewGroup parent, Context context, listItemMarketNotifications subscriber)
+    {
         super(itemView);
         ButterKnife.bind(this,itemView);
 
+
+
         this.context = context;
         this.subscriber = subscriber;
+
+//        itemView = LayoutInflater.from(parent.getContext())
+//                .inflate(R.layout.list_item_market,parent,false);
+
+
+        itemView.setOnClickListener(this);
+
+
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -96,20 +118,61 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
 
 
 
-
-    void setItem(ServiceConfigurationGlobal item)
+    void setItem(ServiceConfigurationGlobal configurationGlobal)
     {
+        this.configurationGlobal = configurationGlobal;
 
-        this.configurationGlobal = item;
+
+        serviceName.setText(configurationGlobal.getServiceName());
+        serviceAddress.setText(configurationGlobal.getCity());
+
+//                service.getAddress() + ", " +
 
 
-        marketName.setText(configurationGlobal.getServiceName());
-        marketCity.setText(configurationGlobal.getCity());
+
+//                if(service.getVerified())
+//                {
+//                    holder.indicatorVerified.setVisibility(View.VISIBLE);
+//                }
+//                else
+//                {
+//                    holder.indicatorVerified.setVisibility(View.GONE);
+//                }
+
+
+
+//                holder.indicatorVerified.setVisibility(View.VISIBLE);
+
+
+
+        distance.setText("Distance : " + String.format("%.2f",configurationGlobal.getRt_distance()));
+//                holder.rating.setText(String.format("%.2f",));
+
+        description.setText(configurationGlobal.getDescriptionShort());
+
+
+        if(configurationGlobal.getRt_rating_count()==0)
+        {
+            rating.setText(" New ");
+            rating.setBackgroundColor(ContextCompat.getColor(context,R.color.phonographyBlue));
+            ratingCount.setVisibility(View.GONE);
+        }
+        else
+        {
+            rating.setText(String.format("%.2f",configurationGlobal.getRt_rating_avg()));
+            ratingCount.setText("( " + String.valueOf((int)configurationGlobal.getRt_rating_count()) + " Ratings )");
+
+            rating.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_2));
+            ratingCount.setVisibility(View.VISIBLE);
+
+        }
+
+
+
 
 
         String imagePath = PrefServiceConfig.getServiceURL_SDS(context)
                 + "/api/v1/ServiceConfiguration/Image/three_hundred_" + configurationGlobal.getLogoImagePath() + ".jpg";
-
 
 //                System.out.println("Service LOGO : " + imagePath);
 
@@ -121,7 +184,7 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
         Picasso.with(context)
                 .load(imagePath)
                 .placeholder(placeholder)
-                .into(marketPhoto);
+                .into(serviceLogo);
 
     }
 
@@ -130,15 +193,15 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
 
 
 
-
-
-
-    @OnClick(R.id.list_item)
-    void listItemClick()
-    {
-        subscriber.listItemClick(configurationGlobal,getLayoutPosition());
-    }
-
+//        @OnClick(R.id.description)
+//        void copyURLClick()
+//        {
+//            ClipboardManager clipboard = (ClipboardManager) fragment.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+//            ClipData clip = ClipData.newPlainText("URL", serviceURL.getText().toString());
+//            clipboard.setPrimaryClip(clip);
+//
+//            showToastMessage("Copied !");
+//        }
 
 
 
@@ -151,6 +214,7 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
         ServiceConfigurationGlobal configurationGlobal = this.configurationGlobal;
 
 
+
         if(PrefLoginGlobal.getUser(context)==null)
         {
             // user not logged in so just fetch configuration
@@ -161,8 +225,18 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
             // user logged in so make an attempt to login to local service
             loginToLocalEndpoint(configurationGlobal);
         }
+
+
+
     }
 
+
+
+    @Override
+    public void onClick(View v) {
+
+        subscriber.listItemClick(configurationGlobal,getLayoutPosition());
+    }
 
 
 
@@ -234,7 +308,7 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
 //                        PrefGeneral.saveServiceURL(null,getApplicationContext());
 
 
-                    showToastMessage("Failed Code : " + String.valueOf(response.code()));
+                    subscriber.showMessage("Failed Code : " + String.valueOf(response.code()));
                 }
 
 
@@ -248,9 +322,8 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
 
                 selectMarket.setVisibility(View.VISIBLE);
                 progressBarSelect.setVisibility(View.INVISIBLE);
-                showToastMessage("Failed ... Please check your network ! ");
 
-
+                subscriber.showMessage("Failed ... Please check your network ! ");
             }
         });
     }
@@ -379,11 +452,7 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
 
 
 
-
-    void showToastMessage(String message)
-    {
-        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
-    }
-
-
 }
+
+
+

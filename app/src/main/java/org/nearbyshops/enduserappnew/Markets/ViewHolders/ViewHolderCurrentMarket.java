@@ -1,25 +1,31 @@
-package org.nearbyshops.enduserappnew.SelectMarket;
+package org.nearbyshops.enduserappnew.Markets.ViewHolders;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.nearbyshops.enduserappnew.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ViewHolderCurrentMarket extends RecyclerView.ViewHolder {
 
@@ -29,6 +35,7 @@ public class ViewHolderCurrentMarket extends RecyclerView.ViewHolder {
 //    @BindView(R.id.distance) TextView distance;
     @BindView(R.id.description) TextView marketDescription;
     @BindView(R.id.market_image) ImageView marketPhoto;
+    @BindView(R.id.log_out_button) TextView logOutButton;
 
 
     private ServiceConfigurationLocal configurationLocal;
@@ -87,9 +94,81 @@ public class ViewHolderCurrentMarket extends RecyclerView.ViewHolder {
                 .placeholder(placeholder)
                 .into(marketPhoto);
 
+
+
+        if(PrefLoginGlobal.getUser(context)==null)
+        {
+            // logged out
+            logOutButton.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            logOutButton.setVisibility(View.VISIBLE);
+        }
+
+
+
     }
 
 
+
+    @OnClick(R.id.log_out_button)
+    void logOutClick()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+
+        dialog.setTitle("Confirm Logout !")
+                .setMessage("Do you want to log out !")
+                .setPositiveButton("Yes",new DialogInterface.OnClickListener(){
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        logout();
+
+                    }
+                })
+                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        showToastMessage("Cancelled !");
+                    }
+                })
+                .show();
+
+    }
+
+
+
+
+
+    void logout()
+    {
+        // log out
+        PrefLogin.saveUserProfile(null,context);
+        PrefLogin.saveCredentials(context,null,null);
+
+        PrefLoginGlobal.saveUserProfile(null,context);
+        PrefLoginGlobal.saveCredentials(context,null,null);
+
+
+        if(context instanceof NotifyAboutLogin)
+        {
+            ((NotifyAboutLogin) context).loggedOut();
+        }
+
+    }
+
+
+
+
+
+
+    void showToastMessage(String message)
+    {
+        Toast.makeText(context,message, Toast.LENGTH_SHORT).show();
+    }
 
 
 }

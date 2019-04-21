@@ -29,6 +29,16 @@
         android:layout_height="40dp" />
 
 
+    <ProgressBar
+        android:id="@+id/progress_bar_update"
+        app:layout_constraintBottom_toBottomOf="@id/update_email"
+        app:layout_constraintTop_toTopOf="@id/update_email"
+        app:layout_constraintEnd_toEndOf="@id/update_email"
+        app:layout_constraintStart_toStartOf="@id/update_email"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+
+
 
 
 

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -83,12 +84,15 @@ public class FragmentVerifyPhone extends Fragment {
 
 
 
+    @BindView(R.id.progress_bar_update) ProgressBar progressBarUpdate;
+    @BindView(R.id.update_phone) Button updatePhoneButton;
+
+
+
     @Inject
     UserService userService;
 
     User user;
-
-
 
     @Inject Gson gson;
 
@@ -131,6 +135,25 @@ public class FragmentVerifyPhone extends Fragment {
 
         return rootView;
     }
+
+
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isDestroyed = true;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        isDestroyed = false;
+    }
+
+
 
 
 
@@ -242,10 +265,20 @@ public class FragmentVerifyPhone extends Fragment {
 
         public void onTick(long millisUntilFinished) {
 
+            if(isDestroyed)
+            {
+                return;
+            }
+
             logMessage("Timer onTick()");
         }
 
         public void onFinish() {
+
+            if(isDestroyed)
+            {
+                return;
+            }
 
             logMessage("Timer onFinish() ");
 
@@ -268,11 +301,12 @@ public class FragmentVerifyPhone extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
 
 
-        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
+//        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
+
 
         Call<ResponseBody> call;
 
-        if(isGlobalProfile) {
+        if(PrefGeneral.getMultiMarketMode(getActivity())) {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))
@@ -300,6 +334,12 @@ public class FragmentVerifyPhone extends Fragment {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
                 progressBar.setVisibility(View.INVISIBLE);
 
@@ -332,6 +372,12 @@ public class FragmentVerifyPhone extends Fragment {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
                 progressBar.setVisibility(View.INVISIBLE);
 
                 checkIcon.setVisibility(View.INVISIBLE);
@@ -349,7 +395,9 @@ public class FragmentVerifyPhone extends Fragment {
 
 
 
-    @OnClick(R.id.create_account)
+
+
+    @OnClick(R.id.update_phone)
     void createAccountClick()
     {
 
@@ -393,11 +441,11 @@ public class FragmentVerifyPhone extends Fragment {
 
 
 
-            boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
+//            boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
 
             Call<ResponseBody> call;
 
-            if(isGlobalProfile) {
+            if(PrefGeneral.getMultiMarketMode(getActivity())) {
 
                 Retrofit retrofit = new Retrofit.Builder()
                         .addConverterFactory(GsonConverterFactory.create(gson))
@@ -427,19 +475,30 @@ public class FragmentVerifyPhone extends Fragment {
             }
 
 
+            progressBarUpdate.setVisibility(View.VISIBLE);
+            updatePhoneButton.setVisibility(View.INVISIBLE);
 
 
-            call.enqueue(new Callback<ResponseBody>() {
+
+
+        call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                    if(isDestroyed)
+                    {
+                        return;
+                    }
+
+
+                    progressBarUpdate.setVisibility(View.INVISIBLE);
+                    updatePhoneButton.setVisibility(View.VISIBLE);
+
 
                     if(response.code()==200)
                     {
 
-
-
-
-                        if(isGlobalProfile)
+                        if(PrefGeneral.getMultiMarketMode(getActivity()))
                         {
                             User userDetails = PrefLoginGlobal.getUser(getActivity());
                             userDetails.setPhone(user.getPhone());
@@ -481,6 +540,16 @@ public class FragmentVerifyPhone extends Fragment {
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                    if(isDestroyed)
+                    {
+                        return;
+                    }
+
+
+                    progressBarUpdate.setVisibility(View.INVISIBLE);
+                    updatePhoneButton.setVisibility(View.VISIBLE);
+
+
                     showToastMessage("Network failure !");
                 }
             });
@@ -510,12 +579,13 @@ public class FragmentVerifyPhone extends Fragment {
 
 
 
-        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
+//        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
 
         Call<ResponseBody> call;
 
 
-        if(isGlobalProfile) {
+
+        if(PrefGeneral.getMultiMarketMode(getActivity())) {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))
@@ -541,6 +611,12 @@ public class FragmentVerifyPhone extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
                 progressBarResend.setVisibility(View.INVISIBLE);
                 messageResend.setVisibility(View.VISIBLE);
 
@@ -559,6 +635,12 @@ public class FragmentVerifyPhone extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
                 progressBarResend.setVisibility(View.INVISIBLE);
                 messageResend.setText("Network failure please check your internet connection!");

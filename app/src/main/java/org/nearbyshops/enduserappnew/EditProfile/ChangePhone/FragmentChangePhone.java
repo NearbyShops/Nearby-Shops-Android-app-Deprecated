@@ -22,6 +22,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
@@ -275,11 +276,12 @@ public class FragmentChangePhone extends Fragment {
 
 
 
-        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
+//        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
 
         Call<ResponseBody> call;
 
-        if(isGlobalProfile)
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))
@@ -306,6 +308,12 @@ public class FragmentChangePhone extends Fragment {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
                 progressBar.setVisibility(View.INVISIBLE);
 
@@ -440,11 +448,13 @@ public class FragmentChangePhone extends Fragment {
 
 
 
-        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
+//        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,false);
 
         Call<ResponseBody> call;
 
-        if(isGlobalProfile) {
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity())) {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))
@@ -472,6 +482,12 @@ public class FragmentChangePhone extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
                 progressBarButton.setVisibility(View.INVISIBLE);
                 nextButton.setVisibility(View.VISIBLE);
 
@@ -498,6 +514,12 @@ public class FragmentChangePhone extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
                 progressBarButton.setVisibility(View.INVISIBLE);
                 nextButton.setVisibility(View.VISIBLE);

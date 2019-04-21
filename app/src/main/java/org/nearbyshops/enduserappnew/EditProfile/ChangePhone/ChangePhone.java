@@ -82,7 +82,7 @@ public class ChangePhone extends AppCompatActivity implements ShowFragmentChange
 
         getSupportFragmentManager()
                 .beginTransaction()
-//                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
                 .replace(R.id.fragment_container,new FragmentVerifyPhone(),TAG_STEP_TWO)
                 .addToBackStack("step_two")
                 .commit();
@@ -97,7 +97,7 @@ public class ChangePhone extends AppCompatActivity implements ShowFragmentChange
 
         getSupportFragmentManager()
                 .beginTransaction()
-//                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
                 .replace(R.id.fragment_container,new FragmentResultChangePhone())
                 .commit();
     }

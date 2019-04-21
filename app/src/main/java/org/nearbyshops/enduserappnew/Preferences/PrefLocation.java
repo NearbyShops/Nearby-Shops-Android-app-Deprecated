@@ -2,6 +2,9 @@ package org.nearbyshops.enduserappnew.Preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationManager;
+import android.location.LocationProvider;
 
 import org.nearbyshops.enduserappnew.R;
 
@@ -25,6 +28,25 @@ public class PrefLocation {
     public static String KEY_PROXIMITY = "key_proximity";
     public static String KEY_DELIVERY_RANGE_MAX = "key_delivery_range_max";
     public static String KEY_DELIVERY_RANGE_MIN = "key_delivery_range_min";
+
+
+
+    public static Location getLocation(Context context)
+    {
+
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+
+        double longitude = (double) sharedPref.getFloat(KEY_LON_CENTER, 0f);
+        double latitude = (double)sharedPref.getFloat(KEY_LAT_CENTER, 0f);
+
+
+        Location location = new Location(LocationManager.GPS_PROVIDER);
+        location.setLatitude(latitude);
+        location.setLongitude(longitude);
+
+        return location;
+    }
+
 
 
 

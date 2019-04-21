@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -63,7 +64,7 @@ public class FragmentShopNew extends Fragment implements
 
         RecyclerView recyclerView;
         AdapterShopTwo adapter;
-        GridLayoutManager layoutManager;
+//        GridLayoutManager layoutManager;
 
         SwipeRefreshLayout swipeContainer;
 
@@ -341,8 +342,11 @@ public class FragmentShopNew extends Fragment implements
 
             recyclerView.setAdapter(adapter);
 
-            layoutManager = new GridLayoutManager(getActivity(),1);
-            recyclerView.setLayoutManager(layoutManager);
+//            layoutManager = new GridLayoutManager(getActivity(),1);
+
+
+            LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+            recyclerView.setLayoutManager(linearlayoutManager);
 
 //            recyclerView.addItemDecoration(new EqualSpaceItemDecoration(1));
 
@@ -359,17 +363,18 @@ public class FragmentShopNew extends Fragment implements
 
 //            itemCategoriesList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 
-            DisplayMetrics metrics = new DisplayMetrics();
-            getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-
-            int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
-
-            if(spanCount==0){
-                spanCount = 1;
-            }
-
-            layoutManager.setSpanCount(spanCount);
+//            DisplayMetrics metrics = new DisplayMetrics();
+//            getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//
+//
+//            int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
+//
+//            if(spanCount==0){
+//                spanCount = 1;
+//            }
+//
+//            layoutManager.setSpanCount(spanCount);
 
 //            layoutManager.setSpanCount(metrics.widthPixels/350);
 
@@ -378,7 +383,7 @@ public class FragmentShopNew extends Fragment implements
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
 
-                    if(layoutManager.findLastVisibleItemPosition()==dataset.size())
+                    if(linearlayoutManager.findLastVisibleItemPosition()==dataset.size())
                     {
                         // trigger fetch next page
 
@@ -388,7 +393,7 @@ public class FragmentShopNew extends Fragment implements
 //                        }
 
 
-                        if(offset + limit > layoutManager.findLastVisibleItemPosition())
+                        if(offset + limit > linearlayoutManager.findLastVisibleItemPosition())
                         {
                             return;
                         }

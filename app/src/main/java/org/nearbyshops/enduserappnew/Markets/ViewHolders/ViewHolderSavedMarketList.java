@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SelectMarket;
+package org.nearbyshops.enduserappnew.Markets.ViewHolders;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SelectMarket.Interfaces.listItemMarketNotifications;
+import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 
 import java.util.List;
 

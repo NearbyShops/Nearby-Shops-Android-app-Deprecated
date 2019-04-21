@@ -34,7 +34,7 @@ public class EditProfile extends AppCompatActivity implements NotifyChangePasswo
 
 
 
-        boolean isGlobalProfile = getIntent().getBooleanExtra(TAG_IS_GLOBAL_PROFILE,false);
+//        boolean isGlobalProfile = getIntent().getBooleanExtra(TAG_IS_GLOBAL_PROFILE,false);
 
 
 

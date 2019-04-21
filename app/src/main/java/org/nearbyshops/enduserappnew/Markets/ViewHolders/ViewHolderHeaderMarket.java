@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SelectMarket;
+package org.nearbyshops.enduserappnew.Markets.ViewHolders;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

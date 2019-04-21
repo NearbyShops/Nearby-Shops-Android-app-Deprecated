@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SelectMarket;
+package org.nearbyshops.enduserappnew.Markets;
 
 import android.app.Dialog;
 import android.content.ClipboardManager;
@@ -164,6 +164,15 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
     {
 
 
+        if(service_url.getText().toString().length()==0)
+        {
+            service_url.setError("Enter service url !");
+            service_url.requestFocus();
+
+            return;
+        }
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
@@ -190,7 +199,7 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
                 }
                 else
                 {
-                    showToastMessage("Failed Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed ... Error Code : " + String.valueOf(response.code()));
                 }
 
                 progressBar.setVisibility(View.INVISIBLE);

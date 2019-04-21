@@ -315,11 +315,11 @@ public class FragmentEnterPassword extends Fragment {
                     .client(new OkHttpClient().newBuilder().build())
                     .build();
 
-            call = retrofit.create(UserServiceGlobal.class).sendVerificationPhone(user.getPhone());
+            call = retrofit.create(UserServiceGlobal.class).sendVerificationPhone(user.getRt_phone_country_code() + user.getPhone());
         }
         else
         {
-            call = userService.sendVerificationPhone(user.getPhone());
+            call = userService.sendVerificationPhone(user.getPhoneWithCountryCode());
         }
 
 

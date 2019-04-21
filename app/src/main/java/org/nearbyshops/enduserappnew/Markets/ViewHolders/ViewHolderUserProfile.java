@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SelectMarket;
+package org.nearbyshops.enduserappnew.Markets.ViewHolders;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,7 +30,7 @@ public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
     @BindView(R.id.profile_image) ImageView profileImage;
     @BindView(R.id.user_id) TextView userID;
     @BindView(R.id.user_name) TextView userName;
-    @BindView(R.id.phone) TextView phone;
+//    @BindView(R.id.phone) TextView phone;
 
 
 
@@ -75,7 +75,7 @@ public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
                 .into(profileImage);
 
 
-        phone.setText(user.getPhone());
+//        phone.setText(user.getPhone());
         userName.setText(user.getName());
     }
 

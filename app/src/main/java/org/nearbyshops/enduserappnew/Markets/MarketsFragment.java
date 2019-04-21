@@ -1,14 +1,14 @@
-package org.nearbyshops.enduserappnew.SelectMarket;
+package org.nearbyshops.enduserappnew.Markets;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +18,13 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.MarketDetail.MarketDetail;
 import org.nearbyshops.enduserappnew.MarketDetail.MarketDetailFragment;
+import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
+import org.nearbyshops.enduserappnew.Markets.ViewHolders.AdapterMarkets;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
@@ -35,7 +36,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.ServiceConfigService;
-import org.nearbyshops.enduserappnew.SelectMarket.Interfaces.listItemMarketNotifications;
+import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
@@ -55,7 +56,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class MarketsFragment extends Fragment implements listItemMarketNotifications,SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, LocationUpdated {
+public class MarketsFragment extends Fragment implements listItemMarketNotifications,SwipeRefreshLayout.OnRefreshListener,
+        NotifySort, NotifySearch, LocationUpdated {
 
 
 
@@ -70,15 +72,16 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
     RecyclerView recyclerView;
     AdapterMarkets adapter;
 
-    public List<Object> dataset = new ArrayList<>();
-//    List<ServiceConfigurationGlobal> savedMarkets = new ArrayList<>();
+//    public List<Object> dataset = new ArrayList<>();
 
-    GridLayoutManager layoutManager;
+    public List<Object> dataset;
+
+//    GridLayoutManager layoutManager;
     SwipeRefreshLayout swipeContainer;
 
 
 
-    boolean show = true;
+    boolean show;
 
     final private int limit = 5;
     int offset = 0;
@@ -114,38 +117,79 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
 
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
+
+
+
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
-        setRetainInstance(true);
+//        setRetainInstance(true);
         View rootView = inflater.inflate(R.layout.fragment_services, container, false);
+        ButterKnife.bind(this,rootView);
+
 
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
 
 
-        if(savedInstanceState==null)
+
+
+//        if(savedInstanceState==null)
+//        {
+//
+//            showToastMessage("Saved instance state : NULL");
+//        }
+
+
+        if(dataset==null)
         {
+            showToastMessage("Dataset : NULL");
+
+            dataset = new ArrayList<>();
+
             makeRefreshNetworkCall();
+            setupRecyclerView();
+            setupSwipeContainer();
         }
 
 
-        setupRecyclerView();
-        setupSwipeContainer();
 
 
 
 
-        ButterKnife.bind(this,rootView);
+//        if(initialized)
+//        {
+//            showToastMessage("Show : TRUE");
+//        }
+//        else
+//        {
+//            showToastMessage("SHow : FALSE");
+//        }
 
+
+
+        show = true;
 
 
         return rootView;
     }
 
 
+
+//    @Override
+//    public void onActivityCreated(Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        setRetainInstance(true);
+//    }
 
 
 
@@ -167,8 +211,6 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
     {
 
         adapter = new AdapterMarkets(dataset,this);
-
-
         recyclerView.setAdapter(adapter);
 
 
@@ -178,7 +220,10 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
 
 
 
-        layoutManager = new GridLayoutManager(getActivity(),1);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+
+
+//        layoutManager = new GridLayoutManager(getActivity(),1);
         recyclerView.setLayoutManager(layoutManager);
 
         DisplayMetrics metrics = new DisplayMetrics();
@@ -189,14 +234,14 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
 
 
 
+//
+//        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
+//
+//        if(spanCount==0){
+//            spanCount = 1;
+//        }
 
-        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
-
-        if(spanCount==0){
-            spanCount = 1;
-        }
-
-        layoutManager.setSpanCount(spanCount);
+//        layoutManager.setSpanCount(spanCount);
 
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -208,14 +253,14 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
 //                if(dy > 20)
 //                {
 //
-//                    boolean previous = show;
+//                    boolean previous = initialized;
 //
-//                    show = false ;
+//                    initialized = false ;
 //
-//                    if(show!=previous)
+//                    if(initialized!=previous)
 //                    {
 //                        // changed
-//                        Log.d("scrolllog","show");
+//                        Log.d("scrolllog","initialized");
 //
 //                        if(getActivity() instanceof ToggleFab)
 //                        {
@@ -226,11 +271,11 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
 //                }else if(dy < -20)
 //                {
 //
-//                    boolean previous = show;
+//                    boolean previous = initialized;
 //
-//                    show = true;
+//                    initialized = true;
 //
-//                    if(show!=previous)
+//                    if(initialized!=previous)
 //                    {
 //                        Log.d("scrolllog","hide");
 //
@@ -371,6 +416,7 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
                     null,
                     searchQuery,
                     null,limit,offset);
+
         }
         else
         {
@@ -403,7 +449,8 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
                         return;
                     }
 
-                    if(response.body()!= null)
+
+                    if(response.code()==200)
                     {
                         item_count = response.body().getItemCount();
 //                        adapter.setTotalItemsCount(item_count);
@@ -411,6 +458,12 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
 
                         if(clearDataset)
                         {
+                            if(dataset==null)
+                            {
+                                dataset  = new ArrayList<>();
+                            }
+
+
                             dataset.clear();
 //                            savedMarkets.clear();
 
@@ -471,18 +524,16 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
 
 
 
-
-
-
-
-
-
-
-
                         adapter.notifyDataSetChanged();
                         notifyTitleChanged();
 
                     }
+                    else
+                    {
+                        showToastMessage("Failed : code : " + String.valueOf(response.code()));
+                    }
+
+
 
 
 
@@ -495,12 +546,13 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
 
                 @Override
                 public void onFailure(Call<ServiceConfigurationEndPoint> call, Throwable t) {
+
                     if(isDestroyed)
                     {
                         return;
                     }
 
-                    showToastMessage("Network Request failed !");
+                    showToastMessage("Failed ... please check your network connection !");
                     swipeContainer.setRefreshing(false);
 
                 }
@@ -643,12 +695,6 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
     @Override
     public void locationUpdated() {
         makeRefreshNetworkCall();
-    }
-
-
-    public interface MarketSelected
-    {
-        void marketSelected();
     }
 
 

@@ -8,6 +8,9 @@ buildscript {
     }
 }
 
+
+
+
 apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 //
 //repositories {
@@ -101,6 +104,7 @@ android {
 
         google()
         jcenter()
+        mavenCentral()
 
         maven {
             url "https://maven.google.com"
@@ -143,6 +147,20 @@ dependencies {
 //    compile('org.glassfish.jersey.core:jersey-client:2.24') {
 //                    exclude group: 'javax.inject', module: 'javax.inject'
 //    }
+
+
+//
+//    def paging_version = "2.1.0"
+//
+//
+//    implementation "androidx.paging:paging-runtime:$paging_version"
+//
+//    // alternatively - without Android dependencies for testing
+//    testImplementation "androidx.paging:paging-common:$paging_version"
+//
+//    // optional - RxJava support
+//    implementation "androidx.paging:paging-rxjava2:$paging_version"
+
 
 
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:6.5.0'
@@ -200,7 +218,8 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
 
 
-    implementation 'com.hbb20:ccp:2.2.6'
+    implementation 'com.hbb20:ccp:2.2.7'
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.2.0'
 
 }
 

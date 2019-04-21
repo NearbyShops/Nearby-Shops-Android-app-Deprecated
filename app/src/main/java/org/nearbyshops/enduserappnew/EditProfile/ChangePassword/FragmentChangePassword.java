@@ -19,6 +19,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
@@ -157,9 +158,10 @@ public class FragmentChangePassword extends Fragment {
 
 
 
-        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
+//        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
 
-        if(isGlobalProfile)
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
             if(!password.getText().toString().equals(PrefLoginGlobal.getPassword(getContext())))
             {
@@ -214,12 +216,29 @@ public class FragmentChangePassword extends Fragment {
         if(!validatePassword())
         {
             return;
+
+
+
         }
 
         User user = new User();
-        user.setUsername(PrefLogin.getUsername(getContext()));
-        user.setPhone(PrefLogin.getUsername(getContext()));
-        user.setEmail(PrefLogin.getUsername(getContext()));
+
+
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            user.setUsername(PrefLoginGlobal.getUsername(getContext()));
+            user.setPhone(PrefLoginGlobal.getUsername(getContext()));
+            user.setEmail(PrefLoginGlobal.getUsername(getContext()));
+        }
+        else
+        {
+            user.setUsername(PrefLogin.getUsername(getContext()));
+            user.setPhone(PrefLogin.getUsername(getContext()));
+            user.setEmail(PrefLogin.getUsername(getContext()));
+        }
+
 
 
         // new password required here
@@ -228,12 +247,12 @@ public class FragmentChangePassword extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
 
 
-        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
+//        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
 
         Call<ResponseBody> call;
 
 
-        if(isGlobalProfile)
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
 
             Retrofit retrofit = new Retrofit.Builder()
@@ -280,7 +299,8 @@ public class FragmentChangePassword extends Fragment {
                     // update the new password so the tokens can be renewed without error
 //                    UtilityLoginOld.saveCredentials(getContext(),UtilityLoginOld.getUsername(getContext()),passwordNew.getText().toString());
 
-                    if(isGlobalProfile)
+
+                    if(PrefGeneral.getMultiMarketMode(getActivity()))
                     {
 
                         PrefLoginGlobal.savePassword(getActivity(),passwordNew.getText().toString());

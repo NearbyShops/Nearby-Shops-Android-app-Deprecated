@@ -22,8 +22,12 @@ import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
+import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.SignUp.Interfaces.ShowFragmentForgotPassword;
 import org.nearbyshops.enduserappnew.SignUp.Interfaces.ShowFragmentSignUp;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceForgotPassword;
@@ -35,10 +39,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by sumeet on 27/6/17.
@@ -83,14 +90,20 @@ public class FragmentCheckResetCode extends Fragment {
 
 
 
+    boolean isDestroyed = false;
 
 
     @Inject
     UserService userService;
 
+
     User user;
 
     SmsVerifyCatcher smsVerifyCatcher;
+
+
+
+    @Inject Gson gson;
 
 //    boolean verificationCodeValid = false; // flag to keep record of verification code
 
@@ -294,10 +307,25 @@ public class FragmentCheckResetCode extends Fragment {
 
         public void onTick(long millisUntilFinished) {
 
+
+
+            if(isDestroyed)
+            {
+                return;
+            }
+
+
             logMessage("Timer onTick()");
         }
 
         public void onFinish() {
+
+
+            if(isDestroyed)
+            {
+                return;
+            }
+
 
             logMessage("Timer onFinish() ");
 
@@ -307,6 +335,21 @@ public class FragmentCheckResetCode extends Fragment {
 
 
 
+
+
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            isDestroyed = false;
+        }
+
+
+        @Override
+        public void onDestroyView() {
+            super.onDestroyView();
+            isDestroyed = true;
+        }
 
 
 
@@ -342,14 +385,48 @@ public class FragmentCheckResetCode extends Fragment {
         }
 
 
-        Call<ResponseBody> call = userService.checkPasswordResetCode(
-            emailOrPhone,user.getPasswordResetCode()
-        );
+
+        Call<ResponseBody> call;
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            // multi market mode enabled ... so use a global endpoint
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            call = retrofit.create(UserServiceGlobal.class).checkPasswordResetCode(
+                    emailOrPhone,user.getPasswordResetCode()
+            );
+        }
+        else
+        {
+            call = userService.checkPasswordResetCode(
+                    emailOrPhone,user.getPasswordResetCode()
+            );
+
+        }
+
+
+
 
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
                 progressBar.setVisibility(View.INVISIBLE);
 
@@ -431,6 +508,14 @@ public class FragmentCheckResetCode extends Fragment {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
 
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
+
                 if(initiateNext)
                 {
                     nextButton.setVisibility(View.VISIBLE);
@@ -490,55 +575,55 @@ public class FragmentCheckResetCode extends Fragment {
 
 
 
-
-    void resetPassword()
-    {
-
-
-            user.setPasswordResetCode(verificationCode.getText().toString());
-//            user.setPassword(enterPassword.getText().toString());
-
-
-            Gson gson = new Gson();
-            logMessage(gson.toJson(user));
-
-
-            Call<ResponseBody> call = userService.resetPassword(user);
-
-            call.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-
-                    if(response.code()==200)
-                    {
-                        if(getActivity() instanceof ShowFragmentForgotPassword)
-                        {
-                            ((ShowFragmentSignUp) getActivity()).showEnterPassword();
-                        }
-
-                    }
-                    else if(response.code()==304)
-                    {
-
-                        showToastMessage("Failed to create account");
-                    }
-                    else
-                    {
-                        showToastMessage("Failed code : " + String.valueOf(response.code()));
-                    }
-
-
-                }
-
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable throwable) {
-
-                    showToastMessage("Network failure !");
-                }
-            });
-    }
-
+//
+//    void resetPassword()
+//    {
+//
+//
+//            user.setPasswordResetCode(verificationCode.getText().toString());
+////            user.setPassword(enterPassword.getText().toString());
+//
+//
+//            Gson gson = new Gson();
+//            logMessage(gson.toJson(user));
+//
+//
+//            Call<ResponseBody> call = userService.resetPassword(user);
+//
+//            call.enqueue(new Callback<ResponseBody>() {
+//                @Override
+//                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//
+//                    if(response.code()==200)
+//                    {
+//                        if(getActivity() instanceof ShowFragmentForgotPassword)
+//                        {
+//                            ((ShowFragmentSignUp) getActivity()).showEnterPassword();
+//                        }
+//
+//                    }
+//                    else if(response.code()==304)
+//                    {
+//
+//                        showToastMessage("Failed to create account");
+//                    }
+//                    else
+//                    {
+//                        showToastMessage("Failed code : " + String.valueOf(response.code()));
+//                    }
+//
+//
+//                }
+//
+//                @Override
+//                public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+//
+//                    showToastMessage("Network failure !");
+//                }
+//            });
+//    }
+//
 
 
 
@@ -566,11 +651,38 @@ public class FragmentCheckResetCode extends Fragment {
         messageResend.setText("Sending reset code ... ");
 
 
-        Call<ResponseBody> call = userService.generateResetCode(user);
+        Call<ResponseBody> call;
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            // multi market mode enabled ... so use a global endpoint
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            call = retrofit.create(UserServiceGlobal.class).generateResetCode(user);
+        }
+        else
+        {
+            call = userService.generateResetCode(user);
+        }
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
                 progressBarResend.setVisibility(View.INVISIBLE);
                 messageResend.setVisibility(View.VISIBLE);
@@ -591,6 +703,14 @@ public class FragmentCheckResetCode extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
                 progressBarResend.setVisibility(View.INVISIBLE);
                 resendCode.setVisibility(View.VISIBLE);

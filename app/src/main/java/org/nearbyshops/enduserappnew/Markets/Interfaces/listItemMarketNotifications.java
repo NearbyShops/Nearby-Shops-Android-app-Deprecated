@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SelectMarket.Interfaces;
+package org.nearbyshops.enduserappnew.Markets.Interfaces;
 
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 

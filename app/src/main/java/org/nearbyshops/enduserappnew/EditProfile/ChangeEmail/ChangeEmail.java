@@ -65,11 +65,14 @@ public class ChangeEmail extends AppCompatActivity implements ShowFragmentChange
 
         getSupportFragmentManager()
                 .beginTransaction()
-//                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                .replace(R.id.fragment_container,new FragmentVerifyEmailChange(),TAG_STEP_TWO)
+                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+                .replace(R.id.fragment_container,new FragmentVerifyEmail(),TAG_STEP_TWO)
                 .addToBackStack("step_two")
                 .commit();
     }
+
+
+
 
 
 
@@ -81,7 +84,7 @@ public class ChangeEmail extends AppCompatActivity implements ShowFragmentChange
 
         getSupportFragmentManager()
                 .beginTransaction()
-//                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
                 .replace(R.id.fragment_container,new FragmentResultChangeEmail())
                 .commit();
     }

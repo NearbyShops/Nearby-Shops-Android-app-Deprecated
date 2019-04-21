@@ -49,7 +49,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by sumeet on 27/6/17.
  */
 
-public class FragmentVerifyPhoneOREmailSignUp extends Fragment {
+public class FragmentVerify extends Fragment {
 
 
     @BindView(R.id.check_icon)
@@ -93,7 +93,7 @@ public class FragmentVerifyPhoneOREmailSignUp extends Fragment {
 //    boolean verificationCodeValid = false; // flag to keep record of verification code
 
 
-    public FragmentVerifyPhoneOREmailSignUp() {
+    public FragmentVerify() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -125,7 +125,7 @@ public class FragmentVerifyPhoneOREmailSignUp extends Fragment {
         {
             header.setText("Step 4 : Verify your phone");
             message.setText("We have sent you a one time password (OTP) on your phone : ");
-            emailText.setText(user.getPhone());
+            emailText.setText("+" + user.getPhoneWithCountryCode());
         }
 
 
@@ -205,9 +205,11 @@ public class FragmentVerifyPhoneOREmailSignUp extends Fragment {
 //        logMessage("Validated !");
 
 
-        progressBar.setVisibility(View.VISIBLE);
-        countDownTimer.cancel();
-        countDownTimer.start();
+//        progressBar.setVisibility(View.VISIBLE);
+//        countDownTimer.cancel();
+//        countDownTimer.start();
+
+
     }
 
 
@@ -253,30 +255,39 @@ public class FragmentVerifyPhoneOREmailSignUp extends Fragment {
 
 
 
-    CountDownTimer countDownTimer = new CountDownTimer(2000, 1000) {
 
-        public void onTick(long millisUntilFinished) {
+//    CountDownTimer countDownTimer = new CountDownTimer(2000, 1000) {
+//
+//        public void onTick(long millisUntilFinished) {
+//
+//            logMessage("Timer onTick()");
+//        }
+//
+//        public void onFinish() {
+//
+//            logMessage("Timer onFinish() ");
+//
+//            verifyCode();
+//
+//        }
+//    };
 
-            logMessage("Timer onTick()");
+
+
+
+
+    void verifyCode()
+    {
+        if(user.getRt_registration_mode()==User.REGISTRATION_MODE_EMAIL)
+        {
+            verifyEmailCode(false);
         }
-
-        public void onFinish() {
-
-            logMessage("Timer onFinish() ");
-
-
-            if(user.getRt_registration_mode()==User.REGISTRATION_MODE_EMAIL)
-            {
-                verifyEmailCode(false);
-            }
-            else if(user.getRt_registration_mode()==User.REGISTRATION_MODE_PHONE)
-            {
-                verifyPhoneCode();
-            }
-
-
+        else if(user.getRt_registration_mode()==User.REGISTRATION_MODE_PHONE)
+        {
+            verifyPhoneCode();
         }
-    };
+    }
+
 
 
 
@@ -306,12 +317,13 @@ public class FragmentVerifyPhoneOREmailSignUp extends Fragment {
                     .client(new OkHttpClient().newBuilder().build())
                     .build();
 
-            call = retrofit.create(UserServiceGlobal.class).checkPhoneVerificationCode(user.getPhone(),verificationCode.getText().toString());
+
+            call = retrofit.create(UserServiceGlobal.class).checkPhoneVerificationCode(user.getPhoneWithCountryCode(),verificationCode.getText().toString());
 
         }
         else
         {
-            call = userService.checkPhoneVerificationCode(user.getPhone(),verificationCode.getText().toString());
+            call = userService.checkPhoneVerificationCode(user.getPhoneWithCountryCode(),verificationCode.getText().toString());
         }
 
 
@@ -418,7 +430,9 @@ public class FragmentVerifyPhoneOREmailSignUp extends Fragment {
                     .client(new OkHttpClient().newBuilder().build())
                     .build();
 
-            call = retrofit.create(UserServiceGlobal.class).checkPhoneVerificationCode(user.getPhone(),verificationCode.getText().toString());
+
+
+            call = retrofit.create(UserServiceGlobal.class).checkEmailVerificationCode(user.getEmail(),verificationCode.getText().toString());
         }
         else
         {
@@ -596,7 +610,7 @@ public class FragmentVerifyPhoneOREmailSignUp extends Fragment {
                     .client(new OkHttpClient().newBuilder().build())
                     .build();
 
-            call = retrofit.create(UserServiceGlobal.class).endUserRegistration(user);;
+            call = retrofit.create(UserServiceGlobal.class).endUserRegistration(user);
         }
         else
         {
@@ -605,9 +619,14 @@ public class FragmentVerifyPhoneOREmailSignUp extends Fragment {
 
 
 
+        progressBar.setVisibility(View.VISIBLE);
+
+
         call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
+
+                    progressBar.setVisibility(View.INVISIBLE);
 
                     if(response.code()==201)
                     {
@@ -637,6 +656,8 @@ public class FragmentVerifyPhoneOREmailSignUp extends Fragment {
 
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
+
+                    progressBar.setVisibility(View.INVISIBLE);
 
                     showToastMessage("Network failure !");
                 }
@@ -753,6 +774,8 @@ public class FragmentVerifyPhoneOREmailSignUp extends Fragment {
 
 
 
+
+
     void resendCodePhone()
     {
 
@@ -776,11 +799,12 @@ public class FragmentVerifyPhoneOREmailSignUp extends Fragment {
                     .build();
 
 
-            call = retrofit.create(UserServiceGlobal.class).sendVerificationPhone(user.getPhone());
+
+            call = retrofit.create(UserServiceGlobal.class).sendVerificationPhone(user.getPhoneWithCountryCode());
         }
         else
         {
-            call  = userService.sendVerificationPhone(user.getPhone());
+            call  = userService.sendVerificationPhone(user.getPhoneWithCountryCode());
         }
 
 

@@ -1,7 +1,9 @@
 package org.nearbyshops.enduserappnew.Login;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -44,26 +47,27 @@ public class ServiceIndicatorFragment extends Fragment {
     boolean isDestroyed = false;
 
 //    @BindView(R.id.service_url) TextView serviceURL;
-    @BindView(R.id.service_name)
-    TextView serviceName;
-    @BindView(R.id.city)
-    TextView city;
-    @BindView(R.id.address)
-    TextView addressText;
+//    @BindView(R.id.service_name)
+//    TextView serviceName;
+//    @BindView(R.id.city)
+//    TextView city;
+//    @BindView(R.id.address)
+//    TextView addressText;
 
-    @BindView(R.id.service_info_block)
-    LinearLayout serviceInfoBlock;
-    @BindView(R.id.no_service_block)
-    LinearLayout noServiceBlock;
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
+    @BindView(R.id.service_info_block) LinearLayout serviceInfoBlock;
+    @BindView(R.id.no_service_block) LinearLayout noServiceBlock;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
-    @BindView(R.id.indicator_light)
-    TextView indicatorLight;
-    @BindView(R.id.status)
-    TextView status;
-    @BindView(R.id.reconnect)
-    ImageView refresh;
+    @BindView(R.id.indicator_light) TextView indicatorLight;
+    @BindView(R.id.status) TextView status;
+    @BindView(R.id.reconnect) ImageView refresh;
+
+
+
+
+    @BindView(R.id.market_photo) ImageView marketPhoto;
+    @BindView(R.id.market_name) TextView marketName;
+    @BindView(R.id.market_city) TextView marketCity;
 
 
 
@@ -144,8 +148,33 @@ public class ServiceIndicatorFragment extends Fragment {
 //                city.setText(serviceConfig.getCity());
 
 
+
+                marketCity.setText(serviceConfig.getCity());
+                marketName.setText(serviceConfig.getServiceName());
+
+
+
+
+                String imagePath = PrefGeneral.getServiceURL(getActivity())
+                        + "/api/serviceconfiguration/Image/three_hundred_" + serviceConfig.getLogoImagePath() + ".jpg";
+
+
+//                System.out.println("Service LOGO : " + imagePath);
+
+                Drawable placeholder = VectorDrawableCompat
+                        .create(getResources(),
+                                R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
+
+
+                Picasso.with(getActivity())
+                        .load(imagePath)
+                        .placeholder(placeholder)
+                        .into(marketPhoto);
+
+
+
                 indicatorLight.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_1));
-//                status.setText("Service Available");
+                status.setText("Available");
 
             }
 
@@ -214,7 +243,7 @@ public class ServiceIndicatorFragment extends Fragment {
 //                    serviceURL.setText(PrefGeneral.getServiceURL(getActivity()));
 
                     indicatorLight.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_4));
-//                    status.setText("Service not available");
+                    status.setText("Not available");
 
 
                     progressBar.setVisibility(View.GONE);
@@ -238,7 +267,7 @@ public class ServiceIndicatorFragment extends Fragment {
 //                serviceName.setText("Failed to get service info please try again");
 
                 indicatorLight.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_4));
-//                status.setText("Service not available");
+                status.setText("Not available");
 
 
 

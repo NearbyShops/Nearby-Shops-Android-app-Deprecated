@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SelectMarket;
+package org.nearbyshops.enduserappnew.Markets.ViewHolders;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.SelectMarket.Interfaces.listItemMarketNotifications;
+import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 
 import java.util.List;
 
@@ -14,9 +14,10 @@ public class AdapterSavedMarkets extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
 
+
     private List<ServiceConfigurationGlobal> dataset;
-    Context context;
-    listItemMarketNotifications subscriber;
+    private Context context;
+    private listItemMarketNotifications subscriber;
 
 
 

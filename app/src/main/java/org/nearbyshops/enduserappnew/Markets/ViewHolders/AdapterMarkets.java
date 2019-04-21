@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SelectMarket;
+package org.nearbyshops.enduserappnew.Markets.ViewHolders;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -11,13 +11,13 @@ import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
+import org.nearbyshops.enduserappnew.Markets.MarketsFragment;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SelectMarket.Interfaces.listItemMarketNotifications;
+import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -49,7 +49,7 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
 
-    AdapterMarkets(List<Object> dataset, Fragment fragment) {
+    public AdapterMarkets(List<Object> dataset, Fragment fragment) {
 
         this.dataset = dataset;
         this.fragment = fragment;
@@ -198,32 +198,19 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             ((ViewHolderMarket)holderVH).setItem((ServiceConfigurationGlobal) dataset.get(position));
 
-        } else if (holderVH instanceof LoadingViewHolder) {
+        }
+        else if (holderVH instanceof LoadingViewHolder) {
 
 
             LoadingViewHolder viewHolder = (LoadingViewHolder) holderVH;
 
-            if (fragment instanceof MarketsFragment) {
 
-//                int items_count = ((MarketsFragment) fragment).item_count;
-
-//
-//                if (dataset.size()-1 == total_items_count) {
-//                    viewHolder.progressBar.setVisibility(View.GONE);
-//                } else {
-//                    viewHolder.progressBar.setVisibility(View.VISIBLE);
-//                    viewHolder.progressBar.setIndeterminate(true);
-//
-//                }
-
-
-                if (loadMore) {
-                    viewHolder.progressBar.setVisibility(View.VISIBLE);
-                    viewHolder.progressBar.setIndeterminate(true);
-                }
-                else {
-                    viewHolder.progressBar.setVisibility(View.GONE);
-                }
+            if (loadMore) {
+                viewHolder.progressBar.setVisibility(View.VISIBLE);
+                viewHolder.progressBar.setIndeterminate(true);
+            }
+            else {
+                viewHolder.progressBar.setVisibility(View.GONE);
             }
         }
     }
@@ -231,12 +218,19 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
 
-    void setLoadMore(boolean loadMore)
+    public void setLoadMore(boolean loadMore)
     {
         this.loadMore = loadMore;
     }
 
 
+
+
+
+    public void setData(List<Object> data)
+    {
+        dataset = data;
+    }
 
 
 //
@@ -251,8 +245,23 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
+
+
+//
+//        if(dataset!=null)
+//        {
+//            return (dataset.size()+1);
+//        }
+//        else
+//        {
+//            return 0;
+//        }
+
+
         return (dataset.size()+1);
     }
+
+
 
 
     public class LoadingViewHolder extends  RecyclerView.ViewHolder{

@@ -2,6 +2,8 @@ package org.nearbyshops.enduserappnew.Preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.google.gson.Gson;
@@ -10,6 +12,8 @@ import com.google.gson.Gson;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.R;
+
+import butterknife.BindView;
 
 import static android.content.Context.MODE_PRIVATE;
 
