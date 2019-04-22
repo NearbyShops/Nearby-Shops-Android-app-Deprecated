@@ -153,39 +153,37 @@
 
 
             <TextView
+                android:id="@+id/select_email"
                 android:gravity="center"
                 android:textSize="15sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="1dp"
                 android:padding="10dp"
                 android:background="@color/phonographyBlue"
-                app:layout_constraintRight_toLeftOf="@+id/select_email"
+                app:layout_constraintRight_toLeftOf="@+id/select_phone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/header_title"
-                android:text="Phone"
+                android:text="E-mail"
                 android:textColor="@color/white"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
-                android:id="@+id/select_phone" />
+                android:layout_height="wrap_content" />
 
 
             <TextView
+                android:id="@+id/select_phone"
                 android:gravity="center"
                 android:textSize="15sp"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
                 android:padding="10dp"
                 android:background="@color/light_grey"
-                app:layout_constraintLeft_toRightOf="@+id/select_phone"
+                app:layout_constraintLeft_toRightOf="@+id/select_email"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/header_title"
-                android:text="E-mail"
+                android:text="Phone"
                 android:textColor="@color/blueGrey800"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/select_email"
-                 />
+                android:layout_height="wrap_content" />
 
 
 
@@ -215,18 +213,20 @@
             <!--</RadioGroup>-->
 
 
-            <!--<com.hbb20.CountryCodePicker-->
-                <!--android:layout_marginTop="20dp"-->
-                <!--app:layout_constraintStart_toStartOf="parent"-->
-                <!--app:layout_constraintTop_toBottomOf="@id/select_phone"-->
-                <!--android:paddingTop="2dp"-->
-                <!--android:id="@+id/ccp"-->
-                <!--app:ccp_showFlag="true"-->
-                <!--app:ccp_showNameCode="false"-->
-                <!--app:ccp_showPhoneCode="true"-->
-                <!--app:ccp_defaultPhoneCode="91"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content" />-->
+            <com.hbb20.CountryCodePicker
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/select_phone"
+                android:paddingTop="2dp"
+                android:id="@+id/ccp"
+                app:ccp_showFlag="true"
+                app:ccp_showNameCode="false"
+                app:ccp_showPhoneCode="true"
+                app:ccp_defaultPhoneCode="91"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
 
 
 
@@ -236,57 +236,72 @@
                 android:id="@+id/text_input_phone"
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ccp"
                 app:layout_constraintTop_toBottomOf="@+id/select_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content">
 
 
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-
-
-                    <com.hbb20.CountryCodePicker
-                        android:paddingTop="2dp"
-                        android:id="@+id/ccp"
-                        app:ccp_showFlag="true"
-                        app:ccp_showNameCode="false"
-                        app:ccp_showPhoneCode="true"
-                        app:ccp_defaultPhoneCode="91"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-
-
-                    <android.support.design.widget.TextInputEditText
-                        android:inputType="phone"
-                        android:hint="Enter Phone"
-                        android:id="@+id/phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-
-
-
-
-                <!--<android.support.design.widget.TextInputEditText-->
-                    <!--android:inputType="phone"-->
-                    <!--android:hint="Enter Phone"-->
-                    <!--android:id="@+id/phone"-->
+                <!--<LinearLayout-->
+                    <!--android:orientation="horizontal"-->
                     <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content" />-->
+                    <!--android:layout_height="wrap_content">-->
+
+
+
+
+                    <!--<com.hbb20.CountryCodePicker-->
+                        <!--android:paddingTop="2dp"-->
+                        <!--android:id="@+id/ccp"-->
+                        <!--app:ccp_showFlag="true"-->
+                        <!--app:ccp_showNameCode="false"-->
+                        <!--app:ccp_showPhoneCode="true"-->
+                        <!--app:ccp_defaultPhoneCode="91"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content" />-->
+
+
+
+                    <!--<android.support.design.widget.TextInputEditText-->
+                        <!--android:inputType="phone"-->
+                        <!--android:hint="Enter Phone"-->
+                        <!--android:id="@+id/phone"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content" />-->
+
+                <!--</LinearLayout>-->
+
+
+
+
+
+                <android.support.design.widget.TextInputEditText
+                    android:inputType="phone"
+                    android:hint="Enter Phone"
+                    android:id="@+id/phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
 
 
             </android.support.design.widget.TextInputLayout>
+
+
+
+
+
+            <TextView
+                android:visibility="gone"
+                android:layout_marginTop="30dp"
+                android:id="@+id/phone_registration_message"
+                android:text="@string/phone_registration_message"
+                app:layout_constraintTop_toBottomOf="@id/text_input_phone"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
 
 
 

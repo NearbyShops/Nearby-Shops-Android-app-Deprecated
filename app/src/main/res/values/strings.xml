@@ -112,5 +112,6 @@
     <string name="server_client_id">233869423731-91g7ck97bgsbi2hn4n6rrctorij5568v.apps.googleusercontent.com</string>
     <string name="delivery_type_description_pick_from_shop">Pick from Shop - You need to pick this order from the shop when its ready for pickup. This order will not be delivered to your home.</string>
     <string name="delivery_type_description_home_delivery">Home Delivery - This order will be delivered to your home by the shop owner.</string>
+    <string name="phone_registration_message">Currently registration through phone is available only for Indian Phone Numbers. We are making efforts to extend the phone service for all the countries !.</string>
 
 </resources>

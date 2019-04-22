@@ -63,32 +63,81 @@
                 android:paddingTop="@dimen/activity_vertical_margin">
 
 
-                <RelativeLayout
+
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<ImageView-->
+
+                        <!--android:background="#7737474F"-->
+                        <!--android:scaleType="centerCrop"-->
+                        <!--android:id="@+id/uploadImage"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="@dimen/image_view_height" />-->
+
+
+
+                    <!--&lt;!&ndash;android:paddingStart="10dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:paddingLeft="10dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:paddingTop="10dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:paddingBottom="10dp"&ndash;&gt;-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/textChangePicture"-->
+                        <!--android:textSize="25sp"-->
+                        <!--android:padding="10dp"-->
+                        <!--android:background="#88000000"-->
+                        <!--android:textColor="#ffffff"-->
+                        <!--android:layout_alignParentBottom="true"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Change Picture" />-->
+
+
+                    <!--<ImageView-->
+                        <!--android:paddingBottom="10dp"-->
+                        <!--android:layout_marginRight="10dp"-->
+                        <!--android:scaleType="centerCrop"-->
+                        <!--android:foregroundGravity="right"-->
+                        <!--android:layout_width="90dp"-->
+                        <!--android:layout_height="90dp"-->
+                        <!--app:srcCompat="@drawable/nature_people"-->
+                        <!--android:id="@+id/changePicture"-->
+                        <!--android:layout_alignParentBottom="true"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_alignParentEnd="true"-->
+                        <!--android:layout_marginEnd="10dp" />-->
+
+                <!--</RelativeLayout>-->
+
+
+                <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <ImageView
-
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintDimensionRatio="H,1:1"
                         android:background="#7737474F"
                         android:scaleType="centerCrop"
                         android:id="@+id/uploadImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/image_view_height" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"/>
 
-
-
-                    <!--android:paddingStart="10dp"-->
-                    <!--android:paddingLeft="10dp"-->
-                    <!--android:paddingTop="10dp"-->
-                    <!--android:paddingBottom="10dp"-->
 
                     <TextView
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
                         android:id="@+id/textChangePicture"
                         android:textSize="25sp"
-                        android:padding="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
                         android:background="#88000000"
                         android:textColor="#ffffff"
-                        android:layout_alignParentBottom="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Change Picture" />
@@ -101,14 +150,13 @@
                         android:foregroundGravity="right"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
-                        app:srcCompat="@drawable/nature_people"
+                        app:srcCompat="@drawable/ic_nature_people_white_48px"
                         android:id="@+id/changePicture"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginEnd="10dp" />
 
-                </RelativeLayout>
+                </android.support.constraint.ConstraintLayout>
 
 
                 <TextView
