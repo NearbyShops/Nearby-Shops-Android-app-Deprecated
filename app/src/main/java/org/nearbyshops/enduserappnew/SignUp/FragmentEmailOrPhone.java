@@ -73,6 +73,9 @@ public class FragmentEmailOrPhone extends Fragment {
     @BindView(R.id.cross_icon) ImageView crossIcon;
     @BindView(R.id.message) TextView textAvailable;
 
+    @BindView(R.id.phone_registration_message) TextView phoneRegistrationMessage;
+
+
     @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
@@ -136,6 +139,9 @@ public class FragmentEmailOrPhone extends Fragment {
 
 
 
+
+
+
 //
 //        ccp.setCustomMasterCountries();
 
@@ -144,20 +150,20 @@ public class FragmentEmailOrPhone extends Fragment {
         {
             ccp.setCountryForPhoneCode(Integer.parseInt(user.getRt_phone_country_code()));
 
-//            if(PrefGeneral.getMultiMarketMode(getActivity()))
-//            {
-//                ccp.setCcpClickable(false);
-//            }
-//            else
-//            {
-//                ccp.setCcpClickable(true);
-//            }
+            if(PrefGeneral.getMultiMarketMode(getActivity()))
+            {
+                ccp.setCcpClickable(false);
+            }
+            else
+            {
+                ccp.setCcpClickable(true);
+            }
 
         }
         else if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
             ccp.setCountryForNameCode("IN");
-//            ccp.setCcpClickable(false);
+            ccp.setCcpClickable(false);
         }
         else
         {
@@ -221,10 +227,14 @@ public class FragmentEmailOrPhone extends Fragment {
 
 
 
+        ccp.setVisibility(View.GONE);
         phoneLayout.setVisibility(View.INVISIBLE);
         emailLayout.setVisibility(View.VISIBLE);
 
 //        phoneOrEmail = 2;  // set flag
+
+
+        phoneRegistrationMessage.setVisibility(View.GONE);
 
 
 //        bindViews();
@@ -236,6 +246,10 @@ public class FragmentEmailOrPhone extends Fragment {
 
 
     }
+
+
+
+
 
 
 
@@ -255,8 +269,15 @@ public class FragmentEmailOrPhone extends Fragment {
         selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
 
 
+        ccp.setVisibility(View.VISIBLE);
         phoneLayout.setVisibility(View.VISIBLE);
         emailLayout.setVisibility(View.INVISIBLE);
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            phoneRegistrationMessage.setVisibility(View.VISIBLE);
+        }
 
 
 //        phoneOrEmail = 1; // set flag
