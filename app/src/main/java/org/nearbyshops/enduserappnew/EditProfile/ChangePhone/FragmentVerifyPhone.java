@@ -107,6 +107,9 @@ public class FragmentVerifyPhone extends Fragment {
 
     }
 
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -118,8 +121,8 @@ public class FragmentVerifyPhone extends Fragment {
 
         user = PrefChangePhone.getUser(getActivity());
 
-        emailText.setText(user.getPhone());
 
+        emailText.setText("+" + user.getRt_phone_country_code() + "-" + user.getPhone());
 
 
         smsVerifyCatcher = new SmsVerifyCatcher(getActivity(), new OnSmsCatchListener<String>() {
@@ -315,7 +318,7 @@ public class FragmentVerifyPhone extends Fragment {
                     .build();
 
             call = retrofit.create(UserServiceGlobal.class).checkPhoneVerificationCode(
-                    user.getPhone(),verificationCode.getText().toString()
+                    user.getPhoneWithCountryCode(),verificationCode.getText().toString()
             );
 
         }
@@ -323,7 +326,7 @@ public class FragmentVerifyPhone extends Fragment {
         {
 
             call = userService.checkPhoneVerificationCode(
-                    user.getPhone(),verificationCode.getText().toString()
+                    user.getPhoneWithCountryCode(),verificationCode.getText().toString()
             );
         }
 
@@ -501,19 +504,17 @@ public class FragmentVerifyPhone extends Fragment {
                         if(PrefGeneral.getMultiMarketMode(getActivity()))
                         {
                             User userDetails = PrefLoginGlobal.getUser(getActivity());
-                            userDetails.setPhone(user.getPhone());
+                            userDetails.setPhone(user.getPhoneWithCountryCode());
                             PrefLoginGlobal.saveUserProfile(userDetails,getActivity());
-                            PrefLoginGlobal.saveUsername(getActivity(),user.getPhone());
+                            PrefLoginGlobal.saveUsername(getActivity(),user.getPhoneWithCountryCode());
                         }
                         else
                         {
                             User userDetails = PrefLogin.getUser(getActivity());
-                            userDetails.setPhone(user.getPhone());
+                            userDetails.setPhone(user.getPhoneWithCountryCode());
                             PrefLogin.saveUserProfile(userDetails,getActivity());
-                            PrefLogin.saveUsername(getActivity(),user.getPhone());
+                            PrefLogin.saveUsername(getActivity(),user.getPhoneWithCountryCode());
                         }
-
-
 
 
                         if(getActivity() instanceof ShowFragmentChangePhone)
@@ -595,13 +596,14 @@ public class FragmentVerifyPhone extends Fragment {
 
 
             call = retrofit.create(UserServiceGlobal.class).sendVerificationPhone(
-                    user.getPhone()
+                    user.getPhoneWithCountryCode()
             );
+
 
         }
         else
         {
-            call = userService.sendVerificationPhone(user.getPhone());
+            call = userService.sendVerificationPhone(user.getPhoneWithCountryCode());
         }
 
 

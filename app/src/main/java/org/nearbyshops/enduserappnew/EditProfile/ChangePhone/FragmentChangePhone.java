@@ -17,6 +17,10 @@ import android.widget.Toast;
 
 
 import com.google.gson.Gson;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+import com.hbb20.CountryCodePicker;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
@@ -27,6 +31,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
+import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
 
 import javax.inject.Inject;
 
@@ -56,6 +61,9 @@ public class FragmentChangePhone extends Fragment {
 
 //    @BindView(R.id.text_input_email) TextInputLayout emailLayout;
 
+
+
+    @BindView(R.id.ccp) CountryCodePicker ccp;
     @BindView(R.id.phone) TextInputEditText phone;
     @BindView(R.id.password) TextInputEditText password;
 
@@ -111,6 +119,43 @@ public class FragmentChangePhone extends Fragment {
         }
 
 
+
+
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            ccp.setCountryForNameCode("IN");
+//            ccp.setCcpClickable(false);
+        }
+        else
+        {
+            ccp.setCcpClickable(true);
+
+            if(PrefServiceConfig.getServiceConfigLocal(getActivity())!=null)
+            {
+                ccp.setCountryForNameCode(PrefServiceConfig.getServiceConfigLocal(getActivity()).getISOCountryCode());
+            }
+        }
+
+
+
+
+
+        ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
+            @Override
+            public void onCountrySelected() {
+                textInputChanged();
+            }
+        });
+
+
+        ccp.registerCarrierNumberEditText(phone);
+        ccp.setNumberAutoFormattingEnabled(false);
+
+
+
+
         phone.requestFocus();
         bindViews();
         textInputChanged();
@@ -134,6 +179,9 @@ public class FragmentChangePhone extends Fragment {
     {
         user.setPhone(phone.getText().toString());
         user.setPassword(password.getText().toString());
+
+
+        user.setRt_phone_country_code(ccp.getSelectedCountryCode());
     }
 
 
@@ -173,6 +221,19 @@ public class FragmentChangePhone extends Fragment {
 
         // validate phone
 
+        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+
+
+        Phonenumber.PhoneNumber phoneNumber = null;
+
+        try {
+            phoneNumber = phoneUtil.parse(phone.getText().toString(),ccp.getSelectedCountryNameCode());
+        } catch (NumberParseException e) {
+            e.printStackTrace();
+        }
+
+
+
         if(phone.getText().toString().equals(""))
         {
             if(showError)
@@ -184,12 +245,14 @@ public class FragmentChangePhone extends Fragment {
             isValid= false;
 
         }
-        else if(phone.getText().toString().length()!=10)
+        else if(phoneNumber!=null && !phoneUtil.isValidNumberForRegion(phoneNumber,ccp.getSelectedCountryNameCode()))
         {
+//            phone.getText().toString().length()!=10
+
             if(showError)
             {
                 phone.requestFocus();
-                phone.setError("Phone should have 10 digits");
+                phone.setError("Invalid Phone Number !");
             }
 
             isValid=false;
@@ -268,11 +331,15 @@ public class FragmentChangePhone extends Fragment {
 
 
 
+
+
+
     void checkUsernameExist()
     {
         String inputName = "";
 
-        inputName = phone.getText().toString();
+
+        inputName = ccp.getSelectedCountryCode() + phone.getText().toString();
 
 
 
@@ -454,6 +521,9 @@ public class FragmentChangePhone extends Fragment {
 
 
 
+
+
+
         if(PrefGeneral.getMultiMarketMode(getActivity())) {
 
             Retrofit retrofit = new Retrofit.Builder()
@@ -464,14 +534,14 @@ public class FragmentChangePhone extends Fragment {
 
 
             call = retrofit.create(UserServiceGlobal.class).sendVerificationPhone(
-                        user.getPhone()
+                        user.getPhoneWithCountryCode()
                     );
 
         }
         else
         {
             call = userService.sendVerificationPhone(
-                    user.getPhone()
+                    user.getPhoneWithCountryCode()
             );
         }
 
