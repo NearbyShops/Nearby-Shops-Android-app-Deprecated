@@ -390,15 +390,51 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 
                     User user = response.body();
 
+
+//                    PrefLogin.saveCredentials(
+//                            context,
+//                            user.getPhone(),
+//                            user.getPassword()
+//                    );
+
+                    String username = "";
+
+                    if(user.getPhone()!=null)
+                    {
+                        username = user.getPhone();
+                    }
+                    else if(user.getEmail()!=null)
+                    {
+                        username = user.getEmail();
+                    }
+                    else if(user.getUsername()!=null)
+                    {
+                        username = user.getUsername();
+                    }
+                    else if(user.getUserID()!=0)
+                    {
+                        username = String.valueOf(user.getUserID());
+                    }
+
+                    // local username can be different from the supplied username
+
                     PrefLogin.saveCredentials(
                             context,
-                            user.getPhone(),
+                            username,
                             user.getPassword()
                     );
 
 
+
+//                    PrefLogin.saveCredentials(
+//                            context,
+//                            PrefLoginGlobal.getUsername(context),
+//                            PrefLoginGlobal.getPassword(context)
+//                    );
+
+
                     PrefLogin.saveUserProfile(
-                            response.body(),
+                            user,
                             context
                     );
 

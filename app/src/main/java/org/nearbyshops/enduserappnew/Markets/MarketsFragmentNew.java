@@ -48,10 +48,9 @@ import butterknife.OnClick;
 
 
 
-public class MarketsFragmentNew extends Fragment implements listItemMarketNotifications,SwipeRefreshLayout.OnRefreshListener,
-        NotifySort, NotifySearch, LocationUpdated {
 
-
+public class MarketsFragmentNew extends Fragment implements
+        listItemMarketNotifications,SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, LocationUpdated {
 
 
 
@@ -193,6 +192,9 @@ public class MarketsFragmentNew extends Fragment implements listItemMarketNotifi
         }
 
     }
+
+
+
 
 
     void setupRecyclerView()
@@ -338,6 +340,8 @@ public class MarketsFragmentNew extends Fragment implements listItemMarketNotifi
         startActivity(intent);
 
     }
+
+
 
     @Override
     public void selectMarketSuccessful(ServiceConfigurationGlobal configurationGlobal, int position) {

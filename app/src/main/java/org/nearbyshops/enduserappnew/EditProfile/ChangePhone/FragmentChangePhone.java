@@ -429,6 +429,11 @@ public class FragmentChangePhone extends Fragment {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                if(isDestroyed)
+                {
+                    return;
+                }
+
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });

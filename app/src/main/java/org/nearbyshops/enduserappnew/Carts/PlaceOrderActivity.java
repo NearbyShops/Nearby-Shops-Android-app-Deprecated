@@ -13,6 +13,7 @@ import android.widget.Toast;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserappnew.Home;
+import org.nearbyshops.enduserappnew.HomeNew;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
 
@@ -460,7 +461,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                         showToastMessage("Successful !");
 
 
-                        Intent i = new Intent(PlaceOrderActivity.this,Home.class);
+                        Intent i = new Intent(PlaceOrderActivity.this, HomeNew.class);
 
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 

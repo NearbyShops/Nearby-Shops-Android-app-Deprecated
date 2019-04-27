@@ -239,6 +239,8 @@ public class MarketViewModel extends AndroidViewModel {
 
 
                         datasetLive.postValue(dataset);
+//                        datasetLive.setValue(dataset);
+
 
 
 //                        message.setValue("Response OK");

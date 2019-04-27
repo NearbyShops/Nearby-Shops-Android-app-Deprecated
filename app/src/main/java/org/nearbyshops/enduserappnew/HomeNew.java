@@ -10,8 +10,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -25,10 +23,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
-
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.BottomBarTab;
-import com.roughike.bottombar.OnTabSelectListener;
 
 import org.nearbyshops.enduserappnew.Carts.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
@@ -50,6 +44,9 @@ import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.Shops.ListFragment.FragmentShopNew;
 import org.nearbyshops.enduserappnew.TabProfile.ProfileFragment;
+
+
+
 
 
 public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAboutLogin, MarketSelected {
@@ -119,20 +116,6 @@ public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAb
 
 
 
-
-
-//
-//        bottomBar.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
-//            @Override
-//            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
-//
-//            }
-//        });
-
-
-
-
-
         bottomBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -176,69 +159,6 @@ public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAb
             initialFragmentSetup();
         }
 
-
-
-//
-//
-//        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-//
-//            @Override
-//            public void onTabSelected(@IdRes int tabId) {
-//
-////
-////                if(tabId==R.id.tab_local)
-////                {
-////                    showLocal();
-////                }
-////                else
-//
-//
-//                if (tabId == R.id.tab_items) {
-//                    showItemsFragment();
-//                } else if (tabId == R.id.tab_shops) {
-//
-////                    bottomBar.getTabWithId(R.id.tab_).setBadgeCount(0);
-////                    PrefBadgeCount.saveBadgeCountTripRequests(0,HomeNew.this);
-//
-//                    showShopsFragment();
-//                } else if (tabId == R.id.tab_cart) {
-////                    bottomBar.getTabWithId(R.id.tab_trips).setBadgeCount(0);
-////                    PrefBadgeCount.saveBadgeCountCurrentTrips(0,HomeNew.this);
-//
-//                    showCartFragment();
-//                } else if (tabId == R.id.tab_orders) {
-////                    bottomBar.getTabWithId(R.id.tab_trips).setBadgeCount(0);
-////                    PrefBadgeCount.saveBadgeCountCurrentTrips(0,HomeNew.this);
-//
-//                    showOrdersFragment();
-//                } else if (tabId == R.id.tab_profile) {
-//                    // The tab with id R.id.tab_favorites was selected,
-//                    // change your content accordingly.
-//
-//
-////                    bottomBar.getTabWithId(R.id.tab_requests).setBadgeCount(2);
-//                    showProfileFragment();
-//                }
-//            }
-//        });
-
-
-//        int screenToOpen = getIntent().getIntExtra("screen_to_open", -1);
-//
-//
-//        if (screenToOpen == 1) {
-//            bottomBar.selectTabWithId(R.id.tab_items);
-//        } else if (screenToOpen == 2) {
-//            bottomBar.selectTabWithId(R.id.tab_shops);
-//        } else if (screenToOpen == 3) {
-//            bottomBar.selectTabWithId(R.id.tab_cart);
-//        } else if (screenToOpen == 4) {
-//
-//            bottomBar.selectTabWithId(R.id.tab_orders);
-//        } else if (screenToOpen == 5) {
-//
-//            bottomBar.selectTabWithId(R.id.tab_profile);
-//        }
 
 
 //        startSettingsCheck();
@@ -297,10 +217,6 @@ public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAb
                 }
                 else if(fragment instanceof ItemCategoriesFragmentSimple)
                 {
-//                    bottomBar.selectTabWithId(R.id.tab_items);
-//                    BottomBarTab tab = bottomBar.getTabWithId(R.id.tab_items);
-
-//                    bottomBar.setSelectedItemId(R.id.tab_items);
 
                     bottomBar.getMenu().getItem(0).setChecked(true);
 
@@ -323,39 +239,27 @@ public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAb
     }
 
 
+
+
     @Override
     public void loginSuccess() {
-
-//        showProfileFragment();
-//        bottomBar.getTabWithId(R.id.tab_profile).setTitle("Profile");
-
-
-//        bottomBar.selectTabWithId(R.id.tab_profile);
         marketSelected();
-
-
     }
+
+
 
 
     @Override
     public void loggedOut() {
-//        bottomBar.selectTabWithId(R.id.tab_profile);
-
-//        bottomBar.getTabWithId(R.id.tab_profile).setTitle("Markets");
         showProfileFragment();
     }
 
 
+
+
+
     @Override
     public void showLoginFragment() {
-
-//        if (getSupportFragmentManager().findFragmentByTag(TAG_LOGIN) == null) {
-//            getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .replace(R.id.fragment_container, new FragmentSignInMessage(), TAG_LOGIN)
-//                    .commit();
-//        }
-
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -363,6 +267,7 @@ public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAb
                 .addToBackStack(null)
                 .commit();
     }
+
 
 
     void checkPermissions() {
@@ -480,11 +385,6 @@ public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAb
 
 
 
-
-
-
-
-
     @Override
     public void showOrdersFragment() {
 
@@ -528,6 +428,7 @@ public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAb
                     .commit();
         }
     }
+
 
 
     @Override
@@ -619,11 +520,6 @@ public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAb
     }
 
 
-
-
-
-
-
     @Override
     public void showItemsFragment() {
 
@@ -678,8 +574,6 @@ public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAb
 
 
 
-
-
     void initialFragmentSetup()
     {
         if (PrefGeneral.getMultiMarketMode(this) && PrefGeneral.getServiceURL(this) == null) {
@@ -701,6 +595,8 @@ public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAb
 
         }
     }
+
+
 
 
 
@@ -958,9 +854,9 @@ public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAb
 
 
 
+
+
     protected void stopLocationUpdates() {
-
-
 
 //        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
@@ -971,8 +867,6 @@ public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAb
 
 //        stopSelf();
     }
-
-
 
 
 }

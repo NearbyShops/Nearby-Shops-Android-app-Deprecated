@@ -374,8 +374,6 @@ public class FragmentEmailOrPhone extends Fragment {
 
 
             PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
-
-
             Phonenumber.PhoneNumber phoneNumber = null;
 
             try {
@@ -656,16 +654,15 @@ public class FragmentEmailOrPhone extends Fragment {
 
 
 
-
                 if(showNextButtonProgress)
                 {
                     progressBarNext.setVisibility(View.INVISIBLE);
                     nextButton.setVisibility(View.VISIBLE);
                 }
 
-
-
                 progressBar.setVisibility(View.INVISIBLE);
+
+
             }
         });
 

@@ -186,6 +186,7 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
+
         <activity
             android:name=".Carts.PlaceOrderActivity"
             android:label="@string/title_activity_place_order"
@@ -195,6 +196,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nearbyshops.enduserappnew.Carts.CartItem.CartItemListActivity" />
         </activity>
+
+
+
         <activity
             android:name=".DeliveryAddress.DeliveryAddressActivity"
             android:label="@string/title_activity_delivery_address"

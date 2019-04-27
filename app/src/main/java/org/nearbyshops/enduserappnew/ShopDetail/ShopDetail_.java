@@ -37,6 +37,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopImage;
@@ -70,7 +71,7 @@ import retrofit2.Response;
 
 
 
-public class ShopDetail_ extends AppCompatActivity implements Target, RatingBar.OnRatingBarChangeListener ,NotifyReviewUpdate {
+public class ShopDetail_ extends AppCompatActivity implements Target, RatingBar.OnRatingBarChangeListener , NotifyReviewUpdate {
 
     public final static String SHOP_DETAIL_INTENT_KEY = "intent_key_shop_detail";
 

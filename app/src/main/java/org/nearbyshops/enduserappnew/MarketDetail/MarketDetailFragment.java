@@ -38,21 +38,15 @@ import org.nearbyshops.enduserappnew.ModelReviewMarket.FavouriteMarket;
 import org.nearbyshops.enduserappnew.ModelReviewMarket.FavouriteMarketEndpoint;
 import org.nearbyshops.enduserappnew.ModelReviewMarket.MarketReview;
 import org.nearbyshops.enduserappnew.ModelReviewMarket.MarketReviewEndPoint;
-import org.nearbyshops.enduserappnew.ModelReviewShop.FavouriteShop;
-import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.FavouriteShopService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopImageService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.FavouriteMarketService;
 import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.MarketReviewService;
-import org.nearbyshops.enduserappnew.ShopDetail.NotifyReviewUpdate;
+import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
 
 
 

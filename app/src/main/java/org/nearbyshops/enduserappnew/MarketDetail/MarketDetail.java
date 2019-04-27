@@ -18,7 +18,7 @@ public class MarketDetail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shop_detail_new);
+        setContentView(R.layout.activity_market_detail);
         ButterKnife.bind(this);
 
 
