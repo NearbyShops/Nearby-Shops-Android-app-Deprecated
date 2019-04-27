@@ -52,42 +52,35 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class FragmentVerify extends Fragment {
 
 
-    @BindView(R.id.check_icon)
-    ImageView checkIcon;
-    @BindView(R.id.cross_icon)
-    ImageView crossIcon;
-    @BindView(R.id.message)
-    TextView textAvailable;
 
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
-    @BindView(R.id.verification_code)
-    TextInputEditText verificationCode;
-    @BindView(R.id.email_text)
-    TextView emailText;
-    @BindView(R.id.header_title)
-    TextView message;
-    @BindView(R.id.header)
-    TextView header;
+
+    @BindView(R.id.check_icon) ImageView checkIcon;
+    @BindView(R.id.cross_icon) ImageView crossIcon;
+    @BindView(R.id.message) TextView textAvailable;
+
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
+    @BindView(R.id.verification_code) TextInputEditText verificationCode;
+    @BindView(R.id.email_text) TextView emailText;
+    @BindView(R.id.header_title) TextView message;
+    @BindView(R.id.header) TextView header;
 
 
 
-    @Inject
-    Gson gson;
+    @Inject Gson gson;
 
 
-    @BindView(R.id.progress_bar_resend)
-    ProgressBar progressBarResend;
-    @BindView(R.id.message_resend)
-    TextView messageResend;
+    @BindView(R.id.progress_bar_resend) ProgressBar progressBarResend;
+    @BindView(R.id.message_resend) TextView messageResend;
 
     SmsVerifyCatcher smsVerifyCatcher;
 
 
-    @Inject
-    UserService userService;
+    @Inject UserService userService;
 
     User user;
+
+
+    boolean isDestroyed = false;
 
 
 //    boolean verificationCodeValid = false; // flag to keep record of verification code
@@ -284,7 +277,7 @@ public class FragmentVerify extends Fragment {
         }
         else if(user.getRt_registration_mode()==User.REGISTRATION_MODE_PHONE)
         {
-            verifyPhoneCode();
+            verifyPhoneCode(false);
         }
     }
 
@@ -293,7 +286,7 @@ public class FragmentVerify extends Fragment {
 
 
 
-    void verifyPhoneCode()
+    void verifyPhoneCode(boolean initiateNext)
     {
 
 
@@ -336,6 +329,13 @@ public class FragmentVerify extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
                 progressBar.setVisibility(View.INVISIBLE);
 
 //                verificationCodeValid = false;
@@ -348,6 +348,11 @@ public class FragmentVerify extends Fragment {
                     textAvailable.setVisibility(View.VISIBLE);
                     textAvailable.setText("Verification code is valid !");
 
+
+                    if(initiateNext)
+                    {
+                        createAccount();
+                    }
 
 
                 }
@@ -374,6 +379,13 @@ public class FragmentVerify extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
 //                verificationCodeValid = false;
 
@@ -447,6 +459,13 @@ public class FragmentVerify extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
                 progressBar.setVisibility(View.INVISIBLE);
 
 //                verificationCodeValid = false;
@@ -458,6 +477,12 @@ public class FragmentVerify extends Fragment {
 
                     textAvailable.setVisibility(View.VISIBLE);
                     textAvailable.setText("Verification code is valid !");
+
+
+                    if(initiateNext)
+                    {
+                        createAccount();
+                    }
 
 //                    verificationCodeValid = true;
 
@@ -506,6 +531,13 @@ public class FragmentVerify extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
 //                verificationCodeValid = false;
 
@@ -560,11 +592,11 @@ public class FragmentVerify extends Fragment {
         }
         else if(user.getRt_registration_mode()==User.REGISTRATION_MODE_PHONE)
         {
-            verifyPhoneCode();
+            verifyPhoneCode(true);
         }
 
 
-        createAccount();
+//        createAccount();
     }
 
 
@@ -626,6 +658,13 @@ public class FragmentVerify extends Fragment {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
 
+
+                    if(isDestroyed)
+                    {
+                        return;
+                    }
+
+
                     progressBar.setVisibility(View.INVISIBLE);
 
                     if(response.code()==201)
@@ -656,6 +695,12 @@ public class FragmentVerify extends Fragment {
 
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
+
+                    if(isDestroyed)
+                    {
+                        return;
+                    }
+
 
                     progressBar.setVisibility(View.INVISIBLE);
 
@@ -746,6 +791,13 @@ public class FragmentVerify extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
                 progressBarResend.setVisibility(View.INVISIBLE);
                 messageResend.setVisibility(View.VISIBLE);
 
@@ -764,6 +816,13 @@ public class FragmentVerify extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
 
                 progressBarResend.setVisibility(View.INVISIBLE);
                 messageResend.setText("Network failure please check your internet connection!");
@@ -814,6 +873,11 @@ public class FragmentVerify extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+                if(isDestroyed)
+                {
+                    return;
+                }
+
                 progressBarResend.setVisibility(View.INVISIBLE);
                 messageResend.setVisibility(View.VISIBLE);
 
@@ -833,6 +897,11 @@ public class FragmentVerify extends Fragment {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                if(isDestroyed)
+                {
+                    return;
+                }
+
                 progressBarResend.setVisibility(View.INVISIBLE);
                 messageResend.setText("Network failure please check your internet connection!");
             }
@@ -844,6 +913,19 @@ public class FragmentVerify extends Fragment {
 
 
 
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isDestroyed = true;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isDestroyed = false;
+    }
 
 
 

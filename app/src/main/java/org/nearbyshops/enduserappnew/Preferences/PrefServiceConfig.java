@@ -34,8 +34,8 @@ public class PrefServiceConfig {
     public static final int SERVICE_SELECT_MODE_ADVANCED = 2;
 
 
-    public static final String DEFAULT_SDS_URL = "http://sds.nearbyshops.org";
-    public static final String DEFAULT_SDS_URL_LOCAL_HOTSPOT = "http://192.168.43.73:5125";
+    public static final String SDS_URL_NEARBY_SHOPS = "http://sds.nearbyshops.org";
+    public static final String SDS_URL_LOCAL_HOTSPOT = "http://192.168.43.73:5125";
 
 
     public static final String DEFAULT_SDS_URL_BACKUP = "http://192.168.1.36:5600";
@@ -65,6 +65,8 @@ public class PrefServiceConfig {
 
         prefsEditor.apply();
     }
+
+
 
 
 
@@ -162,10 +164,8 @@ public class PrefServiceConfig {
 
         //service_url = "http://localareademo-env.ap-southeast-1.elasticbeanstalk.com";
 
-        return sharedPref.getString(TAG_SDS_URL, DEFAULT_SDS_URL_LOCAL_HOTSPOT);
+        return sharedPref.getString(TAG_SDS_URL, SDS_URL_NEARBY_SHOPS);
     }
-
-
 
 
 

@@ -525,11 +525,43 @@ public class LoginGlobalFragment extends Fragment {
 
                     User user = response.body();
 
+
+                    String username = "";
+
+                    if(user.getPhone()!=null)
+                    {
+                        username = user.getPhone();
+                    }
+                    else if(user.getEmail()!=null)
+                    {
+                        username = user.getEmail();
+                    }
+                    else if(user.getUsername()!=null)
+                    {
+                        username = user.getUsername();
+                    }
+                    else if(user.getUserID()!=0)
+                    {
+                        username = String.valueOf(user.getUserID());
+                    }
+
+
+                    // local username can be different from the supplied username
+
                     PrefLogin.saveCredentials(
                             getActivity(),
-                            phoneWithCode,
+                            username,
                             user.getPassword()
                     );
+
+
+
+
+//                    PrefLogin.saveCredentials(
+//                            getActivity(),
+//                            username,
+//                            password.getText().toString()
+//                    );
 
 
 
@@ -546,7 +578,7 @@ public class LoginGlobalFragment extends Fragment {
 
                     // save user profile information
                     PrefLogin.saveUserProfile(
-                            response.body(),
+                            user,
                             getActivity()
                     );
 

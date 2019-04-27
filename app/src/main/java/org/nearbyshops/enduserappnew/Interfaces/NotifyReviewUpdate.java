@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ShopDetail;
+package org.nearbyshops.enduserappnew.Interfaces;
 
 /**
  * Created by sumeet on 18/8/16.

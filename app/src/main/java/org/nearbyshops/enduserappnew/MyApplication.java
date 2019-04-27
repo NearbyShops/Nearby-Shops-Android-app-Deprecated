@@ -186,9 +186,11 @@ public class MyApplication extends MultiDexApplication{
 
 
 
-                if (PrefGeneral.getServiceURL(getApplicationContext())!=null) {
-                    startService(new Intent(getApplicationContext(), UpdateOneSignalID.class));
-                }
+//                if (PrefGeneral.getServiceURL(getApplicationContext())!=null) {
+//                    startService(new Intent(getApplicationContext(), UpdateOneSignalID.class));
+//                }
+
+
 
 //                getApplicationContext().startService(new Intent(getApplicationContext(), UpdateOneSignalID.class));
             }

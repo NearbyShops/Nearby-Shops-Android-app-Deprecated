@@ -54,39 +54,27 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class FragmentEnterCredentials extends Fragment {
 
 
-    @BindView(R.id.select_email)
-    TextView selectPhone;
-    @BindView(R.id.select_phone)
-    TextView selectEmail;
+    @BindView(R.id.select_email) TextView selectPhone;
+    @BindView(R.id.select_phone) TextView selectEmail;
 
-    @BindView(R.id.text_input_phone)
-    TextInputLayout phoneLayout;
-    @BindView(R.id.text_input_email)
-    TextInputLayout emailLayout;
+    @BindView(R.id.text_input_phone) TextInputLayout phoneLayout;
+    @BindView(R.id.text_input_email) TextInputLayout emailLayout;
 
 //    String phoneWithoutCountryCode;
 //    @BindView(R.id.ccp) CountryCodePicker ccp;
-    @BindView(R.id.phone)
-TextInputEditText phone;
-    @BindView(R.id.email)
-    TextInputEditText email;
+    @BindView(R.id.phone) TextInputEditText phone;
+    @BindView(R.id.email) TextInputEditText email;
 
 
-    @BindView(R.id.check_icon)
-    ImageView checkIcon;
-    @BindView(R.id.cross_icon)
-    ImageView crossIcon;
-    @BindView(R.id.message)
-    TextView textAvailable;
+    @BindView(R.id.check_icon) ImageView checkIcon;
+    @BindView(R.id.cross_icon) ImageView crossIcon;
+    @BindView(R.id.message) TextView textAvailable;
 
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
-    @BindView(R.id.progress_bar_button)
-    ProgressBar progressBarButton;
-    @BindView(R.id.next)
-    TextView nextButton;
+    @BindView(R.id.progress_bar_button) ProgressBar progressBarButton;
+    @BindView(R.id.next) TextView nextButton;
 
 
 
