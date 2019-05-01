@@ -111,6 +111,7 @@
         android:layout_height="1dp"/>
 
     <LinearLayout
+        android:id="@+id/button_bar"
         android:layout_below="@id/borderThree"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -143,6 +144,18 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+
+
+    <TextView
+
+        android:background="@color/deepOrange800"
+        android:layout_toStartOf="@id/button_bar"
+        android:layout_toEndOf="@id/button_bar"
+        android:layout_alignBottom="@id/button_bar"
+        android:text="Select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 </RelativeLayout>

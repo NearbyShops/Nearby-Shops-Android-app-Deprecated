@@ -14,9 +14,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.nearbyshops.enduserappnew.CommonViewHolders.EmptyScreenMarker;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress.EditAddressFragment;
 import org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress.EditDeliveryAddress;
+import org.nearbyshops.enduserappnew.DeliveryAddress.viewHolder.DeliveryAddressAdapter;
+import org.nearbyshops.enduserappnew.DeliveryAddress.viewHolder.ViewHolderDeliveryAdddress;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
@@ -35,7 +38,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DeliveryAddressActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, DeliveryAddressAdapter.NotifyDeliveryAddress, View.OnClickListener {
+
+
+
+
+public class DeliveryAddressActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ViewHolderDeliveryAdddress.NotifyDeliveryAddress, View.OnClickListener {
 
     @Inject
     DeliveryAddressService deliveryAddressService;
@@ -45,7 +52,7 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
     GridLayoutManager layoutManager;
     SwipeRefreshLayout swipeContainer;
 
-    List<DeliveryAddress> dataset = new ArrayList<>();
+    List<Object> dataset = new ArrayList<>();
 
 //    EndUser endUser = null;
 
@@ -69,7 +76,8 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
         setContentView(R.layout.activity_delivery_address);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -77,9 +85,9 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
         // findView By id'// STOPSHIP: 11/6/16
 
-        swipeContainer = (SwipeRefreshLayout)findViewById(R.id.swipeContainer);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        addNewAddress = (TextView) findViewById(R.id.addNewAddress);
+        swipeContainer = findViewById(R.id.swipeContainer);
+        recyclerView = findViewById(R.id.recyclerView);
+        addNewAddress = findViewById(R.id.addNewAddress);
 
         addNewAddress.setOnClickListener(this);
 
@@ -164,6 +172,11 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
     }
 
 
+
+
+
+
+
     void makeNetworkCall()
     {
         User endUser = PrefLogin.getUser(this);
@@ -182,28 +195,52 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
             @Override
             public void onResponse(Call<List<DeliveryAddress>> call, Response<List<DeliveryAddress>> response) {
 
-
-                if(response.body()!=null)
+                if(isDestroyed())
                 {
-                    dataset.clear();
-                    dataset.addAll(response.body());
-
-                    adapter.notifyDataSetChanged();
-
-
-
-                }else
-                {
-                    dataset.clear();
-                    adapter.notifyDataSetChanged();
+                    return;
                 }
 
-                swipeContainer.setRefreshing(false);
 
+                if(response.code()==200)
+                {
+                    if(response.body()!=null)
+                    {
+                        dataset.clear();
+                        dataset.addAll(response.body());
+
+                        if(response.body().size()==0)
+                        {
+                            dataset.add(new EmptyScreenMarker());
+                        }
+                    }
+                    else
+                    {
+                        dataset.add(new EmptyScreenMarker());
+                    }
+
+
+                }
+                else
+                {
+                    dataset.clear();
+                    showToastMessage("Failed Code : " + response.code());
+                }
+
+
+
+                adapter.notifyDataSetChanged();
+                swipeContainer.setRefreshing(false);
             }
 
             @Override
             public void onFailure(Call<List<DeliveryAddress>> call, Throwable t) {
+
+
+                if(isDestroyed())
+                {
+                    return;
+                }
+
 
 
                 showToastMessage("Network Request failed !");
@@ -322,6 +359,23 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
         setResult(2,output);
         finish();
     }
+
+
+
+
+
+
+
+
+    @Override
+    public void selectButtonClick(DeliveryAddress deliveryAddress, int position) {
+        Intent output = new Intent();
+        output.putExtra("output",deliveryAddress);
+        setResult(2,output);
+        finish();
+    }
+
+
 
 
 

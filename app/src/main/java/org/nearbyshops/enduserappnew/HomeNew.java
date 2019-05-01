@@ -168,13 +168,13 @@ public class HomeNew extends AppCompatActivity implements ShowFragment, NotifyAb
         fetchLocation();
 
 
-        if (PrefGeneral.getServiceURL(this) != null) {
-            if (PrefOneSignal.getToken(this) != null) {
+
+
+        if (PrefGeneral.getServiceURL(this) != null
+                && PrefOneSignal.getToken(this) != null
+                && PrefLogin.getUser(this)!=null) {
 
                 startService(new Intent(getApplicationContext(), UpdateOneSignalID.class));
-
-//                showToastMessage("Update One Signal ID !");
-            }
         }
 
 

@@ -36,7 +36,10 @@ import butterknife.OnClick;
 
 
 
+
+
 public class ShopHome extends AppCompatActivity {
+
 
     private Shop shop;
 
@@ -52,6 +55,8 @@ public class ShopHome extends AppCompatActivity {
 
     @BindView(R.id.indicator_pick_from_shop) TextView pickFromShopIndicator;
     @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
+
+
 
 
 
@@ -121,6 +126,8 @@ public class ShopHome extends AppCompatActivity {
 //            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
 //                    + shop.getLogoImagePath();
 
+
+
             String imagePath = PrefGeneral.getServiceURL(this) + "/api/v1/Shop/Image/"
                     + "five_hundred_" + shop.getLogoImagePath() + ".jpg";
 
@@ -128,10 +135,13 @@ public class ShopHome extends AppCompatActivity {
                     .create(getResources(),
                             R.drawable.ic_nature_people_white_48px, getTheme());
 
+
             Picasso.with(this)
                     .load(imagePath)
                     .placeholder(placeholder)
                     .into(shopLogo);
+
+
 
 
             String currency = "";
@@ -197,7 +207,6 @@ public class ShopHome extends AppCompatActivity {
         intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,jsonString);
         startActivity(intent);
     }
-
 
 
 
@@ -285,6 +294,10 @@ public class ShopHome extends AppCompatActivity {
     {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
+
+
+
+
 
 
 

@@ -7,10 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-
+    android:padding="10dp"
     tools:context="org.nearbyshops.enduserappnew.DeliveryAddress.DeliveryAddressActivity"
     tools:showIn="@layout/activity_delivery_address">
 
@@ -29,7 +26,6 @@
 
 
     <TextView
-        android:layout_marginRight="10dp"
         android:gravity="center"
         android:textColor="#ffffff"
         android:background="@color/phonographyBlue"
@@ -43,8 +39,8 @@
 
 
 
+
     <android.support.v4.widget.SwipeRefreshLayout
-        android:elevation="0dp"
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_above="@id/addNewAddress"
         android:layout_marginBottom="5dp"

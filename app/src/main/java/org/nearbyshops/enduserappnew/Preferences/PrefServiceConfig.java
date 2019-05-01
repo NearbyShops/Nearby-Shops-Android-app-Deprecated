@@ -164,7 +164,7 @@ public class PrefServiceConfig {
 
         //service_url = "http://localareademo-env.ap-southeast-1.elasticbeanstalk.com";
 
-        return sharedPref.getString(TAG_SDS_URL, SDS_URL_NEARBY_SHOPS);
+        return sharedPref.getString(TAG_SDS_URL, SDS_URL_LOCAL_HOTSPOT);
     }
 
 
