@@ -64,7 +64,11 @@ import retrofit2.Response;
 import static android.app.Activity.RESULT_OK;
 
 
-public class ShopDetailFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener , Target, RatingBar.OnRatingBarChangeListener, NotifyReviewUpdate {
+
+
+
+public class ShopDetailFragment extends Fragment
+        implements SwipeRefreshLayout.OnRefreshListener, Target, RatingBar.OnRatingBarChangeListener, NotifyReviewUpdate {
 
 
 

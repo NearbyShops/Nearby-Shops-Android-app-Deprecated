@@ -37,29 +37,14 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
 
     // address Fields
 
-    @BindView(R.id.receiversName)
-    EditText receiversName;
-
-    @BindView(R.id.receiversPhoneNumber)
-    EditText receiversPhoneNumber;
-
-    @BindView(R.id.deliveryAddress)
-    EditText deliveryAddressView;
-
-    @BindView(R.id.addressCity)
-    EditText city;
-
-    @BindView(R.id.pincode)
-    EditText pincode;
-
-    @BindView(R.id.landmark)
-    EditText landMark;
-
-    @BindView(R.id.latitude)
-    EditText latitude;
-
-    @BindView(R.id.longitude)
-    EditText longitude;
+    @BindView(R.id.receiversName) EditText receiversName;
+    @BindView(R.id.receiversPhoneNumber) EditText receiversPhoneNumber;
+    @BindView(R.id.deliveryAddress) EditText deliveryAddressView;
+    @BindView(R.id.addressCity) EditText city;
+    @BindView(R.id.pincode) EditText pincode;
+    @BindView(R.id.landmark) EditText landMark;
+    @BindView(R.id.latitude) EditText latitude;
+    @BindView(R.id.longitude) EditText longitude;
 
 
 

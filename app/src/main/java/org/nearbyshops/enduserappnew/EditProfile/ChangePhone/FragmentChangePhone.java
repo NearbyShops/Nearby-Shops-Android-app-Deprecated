@@ -168,7 +168,7 @@ public class FragmentChangePhone extends Fragment {
 
     void bindViews()
     {
-        phone.setText(user.getEmail());
+        phone.setText(user.getPhoneWithCountryCode());
     }
 
 

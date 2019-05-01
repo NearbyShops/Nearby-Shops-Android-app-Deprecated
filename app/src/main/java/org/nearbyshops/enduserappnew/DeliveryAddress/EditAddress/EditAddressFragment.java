@@ -76,6 +76,11 @@ public class EditAddressFragment extends Fragment{
     }
 
 
+
+
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -88,7 +93,7 @@ public class EditAddressFragment extends Fragment{
 //        setContentView(R.layout.activity_edit_address);
 
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -106,6 +111,10 @@ public class EditAddressFragment extends Fragment{
 
         return rootView;
     }
+
+
+
+
 
 
 
