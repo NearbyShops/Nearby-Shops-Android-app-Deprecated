@@ -197,6 +197,7 @@
 
 
             <TextView
+                android:visibility="gone"
                 android:layout_marginTop="10dp"
                 android:id="@+id/item_specifications_header"
                 android:textSize="15sp"
