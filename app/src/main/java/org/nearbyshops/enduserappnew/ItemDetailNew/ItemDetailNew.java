@@ -1,14 +1,11 @@
 package org.nearbyshops.enduserappnew.ItemDetailNew;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetailFragment;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
+import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
+import org.nearbyshops.enduserappnew.R;
 
 
 public class ItemDetailNew extends AppCompatActivity {

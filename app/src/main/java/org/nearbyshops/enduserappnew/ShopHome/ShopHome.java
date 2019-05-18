@@ -3,39 +3,30 @@ package org.nearbyshops.enduserappnew.ShopHome;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
-
 import org.nearbyshops.enduserappnew.Carts.CartItem.CartItemListActivity;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.OrderHistoryNew;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-
 import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetail;
 import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetailFragment;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-
-
-
 
 
 public class ShopHome extends AppCompatActivity {
@@ -136,7 +127,7 @@ public class ShopHome extends AppCompatActivity {
                             R.drawable.ic_nature_people_white_48px, getTheme());
 
 
-            Picasso.with(this)
+            Picasso.get()
                     .load(imagePath)
                     .placeholder(placeholder)
                     .into(shopLogo);
@@ -181,10 +172,13 @@ public class ShopHome extends AppCompatActivity {
 
 //        Intent intent = new Intent(this, ShopItemsInShopByCat.class);
 
-        Intent intent = new Intent(this,ItemsInShopByCat.class);
+        Intent intent = new Intent(this, ItemsInShopByCat.class);
         startActivity(intent);
-
     }
+
+
+
+
 
 
     @OnClick(R.id.option_cart)
@@ -199,7 +193,7 @@ public class ShopHome extends AppCompatActivity {
 
 
 
-        Intent intent = new Intent(this,CartItemListActivity.class);
+        Intent intent = new Intent(this, CartItemListActivity.class);
 //        intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,shop);
 
 
@@ -267,6 +261,9 @@ public class ShopHome extends AppCompatActivity {
 
 
 
+
+
+
     @OnClick(R.id.option_shop_reviews)
     void shopReviews()
     {
@@ -304,7 +301,7 @@ public class ShopHome extends AppCompatActivity {
     private void showLoginDialog()
     {
 
-        Intent intent = new Intent(this,Login.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 

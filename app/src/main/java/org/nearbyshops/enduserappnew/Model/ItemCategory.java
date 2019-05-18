@@ -1,9 +1,7 @@
 package org.nearbyshops.enduserappnew.Model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
-public class ItemCategory implements Parcelable{
+public class ItemCategory{
 
 	// contract class describing the Globals schema for the ItemCategory
 
@@ -72,108 +70,23 @@ public class ItemCategory implements Parcelable{
 	private boolean isWaitlisted;
 
 
+
 	private String rt_gidb_service_url;
-	ItemCategory parentCategory = null;
+	private ItemCategory parentCategory = null;
 
 
-	protected ItemCategory(Parcel in) {
-		itemCategoryID = in.readInt();
-		categoryName = in.readString();
-		categoryDescription = in.readString();
-		parentCategoryID = in.readInt();
-		isLeafNode = in.readByte() != 0;
-		imagePath = in.readString();
-		categoryOrder = in.readInt();
-		isAbstractNode = in.readByte() != 0;
-		descriptionShort = in.readString();
-		isEnabled = in.readByte() != 0;
-		isWaitlisted = in.readByte() != 0;
-		rt_gidb_service_url = in.readString();
-		parentCategory = in.readParcelable(ItemCategory.class.getClassLoader());
+
+
+
+	// getter and setter
+
+
+	public int getItemCategoryID() {
+		return itemCategoryID;
 	}
 
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeInt(itemCategoryID);
-		dest.writeString(categoryName);
-		dest.writeString(categoryDescription);
-		dest.writeInt(parentCategoryID);
-		dest.writeByte((byte) (isLeafNode ? 1 : 0));
-		dest.writeString(imagePath);
-		dest.writeInt(categoryOrder);
-		dest.writeByte((byte) (isAbstractNode ? 1 : 0));
-		dest.writeString(descriptionShort);
-		dest.writeByte((byte) (isEnabled ? 1 : 0));
-		dest.writeByte((byte) (isWaitlisted ? 1 : 0));
-		dest.writeString(rt_gidb_service_url);
-		dest.writeParcelable(parentCategory, flags);
-	}
-
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	public static final Creator<ItemCategory> CREATOR = new Creator<ItemCategory>() {
-		@Override
-		public ItemCategory createFromParcel(Parcel in) {
-			return new ItemCategory(in);
-		}
-
-		@Override
-		public ItemCategory[] newArray(int size) {
-			return new ItemCategory[size];
-		}
-	};
-
-	public String getRt_gidb_service_url() {
-		return rt_gidb_service_url;
-	}
-
-	public void setRt_gidb_service_url(String rt_gidb_service_url) {
-		this.rt_gidb_service_url = rt_gidb_service_url;
-	}
-
-	//no-args Constructor
-	public ItemCategory() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public ItemCategory getParentCategory() {
-		return parentCategory;
-	}
-
-	public void setParentCategory(ItemCategory parentCategory) {
-		this.parentCategory = parentCategory;
-	}
-
-
-	//Getters and Setters
-
-
-	public Integer getCategoryOrder() {
-		return categoryOrder;
-	}
-
-	public void setCategoryOrder(Integer categoryOrder) {
-		this.categoryOrder = categoryOrder;
-	}
-
-	public Boolean getisAbstractNode() {
-		return isAbstractNode;
-	}
-
-	public void setisAbstractNode(Boolean abstractNode) {
-		isAbstractNode = abstractNode;
-	}
-
-	public String getDescriptionShort() {
-		return descriptionShort;
-	}
-
-	public void setDescriptionShort(String descriptionShort) {
-		this.descriptionShort = descriptionShort;
+	public void setItemCategoryID(int itemCategoryID) {
+		this.itemCategoryID = itemCategoryID;
 	}
 
 	public String getCategoryName() {
@@ -192,25 +105,52 @@ public class ItemCategory implements Parcelable{
 		this.categoryDescription = categoryDescription;
 	}
 
-	public int getItemCategoryID() {
-		return itemCategoryID;
-	}
-
-	public void setItemCategoryID(int itemCategoryID) {
-		this.itemCategoryID = itemCategoryID;
-	}
-
-
-	public Integer getParentCategoryID() {
+	public int getParentCategoryID() {
 		return parentCategoryID;
 	}
 
-	public void setParentCategoryID(Integer parentCategoryID) {
+	public void setParentCategoryID(int parentCategoryID) {
 		this.parentCategoryID = parentCategoryID;
 	}
 
-	public boolean getIsLeafNode() {
+	public boolean isLeafNode() {
 		return isLeafNode;
+	}
+
+	public void setLeafNode(boolean leafNode) {
+		isLeafNode = leafNode;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public int getCategoryOrder() {
+		return categoryOrder;
+	}
+
+	public void setCategoryOrder(int categoryOrder) {
+		this.categoryOrder = categoryOrder;
+	}
+
+	public boolean isAbstractNode() {
+		return isAbstractNode;
+	}
+
+	public void setAbstractNode(boolean abstractNode) {
+		isAbstractNode = abstractNode;
+	}
+
+	public String getDescriptionShort() {
+		return descriptionShort;
+	}
+
+	public void setDescriptionShort(String descriptionShort) {
+		this.descriptionShort = descriptionShort;
 	}
 
 	public boolean isEnabled() {
@@ -229,15 +169,19 @@ public class ItemCategory implements Parcelable{
 		isWaitlisted = waitlisted;
 	}
 
-	public void setIsLeafNode(boolean isLeafNode) {
-		this.isLeafNode = isLeafNode;
+	public String getRt_gidb_service_url() {
+		return rt_gidb_service_url;
 	}
 
-	public String getImagePath() {
-		return imagePath;
+	public void setRt_gidb_service_url(String rt_gidb_service_url) {
+		this.rt_gidb_service_url = rt_gidb_service_url;
 	}
 
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public ItemCategory getParentCategory() {
+		return parentCategory;
+	}
+
+	public void setParentCategory(ItemCategory parentCategory) {
+		this.parentCategory = parentCategory;
 	}
 }

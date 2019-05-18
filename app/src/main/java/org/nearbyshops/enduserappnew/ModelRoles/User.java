@@ -1,8 +1,6 @@
 package org.nearbyshops.enduserappnew.ModelRoles;
 
 
-
-
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 
 import java.sql.Timestamp;

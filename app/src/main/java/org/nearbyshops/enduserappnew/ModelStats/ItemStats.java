@@ -1,12 +1,12 @@
 package org.nearbyshops.enduserappnew.ModelStats;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+
+
 
 /**
  * Created by sumeet on 26/5/16.
  */
-public class ItemStats implements Parcelable {
+public class ItemStats{
 
     private int itemID;
     private double min_price;
@@ -18,74 +18,12 @@ public class ItemStats implements Parcelable {
     private int ratingCount;
 
 
-    /*
-        Getter and Setter methods
 
 
-     */
 
 
-    protected ItemStats(Parcel in) {
-        itemID = in.readInt();
-        min_price = in.readDouble();
-        max_price = in.readDouble();
-        shopCount = in.readInt();
-        avg_price = in.readDouble();
-        rating_avg = in.readDouble();
-        ratingCount = in.readInt();
-    }
+//    Getter and Setter methods
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(itemID);
-        dest.writeDouble(min_price);
-        dest.writeDouble(max_price);
-        dest.writeInt(shopCount);
-        dest.writeDouble(avg_price);
-        dest.writeDouble(rating_avg);
-        dest.writeInt(ratingCount);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<ItemStats> CREATOR = new Creator<ItemStats>() {
-        @Override
-        public ItemStats createFromParcel(Parcel in) {
-            return new ItemStats(in);
-        }
-
-        @Override
-        public ItemStats[] newArray(int size) {
-            return new ItemStats[size];
-        }
-    };
-
-    public double getRating_avg() {
-        return rating_avg;
-    }
-
-    public void setRating_avg(double rating_avg) {
-        this.rating_avg = rating_avg;
-    }
-
-    public int getRatingCount() {
-        return ratingCount;
-    }
-
-    public void setRatingCount(int ratingCount) {
-        this.ratingCount = ratingCount;
-    }
-
-    public double getAvg_price() {
-        return avg_price;
-    }
-
-    public void setAvg_price(double avg_price) {
-        this.avg_price = avg_price;
-    }
 
     public int getItemID() {
         return itemID;
@@ -119,8 +57,27 @@ public class ItemStats implements Parcelable {
         this.shopCount = shopCount;
     }
 
+    public double getAvg_price() {
+        return avg_price;
+    }
 
+    public void setAvg_price(double avg_price) {
+        this.avg_price = avg_price;
+    }
 
-    // Parcelable Implementation
+    public double getRating_avg() {
+        return rating_avg;
+    }
 
+    public void setRating_avg(double rating_avg) {
+        this.rating_avg = rating_avg;
+    }
+
+    public int getRatingCount() {
+        return ratingCount;
+    }
+
+    public void setRatingCount(int ratingCount) {
+        this.ratingCount = ratingCount;
+    }
 }

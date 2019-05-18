@@ -1,19 +1,16 @@
 package org.nearbyshops.enduserappnew.EditProfile;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
-
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import butterknife.ButterKnife;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePassword.FragmentChangePassword;
 import org.nearbyshops.enduserappnew.EditProfile.Interfaces.NotifyChangeEmail;
 import org.nearbyshops.enduserappnew.EditProfile.Interfaces.NotifyChangePassword;
 import org.nearbyshops.enduserappnew.R;
 
-import butterknife.ButterKnife;
 
-
-public class EditProfile extends AppCompatActivity implements NotifyChangePassword,NotifyChangeEmail {
+public class EditProfile extends AppCompatActivity implements NotifyChangePassword, NotifyChangeEmail {
 
     public static final String TAG_FRAGMENT_EDIT = "fragment_edit";
     public static final String TAG_FRAGMENT_CHANGE_PASSWORD = "fragment_change_password";
@@ -39,7 +36,7 @@ public class EditProfile extends AppCompatActivity implements NotifyChangePasswo
 
 
 //        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
-        setContentView(R.layout.activity_edit_profile_driver);
+        setContentView(R.layout.activity_edit_profile);
         ButterKnife.bind(this);
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -96,7 +93,7 @@ public class EditProfile extends AppCompatActivity implements NotifyChangePasswo
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                 .addToBackStack("change_pass")
                 .replace(R.id.fragment_container,new FragmentChangePassword(), EditProfile.TAG_FRAGMENT_CHANGE_PASSWORD)
                 .commit();

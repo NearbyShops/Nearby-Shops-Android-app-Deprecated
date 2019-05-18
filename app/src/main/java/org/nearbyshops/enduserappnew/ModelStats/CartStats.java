@@ -1,8 +1,5 @@
 package org.nearbyshops.enduserappnew.ModelStats;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import org.nearbyshops.enduserappnew.Model.Shop;
 
 /**

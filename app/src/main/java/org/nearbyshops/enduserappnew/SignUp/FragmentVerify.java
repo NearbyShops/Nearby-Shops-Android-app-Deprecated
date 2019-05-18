@@ -1,11 +1,6 @@
 package org.nearbyshops.enduserappnew.SignUp;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,36 +9,36 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnTextChanged;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 import com.stfalcon.smsverifycatcher.OnSmsCatchListener;
 import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
-
-
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.SignUp.Interfaces.ShowFragmentSignUp;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnTextChanged;
-import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import javax.inject.Inject;
 
 /**
  * Created by sumeet on 27/6/17.
@@ -59,7 +54,8 @@ public class FragmentVerify extends Fragment {
     @BindView(R.id.message) TextView textAvailable;
 
     @BindView(R.id.progress_bar) ProgressBar progressBar;
-    @BindView(R.id.verification_code) TextInputEditText verificationCode;
+    @BindView(R.id.verification_code)
+    TextInputEditText verificationCode;
     @BindView(R.id.email_text) TextView emailText;
     @BindView(R.id.header_title) TextView message;
     @BindView(R.id.header) TextView header;
@@ -75,7 +71,8 @@ public class FragmentVerify extends Fragment {
     SmsVerifyCatcher smsVerifyCatcher;
 
 
-    @Inject UserService userService;
+    @Inject
+    UserService userService;
 
     User user;
 
@@ -108,13 +105,13 @@ public class FragmentVerify extends Fragment {
         user = PrefrenceSignUp.getUser(getActivity());
 
 
-        if(user.getRt_registration_mode()==User.REGISTRATION_MODE_EMAIL)
+        if(user.getRt_registration_mode()== User.REGISTRATION_MODE_EMAIL)
         {
             header.setText("Step 4 : Verify your E-mail");
             message.setText("We have sent you a verification code on your e-mail ID : ");
             emailText.setText(user.getEmail());
         }
-        else if(user.getRt_registration_mode()==User.REGISTRATION_MODE_PHONE)
+        else if(user.getRt_registration_mode()== User.REGISTRATION_MODE_PHONE)
         {
             header.setText("Step 4 : Verify your phone");
             message.setText("We have sent you a one time password (OTP) on your phone : ");
@@ -271,11 +268,11 @@ public class FragmentVerify extends Fragment {
 
     void verifyCode()
     {
-        if(user.getRt_registration_mode()==User.REGISTRATION_MODE_EMAIL)
+        if(user.getRt_registration_mode()== User.REGISTRATION_MODE_EMAIL)
         {
             verifyEmailCode(false);
         }
-        else if(user.getRt_registration_mode()==User.REGISTRATION_MODE_PHONE)
+        else if(user.getRt_registration_mode()== User.REGISTRATION_MODE_PHONE)
         {
             verifyPhoneCode(false);
         }
@@ -586,11 +583,11 @@ public class FragmentVerify extends Fragment {
 //        textAvailable.setVisibility(View.INVISIBLE);
 
 
-        if(user.getRt_registration_mode()==User.REGISTRATION_MODE_EMAIL)
+        if(user.getRt_registration_mode()== User.REGISTRATION_MODE_EMAIL)
         {
             verifyEmailCode(true);
         }
-        else if(user.getRt_registration_mode()==User.REGISTRATION_MODE_PHONE)
+        else if(user.getRt_registration_mode()== User.REGISTRATION_MODE_PHONE)
         {
             verifyPhoneCode(true);
         }
@@ -613,11 +610,11 @@ public class FragmentVerify extends Fragment {
 //            User user = ((ReadWriteUser) getActivity()).getSignUpProfile();
 //            user.setPassword(enterPassword.getText().toString());
 
-            if(user.getRt_registration_mode()==User.REGISTRATION_MODE_EMAIL)
+            if(user.getRt_registration_mode()== User.REGISTRATION_MODE_EMAIL)
             {
                 user.setRt_email_verification_code(verificationCode.getText().toString());
             }
-            else if(user.getRt_registration_mode()==User.REGISTRATION_MODE_PHONE)
+            else if(user.getRt_registration_mode()== User.REGISTRATION_MODE_PHONE)
             {
                 user.setRt_phone_verification_code(verificationCode.getText().toString());
             }
@@ -739,11 +736,11 @@ public class FragmentVerify extends Fragment {
 
 
 
-        if(user.getRt_registration_mode()==User.REGISTRATION_MODE_PHONE)
+        if(user.getRt_registration_mode()== User.REGISTRATION_MODE_PHONE)
         {
             resendCodePhone();
         }
-        else if(user.getRt_registration_mode()==User.REGISTRATION_MODE_EMAIL)
+        else if(user.getRt_registration_mode()== User.REGISTRATION_MODE_EMAIL)
         {
             resendCodeEmail();
         }

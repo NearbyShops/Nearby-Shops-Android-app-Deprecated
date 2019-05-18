@@ -1,21 +1,19 @@
 package org.nearbyshops.enduserappnew.ShopItemByItemNew.SlidingLayerSort;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import org.nearbyshops.enduserappnew.Model.ShopItem;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.Model.ShopItem;
+import org.nearbyshops.enduserappnew.R;
 
 /**
  * Created by sumeet on 15/9/16.
@@ -100,24 +98,24 @@ public class SlidingLayerSortShopItem extends Fragment {
         }
         else if (currentSort.equals(SORT_BY_RATING))
         {
-            sort_by_rating.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            sort_by_rating.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
             sort_by_rating.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
         }
         else if(currentSort.equals(SORT_BY_POPULARITY))
         {
-            sort_by_popularity.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            sort_by_popularity.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
             sort_by_popularity.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
         }
         else if(currentSort.equals(SORT_BY_AVAILABLE))
         {
-            sort_by_items_available.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            sort_by_items_available.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
             sort_by_items_available.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
         }
         else if(currentSort.equals(SORT_BY_PRICE))
         {
-            sort_by_item_price.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            sort_by_item_price.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
             sort_by_item_price.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
         }
 
@@ -125,12 +123,12 @@ public class SlidingLayerSortShopItem extends Fragment {
 
         if(currentAscending.equals(SORT_ASCENDING))
         {
-            sort_ascending.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            sort_ascending.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
             sort_ascending.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelectedAscending));
         }
         else if(currentAscending.equals(SORT_DESCENDING))
         {
-            sort_descending.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            sort_descending.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
             sort_descending.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelectedAscending));
         }
     }
@@ -141,7 +139,7 @@ public class SlidingLayerSortShopItem extends Fragment {
     void sortByNameClick(View view)
     {
         clearSelectionSort();
-        sort_by_distance.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        sort_by_distance.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         sort_by_distance.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
         PrefSortShopItems.saveSort(getActivity(),SORT_BY_DISTANCE);
@@ -159,7 +157,7 @@ public class SlidingLayerSortShopItem extends Fragment {
     void sortByCreated(View view)
     {
         clearSelectionSort();
-        sort_by_rating.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        sort_by_rating.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         sort_by_rating.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
         PrefSortShopItems.saveSort(getActivity(),SORT_BY_RATING);
@@ -177,7 +175,7 @@ public class SlidingLayerSortShopItem extends Fragment {
     void sortByShopCount(View view)
     {
         clearSelectionSort();
-        sort_by_popularity.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        sort_by_popularity.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         sort_by_popularity.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
         PrefSortShopItems.saveSort(getActivity(),SORT_BY_POPULARITY);
@@ -193,7 +191,7 @@ public class SlidingLayerSortShopItem extends Fragment {
     void sortByPriceAvg(View view)
     {
         clearSelectionSort();
-        sort_by_item_price.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        sort_by_item_price.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         sort_by_item_price.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
         PrefSortShopItems.saveSort(getActivity(),SORT_BY_PRICE);
@@ -211,7 +209,7 @@ public class SlidingLayerSortShopItem extends Fragment {
     void sortByAvailable(View view)
     {
         clearSelectionSort();
-        sort_by_items_available.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        sort_by_items_available.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         sort_by_items_available.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
         PrefSortShopItems.saveSort(getActivity(),SORT_BY_AVAILABLE);
@@ -231,7 +229,7 @@ public class SlidingLayerSortShopItem extends Fragment {
     void ascendingClick(View view)
     {
         clearSelectionAscending();
-        sort_ascending.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        sort_ascending.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         sort_ascending.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelectedAscending));
 
 
@@ -249,7 +247,7 @@ public class SlidingLayerSortShopItem extends Fragment {
     void descendingClick(View view)
     {
         clearSelectionAscending();
-        sort_descending.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        sort_descending.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         sort_descending.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelectedAscending));
 
 
@@ -265,17 +263,17 @@ public class SlidingLayerSortShopItem extends Fragment {
 
     void clearSelectionSort()
     {
-        sort_by_distance.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
-        sort_by_rating.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
-        sort_by_popularity.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
-        sort_by_item_price.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
-        sort_by_items_available.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+        sort_by_distance.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+        sort_by_rating.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+        sort_by_popularity.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+        sort_by_item_price.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+        sort_by_items_available.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
-        sort_by_distance.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-        sort_by_rating.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-        sort_by_popularity.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-        sort_by_item_price.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-        sort_by_items_available.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
+        sort_by_distance.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        sort_by_rating.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        sort_by_popularity.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        sort_by_item_price.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        sort_by_items_available.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
 
     }
 
@@ -283,11 +281,11 @@ public class SlidingLayerSortShopItem extends Fragment {
 
     void clearSelectionAscending()
     {
-        sort_ascending.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
-        sort_descending.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+        sort_ascending.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+        sort_descending.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
-        sort_ascending.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-        sort_descending.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
+        sort_ascending.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        sort_descending.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
     }
 
 }

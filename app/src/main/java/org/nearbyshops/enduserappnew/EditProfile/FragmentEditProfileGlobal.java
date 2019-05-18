@@ -7,30 +7,33 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.PermissionChecker;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.PermissionChecker;
+import androidx.fragment.app.Fragment;
+import butterknife.BindView;
+import butterknife.BindViews;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
-
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.ChangeEmail;
 import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.PrefChangeEmail;
@@ -45,34 +48,21 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.List;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.BindViews;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnTextChanged;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import javax.inject.Inject;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.List;
+
 import static android.app.Activity.RESULT_OK;
-import static org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile.GONE;
-import static org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile.VISIBLE;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 
 public class FragmentEditProfileGlobal extends Fragment {
@@ -158,7 +148,7 @@ public class FragmentEditProfileGlobal extends Fragment {
 //    @BindView(R.id.label_add_or_change_phone)
 //    TextView messageChangePhone;
 
-    @BindViews({R.id.label_change_password,R.id.label_add_or_change_email})
+    @BindViews({R.id.label_change_password, R.id.label_add_or_change_email})
     List<TextView> label_instructions;
 
 //    static final ButterKnife.Action<View> GONE = new ButterKnife.Action<View>() {
@@ -216,7 +206,7 @@ public class FragmentEditProfileGlobal extends Fragment {
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ContextCompat.getColor(getActivity(),R.color.mapbox_blue);
+        ContextCompat.getColor(getActivity(), R.color.mapbox_blue);
 
 
 
@@ -297,7 +287,7 @@ public class FragmentEditProfileGlobal extends Fragment {
     {
 
         PrefChangeEmail.saveUser(null,getActivity());
-        Intent intent = new Intent(getActivity(),ChangeEmail.class);
+        Intent intent = new Intent(getActivity(), ChangeEmail.class);
         startActivityForResult(intent,10);
     }
 
@@ -308,7 +298,7 @@ public class FragmentEditProfileGlobal extends Fragment {
     void changePhoneClick()
     {
         PrefChangePhone.saveUser(null,getActivity());
-        Intent intent = new Intent(getActivity(),ChangePhone.class);
+        Intent intent = new Intent(getActivity(), ChangePhone.class);
 
 //        if(getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false))
 //        {
@@ -354,11 +344,11 @@ public class FragmentEditProfileGlobal extends Fragment {
         if(current_mode==MODE_ADD)
         {
             saveButton.setText("Sign Up");
-            item_id.setVisibility(View.GONE);
+            item_id.setVisibility(GONE);
 
 
 //            messageEmailVerified.setVisibility(View.GONE);
-            ButterKnife.apply(label_instructions,GONE);
+//            ButterKnife.apply(label_instructions,GONE);
 
             password.setEnabled(true);
             password.setText("");
@@ -368,10 +358,10 @@ public class FragmentEditProfileGlobal extends Fragment {
         }
         else if(current_mode== MODE_UPDATE)
         {
-            item_id.setVisibility(View.VISIBLE);
+            item_id.setVisibility(VISIBLE);
             saveButton.setText("Save");
 
-            ButterKnife.apply(label_instructions,VISIBLE);
+//            ButterKnife.apply(label_instructions,VISIBLE);
 
 
 //            if(!user.isEmailVerified())
@@ -427,7 +417,7 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 //        System.out.println(iamgepath);
 
-        Picasso.with(getContext())
+        Picasso.get()
                 .load(imagePathLocal)
                 .into(resultView);
     }
@@ -715,7 +705,7 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
         saveButton.setVisibility(View.INVISIBLE);
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(VISIBLE);
 
 
 
@@ -795,7 +785,7 @@ public class FragmentEditProfileGlobal extends Fragment {
                 }
 
 
-                saveButton.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
 
 
@@ -814,7 +804,7 @@ public class FragmentEditProfileGlobal extends Fragment {
                 showToastMessage("Update Failed !");
 
 
-                saveButton.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
 
             }
@@ -1051,8 +1041,8 @@ public class FragmentEditProfileGlobal extends Fragment {
 //        options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
 //        options.setCompressionQuality(100);
 
-        options.setToolbarColor(ContextCompat.getColor(getContext(),R.color.blueGrey800));
-        options.setStatusBarColor(ContextCompat.getColor(getContext(),R.color.backgroundTinted));
+        options.setToolbarColor(ContextCompat.getColor(getContext(), R.color.blueGrey800));
+        options.setStatusBarColor(ContextCompat.getColor(getContext(), R.color.backgroundTinted));
         options.setAllowedGestures(UCropActivity.SCALE, UCropActivity.ALL, UCropActivity.SCALE);
 
 
@@ -1165,7 +1155,7 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
         saveButton.setVisibility(View.INVISIBLE);
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(VISIBLE);
 
 
 
@@ -1256,7 +1246,7 @@ public class FragmentEditProfileGlobal extends Fragment {
                 }
 
 
-                saveButton.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
 
 
@@ -1287,7 +1277,7 @@ public class FragmentEditProfileGlobal extends Fragment {
                 }
 
 
-                saveButton.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
 
             }

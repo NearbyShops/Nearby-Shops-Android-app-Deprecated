@@ -7,7 +7,6 @@ import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import java.sql.Timestamp;
 
 
-
 /**
  * Created by sumeet on 29/5/16.
  */

@@ -4,8 +4,6 @@
     android:orientation="vertical"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
-    android:paddingLeft="5dp"
-    android:paddingStart="5dp"
     android:id="@+id/list_item_shop_review"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -22,22 +20,18 @@
 
     <TextView
         android:id="@+id/member_name"
-        android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@id/profile_image"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/profile_image" />
+        android:layout_height="wrap_content" />
 
     <RatingBar
         android:isIndicator="true"
         android:numStars="5"
         android:rating="3"
         android:id="@+id/rating"
-        android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@id/profile_image"
-        android:layout_toRightOf="@id/profile_image"
         android:layout_below="@id/member_name"
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"

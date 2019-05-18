@@ -2,18 +2,10 @@ package org.nearbyshops.enduserappnew.Preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toolbar;
-
 import com.google.gson.Gson;
-
-
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.R;
-
-import butterknife.BindView;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -38,7 +30,10 @@ public class PrefServiceConfig {
     public static final String SDS_URL_LOCAL_HOTSPOT = "http://192.168.43.73:5125";
 
 
-    public static final String DEFAULT_SDS_URL_BACKUP = "http://192.168.1.36:5600";
+
+    public static final String SERVICE_URL_SDS = SDS_URL_NEARBY_SHOPS;
+
+
 
     private static final String TAG_PREF_CONFIG = "configuration";
     private static final String TAG_SDS_URL = "url_for_sds";
@@ -49,6 +44,7 @@ public class PrefServiceConfig {
 
     public static void saveServiceConfigLocal(ServiceConfigurationLocal currentTrip, Context context)
     {
+        context = MyApplication.getAppContext();
         //Creating a shared preference
 
         if(context==null)
@@ -74,6 +70,8 @@ public class PrefServiceConfig {
 
     public static ServiceConfigurationLocal getServiceConfigLocal(Context context)
     {
+        context = MyApplication.getAppContext();
+
         if(context==null)
         {
             return null;
@@ -139,6 +137,8 @@ public class PrefServiceConfig {
 
     public static String getServiceName(Context context)
     {
+        context = MyApplication.getAppContext();
+
         ServiceConfigurationLocal serviceConfigurationLocal = getServiceConfigLocal(context);
 
 
@@ -161,10 +161,7 @@ public class PrefServiceConfig {
         context = MyApplication.getAppContext();
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
-        //service_url = "http://localareademo-env.ap-southeast-1.elasticbeanstalk.com";
-
-        return sharedPref.getString(TAG_SDS_URL, SDS_URL_LOCAL_HOTSPOT);
+        return sharedPref.getString(TAG_SDS_URL, SERVICE_URL_SDS);
     }
 
 
@@ -173,7 +170,9 @@ public class PrefServiceConfig {
 
     public static void saveServiceURL_SDS(String service_url, Context context)
     {
-//        Context context = MyApplication.getAppContext();
+        context = MyApplication.getAppContext();
+
+
         // get a handle to shared Preference
         SharedPreferences sharedPref;
 
@@ -189,12 +188,6 @@ public class PrefServiceConfig {
 
         editor.apply();
     }
-
-
-
-
-
-
 
 
 }

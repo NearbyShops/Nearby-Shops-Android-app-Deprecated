@@ -3,40 +3,28 @@ package org.nearbyshops.enduserappnew.DeliveryAddress.PickLocation;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.location.LocationAvailability;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import com.google.android.gms.location.*;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
-import com.mapbox.mapboxsdk.annotations.Polygon;
-import com.mapbox.mapboxsdk.annotations.PolygonOptions;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-
 import org.nearbyshops.enduserappnew.APIKeys;
-import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 
 import java.util.ArrayList;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class PickLocation extends AppCompatActivity {
@@ -199,22 +187,14 @@ public class PickLocation extends AppCompatActivity {
 
 
 
-
-                mapboxMap.setOnMapLongClickListener(new MapboxMap.OnMapLongClickListener() {
+                mapboxMap.addOnMapLongClickListener(new MapboxMap.OnMapLongClickListener() {
                     @Override
                     public void onMapLongClick(@NonNull LatLng point) {
 
+
                         latLng = point;
 
-//                        updateMap();
 
-
-
-//                        showToastMessage(
-//                                "Lat : " + String.valueOf(point.getLatitude())
-//                                        + "\nLon : " + String.valueOf(point.getLongitude())
-//                        );
-//
 
                         if(center!=null)
                         {
@@ -229,9 +209,11 @@ public class PickLocation extends AppCompatActivity {
                         mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(point,17),
                                 5000
                         );
-
                     }
                 });
+
+
+
             }
         });
 

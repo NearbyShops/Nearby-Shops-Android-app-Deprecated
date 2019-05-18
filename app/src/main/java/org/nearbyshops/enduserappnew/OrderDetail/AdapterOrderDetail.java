@@ -3,40 +3,33 @@ package org.nearbyshops.enduserappnew.OrderDetail;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.constraint.ConstraintLayout;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
-
-
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.ModelCartOrder.OrderItem;
-import org.nearbyshops.enduserappnew.ModelCartOrder.OrderStats;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.ModelStatusCodes.OldStatusCodes.UtilityOrderStatus;
 import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusHomeDelivery;
 import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusPickFromShop;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetail;
 import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetailFragment;
 
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by sumeet on 13/6/16.
@@ -163,7 +156,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         @BindView(R.id.rating) TextView rating;
         @BindView(R.id.rating_count) TextView rating_count;
         @BindView(R.id.description) TextView description;
-        @BindView(R.id.shop_info_card) ConstraintLayout list_item;
+//        @BindView(R.id.list_item) ConstraintLayout list_item;
 
 
         @BindView(R.id.indicator_pick_from_shop) TextView pickFromShopIndicator;
@@ -174,14 +167,11 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         public ViewHolderOrder(View itemView) {
             super(itemView);
-
             ButterKnife.bind(this,itemView);
-
-
         }
 
 
-        @OnClick(R.id.shop_info_card)
+        @OnClick(R.id.list_item)
         void shopDetailsClick()
         {
             if(dataset.get(getLayoutPosition()) instanceof Order)
@@ -274,10 +264,10 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 status = OrderStatusPickFromShop.getStatusString(order.getStatusPickFromShop());
 
 
-                holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context,R.color.orangeDark));
+                holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context, R.color.orangeDark));
                 holder.isPickFromShop.setText("Pick from Shop");
 
-                holder.deliveryTypeDescription.setBackgroundColor(ContextCompat.getColor(context,R.color.orangeDark));
+                holder.deliveryTypeDescription.setBackgroundColor(ContextCompat.getColor(context, R.color.orangeDark));
                 holder.deliveryTypeDescription.setText(context.getString(R.string.delivery_type_description_pick_from_shop));
 
             }
@@ -286,11 +276,11 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 status = OrderStatusHomeDelivery.getStatusString(order.getStatusHomeDelivery());
 
 
-                holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context,R.color.phonographyBlue));
+                holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context, R.color.phonographyBlue));
                 holder.isPickFromShop.setText("Home Delivery");
 
 
-                holder.deliveryTypeDescription.setBackgroundColor(ContextCompat.getColor(context,R.color.phonographyBlue));
+                holder.deliveryTypeDescription.setBackgroundColor(ContextCompat.getColor(context, R.color.phonographyBlue));
                 holder.deliveryTypeDescription.setText(context.getString(R.string.delivery_type_description_home_delivery));
 
             }
@@ -341,7 +331,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                         .create(context.getResources(),
                                 R.drawable.ic_nature_people_white_48px, context.getTheme());
 
-                Picasso.with(context)
+                Picasso.get()
                         .load(imagePath)
                         .placeholder(placeholder)
                         .into(holder.shopLogo);
@@ -478,9 +468,9 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         Drawable placeholder = VectorDrawableCompat
                 .create(context.getResources(),
-                        R.drawable.nature_people, context.getTheme());
+                        R.drawable.ic_nature_people_white_48px, context.getTheme());
 
-        Picasso.with(context)
+        Picasso.get()
                 .load(imagePath)
                 .placeholder(placeholder)
                 .into(holder.itemImage);

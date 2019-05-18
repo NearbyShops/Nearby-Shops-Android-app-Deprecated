@@ -2,28 +2,24 @@ package org.nearbyshops.enduserappnew.Services;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-
+import androidx.annotation.Nullable;
 import com.google.gson.Gson;
-
+import okhttp3.OkHttpClient;
+import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ServiceConfigurationService;
-
-import java.util.Currency;
-import java.util.Locale;
-
-import javax.inject.Inject;
-
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import javax.inject.Inject;
+import java.util.Currency;
+import java.util.Locale;
 
 public class UpdateServiceConfiguration extends IntentService {
 
@@ -70,6 +66,8 @@ public class UpdateServiceConfiguration extends IntentService {
                 .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
                 .client(new OkHttpClient().newBuilder().build())
                 .build();
+
+
 
 
 

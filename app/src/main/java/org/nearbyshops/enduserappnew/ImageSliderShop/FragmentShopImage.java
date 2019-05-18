@@ -2,10 +2,6 @@ package org.nearbyshops.enduserappnew.ImageSliderShop;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +9,17 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
-import org.nearbyshops.enduserappnew.Model.ItemImage;
-import org.nearbyshops.enduserappnew.Model.ShopImage;
+import org.nearbyshops.enduserappnew.ModelImages.ShopImage;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by sumeet on 27/6/17.
@@ -65,7 +60,7 @@ public class FragmentShopImage extends Fragment {
         shopImageData = gson.fromJson(jsonString, ShopImage.class);
 
 
-        Drawable drawable = ContextCompat.getDrawable(getActivity(),R.drawable.ic_nature_people_white_48px);
+        Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.ic_nature_people_white_48px);
 
 //        String imagePath = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/TaxiImages/Image/" + "nine_hundred_"+ shopImageData.getImageFilename() + ".jpg";
 //        String image_url = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/TaxiImages/Image/" + shopImageData.getImageFilename();
@@ -87,7 +82,7 @@ public class FragmentShopImage extends Fragment {
 
 
 
-        Picasso.with(getActivity())
+        Picasso.get()
                 .load(imagePathFullSize)
                 .into(taxiImage, new com.squareup.picasso.Callback() {
                     @Override
@@ -98,9 +93,10 @@ public class FragmentShopImage extends Fragment {
                     }
 
                     @Override
-                    public void onError() {
+                    public void onError(Exception e) {
 
                     }
+
                 });
 
 

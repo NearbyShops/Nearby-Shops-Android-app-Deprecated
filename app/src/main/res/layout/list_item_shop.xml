@@ -21,14 +21,14 @@
 
 
 
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
-    android:id="@+id/shop_info_card"
+    android:id="@+id/list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -112,7 +112,7 @@
 
 
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vertical_guide"
         app:layout_constraintGuide_percent="0.4"
         android:orientation="vertical"
@@ -217,18 +217,18 @@
         app:layout_constraintRight_toLeftOf="@+id/vertical_guide" />
 
 
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/border_bottom_two"
-        android:background="#88000000"
-        app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="0dp" />
+    <!--<TextView-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/border_bottom_two"-->
+        <!--android:background="#88000000"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/description"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp" />-->
 
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 <!--</android.support.v7.widget.CardView>-->

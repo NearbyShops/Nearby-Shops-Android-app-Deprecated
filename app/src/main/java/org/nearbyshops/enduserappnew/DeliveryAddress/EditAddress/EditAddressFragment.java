@@ -3,11 +3,6 @@ package org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,36 +10,41 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-//import org.nearbyshops.enduserappnew.DeliveryAddress.PickLocationActivity;
-//import org.nearbyshops.enduserappnew.DeliveryAddress.PickLocation.PickLocation;
-import org.nearbyshops.enduserappnew.DeliveryAddress.PickLocation.PickLocation;
-import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.DeliveryAddressService;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-
-import javax.inject.Inject;
-
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
+import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.DeliveryAddress.PickLocation.PickLocation;
+import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import javax.inject.Inject;
+
 import static android.app.Activity.RESULT_OK;
 
-public class EditAddressFragment extends Fragment{
+//import org.nearbyshops.enduserappnew.DeliveryAddress.PickLocationActivity;
+//import org.nearbyshops.enduserappnew.DeliveryAddress.PickLocation.PickLocation;
+
+public class EditAddressFragment extends Fragment {
 
     DeliveryAddress deliveryAddress;
 
     public static final String DELIVERY_ADDRESS_INTENT_KEY = "edit_delivery_address_intent_key";
 
-    @Inject DeliveryAddressService deliveryAddressService;
+    @Inject
+    DeliveryAddressService deliveryAddressService;
 
     @BindView(R.id.saveButton) TextView updateDeliveryAddress;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
@@ -72,7 +72,8 @@ public class EditAddressFragment extends Fragment{
     public EditAddressFragment() {
 
         DaggerComponentBuilder.getInstance()
-                .getNetComponent().Inject(this);
+                .getNetComponent()
+                .Inject(this);
     }
 
 
@@ -100,9 +101,14 @@ public class EditAddressFragment extends Fragment{
 
         current_mode = getActivity().getIntent().getIntExtra(EDIT_MODE_INTENT_KEY,MODE_ADD);
 
+
+
+
         if(current_mode ==MODE_UPDATE)
         {
-            deliveryAddress = getActivity().getIntent().getParcelableExtra(DELIVERY_ADDRESS_INTENT_KEY);
+            String jsonString = getActivity().getIntent().getStringExtra(DELIVERY_ADDRESS_INTENT_KEY);
+            deliveryAddress = UtilityFunctions.provideGson().fromJson(jsonString,DeliveryAddress.class);
+
             bindDataToViews();
         }
 

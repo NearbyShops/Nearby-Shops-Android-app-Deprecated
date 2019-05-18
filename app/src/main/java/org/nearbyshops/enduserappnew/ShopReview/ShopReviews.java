@@ -2,52 +2,47 @@ package org.nearbyshops.enduserappnew.ShopReview;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
-
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.wunderlist.slidinglayer.SlidingLayer;
-
+import org.nearbyshops.enduserappnew.API.ShopReviewService;
+import org.nearbyshops.enduserappnew.API.ShopReviewThanksService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.enduserappnew.Login.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopReviewEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopReviewThanksEndpoint;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReviewThanks;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewThanksService;
 import org.nearbyshops.enduserappnew.ShopReview.Interfaces.NotifyLoginByAdapter;
 import org.nearbyshops.enduserappnew.ShopReview.SlidingLayerSort.SlidingLayerSortReview;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.ShopReview.SlidingLayerSort.UtilitySortShopReview;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener , NotifySort,
-        NotifyLoginByAdapter, NotifyAboutLogin{
+        NotifyLoginByAdapter, NotifyAboutLogin {
 
 
 //    @State
@@ -56,7 +51,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 //    @State
     ArrayList<ShopReviewThanks> datasetThanks = new ArrayList<>();
 
-    Map<Integer,ShopReviewThanks> thanksMap = new HashMap<>();
+    Map<Integer, ShopReviewThanks> thanksMap = new HashMap<>();
 
 
     @BindView(R.id.recyclerView)
@@ -129,7 +124,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
 
         String shopJson = getIntent().getStringExtra(SHOP_INTENT_KEY);
-        shop = UtilityFunctions.provideGson().fromJson(shopJson,Shop.class);
+        shop = UtilityFunctions.provideGson().fromJson(shopJson, Shop.class);
 
 
 
@@ -310,7 +305,8 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
         });
 
 
-        reviewsList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
+
+        reviewsList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
 //        reviewsList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL_LIST));
 
 /*
@@ -358,7 +354,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
 
 
-    @OnClick({R.id.icon_sort,R.id.text_sort})
+    @OnClick({R.id.icon_sort, R.id.text_sort})
     void sortClick()
     {
         slidingLayer.openLayer(true);
@@ -435,6 +431,11 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
         });
     }
 
+
+
+
+
+
     private void makeNetworkCall() {
 
 
@@ -443,8 +444,6 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
         current_sort = UtilitySortShopReview.getSort(this)
                 + " " + UtilitySortShopReview.getAscending(this);
-
-
 
 
         Call<ShopReviewEndPoint> call = shopReviewService.getReviews(shop.getShopID(),null,
@@ -622,7 +621,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 //        loginDialog.show(fm,"serviceUrl");
 
 
-        Intent intent = new Intent(this,Login.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 

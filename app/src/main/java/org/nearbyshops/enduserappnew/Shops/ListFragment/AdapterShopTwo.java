@@ -3,31 +3,28 @@ package org.nearbyshops.enduserappnew.Shops.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.constraint.ConstraintLayout;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
-
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopHome.ShopHome;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
-
-import java.util.List;
-
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.squareup.picasso.Picasso;
+import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
+import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ShopHome.ShopHome;
+
+import java.util.List;
 
 /**
  * Created by sumeet on 25/5/16.
@@ -121,7 +118,7 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         .create(context.getResources(),
                                 R.drawable.ic_nature_people_white_48px, context.getTheme());
 
-                Picasso.with(context)
+                Picasso.get()
                         .load(imagePath)
                         .placeholder(placeholder)
                         .into(holder.shopLogo);
@@ -140,7 +137,7 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 {
 //                    holder.rating.setText("N/A");
                     holder.rating.setText(" New ");
-                    holder.rating.setBackgroundColor(ContextCompat.getColor(context,R.color.phonographyBlue));
+                    holder.rating.setBackgroundColor(ContextCompat.getColor(context, R.color.phonographyBlue));
                     holder.rating_count.setText("( Not Yet Rated )");
                     holder.rating_count.setVisibility(View.GONE);
 
@@ -148,7 +145,7 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 else
                 {
                     holder.rating_count.setVisibility(View.VISIBLE);
-                    holder.rating.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_2));
+                    holder.rating.setBackgroundColor(ContextCompat.getColor(context, R.color.gplus_color_2));
                     holder.rating.setText(String.format("%.2f",shop.getRt_rating_avg()));
                     holder.rating_count.setText("( " + String.format( "%.0f", shop.getRt_rating_count()) + " Ratings )");
                 }
@@ -226,7 +223,7 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
 //        TextView shopName;
 //        ImageView shopImage;
@@ -244,30 +241,19 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
         @BindView(R.id.rating) TextView rating;
         @BindView(R.id.rating_count) TextView rating_count;
         @BindView(R.id.description) TextView description;
-        @BindView(R.id.shop_info_card) ConstraintLayout list_item;
         @BindView(R.id.indicator_pick_from_shop) TextView pickFromShopIndicator;
         @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
 
         public ViewHolder(View itemView) {
             super(itemView);
-
-            itemView.setOnClickListener(this);
             ButterKnife.bind(this,itemView);
-
-
-//            listItem = (RelativeLayout) itemView.findViewById(R.id.list_item_shop);
-//            rating = (TextView) itemView.findViewById(R.id.rating);
-//            distance = (TextView) itemView.findViewById(R.id.distance);
-//            shopName = (TextView) itemView.findViewById(R.id.shopName);
-//            shopImage = (ImageView) itemView.findViewById(R.id.shopImage);
-
-//            shopImage.setOnClickListener(this);
-//            listItem.setOnClickListener(this);
         }
 
 
 
-        @OnClick(R.id.shop_info_card)
+
+
+        @OnClick(R.id.list_item)
         void listItemClick()
         {
 
@@ -286,29 +272,5 @@ public class AdapterShopTwo extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
 
 
-        @Override
-        public void onClick(View v) {
-
-            //Toast.makeText(context,"Item Click : " + String.valueOf(getLayoutPosition()),Toast.LENGTH_SHORT).show();
-
-            switch (v.getId())
-            {
-                case R.id.shopImage:
-
-
-                    break;
-
-                case R.id.list_item_shop:
-
-                    Intent shopHomeIntent = new Intent(context, ShopHome.class);
-                    PrefShopHome.saveShop(dataset.get(getLayoutPosition()),context);
-                    context.startActivity(shopHomeIntent);
-
-                    break;
-
-                default:
-                    break;
-            }
-        }
     }
 }

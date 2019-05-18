@@ -1,102 +1,65 @@
 package org.nearbyshops.enduserappnew.DaggerComponents;
 
 
-import org.nearbyshops.enduserappnew.CancelledOrders.CancelledByEndUser.FragmentCancelledByUser;
-import org.nearbyshops.enduserappnew.CancelledOrders.CancelledByShop.FragmentCancelledByShop;
-import org.nearbyshops.enduserappnew.CancelledOrders.ReturnedByDeliveryGuy.FragmentReturnedByDG;
+import dagger.Component;
+import org.jetbrains.annotations.NotNull;
 import org.nearbyshops.enduserappnew.Carts.CartItem.CartItemAdapter;
-import org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress.EditAddressFragment;
-import org.nearbyshops.enduserappnew.DeliveryAddress.Previous.AddAddressActivity;
 import org.nearbyshops.enduserappnew.Carts.CartItem.CartItemListActivity;
 import org.nearbyshops.enduserappnew.Carts.CartsList.CartsListFragment;
-import org.nearbyshops.enduserappnew.DeliveryAddress.DeliveryAddressActivity;
-import org.nearbyshops.enduserappnew.DeliveryAddress.Previous.EditAddressActivity;
 import org.nearbyshops.enduserappnew.Carts.PlaceOrderActivity;
 import org.nearbyshops.enduserappnew.DaggerModules.AppModule;
 import org.nearbyshops.enduserappnew.DaggerModules.NetModule;
+import org.nearbyshops.enduserappnew.DeliveryAddress.DeliveryAddressActivity;
+import org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress.EditAddressFragment;
 import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.FragmentChangeEmail;
 import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.FragmentVerifyEmail;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePassword.FragmentChangePassword;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.FragmentChangePhone;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.FragmentVerifyPhone;
-import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfileGlobal;
-import org.nearbyshops.enduserappnew.FilterItemsBySpecifications.FilterItemsFragment;
-import org.nearbyshops.enduserappnew.FilterShopDialog.FilterShopsDialog;
 import org.nearbyshops.enduserappnew.Home;
-import org.nearbyshops.enduserappnew.HomeNew;
-import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail_;
 import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemImages.ItemImageListFragment;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.AdapterSimple;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
-import org.nearbyshops.enduserappnew.ItemByCategory.FragmentShop;
-import org.nearbyshops.enduserappnew.ItemDetail.RateReviewItemDialog;
-import org.nearbyshops.enduserappnew.Items.ItemsList.FragmentItemsList;
-import org.nearbyshops.enduserappnew.ItemsByCategorySwipe.ItemCategories.ItemCategoriesFragmentItem;
-import org.nearbyshops.enduserappnew.ItemsByCategorySwipe.Items.FragmentItem_ItemByCategory;
-import org.nearbyshops.enduserappnew.ItemsByCategoryHorizontal.ItemCategories.ItemCategoriesHorizontal;
-import org.nearbyshops.enduserappnew.ItemsByCategoryHorizontal.Items.FragmentItemScreenHorizontal;
-import org.nearbyshops.enduserappnew.ItemsInShop.ShopItems.FragmentItemsInShop;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.AdapterItemsInShop;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCatFragment;
 import org.nearbyshops.enduserappnew.Login.LoginFragment;
 import org.nearbyshops.enduserappnew.Login.LoginGlobalFragment;
 import org.nearbyshops.enduserappnew.Login.LoginUsingOTPFragment;
 import org.nearbyshops.enduserappnew.Login.ServiceIndicatorFragment;
-import org.nearbyshops.enduserappnew.LoginUsingOTP.InsertPhoneFragment;
-import org.nearbyshops.enduserappnew.LoginUsingOTP.WelcomeFragment;
 import org.nearbyshops.enduserappnew.MarketDetail.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.MarketDetail.RateReviewDialogMarket;
-import org.nearbyshops.enduserappnew.Markets.ViewModels.MarketViewModel;
-import org.nearbyshops.enduserappnew.Markets.MarketsFragmentNew;
-import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
-import org.nearbyshops.enduserappnew.OrderDetail.FragmentOrderDetail;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Complete.CompleteOrdersFragment;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Pending.PendingOrdersFragment;
-import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragmentNew;
-
-
-import org.nearbyshops.enduserappnew.Markets.ViewHolders.AdapterMarkets;
-import org.nearbyshops.enduserappnew.Markets.DeprecatedCode.AdapterNewBackup;
 import org.nearbyshops.enduserappnew.Markets.MarketsFragment;
+import org.nearbyshops.enduserappnew.Markets.MarketsFragmentNew;
 import org.nearbyshops.enduserappnew.Markets.SubmitURLDialog;
+import org.nearbyshops.enduserappnew.Markets.ViewHolders.AdapterMarkets;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderSavedMarket;
+import org.nearbyshops.enduserappnew.Markets.ViewModels.MarketViewModel;
+import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
+import org.nearbyshops.enduserappnew.OrderDetail.FragmentOrderDetail;
+import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragment;
+import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragmentNew;
+import org.nearbyshops.enduserappnew.ProfileFragment;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
-import org.nearbyshops.enduserappnew.ShopDetail.RateReviewDialog;
-import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail_;
+import org.nearbyshops.enduserappnew.ShopDetailNew.RateReviewDialog;
 import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetailFragment;
 import org.nearbyshops.enduserappnew.ShopImages.ShopImageListFragment;
 import org.nearbyshops.enduserappnew.ShopItemByItemNew.ShopItemFragment.AdapterShopItem;
 import org.nearbyshops.enduserappnew.ShopItemByItemNew.ShopItemFragment.ShopItemFragment;
-import org.nearbyshops.enduserappnew.ShopItemByShop.ItemCategories.ItemCategoriesFragmentShopHome;
-import org.nearbyshops.enduserappnew.ShopItemByShop.ShopItems.AdapterShopItems;
-import org.nearbyshops.enduserappnew.ShopItemByShop.ShopItems.FragmentShopItemsByShop;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewAdapter;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewStats;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
 import org.nearbyshops.enduserappnew.Shops.ListFragment.FragmentShopNew;
-import org.nearbyshops.enduserappnew.ShopsByCatSimple.ShopsByCatFragment;
-import org.nearbyshops.enduserappnew.ShopsByCategory.ItemCategories.ItemCategoriesFragment;
-import org.nearbyshops.enduserappnew.ItemByCategory.FragmentItemCategories;
-import org.nearbyshops.enduserappnew.ItemByCategory.FragmentItem;
-import org.nearbyshops.enduserappnew.ShopItemByItem.FilledCarts.AdapterFilledCarts;
-import org.nearbyshops.enduserappnew.ShopItemByItem.NewCarts.AdapterNewCarts;
-import org.nearbyshops.enduserappnew.ShopItemByItem.FilledCarts.FilledCartsFragment;
-import org.nearbyshops.enduserappnew.ShopItemByItem.NewCarts.NewCartsFragment;
 import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentCheckResetCode;
 import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentEnterCredentials;
 import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentResetPassword;
 import org.nearbyshops.enduserappnew.SignUp.FragmentEmailOrPhone;
 import org.nearbyshops.enduserappnew.SignUp.FragmentEnterPassword;
 import org.nearbyshops.enduserappnew.SignUp.FragmentVerify;
-import org.nearbyshops.enduserappnew.TabProfile.ProfileFragment;
 
 
 import javax.inject.Singleton;
-
-import dagger.Component;
 
 /**
  * Created by sumeet on 14/5/16.
@@ -107,181 +70,108 @@ import dagger.Component;
 public interface NetComponent {
 
 
-    void Inject(FilledCartsFragment shopsForItem);
-
-    void Inject(NewCartsFragment newCartsFragment);
-
-    void Inject(AdapterNewCarts adapterNewCarts);
-
-    void Inject(AdapterFilledCarts adapterFilledCarts);
-
-    void Inject(CartsListFragment cartsListActivity);
-
-    void Inject(CartItemListActivity cartItemListActivity);
-
-    void Inject(DeliveryAddressActivity deliveryAddressActivity);
-
-    void Inject(AddAddressActivity addAddressActivity);
-
-    void Inject(EditAddressActivity editAddressActivity);
-
-    void Inject(PlaceOrderActivity placeOrderActivity);
-
-    void Inject(FragmentItemCategories fragmentItemCategories);
-
-    void Inject(FragmentItem itemFragment);
-
-    void Inject(FragmentShop shopFragment);
-
-    void Inject(ItemCategoriesFragment itemCategoriesFragment);
-
-    void Inject(org.nearbyshops.enduserappnew.ShopsByCategory.Shops.FragmentShop fragmentShop);
-
-    void Inject(ItemCategoriesFragmentItem itemCategoriesFragmentItem);
-
-    void Inject(FragmentItem_ItemByCategory fragmentItem_itemByCategory);
-
-    void Inject(ShopDetail_ shopDetail);
-
-    void Inject(RateReviewDialog rateReviewDialog);
-
-    void Inject(ShopReviews shopReviews);
-
-    void Inject(ItemCategoriesFragmentShopHome itemCategoriesFragmentShopHome);
-
-    void Inject(FragmentShopItemsByShop fragmentShopItemsByShop);
-
-    void Inject(ShopReviewAdapter shopReviewAdapter);
-
-    void Inject(RateReviewItemDialog rateReviewItemDialog);
-
-    void Inject(ShopReviewStats shopReviewStats);
-
-    void Inject(AdapterShopItems adapterShopItems);
-
-    void Inject(FragmentShopNew fragmentShopTwo);
-
-    void Inject(FragmentItemsList fragmentItemsList);
-
-    void Inject(FragmentItemsInShop fragmentItemsInShop);
-
-    void Inject(org.nearbyshops.enduserappnew.ItemsInShop.ShopItems.AdapterItemsInShop adapterItemsInShop);
-
-    void Inject(ItemCategoriesHorizontal itemCategoriesHorizontal);
-
-    void Inject(FragmentItemScreenHorizontal fragmentItemScreenHorizontal);
-
-    void Inject(FilterShopsDialog filterShopsDialog);
-
     void Inject(ItemCategoriesFragmentSimple itemCategoriesFragmentSimple);
 
-    void Inject(AdapterSimple adapterSimple);
-
-    void Inject(ItemsInShopByCatFragment itemsInShopByCatFragment);
-
-    void Inject(AdapterItemsInShop adapterItemsInShop);
-
-    void Inject(ShopsByCatFragment shopsByCatFragment);
-
-    void Inject(CompleteOrdersFragment completeOrdersFragment);
-
-    void Inject(PendingOrdersFragment pendingOrdersFragment);
-
-    void Inject(FragmentOrderDetail fragmentOrderDetail);
-
-    void Inject(FragmentCancelledByUser fragmentCancelledByUser);
-
-    void Inject(FragmentCancelledByShop fragmentCancelledByShop);
-
-    void Inject(FragmentReturnedByDG fragmentReturnedByDG);
-
-    void Inject(EditAddressFragment editAddressFragment);
-
-    void Inject(FilterItemsFragment filterItemsFragment);
-
-    void Inject(LoginFragment loginFragment);
-
-    void Inject(FragmentCheckResetCode fragmentCheckResetCode);
-
-    void Inject(FragmentEmailOrPhone fragmentEmailOrPhone);
-
-    void Inject(FragmentEnterCredentials fragmentEnterCredentials);
-
-    void Inject(FragmentEnterPassword fragmentEnterPassword);
-
-    void Inject(FragmentResetPassword fragmentResetPassword);
-
-    void Inject(FragmentVerify fragmentVerify);
-
-    void Inject(Home homeNew);
-
-    void Inject(ServiceIndicatorFragment serviceIndicatorFragment);
-
-    void Inject(OrdersFragmentNew pendingOrdersFragmentNew);
-
-    void Inject(CartItemAdapter cartItemAdapter);
-
-    void Inject(FragmentVerifyEmail fragmentVerifyEmail);
-
-    void Inject(FragmentVerifyPhone fragmentVerifyPhone);
-
-    void Inject(FragmentChangePassword fragmentChangePassword);
-
-    void Inject(FragmentChangePhone fragmentChangePhone);
-
-    void Inject(FragmentEditProfile fragmentEditProfile);
-
-    void Inject(ProfileFragment profileFragment);
-
-    void Inject(FragmentChangeEmail fragmentChangeEmail);
 
     void Inject(UpdateOneSignalID updateOneSignalID);
 
-    void Inject(ItemImageListFragment imageListFragment);
-
-    void Inject(ShopImageListFragment shopImageListFragment);
+    void Inject(AdapterShopItem adapterShopItem);
 
     void Inject(ShopItemFragment shopItemFragment);
 
-    void Inject(AdapterShopItem adapterShopItem);
+    void Inject(Home home);
 
-    void Inject(WelcomeFragment welcomeFragment);
-
-    void Inject(InsertPhoneFragment insertPhoneFragment);
-
-    void Inject(LoginUsingOTPFragment loginUsingOTPFragment);
-
-    void Inject(ShopDetailFragment shopDetailFragment);
+    void Inject(UpdateServiceConfiguration updateServiceConfiguration);
 
     void Inject(ItemDetailFragment itemDetailFragment);
 
-    void Inject(ItemDetail_ itemDetail_);
+    void Inject(ItemImageListFragment itemImageListFragment);
 
-    void Inject(UpdateServiceConfiguration updateServiceConfiguration);
+    void Inject(LoginGlobalFragment loginGlobalFragment);
+
+    void Inject(LoginUsingOTPFragment loginUsingOTPFragment);
+
+    void Inject(ServiceIndicatorFragment serviceIndicatorFragment);
+
+    void Inject(LoginFragment loginFragment);
+
+    void Inject(OrdersFragmentNew ordersFragmentNew);
+
+    void Inject(FragmentOrderDetail fragmentOrderDetail);
+
+    void Inject(ShopDetailFragment shopDetailFragment);
+
+    void Inject(ShopImageListFragment shopImageListFragment);
+
+    void Inject(RateReviewDialog rateReviewDialog);
+
+    void Inject(CartItemAdapter cartItemAdapter);
+
+    void Inject(CartItemListActivity cartItemListActivity);
+
+    void Inject(CartsListFragment cartsListFragment);
+
+    void Inject(PlaceOrderActivity placeOrderActivity);
+
+    void Inject(FragmentShopNew fragmentShopNew);
+
+    void Inject(AdapterItemsInShop adapterItemsInShop);
+
+    void Inject(ItemsInShopByCatFragment itemsInShopByCatFragment);
+
+    void Inject(EditAddressFragment editAddressFragment);
+
+    void Inject(DeliveryAddressActivity deliveryAddressActivity);
+
+    void Inject(RateReviewDialogMarket rateReviewDialogMarket);
+
+    void Inject(MarketDetailFragment marketDetailFragment);
+
+    void Inject(AdapterMarkets adapterMarkets);
+
+    void Inject(ViewHolderSavedMarket viewHolderSavedMarket);
+
+    void Inject(ViewHolderMarket viewHolderMarket);
+
+    void Inject(MarketViewModel marketViewModel);
 
     void Inject(MarketsFragment marketsFragment);
 
     void Inject(SubmitURLDialog submitURLDialog);
 
-    void Inject(AdapterMarkets adapterMarkets);
+    void Inject(MarketsFragmentNew marketsFragmentNew);
 
-    void Inject(LoginGlobalFragment loginGlobalFragment);
+    void Inject(FragmentChangePassword fragmentChangePassword);
 
-    void Inject(AdapterNewBackup adapterNewBackup);
+    void Inject(FragmentChangeEmail fragmentChangeEmail);
 
-    void Inject(ViewHolderMarket viewHolderMarket);
+    void Inject(FragmentVerifyEmail fragmentVerifyEmail);
 
-    void Inject(MarketDetailFragment marketDetailFragment);
+    void Inject(FragmentChangePhone fragmentChangePhone);
 
-    void Inject(RateReviewDialogMarket rateReviewDialogMarket);
+    void Inject(FragmentVerifyPhone fragmentVerifyPhone);
 
     void Inject(FragmentEditProfileGlobal fragmentEditProfileGlobal);
 
-    void Inject(ViewHolderSavedMarket viewHolderSavedMarket);
+    void Inject(ProfileFragment profileFragment);
 
-    void Inject(MarketsFragmentNew marketsFragmentNew);
+    void Inject(ShopReviews shopReviews);
 
-    void Inject(MarketViewModel marketViewModel);
+    void Inject(ShopReviewAdapter shopReviewAdapter);
 
-    void Inject(HomeNew homeNew);
+    void Inject(ShopReviewStats shopReviewStats);
+
+    void Inject(@NotNull OrdersFragment ordersFragment);
+
+    void Inject(FragmentEmailOrPhone fragmentEmailOrPhone);
+
+    void Inject(FragmentVerify fragmentVerify);
+
+    void Inject(FragmentEnterPassword fragmentEnterPassword);
+
+    void Inject(FragmentEnterCredentials fragmentEnterCredentials);
+
+    void Inject(FragmentCheckResetCode fragmentCheckResetCode);
+
+    void Inject(FragmentResetPassword fragmentResetPassword);
 }

@@ -3,9 +3,7 @@ package org.nearbyshops.enduserappnew.Preferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Base64;
-
 import com.google.gson.Gson;
-
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.R;
@@ -37,6 +35,8 @@ public class PrefLoginGlobal {
 
     public static void saveCredentials(Context context, String username, String password)
     {
+        context = MyApplication.getAppContext();
+
         // get a handle to shared Preference
         SharedPreferences sharedPref;
 
@@ -90,6 +90,8 @@ public class PrefLoginGlobal {
 
     public static String getAuthorizationHeaders(Context context)
     {
+        context = MyApplication.getAppContext();
+
         return PrefLoginGlobal.baseEncoding(
                 PrefLoginGlobal.getUsername(context),
                 PrefLoginGlobal.getPassword(context));
@@ -102,6 +104,7 @@ public class PrefLoginGlobal {
 
     public static void saveUserProfile(User user, Context context)
     {
+        context = MyApplication.getAppContext();
 
         //Creating a shared preference
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
@@ -122,6 +125,8 @@ public class PrefLoginGlobal {
 
     public static User getUser(Context context)
     {
+        context = MyApplication.getAppContext();
+
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 
         Gson gson = UtilityFunctions.provideGson();
@@ -135,6 +140,8 @@ public class PrefLoginGlobal {
 
     public static void saveUsername(Context context, String username)
     {
+        context = MyApplication.getAppContext();
+
         // get a handle to shared Preference
         SharedPreferences sharedPref;
 
@@ -154,6 +161,9 @@ public class PrefLoginGlobal {
 
     public static void savePassword(Context context, String password)
     {
+
+        context = MyApplication.getAppContext();
+
         // get a handle to shared Preference
         SharedPreferences sharedPref;
 
@@ -193,7 +203,6 @@ public class PrefLoginGlobal {
 
     public static int getRoleID(Context context) {
 
-        context = MyApplication.getAppContext();
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
         return sharedPref.getInt(TAG_ROLE_GLOBAL, -1);
     }

@@ -2,48 +2,44 @@ package org.nearbyshops.enduserappnew.ShopImages;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import org.nearbyshops.enduserappnew.API.ShopImageService;
+import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ImageSliderShop.ImageSliderShop;
-import org.nearbyshops.enduserappnew.Interfaces.OnTaxiFilterChanged;
-import org.nearbyshops.enduserappnew.Model.ShopImage;
+import org.nearbyshops.enduserappnew.Interfaces.OnFilterChanged;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopImageEndPoint;
+import org.nearbyshops.enduserappnew.ModelImages.ShopImage;
 import org.nearbyshops.enduserappnew.ModelUtility.HeaderTitle;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopImageService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sumeet on 14/6/17.
  */
 
 public class ShopImageListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        Adapter.NotificationsFromAdapter ,OnTaxiFilterChanged {
+        Adapter.NotificationsFromAdapter , OnFilterChanged {
 
     boolean isDestroyed = false;
 
@@ -160,7 +156,7 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
         listAdapter = new Adapter(dataset,getActivity(),this,this);
         recyclerView.setAdapter(listAdapter);
 
-        layoutManager = new GridLayoutManager(getActivity(),1, LinearLayoutManager.VERTICAL,false);
+        layoutManager = new GridLayoutManager(getActivity(),1, RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
 
 //        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
@@ -390,8 +386,12 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
     @Override
     public void notifyListItemSelected() {
 
-
     }
+
+
+
+
+
 
     @Override
     public void listItemClick(ShopImage taxiImage, int position) {

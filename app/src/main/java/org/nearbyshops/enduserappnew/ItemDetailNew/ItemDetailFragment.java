@@ -6,17 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.graphics.Palette;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,17 +14,32 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.palette.graphics.Palette;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-
+import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API.FavouriteItemService;
+import org.nearbyshops.enduserappnew.API.ItemImageService;
+import org.nearbyshops.enduserappnew.API.ItemReviewService;
+import org.nearbyshops.enduserappnew.API.ItemSpecNameService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ItemDetail.AdapterItemSpecifications;
 import org.nearbyshops.enduserappnew.ItemImages.ItemImageList;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Endpoints.ItemImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.Model.ItemImage;
+import org.nearbyshops.enduserappnew.ModelImages.ItemImage;
 import org.nearbyshops.enduserappnew.ModelItemSpecs.ItemSpecificationName;
 import org.nearbyshops.enduserappnew.ModelReviewItem.FavouriteItem;
 import org.nearbyshops.enduserappnew.ModelReviewItem.FavouriteItemEndpoint;
@@ -43,29 +47,15 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.FavouriteItemService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemImageService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemReviewService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemSpecNameService;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
+
 import static android.app.Activity.RESULT_OK;
-
-
-
-
 
 
 public class ItemDetailFragment extends Fragment implements Target {
@@ -94,7 +84,10 @@ public class ItemDetailFragment extends Fragment implements Target {
     @BindView(R.id.read_full_button) TextView readFullButton;
 
 
-    Item item;
+    private Item item;
+
+
+
 
 
 
@@ -117,9 +110,15 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
+
+
+
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
 
         super.onCreateView(inflater, container, savedInstanceState);
 
@@ -174,7 +173,7 @@ public class ItemDetailFragment extends Fragment implements Target {
         if(item.getRt_rating_count()==0)
         {
             itemRatingNumeric.setText(" New ");
-            itemRatingNumeric.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.phonographyBlue));
+            itemRatingNumeric.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.phonographyBlue));
 
             ratingCount.setVisibility(View.GONE);
             itemRating.setVisibility(View.GONE);
@@ -182,7 +181,7 @@ public class ItemDetailFragment extends Fragment implements Target {
         else
         {
             itemRatingNumeric.setText(String.format("%.2f",item.getRt_rating_avg()));
-            itemRatingNumeric.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_2));
+            itemRatingNumeric.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.gplus_color_2));
 
             ratingCount.setText("( " + String.valueOf((int)item.getRt_rating_count()) + " Ratings )");
 
@@ -203,11 +202,12 @@ public class ItemDetailFragment extends Fragment implements Target {
                         R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
 
-        Picasso.with(getActivity()).load(imagePath)
+        Picasso.get().load(imagePath)
                 .placeholder(placeholder)
                 .into(itemImage);
 
-        Picasso.with(getActivity())
+
+        Picasso.get()
                 .load(imagePath)
                 .placeholder(placeholder)
                 .into(this);
@@ -246,6 +246,8 @@ public class ItemDetailFragment extends Fragment implements Target {
         itemDescription.setMaxLines(Integer.MAX_VALUE);
         readFullButton.setVisibility(View.GONE);
     }
+
+
 
 
 
@@ -330,13 +332,12 @@ public class ItemDetailFragment extends Fragment implements Target {
         }
     }
 
-
-
-
     @Override
-    public void onBitmapFailed(Drawable errorDrawable) {
+    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
 
     }
+
+
 
     @Override
     public void onPrepareLoad(Drawable placeHolderDrawable) {
@@ -350,6 +351,7 @@ public class ItemDetailFragment extends Fragment implements Target {
 
     ArrayList<ItemSpecificationName> datasetSpecs = new ArrayList<>();
 
+
     @BindView(R.id.recyclerview_item_specifications) RecyclerView itemSpecsList;
 
     AdapterItemSpecifications adapterItemSpecs;
@@ -359,11 +361,12 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
+
     void setupRecyclerViewSpecs()
     {
         adapterItemSpecs = new AdapterItemSpecifications(datasetSpecs,getActivity());
         itemSpecsList.setAdapter(adapterItemSpecs);
-        layoutManagerItemSpecs = new GridLayoutManager(getActivity(), 1, LinearLayoutManager.VERTICAL, false);
+        layoutManagerItemSpecs = new GridLayoutManager(getActivity(), 1, RecyclerView.VERTICAL, false);
         itemSpecsList.setLayoutManager(layoutManagerItemSpecs);
 
         makeNetworkCallSpecs(true);
@@ -656,6 +659,8 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
+
+
     void getItemImageCount()
     {
 
@@ -706,11 +711,6 @@ public class ItemDetailFragment extends Fragment implements Target {
             }
         });
     }
-
-
-
-
-
 
 }
 

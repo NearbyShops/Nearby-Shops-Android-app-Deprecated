@@ -3,34 +3,29 @@ package org.nearbyshops.enduserappnew.ItemsInShopByCat;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.wunderlist.slidinglayer.SlidingLayer;
-
-
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
-import org.nearbyshops.enduserappnew.ItemsInShopByCat.Interfaces.NotifyIndicatorChanged;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ItemsInShopByCat.SlidingLayerSort.SlidingLayerSortItemsInShop;
-import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.wunderlist.slidinglayer.SlidingLayer;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduserappnew.ItemsInShopByCat.Interfaces.NotifyIndicatorChanged;
+import org.nearbyshops.enduserappnew.ItemsInShopByCat.SlidingLayerSort.SlidingLayerSortItemsInShop;
+import org.nearbyshops.enduserappnew.R;
 
 
-public class ItemsInShopByCat extends AppCompatActivity implements NotifyIndicatorChanged,NotifySort {
+public class ItemsInShopByCat extends AppCompatActivity implements NotifyIndicatorChanged, NotifySort {
 
     public static final String TAG_FRAGMENT = "items_in_stock_simple";
     public static final String TAG_SLIDING = "sort_items_in_stock";
@@ -173,7 +168,7 @@ public class ItemsInShopByCat extends AppCompatActivity implements NotifyIndicat
 
 
 
-    @OnClick({R.id.icon_sort,R.id.text_sort})
+    @OnClick({R.id.icon_sort, R.id.text_sort})
     void sortClick()
     {
         slidingLayer.openLayer(true);
@@ -210,7 +205,12 @@ public class ItemsInShopByCat extends AppCompatActivity implements NotifyIndicat
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
 
-        MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.action_search), new MenuItemCompat.OnActionExpandListener() {
+
+
+        MenuItem item = menu.findItem(R.id.action_search);
+
+
+        item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
                 return true;
@@ -225,8 +225,6 @@ public class ItemsInShopByCat extends AppCompatActivity implements NotifyIndicat
                 {
                     ((NotifySearch) fragment).endSearchMode();
                 }
-
-//                Toast.makeText(ShopsActivity.this, "onCollapsed Called ", Toast.LENGTH_SHORT).show();
 
                 return true;
             }

@@ -1,14 +1,6 @@
 package org.nearbyshops.enduserappnew.Shops.ListFragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,50 +9,54 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.wunderlist.slidinglayer.SlidingLayer;
-
-import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.ModelEndPoints.ShopEndPoint;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopService;
-import org.nearbyshops.enduserappnew.Shops.Interfaces.GetDataset;
-import org.nearbyshops.enduserappnew.Shops.Interfaces.NotifyDatasetChanged;
-import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
-import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.SlidingLayerSortShops;
-import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.PrefSortShopsByCategory;
-import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
-
-import java.util.ArrayList;
-
-import javax.inject.Inject;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-//import icepick.State;
+import com.wunderlist.slidinglayer.SlidingLayer;
+import org.nearbyshops.enduserappnew.API.ShopService;
+import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.ModelEndPoints.ShopEndPoint;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Shops.Interfaces.GetDataset;
+import org.nearbyshops.enduserappnew.Shops.Interfaces.NotifyDatasetChanged;
+import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.PrefSortShopsByCategory;
+import org.nearbyshops.enduserappnew.Shops.SlidingLayerSort.SlidingLayerSortShops;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesSimple.TAG_SLIDING;
+import javax.inject.Inject;
+import java.util.ArrayList;
+
+import static org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCat.TAG_SLIDING;
+
+
+//import icepick.State;
 
 /**
  * Created by sumeet on 25/5/16.
  */
 public class FragmentShopNew extends Fragment implements
-        SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifyDatasetChanged,NotifySearch{
+        SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifyDatasetChanged, NotifySearch {
 
         ArrayList<Shop> dataset = new ArrayList<>();
 
         boolean isSaved;
-        @Inject ShopService shopService;
+        @Inject
+        ShopService shopService;
 
         RecyclerView recyclerView;
         AdapterShopTwo adapter;
@@ -78,9 +74,12 @@ public class FragmentShopNew extends Fragment implements
 
 
 
+
+
 //    @BindView(R.id.icon_list) ImageView mapIcon;
     @BindView(R.id.shop_count_indicator) TextView shopCountIndicator;
-    @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
+    @BindView(R.id.slidingLayer)
+    SlidingLayer slidingLayer;
 
 
 
@@ -99,7 +98,8 @@ public class FragmentShopNew extends Fragment implements
     public FragmentShopNew() {
             // inject dependencies through dagger
             DaggerComponentBuilder.getInstance()
-                    .getNetComponent().Inject(this);
+                    .getNetComponent()
+                    .Inject(this);
 
             Log.d("applog","Shop Fragment Constructor");
 
@@ -199,7 +199,6 @@ public class FragmentShopNew extends Fragment implements
             setupRecyclerView();
             setupSwipeContainer();
 //            notifyDataset();
-            notifyTitleChanged();
 
 
             setupSlidingLayer();
@@ -271,7 +270,7 @@ public class FragmentShopNew extends Fragment implements
 
 
 
-    @OnClick({R.id.icon_sort,R.id.text_sort})
+    @OnClick({R.id.icon_sort, R.id.text_sort})
     void sortClick()
     {
         slidingLayer.openLayer(true);
@@ -345,7 +344,7 @@ public class FragmentShopNew extends Fragment implements
 //            layoutManager = new GridLayoutManager(getActivity(),1);
 
 
-            LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+            final LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
             recyclerView.setLayoutManager(linearlayoutManager);
 
 //            recyclerView.addItemDecoration(new EqualSpaceItemDecoration(1));
@@ -353,7 +352,7 @@ public class FragmentShopNew extends Fragment implements
 
 
             recyclerView.addItemDecoration(
-                    new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL_LIST)
+                    new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL)
             );
 
 
@@ -497,8 +496,9 @@ public class FragmentShopNew extends Fragment implements
 //                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
 
 
+
             String current_sort = "";
-            current_sort = PrefSortShopsByCategory.getSort(getContext()) + " " + PrefSortShopsByCategory.getAscending(getContext());
+            current_sort = PrefSortShopsByCategory.getSort(getActivity()) + " " + PrefSortShopsByCategory.getAscending(getActivity());
 
             Call<ShopEndPoint> callEndpoint = shopService.getShops(
                     null,
@@ -563,7 +563,6 @@ public class FragmentShopNew extends Fragment implements
 
 
 
-                    notifyTitleChanged();
                     notifyMapDataChanged();
                     swipeContainer.setRefreshing(false);
 
@@ -612,65 +611,7 @@ public class FragmentShopNew extends Fragment implements
 
 
 
-    // apply ice pack
 
-
-//        @Override
-//        public void onSaveInstanceState(Bundle outState) {
-//            super.onSaveInstanceState(outState);
-//            Icepick.saveInstanceState(this, outState);
-//        }
-//
-//
-
-//        @Override
-//        public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-//            super.onViewStateRestored(savedInstanceState);
-//
-//            Icepick.restoreInstanceState(this, savedInstanceState);
-//            notifyTitleChanged();
-//        }
-
-
-        /*@Override
-        public void itemCategoryChanged(ItemCategory currentCategory, Boolean isBackPressed) {
-
-
-            notifiedCurrentCategory = currentCategory;
-            dataset.clear();
-            offset = 0 ; // reset the offset
-            makeNetworkCall();
-
-            this.isbackPressed = isBackPressed;
-        }*/
-
-
-
-        void notifyTitleChanged()
-        {
-
-            if(dataset == null)
-            {
-                if(getActivity() instanceof GetDataset)
-                {
-                    dataset = ((GetDataset)getActivity()).getDataset();
-                }
-            }
-
-
-
-            if(getActivity() instanceof NotifyTitleChanged)
-            {
-                ((NotifyTitleChanged)getActivity())
-                        .NotifyTitleChanged(
-                                "Displaying " + String.valueOf(dataset.size())
-                                + " out of " + String.valueOf(item_count) + " Shops",1);
-
-
-                //" Shops (" + String.valueOf(dataset.size())
-                //+ "/" + String.valueOf(item_count) + ")"
-            }
-        }
 
 
     @Override

@@ -2,10 +2,6 @@ package org.nearbyshops.enduserappnew.Login;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,30 +9,30 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
-
-
-import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
-import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ServiceConfigurationService;
-
-import javax.inject.Inject;
-
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 import okhttp3.OkHttpClient;
+import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
+import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import javax.inject.Inject;
 
 /**
  * Created by sumeet on 19/4/17.
@@ -55,7 +51,7 @@ public class ServiceIndicatorFragment extends Fragment {
 //    TextView addressText;
 
     @BindView(R.id.service_info_block) LinearLayout serviceInfoBlock;
-    @BindView(R.id.no_service_block) LinearLayout noServiceBlock;
+//    @BindView(R.id.no_service_block) LinearLayout noServiceBlock;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
 
     @BindView(R.id.indicator_light) TextView indicatorLight;
@@ -111,72 +107,64 @@ public class ServiceIndicatorFragment extends Fragment {
 
     void bindViews()
     {
-        if(PrefGeneral.getServiceURL(getActivity()).equals(PrefGeneral.DEFAULT_SERVICE_URL))
-        {
-            // no service
-            noServiceBlock.setVisibility(View.VISIBLE);
-            serviceInfoBlock.setVisibility(View.GONE);
-            progressBar.setVisibility(View.GONE);
 
+
+
+//        PrefGeneral.getServiceURL(getActivity());
+////            noServiceBlock.setVisibility(View.GONE);
+//        serviceInfoBlock.setVisibility(View.VISIBLE);
+//        progressBar.setVisibility(View.GONE);
+
+
+        if(PrefServiceConfig.getServiceConfigLocal(getActivity())==null)
+        {
+            // fetch local service config from local service
+            getLocalConfig();
         }
         else
         {
-            noServiceBlock.setVisibility(View.GONE);
-            serviceInfoBlock.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
 
 
-            if(PrefServiceConfig.getServiceConfigLocal(getActivity())==null)
-            {
-                // fetch local service config from local service
-                getLocalConfig();
-            }
-            else
-            {
-
-
-                ServiceConfigurationLocal serviceConfig = PrefServiceConfig.getServiceConfigLocal(getActivity());
+            ServiceConfigurationLocal serviceConfig = PrefServiceConfig.getServiceConfigLocal(getActivity());
 
 
 //                serviceName.setText(serviceConfig.getServiceName());
 //                serviceURL.setText(PrefGeneral.getServiceURL(getActivity()));
 
-                String address = serviceConfig.getState() + ", " + serviceConfig.getCountry() + " - "
-                        + serviceConfig.getPincode();
+            String address = serviceConfig.getState() + ", " + serviceConfig.getCountry() + " - "
+                    + serviceConfig.getPincode();
 
 //                addressText.setText(address);
 //                city.setText(serviceConfig.getCity());
 
 
 
-                marketCity.setText(serviceConfig.getCity());
-                marketName.setText(serviceConfig.getServiceName());
+            marketCity.setText(serviceConfig.getCity());
+            marketName.setText(serviceConfig.getServiceName());
 
 
 
 
-                String imagePath = PrefGeneral.getServiceURL(getActivity())
-                        + "/api/serviceconfiguration/Image/three_hundred_" + serviceConfig.getLogoImagePath() + ".jpg";
+            String imagePath = PrefGeneral.getServiceURL(getActivity())
+                    + "/api/serviceconfiguration/Image/three_hundred_" + serviceConfig.getLogoImagePath() + ".jpg";
 
 
 //                System.out.println("Service LOGO : " + imagePath);
 
-                Drawable placeholder = VectorDrawableCompat
-                        .create(getResources(),
-                                R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
+            Drawable placeholder = VectorDrawableCompat
+                    .create(getResources(),
+                            R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
 
-                Picasso.with(getActivity())
-                        .load(imagePath)
-                        .placeholder(placeholder)
-                        .into(marketPhoto);
+            Picasso.get()
+                    .load(imagePath)
+                    .placeholder(placeholder)
+                    .into(marketPhoto);
 
 
 
-                indicatorLight.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_1));
-                status.setText("Available");
-
-            }
+            indicatorLight.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.gplus_color_1));
+            status.setText("Available");
 
         }
 
@@ -199,7 +187,7 @@ public class ServiceIndicatorFragment extends Fragment {
     {
         progressBar.setVisibility(View.VISIBLE);
         serviceInfoBlock.setVisibility(View.GONE);
-        noServiceBlock.setVisibility(View.GONE);
+//        noServiceBlock.setVisibility(View.GONE);
 
 
 
@@ -229,6 +217,11 @@ public class ServiceIndicatorFragment extends Fragment {
                     return;
                 }
 
+
+
+                progressBar.setVisibility(View.GONE);
+                serviceInfoBlock.setVisibility(View.VISIBLE);
+
                 if(response.code()==200)
                 {
                     PrefServiceConfig.saveServiceConfigLocal(response.body(),getActivity());
@@ -242,13 +235,11 @@ public class ServiceIndicatorFragment extends Fragment {
 //                    serviceName.setText("Failed to get service into please try again");
 //                    serviceURL.setText(PrefGeneral.getServiceURL(getActivity()));
 
-                    indicatorLight.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_4));
+                    indicatorLight.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.gplus_color_4));
                     status.setText("Not available");
 
 
-                    progressBar.setVisibility(View.GONE);
-                    serviceInfoBlock.setVisibility(View.VISIBLE);
-                    noServiceBlock.setVisibility(View.GONE);
+//                    noServiceBlock.setVisibility(View.GONE);
 
 
                 }
@@ -266,14 +257,14 @@ public class ServiceIndicatorFragment extends Fragment {
 
 //                serviceName.setText("Failed to get service info please try again");
 
-                indicatorLight.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_4));
+                indicatorLight.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.gplus_color_4));
                 status.setText("Not available");
 
 
 
                 progressBar.setVisibility(View.GONE);
                 serviceInfoBlock.setVisibility(View.VISIBLE);
-                noServiceBlock.setVisibility(View.GONE);
+//                noServiceBlock.setVisibility(View.GONE);
 
             }
         });

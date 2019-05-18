@@ -1,21 +1,9 @@
 package org.nearbyshops.enduserappnew.Preferences;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.util.DisplayMetrics;
-
-import com.google.gson.Gson;
-
-import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.R;
-
-import java.util.Currency;
-import java.util.Locale;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -25,16 +13,17 @@ import static android.content.Context.MODE_PRIVATE;
 public class PrefGeneral {
 
 
-
-    //    public static final String DEFAULT_SERVICE_URL = "http://taxireferral.org";
-    public static final String DEFAULT_SERVICE_URL = "http://example.com";
-
-
     public static final String SERVICE_URL_LOCAL_HOTSPOT = "http://192.168.43.73:5121";
     public static final String SERVICE_URL_NEARBYSHOPS = "http://api.nearbyshops.org";
-
-
     public static final String SERVICE_URL_LOCAL = "http://192.168.0.5:5120";
+
+
+
+    // for multi-market mode set default service url to null and multi market mode to true
+    public static final String DEFAULT_SERVICE_URL = null;
+    public static final boolean MULTI_MARKET_MODE_ENABLED = true;
+
+
 
 
 
@@ -44,13 +33,11 @@ public class PrefGeneral {
 
 
 
+    public static final String TAG_SERVICE_URL = "tag_pref_service_url";
 
 
-//
-//    public static boolean getMultiMarketMode(Context context)
-//    {
-//        return true;
-//    }
+
+
 
 
 
@@ -60,7 +47,7 @@ public class PrefGeneral {
 //        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 //        return sharedPref.getBoolean(TAG_MULTI_MARKET_MODE, true);
 
-        return true;
+        return MULTI_MARKET_MODE_ENABLED;
     }
 
 
@@ -82,10 +69,7 @@ public class PrefGeneral {
         context = MyApplication.getAppContext();
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
-        //service_url = "http://localareademo-env.ap-southeast-1.elasticbeanstalk.com";
-
-        return sharedPref.getString(context.getString(R.string.preference_service_url_key), null);
+        return sharedPref.getString(TAG_SERVICE_URL, DEFAULT_SERVICE_URL);
     }
 
 
@@ -97,6 +81,7 @@ public class PrefGeneral {
 
     public static void saveServiceURL(String service_url, Context context)
     {
+        context = MyApplication.getAppContext();
 
 //        Context context = MyApplication.getAppContext();
         // get a handle to shared Preference
@@ -110,7 +95,7 @@ public class PrefGeneral {
         SharedPreferences.Editor editor = sharedPref.edit();
 
         editor.putString(
-                context.getString(R.string.preference_service_url_key),
+                TAG_SERVICE_URL,
                 service_url);
 
         editor.apply();
@@ -127,8 +112,11 @@ public class PrefGeneral {
 
 
 
+
+
     public static void saveCurrencySymbol(String symbol, Context context)
     {
+        context = MyApplication.getAppContext();
         //Creating a shared preference
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = sharedPref.edit();
@@ -144,41 +132,10 @@ public class PrefGeneral {
 
     public static String getCurrencySymbol(Context context)
     {
+        context = MyApplication.getAppContext();
+
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
         return sharedPref.getString(TAG_PREF_CURRENCY, context.getString(R.string.rupee_symbol));
     }
-
-
-
-
-
-
-
-    public static void saveServiceLightStatus(Context context, int status)
-    {
-
-        // get a handle to shared Preference
-        SharedPreferences sharedPref;
-
-        sharedPref = context.getSharedPreferences(
-                context.getString(R.string.preference_file_name),
-                MODE_PRIVATE);
-
-        // write to the shared preference
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("service_light_status",status);
-        editor.apply();
-    }
-
-
-
-    public static int getServiceLightStatus(Context context)
-    {
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        return sharedPref.getInt("service_light_status", 3);
-    }
-
-
-
 
 }

@@ -7,32 +7,33 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.graphics.Palette;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RatingBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.palette.graphics.Palette;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API_SDS.FavouriteMarketService;
+import org.nearbyshops.enduserappnew.API_SDS.MarketReviewService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.ModelReviewMarket.FavouriteMarket;
 import org.nearbyshops.enduserappnew.ModelReviewMarket.FavouriteMarketEndpoint;
@@ -44,25 +45,13 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.FavouriteMarketService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.MarketReviewService;
-import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
-
-
-
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import javax.inject.Inject;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -95,11 +84,15 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-    @BindView(R.id.profile_photo) ImageView shopProfilePhoto;
-    @BindView(R.id.image_count) TextView imagesCount;
+    @BindView(R.id.profile_photo)
+    ImageView shopProfilePhoto;
+    @BindView(R.id.image_count)
+    TextView imagesCount;
 
-    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
-    @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
 
 
     @BindView(R.id.market_name) TextView shopName;
@@ -126,17 +119,20 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 //    @BindView(R.id.delivery_charge_text) TextView deliveryChargeText;
 //    @BindView(R.id.free_delivery_info) TextView freeDeliveryInfo;
 
-    @BindView(R.id.shop_reviews) RecyclerView shopReviews;
+    @BindView(R.id.shop_reviews)
+    RecyclerView shopReviews;
 
 
 
 
-    @BindView(R.id.user_rating_review) LinearLayout user_review_ratings_block;
+    @BindView(R.id.user_rating_review)
+    LinearLayout user_review_ratings_block;
     @BindView(R.id.edit_review_text) TextView edit_review_text;
     @BindView(R.id.ratingBar_rate) RatingBar ratingBar_rate;
 
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
 
 
@@ -213,7 +209,7 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
         String json = getActivity().getIntent().getStringExtra(TAG_JSON_STRING);
-        market = UtilityFunctions.provideGson().fromJson(json,ServiceConfigurationGlobal.class);
+        market = UtilityFunctions.provideGson().fromJson(json, ServiceConfigurationGlobal.class);
 
 
         toolbar.setTitle(market.getServiceName());
@@ -307,7 +303,7 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
         if(market.getRt_rating_count()==0)
         {
             shopRatingNumeric.setText(" New ");
-            shopRatingNumeric.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.phonographyBlue));
+            shopRatingNumeric.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.phonographyBlue));
 
             ratingCount.setVisibility(View.GONE);
             ratingBar.setVisibility(View.GONE);
@@ -321,7 +317,7 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
             ratingBar.setVisibility(View.VISIBLE);
             ratingBar.setRating(market.getRt_rating_avg());
 
-            shopRatingNumeric.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_2));
+            shopRatingNumeric.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.gplus_color_2));
             ratingCount.setVisibility(View.VISIBLE);
         }
 
@@ -358,11 +354,12 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
                 .create(getResources(),
                         R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
-        Picasso.with(getActivity()).load(imagePath)
+        Picasso.get()
+                .load(imagePath)
                 .placeholder(placeholder)
                 .into(shopProfilePhoto);
 
-        Picasso.with(getActivity())
+        Picasso.get()
                 .load(imagePath)
                 .placeholder(placeholder)
                 .into(this);
@@ -452,13 +449,12 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
         }
     }
 
-
-
-
     @Override
-    public void onBitmapFailed(Drawable errorDrawable) {
+    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
 
     }
+
+
 
     @Override
     public void onPrepareLoad(Drawable placeHolderDrawable) {
@@ -545,7 +541,7 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-    @OnClick({R.id.phone_icon,R.id.phone})
+    @OnClick({R.id.phone_icon, R.id.phone})
     void phoneClick()
     {
         dialPhoneNumber(market.getHelplineNumber());
@@ -1026,7 +1022,7 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
                                                 R.drawable.ic_nature_people_white_48px,null);
 
 
-                                Picasso.with(getActivity())
+                                Picasso.get()
                                         .load(imagepath)
                                         .placeholder(placeholder)
                                         .into(member_profile_image);

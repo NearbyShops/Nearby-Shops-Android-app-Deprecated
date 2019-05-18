@@ -3,29 +3,26 @@ package org.nearbyshops.enduserappnew.Markets.ViewHolders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
-
-import org.nearbyshops.enduserappnew.Login.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ViewHolderCurrentMarket extends RecyclerView.ViewHolder {
 
@@ -89,7 +86,7 @@ public class ViewHolderCurrentMarket extends RecyclerView.ViewHolder {
                         R.drawable.ic_nature_people_white_48px, context.getTheme());
 
 
-        Picasso.with(context)
+        Picasso.get()
                 .load(imagePath)
                 .placeholder(placeholder)
                 .into(marketPhoto);

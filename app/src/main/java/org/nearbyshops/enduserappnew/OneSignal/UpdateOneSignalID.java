@@ -2,20 +2,17 @@ package org.nearbyshops.enduserappnew.OneSignal;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.util.Log;
-
-
+import androidx.annotation.Nullable;
+import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
-
-import javax.inject.Inject;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import javax.inject.Inject;
 
 /**
  * Created by sumeet on 7/8/17.

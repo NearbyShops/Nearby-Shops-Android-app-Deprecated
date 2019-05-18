@@ -2,7 +2,7 @@
 
 
 
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,33 +12,33 @@
     <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
     <!--android:theme="@style/AppTheme.AppBarOverlay"-->
 
-    <android.support.design.widget.AppBarLayout
-        android:theme="@style/AppTheme.AppBarOverlay"
+
+    <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <!--app:layout_scrollFlags="scroll|enterAlways"-->
 
-        <android.support.v7.widget.Toolbar
-            app:popupTheme="@style/AppTheme.PopupOverlay"
+        <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+        <androidx.appcompat.widget.Toolbar
             app:layout_scrollFlags="scroll|enterAlways"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary" />
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
 
-    <android.support.v4.widget.NestedScrollView android:paddingBottom="70dp"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView
+        android:paddingBottom="70dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
 
 
@@ -48,12 +48,10 @@
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            tools:context="org.nearbyshops.enduserappnew.DeliveryAddress.Previous.EditAddressActivity"
-            tools:showIn="@layout/activity_edit_address">
+            android:paddingTop="@dimen/activity_vertical_margin">
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:padding="0dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -71,9 +69,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter Receivers Name"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phoneNumberContainer"
                 android:layout_below="@id/receiversNameContainer"
                 android:padding="0dp"
@@ -94,12 +92,12 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter Phone Number"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_below="@id/phoneNumberContainer"
                 android:padding="0dp"
                 android:paddingTop="10dp"
@@ -120,10 +118,10 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter Delivery Address"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_below="@id/deliveryAddressContainer"
                 android:padding="0dp"
                 android:paddingTop="10dp"
@@ -144,10 +142,10 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter City"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_below="@id/cityContainer"
                 android:padding="0dp"
                 android:paddingTop="10dp"
@@ -168,10 +166,10 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter Pincode"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_below="@id/pincodeContainer"
                 android:padding="0dp"
                 android:paddingTop="10dp"
@@ -192,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter Landmark (Optional)"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -217,7 +215,7 @@
 
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_below="@id/instructions"
                 android:padding="0dp"
                 android:layout_marginTop="5dp"
@@ -235,10 +233,10 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter Latitude"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_below="@id/latitude_container"
                 android:padding="0dp"
                 android:layout_gravity="center_vertical"
@@ -255,7 +253,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter Longitude"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <TextView
@@ -316,11 +314,12 @@
         </RelativeLayout>
 
 
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>
 
 
 
-    <android.support.constraint.ConstraintLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@color/white"
         android:layout_gravity="bottom"
         android:orientation="vertical"
@@ -397,6 +396,6 @@
             android:layout_width="30dp"
             android:layout_height="30dp" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,23 +1,21 @@
 package org.nearbyshops.enduserappnew.ShopItemByItemNew;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-
-import com.wunderlist.slidinglayer.SlidingLayer;
-
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopItemByItemNew.SlidingLayerSort.SlidingLayerSortShopItem;
-import org.nearbyshops.enduserappnew.ShopItemByItemNew.ShopItemFragment.ShopItemFragment;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.wunderlist.slidinglayer.SlidingLayer;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ShopItemByItemNew.ShopItemFragment.ShopItemFragment;
+import org.nearbyshops.enduserappnew.ShopItemByItemNew.SlidingLayerSort.SlidingLayerSortShopItem;
+
 
 
 public class ShopItemByItemNew extends AppCompatActivity implements NotifySort {
@@ -43,7 +41,7 @@ public class ShopItemByItemNew extends AppCompatActivity implements NotifySort {
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.white));
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
 //        toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
@@ -114,7 +112,7 @@ public class ShopItemByItemNew extends AppCompatActivity implements NotifySort {
 
 
 
-    @OnClick({R.id.icon_sort,R.id.text_sort})
+    @OnClick({R.id.icon_sort, R.id.text_sort})
     void sortClick()
     {
         slidingLayer.openLayer(true);

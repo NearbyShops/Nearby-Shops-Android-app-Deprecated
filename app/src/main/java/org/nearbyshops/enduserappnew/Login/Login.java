@@ -1,11 +1,11 @@
 package org.nearbyshops.enduserappnew.Login;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.Interfaces.ShowFragmentSelectService;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;

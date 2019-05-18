@@ -1,21 +1,19 @@
 package org.nearbyshops.enduserappnew.Markets.ViewHolders;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
-
-import java.util.List;
-
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
+import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.R;
+
+import java.util.List;
 
 public class ViewHolderSavedMarketList extends RecyclerView.ViewHolder {
 
@@ -32,7 +30,7 @@ public class ViewHolderSavedMarketList extends RecyclerView.ViewHolder {
 
 
 
-    public static ViewHolderSavedMarketList create(ViewGroup parent, Context context,listItemMarketNotifications subscriber)
+    public static ViewHolderSavedMarketList create(ViewGroup parent, Context context, listItemMarketNotifications subscriber)
     {
 
         View view = LayoutInflater.from(parent.getContext())
@@ -44,7 +42,7 @@ public class ViewHolderSavedMarketList extends RecyclerView.ViewHolder {
 
 
 
-    public ViewHolderSavedMarketList(@NonNull View itemView, Context context,listItemMarketNotifications subscriber) {
+    public ViewHolderSavedMarketList(@NonNull View itemView, Context context, listItemMarketNotifications subscriber) {
         super(itemView);
         ButterKnife.bind(this,itemView);
         this.context = context;

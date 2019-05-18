@@ -1,5 +1,5 @@
 
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,21 +8,23 @@
     tools:context="org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesSimple">
 
 
-    <android.support.design.widget.AppBarLayout
+    <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
+
+        <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+        <androidx.appcompat.widget.Toolbar
             app:layout_scrollFlags = "scroll|enterAlways"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            android:background="?attr/colorPrimary">
 
 
-            <android.support.constraint.ConstraintLayout
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:paddingBottom="3dp"
                 android:paddingTop="0dp"
                 android:orientation="vertical"
@@ -50,10 +52,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
 
 
@@ -162,7 +164,8 @@
         </LinearLayout>
 
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
 
 
 
@@ -170,9 +173,6 @@
 
     <RelativeLayout
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -195,7 +195,7 @@
 
      -->
 
-        <android.support.v4.widget.SwipeRefreshLayout
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeContainer"
             android:layout_margin="2.5dp"
             android:layout_marginTop="5dp"
@@ -205,13 +205,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.RecyclerView
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:scrollbars="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
     </RelativeLayout>
@@ -352,7 +353,7 @@
 
 
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 

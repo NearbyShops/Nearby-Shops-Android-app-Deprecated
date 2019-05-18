@@ -1,41 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--
-    colorPrimary = #3F51B5
-    colorPrimaryDark = #303F9F
-    colorAccent = #FF4081
-
-
-    <color name="colorPrimary">#009688</color>
-    <color name="colorPrimaryDark">#00796B</color>
-    <color name="colorAccent">#FF5722</color>
-    -->
-
-    <color name="light_grey">#22000000</color>
 
 
     <color name="colorPrimary">#607D8B</color>
     <color name="colorPrimaryDark">#455A64</color>
     <color name="colorAccent">#FF9800</color>
 
-    <color name="colorPrimaryLight">#BBDEFB</color>
-    <color name="colorPrimaryText">#212121</color>
-    <color name="colorSecondaryText">#757575</color>
-    <color name="colorTextIcons">#FFFFFF</color>
-    <color name="colorDividerColor">#BDBDBD</color>
 
-
-    <!--<color name="colorPrimary">#607D8B</color>-->
-    <!--<color name="colorPrimaryDark">#455A64</color>-->
-    <!--<color name="colorAccent">#FF9800</color>-->
+    <!--<color name="colorPrimary">#008577</color>-->
+    <!--<color name="colorPrimaryDark">#00574B</color>-->
+    <!--<color name="colorAccent">#D81B60</color>-->
 
 
 
-    <!--<color name="colorPrimary">#009688</color>-->
-    <!--<color name="colorPrimaryDark">#00796B</color>-->
-    <!--<color name="colorAccent">#FFC107</color>-->
 
+    <!--Other colors for the project -->
+
+
+    <color name="light_grey">#22000000</color>
 
     <color name="colorWhite">#FFffff</color>
 
@@ -90,5 +73,4 @@
     <color name="gplus_color_2">#f4b400</color>
     <color name="gplus_color_3">#427fed</color>
     <color name="gplus_color_4">#b23424</color>
-
 </resources>

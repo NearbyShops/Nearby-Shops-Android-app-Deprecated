@@ -1,59 +1,49 @@
 package org.nearbyshops.enduserappnew.ItemsInShopByCat;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.constraint.ConstraintLayout;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
-
+import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API.CartItemService;
+import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
-import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.enduserappnew.ModelCartOrder.CartItem;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ModelUtility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
+import org.nearbyshops.enduserappnew.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartItemService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartStatsService;
-import org.nearbyshops.enduserappnew.Utility.InputFilterMinMax;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.InputFilterMinMax;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sumeet on 19/12/15.
@@ -65,8 +55,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 //    Map<Integer,ShopItemParcelable> shopItemMap = new HashMap<>();
 //    Map<Integer,Item> selectedItems = new HashMap<>();
 
-    private Map<Integer,CartItem> cartItemMap = new HashMap<>();
-    private Map<Integer,CartStats> cartStatsMap = new HashMap<>();
+    private Map<Integer, CartItem> cartItemMap = new HashMap<>();
+    private Map<Integer, CartStats> cartStatsMap = new HashMap<>();
 
 
 
@@ -401,7 +391,9 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                     .create(context.getResources(),
                             R.drawable.ic_nature_people_white_48px, context.getTheme());
 
-            Picasso.with(context).load(imagePath)
+
+
+            Picasso.get().load(imagePath)
                     .placeholder(placeholder)
                     .into(holder.categoryImage);
 
@@ -535,7 +527,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                             R.drawable.ic_nature_people_white_48px, context.getTheme());
 
 
-            Picasso.with(context)
+            Picasso.get()
                     .load(imagePath)
                     .placeholder(placeholder)
                     .into(holder.itemImage);
@@ -803,8 +795,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                                 getCartStats(true,getLayoutPosition(),false);
 
-                                addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
-                                itemTotal.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
+                                addToCartText.setBackgroundColor(ContextCompat.getColor(context, R.color.blueGrey800));
+                                itemTotal.setBackgroundColor(ContextCompat.getColor(context, R.color.blueGrey800));
                             }
 
 
@@ -875,8 +867,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 //                                notifyFilledCart.notifyCartDataChanged();
 
-                                addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
-                                itemTotal.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
+                                addToCartText.setBackgroundColor(ContextCompat.getColor(context, R.color.blueGrey800));
+                                itemTotal.setBackgroundColor(ContextCompat.getColor(context, R.color.blueGrey800));
 
                             }else
                             {
@@ -936,8 +928,8 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
                                     Toast.makeText(context, "Update cart successful !", Toast.LENGTH_SHORT).show();
                                     getCartStats(false,getLayoutPosition(),false);
 
-                                    addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
-                                    itemTotal.setBackgroundColor(ContextCompat.getColor(context,R.color.blueGrey800));
+                                    addToCartText.setBackgroundColor(ContextCompat.getColor(context, R.color.blueGrey800));
+                                    itemTotal.setBackgroundColor(ContextCompat.getColor(context, R.color.blueGrey800));
                                 }
 
                                 addToCartText.setVisibility(View.VISIBLE);
@@ -1011,7 +1003,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
             cartItem = cartItemMap.get(shopItem.getItemID());
             cartStats = cartStatsMap.get(shop.getShopID());
 
-            addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_1));
+            addToCartText.setBackgroundColor(ContextCompat.getColor(context, R.color.gplus_color_1));
 //            itemTotal.setBackgroundColor(ContextCompat.getColor(context,R.color.colorPrimary));
 
 
@@ -1104,7 +1096,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             //dataset.get(getLayoutPosition()).getShopID()
 
-            addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_1));
+            addToCartText.setBackgroundColor(ContextCompat.getColor(context, R.color.gplus_color_1));
 //            itemTotal.setBackgroundColor(ContextCompat.getColor(context,R.color.colorPrimary));
 
 

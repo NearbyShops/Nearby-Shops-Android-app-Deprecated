@@ -2,20 +2,17 @@ package org.nearbyshops.enduserappnew.LoginPlaceholder;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-
-import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.enduserappnew.Login.NotifyAboutLogin;
-import org.nearbyshops.enduserappnew.R;
-
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.Login.Login;
+import org.nearbyshops.enduserappnew.R;
 
 /**
  * Created by sumeet on 27/6/17.
@@ -47,7 +44,7 @@ public class FragmentSignInMessage extends Fragment {
     @OnClick(R.id.sign_in_button)
     void signInClick()
     {
-        Intent intent = new Intent(getActivity(),Login.class);
+        Intent intent = new Intent(getActivity(), Login.class);
         startActivityForResult(intent,1);
     }
 

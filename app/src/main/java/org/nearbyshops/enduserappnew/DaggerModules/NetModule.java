@@ -3,45 +3,18 @@ package org.nearbyshops.enduserappnew.DaggerModules;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartItemService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartStatsService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.DeliveryAddressService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.FavouriteItemService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.FavouriteShopService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemImageService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemReviewService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemSpecItemService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemSpecNameService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemSpecValueService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.OrderItemService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.OrderService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ServiceConfigurationService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopImageService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopItemService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewThanksService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-
-import javax.inject.Named;
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
+import org.nearbyshops.enduserappnew.API.*;
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import javax.inject.Singleton;
 
 /**
  * Created by sumeet on 14/5/16.
@@ -150,9 +123,6 @@ public class NetModule {
     @Provides
     ShopItemService provideShopItemService(Retrofit retrofit)
     {
-
-        //        Log.d("applog","ShopItemService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
-
         return retrofit.create(ShopItemService.class);
     }
 
@@ -219,12 +189,7 @@ public class NetModule {
     }
 
 
-    @Provides
-    ServiceConfigurationService configurationService(Retrofit retrofit)
-    {
-        ServiceConfigurationService configurationService = retrofit.create(ServiceConfigurationService.class);
-        return configurationService;
-    }
+
 
 
     @Provides
@@ -235,39 +200,21 @@ public class NetModule {
     }
 
 
-    @Provides
-    ItemImageService itemImageService(Retrofit retrofit)
-    {
-        return retrofit.create(ItemImageService.class);
-    }
-
-    @Provides
-    ItemSpecNameService itemSpecNameService(Retrofit retrofit)
-    {
-        return retrofit.create(ItemSpecNameService.class);
-    }
-
-
-    @Provides
-    ItemSpecValueService itemSpecValueService(Retrofit retrofit)
-    {
-        return retrofit.create(ItemSpecValueService.class);
-    }
-
-
-    @Provides
-    ItemSpecItemService itemSpecItemService(Retrofit retrofit)
-    {
-        return retrofit.create(ItemSpecItemService.class);
-    }
-
-
-
 
     @Provides
     ShopService shopService(Retrofit retrofit)
     {
         return retrofit.create(ShopService.class);
+    }
+
+
+
+
+
+    @Provides
+    ItemImageService itemImageService(Retrofit retrofit)
+    {
+        return retrofit.create(ItemImageService.class);
     }
 
 
@@ -309,8 +256,6 @@ public class NetModule {
     @Provides
     ShopReviewThanksService shopReviewThanksService(Retrofit retrofit)
     {
-
-//        EndUserService endUserService = ;
         return retrofit.create(ShopReviewThanksService.class);
     }
 
@@ -328,6 +273,25 @@ public class NetModule {
     {
         return retrofit.create(ShopImageService.class);
     }
+
+
+    @Provides
+    ItemSpecNameService itemSpecNameService(Retrofit retrofit)
+    {
+        return retrofit.create(ItemSpecNameService.class);
+    }
+
+
+
+
+
+    @Provides
+    ServiceConfigurationService configurationService(Retrofit retrofit)
+    {
+        return retrofit.create(ServiceConfigurationService.class);
+    }
+
+
 
 
 }

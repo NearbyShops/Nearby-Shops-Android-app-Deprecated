@@ -2,28 +2,32 @@ package org.nearbyshops.enduserappnew.Markets;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.google.gson.Gson;
-
+import okhttp3.OkHttpClient;
+import org.nearbyshops.enduserappnew.API_SDS.ServiceConfigService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ModelUtility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.MarketDetail.MarketDetail;
 import org.nearbyshops.enduserappnew.MarketDetail.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
+import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.AdapterMarkets;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
@@ -35,28 +39,18 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.ServiceConfigService;
-import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MarketsFragment extends Fragment implements listItemMarketNotifications,SwipeRefreshLayout.OnRefreshListener,
+
+public class MarketsFragment extends Fragment implements listItemMarketNotifications, SwipeRefreshLayout.OnRefreshListener,
         NotifySort, NotifySearch, LocationUpdated {
 
 
@@ -132,7 +126,7 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
 
 
 //        setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_services, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_markets, container, false);
         ButterKnife.bind(this,rootView);
 
 
@@ -215,12 +209,14 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
 
 
         recyclerView.addItemDecoration(
-                new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL_LIST)
+                new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL)
         );
 
 
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+
+
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
 
 
 //        layoutManager = new GridLayoutManager(getActivity(),1);
@@ -525,7 +521,7 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
 
 
                         adapter.notifyDataSetChanged();
-                        notifyTitleChanged();
+//                        notifyTitleChanged();
 
                     }
                     else
@@ -568,7 +564,7 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
     @Override
     public void onResume() {
         super.onResume();
-        notifyTitleChanged();
+//        notifyTitleChanged();
         isDestroyed=false;
     }
 
@@ -593,24 +589,24 @@ public class MarketsFragment extends Fragment implements listItemMarketNotificat
 
 
 
-
-
-    void notifyTitleChanged()
-    {
-
-        if(getActivity() instanceof NotifyTitleChanged)
-        {
-            ((NotifyTitleChanged)getActivity())
-                    .NotifyTitleChanged(
-                            "Complete (" + String.valueOf(dataset.size())
-                                    + "/" + String.valueOf(item_count) + ")",1);
-
-
-        }
-    }
-
-
-
+//
+//
+//    void notifyTitleChanged()
+//    {
+//
+//        if(getActivity() instanceof NotifyTitleChanged)
+//        {
+//            ((NotifyTitleChanged)getActivity())
+//                    .NotifyTitleChanged(
+//                            "Complete (" + String.valueOf(dataset.size())
+//                                    + "/" + String.valueOf(item_count) + ")",1);
+//
+//
+//        }
+//    }
+//
+//
+//
 
 
 

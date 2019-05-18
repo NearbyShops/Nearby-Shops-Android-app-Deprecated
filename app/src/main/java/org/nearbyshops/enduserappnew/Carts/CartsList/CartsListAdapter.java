@@ -3,27 +3,23 @@ package org.nearbyshops.enduserappnew.Carts.CartsList;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import com.squareup.picasso.Picasso;
-
 import org.nearbyshops.enduserappnew.Carts.CartItem.CartItemListActivity;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * Created by sumeet on 5/6/16.
@@ -110,7 +106,7 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
 
 
 
-        Picasso.with(context)
+        Picasso.get()
                 .load(imagePath)
                 .placeholder(placeholder)
                 .into(holder.shopImage);
@@ -171,7 +167,7 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
 
                 case R.id.carts_list_item:
 
-                    Intent intent = new Intent(context,CartItemListActivity.class);
+                    Intent intent = new Intent(context, CartItemListActivity.class);
 
 //                    intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,dataset.get(getLayoutPosition()).getShop());
 //                    intent.putExtra(CartItemListActivity.CART_STATS_INTENT_KEY,dataset.get(getLayoutPosition()));

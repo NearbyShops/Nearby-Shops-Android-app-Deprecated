@@ -1,14 +1,9 @@
 package org.nearbyshops.enduserappnew.Model;
 
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
-
 import java.sql.Timestamp;
 
-public class Item implements Parcelable{
+public class Item{
 
 	// Table Name
 	public static final String TABLE_NAME = "ITEM";
@@ -80,70 +75,89 @@ public class Item implements Parcelable{
 	private float rt_rating_count;
 
 
-	// Getter and Setter Statements
 
-	//No-args constructor
+	// getter and setter methods
 
 
-	protected Item(Parcel in) {
-		itemID = in.readInt();
-		itemName = in.readString();
-		itemDescription = in.readString();
-		itemImageURL = in.readString();
-		itemCategoryID = in.readInt();
-		itemStats = in.readParcelable(ItemStats.class.getClassLoader());
-		quantityUnit = in.readString();
-		itemDescriptionLong = in.readString();
-		itemCategory = in.readParcelable(ItemCategory.class.getClassLoader());
-
-		rt_rating_avg = in.readFloat();
-		rt_rating_count = in.readFloat();
-
-		dateTimeCreated = new Timestamp(in.readLong());
+	public int getItemID() {
+		return itemID;
 	}
 
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeInt(itemID);
-		dest.writeString(itemName);
-		dest.writeString(itemDescription);
-		dest.writeString(itemImageURL);
-		dest.writeInt(itemCategoryID);
-		dest.writeParcelable(itemStats, flags);
-		dest.writeString(quantityUnit);
-		dest.writeString(itemDescriptionLong);
-		dest.writeParcelable(itemCategory, flags);
-
-		dest.writeFloat(rt_rating_avg);
-		dest.writeFloat(rt_rating_count);
-
-		if(dateTimeCreated!=null)
-		{
-			dest.writeLong(dateTimeCreated.getTime());
-		}
-		else
-		{
-			dest.writeLong(0);
-		}
-
+	public void setItemID(int itemID) {
+		this.itemID = itemID;
 	}
 
-	@Override
-	public int describeContents() {
-		return 0;
+	public String getItemName() {
+		return itemName;
 	}
 
-	public static final Creator<Item> CREATOR = new Creator<Item>() {
-		@Override
-		public Item createFromParcel(Parcel in) {
-			return new Item(in);
-		}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
 
-		@Override
-		public Item[] newArray(int size) {
-			return new Item[size];
-		}
-	};
+	public String getItemDescription() {
+		return itemDescription;
+	}
+
+	public void setItemDescription(String itemDescription) {
+		this.itemDescription = itemDescription;
+	}
+
+	public String getItemImageURL() {
+		return itemImageURL;
+	}
+
+	public void setItemImageURL(String itemImageURL) {
+		this.itemImageURL = itemImageURL;
+	}
+
+	public int getItemCategoryID() {
+		return itemCategoryID;
+	}
+
+	public void setItemCategoryID(int itemCategoryID) {
+		this.itemCategoryID = itemCategoryID;
+	}
+
+	public ItemStats getItemStats() {
+		return itemStats;
+	}
+
+	public void setItemStats(ItemStats itemStats) {
+		this.itemStats = itemStats;
+	}
+
+	public String getQuantityUnit() {
+		return quantityUnit;
+	}
+
+	public void setQuantityUnit(String quantityUnit) {
+		this.quantityUnit = quantityUnit;
+	}
+
+	public Timestamp getDateTimeCreated() {
+		return dateTimeCreated;
+	}
+
+	public void setDateTimeCreated(Timestamp dateTimeCreated) {
+		this.dateTimeCreated = dateTimeCreated;
+	}
+
+	public String getItemDescriptionLong() {
+		return itemDescriptionLong;
+	}
+
+	public void setItemDescriptionLong(String itemDescriptionLong) {
+		this.itemDescriptionLong = itemDescriptionLong;
+	}
+
+	public ItemCategory getItemCategory() {
+		return itemCategory;
+	}
+
+	public void setItemCategory(ItemCategory itemCategory) {
+		this.itemCategory = itemCategory;
+	}
 
 	public Boolean getEnabled() {
 		return isEnabled;
@@ -161,72 +175,6 @@ public class Item implements Parcelable{
 		isWaitlisted = waitlisted;
 	}
 
-	public Item() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public String getQuantityUnit() {
-		return quantityUnit;
-	}
-	public void setQuantityUnit(String quantityUnit) {
-		this.quantityUnit = quantityUnit;
-	}
-	public Timestamp getDateTimeCreated() {
-		return dateTimeCreated;
-	}
-	public void setDateTimeCreated(Timestamp dateTimeCreated) {
-		this.dateTimeCreated = dateTimeCreated;
-	}
-	public String getItemDescriptionLong() {
-		return itemDescriptionLong;
-	}
-	public void setItemDescriptionLong(String itemDescriptionLong) {
-		this.itemDescriptionLong = itemDescriptionLong;
-	}
-	public ItemStats getItemStats() {
-		return itemStats;
-	}
-	public void setItemStats(ItemStats itemStats) {
-		this.itemStats = itemStats;
-	}
-	public int getItemCategoryID() {
-		return itemCategoryID;
-	}
-	public void setItemCategoryID(int itemCategoryID) {
-		this.itemCategoryID = itemCategoryID;
-	}
-	public ItemCategory getItemCategory() {
-		return itemCategory;
-	}
-	public void setItemCategory(ItemCategory itemCategory) {
-		this.itemCategory = itemCategory;
-	}
-	public int getItemID() {
-		return itemID;
-	}
-	public void setItemID(int itemID) {
-		this.itemID = itemID;
-	}
-	public String getItemDescription() {
-		return itemDescription;
-	}
-	public void setItemDescription(String itemDescription) {
-		this.itemDescription = itemDescription;
-	}
-	public String getItemImageURL() {
-		return itemImageURL;
-	}
-	public void setItemImageURL(String itemImageURL) {
-		this.itemImageURL = itemImageURL;
-	}
-	public String getItemName() {
-		return itemName;
-	}
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
-
 	public float getRt_rating_avg() {
 		return rt_rating_avg;
 	}
@@ -242,23 +190,4 @@ public class Item implements Parcelable{
 	public void setRt_rating_count(float rt_rating_count) {
 		this.rt_rating_count = rt_rating_count;
 	}
-
-
-
-
-
-	/*
-	if(dateTimeCreated!=null)
-	{
-		dest.writeLong(dateTimeCreated.getTime());
-	}
-	else
-	{
-		dest.writeLong(0);
-	}
-
-	*/
-
-
-	/*dateTimeCreated = new Timestamp(in.readLong());*/
 }
