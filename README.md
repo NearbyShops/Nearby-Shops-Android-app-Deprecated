@@ -32,13 +32,13 @@ Get it from Google play store
 Libraries Used
 ---------------
 
-Retrofit, Ok-Http, Event-Bus, Picasso, Lost (for finding location), butterknife, dagger2, U-Crop, Android-Support-Libraries, Gesture Views, Smiley Rating
+Android-Jetpack, Retrofit, Ok-Http, Event-Bus, Picasso, butterknife, dagger2, U-Crop, Gesture Views, Smiley Rating, Mapbox Android SDK
 
 
 Third Party Integrations
 -------------------------
 
-Nearby Shops has latest integrations for SMS-OTP verification(MSG91), E-mail (mailgun), One-Signal and Firebase (for push notifications), Maps (open-street-maps), Fabrio.io (crash reporting)
+Nearby Shops has latest integrations for SMS-OTP verification(MSG91), E-mail (Simple-Java-Mail), One-Signal and Firebase (for push notifications), Maps (open-street-maps)
 
 
 Community - Need Help ? 
@@ -47,6 +47,13 @@ Community - Need Help ?
 If you want any help regarding anything. Feel free to contact us. Send a message through our forum or you can simply post an issue. Your issues will not be ignored and you will surely receive help. 
 
 Reach out to us - Please Visit - https://forum.nearbyshops.org
+
+Get paid to Contribute
+--------------------------
+
+Developer time is valuable and its not fair to expect developers to contribute to the project without getting reasonably compensated. 
+
+Therefore we are planning to arrange funds which will help us compensate those who contribute to the project. For more information please visit https://forum.nearbyshops.org and get in touch with us !
 
 
 Source code for Shop-Owner, Admin app and Server Side
