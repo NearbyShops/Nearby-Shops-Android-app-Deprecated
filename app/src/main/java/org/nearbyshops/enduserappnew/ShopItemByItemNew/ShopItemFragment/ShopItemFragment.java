@@ -3,13 +3,6 @@ package org.nearbyshops.enduserappnew.ShopItemByItemNew.ShopItemFragment;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +10,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
+import org.nearbyshops.enduserappnew.API.ShopItemService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailNew;
 import org.nearbyshops.enduserappnew.Login.Login;
@@ -31,27 +34,16 @@ import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.Preferences.*;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopItemService;
 import org.nearbyshops.enduserappnew.ShopHome.ShopHome;
 import org.nearbyshops.enduserappnew.ShopItemByItemNew.SlidingLayerSort.PrefSortShopItems;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-
-import java.util.ArrayList;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -65,6 +57,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     @Inject
     ShopItemService shopItemService;
+
 
 
     ArrayList<ShopItem> dataset = new ArrayList<>();
@@ -143,7 +136,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
         String jsonString = getActivity().getIntent().getStringExtra("item_json");
         Gson gson = UtilityFunctions.provideGson();
-        item = gson.fromJson(jsonString,Item.class);
+        item = gson.fromJson(jsonString, Item.class);
 
 
 //        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
@@ -548,6 +541,10 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
+
+
+
+
     @Override
     public void notifyShopLogoClick(Shop shop) {
 
@@ -639,7 +636,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
         if(item.getRt_rating_count()==0)
         {
             itemRating.setText(" New ");
-            itemRating.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.phonographyBlue));
+            itemRating.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.phonographyBlue));
             ratingCount.setVisibility(View.GONE);
         }
         else
@@ -647,7 +644,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
             ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " Ratings )");
             itemRating.setText(String.format(" %.2f ",item.getRt_rating_avg()));
-            itemRating.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_2));
+            itemRating.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.gplus_color_2));
             ratingCount.setVisibility(View.VISIBLE);
         }
 
@@ -661,11 +658,14 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
                 .create(getActivity().getResources(),
                         R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
-        Picasso.with(getActivity()).load(imagePath)
+
+        Picasso.get()
+                .load(imagePath)
                 .placeholder(drawable)
                 .into(categoryImage);
 
     }
+
 
 
 

@@ -2,47 +2,43 @@ package org.nearbyshops.enduserappnew.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnTextChanged;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
-
+import okhttp3.OkHttpClient;
+import org.nearbyshops.enduserappnew.API.LoginUsingOTPService;
+import org.nearbyshops.enduserappnew.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.PrefSignUp.PrefrenceForgotPassword;
+import org.nearbyshops.enduserappnew.PrefSignUp.PrefrenceSignUp;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.LoginUsingOTPService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.ForgotPassword;
-import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceForgotPassword;
-import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
 import org.nearbyshops.enduserappnew.SignUp.SignUp;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnTextChanged;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import javax.inject.Inject;
 
 
 /**
@@ -152,10 +148,15 @@ public class LoginGlobalFragment extends Fragment {
 
 
 
+
+
+
+
+
+
     @OnClick(R.id.sign_up)
     void signUp()
     {
-
         PrefrenceSignUp.saveUser(null,getActivity());
         Intent intent = new Intent(getActivity(), SignUp.class);
         startActivity(intent);
@@ -295,8 +296,6 @@ public class LoginGlobalFragment extends Fragment {
             // validation failed return
             return;
         }
-
-
 
 
 

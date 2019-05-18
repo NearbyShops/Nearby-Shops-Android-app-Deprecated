@@ -3,41 +3,33 @@ package org.nearbyshops.enduserappnew.Carts.CartItem;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import com.squareup.picasso.Picasso;
-
-import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ModelCartOrder.CartItem;
-import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.ModelStats.CartStats;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartItemService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartStatsService;
-import org.nearbyshops.enduserappnew.Utility.InputFilterMinMax;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
 import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API.CartItemService;
+import org.nearbyshops.enduserappnew.API.CartStatsService;
+import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Model.Item;
+import org.nearbyshops.enduserappnew.ModelCartOrder.CartItem;
+import org.nearbyshops.enduserappnew.ModelStats.CartStats;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.InputFilterMinMax;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by sumeet on 6/6/16.
@@ -148,7 +140,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
 
 
-            Picasso.with(context)
+            Picasso.get()
                     .load(imagePath)
                     .placeholder(placeholder)
                     .into(holder.shopImage);

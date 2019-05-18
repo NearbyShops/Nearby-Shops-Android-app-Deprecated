@@ -1,12 +1,10 @@
 package org.nearbyshops.enduserappnew.ItemImages;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
-
-import org.nearbyshops.enduserappnew.R;
-
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
+import org.nearbyshops.enduserappnew.R;
 
 
 public class ItemImageList extends AppCompatActivity {

@@ -1,29 +1,25 @@
 package org.nearbyshops.enduserappnew.Markets.ViewHolders;
 
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import com.google.gson.Gson;
-
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
-import org.nearbyshops.enduserappnew.Markets.MarketsFragment;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ModelUtility.HeaderItemsList;
+import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
-
-import java.util.List;
 
 import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import java.util.List;
 
 /**
  * Created by sumeet on 13/6/16.

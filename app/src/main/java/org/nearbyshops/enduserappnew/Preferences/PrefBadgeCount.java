@@ -2,11 +2,13 @@ package org.nearbyshops.enduserappnew.Preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
-
 import org.nearbyshops.enduserappnew.R;
 
 import static android.content.Context.MODE_PRIVATE;
+
+
+
+
 
 public class PrefBadgeCount {
 

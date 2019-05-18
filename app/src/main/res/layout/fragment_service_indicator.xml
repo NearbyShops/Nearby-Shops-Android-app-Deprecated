@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="5dp">
+    android:layout_height="wrap_content">
 
 
     <LinearLayout
@@ -112,31 +111,31 @@
         android:layout_height="wrap_content" />
 
 
-    <LinearLayout
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/no_service_block"
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content">
+    <!--<LinearLayout-->
+        <!--android:visibility="gone"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--android:id="@+id/no_service_block"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content">-->
 
-        <TextView
-            android:text="No City Selected"
-            android:textSize="17sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <!--<TextView-->
+            <!--android:text="No City Selected"-->
+            <!--android:textSize="17sp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
 
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:text="@string/selection_tip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <!--<TextView-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:text="@string/selection_tip"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
 
     <ProgressBar
@@ -153,4 +152,4 @@
 
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

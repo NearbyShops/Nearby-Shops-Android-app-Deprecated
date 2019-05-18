@@ -1,16 +1,14 @@
 package org.nearbyshops.enduserappnew.SignUp.ForgotPassword;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.Toolbar;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 import com.stfalcon.smsverifycatcher.OnSmsCatchListener;
 import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
-
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SignUp.Interfaces.ShowFragmentForgotPassword;
 
@@ -39,7 +37,7 @@ public class ForgotPassword extends AppCompatActivity implements ShowFragmentFor
         setContentView(R.layout.activity_forgot_password);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.white));
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
 //        toolbar.setTitle("Forgot Password");
         setSupportActionBar(toolbar);
 
@@ -82,7 +80,7 @@ public class ForgotPassword extends AppCompatActivity implements ShowFragmentFor
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                 .replace(R.id.fragment_container,new FragmentCheckResetCode(),TAG_STEP_FOUR)
                 .addToBackStack("step_four")
                 .commit();
@@ -93,7 +91,7 @@ public class ForgotPassword extends AppCompatActivity implements ShowFragmentFor
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                 .replace(R.id.fragment_container,new FragmentResetPassword(),TAG_STEP_FOUR)
                 .addToBackStack("step_four")
                 .commit();
@@ -110,7 +108,7 @@ public class ForgotPassword extends AppCompatActivity implements ShowFragmentFor
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                 .replace(R.id.fragment_container,new FragmentResultForgot())
                 .commit();
 

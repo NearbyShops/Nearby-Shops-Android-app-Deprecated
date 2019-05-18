@@ -2,41 +2,36 @@ package org.nearbyshops.enduserappnew.Carts;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.DeliveryAddress.DeliveryAddressActivity;
-import org.nearbyshops.enduserappnew.Home;
-import org.nearbyshops.enduserappnew.HomeNew;
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
-
-import org.nearbyshops.enduserappnew.ModelStats.CartStats;
-import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.CartStatsService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.OrderService;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API.CartStatsService;
+import org.nearbyshops.enduserappnew.API.OrderService;
+import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.DeliveryAddress.DeliveryAddressActivity;
+import org.nearbyshops.enduserappnew.Home;
+import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
+import org.nearbyshops.enduserappnew.ModelStats.CartStats;
+import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import javax.inject.Inject;
+import java.util.List;
 
 public class PlaceOrderActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -44,8 +39,11 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     Order order = new Order();
 //    OrderPFS orderPFS = new OrderPFS();
 
-    @Inject CartStatsService cartStatsService;
-    @Inject OrderService orderService;
+    @Inject
+    CartStatsService cartStatsService;
+
+    @Inject
+    OrderService orderService;
 //    @Inject OrderServicePFS orderServicePFS;
 
 
@@ -62,6 +60,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     TextView subTotal;
     TextView deliveryCharges;
     TextView total;
+
     @BindView(R.id.free_delivery_info) TextView freeDeliveryInfo;
 
     @BindView(R.id.radioPickFromShop) RadioButton pickFromShopCheck;
@@ -134,7 +133,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 //        cartStats = getIntent().getParcelableExtra(CART_STATS_INTENT_KEY);
 
         String cartStatsJson = getIntent().getStringExtra(CART_STATS_INTENT_KEY);
-        cartStats = UtilityFunctions.provideGson().fromJson(cartStatsJson,CartStats.class);
+        cartStats = UtilityFunctions.provideGson().fromJson(cartStatsJson, CartStats.class);
 
 
         if(savedInstanceState!=null)
@@ -164,7 +163,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
 
-        Intent intent = new Intent(this,DeliveryAddressActivity.class);
+        Intent intent = new Intent(this, DeliveryAddressActivity.class);
 
         startActivityForResult(intent,1);
 
@@ -180,7 +179,10 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
         if(requestCode == 1 && resultCode == 2 && data != null)
         {
-            selectedAddress = data.getParcelableExtra("output");
+            String jsonString = data.getStringExtra("output");
+            selectedAddress = UtilityFunctions.provideGson().fromJson(jsonString,DeliveryAddress.class);
+
+//            selectedAddress = data.getParcelableExtra("output");
 
             if(selectedAddress!=null)
             {
@@ -209,22 +211,25 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-        @Override
-        protected void onSaveInstanceState(Bundle outState) {
-            super.onSaveInstanceState(outState);
 
-            if(selectedAddress!=null)
-            {
-                outState.putParcelable("selectedAddress",selectedAddress);
-            }
-        }
 
-        @Override
-        protected void onRestoreInstanceState(Bundle savedInstanceState) {
-            super.onRestoreInstanceState(savedInstanceState);
 
-            selectedAddress = savedInstanceState.getParcelable("selectedAddress");
-        }
+//        @Override
+//        protected void onSaveInstanceState(Bundle outState) {
+//            super.onSaveInstanceState(outState);
+//
+//            if(selectedAddress!=null)
+//            {
+//                outState.putParcelable("selectedAddress",selectedAddress);
+//            }
+//        }
+//
+//        @Override
+//        protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//            super.onRestoreInstanceState(savedInstanceState);
+//
+//            selectedAddress = savedInstanceState.getParcelable("selectedAddress");
+//        }
 
 
 
@@ -333,7 +338,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
 
 
-    @OnClick({R.id.radioPickFromShop,R.id.radioHomeDelivery})
+    @OnClick({R.id.radioPickFromShop, R.id.radioHomeDelivery})
     void radioCheckClicked()
     {
         setTotal();
@@ -461,7 +466,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                         showToastMessage("Successful !");
 
 
-                        Intent i = new Intent(PlaceOrderActivity.this, HomeNew.class);
+                        Intent i = new Intent(PlaceOrderActivity.this, Home.class);
 
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 

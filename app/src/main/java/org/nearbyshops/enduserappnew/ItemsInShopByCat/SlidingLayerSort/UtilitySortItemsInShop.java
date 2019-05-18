@@ -2,7 +2,6 @@ package org.nearbyshops.enduserappnew.ItemsInShopByCat.SlidingLayerSort;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.R;
 

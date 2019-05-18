@@ -5,10 +5,9 @@ package org.nearbyshops.enduserappnew.ModelCartOrder;
  */
 public class Cart {
 
-
-    int cartID;
-    int endUserID;
-    int shopID;
+    private int cartID;
+    private int endUserID;
+    private int shopID;
 
     public int getCartID() {
         return cartID;

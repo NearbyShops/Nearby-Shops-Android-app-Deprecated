@@ -2,8 +2,6 @@ package org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
-
 import org.nearbyshops.enduserappnew.R;
 
 import static android.content.Context.MODE_PRIVATE;

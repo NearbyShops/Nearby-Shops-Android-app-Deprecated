@@ -1,6 +1,5 @@
 package org.nearbyshops.enduserappnew;
 
-import org.nearbyshops.enduserappnew.Application.ApplicationState;
 import org.nearbyshops.enduserappnew.DaggerComponents.DaggerNetComponent;
 import org.nearbyshops.enduserappnew.DaggerComponents.NetComponent;
 import org.nearbyshops.enduserappnew.DaggerModules.AppModule;
@@ -50,6 +49,9 @@ public class DaggerComponentBuilder {
                     .netModule(new NetModule())
                     .build();
         }
+
+
+
 
         return mNetComponent;
     }

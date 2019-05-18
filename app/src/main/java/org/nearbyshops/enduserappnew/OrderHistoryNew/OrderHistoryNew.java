@@ -3,38 +3,21 @@ package org.nearbyshops.enduserappnew.OrderHistoryNew;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
-import com.wunderlist.slidinglayer.SlidingLayer;
-
-import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
-import org.nearbyshops.enduserappnew.LoginPlaceholder.FragmentSignInMessage;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.PagerAdapter;
-import org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort.SlidingLayerSortOrders;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
-
-import butterknife.BindView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
+import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
+import org.nearbyshops.enduserappnew.R;
 
 
 public class OrderHistoryNew extends AppCompatActivity {
 
 
-    private PagerAdapter mPagerAdapter;
-    private ViewPager mViewPager;
 
 //    @BindView(R.id.slidingLayer)
 //    SlidingLayer slidingLayer;

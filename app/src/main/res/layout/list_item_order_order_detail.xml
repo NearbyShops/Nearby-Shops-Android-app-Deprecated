@@ -220,7 +220,7 @@
         android:layout_height="wrap_content" />
 
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -334,7 +334,7 @@
             android:layout_height="3dp"/>
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <!--<TextView-->
@@ -673,7 +673,6 @@
         android:textColor="@color/white"
         android:background="@color/blueGrey800"
         android:text="Items in This Order"
-        android:layout_below="@id/shop_info_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

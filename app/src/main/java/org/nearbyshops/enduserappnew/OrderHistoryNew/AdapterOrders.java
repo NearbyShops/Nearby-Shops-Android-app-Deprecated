@@ -1,9 +1,6 @@
 package org.nearbyshops.enduserappnew.OrderHistoryNew;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusHomeDelivery;
@@ -20,10 +22,6 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by sumeet on 13/6/16.
@@ -139,7 +137,7 @@ class AdapterOrders extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 if(order.isPickFromShop())
                 {
 
-                    holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context,R.color.orangeDark));
+                    holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context, R.color.orangeDark));
                     holder.isPickFromShop.setText("Pick from Shop");
 
 
@@ -174,7 +172,7 @@ class AdapterOrders extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 }
                 else
                 {
-                    holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context,R.color.phonographyBlue));
+                    holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context, R.color.phonographyBlue));
                     holder.isPickFromShop.setText("Home Delivery");
 
                     status = OrderStatusHomeDelivery.getStatusString(order.getStatusHomeDelivery());

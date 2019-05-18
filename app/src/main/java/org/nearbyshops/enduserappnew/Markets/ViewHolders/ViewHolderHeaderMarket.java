@@ -1,15 +1,13 @@
 package org.nearbyshops.enduserappnew.Markets.ViewHolders;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import org.nearbyshops.enduserappnew.R;
-
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.ButterKnife;
+import org.nearbyshops.enduserappnew.R;
 
 public class ViewHolderHeaderMarket extends RecyclerView.ViewHolder {
 

@@ -2,28 +2,27 @@ package org.nearbyshops.enduserappnew;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.multidex.MultiDex;
-import android.support.multidex.MultiDexApplication;
 import android.util.Log;
-
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
-
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
-import org.nearbyshops.enduserappnew.Application.ApplicationState;
-import org.nearbyshops.enduserappnew.EventBus.NotificationEvent;
+import org.nearbyshops.enduserappnew.DaggerModules.AppModule;
+import org.nearbyshops.enduserappnew.DaggerModules.NetModule;
+import org.nearbyshops.enduserappnew.ModelUtility.NotificationEvent;
 import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
-import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.Preferences.PrefBadgeCount;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+
+
 
 /**
  * Created by sumeet on 12/5/16.
  */
-public class MyApplication extends MultiDexApplication{
+public class MyApplication extends MultiDexApplication {
 
     private static Context context;
 
@@ -65,6 +64,10 @@ public class MyApplication extends MultiDexApplication{
 
 
 
+        // Initialize Places.
+//        Places.initialize(getApplicationContext(), "AIzaSyAHjmh3U3OVYngo6huNoEpYhscFqcV9CFA");
+
+
 
 
         OneSignal.startInit(this)
@@ -93,9 +96,9 @@ public class MyApplication extends MultiDexApplication{
 
 
                             if(notificationType== MyApplication.ORDER_PLACED ||
-                                    notificationType==MyApplication.ORDER_PACKED ||
-                                    notificationType==MyApplication.ORDER_CONFIRMED||
-                                    notificationType==MyApplication.ORDER_OUT_FOR_DELIVERY)
+                                    notificationType== MyApplication.ORDER_PACKED ||
+                                    notificationType== MyApplication.ORDER_CONFIRMED||
+                                    notificationType== MyApplication.ORDER_OUT_FOR_DELIVERY)
                             {
                                 PrefBadgeCount.saveBadgeCountOrders(PrefBadgeCount.getBadgeCountOrders(getApplicationContext())+1,
                                         getApplicationContext());
@@ -169,6 +172,7 @@ public class MyApplication extends MultiDexApplication{
                 .init();
 
 
+
         Mapbox.getInstance(this,getString(R.string.fake_key));
 
 
@@ -203,6 +207,10 @@ public class MyApplication extends MultiDexApplication{
     public static Context getAppContext() {
         return MyApplication.context;
     }
+
+
+
+
 
 
 }

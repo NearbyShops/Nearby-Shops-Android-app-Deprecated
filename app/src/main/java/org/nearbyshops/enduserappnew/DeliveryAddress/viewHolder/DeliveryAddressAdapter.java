@@ -1,19 +1,11 @@
 package org.nearbyshops.enduserappnew.DeliveryAddress.viewHolder;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import org.nearbyshops.enduserappnew.CommonViewHolders.EmptyScreenMarker;
-import org.nearbyshops.enduserappnew.CommonViewHolders.ViewHolderEmptyScreen;
-import org.nearbyshops.enduserappnew.DeliveryAddress.viewHolder.ViewHolderDeliveryAdddress;
+import androidx.recyclerview.widget.RecyclerView;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.EmptyScreenMarker;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreen;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.R;
 
 import java.util.List;
 

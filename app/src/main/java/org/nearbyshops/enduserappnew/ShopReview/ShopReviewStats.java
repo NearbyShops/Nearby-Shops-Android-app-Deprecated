@@ -1,36 +1,33 @@
 package org.nearbyshops.enduserappnew.ShopReview;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import org.nearbyshops.enduserappnew.API.ShopReviewService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReviewStatRow;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by sumeet on 25/10/16.
  */
 
-public class ShopReviewStats extends Fragment{
+public class ShopReviewStats extends Fragment {
 
 
 
@@ -89,6 +86,7 @@ public class ShopReviewStats extends Fragment{
 
         setRetainInstance(true);
     }
+
 
     @Nullable
     @Override

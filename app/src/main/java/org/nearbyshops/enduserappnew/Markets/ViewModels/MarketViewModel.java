@@ -1,15 +1,15 @@
 package org.nearbyshops.enduserappnew.Markets.ViewModels;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.support.annotation.NonNull;
-
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import com.google.gson.Gson;
-
+import okhttp3.OkHttpClient;
+import org.nearbyshops.enduserappnew.API_SDS.ServiceConfigService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ModelUtility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
@@ -17,19 +17,15 @@ import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.ServiceConfigService;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MarketViewModel extends AndroidViewModel {
 
@@ -62,7 +58,8 @@ public class MarketViewModel extends AndroidViewModel {
 
 
         DaggerComponentBuilder.getInstance()
-                .getNetComponent().Inject(this);
+                .getNetComponent()
+                .Inject(this);
     }
 
 

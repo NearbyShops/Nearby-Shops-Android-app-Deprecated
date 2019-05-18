@@ -1,43 +1,35 @@
 package org.nearbyshops.enduserappnew.ShopReview;
 
 import android.graphics.drawable.Drawable;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
-
+import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API.ShopReviewThanksService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReviewThanks;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewThanksService;
-import org.nearbyshops.enduserappnew.ShopReview.Interfaces.NotifyLoginByAdapter;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ShopReview.Interfaces.NotifyLoginByAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import javax.inject.Inject;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sumeet on 19/12/15.
@@ -49,14 +41,14 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
 
     private List<ShopReview> dataset;
     private AppCompatActivity context;
-    private Map<Integer,ShopReviewThanks> thanksMap;
+    private Map<Integer, ShopReviewThanks> thanksMap;
 
     @Inject
     ShopReviewThanksService thanksService;
 
 
 
-    public ShopReviewAdapter(List<ShopReview> dataset, Map<Integer,ShopReviewThanks> thanksMap, AppCompatActivity context) {
+    public ShopReviewAdapter(List<ShopReview> dataset, Map<Integer, ShopReviewThanks> thanksMap, AppCompatActivity context) {
 
         this.dataset = dataset;
         this.context = context;
@@ -78,12 +70,7 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
     @Override
     public void onBindViewHolder(ShopReviewAdapter.ViewHolder holder, final int position) {
 
-        User endUser = dataset.get(position).getRt_end_user_profile();
-
-        holder.member_name.setText(endUser.getName());
         holder.rating.setRating(dataset.get(position).getRating());
-
-
         holder.review_date.setText(dataset.get(position).getReviewDate().toLocaleString());
 
 
@@ -97,12 +84,12 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
             if(thanksMap.containsKey(dataset.get(position).getShopReviewID()))
             {
                 holder.thanksButton.setText("Thanked !");
-                holder.thanksButton.setTextColor(ContextCompat.getColor(context,R.color.phonographyBlue));
+                holder.thanksButton.setTextColor(ContextCompat.getColor(context, R.color.phonographyBlue));
             }
             else
             {
                 holder.thanksButton.setText("Thanks");
-                holder.thanksButton.setTextColor(ContextCompat.getColor(context,R.color.grey800));
+                holder.thanksButton.setTextColor(ContextCompat.getColor(context, R.color.grey800));
             }
         }
 
@@ -111,17 +98,26 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
 //                + dataset.get(position).getRt_end_user_profile().getProfileImageURL();
 
 
-        String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/User/Image/" + dataset.get(position).getRt_end_user_profile().getProfileImagePath();
+
+        User endUser = dataset.get(position).getRt_end_user_profile();
 
 
+        if(endUser!=null)
+        {
+            holder.member_name.setText(endUser.getName());
+            String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/User/Image/" + dataset.get(position).getRt_end_user_profile().getProfileImagePath();
 
-        Drawable placeholder = VectorDrawableCompat
-                .create(context.getResources(),
-                        R.drawable.ic_nature_people_white_48px, context.getTheme());
+            Drawable placeholder = VectorDrawableCompat
+                    .create(context.getResources(),
+                            R.drawable.ic_nature_people_white_48px, context.getTheme());
 
-            Picasso.with(context).load(imagePath)
+            Picasso.get()
+                    .load(imagePath)
                     .placeholder(placeholder)
                     .into(holder.profile_image);
+        }
+
+
 
     }
 
@@ -174,7 +170,7 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
 
 
 
-        @OnClick({R.id.thanks_button,R.id.thanks_count})
+        @OnClick({R.id.thanks_button, R.id.thanks_count})
         void listItemClick()
         {
             final ShopReview shopReview = dataset.get(getAdapterPosition());

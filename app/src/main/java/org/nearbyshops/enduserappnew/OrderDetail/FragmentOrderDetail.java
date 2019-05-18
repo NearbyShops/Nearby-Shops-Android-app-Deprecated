@@ -2,18 +2,18 @@ package org.nearbyshops.enduserappnew.OrderDetail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import org.nearbyshops.enduserappnew.API.OrderItemService;
+import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailNew;
@@ -21,33 +21,28 @@ import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Endpoints.OrderItemEndPoint;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.OrderItemService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopService;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
-
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sumeet on 15/11/16.
  */
 
-public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.OnRefreshListener ,AdapterOrderDetail.NotifyItemClick{
+public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.OnRefreshListener , AdapterOrderDetail.NotifyItemClick{
 
     Order order;
 
-    @Inject OrderItemService orderItemService;
+    @Inject
+    OrderItemService orderItemService;
 
     RecyclerView recyclerView;
     AdapterOrderDetail adapter;

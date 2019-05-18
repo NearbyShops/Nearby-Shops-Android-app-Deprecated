@@ -5,7 +5,7 @@ import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlob
 
 public interface listItemMarketNotifications
 {
-    void listItemClick(ServiceConfigurationGlobal configurationGlobal,int position);
+    void listItemClick(ServiceConfigurationGlobal configurationGlobal, int position);
     void selectMarketSuccessful(ServiceConfigurationGlobal configurationGlobal, int position);
     void showMessage(String message);
 }

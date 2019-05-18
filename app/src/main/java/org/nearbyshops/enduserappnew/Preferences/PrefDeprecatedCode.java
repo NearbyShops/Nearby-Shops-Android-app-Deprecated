@@ -1,5 +1,11 @@
 package org.nearbyshops.enduserappnew.Preferences;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import org.nearbyshops.enduserappnew.R;
+
+import static android.content.Context.MODE_PRIVATE;
+
 public class PrefDeprecatedCode {
 
 
@@ -10,6 +16,36 @@ public class PrefDeprecatedCode {
 //    public static final String DELIVERY_RANGE_MIN_KEY = "deliveryRagneMinKey";
 //    public static final String PROXIMITY_KEY = "proximityKey";
 
+
+
+
+
+//
+//
+//
+//    public static void saveServiceLightStatus(Context context, int status)
+//    {
+//
+//        // get a handle to shared Preference
+//        SharedPreferences sharedPref;
+//
+//        sharedPref = context.getSharedPreferences(
+//                context.getString(R.string.preference_file_name),
+//                MODE_PRIVATE);
+//
+//        // write to the shared preference
+//        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.putInt("service_light_status",status);
+//        editor.apply();
+//    }
+//
+//
+//
+//    public static int getServiceLightStatus(Context context)
+//    {
+//        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+//        return sharedPref.getInt("service_light_status", 3);
+//    }
 
 
 

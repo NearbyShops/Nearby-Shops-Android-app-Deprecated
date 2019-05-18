@@ -3,11 +3,6 @@ package org.nearbyshops.enduserappnew.EditProfile.ChangeEmail;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,32 +11,33 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnTextChanged;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
-
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.UserService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.UserServiceGlobal;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnTextChanged;
-import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import javax.inject.Inject;
 
 /**
  * Created by sumeet on 27/6/17.
@@ -56,9 +52,11 @@ public class FragmentChangeEmail extends Fragment {
     TextView nextButton;
 
 
-    @BindView(R.id.text_input_email) TextInputLayout emailLayout;
+    @BindView(R.id.text_input_email)
+    TextInputLayout emailLayout;
 
-    @BindView(R.id.email) TextInputEditText email;
+    @BindView(R.id.email)
+    TextInputEditText email;
     @BindView(R.id.password) TextInputEditText password;
 
     @BindView(R.id.check_icon) ImageView checkIcon;
@@ -88,7 +86,8 @@ public class FragmentChangeEmail extends Fragment {
     public FragmentChangeEmail() {
 
         DaggerComponentBuilder.getInstance()
-                .getNetComponent().Inject(this);
+                .getNetComponent()
+                .Inject(this);
 
     }
 

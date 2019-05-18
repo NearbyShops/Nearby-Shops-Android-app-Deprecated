@@ -3,7 +3,7 @@
 
 
 
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -11,14 +11,14 @@
     android:fitsSystemWindows="true"
     android:id="@+id/coordinatorLayout">
 
-    <android.support.design.widget.AppBarLayout
+    <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+    <com.google.android.material.appbar.AppBarLayout
         android:fitsSystemWindows="true"
         android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="wrap_content">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content" />
 
             <!--android:maxHeight="300dp"-->
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:layout_collapseMode="pin"
@@ -66,9 +66,11 @@
 
             <!--app:layout_scrollFlags="scroll|enterAlways"-->
 
-        </android.support.design.widget.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-    </android.support.design.widget.AppBarLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <!--Item profile Picture-->
@@ -95,10 +97,7 @@
 
 
 
-    <android.support.v4.widget.NestedScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -209,9 +208,9 @@
                 android:layout_height="wrap_content" />
 
 
-            <android.support.v7.widget.RecyclerView
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/item_specifications"
                 android:id="@+id/recyclerview_item_specifications"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -247,13 +246,14 @@
         </LinearLayout>
 
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 
 
 
-    <android.support.design.widget.FloatingActionButton
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:contentDescription=""
         app:layout_anchor="@id/content_item_detail"
@@ -266,4 +266,4 @@
 
 
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -3,47 +3,39 @@ package org.nearbyshops.enduserappnew.MarketDetail;
 import android.app.Dialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.google.gson.Gson;
 import com.hsalf.smilerating.SmileRating;
 import com.squareup.picasso.Picasso;
-
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API_SDS.MarketReviewService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
 import org.nearbyshops.enduserappnew.ModelReviewMarket.MarketReview;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContractSDS.MarketReviewService;
-import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
-
-import java.text.SimpleDateFormat;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import javax.inject.Inject;
+import java.text.SimpleDateFormat;
 
 import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
@@ -164,7 +156,8 @@ public class RateReviewDialogMarket extends DialogFragment {
                     .create(getResources(),
                             R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
-            Picasso.with(getActivity()).load(imagepath)
+            Picasso.get()
+                    .load(imagepath)
                     .placeholder(placeholder)
                     .into(member_profile_image);
         }
@@ -273,7 +266,7 @@ public class RateReviewDialogMarket extends DialogFragment {
     }
 
 
-    public void setMode(MarketReview reviewForUpdate,boolean isModeEdit, int book_id)
+    public void setMode(MarketReview reviewForUpdate, boolean isModeEdit, int book_id)
     {
 
         this.book_id = book_id;
@@ -312,7 +305,8 @@ public class RateReviewDialogMarket extends DialogFragment {
                     .create(getResources(),
                             R.drawable.ic_nature_people_white_48px, null);
 
-            Picasso.with(getActivity()).load(imagepath)
+            Picasso.get()
+                    .load(imagepath)
                     .placeholder(placeholder)
                     .into(member_profile_image);
         }

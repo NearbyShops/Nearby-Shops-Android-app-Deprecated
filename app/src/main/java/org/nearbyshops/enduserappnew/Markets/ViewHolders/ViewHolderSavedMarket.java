@@ -2,9 +2,6 @@ package org.nearbyshops.enduserappnew.Markets.ViewHolders;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +9,19 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
+import okhttp3.OkHttpClient;
+import org.nearbyshops.enduserappnew.API.LoginUsingOTPService;
+import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
@@ -25,24 +30,15 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.LoginUsingOTPService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ServiceConfigurationService;
-import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
-
-import java.util.Currency;
-import java.util.Locale;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import javax.inject.Inject;
+import java.util.Currency;
+import java.util.Locale;
 
 public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
 
@@ -118,7 +114,7 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
                         R.drawable.ic_nature_people_white_48px, context.getTheme());
 
 
-        Picasso.with(context)
+        Picasso.get()
                 .load(imagePath)
                 .placeholder(placeholder)
                 .into(marketPhoto);
@@ -167,7 +163,7 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
 
 
 
-    void fetchConfiguration(ServiceConfigurationGlobal configurationGlobal)
+    void fetchConfiguration(final ServiceConfigurationGlobal configurationGlobal)
     {
 
 //            PrefGeneral.saveServiceURL(configurationGlobal.getServiceURL(),getApplicationContext());
@@ -258,7 +254,7 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
 
 
 
-    void loginToLocalEndpoint(ServiceConfigurationGlobal configurationGlobal)
+    void loginToLocalEndpoint(final ServiceConfigurationGlobal configurationGlobal)
     {
 
 //        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();

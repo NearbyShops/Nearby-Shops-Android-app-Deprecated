@@ -2,9 +2,6 @@ package org.nearbyshops.enduserappnew.Model;
 
 
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.sql.Timestamp;
 
 public class Shop{

@@ -3,26 +3,23 @@ package org.nearbyshops.enduserappnew.Markets.ViewHolders;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
-
 import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfileGlobal;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
 
@@ -65,11 +62,11 @@ public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
         userID.setText("User ID : " + String.valueOf(user.getUserID()));
 
 
-        Drawable placeholder = ContextCompat.getDrawable(context,R.drawable.ic_nature_people_white_48px);
+        Drawable placeholder = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);
         String imagePath = PrefServiceConfig.getServiceURL_SDS(context) + "/api/v1/User/Image/" + "five_hundred_"+ user.getProfileImagePath() + ".jpg";
 
 
-        Picasso.with(context)
+        Picasso.get()
                 .load(imagePath)
                 .placeholder(placeholder)
                 .into(profileImage);
@@ -78,6 +75,8 @@ public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
 //        phone.setText(user.getPhone());
         userName.setText(user.getName());
     }
+
+
 
 
 

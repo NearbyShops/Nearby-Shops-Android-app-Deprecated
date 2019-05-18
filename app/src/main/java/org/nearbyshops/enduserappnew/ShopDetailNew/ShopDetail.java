@@ -1,27 +1,11 @@
 package org.nearbyshops.enduserappnew.ShopDetailNew;
 
-import android.app.SearchManager;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
-import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.PagerAdapter;
-import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragmentNew;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
-import org.nearbyshops.enduserappnew.R;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
-
-import static org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetailFragment.TAG_JSON_STRING;
+import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
+import org.nearbyshops.enduserappnew.R;
 
 
 public class ShopDetail extends AppCompatActivity {

@@ -1,80 +1,62 @@
 package org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple;
 
 import android.Manifest;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.location.LocationAvailability;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import com.google.android.gms.location.*;
 import com.wunderlist.slidinglayer.SlidingLayer;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-
+import org.nearbyshops.enduserappnew.API.ItemCategoryService;
+import org.nearbyshops.enduserappnew.API.ItemService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.EventBus.LocationPermissionGranted;
-import org.nearbyshops.enduserappnew.FilterItemsBySpecifications.FilterItemsActivity;
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
-import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyHeaderChanged;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ModelUtility.HeaderItemsList;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.SlidingLayerSort.SlidingLayerSortItems;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.SlidingLayerSort.UtilitySortItemsByCategory;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemEndPoint;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemCategoryService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ItemService;
-import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
-import org.nearbyshops.enduserappnew.Markets.MarketsFragment;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.Items.SlidingLayerSort.UtilitySortItemsByCategory;
-
-import java.util.ArrayList;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static org.nearbyshops.enduserappnew.Home.TAG_MARKET_FRAGMENT;
-import static org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesSimple.TAG_SLIDING;
+import javax.inject.Inject;
+import java.util.ArrayList;
+
+import static org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCat.TAG_SLIDING;
 
 /**
  * Created by sumeet on 2/12/16.
@@ -84,13 +66,10 @@ import static org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCatego
 
 
 
-
-
-
 public class ItemCategoriesFragmentSimple extends Fragment implements
         LocationUpdated,
         SwipeRefreshLayout.OnRefreshListener,
-        AdapterSimple.NotificationsFromAdapter , NotifyBackPressed , NotifySort,NotifySearch {
+        AdapterSimple.NotificationsFromAdapter , NotifyBackPressed, NotifySort, NotifySearch {
 
     boolean isDestroyed = false;
 
@@ -102,7 +81,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
     int fetched_items_count = 0;
 
     @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
-    @BindView(R.id.recycler_view) RecyclerView itemCategoriesList;
+    @BindView(R.id.recycler_view)
+    RecyclerView itemCategoriesList;
 
     ArrayList<Object> dataset = new ArrayList<>();
     ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
@@ -112,8 +92,11 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
     GridLayoutManager layoutManager;
     AdapterSimple listAdapter;
 
-    @Inject ItemCategoryService itemCategoryService;
-    @Inject ItemService itemService;
+    @Inject
+    ItemCategoryService itemCategoryService;
+
+    @Inject
+    ItemService itemService;
 
     @BindView(R.id.shop_count_indicator) TextView itemHeader;
     @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
@@ -304,7 +287,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
-    @OnClick({R.id.icon_sort,R.id.text_sort})
+    @OnClick({R.id.icon_sort, R.id.text_sort})
     void sortClick()
     {
         slidingLayer.openLayer(true);
@@ -312,12 +295,14 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
+
+
 //    @OnClick({R.id.icon_filter,R.id.text_filter})
     void filterClick()
     {
-        Intent intent = new Intent(getActivity(), FilterItemsActivity.class);
-        intent.putExtra("ItemCatID",currentCategory.getItemCategoryID());
-        startActivityForResult(intent,123);
+//        Intent intent = new Intent(getActivity(), FilterItemsActivity.class);
+//        intent.putExtra("ItemCatID",currentCategory.getItemCategoryID());
+//        startActivityForResult(intent,123);
     }
 
 
@@ -350,7 +335,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
         listAdapter = new AdapterSimple(dataset,getActivity(),this,this);
         itemCategoriesList.setAdapter(listAdapter);
 
-        layoutManager = new GridLayoutManager(getActivity(),6, LinearLayoutManager.VERTICAL,false);
+        layoutManager = new GridLayoutManager(getActivity(),6, RecyclerView.VERTICAL,false);
         itemCategoriesList.setLayoutManager(layoutManager);
 
 
@@ -548,9 +533,6 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
     public void onDestroyView() {
         super.onDestroyView();
         isDestroyed = true;
-
-        stopLocationUpdates();
-
     }
 
 
@@ -801,7 +783,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
-    void makeRequestItem(boolean clearDatasetLocal, boolean resetOffset)
+    void makeRequestItem(final boolean clearDatasetLocal, boolean resetOffset)
     {
 
         if(resetOffset)
@@ -815,9 +797,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 //                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
 
 
+
         String current_sort = "";
 
-        current_sort = UtilitySortItemsByCategory.getSort(getContext()) + " " + UtilitySortItemsByCategory.getAscending(getContext());
+        current_sort = UtilitySortItemsByCategory.getSort(getActivity()) + " " + UtilitySortItemsByCategory.getAscending(getActivity());
 
         Call<ItemEndPoint> endPointCall = null;
 
@@ -1073,186 +1056,12 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void permissionGranted(LocationPermissionGranted granted) {
-
-//        showToastMessage("Granted event bus !");
-//        requestLocationUpdates();
-    }
-
-
-
-
-
-
-
-
-
-
-
-    LocationRequest mLocationRequestTwo;
-    LocationCallback locationCallback;
-
-
-
-    public void requestLocationUpdates()
-    {
-
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-
-
-//            ActivityCompat.requestPermissions(getActivity(),
-//                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},REQUEST_CODE_ASK_PERMISSION);
-
-
-            return;
-        }
-
-
-
-
-
-        progressBarFetchingLocation.setVisibility(View.VISIBLE);
-
-
-
-
-
-        mLocationRequestTwo = LocationRequest.create();
-        mLocationRequestTwo.setInterval(10000);
-        mLocationRequestTwo.setSmallestDisplacement(100);
-        mLocationRequestTwo.setFastestInterval(5000);
-        mLocationRequestTwo.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-
-//        locationCallback = new MyLocationCallback();
-
-        locationCallback = new LocationCallback(){
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                super.onLocationResult(locationResult);
-
-                if(isDestroyed)
-                {
-                    return;
-                }
-
-
-                progressBarFetchingLocation.setVisibility(View.GONE);
-
-
-
-                double lat = 0;
-                double lon = 0;
-
-                Location location = locationResult.getLocations().get(locationResult.getLocations().size()-1);
-
-                lat = location.getLatitude();
-                lon = location.getLongitude();
-
-
-
-//                double lat = locationResult.getLastLocation().getLatitude();
-//                double lon = locationResult.getLastLocation().getLongitude();
-
-
-
 //
-//                double displacement = UtilityFunctions.calculateDistance(lat,lon,
-//                        PrefLocation.getLatitideCurrent(getActivity()),
-//                        PrefLocation.getLongitudeCurrent(getActivity()));
-
-                Location previousLocation = new Location("abcd");
-                previousLocation.setLatitude(PrefLocation.getLatitude(getActivity()));
-                previousLocation.setLongitude(PrefLocation.getLongitude(getActivity()));
-
-                PrefLocation.saveLatLonCurrent(lat,lon,getActivity());
-
-                Location currentLocation = new Location("crrent");
-                currentLocation.setLatitude(lat);
-                currentLocation.setLongitude(lon);
-
-
-
-
-
-                double distanceChanged = currentLocation.distanceTo(previousLocation);
-
-//                showToastMessage("Distance Changed : " + String.valueOf(distanceChanged));
-
-                if(distanceChanged > 100)
-                {
-//                    showToastMessage("Refreshed !");
-                    makeRefreshNetworkCall();
-                }
-
-
-
-                stopLocationUpdates();
-
-
-//                showToastMessage("Location Updated !");
-            }
-
-
-            @Override
-            public void onLocationAvailability(LocationAvailability locationAvailability) {
-                super.onLocationAvailability(locationAvailability);
-            }
-        };
-
-
-        LocationServices.getFusedLocationProviderClient(getActivity())
-                .requestLocationUpdates(mLocationRequestTwo,locationCallback, null);
-    }
-
-
-
-
-
-
-
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void permissionGranted(LocationPermissionGranted granted) {
 //
-//        showToastMessage("Permissions Result !");
-//
-//
-//        if(requestCode==REQUEST_CODE_ASK_PERMISSION)
-//        {
-//            // If request is cancelled, the result arrays are empty.
-//            if (grantResults.length > 0
-//                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                // permission was granted, yay! Do the
-//                // contacts-related task you need to do.
-//
-//                requestLocationUpdates();
-//
-//
-//            } else {
-//                // permission denied, boo! Disable the
-//                // functionality that depends on this permission.
-//
-//                showToastMessage("The location permission is essential without it the app cannot work !");
-//
-//            }
-//            return;
-//
-//
-//
-//        }
-//
+////        showToastMessage("Granted event bus !");
+////        requestLocationUpdates();
 //    }
 
 
@@ -1260,18 +1069,6 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
-
-
-
-    void stopLocationUpdates()
-    {
-
-        if(locationCallback!=null)
-        {
-            LocationServices.getFusedLocationProviderClient(getActivity())
-                    .removeLocationUpdates(locationCallback);
-        }
-    }
 
 
 

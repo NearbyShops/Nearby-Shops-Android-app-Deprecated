@@ -1,23 +1,20 @@
 package org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-
-import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
-import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
+import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.R;
 
 /**
  * Created by sumeet on 15/9/16.
@@ -114,18 +111,18 @@ public class SlidingLayerSortOrders extends Fragment {
         }
         else if (currentSort.equals(SORT_BY_DATE_TIME))
         {
-            sort_by_date_time.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            sort_by_date_time.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
             sort_by_date_time.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
         }
         else if(currentSort.equals(SORT_BY_PINCODE))
         {
-            sort_by_pincode.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            sort_by_pincode.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
             sort_by_pincode.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
         }
         else if(currentSort.equals(SORT_BY_STATUS))
         {
-            sort_by_status.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            sort_by_status.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
             sort_by_status.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
         }
@@ -134,12 +131,12 @@ public class SlidingLayerSortOrders extends Fragment {
 
         if(currentAscending.equals(SORT_ASCENDING))
         {
-            sort_ascending.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            sort_ascending.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
             sort_ascending.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelectedAscending));
         }
         else if(currentAscending.equals(SORT_DESCENDING))
         {
-            sort_descending.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            sort_descending.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
             sort_descending.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelectedAscending));
         }
     }
@@ -150,7 +147,7 @@ public class SlidingLayerSortOrders extends Fragment {
     void sortByNameClick(View view)
     {
         clearSelectionSort();
-        sort_by_distance.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        sort_by_distance.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         sort_by_distance.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
         PrefSortOrders.saveSort(getActivity(), SORT_BY_DISTANCE);
@@ -168,7 +165,7 @@ public class SlidingLayerSortOrders extends Fragment {
     void sortByCreated(View view)
     {
         clearSelectionSort();
-        sort_by_date_time.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        sort_by_date_time.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         sort_by_date_time.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
         PrefSortOrders.saveSort(getActivity(), SORT_BY_DATE_TIME);
@@ -186,7 +183,7 @@ public class SlidingLayerSortOrders extends Fragment {
     void sortByShopCount(View view)
     {
         clearSelectionSort();
-        sort_by_status.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        sort_by_status.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         sort_by_status.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
         PrefSortOrders.saveSort(getActivity(), SORT_BY_STATUS);
@@ -203,7 +200,7 @@ public class SlidingLayerSortOrders extends Fragment {
     void sortByPriceAvg(View view)
     {
         clearSelectionSort();
-        sort_by_pincode.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        sort_by_pincode.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         sort_by_pincode.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelected));
 
         PrefSortOrders.saveSort(getActivity(), SORT_BY_PINCODE);
@@ -223,7 +220,7 @@ public class SlidingLayerSortOrders extends Fragment {
     void ascendingClick(View view)
     {
         clearSelectionAscending();
-        sort_ascending.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        sort_ascending.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         sort_ascending.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelectedAscending));
 
 
@@ -241,7 +238,7 @@ public class SlidingLayerSortOrders extends Fragment {
     void descendingClick(View view)
     {
         clearSelectionAscending();
-        sort_descending.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        sort_descending.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         sort_descending.setBackgroundColor(ContextCompat.getColor(getActivity(),colorSelectedAscending));
 
 
@@ -262,15 +259,15 @@ public class SlidingLayerSortOrders extends Fragment {
 
     void clearSelectionSort()
     {
-        sort_by_distance.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
-        sort_by_date_time.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
-        sort_by_status.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
-        sort_by_pincode.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+        sort_by_distance.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+        sort_by_date_time.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+        sort_by_status.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+        sort_by_pincode.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
-        sort_by_distance.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-        sort_by_date_time.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-        sort_by_status.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-        sort_by_pincode.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
+        sort_by_distance.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        sort_by_date_time.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        sort_by_status.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        sort_by_pincode.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
 
     }
 
@@ -278,11 +275,11 @@ public class SlidingLayerSortOrders extends Fragment {
 
     void clearSelectionAscending()
     {
-        sort_ascending.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
-        sort_descending.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+        sort_ascending.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+        sort_descending.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
-        sort_ascending.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-        sort_descending.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
+        sort_ascending.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        sort_descending.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
     }
 
 
@@ -359,14 +356,14 @@ public class SlidingLayerSortOrders extends Fragment {
         {
             clearFilterOrderStatus.setVisibility(View.GONE);
 
-            filterPending.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-            filterPending.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+            filterPending.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+            filterPending.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
-            filterCancelled.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-            filterCancelled.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+            filterCancelled.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+            filterCancelled.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
-            filterComplete.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-            filterComplete.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+            filterComplete.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+            filterComplete.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
 
         }
@@ -375,14 +372,14 @@ public class SlidingLayerSortOrders extends Fragment {
             clearFilterOrderStatus.setVisibility(View.VISIBLE);
 
 
-            filterPending.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.phonographyBlue));
-            filterPending.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            filterPending.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.phonographyBlue));
+            filterPending.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 
-            filterCancelled.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-            filterCancelled.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+            filterCancelled.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+            filterCancelled.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
-            filterComplete.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-            filterComplete.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+            filterComplete.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+            filterComplete.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
 
         }
@@ -391,14 +388,14 @@ public class SlidingLayerSortOrders extends Fragment {
             clearFilterOrderStatus.setVisibility(View.VISIBLE);
 
 
-            filterPending.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-            filterPending.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+            filterPending.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+            filterPending.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
-            filterCancelled.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-            filterCancelled.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+            filterCancelled.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+            filterCancelled.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
-            filterComplete.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.phonographyBlue));
-            filterComplete.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            filterComplete.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.phonographyBlue));
+            filterComplete.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 
         }
         else if(orderStatus == FILTER_BY_STATUS_CANCELLED)
@@ -406,14 +403,14 @@ public class SlidingLayerSortOrders extends Fragment {
             clearFilterOrderStatus.setVisibility(View.VISIBLE);
 
 
-            filterPending.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-            filterPending.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+            filterPending.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+            filterPending.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
-            filterCancelled.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.phonographyBlue));
-            filterCancelled.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            filterCancelled.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.phonographyBlue));
+            filterCancelled.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 
-            filterComplete.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-            filterComplete.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+            filterComplete.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+            filterComplete.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
         }
 
@@ -472,11 +469,11 @@ public class SlidingLayerSortOrders extends Fragment {
         {
             clearFilterDeliveryType.setVisibility(View.GONE);
 
-            filterPickFromShop.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-            filterPickFromShop.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+            filterPickFromShop.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+            filterPickFromShop.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
-            filterHomeDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-            filterHomeDelivery.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+            filterHomeDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+            filterHomeDelivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
         }
         else if(deliveryType==FILTER_BY_PICK_FROM_SHOP)
@@ -484,21 +481,21 @@ public class SlidingLayerSortOrders extends Fragment {
 
             clearFilterDeliveryType.setVisibility(View.VISIBLE);
 
-            filterPickFromShop.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.buttonColor));
-            filterPickFromShop.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            filterPickFromShop.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.buttonColor));
+            filterPickFromShop.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 
-            filterHomeDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-            filterHomeDelivery.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+            filterHomeDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+            filterHomeDelivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
         }
         else if(deliveryType==FILTER_BY_HOME_DELIVERY)
         {
             clearFilterDeliveryType.setVisibility(View.VISIBLE);
 
-            filterPickFromShop.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
-            filterPickFromShop.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
+            filterPickFromShop.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+            filterPickFromShop.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
 
-            filterHomeDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.buttonColor));
-            filterHomeDelivery.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+            filterHomeDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.buttonColor));
+            filterHomeDelivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 
         }
     }

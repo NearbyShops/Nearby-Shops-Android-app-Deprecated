@@ -7,35 +7,36 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.graphics.Palette;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RatingBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.palette.graphics.Palette;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-
+import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API.FavouriteShopService;
+import org.nearbyshops.enduserappnew.API.ShopImageService;
+import org.nearbyshops.enduserappnew.API.ShopReviewService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Model.ShopImage;
 import org.nearbyshops.enduserappnew.ModelEndPoints.FavouriteShopEndpoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopImageEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopReviewEndPoint;
+import org.nearbyshops.enduserappnew.ModelImages.ShopImage;
 import org.nearbyshops.enduserappnew.ModelReviewShop.FavouriteShop;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
@@ -43,28 +44,15 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.FavouriteShopService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopImageService;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.ShopReviewService;
-import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
-import org.nearbyshops.enduserappnew.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduserappnew.ShopImages.ShopImageList;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import javax.inject.Inject;
+
 import static android.app.Activity.RESULT_OK;
-
-
-
 
 
 public class ShopDetailFragment extends Fragment
@@ -98,11 +86,15 @@ public class ShopDetailFragment extends Fragment
 
 
 
-    @BindView(R.id.shop_profile_photo) ImageView shopProfilePhoto;
-    @BindView(R.id.image_count) TextView imagesCount;
+    @BindView(R.id.shop_profile_photo)
+    ImageView shopProfilePhoto;
+    @BindView(R.id.image_count)
+    TextView imagesCount;
 
-    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
-    @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
 
 
     @BindView(R.id.shop_name) TextView shopName;
@@ -126,17 +118,20 @@ public class ShopDetailFragment extends Fragment
     @BindView(R.id.delivery_charge_text) TextView deliveryChargeText;
     @BindView(R.id.free_delivery_info) TextView freeDeliveryInfo;
 
-    @BindView(R.id.shop_reviews) RecyclerView shopReviews;
+    @BindView(R.id.shop_reviews)
+    RecyclerView shopReviews;
 
 
 
 
-    @BindView(R.id.user_rating_review) LinearLayout user_review_ratings_block;
+    @BindView(R.id.user_rating_review)
+    LinearLayout user_review_ratings_block;
     @BindView(R.id.edit_review_text) TextView edit_review_text;
     @BindView(R.id.ratingBar_rate) RatingBar ratingBar_rate;
 
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @BindView(R.id.delivery_block) LinearLayout deliveryBlock;
 
@@ -218,7 +213,7 @@ public class ShopDetailFragment extends Fragment
 
 
         String shopJson = getActivity().getIntent().getStringExtra(TAG_JSON_STRING);
-        shop = UtilityFunctions.provideGson().fromJson(shopJson,Shop.class);
+        shop = UtilityFunctions.provideGson().fromJson(shopJson, Shop.class);
 
 
 
@@ -335,11 +330,12 @@ public class ShopDetailFragment extends Fragment
                 .create(getResources(),
                         R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
-        Picasso.with(getActivity()).load(imagePath)
+        Picasso.get().load(imagePath)
                 .placeholder(placeholder)
                 .into(shopProfilePhoto);
 
-        Picasso.with(getActivity())
+
+        Picasso.get()
                 .load(imagePath)
                 .placeholder(placeholder)
                 .into(this);
@@ -525,18 +521,18 @@ public class ShopDetailFragment extends Fragment
         }
     }
 
-
-
-
     @Override
-    public void onBitmapFailed(Drawable errorDrawable) {
+    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
 
     }
+
 
     @Override
     public void onPrepareLoad(Drawable placeHolderDrawable) {
 
     }
+
+
 
 
 
@@ -619,7 +615,7 @@ public class ShopDetailFragment extends Fragment
 
 
 
-    @OnClick({R.id.phone_icon,R.id.phone})
+    @OnClick({R.id.phone_icon, R.id.phone})
     void phoneClick()
     {
         dialPhoneNumber(shop.getCustomerHelplineNumber());
@@ -628,7 +624,7 @@ public class ShopDetailFragment extends Fragment
 
 
 
-    @OnClick({R.id.phone_icon_delivery,R.id.phone_delivery})
+    @OnClick({R.id.phone_icon_delivery, R.id.phone_delivery})
     void phoneDeliveryClick()
     {
         dialPhoneNumber(shop.getDeliveryHelplineNumber());
@@ -1064,7 +1060,7 @@ public class ShopDetailFragment extends Fragment
                                                 R.drawable.ic_nature_people_white_48px,null);
 
 
-                                Picasso.with(getActivity())
+                                Picasso.get()
                                         .load(imagepath)
                                         .placeholder(placeholder)
                                         .into(member_profile_image);

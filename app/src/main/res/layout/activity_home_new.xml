@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesSimple">
+    android:layout_height="match_parent">
 
 
     <!--<android.support.design.widget.AppBarLayout-->
@@ -57,31 +54,52 @@
 
 
 
-    <com.roughike.bottombar.BottomBar
+    <!--<com.roughike.bottombar.BottomBar-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--android:id="@+id/bottomBar"-->
+        <!--android:elevation="2dp"-->
+        <!--app:bb_activeTabColor="@color/orange"-->
+        <!--android:gravity="bottom"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="56dp"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--app:bb_tabXmlResource="@xml/bottom_bar_options" />-->
+
+
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        app:labelVisibilityMode="labeled"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="?android:attr/windowBackground"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/bottomBar"
-        android:elevation="2dp"
-        app:bb_activeTabColor="@color/orange"
-        android:gravity="bottom"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_gravity="bottom"
-        app:bb_tabXmlResource="@xml/bottom_bar_options" />
-
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_bottom_navigation" />
 
 
+    <!--<com.google.android.material.bottomnavigation.BottomNavigationView-->
+        <!--android:id="@+id/nav_view"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="0dp"-->
+        <!--android:layout_marginStart="0dp"-->
+        <!--android:background="?android:attr/windowBackground"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:menu="@menu/bottom_nav_menu"/>-->
+
+
     <FrameLayout
         android:id="@+id/fragment_container"
-        app:layout_constraintBottom_toTopOf="@id/bottomBar"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -89,8 +107,7 @@
         android:layout_height="0dp" />
 
 
-
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

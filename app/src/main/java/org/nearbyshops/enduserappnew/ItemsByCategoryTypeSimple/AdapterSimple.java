@@ -3,38 +3,33 @@ package org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.constraint.ConstraintLayout;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
-
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Utility.HeaderItemsList;
-import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.Model.ItemCategory;
-import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopItemByItem.ShopsForItemSwipe;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.ShopItemByItemNew.ShopItemByItemNew;
-
-import java.util.List;
-
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ModelUtility.HeaderItemsList;
+import org.nearbyshops.enduserappnew.Model.Item;
+import org.nearbyshops.enduserappnew.Model.ItemCategory;
+import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ShopItemByItemNew.ShopItemByItemNew;
+
+import java.util.List;
 
 /**
  * Created by sumeet on 19/12/15.
@@ -260,7 +255,9 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     .create(context.getResources(),
                             R.drawable.ic_nature_people_white_48px, context.getTheme());
 
-            Picasso.with(context).load(imagePath)
+
+
+            Picasso.get().load(imagePath)
                     .placeholder(placeholder)
                     .into(holder.categoryImage);
 
@@ -276,6 +273,9 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         @BindView(R.id.itemCategoryListItem) ConstraintLayout itemCategoryListItem;
         @BindView(R.id.categoryImage) ImageView categoryImage;
         @BindView(R.id.cardview) CardView cardView;
+
+
+
 
         public ViewHolderItemCategory(View itemView) {
             super(itemView);
@@ -329,7 +329,7 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if(item.getRt_rating_count()==0)
         {
             holder.itemRating.setText(" New ");
-            holder.itemRating.setBackgroundColor(ContextCompat.getColor(context,R.color.phonographyBlue));
+            holder.itemRating.setBackgroundColor(ContextCompat.getColor(context, R.color.phonographyBlue));
             holder.ratingCount.setVisibility(View.GONE);
         }
         else
@@ -339,7 +339,7 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             holder.itemRating.setText(String.format("%.2f",item.getRt_rating_avg()));
             holder.ratingCount.setText("( " + String.valueOf((int)item.getRt_rating_count()) + " Ratings )");
 
-            holder.itemRating.setBackgroundColor(ContextCompat.getColor(context,R.color.gplus_color_2));
+            holder.itemRating.setBackgroundColor(ContextCompat.getColor(context, R.color.gplus_color_2));
             holder.ratingCount.setVisibility(View.VISIBLE);
 
         }
@@ -355,7 +355,9 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 .create(context.getResources(),
                         R.drawable.ic_nature_people_white_48px, context.getTheme());
 
-        Picasso.with(context)
+
+
+        Picasso.get()
                 .load(imagePath)
                 .placeholder(drawable)
                 .into(holder.categoryImage);
@@ -403,15 +405,13 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 //                    intent.putExtra(ShopsForItemSwipe.ITEM_INTENT_KEY,(Item)dataset.get(getLayoutPosition()));
 //                    context.startActivity(intent);
 
-                    Intent intent = new Intent(context,ShopItemByItemNew.class);
+                    Intent intent = new Intent(context, ShopItemByItemNew.class);
 
                     Gson gson = UtilityFunctions.provideGson();
                     String jsonString = gson.toJson((Item)dataset.get(getLayoutPosition()));
                     intent.putExtra("item_json",jsonString);
 
                     context.startActivity(intent);
-
-
 
                 }
             }

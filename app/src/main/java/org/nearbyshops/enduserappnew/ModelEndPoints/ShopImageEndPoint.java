@@ -1,8 +1,7 @@
 package org.nearbyshops.enduserappnew.ModelEndPoints;
 
 
-
-import org.nearbyshops.enduserappnew.Model.ShopImage;
+import org.nearbyshops.enduserappnew.ModelImages.ShopImage;
 
 import java.util.List;
 

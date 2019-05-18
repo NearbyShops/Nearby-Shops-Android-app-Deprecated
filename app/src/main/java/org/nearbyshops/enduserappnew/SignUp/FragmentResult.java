@@ -1,21 +1,18 @@
 package org.nearbyshops.enduserappnew.SignUp;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-
-import org.nearbyshops.enduserappnew.ModelRoles.User;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
-
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
 
 /**
  * Created by sumeet on 27/6/17.
@@ -48,12 +45,12 @@ public class FragmentResult extends Fragment {
 //        {
 //            User user = ((ReadWriteUser) getActivity()).getSignUpProfile();
 
-            if(user.getRt_registration_mode()==User.REGISTRATION_MODE_EMAIL)
+            if(user.getRt_registration_mode()== User.REGISTRATION_MODE_EMAIL)
             {
                 accountCredentials.setText("E-mail : " + user.getEmail()
                 + "\nPassword : XXXXX (Password is hidden)");
             }
-            else if(user.getRt_registration_mode()==User.REGISTRATION_MODE_PHONE)
+            else if(user.getRt_registration_mode()== User.REGISTRATION_MODE_PHONE)
             {
                 accountCredentials.setText("Phone : " + user.getPhone()
                         + "\nPassword : XXXXX (Password is hidden)");

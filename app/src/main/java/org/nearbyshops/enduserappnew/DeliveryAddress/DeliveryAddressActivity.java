@@ -3,18 +3,20 @@ package org.nearbyshops.enduserappnew.DeliveryAddress;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.nearbyshops.enduserappnew.CommonViewHolders.EmptyScreenMarker;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.EmptyScreenMarker;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress.EditAddressFragment;
 import org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress.EditDeliveryAddress;
@@ -23,23 +25,16 @@ import org.nearbyshops.enduserappnew.DeliveryAddress.viewHolder.ViewHolderDelive
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.DeliveryAddressService;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
-import butterknife.ButterKnife;
-import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DeliveryAddressActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ViewHolderDeliveryAdddress.NotifyDeliveryAddress, View.OnClickListener {
@@ -66,7 +61,8 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
     public DeliveryAddressActivity() {
 
         DaggerComponentBuilder.getInstance()
-                .getNetComponent().Inject(this);
+                .getNetComponent()
+                .Inject(this);
 
     }
 
@@ -200,12 +196,12 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
                     return;
                 }
 
+                dataset.clear();
 
                 if(response.code()==200)
                 {
                     if(response.body()!=null)
                     {
-                        dataset.clear();
                         dataset.addAll(response.body());
 
                         if(response.body().size()==0)
@@ -218,11 +214,13 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
                         dataset.add(new EmptyScreenMarker());
                     }
 
-
+                }
+                else if(response.code()==204)
+                {
+                    dataset.add(new EmptyScreenMarker());
                 }
                 else
                 {
-                    dataset.clear();
                     showToastMessage("Failed Code : " + response.code());
                 }
 
@@ -243,7 +241,7 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
 
 
-                showToastMessage("Network Request failed !");
+                showToastMessage("Network Request failed ... Check your connection !");
                 swipeContainer.setRefreshing(false);
 
             }
@@ -258,7 +256,7 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 //        LoginDialog loginDialog = new LoginDialog();
 //        loginDialog.show(fm,"serviceUrl");
 
-        Intent intent = new Intent(this,Login.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 
@@ -284,12 +282,18 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 //        intent.putExtra(EditAddressActivity.DELIVERY_ADDRESS_INTENT_KEY,deliveryAddress);
 //        startActivity(intent);
 
+
+        String json = UtilityFunctions.provideGson().toJson(deliveryAddress);
+
+
         Intent intent = new Intent(this,EditDeliveryAddress.class);
-        intent.putExtra(EditAddressFragment.EDIT_MODE_INTENT_KEY,EditAddressFragment.MODE_UPDATE);
-        intent.putExtra(EditAddressFragment.DELIVERY_ADDRESS_INTENT_KEY,deliveryAddress);
+        intent.putExtra(EditAddressFragment.EDIT_MODE_INTENT_KEY, EditAddressFragment.MODE_UPDATE);
+        intent.putExtra(EditAddressFragment.DELIVERY_ADDRESS_INTENT_KEY,json);
         startActivity(intent);
 
     }
+
+
 
     @Override
     public void notifyRemove(final DeliveryAddress deliveryAddress, final int position) {
@@ -351,11 +355,19 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
 
 
+
+
+
+
     @Override
     public void notifyListItemClick(DeliveryAddress deliveryAddress) {
 
+
+        String json = UtilityFunctions.provideGson().toJson(deliveryAddress);
+
+
         Intent output = new Intent();
-        output.putExtra("output",deliveryAddress);
+        output.putExtra("output",json);
         setResult(2,output);
         finish();
     }
@@ -369,8 +381,11 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
     @Override
     public void selectButtonClick(DeliveryAddress deliveryAddress, int position) {
+
+        String json = UtilityFunctions.provideGson().toJson(deliveryAddress);
+
         Intent output = new Intent();
-        output.putExtra("output",deliveryAddress);
+        output.putExtra("output",json);
         setResult(2,output);
         finish();
     }
@@ -406,7 +421,7 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 //        startActivity(intent);
 
         Intent intent = new Intent(this,EditDeliveryAddress.class);
-        intent.putExtra(EditAddressFragment.EDIT_MODE_INTENT_KEY,EditAddressFragment.MODE_ADD);
+        intent.putExtra(EditAddressFragment.EDIT_MODE_INTENT_KEY, EditAddressFragment.MODE_ADD);
         startActivity(intent);
 
     }

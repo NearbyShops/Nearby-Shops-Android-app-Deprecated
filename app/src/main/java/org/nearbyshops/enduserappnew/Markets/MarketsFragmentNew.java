@@ -1,27 +1,29 @@
 package org.nearbyshops.enduserappnew.Markets;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.google.gson.Gson;
-
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.MarketDetail.MarketDetail;
 import org.nearbyshops.enduserappnew.MarketDetail.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
@@ -31,26 +33,14 @@ import org.nearbyshops.enduserappnew.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.Utility.DividerItemDecoration;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-
-
-
-
-
 
 public class MarketsFragmentNew extends Fragment implements
-        listItemMarketNotifications,SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, LocationUpdated {
+        listItemMarketNotifications, SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, LocationUpdated {
 
 
 
@@ -111,7 +101,7 @@ public class MarketsFragmentNew extends Fragment implements
 
 
     //        setRetainInstance(true);
-            View rootView = inflater.inflate(R.layout.fragment_services, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_markets, container, false);
             ButterKnife.bind(this,rootView);
 
 
@@ -207,11 +197,12 @@ public class MarketsFragmentNew extends Fragment implements
 
 
         recyclerView.addItemDecoration(
-                new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL_LIST)
+                new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL)
         );
 
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
 
         DisplayMetrics metrics = new DisplayMetrics();
@@ -343,13 +334,18 @@ public class MarketsFragmentNew extends Fragment implements
 
 
 
+
+
     @Override
     public void selectMarketSuccessful(ServiceConfigurationGlobal configurationGlobal, int position) {
+
 
         if(getActivity() instanceof MarketSelected)
         {
             ((MarketSelected) getActivity()).marketSelected();
         }
+
+
     }
 
 

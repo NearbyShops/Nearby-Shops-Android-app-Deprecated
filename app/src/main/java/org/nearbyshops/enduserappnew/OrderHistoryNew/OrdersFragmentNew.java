@@ -3,26 +3,31 @@ package org.nearbyshops.enduserappnew.OrderHistoryNew;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.wunderlist.slidinglayer.SlidingLayer;
-
+import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.API.OrderService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Endpoints.OrderEndPoint;
@@ -30,30 +35,18 @@ import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.OrderDetail.OrderDetail;
 import org.nearbyshops.enduserappnew.OrderDetail.PrefOrderDetail;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.Interfaces.RefreshFragment;
-import org.nearbyshops.enduserappnew.OrderHistoryHD.OrderHistoryHD.OrderHistoryHD;
-import org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort.SlidingLayerSortOrders;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort.PrefSortOrders;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.RetrofitRESTContract.OrderService;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ShopsByCategory.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort.SlidingLayerSortOrders;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.ResponseBody;
+import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, RefreshFragment {
 
@@ -83,7 +76,8 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
     boolean isDestroyed;
 
 
-    @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
+    @BindView(R.id.slidingLayer)
+    SlidingLayer slidingLayer;
     @BindView(R.id.shop_count_indicator) TextView orderCountIndicator;
 
 
@@ -149,6 +143,47 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
     }
 
 
+
+//    int AUTOCOMPLETE_REQUEST_CODE = 1;
+//
+//    @OnClick(R.id.toolbar)
+//    void toolbarClick()
+//    {
+//
+//        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
+//
+//// Start the autocomplete intent.
+//        Intent intent = new Autocomplete.IntentBuilder(
+//                AutocompleteActivityMode.FULLSCREEN, fields)
+//                .build(getActivity());
+//        startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
+//
+//    }
+
+
+
+
+//
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+//            if (resultCode == RESULT_OK) {
+//                Place place = Autocomplete.getPlaceFromIntent(data);
+//                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+//
+//
+//            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+//                // TODO: Handle the error.
+//                Status status = Autocomplete.getStatusFromIntent(data);
+//                Log.i(TAG, status.getStatusMessage());
+//            } else if (resultCode == RESULT_CANCELED) {
+//                // The user canceled the operation.
+//            }
+//        }
+//    }
+
+
+
     void setupSwipeContainer()
     {
         if(swipeContainer!=null) {
@@ -161,6 +196,9 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
         }
 
     }
+
+
+
 
 
     void setupSlidingLayer()
@@ -205,7 +243,7 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
 
-    @OnClick({R.id.icon_sort,R.id.text_sort})
+    @OnClick({R.id.icon_sort, R.id.text_sort})
     void sortClick()
     {
         slidingLayer.openLayer(true);
@@ -301,6 +339,13 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
             public void run() {
                 swipeContainer.setRefreshing(true);
 
+                if(!isVisible())
+                {
+                    return;
+                }
+
+
+
                 onRefresh();
             }
         });
@@ -316,8 +361,15 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 //            Shop currentShop = UtilityShopHome.getShop(getContext());
 
+            User endUser = null;
 
-            User endUser = PrefLogin.getUser(getActivity());
+
+
+            if(getActivity()!=null)
+            {
+                endUser = PrefLogin.getUser(getActivity());
+            }
+
 
             if(endUser==null)
             {
@@ -331,7 +383,12 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
             String current_sort = "";
-            current_sort = PrefSortOrders.getSort(getActivity()) + " " + PrefSortOrders.getAscending(getActivity());
+
+            if(getActivity()!=null)
+            {
+                current_sort = PrefSortOrders.getSort(getActivity()) + " " + PrefSortOrders.getAscending(getActivity());
+            }
+
 
             Integer shopID = null;
 
@@ -357,11 +414,14 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
             Boolean pickFromShop = null;
 
-            if(PrefSortOrders.getFilterByDeliveryType(getActivity())==SlidingLayerSortOrders.FILTER_BY_PICK_FROM_SHOP)
+
+
+
+            if(getActivity()!=null && PrefSortOrders.getFilterByDeliveryType(getActivity())==SlidingLayerSortOrders.FILTER_BY_PICK_FROM_SHOP)
             {
                 pickFromShop=true;
             }
-            else if(PrefSortOrders.getFilterByDeliveryType(getActivity())==SlidingLayerSortOrders.FILTER_BY_HOME_DELIVERY)
+            else if(getActivity()!=null && PrefSortOrders.getFilterByDeliveryType(getActivity())==SlidingLayerSortOrders.FILTER_BY_HOME_DELIVERY)
             {
                 pickFromShop=false;
             }
@@ -370,11 +430,11 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
             Boolean ordersPendingStatus = null;
 
-            if(PrefSortOrders.getFilterByOrderStatus(getActivity())==SlidingLayerSortOrders.FILTER_BY_STATUS_PENDING)
+            if(getActivity()!=null && PrefSortOrders.getFilterByOrderStatus(getActivity())==SlidingLayerSortOrders.FILTER_BY_STATUS_PENDING)
             {
                 ordersPendingStatus = true;
             }
-            else if(PrefSortOrders.getFilterByOrderStatus(getActivity())==SlidingLayerSortOrders.FILTER_BY_STATUS_COMPLETE)
+            else if(getActivity()!=null && PrefSortOrders.getFilterByOrderStatus(getActivity())==SlidingLayerSortOrders.FILTER_BY_STATUS_COMPLETE)
             {
                 ordersPendingStatus = false;
             }
@@ -556,10 +616,13 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
 
+
+
+
     @Override
     public void notifyOrderSelected(Order order) {
         PrefOrderDetail.saveOrder(order,getActivity());
-        getActivity().startActivity(new Intent(getActivity(),OrderDetail.class));
+        getActivity().startActivity(new Intent(getActivity(), OrderDetail.class));
     }
 
 
@@ -681,7 +744,9 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 //        }
 
 
-        Intent intent = new Intent(getActivity(),Login.class);
+
+
+        Intent intent = new Intent(getActivity(), Login.class);
         startActivity(intent);
     }
 

@@ -1,18 +1,16 @@
 package org.nearbyshops.enduserappnew.DeliveryAddress.viewHolder;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.R;
-
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.R;
 
 
 public class ViewHolderDeliveryAdddress extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -27,7 +25,8 @@ public class ViewHolderDeliveryAdddress extends RecyclerView.ViewHolder implemen
     @BindView(R.id.phoneNumber) TextView phoneNumber;
     @BindView(R.id.editButton) TextView editButton;
     @BindView(R.id.removeButton) TextView removeButton;
-    @BindView(R.id.list_item_delivery_address) ConstraintLayout listItemDeliveryAddress;
+    @BindView(R.id.list_item_delivery_address)
+    ConstraintLayout listItemDeliveryAddress;
 
 
     private Context context;
@@ -155,7 +154,7 @@ public class ViewHolderDeliveryAdddress extends RecyclerView.ViewHolder implemen
     public interface NotifyDeliveryAddress{
 
         void notifyEdit(DeliveryAddress deliveryAddress);
-        void notifyRemove(DeliveryAddress deliveryAddress,int position);
+        void notifyRemove(DeliveryAddress deliveryAddress, int position);
         void notifyListItemClick(DeliveryAddress deliveryAddress);
         void selectButtonClick(DeliveryAddress deliveryAddress, int position);
     }

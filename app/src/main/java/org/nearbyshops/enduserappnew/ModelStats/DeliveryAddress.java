@@ -1,13 +1,11 @@
 package org.nearbyshops.enduserappnew.ModelStats;
 
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
 /**
  * Created by sumeet on 10/6/16.
  */
-public class DeliveryAddress implements Parcelable{
+public class DeliveryAddress{
 
 
     // Table Name
@@ -45,49 +43,8 @@ public class DeliveryAddress implements Parcelable{
     private int endUserID;
 
 
-    protected DeliveryAddress(Parcel in) {
-        id = in.readInt();
-        name = in.readString();
-        phoneNumber = in.readLong();
-        deliveryAddress = in.readString();
-        city = in.readString();
-        pincode = in.readLong();
-        landmark = in.readString();
-        latitude = in.readDouble();
-        longitude = in.readDouble();
-        endUserID = in.readInt();
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(name);
-        dest.writeLong(phoneNumber);
-        dest.writeString(deliveryAddress);
-        dest.writeString(city);
-        dest.writeLong(pincode);
-        dest.writeString(landmark);
-        dest.writeDouble(latitude);
-        dest.writeDouble(longitude);
-        dest.writeInt(endUserID);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<DeliveryAddress> CREATOR = new Creator<DeliveryAddress>() {
-        @Override
-        public DeliveryAddress createFromParcel(Parcel in) {
-            return new DeliveryAddress(in);
-        }
-
-        @Override
-        public DeliveryAddress[] newArray(int size) {
-            return new DeliveryAddress[size];
-        }
-    };
+    // getter and setters
 
     public double getLatitude() {
         return latitude;

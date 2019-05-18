@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -38,7 +38,7 @@
 
 
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         app:layout_constraintBottom_toTopOf="@id/next"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -49,7 +49,7 @@
 
 
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:padding="0dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -80,7 +80,7 @@
                 android:layout_height="0.5dp" />
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/username_text_input"
                 android:layout_marginTop="30dp"
                 app:layout_constraintRight_toRightOf="parent"
@@ -89,13 +89,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:hint="Enter Name"
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -113,7 +113,7 @@
 
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:visibility="gone"
                 android:id="@+id/referrar_user_id_text_input"
                 android:layout_marginTop="10dp"
@@ -123,14 +123,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:inputType="number"
                     android:hint="Enter User ID of Referrer"
                     android:id="@+id/referrar_user_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -147,9 +147,9 @@
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content" />-->
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
