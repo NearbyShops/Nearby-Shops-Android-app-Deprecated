@@ -11,8 +11,6 @@ import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
-import org.nearbyshops.enduserappnew.DaggerModules.AppModule;
-import org.nearbyshops.enduserappnew.DaggerModules.NetModule;
 import org.nearbyshops.enduserappnew.ModelUtility.NotificationEvent;
 import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
 import org.nearbyshops.enduserappnew.Preferences.PrefBadgeCount;
