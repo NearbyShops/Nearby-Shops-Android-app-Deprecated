@@ -513,12 +513,24 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
         } else {
 
+
+
 //            if (getSupportFragmentManager().findFragmentByTag(TAG_SHOPS_FRAGMENT) == null) {
 //                getSupportFragmentManager()
 //                        .beginTransaction()
 //                        .replace(R.id.fragment_container, FragmentShopNew.newInstance(false), TAG_SHOPS_FRAGMENT)
+//                        .addToBackStack(null)
 //                        .commit();
 //            }
+//            else
+//            {
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .show(getSupportFragmentManager().findFragmentByTag(TAG_SHOPS_FRAGMENT));
+//            }
+
+
+
 
 
             getSupportFragmentManager()
@@ -526,8 +538,9 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                     .replace(R.id.fragment_container, FragmentShopNew.newInstance(false), TAG_SHOPS_FRAGMENT)
                     .addToBackStack(null)
                     .commit();
-
         }
+
+
 
     }
 

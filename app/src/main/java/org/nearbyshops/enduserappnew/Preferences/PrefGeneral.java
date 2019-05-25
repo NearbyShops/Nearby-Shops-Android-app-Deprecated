@@ -19,11 +19,11 @@ public class PrefGeneral {
 
 
 
+
+
     // for multi-market mode set default service url to null and multi market mode to true
-    public static final String DEFAULT_SERVICE_URL = null;
-    public static final boolean MULTI_MARKET_MODE_ENABLED = true;
-
-
+    public static final String DEFAULT_SERVICE_URL = SERVICE_URL_NEARBYSHOPS;
+    public static final boolean MULTI_MARKET_MODE_ENABLED = false;
 
 
 
