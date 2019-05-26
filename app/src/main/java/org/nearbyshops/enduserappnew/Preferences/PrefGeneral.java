@@ -18,12 +18,9 @@ public class PrefGeneral {
     public static final String SERVICE_URL_LOCAL = "http://192.168.0.5:5120";
 
 
-
-
-
     // for multi-market mode set default service url to null and multi market mode to true
-    public static final String DEFAULT_SERVICE_URL = SERVICE_URL_LOCAL_HOTSPOT;
-    public static final boolean MULTI_MARKET_MODE_ENABLED = false;
+    public static final String DEFAULT_SERVICE_URL = null;
+    public static final boolean MULTI_MARKET_MODE_ENABLED = true;
 
 
 
