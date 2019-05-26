@@ -760,7 +760,8 @@ public class ItemsByCatNew extends Fragment implements
 
 
 
-                            if(currentCategory.getParentCategoryID()==-1)
+
+                            if(currentCategory.getParentCategoryID()==-1 || response.body().getResults().size()==0)
                             {
                                 dataset.addAll(response.body().getSubcategories());
                             }
