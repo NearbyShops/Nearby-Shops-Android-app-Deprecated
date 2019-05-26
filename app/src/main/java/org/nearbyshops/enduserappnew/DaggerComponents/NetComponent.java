@@ -3,6 +3,8 @@ package org.nearbyshops.enduserappnew.DaggerComponents;
 
 import dagger.Component;
 import org.jetbrains.annotations.NotNull;
+import org.nearbyshops.enduserappnew.Backups.AdapterItemsInShopBackup;
+import org.nearbyshops.enduserappnew.Backups.ItemsInShopByCatFragmentBackup;
 import org.nearbyshops.enduserappnew.Carts.CartItem.CartItemAdapter;
 import org.nearbyshops.enduserappnew.Carts.CartItem.CartItemListActivity;
 import org.nearbyshops.enduserappnew.Carts.CartsList.CartsListFragment;
@@ -23,6 +25,7 @@ import org.nearbyshops.enduserappnew.ItemImages.ItemImageListFragment;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.AdapterItemsInShop;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCatFragment;
+import org.nearbyshops.enduserappnew.ItemsInShopByCat.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.Login.LoginFragment;
 import org.nearbyshops.enduserappnew.Login.LoginGlobalFragment;
 import org.nearbyshops.enduserappnew.Login.LoginUsingOTPFragment;
@@ -174,4 +177,11 @@ public interface NetComponent {
     void Inject(FragmentCheckResetCode fragmentCheckResetCode);
 
     void Inject(FragmentResetPassword fragmentResetPassword);
+
+    void Inject(AdapterItemsInShopBackup adapterItemsInShopBackup);
+
+    void Inject(ItemsInShopByCatFragmentBackup itemsInShopByCatFragmentBackup);
+
+
+    void Inject(ViewHolderShopItem viewHolderShopItem);
 }
