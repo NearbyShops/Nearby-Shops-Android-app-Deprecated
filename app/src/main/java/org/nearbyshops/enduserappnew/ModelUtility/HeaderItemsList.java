@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ModelUtility;
+package org.nearbyshops.enduserappnew.ModelUtility;
 
 /**
  * Created by sumeet on 4/12/16.

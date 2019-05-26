@@ -1,9 +1,5 @@
 package org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple;
 
-import android.Manifest;
-import android.content.ClipData;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -14,16 +10,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.google.android.gms.location.*;
 import com.wunderlist.slidinglayer.SlidingLayer;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -37,7 +30,8 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyHeaderChanged;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ModelUtility.HeaderItemsList;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ViewHolders.ViewHolderItemCategory;
+import org.nearbyshops.enduserappnew.ModelUtility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.SlidingLayerSort.UtilitySortItemsByCategory;
 import org.nearbyshops.enduserappnew.Model.Item;
@@ -49,6 +43,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,7 +64,10 @@ import static org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCat.TA
 public class ItemCategoriesFragmentSimple extends Fragment implements
         LocationUpdated,
         SwipeRefreshLayout.OnRefreshListener,
-        AdapterSimple.NotificationsFromAdapter , NotifyBackPressed, NotifySort, NotifySearch {
+        ViewHolderItemCategory.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch {
+
+
+
 
     boolean isDestroyed = false;
 
@@ -326,13 +324,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
-
-
-
     void setupRecyclerView()
     {
 
-        listAdapter = new AdapterSimple(dataset,getActivity(),this,this);
+        listAdapter = new AdapterSimple(dataset,getActivity(),this);
         itemCategoriesList.setAdapter(listAdapter);
 
         layoutManager = new GridLayoutManager(getActivity(),6, RecyclerView.VERTICAL,false);
@@ -682,7 +677,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
         dataset.clear();
 
 
-        HeaderItemsList headerItemCategory = new HeaderItemsList();
+
+        HeaderTitle headerItemCategory = new HeaderTitle();
 
 
         if(datasetCategory.size()>0)
@@ -710,7 +706,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
-            HeaderItemsList headerItem = new HeaderItemsList();
+            HeaderTitle headerItem = new HeaderTitle();
 
 
 
@@ -892,6 +888,19 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
                     swipeContainer.setRefreshing(false);
                 }
+
+
+
+
+                if(offset_item+limit_item >= item_count_item)
+                {
+                    listAdapter.setLoadMore(false);
+                }
+                else
+                {
+                    listAdapter.setLoadMore(true);
+                }
+
 
 
                 notifyItemHeaderChanged();

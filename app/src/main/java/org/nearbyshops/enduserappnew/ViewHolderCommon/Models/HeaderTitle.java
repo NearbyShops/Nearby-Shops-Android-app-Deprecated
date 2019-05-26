@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ModelUtility;
+package org.nearbyshops.enduserappnew.ViewHolderCommon.Models;
 
 /**
  * Created by sumeet on 4/12/16.
@@ -8,6 +8,10 @@ public class HeaderTitle {
 
     public HeaderTitle(String heading) {
         this.heading = heading;
+    }
+
+
+    public HeaderTitle() {
     }
 
     private String heading;

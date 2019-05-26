@@ -55,13 +55,13 @@ public class ViewHolderSavedMarketList extends RecyclerView.ViewHolder {
 
 
 
-
     void setItem(List<ServiceConfigurationGlobal> item)
     {
 
 //        this.configurationGlobal = item;
 
-        AdapterSavedMarkets adapter=new AdapterSavedMarkets(item,context, subscriber);
+
+        AdapterSavedMarkets adapter=  new AdapterSavedMarkets(item,context, subscriber);
         savedMarketList.setAdapter(adapter);
         savedMarketList.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
