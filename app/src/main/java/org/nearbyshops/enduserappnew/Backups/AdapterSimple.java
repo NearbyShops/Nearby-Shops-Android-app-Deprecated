@@ -140,8 +140,8 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             if(fragment instanceof ItemCategoriesFragmentSimple)
             {
-//                int fetched_count  = ((ItemCategoriesFragmentSimple) fragment).fetched_items_count;
-//                int items_count = ((ItemCategoriesFragmentSimple) fragment).item_count_item;
+//                int fetched_count  = ((ItemsByCatNew) fragment).fetched_items_count;
+//                int items_count = ((ItemsByCatNew) fragment).item_count_item;
 
 //                Log.d("adapter_item_cat","Fetched Count : "  + String.valueOf(fetched_count) + " Items Count : "  + String.valueOf(items_count));
 
@@ -167,9 +167,9 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 //
 //            int itemCount = 0;
 //
-//            if(fragment instanceof ItemCategoriesFragmentSimple)
+//            if(fragment instanceof ItemsByCatNew)
 //            {
-//                itemCount = ((ItemCategoriesFragmentSimple) fragment).item_count_item + ((ItemCategoriesFragmentSimple) fragment).item_count_item_category;
+//                itemCount = ((ItemsByCatNew) fragment).item_count_item + ((ItemsByCatNew) fragment).item_count_item_category;
 //            }
 //
 //            if(position == 0 || position == itemCount)

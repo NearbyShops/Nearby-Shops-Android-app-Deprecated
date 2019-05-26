@@ -47,7 +47,7 @@ import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
-//import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.AdapterSimple;
+//import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.AdapterNew;
 
 public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
         AdapterShopItem.NotifyFilledCart, NotifySort

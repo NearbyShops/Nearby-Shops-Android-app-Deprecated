@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple;
+package org.nearbyshops.enduserappnew.ItemsByCatNew;
 
 import android.location.Location;
 import android.os.Bundle;
@@ -28,16 +28,18 @@ import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
+import org.nearbyshops.enduserappnew.ItemsByCatNew.Model.ItemCategoriesList;
+import org.nearbyshops.enduserappnew.ItemsByCatNew.ViewHolders.ViewHolderItemCategoryNew;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyHeaderChanged;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ViewHolders.ViewHolderItemCategory;
-import org.nearbyshops.enduserappnew.ModelUtility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.SlidingLayerSort.UtilitySortItemsByCategory;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemEndPoint;
+import org.nearbyshops.enduserappnew.ModelUtility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
@@ -61,37 +63,38 @@ import static org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCat.TA
 
 
 
-public class ItemCategoriesFragmentSimple extends Fragment implements
+
+public class ItemsByCatNew extends Fragment implements
         LocationUpdated,
         SwipeRefreshLayout.OnRefreshListener,
-        ViewHolderItemCategory.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch {
+        ViewHolderItemCategoryNew.ListItemClick,ViewHolderItemCategory.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch {
 
 
 
 
-    boolean isDestroyed = false;
+    private boolean isDestroyed = false;
 
-    int item_count_item_category = 0;
 
     private int limit_item = 10;
-    int offset_item = 0;
-    int item_count_item;
-    int fetched_items_count = 0;
+    private int offset_item = 0;
+    private int item_count_item;
+    private int fetched_items_count;
+
 
     @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
-    @BindView(R.id.recycler_view)
-    RecyclerView itemCategoriesList;
-
-    ArrayList<Object> dataset = new ArrayList<>();
-    ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
-    ArrayList<Item> datasetItems = new ArrayList<>();
+    @BindView(R.id.recycler_view) RecyclerView itemCategoriesList;
 
 
-    GridLayoutManager layoutManager;
-    AdapterSimple listAdapter;
+    private ArrayList<Object> dataset = new ArrayList<>();
+    private ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
+    private ArrayList<Item> datasetItems = new ArrayList<>();
 
-    @Inject
-    ItemCategoryService itemCategoryService;
+
+    private GridLayoutManager layoutManager;
+    private AdapterNew listAdapter;
+
+
+
 
     @Inject
     ItemService itemService;
@@ -100,7 +103,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
     @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
 
 
-    ItemCategory currentCategory = null;
+
+    private ItemCategory currentCategory = null;
 
 
     private static final int REQUEST_CODE_ASK_PERMISSION = 55;
@@ -114,7 +118,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
-    public ItemCategoriesFragmentSimple() {
+    public ItemsByCatNew() {
         super();
 
         DaggerComponentBuilder.getInstance()
@@ -327,7 +331,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
     void setupRecyclerView()
     {
 
-        listAdapter = new AdapterSimple(dataset,getActivity(),this);
+        listAdapter = new AdapterNew(dataset,getActivity(),this);
         itemCategoriesList.setAdapter(listAdapter);
 
         layoutManager = new GridLayoutManager(getActivity(),6, RecyclerView.VERTICAL,false);
@@ -464,10 +468,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
                     {
                         offset_item = offset_item + limit_item;
 
-
-//                        Log.d("item_requests","Item Fetched from API");
-
-                        makeRequestItem(false,false);
+                        makeRequestItem(false);
                     }
 
 
@@ -491,16 +492,17 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
+
+
+
+
+
+
     @Override
     public void onRefresh() {
 
-
-
-
         emptyScreen.setVisibility(View.GONE);
-
-        makeRequestItemCategory();
-        makeRequestItem(true,true);
+        makeRequestItem(true);
     }
 
 
@@ -558,120 +560,6 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
-    boolean isFirst = true;
-
-    void makeRequestItemCategory()
-    {
-
-
-
-//
-//        if(searchQuery!=null)
-//        {
-//            return;
-//        }
-
-
-//        (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY, 0),
-//                (double) UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY, 0),
-
-
-
-
-//        showToastMessage("Lat : " + String.valueOf(PrefLocation.getLatitude(getActivity()))  + " : "  + String.valueOf(PrefLocation.getLongitude(getActivity())));
-
-
-
-
-        Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
-                null,
-                currentCategory.getItemCategoryID(),
-                null,
-                PrefLocation.getLatitude(MyApplication.getAppContext()), PrefLocation.getLongitude(MyApplication.getAppContext()),
-                null,null,null,
-                true,
-                ItemCategory.CATEGORY_ORDER,null,null,false);
-
-
-
-
-
-        endPointCall.enqueue(new Callback<ItemCategoryEndPoint>() {
-            @Override
-            public void onResponse(Call<ItemCategoryEndPoint> call, Response<ItemCategoryEndPoint> response) {
-
-                if(isDestroyed)
-                {
-                    return;
-                }
-
-                if(response.body()!=null)
-                {
-
-                    ItemCategoryEndPoint endPoint = response.body();
-                    item_count_item_category = endPoint.getItemCount();
-
-                    datasetCategory.clear();
-                    datasetCategory.addAll(endPoint.getResults());
-                }
-
-
-                if(isFirst)
-                {
-                    isFirst = false;
-                }
-                else
-                {
-                    // is last
-                    refreshAdapter();
-                    isFirst = true;// reset the flag
-                }
-
-
-//                swipeContainer.setRefreshing(false);
-            }
-
-            @Override
-            public void onFailure(Call<ItemCategoryEndPoint> call, Throwable t) {
-
-
-                if(isDestroyed)
-                {
-                    return;
-                }
-
-                showToastMessage("Network request failed. Please check your connection !");
-
-
-                if(isFirst)
-                {
-                    isFirst = false;
-                }
-                else
-                {
-                    // is last
-                    refreshAdapter();
-                    isFirst = true;// reset the flag
-                }
-
-
-
-//                if(swipeContainer!=null)
-//                {
-//                    swipeContainer.setRefreshing(false);
-//                }
-
-            }
-        });
-    }
-
-
-
-
-
-
-
-
 
     void refreshAdapter() {
         dataset.clear();
@@ -693,7 +581,12 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
                     headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
                 }
 
+
+
+
                 dataset.add(headerItemCategory);
+
+
 
                 dataset.addAll(datasetCategory);
             }
@@ -779,18 +672,16 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
-    void makeRequestItem(final boolean clearDatasetLocal, boolean resetOffset)
+
+
+
+    private void makeRequestItem(boolean clearDataset)
     {
 
-        if(resetOffset)
+        if(clearDataset)
         {
             offset_item = 0;
         }
-
-
-
-//        (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-//                (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY),
 
 
 
@@ -805,11 +696,11 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
         if(searchQuery==null)
         {
             endPointCall = itemService.getItemsEndpoint(currentCategory.getItemCategoryID(),
-                    null,false,
+                    null,clearDataset,
                     PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
                     null,
                     null,null, null, searchQuery,
-                    current_sort, limit_item,offset_item,clearDatasetLocal,false);
+                    current_sort, limit_item,offset_item,clearDataset,false);
 
         }
         else
@@ -820,7 +711,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
                     PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
                     null,
                     null,null, null, searchQuery,
-                    current_sort, limit_item,offset_item,clearDatasetLocal,false);
+                    current_sort, limit_item,offset_item,clearDataset,false);
 
         }
 
@@ -840,53 +731,99 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
                 }
 
 
-                if(clearDatasetLocal)
+                if(response.code()==200)
                 {
 
-
-                    if(response.body()!=null)
+                    if(clearDataset)
                     {
-
-                        datasetItems.clear();
-                        datasetItems.addAll(response.body().getResults());
-
-//                        fetched_items_count = fetched_items_count + response.body().getResults().size();
-//                        item_count_item = response.body().getItemCount();
-
+                        dataset.clear();
                         item_count_item = response.body().getItemCount();
-                        fetched_items_count = datasetItems.size();
 
-//                        if(response.body().getItemCount()!=null)
-//                        {
-//
-//                        }
+
+
+                        if(response.body().getSubcategories()!=null && response.body().getSubcategories().size()>0)
+                        {
+
+
+                            if (searchQuery == null) {
+
+                                HeaderTitle headerItemCategory = new HeaderTitle();
+
+                                if (currentCategory.getParentCategoryID() == -1) {
+                                    headerItemCategory.setHeading("Item Categories");
+                                } else {
+                                    headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
+                                }
+
+                                dataset.add(headerItemCategory);
+                            }
+
+
+
+                            if(currentCategory.getParentCategoryID()==-1)
+                            {
+                                dataset.addAll(response.body().getSubcategories());
+                            }
+                            else
+                            {
+
+                                ItemCategoriesList list = new ItemCategoriesList();
+                                list.setItemCategories(response.body().getSubcategories());
+
+                                dataset.add(list);
+
+                            }
+
+
+                        }
+
+
+
+
+
+
+                        HeaderTitle headerItem = new HeaderTitle();
+
+
+
+                        if(searchQuery==null)
+                        {
+                            if(response.body().getResults().size()>0)
+                            {
+                                headerItem.setHeading(currentCategory.getCategoryName() + " Items");
+                            }
+                            else
+                            {
+                                headerItem.setHeading("No Items in this category");
+                            }
+
+
+                        }
+                        else
+                        {
+                            if(response.body().getResults().size()>0)
+                            {
+                                headerItem.setHeading("Search Results");
+                            }
+                            else
+                            {
+                                headerItem.setHeading("No items for the given search !");
+                            }
+                        }
+
+
+
+                        dataset.add(headerItem);
+
                     }
 
 
-                    if(isFirst)
-                    {
-                        isFirst = false;
-                    }
-                    else
-                    {
-                        // is last
-                        refreshAdapter();
-                        isFirst = true;// reset the flag
-                    }
 
-                }
-                else
-                {
-                    if(response.body()!=null)
-                    {
 
-                        dataset.addAll(response.body().getResults());
-                        fetched_items_count = fetched_items_count + response.body().getResults().size();
-//                        item_count_item = response.body().getItemCount();
-                        listAdapter.notifyDataSetChanged();
-                    }
 
-                    swipeContainer.setRefreshing(false);
+
+                    dataset.addAll(response.body().getResults());
+
                 }
 
 
@@ -903,6 +840,8 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
+                swipeContainer.setRefreshing(false);
+                listAdapter.notifyDataSetChanged();
                 notifyItemHeaderChanged();
 
             }
@@ -917,25 +856,7 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
-                if(clearDatasetLocal)
-                {
-
-                    if(isFirst)
-                    {
-                        isFirst = false;
-                    }
-                    else
-                    {
-                        // is last
-                        refreshAdapter();
-                        isFirst = true;// reset the flag
-                    }
-                }
-                else
-                {
-                    swipeContainer.setRefreshing(false);
-                }
-
+                swipeContainer.setRefreshing(false);
 
                 showToastMessage("Items: Network request failed. Please check your connection !");
 
@@ -943,6 +864,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
         });
 
     }
+
+
+
+
 
 
 
@@ -963,7 +888,10 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
 
 
+
     boolean backPressed = false;
+
+
 
     @Override
     public boolean backPressed() {
@@ -1006,21 +934,33 @@ public class ItemCategoriesFragmentSimple extends Fragment implements
 
     void notifyItemHeaderChanged()
     {
-        if(getActivity() instanceof NotifyHeaderChanged)
+
+        int fetched_count;
+
+        if(offset_item==0)
         {
-            ((NotifyHeaderChanged) getActivity()).notifyItemHeaderChanged(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items");
+            fetched_count = item_count_item;
+        }
+        else
+        {
+            fetched_count = offset_item + limit_item;
         }
 
 
+
+        if(getActivity() instanceof NotifyHeaderChanged)
+        {
+            ((NotifyHeaderChanged) getActivity()).notifyItemHeaderChanged(String.valueOf(fetched_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items");
+        }
 
 
         if(currentCategory.getItemCategoryID()==1)
         {
-            itemHeader.setText(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " Items");
+            itemHeader.setText(String.valueOf(fetched_count) + " out of " + String.valueOf(item_count_item) + " Items");
         }
         else
         {
-            itemHeader.setText(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName());
+            itemHeader.setText(String.valueOf(fetched_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName());
         }
 //        + " Items"
 
