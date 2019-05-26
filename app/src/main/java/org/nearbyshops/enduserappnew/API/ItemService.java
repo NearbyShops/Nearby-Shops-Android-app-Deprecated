@@ -34,6 +34,7 @@ public interface ItemService
     Call<ItemEndPoint> getItemsEndpoint(
             @Query("ItemCategoryID") Integer itemCategoryID,
             @Query("ShopID") Integer shopID,
+            @Query("GetSubcategories")boolean getSubcategories,
             @Query("latCenter") Double latCenter, @Query("lonCenter") Double lonCenter,
             @Query("ItemSpecValues") String itemSpecValues,
             @Query("deliveryRangeMax") Double deliveryRangeMax,
@@ -45,6 +46,8 @@ public interface ItemService
             @Query("GetRowCount") boolean getRowCount,
             @Query("MetadataOnly") boolean getOnlyMetaData
     );
+
+
 
 
 

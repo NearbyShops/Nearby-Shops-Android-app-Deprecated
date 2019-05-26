@@ -22,6 +22,7 @@ import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfileGlobal;
 import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemImages.ItemImageListFragment;
+import org.nearbyshops.enduserappnew.ItemsByCatNew.ItemsByCatNew;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.AdapterItemsInShop;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCatFragment;
@@ -184,4 +185,6 @@ public interface NetComponent {
 
 
     void Inject(ViewHolderShopItem viewHolderShopItem);
+
+    void Inject(ItemsByCatNew itemsByCatNew);
 }

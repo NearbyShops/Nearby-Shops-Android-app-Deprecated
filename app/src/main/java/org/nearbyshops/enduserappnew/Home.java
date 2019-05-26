@@ -26,6 +26,7 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.nearbyshops.enduserappnew.Carts.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Interfaces.*;
+import org.nearbyshops.enduserappnew.ItemsByCatNew.ItemsByCatNew;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduserappnew.LoginPlaceholder.FragmentSignInMessage;
@@ -218,7 +219,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 {
                     bottomBar.getMenu().getItem(1).setChecked(true);
                 }
-                else if(fragment instanceof ItemCategoriesFragmentSimple)
+                else if(fragment instanceof ItemsByCatNew)
                 {
 
                     bottomBar.getMenu().getItem(0).setChecked(true);
@@ -581,7 +582,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 //            if (getSupportFragmentManager().findFragmentByTag(TAG_ITEMS_FRAGMENT) == null) {
 //                getSupportFragmentManager()
 //                        .beginTransaction()
-//                        .replace(R.id.fragment_container, new ItemCategoriesFragmentSimple(), TAG_ITEMS_FRAGMENT)
+//                        .replace(R.id.fragment_container, new ItemsByCatNew(), TAG_ITEMS_FRAGMENT)
 //                        .commit();
 //            } else {
 //                getSupportFragmentManager().popBackStack();
@@ -590,7 +591,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, new ItemCategoriesFragmentSimple(), TAG_ITEMS_FRAGMENT)
+                    .replace(R.id.fragment_container, new ItemsByCatNew(), TAG_ITEMS_FRAGMENT)
                     .addToBackStack(null)
                     .commit();
 
@@ -613,9 +614,12 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
         }
         else {
 
+//            new ItemCategoriesFragmentSimple()
+
+
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, new ItemCategoriesFragmentSimple(), TAG_ITEMS_FRAGMENT)
+                    .replace(R.id.fragment_container, new ItemsByCatNew(), TAG_ITEMS_FRAGMENT)
                     .commit();
 
         }

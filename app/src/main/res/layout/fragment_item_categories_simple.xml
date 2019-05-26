@@ -200,6 +200,9 @@
         android:padding="2.5dp">
 
 
+<!--        android:background="#11000000"-->
+
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_container"
             android:layout_width="match_parent"
