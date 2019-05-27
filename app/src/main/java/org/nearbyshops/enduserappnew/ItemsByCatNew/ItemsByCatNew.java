@@ -67,7 +67,8 @@ import static org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCat.TA
 public class ItemsByCatNew extends Fragment implements
         LocationUpdated,
         SwipeRefreshLayout.OnRefreshListener,
-        ViewHolderItemCategoryNew.ListItemClick,ViewHolderItemCategory.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch {
+        ViewHolderItemCategoryNew.ListItemClick,
+        ViewHolderItemCategory.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch {
 
 
 
@@ -78,7 +79,7 @@ public class ItemsByCatNew extends Fragment implements
     private int limit_item = 10;
     private int offset_item = 0;
     private int item_count_item;
-    private int fetched_items_count;
+//    private int fetched_items_count;
 
 
     @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
@@ -209,27 +210,6 @@ public class ItemsByCatNew extends Fragment implements
     @OnClick(R.id.toolbar)
     void toolbarClicked()
     {
-//        showToastMessage("Toolbar Clicked !");
-
-
-//        if(PrefGeneral.getMultiMarketMode(getActivity()))
-//        {
-//            if(getActivity().getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT)==null)
-//            {
-//                getActivity().getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fragment_container,new MarketsFragment(),TAG_MARKET_FRAGMENT)
-//                        .commit();
-//            }
-//
-//
-////            .addToBackStack("select_market")
-//
-//        }
-
-
-//        startActivity(new Intent(getActivity(),ServicesActivity.class));
-
 
         if(getActivity() instanceof ShowFragment)
         {
@@ -482,6 +462,8 @@ public class ItemsByCatNew extends Fragment implements
     }
 
 
+
+
     int previous_position = -1;
 
 
@@ -560,105 +542,6 @@ public class ItemsByCatNew extends Fragment implements
 
 
 
-
-    void refreshAdapter() {
-        dataset.clear();
-
-
-
-        HeaderTitle headerItemCategory = new HeaderTitle();
-
-
-        if(datasetCategory.size()>0)
-        {
-
-            if (searchQuery == null) {
-
-
-                if (currentCategory.getParentCategoryID() == -1) {
-                    headerItemCategory.setHeading("Item Categories");
-                } else {
-                    headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
-                }
-
-
-
-
-                dataset.add(headerItemCategory);
-
-
-
-                dataset.addAll(datasetCategory);
-            }
-
-
-//            dataset.addAll(datasetCategory);
-        }
-
-
-
-
-
-            HeaderTitle headerItem = new HeaderTitle();
-
-
-
-//            if(currentCategory.getParentCategoryID()!=-1)
-//            {
-//
-//            }
-
-
-            if(searchQuery==null)
-            {
-
-
-                if(datasetItems.size()>0)
-                {
-                    headerItem.setHeading(currentCategory.getCategoryName() + " Items");
-                }
-                else
-                {
-                    headerItem.setHeading("No Items in this category");
-                }
-
-            }
-            else
-            {
-                if(datasetItems.size()>0)
-                {
-                    headerItem.setHeading("Search Results");
-                }
-                else
-                {
-                    headerItem.setHeading("No items for the given search !");
-                }
-
-            }
-
-
-
-
-        if(datasetCategory.size()==0 && datasetItems.size()==0)
-        {
-            emptyScreen.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            emptyScreen.setVisibility(View.GONE);
-
-            dataset.add(headerItem);
-        }
-
-
-        dataset.addAll(datasetItems);
-
-
-
-
-        listAdapter.notifyDataSetChanged();
-        swipeContainer.setRefreshing(false);
-    }
 
 
 
@@ -933,18 +816,35 @@ public class ItemsByCatNew extends Fragment implements
 
 
 
-    void notifyItemHeaderChanged()
+
+    private void notifyItemHeaderChanged()
     {
 
         int fetched_count;
 
+
         if(offset_item==0)
         {
-            fetched_count = item_count_item;
+            if(item_count_item<limit_item)
+            {
+                fetched_count = item_count_item;
+            }
+            else
+            {
+                fetched_count = limit_item;
+            }
+
+
         }
         else
         {
             fetched_count = offset_item + limit_item;
+
+            if(fetched_count>item_count_item)
+            {
+                fetched_count = item_count_item;
+            }
+
         }
 
 
@@ -997,7 +897,6 @@ public class ItemsByCatNew extends Fragment implements
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void doThis(Location location) {
 
-        showToastMessage("Location Updated !");
         makeRefreshNetworkCall();
     }
 
@@ -1041,6 +940,8 @@ public class ItemsByCatNew extends Fragment implements
 
     @Override
     public void locationUpdated() {
+
+        showToastMessage("Location Updated !");
         makeRefreshNetworkCall();
     }
 
@@ -1048,7 +949,8 @@ public class ItemsByCatNew extends Fragment implements
 
 
 
-    String searchQuery = null;
+
+    private String searchQuery = null;
 
     @Override
     public void search(final String searchString) {

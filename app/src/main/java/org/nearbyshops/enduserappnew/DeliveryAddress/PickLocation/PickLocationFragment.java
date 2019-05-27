@@ -40,6 +40,9 @@ public class PickLocationFragment extends Fragment {
     Marker center;
 
 
+    @BindView(R.id.use_selected_button) TextView useSelectedButton;
+
+
 
 
     @Override

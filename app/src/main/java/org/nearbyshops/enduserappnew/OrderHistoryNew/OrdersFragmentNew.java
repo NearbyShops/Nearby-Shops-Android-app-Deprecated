@@ -37,7 +37,9 @@ import org.nearbyshops.enduserappnew.OrderDetail.OrderDetail;
 import org.nearbyshops.enduserappnew.OrderDetail.PrefOrderDetail;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort.PrefSortOrders;
 import org.nearbyshops.enduserappnew.OrderHistoryNew.SlidingLayerSort.SlidingLayerSortOrders;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
@@ -83,7 +85,7 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
     @BindView(R.id.empty_screen) LinearLayout emptyScreen;
-
+    @BindView(R.id.service_name) TextView serviceName;
 
     public OrdersFragmentNew() {
 
@@ -131,6 +133,20 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 //        toolbar.setTitle(getString(R.string.app_name));
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 //
+
+
+
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
+        {
+            serviceName.setVisibility(View.VISIBLE);
+            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+        }
+        else
+        {
+            serviceName.setVisibility(View.GONE);
+        }
 
 
         setupRecyclerView();
