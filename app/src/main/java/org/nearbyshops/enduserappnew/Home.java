@@ -592,8 +592,13 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, new ItemsByCatNew(), TAG_ITEMS_FRAGMENT)
-                    .addToBackStack(null)
+                    .addToBackStack("items")
                     .commit();
+
+
+
+
+
 
         }
     }
@@ -759,6 +764,15 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 //        showToastMessage("Market Selected : Home ");
+
+
+
+        getSupportFragmentManager().popBackStackImmediate(
+                null,
+                FragmentManager.POP_BACK_STACK_INCLUSIVE
+        );
+
+
 
         int tabId = bottomBar.getSelectedItemId();
 

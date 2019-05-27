@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.google.android.gms.location.*;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
@@ -34,7 +35,7 @@ public class PickLocation extends AppCompatActivity {
 
     MapView mapView;
 //    @BindView(R.id.seekbar_map) SeekBar seekbar;
-    @BindView(R.id.label) TextView labelText;
+//    @BindView(R.id.label) TextView labelText;
 
 //
 
@@ -43,6 +44,9 @@ public class PickLocation extends AppCompatActivity {
     LatLng latLng;
     MapboxMap mapboxMapInstance;
     Marker center;
+
+
+    @BindView(R.id.use_selected_button) TextView useSelectedButton;
 
 
 
@@ -57,6 +61,8 @@ public class PickLocation extends AppCompatActivity {
 //        Mapbox.getInstance(this, "pk.eyJ1Ijoic3VtZWV0");
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.onCreate(savedInstanceState);
+
+
 
 
 
@@ -341,6 +347,27 @@ public class PickLocation extends AppCompatActivity {
         super.onBackPressed();
     }
 
+
+
+
+
+
+
+    @OnClick(R.id.use_selected_button)
+    void useSelectedClick()
+    {
+
+        if(latLng!=null)
+        {
+            Intent intent = new Intent();
+            intent.putExtra("lat_dest",latLng.getLatitude());
+            intent.putExtra("lon_dest",latLng.getLongitude());
+//            intent.putExtra("radius",radius/1000);
+            setResult(3,intent);
+        }
+
+        finish();
+    }
 
 
 

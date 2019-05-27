@@ -46,7 +46,7 @@ public class ViewHolderItemCategoryNew extends RecyclerView.ViewHolder{
                                                    RecyclerView.Adapter adapter)
     {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category_new,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category_full_length,parent,false);
         return new ViewHolderItemCategoryNew(view,context,fragment,adapter);
     }
 

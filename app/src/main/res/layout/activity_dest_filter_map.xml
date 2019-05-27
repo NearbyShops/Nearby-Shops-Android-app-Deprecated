@@ -62,18 +62,33 @@
 
 
 
+<!--    <TextView-->
+<!--        android:padding="10dp"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:background="#44000000"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/copyrights_map"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:id="@+id/label"-->
+<!--        android:text=" - "-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content" />-->
+
+
+
+
     <TextView
-        android:padding="10dp"
+        android:id="@+id/use_selected_button"
         android:layout_margin="10dp"
-        android:textColor="@color/white"
-        android:background="#44000000"
         app:layout_constraintBottom_toTopOf="@id/copyrights_map"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/label"
-        android:text=" - "
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:background="@color/buttonColorDark"
+        android:text="Use Selected Location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
 

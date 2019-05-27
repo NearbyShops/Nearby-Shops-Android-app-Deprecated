@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +24,10 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,17 +43,20 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
     @Inject
     CartStatsService cartStatsService;
 
-    RecyclerView recyclerView;
-    CartsListAdapter adapter;
-    GridLayoutManager layoutManager;
-    SwipeRefreshLayout swipeContainer;
+    private RecyclerView recyclerView;
+    private CartsListAdapter adapter;
+    private GridLayoutManager layoutManager;
+    private SwipeRefreshLayout swipeContainer;
 
-    List<CartStats> dataset = new ArrayList<>();
 
-    boolean isDestroyed = false;
+
+    private List<CartStats> dataset = new ArrayList<>();
+    private boolean isDestroyed = false;
 
 
     @BindView(R.id.empty_screen) LinearLayout emptyScreen;
+
+    @BindView(R.id.service_name) TextView serviceName;
 
 
     public CartsListFragment() {
@@ -86,6 +92,19 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 //
 
+
+
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
+        {
+            serviceName.setVisibility(View.VISIBLE);
+            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+        }
+        else
+        {
+            serviceName.setVisibility(View.GONE);
+        }
 
 
 
