@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeOne.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduserappnew.ModelUtility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;

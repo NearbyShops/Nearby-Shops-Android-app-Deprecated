@@ -24,11 +24,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import org.nearbyshops.enduserappnew.Carts.CartsList.CartsListFragment;
+import org.nearbyshops.enduserappnew.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Interfaces.*;
-import org.nearbyshops.enduserappnew.ItemsByCatNew.ItemsByCatNew;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.ItemCategoriesFragmentSimple;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeTwo.ItemsByCatNew;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeOne.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeOne.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduserappnew.LoginPlaceholder.FragmentSignInMessage;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Markets.MarketsFragmentNew;
@@ -40,9 +40,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
-import org.nearbyshops.enduserappnew.Shops.ListFragment.FragmentShopNew;
-
-
+import org.nearbyshops.enduserappnew.ShopsList.ListFragment.FragmentShopNew;
 
 
 
@@ -486,6 +484,11 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
     }
 
 
+
+
+
+//    Fragment fragmentShop;
+
     @Override
     public void showShopsFragment() {
 
@@ -534,11 +537,38 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
+
+
+//
+//
+//            if(!getSupportFragmentManager().popBackStackImmediate("shop_fragment",0))
+//            {
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fragment_container, FragmentShopNew.newInstance(false), TAG_SHOPS_FRAGMENT)
+//                        .addToBackStack("shop_fragment")
+//                        .commit();
+//            }
+
+
+
+//
+//            if(fragmentShop==null)
+//            {
+//                fragmentShop = FragmentShopNew.newInstance(false);
+//            }
+
+
+
+
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, FragmentShopNew.newInstance(false), TAG_SHOPS_FRAGMENT)
-                    .addToBackStack(null)
+                    .addToBackStack("shop_fragment")
                     .commit();
+
+
+
         }
 
 

@@ -14,7 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
-import org.nearbyshops.enduserappnew.Carts.CartItem.CartItemListActivity;
+import org.nearbyshops.enduserappnew.CartItemList.CartItemListActivity;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Shop;

@@ -50,7 +50,11 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, RefreshFragment {
+public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener,
+        NotifySort, NotifySearch, RefreshFragment {
+
+
+
 
 
 //    @Inject
@@ -62,20 +66,21 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
     @Inject
     OrderService orderService;
 
-    RecyclerView recyclerView;
-    AdapterOrders adapter;
+    private RecyclerView recyclerView;
+    private AdapterOrders adapter;
 
     public List<Order> dataset = new ArrayList<>();
 
-    GridLayoutManager layoutManager;
-    SwipeRefreshLayout swipeContainer;
+    private GridLayoutManager layoutManager;
+    private SwipeRefreshLayout swipeContainer;
 
 
     final private int limit = 10;
-    int offset = 0;
+    private int offset = 0;
     int item_count = 0;
 
-    boolean isDestroyed;
+
+    private boolean isDestroyed;
 
 
     @BindView(R.id.slidingLayer)
@@ -200,7 +205,9 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
 
-    void setupSwipeContainer()
+
+
+    private void setupSwipeContainer()
     {
         if(swipeContainer!=null) {
 
@@ -217,7 +224,9 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
 
-    void setupSlidingLayer()
+
+
+    private void setupSlidingLayer()
     {
 
         ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
@@ -269,7 +278,8 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
 
-    void setupRecyclerView()
+
+    private void setupRecyclerView()
     {
 
         adapter = new AdapterOrders(dataset,this,this,getActivity());
@@ -348,7 +358,9 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
 
-    void makeRefreshNetworkCall()
+
+
+    private void makeRefreshNetworkCall()
     {
         swipeContainer.post(new Runnable() {
             @Override
@@ -372,7 +384,8 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
 
-    void makeNetworkCall(final boolean clearDataset)
+
+    private void makeNetworkCall(final boolean clearDataset)
     {
 
 //            Shop currentShop = UtilityShopHome.getShop(getContext());
@@ -581,7 +594,9 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
 
 
-    void showToastMessage(String message)
+
+
+    private void showToastMessage(String message)
     {
         if(getActivity()!=null)
         {
@@ -727,7 +742,10 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
     }
 
 
-    String searchQuery = null;
+
+
+
+    private String searchQuery = null;
 
     @Override
     public void search(final String searchString) {

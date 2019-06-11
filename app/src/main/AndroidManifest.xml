@@ -98,9 +98,9 @@
 
         <activity android:name=".DeliveryAddress.PickLocation.PickLocation"/>
 
-        <activity android:name=".Carts.CartItem.CartItemListActivity"/>
+        <activity android:name=".CartItemList.CartItemListActivity"/>
 
-        <activity android:name=".Carts.PlaceOrderActivity"/>
+        <activity android:name=".Checkout.PlaceOrderActivity"/>
 
 
         <activity android:name=".OrderHistoryNew.OrderHistoryNew"/>

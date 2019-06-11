@@ -19,7 +19,7 @@ import butterknife.OnClick;
 import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeOne.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.SlidingLayerSort.SlidingLayerSortItemsInShop;
 import org.nearbyshops.enduserappnew.R;

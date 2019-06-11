@@ -9,7 +9,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
-    app:contentPadding="3dp"
+    app:contentPadding="4dp"
     app:cardElevation="5dp"
     app:cardCornerRadius="0dp"
     android:layout_marginStart="0dp"
@@ -48,7 +48,7 @@
         android:id="@+id/itemCategoryListItem"
         android:padding="0dp"
         android:orientation="vertical"
-        android:layout_width="120dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content">
 
 
