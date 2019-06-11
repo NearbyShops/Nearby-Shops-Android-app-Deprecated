@@ -28,7 +28,6 @@ import org.nearbyshops.enduserappnew.MarketDetail.MarketDetail;
 import org.nearbyshops.enduserappnew.MarketDetail.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
-import org.nearbyshops.enduserappnew.Markets.ViewHolders.AdapterMarkets;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;

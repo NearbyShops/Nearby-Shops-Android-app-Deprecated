@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
@@ -26,8 +25,8 @@ import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusPickFromShop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetail;
-import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetailFragment;
+import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
+import org.nearbyshops.enduserappnew.ShopDetail.ShopDetailFragment;
 
 import java.util.List;
 

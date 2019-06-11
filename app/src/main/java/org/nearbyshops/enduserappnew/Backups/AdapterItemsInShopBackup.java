@@ -23,7 +23,7 @@ import okhttp3.ResponseBody;
 import org.nearbyshops.enduserappnew.API.CartItemService;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCatFragment;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCatFragment;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;

@@ -51,7 +51,7 @@ import retrofit2.Response;
 import javax.inject.Inject;
 import java.util.ArrayList;
 
-import static org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCat.TAG_SLIDING;
+import static org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat.TAG_SLIDING;
 
 /**
  * Created by sumeet on 2/12/16.

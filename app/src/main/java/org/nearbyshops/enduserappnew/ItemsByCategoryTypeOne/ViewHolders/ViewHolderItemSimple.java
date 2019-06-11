@@ -23,7 +23,7 @@ import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopItemByItemNew.ShopItemByItemNew;
+import org.nearbyshops.enduserappnew.ShopsAvailableForItem.ShopItemByItemNew;
 
 
 

@@ -34,7 +34,7 @@ import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Markets.MarketsFragmentNew;
 import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
-import org.nearbyshops.enduserappnew.OrderHistoryNew.OrdersFragmentNew;
+import org.nearbyshops.enduserappnew.OrderHistory.OrdersFragmentNew;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
