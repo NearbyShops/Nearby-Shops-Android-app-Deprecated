@@ -63,14 +63,14 @@
         </activity>
 
 
-        <activity android:name=".ShopItemByItemNew.ShopItemByItemNew"/>
+        <activity android:name=".ShopsAvailableForItem.ShopItemByItemNew"/>
 
 
         <activity android:name=".Login.Login"/>
 
-        <activity android:name=".ItemDetailNew.ItemDetailNew"/>
+        <activity android:name=".ItemDetail.ItemDetailNew"/>
 
-        <activity android:name=".ShopDetailNew.ShopDetail"/>
+        <activity android:name=".ShopDetail.ShopDetail"/>
 
         <activity android:name=".ShopImages.ShopImageList"/>
 
@@ -103,7 +103,7 @@
         <activity android:name=".Checkout.PlaceOrderActivity"/>
 
 
-        <activity android:name=".OrderHistoryNew.OrderHistoryNew"/>
+        <activity android:name=".OrderHistory.OrderHistoryNew"/>
 
 
         <activity android:name=".MarketDetail.MarketDetail"/>
@@ -113,7 +113,7 @@
 
         <activity android:name=".ShopHome.ShopHome"/>
 
-        <activity android:name=".ItemsInShopByCat.ItemsInShopByCat"/>
+        <activity android:name=".ItemsInShopByCategory.ItemsInShopByCat"/>
 
         <activity android:name=".ShopReview.ShopReviews"/>
 

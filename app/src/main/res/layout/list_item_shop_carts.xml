@@ -27,8 +27,8 @@
         android:layout_height="1dp"/>
 
 
+
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:padding="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -70,7 +70,6 @@
             android:layout_marginTop="2dp"
             android:weightSum="2"
             android:id="@+id/labels_delivery"
-            app:layout_constraintTop_toBottomOf="@id/shop_address"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="match_parent"

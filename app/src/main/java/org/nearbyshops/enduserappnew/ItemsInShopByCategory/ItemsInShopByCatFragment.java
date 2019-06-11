@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Backups;
+package org.nearbyshops.enduserappnew.ItemsInShopByCategory;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +23,8 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailNew;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeOne.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItem;
+import org.nearbyshops.enduserappnew.ModelUtility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.SlidingLayerSort.UtilitySortItemsInShop;
 import org.nearbyshops.enduserappnew.Login.Login;
@@ -32,7 +34,6 @@ import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
-import org.nearbyshops.enduserappnew.ModelUtility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
@@ -49,7 +50,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by sumeet on 2/12/16.
  */
 
-public class ItemsInShopByCatFragmentBackup extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterItemsInShopBackup.NotificationsFromAdapter , NotifyBackPressed, NotifySort, NotifySearch {
+public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterItemsInShop.NotificationsFromAdapter, ViewHolderShopItem.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch {
 
 
 //    Map<Integer,ShopItemParcelable> shopItemMapTemp = new HashMap<>();
@@ -81,8 +82,7 @@ public class ItemsInShopByCatFragmentBackup extends Fragment implements SwipeRef
 
     GridLayoutManager layoutManager;
 
-
-    AdapterItemsInShopBackup listAdapter;
+    AdapterItemsInShop listAdapter;
 
 
     @Inject
@@ -98,7 +98,7 @@ public class ItemsInShopByCatFragmentBackup extends Fragment implements SwipeRef
     ItemCategory currentCategory = null;
 
 
-    public ItemsInShopByCatFragmentBackup() {
+    public ItemsInShopByCatFragment() {
         super();
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -163,7 +163,7 @@ public class ItemsInShopByCatFragmentBackup extends Fragment implements SwipeRef
     {
 
 
-        listAdapter = new AdapterItemsInShopBackup(dataset,getActivity(),this,this);
+        listAdapter = new AdapterItemsInShop(dataset,getActivity(),this,this);
         itemCategoriesList.setAdapter(listAdapter);
 
         layoutManager = new GridLayoutManager(getActivity(),6, RecyclerView.VERTICAL,false);
@@ -247,6 +247,9 @@ public class ItemsInShopByCatFragmentBackup extends Fragment implements SwipeRef
 
 
 //    @State int previous_position = -1;
+
+
+
 
 
 
@@ -696,6 +699,8 @@ public class ItemsInShopByCatFragmentBackup extends Fragment implements SwipeRef
     }
 
 
+
+
     void notifyItemIndicatorChanged()
     {
         if(getActivity() instanceof NotifyIndicatorChanged)
@@ -745,6 +750,8 @@ public class ItemsInShopByCatFragmentBackup extends Fragment implements SwipeRef
         Intent intent = new Intent(getActivity(), Login.class);
         startActivityForResult(intent,123);
     }
+
+
 
 
 

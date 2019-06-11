@@ -15,17 +15,17 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.CartItemList.CartItemListActivity;
-import org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCat;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.OrderHistoryNew.OrderHistoryNew;
+import org.nearbyshops.enduserappnew.OrderHistory.OrderHistoryNew;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetail;
-import org.nearbyshops.enduserappnew.ShopDetailNew.ShopDetailFragment;
+import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
+import org.nearbyshops.enduserappnew.ShopDetail.ShopDetailFragment;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
 
 

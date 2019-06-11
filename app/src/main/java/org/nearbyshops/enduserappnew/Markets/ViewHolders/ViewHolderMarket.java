@@ -108,6 +108,10 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 
 
 
+
+
+
+
     void setItem(ServiceConfigurationGlobal configurationGlobal)
     {
         this.configurationGlobal = configurationGlobal;
@@ -231,7 +235,8 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 
 
 
-    void fetchConfiguration(final ServiceConfigurationGlobal configurationGlobal)
+
+    private void fetchConfiguration(final ServiceConfigurationGlobal configurationGlobal)
     {
 
 //            PrefGeneral.saveServiceURL(configurationGlobal.getServiceURL(),getApplicationContext());
@@ -320,8 +325,7 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 
 
 
-
-    void loginToLocalEndpoint(final ServiceConfigurationGlobal configurationGlobal)
+    private void loginToLocalEndpoint(final ServiceConfigurationGlobal configurationGlobal)
     {
 
 //        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
@@ -473,9 +477,6 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
             }
         });
     }
-
-
-
 
 
 }

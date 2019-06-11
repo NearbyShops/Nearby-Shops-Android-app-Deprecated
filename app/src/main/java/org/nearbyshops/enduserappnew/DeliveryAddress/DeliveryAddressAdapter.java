@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import org.nearbyshops.enduserappnew.DeliveryAddress.ViewHolders.ViewHolderDeliveryAdddress;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.EmptyScreenMarker;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenMarker;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreen;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 

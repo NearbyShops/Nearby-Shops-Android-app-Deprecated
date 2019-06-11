@@ -50,7 +50,7 @@ import retrofit2.Response;
 import javax.inject.Inject;
 import java.util.ArrayList;
 
-import static org.nearbyshops.enduserappnew.ItemsInShopByCat.ItemsInShopByCat.TAG_SLIDING;
+import static org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat.TAG_SLIDING;
 
 /**
  * Created by sumeet on 2/12/16.
@@ -89,7 +89,7 @@ public class ItemsByCatNew extends Fragment implements
 
 
     private GridLayoutManager layoutManager;
-    private AdapterNew listAdapter;
+    private Adapter listAdapter;
 
 
 
@@ -302,7 +302,7 @@ public class ItemsByCatNew extends Fragment implements
     void setupRecyclerView()
     {
 
-        listAdapter = new AdapterNew(dataset,getActivity(),this);
+        listAdapter = new Adapter(dataset,getActivity(),this);
         itemCategoriesList.setAdapter(listAdapter);
 
         layoutManager = new GridLayoutManager(getActivity(),6, RecyclerView.VERTICAL,false);
