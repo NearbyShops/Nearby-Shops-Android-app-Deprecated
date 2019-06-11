@@ -39,26 +39,27 @@ import java.util.List;
 
 public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.OnRefreshListener , AdapterOrderDetail.NotifyItemClick{
 
-    Order order;
+    private Order order;
 
     @Inject
     OrderItemService orderItemService;
 
-    RecyclerView recyclerView;
-    AdapterOrderDetail adapter;
+    private RecyclerView recyclerView;
+    private AdapterOrderDetail adapter;
 
     public List<Object> dataset = new ArrayList<>();
 
-    GridLayoutManager layoutManager;
-    SwipeRefreshLayout swipeContainer;
+    private GridLayoutManager layoutManager;
+    private SwipeRefreshLayout swipeContainer;
 
 
 
     final private int limit = 5;
-    int offset = 0;
-    int item_count = 0;
+    private int offset = 0;
+    private int item_count = 0;
 
-    boolean isDestroyed;
+
+    private boolean isDestroyed;
 
 
 
@@ -85,14 +86,16 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         order = PrefOrderDetail.getOrder(getActivity());
 
 
+
+
+
         if(savedInstanceState==null)
         {
-
+            makeRefreshNetworkCall();
         }
 
 
 
-        makeRefreshNetworkCall();
 
         setupRecyclerView();
         setupSwipeContainer();
@@ -103,7 +106,9 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     }
 
 
-    void setupSwipeContainer()
+
+
+    private void setupSwipeContainer()
     {
         if(swipeContainer!=null) {
 
@@ -117,7 +122,9 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     }
 
 
-    void setupRecyclerView()
+
+
+    private void setupRecyclerView()
     {
 
         adapter = new AdapterOrderDetail(dataset,getActivity(),this);
@@ -268,7 +275,9 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
 
 
-    void makeRefreshNetworkCall()
+
+
+    private void makeRefreshNetworkCall()
     {
 
         swipeContainer.post(new Runnable() {
@@ -287,10 +296,12 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
 
 
+
+
     @Inject
     ShopService shopService;
 
-    void makeNetworkCall(final boolean clearDataset)
+    private void makeNetworkCall(final boolean clearDataset)
     {
 
 //        Shop currentShop = PrefShopHome.getShop(getContext());
@@ -367,7 +378,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
 
 
-    void makeNetworkCallShop()
+    private void makeNetworkCallShop()
     {
         Call<Shop> call = shopService.getShop(
           order.getShopID(),
@@ -395,7 +406,10 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     }
 
 
-    void showToastMessage(String message)
+
+
+
+    private void showToastMessage(String message)
     {
         if(getActivity()!=null)
         {

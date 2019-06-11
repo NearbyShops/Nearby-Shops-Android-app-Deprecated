@@ -22,7 +22,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemDetailNew.ItemDetailNew;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeSimple.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeOne.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ModelUtility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.ItemsInShopByCat.Interfaces.NotifyIndicatorChanged;

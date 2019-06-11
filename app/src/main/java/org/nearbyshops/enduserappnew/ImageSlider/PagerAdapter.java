@@ -51,7 +51,10 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
 
 
-    void showLogMessage(String string)
+
+
+
+    private void showLogMessage(String string)
     {
         Log.d("image_slider",string);
     }

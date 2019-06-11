@@ -61,7 +61,7 @@
 
 
         <TextView
-            android:text="Copyright Triplogic 2017"
+            android:text="Copyright Text"
             android:textSize="9dp"
             android:id="@+id/copyright_info"
             android:textColor="@color/white"
