@@ -6,9 +6,7 @@ Nearby Shops End-User android app
 
 <img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
 
-Nearby Shops is an Open-Source food delivery and Grocery platform. Simple and Easy to setup mobile based hyperlocal platform.
-
-For more information visit https://nearbyshops.org | Developers visit http://developer.nearbyshops.org
+Nearby Shops is an Open-Source food delivery and Grocery platform. Simple and Easy to setup mobile based hyperlocal platform. For more information visit https://nearbyshops.org | Developers visit http://developer.nearbyshops.org
 
 It has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. 
 
@@ -33,7 +31,7 @@ Android-Jetpack, Retrofit, Ok-Http, Event-Bus, Picasso, butterknife, dagger2, U-
 Third Party Integrations
 -------------------------
 
-Nearby Shops has latest integrations for SMS-OTP verification(MSG91), E-mail (Simple-Java-Mail), One-Signal and Firebase (for push notifications), Maps (open-street-maps)
+Nearby Shops has latest integrations for SMS-OTP verification(MSG91), E-mail (Simple-Java-Mail), One-Signal and Firebase (for push notifications), Mapbox Android SDK for Maps
 
 
 Community - Need Help ? 
