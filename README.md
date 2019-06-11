@@ -60,7 +60,7 @@ Source code for Shop-Owner, Admin app and Server Side
 -------------------------------------------------------
 If you want to see source code for Shop-Owner app, Admin-app and server side the links are provided below
 
-Shop-Owner app : https://github.com/SumeetMoray/Nearby-Shops-Shop-Owner-app
+Shop-Owner app : https://github.com/SumeetMoray/Nearby-Shops-Shop-Owner-Android-app
 
 Admin app : https://github.com/SumeetMoray/Nearby-Shops-Admin-App
 
