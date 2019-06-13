@@ -14,7 +14,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
 import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.*;
-import org.nearbyshops.enduserappnew.ModelUtility.HeaderItemsList;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;

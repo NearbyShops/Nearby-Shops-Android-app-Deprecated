@@ -1,20 +1,39 @@
 package org.nearbyshops.enduserappnew.ModelEndPoints;
 
+import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sumeet on 30/6/16.
  */
 public class ShopItemEndPoint {
 
-    Integer itemCount;
-    Integer offset;
-    Integer limit;
-    Integer max_limit;
-    ArrayList<ShopItem> results;
 
+
+    private int itemCount;
+    private int offset;
+    private int limit;
+    private int max_limit;
+    private ArrayList<ShopItem> results;
+
+    private List<ItemCategory> subcategories;
+
+
+
+
+
+
+
+    public List<ItemCategory> getSubcategories() {
+        return subcategories;
+    }
+
+    public void setSubcategories(List<ItemCategory> subcategories) {
+        this.subcategories = subcategories;
+    }
 
     public Integer getItemCount() {
         return itemCount;

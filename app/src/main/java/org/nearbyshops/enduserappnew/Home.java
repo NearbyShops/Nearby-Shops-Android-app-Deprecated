@@ -26,9 +26,9 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.nearbyshops.enduserappnew.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Interfaces.*;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeTwo.ItemsByCatNew;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeOne.Interfaces.NotifyBackPressed;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeOne.ItemCategoriesFragmentSimple;
+import org.nearbyshops.enduserappnew.ItemsByCategory.ItemsByCatNew;
+import org.nearbyshops.enduserappnew.ItemsByCategory.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduserappnew.ItemsByCategoryDeprecated.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduserappnew.LoginPlaceholder.FragmentSignInMessage;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Markets.MarketsFragmentNew;
@@ -40,7 +40,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
-import org.nearbyshops.enduserappnew.ShopsList.ListFragment.FragmentShopNew;
+import org.nearbyshops.enduserappnew.ShopsList.FragmentShopsList;
 
 
 
@@ -213,7 +213,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 {
                     bottomBar.getMenu().getItem(2).setChecked(true);
                 }
-                else if(fragment instanceof FragmentShopNew)
+                else if(fragment instanceof FragmentShopsList)
                 {
                     bottomBar.getMenu().getItem(1).setChecked(true);
                 }
@@ -529,7 +529,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 //            if (getSupportFragmentManager().findFragmentByTag(TAG_SHOPS_FRAGMENT) == null) {
 //                getSupportFragmentManager()
 //                        .beginTransaction()
-//                        .replace(R.id.fragment_container, FragmentShopNew.newInstance(false), TAG_SHOPS_FRAGMENT)
+//                        .replace(R.id.fragment_container, FragmentShopNewBackup.newInstance(false), TAG_SHOPS_FRAGMENT)
 //                        .addToBackStack(null)
 //                        .commit();
 //            }
@@ -552,7 +552,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 //            {
 //                getSupportFragmentManager()
 //                        .beginTransaction()
-//                        .replace(R.id.fragment_container, FragmentShopNew.newInstance(false), TAG_SHOPS_FRAGMENT)
+//                        .replace(R.id.fragment_container, FragmentShopNewBackup.newInstance(false), TAG_SHOPS_FRAGMENT)
 //                        .addToBackStack("shop_fragment")
 //                        .commit();
 //            }
@@ -562,7 +562,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 //
 //            if(fragmentShop==null)
 //            {
-//                fragmentShop = FragmentShopNew.newInstance(false);
+//                fragmentShop = FragmentShopNewBackup.newInstance(false);
 //            }
 
 
@@ -570,7 +570,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, FragmentShopNew.newInstance(false), TAG_SHOPS_FRAGMENT)
+                    .replace(R.id.fragment_container, FragmentShopsList.newInstance(false), TAG_SHOPS_FRAGMENT)
                     .addToBackStack("shop_fragment")
                     .commit();
 
