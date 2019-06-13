@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import org.nearbyshops.enduserappnew.Markets.AdapterSavedMarkets;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
+import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.R;
 
@@ -26,6 +28,9 @@ public class ViewHolderSavedMarketList extends RecyclerView.ViewHolder {
 //    private List<ServiceConfigurationGlobal> configurationGlobal;
     private Context context;
     private listItemMarketNotifications subscriber;
+
+
+    @BindView(R.id.list_title) TextView listTitle;
 
 
 
@@ -56,7 +61,7 @@ public class ViewHolderSavedMarketList extends RecyclerView.ViewHolder {
 
 
 
-    void setItem(List<ServiceConfigurationGlobal> item)
+    public void setItem(List<ServiceConfigurationGlobal> item)
     {
 
 //        this.configurationGlobal = item;
@@ -69,6 +74,30 @@ public class ViewHolderSavedMarketList extends RecyclerView.ViewHolder {
         savedMarketList.setLayoutManager(layoutManager);
 
     }
+
+
+
+
+
+
+
+    public void setItem(MarketsList list)
+    {
+
+//        this.configurationGlobal = item;
+
+
+        listTitle.setText(list.getListTitle());
+
+        AdapterSavedMarkets adapter=  new AdapterSavedMarkets(list.getDataset(),context, subscriber);
+        savedMarketList.setAdapter(adapter);
+        savedMarketList.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        savedMarketList.setLayoutManager(layoutManager);
+
+    }
+
+
 
 
 

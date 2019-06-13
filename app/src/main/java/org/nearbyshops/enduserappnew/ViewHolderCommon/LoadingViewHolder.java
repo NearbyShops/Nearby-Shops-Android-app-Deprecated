@@ -38,6 +38,8 @@ public class LoadingViewHolder extends  RecyclerView.ViewHolder{
 
 
 
+
+
     public void setLoading(boolean loadMore)
     {
         if (loadMore) {

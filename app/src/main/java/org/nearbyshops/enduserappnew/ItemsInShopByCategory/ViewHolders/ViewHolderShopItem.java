@@ -167,21 +167,35 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
                             {
 
 
-                                if(fragment instanceof ItemsInShopByCatFragment)
+
+//                                if(fragment instanceof ItemsInShopByCatFragment)
+//                                {
+//                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+//                                }
+
+
+                                if(fragment instanceof ListItemClick)
                                 {
-                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                                    ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart());
                                 }
+
 
                             }else
                             {
 
-                                if(fragment instanceof ItemsInShopByCatFragment)
-                                {
-                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
-                                    addToCartText.setText("Remove Item");
+//                                if(fragment instanceof ItemsInShopByCatFragment)
+//                                {
+//                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
+////                                        addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.deepOrange900));
+//                                }
 
-//                                        addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.deepOrange900));
+
+                                if(fragment instanceof ListItemClick)
+                                {
+                                    ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart() - 1);
+                                    addToCartText.setText("Remove Item");
                                 }
+
                             }
 
                         }else
@@ -190,19 +204,28 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
                             {
                                 // no shop exist
 
-                                if(fragment instanceof ItemsInShopByCatFragment)
-                                {
-                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
-                                }
 
+//                                if(fragment instanceof ItemsInShopByCatFragment)
+//                                {
+//                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+//                                }
+
+
+                                if(fragment instanceof ListItemClick)
+                                {
+                                    ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart() + 1);
+                                }
 
                             }else
                             {
                                 // shop Exist
 
-                                if(fragment instanceof ItemsInShopByCatFragment)
+                                if(fragment instanceof ListItemClick)
                                 {
-                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+//                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+
+                                    ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart());
+
                                 }
 
                                 addToCartText.setText("Update Cart");
@@ -217,11 +240,21 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
                 }
 
+
+
                 itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
 
-                if(fragment instanceof ItemsInShopByCatFragment)
+
+
+//                if(fragment instanceof ItemsInShopByCatFragment)
+//                {
+//                    ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartTotalNeutral() + total));
+//                }
+
+
+                if(fragment instanceof ListItemClick)
                 {
-                    ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartTotalNeutral() + total));
+                    ((ListItemClick) fragment).setCartTotal(cartTotalNeutral() + total);
                 }
 
 
@@ -600,7 +633,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
-    void setFilter() {
+    private void setFilter() {
 
 
         if (shopItem != null) {
@@ -611,7 +644,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
     }
 
 
-    double cartTotalNeutral(){
+
+
+    private double cartTotalNeutral(){
 
         double previousTotal = 0;
 
@@ -633,6 +668,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
         return (cartTotalValue - previousTotal);
     }
+
+
+
 
 
 
@@ -723,8 +761,11 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
             itemQuantity.setText(String.valueOf(0));
             itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
         }
-
     }
+
+
+
+
 
 
 
@@ -847,6 +888,8 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
         Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,null,
                 endUser.getUserID(),shop.getShopID(),false);
+
+
 
 
         cartItemCall.enqueue(new Callback<List<CartItem>>() {
@@ -974,6 +1017,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
     public interface ListItemClick{
         void notifyItemImageClick(Item item);
         void showLogin();
+        void setCartTotal(double cartTotal);
+        void setItemsInCart(int itemsInCart);
+
     }
 
 

@@ -9,6 +9,8 @@ import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 import org.nearbyshops.enduserappnew.API_SDS.ServiceConfigService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
+import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
 import org.nearbyshops.enduserappnew.ModelUtility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
@@ -37,9 +39,9 @@ public class MarketViewModel extends AndroidViewModel {
 
 
 
-    final private int limit = 25;
-    int offset = 0;
-    int item_count = 0;
+    final private int limit = 50;
+    private int offset = 0;
+    private int item_count = 0;
 
 
     @Inject
@@ -184,20 +186,46 @@ public class MarketViewModel extends AndroidViewModel {
 
 //                            dataset.add(PrefServiceConfig.getServiceConfigLocal(getActivity()));
 
-                            ServiceConfigurationLocal configurationLocal = PrefServiceConfig.getServiceConfigLocal(getApplication());
-
-                            if(configurationLocal!=null)
-                            {
-                                dataset.add(configurationLocal);
-                            }
 
 
 
                             if(response.body().getSavedMarkets()!=null)
                             {
 //                                savedMarkets.addAll(response.body().getSavedMarkets());
-                                dataset.add(response.body().getSavedMarkets());
+//                                dataset.add(response.body().getSavedMarkets());
+
+                                dataset.add(new MarketsList("Favourites",response.body().getSavedMarkets()));
                             }
+
+
+
+                            if(response.body().getResults()!=null)
+                            {
+
+//                            if(item_count>0)
+//                            {
+//                                dataset.add(new HeaderItemsList());
+//                            }
+
+
+                                dataset.add(new HeaderItemsList());
+                                dataset.addAll(response.body().getResults());
+//                                dataset.add(new MarketsList("Markets in your Area",response.body().getResults()));
+                            }
+
+
+
+//
+//                            ServiceConfigurationLocal configurationLocal = PrefServiceConfig.getServiceConfigLocal(getApplication());
+//
+//                            if(configurationLocal!=null)
+//                            {
+//                                dataset.add(configurationLocal);
+//                            }
+
+
+
+
 
 
 //                        Log.d(UtilityFunctions.TAG_LOG,UtilityFunctions.provideGson().toJson(response.body().getSavedMarkets()));
@@ -215,23 +243,20 @@ public class MarketViewModel extends AndroidViewModel {
                             {
                                 dataset.add(user);
                             }
-
-
-
-
-
-                            if(item_count>0)
+                            else
                             {
-                                dataset.add(new HeaderItemsList());
+                                dataset.add(new SignInMarker());
                             }
+
+
+
+
+
+//
                         }
 
 
 
-                        if(response.body().getResults()!=null)
-                        {
-                            dataset.addAll(response.body().getResults());
-                        }
 
 
 

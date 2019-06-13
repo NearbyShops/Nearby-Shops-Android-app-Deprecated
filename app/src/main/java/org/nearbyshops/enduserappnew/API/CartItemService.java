@@ -20,6 +20,8 @@ public interface CartItemService {
                                      @Query("ShopID") Integer shopID,
                                      @Query("GetItems") Boolean getItems);
 
+
+
     @DELETE("/api/CartItem")
     Call<ResponseBody> deleteCartItem(@Query("CartID") int cartID, @Query("ItemID") int itemID,
                                       @Query("EndUserID") int endUserID,

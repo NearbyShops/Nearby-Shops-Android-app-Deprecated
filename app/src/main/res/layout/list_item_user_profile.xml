@@ -32,6 +32,16 @@
         app:layout_constraintTop_toBottomOf="@id/border_profile_top" />
 
 
+    <TextView
+        android:textSize="17sp"
+        android:id="@+id/log_out_button"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/profile_image"
+        android:text="| Log Out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <LinearLayout
         android:id="@+id/user_profile"
         android:layout_width="0dp"

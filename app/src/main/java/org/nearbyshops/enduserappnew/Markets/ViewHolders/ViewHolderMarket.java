@@ -45,8 +45,8 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 
     @BindView(R.id.service_name) TextView serviceName;
     @BindView(R.id.address) TextView serviceAddress;
-    @BindView(R.id.indicator_category) TextView indicatorCategory;
-    @BindView(R.id.indicator_verified) TextView indicatorVerified;
+//    @BindView(R.id.indicator_category) TextView indicatorCategory;
+//    @BindView(R.id.indicator_verified) TextView indicatorVerified;
     @BindView(R.id.distance) TextView distance;
     @BindView(R.id.rating) TextView rating;
     @BindView(R.id.rating_count) TextView ratingCount;
@@ -112,7 +112,7 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 
 
 
-    void setItem(ServiceConfigurationGlobal configurationGlobal)
+    public void setItem(ServiceConfigurationGlobal configurationGlobal)
     {
         this.configurationGlobal = configurationGlobal;
 
@@ -136,6 +136,8 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 
 
 //                holder.indicatorVerified.setVisibility(View.VISIBLE);
+
+
 
 
 

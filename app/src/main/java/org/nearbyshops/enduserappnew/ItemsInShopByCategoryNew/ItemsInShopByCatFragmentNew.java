@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemsInShopByCategory;
+package org.nearbyshops.enduserappnew.ItemsInShopByCategoryNew;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,10 +23,11 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailNew;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeOne.Interfaces.NotifyBackPressed;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItem;
-import org.nearbyshops.enduserappnew.ModelUtility.HeaderItemsList;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeOne.ViewHolders.ViewHolderItemCategory;
+import org.nearbyshops.enduserappnew.ItemsByCategoryTypeTwo.ViewHolders.ViewHolderItemCategoryNew;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.SlidingLayerSort.UtilitySortItemsInShop;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
@@ -34,6 +35,7 @@ import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
+import org.nearbyshops.enduserappnew.ModelUtility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
@@ -51,7 +53,13 @@ import static android.app.Activity.RESULT_OK;
  * Created by sumeet on 2/12/16.
  */
 
-public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterItemsInShop.NotificationsFromAdapter, ViewHolderShopItem.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch {
+public class ItemsInShopByCatFragmentNew extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
+        ViewHolderItemCategoryNew.ListItemClick,
+        ViewHolderItemCategory.ListItemClick, ViewHolderShopItem.ListItemClick,
+        NotifyBackPressed, NotifySort, NotifySearch {
+
+
+
 
 
 //    Map<Integer,ShopItemParcelable> shopItemMapTemp = new HashMap<>();
@@ -71,9 +79,11 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     @BindView(R.id.recycler_view)
     RecyclerView itemCategoriesList;
 
-    ArrayList<Object> dataset = new ArrayList<>();
-    ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
-    ArrayList<ShopItem> datasetShopItems = new ArrayList<>();
+
+
+    private ArrayList<Object> dataset = new ArrayList<>();
+    private ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
+    private ArrayList<ShopItem> datasetShopItems = new ArrayList<>();
 
 
 
@@ -81,9 +91,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     @BindView(R.id.cartTotal) public TextView cartTotal;
 
 
-    GridLayoutManager layoutManager;
-
-    AdapterItemsInShop listAdapter;
+    private GridLayoutManager layoutManager;
+    private Adapter listAdapter;
 
 
     @Inject
@@ -96,10 +105,11 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 //    ItemService itemService;
 
 
-    ItemCategory currentCategory = null;
+
+    private ItemCategory currentCategory = null;
 
 
-    public ItemsInShopByCatFragment() {
+    public ItemsInShopByCatFragmentNew() {
         super();
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -164,7 +174,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     {
 
 
-        listAdapter = new AdapterItemsInShop(dataset,getActivity(),this,this);
+        listAdapter = new Adapter(dataset,getActivity(),this);
         itemCategoriesList.setAdapter(listAdapter);
 
         layoutManager = new GridLayoutManager(getActivity(),6, RecyclerView.VERTICAL,false);
@@ -754,16 +764,21 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-
     @Override
     public void setCartTotal(double cartTotalValue) {
         cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(cartTotalValue));
     }
 
+
+
+
     @Override
     public void setItemsInCart(int itemsInCartValue) {
         itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items in Cart");
     }
+
+
+
 
 
     @Override
