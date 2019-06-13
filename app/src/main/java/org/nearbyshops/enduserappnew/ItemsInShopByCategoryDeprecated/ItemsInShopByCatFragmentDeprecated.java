@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemsInShopByCategory;
+package org.nearbyshops.enduserappnew.ItemsInShopByCategoryDeprecated;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,23 +23,21 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailNew;
 import org.nearbyshops.enduserappnew.ItemsByCategory.Interfaces.NotifyBackPressed;
-import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategory;
-import org.nearbyshops.enduserappnew.ItemsByCategory.Model.ItemCategoriesList;
-import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategoryHorizontal;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItem;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderItemsList;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.SlidingLayerSort.PrefSortItemsInShop;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.Model.ShopItem;
+import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,38 +51,29 @@ import static android.app.Activity.RESULT_OK;
  * Created by sumeet on 2/12/16.
  */
 
-public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        ViewHolderItemCategoryHorizontal.ListItemClick,
-        ViewHolderItemCategory.ListItemClick, ViewHolderShopItem.ListItemClick,
-        NotifyBackPressed, NotifySort, NotifySearch {
-
-
-
+public class ItemsInShopByCatFragmentDeprecated extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterItemsInShop.NotificationsFromAdapter, ViewHolderShopItem.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch {
 
 
 //    Map<Integer,ShopItemParcelable> shopItemMapTemp = new HashMap<>();
 
-    private boolean isDestroyed = false;
+    boolean isDestroyed = false;
     boolean show = true;
 
     int item_count_item_category = 0;
 
     private int limit_item = 10;
-    private int offset_item = 0;
-    private int item_count_item;
-    private int fetched_items_count = 0;
+    int offset_item = 0;
+    int item_count_item;
+    int fetched_items_count = 0;
 
+    @BindView(R.id.swipe_container)
+    SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.recycler_view)
+    RecyclerView itemCategoriesList;
 
-
-    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
-    @BindView(R.id.recycler_view) RecyclerView itemCategoriesList;
-
-
-
-
-    private ArrayList<Object> dataset = new ArrayList<>();
-//    private ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
-//    private ArrayList<ShopItem> datasetShopItems = new ArrayList<>();
+    ArrayList<Object> dataset = new ArrayList<>();
+    ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
+    ArrayList<ShopItem> datasetShopItems = new ArrayList<>();
 
 
 
@@ -92,8 +81,9 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     @BindView(R.id.cartTotal) public TextView cartTotal;
 
 
-    private GridLayoutManager layoutManager;
-    private Adapter listAdapter;
+    GridLayoutManager layoutManager;
+
+    AdapterItemsInShop listAdapter;
 
 
     @Inject
@@ -106,11 +96,10 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 //    ItemService itemService;
 
 
+    ItemCategory currentCategory = null;
 
-    private ItemCategory currentCategory = null;
 
-
-    public ItemsInShopByCatFragment() {
+    public ItemsInShopByCatFragmentDeprecated() {
         super();
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -154,7 +143,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-    private void setupSwipeContainer()
+    void setupSwipeContainer()
     {
 
         if(swipeContainer!=null) {
@@ -171,16 +160,11 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-
-
-
-    private void setupRecyclerView()
+    void setupRecyclerView()
     {
 
 
-
-
-        listAdapter = new Adapter(dataset,getActivity(),this);
+        listAdapter = new AdapterItemsInShop(dataset,getActivity(),this,this);
         itemCategoriesList.setAdapter(listAdapter);
 
         layoutManager = new GridLayoutManager(getActivity(),6, RecyclerView.VERTICAL,false);
@@ -273,17 +257,16 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     @Override
     public void onRefresh() {
 
-
+        makeRequestItemCategory();
         makeRequestShopItem(true,true);
+
         listAdapter.getCartStats(true,0,true);
 
     }
 
 
 
-
-
-    private void makeRefreshNetworkCall()
+    void makeRefreshNetworkCall()
     {
         swipeContainer.post(new Runnable() {
             @Override
@@ -324,10 +307,168 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+    boolean isFirst = true;
+
+
+    void makeRequestItemCategory()
+    {
+
+        /*Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesEndPoint(
+                null,
+                currentCategory.getItemCategoryID(),
+                null,
+                null,
+                null,
+                null,null,null,
+                "ITEM_CATEGORY_NAME",null,null,false);*/
+
+        Call<ItemCategoryEndPoint> endPointCall = null;
+
+        Shop currentShop = PrefShopHome.getShop(getContext());
+
+        if(searchQuery == null)
+        {
+           endPointCall = itemCategoryService.getItemCategoriesEndPoint(
+                    currentShop.getShopID(),currentCategory.getItemCategoryID(),
+                    null,
+                    null,null,
+                    null,null,
+                    null,true,
+                    ItemCategory.CATEGORY_ORDER,null,null,false);
+
+
+        }
+        else
+        {
+
+
+            endPointCall = itemCategoryService.getItemCategoriesEndPoint(
+                    currentShop.getShopID(),currentCategory.getItemCategoryID(),
+                    null,
+                    null,null,
+                    null,null,
+                    null,true,
+                    ItemCategory.CATEGORY_ORDER,null,null,false);
+
+        }
 
 
 
-    private String searchQuery = null;
+        endPointCall.enqueue(new Callback<ItemCategoryEndPoint>() {
+            @Override
+            public void onResponse(Call<ItemCategoryEndPoint> call, Response<ItemCategoryEndPoint> response) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+                if(response.body()!=null)
+                {
+
+                    ItemCategoryEndPoint endPoint = response.body();
+                    item_count_item_category = endPoint.getItemCount();
+
+                    datasetCategory.clear();
+                    datasetCategory.addAll(endPoint.getResults());
+                }
+
+
+                if(isFirst)
+                {
+                    isFirst = false;
+                }
+                else
+                {
+                    // is last
+                    refreshAdapter();
+                    isFirst = true;// reset the flag
+                }
+
+
+//                swipeContainer.setRefreshing(false);
+            }
+
+            @Override
+            public void onFailure(Call<ItemCategoryEndPoint> call, Throwable t) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+                showToastMessage("Network request failed. Please check your connection !");
+
+
+                if(isFirst)
+                {
+                    isFirst = false;
+                }
+                else
+                {
+                    // is last
+                    refreshAdapter();
+                    isFirst = true;// reset the flag
+                }
+
+
+
+//                if(swipeContainer!=null)
+//                {
+//                    swipeContainer.setRefreshing(false);
+//                }
+
+            }
+        });
+    }
+
+
+
+    void refreshAdapter()
+    {
+        dataset.clear();
+
+
+
+        if(searchQuery==null)
+        {
+
+            HeaderItemsList headerItemCategory = new HeaderItemsList();
+            headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
+
+
+            dataset.add(headerItemCategory);
+            dataset.addAll(datasetCategory);
+        }
+//        else
+//        {
+//            headerItemCategory.setHeading( "Search Results (Subcategories)");
+//        }
+
+
+        HeaderItemsList headerItem = new HeaderItemsList();
+
+        if(searchQuery==null)
+        {
+            headerItem.setHeading(currentCategory.getCategoryName() + " Items In Shop");
+        }
+        else
+        {
+//            headerItem.setHeading("Search Results (Items In Shop)");
+            headerItem.setHeading("Search Results");
+        }
+
+
+        dataset.add(headerItem);
+        dataset.addAll(datasetShopItems);
+        listAdapter.notifyDataSetChanged();
+        swipeContainer.setRefreshing(false);
+    }
+
+
+
+    String searchQuery = null;
 
     @Override
     public void search(final String searchString) {
@@ -344,8 +485,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-
-    private void makeRequestShopItem(final boolean clearDataset, boolean resetOffset)
+    void makeRequestShopItem(final boolean clearDataset, boolean resetOffset)
     {
 
         if(resetOffset)
@@ -369,9 +509,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-
             endPointCall = shopItemService.getShopItemEndpoint(
-                    currentCategory.getItemCategoryID(),clearDataset,
+                    currentCategory.getItemCategoryID(),
                     currentShop.getShopID(),
                     null,null,null,null,null,null,null,
                     null,null,
@@ -386,7 +525,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
             endPointCall = shopItemService.getShopItemEndpoint(
-                    null,clearDataset,
+                    null,
                     currentShop.getShopID(),
                     null,null,null,null,null,null,null,null,null,
                     null,null,null,
@@ -412,112 +551,6 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                 {
 
 
-
-
-                    if(clearDataset)
-                    {
-                        dataset.clear();
-//                            dataset.addAll(response.body().getResults());
-
-
-
-
-
-                        if(response.body()!=null)
-                        {
-
-
-                            item_count_item = response.body().getItemCount();
-                            fetched_items_count = dataset.size();
-
-
-
-                            if(response.body().getSubcategories()!=null && response.body().getSubcategories().size()>0)
-                            {
-
-
-                                if (searchQuery == null) {
-
-                                    HeaderTitle headerItemCategory = new HeaderTitle();
-
-                                    if (currentCategory.getParentCategoryID() == -1) {
-                                        headerItemCategory.setHeading("Item Categories");
-                                    } else {
-                                        headerItemCategory.setHeading(currentCategory.getCategoryName() + " Subcategories");
-                                    }
-
-                                    dataset.add(headerItemCategory);
-                                }
-
-
-
-
-                                if(currentCategory.getParentCategoryID()==-1 || response.body().getResults().size()==0)
-                                {
-                                    dataset.addAll(response.body().getSubcategories());
-                                }
-                                else
-                                {
-
-                                    ItemCategoriesList list = new ItemCategoriesList();
-                                    list.setItemCategories(response.body().getSubcategories());
-
-                                    dataset.add(list);
-
-                                }
-
-
-                            }
-
-
-
-
-
-                            HeaderTitle headerItem = new HeaderTitle();
-
-
-
-                            if(searchQuery==null)
-                            {
-                                if(response.body().getResults().size()>0)
-                                {
-                                    headerItem.setHeading(currentCategory.getCategoryName() + " Items");
-                                }
-                                else
-                                {
-                                    headerItem.setHeading("No Items in this category");
-                                }
-
-
-                            }
-                            else
-                            {
-                                if(response.body().getResults().size()>0)
-                                {
-                                    headerItem.setHeading("Search Results");
-                                }
-                                else
-                                {
-                                    headerItem.setHeading("No items for the given search !");
-                                }
-                            }
-
-
-
-                            dataset.add(headerItem);
-
-                        }
-
-                    }
-
-
-
-
-
-                    dataset.addAll(response.body().getResults());
-                    fetched_items_count = fetched_items_count + response.body().getResults().size();
-
-
                 }
                 else
                 {
@@ -526,21 +559,51 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-
-                if(offset_item+limit_item >= item_count_item)
+                if(clearDataset)
                 {
-                    listAdapter.setLoadMore(false);
+
+                    if(response.body()!=null)
+                    {
+
+                        datasetShopItems.clear();
+                        datasetShopItems.addAll(response.body().getResults());
+                        item_count_item = response.body().getItemCount();
+                        fetched_items_count = datasetShopItems.size();
+
+//                        if(response.body().getItemCount()!=null)
+//                        {
+//
+//                        }
+                    }
+
+
+                    if(isFirst)
+                    {
+                        isFirst = false;
+                    }
+                    else
+                    {
+                        // is last
+                        refreshAdapter();
+                        isFirst = true;// reset the flag
+                    }
+
                 }
                 else
                 {
-                    listAdapter.setLoadMore(true);
+                    if(response.body()!=null)
+                    {
+
+                        dataset.addAll(response.body().getResults());
+                        fetched_items_count = fetched_items_count + response.body().getResults().size();
+                        item_count_item = response.body().getItemCount();
+                        listAdapter.notifyDataSetChanged();
+                    }
+
+                    swipeContainer.setRefreshing(false);
                 }
 
 
-
-
-                swipeContainer.setRefreshing(false);
-                listAdapter.notifyDataSetChanged();
                 notifyItemIndicatorChanged();
 
             }
@@ -554,9 +617,28 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                 }
 
 
+                if(clearDataset)
+                {
 
-                swipeContainer.setRefreshing(false);
+                    if(isFirst)
+                    {
+                        isFirst = false;
+                    }
+                    else
+                    {
+                        // is last
+                        refreshAdapter();
+                        isFirst = true;// reset the flag
+                    }
+                }
+                else
+                {
+                    swipeContainer.setRefreshing(false);
+                }
+
+
                 showToastMessage("Items: Network request failed. Please check your connection !");
+
 
             }
         });
@@ -620,10 +702,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-
-
-
-    private void notifyItemIndicatorChanged()
+    void notifyItemIndicatorChanged()
     {
         if(getActivity() instanceof NotifyIndicatorChanged)
         {
@@ -675,21 +754,16 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+
     @Override
     public void setCartTotal(double cartTotalValue) {
         cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(cartTotalValue));
     }
 
-
-
-
     @Override
     public void setItemsInCart(int itemsInCartValue) {
         itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items in Cart");
     }
-
-
-
 
 
     @Override

@@ -22,9 +22,9 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailNew;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeOne.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduserappnew.ItemsByCategory.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.Interfaces.NotifyIndicatorChanged;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.SlidingLayerSort.UtilitySortItemsInShop;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.SlidingLayerSort.PrefSortItemsInShop;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
@@ -32,7 +32,7 @@ import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
-import org.nearbyshops.enduserappnew.ModelUtility.HeaderItemsList;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
@@ -492,7 +492,7 @@ public class ItemsInShopByCatFragmentBackup extends Fragment implements SwipeRef
 
         String current_sort = "";
 
-        current_sort = UtilitySortItemsInShop.getSort(getContext()) + " " + UtilitySortItemsInShop.getAscending(getContext());
+        current_sort = PrefSortItemsInShop.getSort(getContext()) + " " + PrefSortItemsInShop.getAscending(getContext());
 
 
         Call<ShopItemEndPoint> endPointCall = null;

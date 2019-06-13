@@ -23,7 +23,7 @@ import okhttp3.ResponseBody;
 import org.nearbyshops.enduserappnew.API.CartItemService;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCatFragment;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategoryDeprecated.ItemsInShopByCatFragmentDeprecated;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
@@ -168,9 +168,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
-//                                if(fragment instanceof ItemsInShopByCatFragment)
+//                                if(fragment instanceof ItemsInShopByCatFragmentDeprecated)
 //                                {
-//                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+//                                    ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
 //                                }
 
 
@@ -183,9 +183,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
                             }else
                             {
 
-//                                if(fragment instanceof ItemsInShopByCatFragment)
+//                                if(fragment instanceof ItemsInShopByCatFragmentDeprecated)
 //                                {
-//                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
+//                                    ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
 ////                                        addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.deepOrange900));
 //                                }
 
@@ -205,9 +205,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
                                 // no shop exist
 
 
-//                                if(fragment instanceof ItemsInShopByCatFragment)
+//                                if(fragment instanceof ItemsInShopByCatFragmentDeprecated)
 //                                {
-//                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+//                                    ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
 //                                }
 
 
@@ -222,7 +222,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
                                 if(fragment instanceof ListItemClick)
                                 {
-//                                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+//                                    ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
 
                                     ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart());
 
@@ -246,9 +246,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
-//                if(fragment instanceof ItemsInShopByCatFragment)
+//                if(fragment instanceof ItemsInShopByCatFragmentDeprecated)
 //                {
-//                    ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartTotalNeutral() + total));
+//                    ((ItemsInShopByCatFragmentDeprecated)fragment).cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartTotalNeutral() + total));
 //                }
 
 
@@ -706,17 +706,17 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
                         {
 
 
-                            if(fragment instanceof ItemsInShopByCatFragment)
+                            if(fragment instanceof ItemsInShopByCatFragmentDeprecated)
                             {
-                                ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(0) + " " + "Items in Cart");
+                                ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(0) + " " + "Items in Cart");
                             }
                         }
                         else
                         {
 
-                            if(fragment instanceof ItemsInShopByCatFragment)
+                            if(fragment instanceof ItemsInShopByCatFragmentDeprecated)
                             {
-                                ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");;
+                                ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");;
                             }
 
 
@@ -725,9 +725,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
                     } else
                     {
-                        if(fragment instanceof ItemsInShopByCatFragment)
+                        if(fragment instanceof ItemsInShopByCatFragmentDeprecated)
                         {
-                            ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() - 1) + " " + "Items in Cart");
+                            ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() - 1) + " " + "Items in Cart");
                         }
                     }
 
@@ -747,9 +747,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
-            if(fragment instanceof ItemsInShopByCatFragment)
+            if(fragment instanceof ItemsInShopByCatFragmentDeprecated)
             {
-                ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartTotalNeutral() + total));
+                ((ItemsInShopByCatFragmentDeprecated)fragment).cartTotal.setText("Cart Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartTotalNeutral() + total));
             }
 
 
@@ -799,17 +799,17 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
                     if(cartStats==null)
                     {
-                        if(fragment instanceof ItemsInShopByCatFragment)
+                        if(fragment instanceof ItemsInShopByCatFragmentDeprecated)
                         {
-                            ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(1) + " " + "Items in Cart");
+                            ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(1) + " " + "Items in Cart");
                         }
                     }
                     else
                     {
 
-                        if(fragment instanceof ItemsInShopByCatFragment) {
+                        if(fragment instanceof ItemsInShopByCatFragmentDeprecated) {
 
-                            ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+                            ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
                         }
 
 
@@ -823,9 +823,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
             {
 
 
-                if(fragment instanceof ItemsInShopByCatFragment) {
+                if(fragment instanceof ItemsInShopByCatFragmentDeprecated) {
 
-                    ((ItemsInShopByCatFragment)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                    ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
                 }
             }
 
@@ -848,9 +848,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
             itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f", total));
 
 
-            if(fragment instanceof ItemsInShopByCatFragment)
+            if(fragment instanceof ItemsInShopByCatFragmentDeprecated)
             {
-                ((ItemsInShopByCatFragment)fragment).cartTotal.setText("Cart Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartTotalNeutral() + total));
+                ((ItemsInShopByCatFragmentDeprecated)fragment).cartTotal.setText("Cart Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartTotalNeutral() + total));
             }
 
 

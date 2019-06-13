@@ -22,12 +22,12 @@ import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfileGlobal;
 import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemImages.ItemImageListFragment;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeTwo.ItemsByCatNew;
-import org.nearbyshops.enduserappnew.ItemsByCategoryTypeOne.ItemCategoriesFragmentSimple;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.AdapterItemsInShop;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCatFragment;
+import org.nearbyshops.enduserappnew.ItemsByCategory.ItemsByCatNew;
+import org.nearbyshops.enduserappnew.ItemsByCategoryDeprecated.ItemCategoriesFragmentSimple;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategoryDeprecated.AdapterItemsInShop;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategoryDeprecated.ItemsInShopByCatFragmentDeprecated;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItem;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategoryNew.ItemsInShopByCatFragmentNew;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCatFragment;
 import org.nearbyshops.enduserappnew.Login.LoginFragment;
 import org.nearbyshops.enduserappnew.Login.LoginGlobalFragment;
 import org.nearbyshops.enduserappnew.Login.LoginUsingOTPFragment;
@@ -55,7 +55,8 @@ import org.nearbyshops.enduserappnew.ShopsAvailableForItem.ShopItemFragment.Shop
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewAdapter;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewStats;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
-import org.nearbyshops.enduserappnew.ShopsList.ListFragment.FragmentShopNew;
+import org.nearbyshops.enduserappnew.ShopsList.BackupDeprecated.FragmentShopNewBackup;
+import org.nearbyshops.enduserappnew.ShopsList.FragmentShopsList;
 import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentCheckResetCode;
 import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentEnterCredentials;
 import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentResetPassword;
@@ -118,11 +119,11 @@ public interface NetComponent {
 
     void Inject(PlaceOrderActivity placeOrderActivity);
 
-    void Inject(FragmentShopNew fragmentShopNew);
+    void Inject(FragmentShopsList fragmentShopsList);
 
     void Inject(AdapterItemsInShop adapterItemsInShop);
 
-    void Inject(ItemsInShopByCatFragment itemsInShopByCatFragment);
+    void Inject(ItemsInShopByCatFragmentDeprecated itemsInShopByCatFragmentDeprecated);
 
     void Inject(EditAddressFragment editAddressFragment);
 
@@ -189,5 +190,7 @@ public interface NetComponent {
 
     void Inject(ItemsByCatNew itemsByCatNew);
 
-    void Inject(ItemsInShopByCatFragmentNew itemsInShopByCatFragmentNew);
+    void Inject(ItemsInShopByCatFragment itemsInShopByCatFragment);
+
+    void Inject(FragmentShopNewBackup fragmentShopNewBackup);
 }
