@@ -15,7 +15,7 @@ import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserappnew.R;
 
 
-public class OrderHistoryNew extends AppCompatActivity {
+public class OrderHistory extends AppCompatActivity {
 
 
 
@@ -39,7 +39,7 @@ public class OrderHistoryNew extends AppCompatActivity {
         if (getSupportFragmentManager().findFragmentByTag("order_history_fragment") == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, new OrdersFragmentNew(), "order_history_fragment")
+                    .replace(R.id.fragment_container, new OrdersFragment(), "order_history_fragment")
                     .commit();
         }
 

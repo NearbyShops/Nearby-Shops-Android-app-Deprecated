@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ShopsAvailableForItem.ShopItemFragment;
+package org.nearbyshops.enduserappnew.ShopsAvailableForItem;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -50,26 +50,30 @@ import static android.app.Activity.RESULT_OK;
 //import org.nearbyshops.enduser.ItemsByCategoryTypeSimple.Adapter;
 
 public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        AdapterShopItem.NotifyFilledCart, NotifySort
+        Adapter.NotifyFilledCart, NotifySort
 {
 
-    Item item;
+
+
+    private Item item;
 
     @Inject
     ShopItemService shopItemService;
 
 
 
-    ArrayList<ShopItem> dataset = new ArrayList<>();
+
+
+    private ArrayList<ShopItem> dataset = new ArrayList<>();
 
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
     @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
 
-    AdapterShopItem adapter;
-    GridLayoutManager layoutManager;
+    private Adapter adapter;
+    private GridLayoutManager layoutManager;
 
 
-    boolean isDestroyed;
+    private boolean isDestroyed;
 
 
     // bindings for item
@@ -87,11 +91,12 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-    boolean clearDataset = true;
 
+
+    private boolean clearDataset = true;
     private int limit = 10;
-    int offset = 0;
-    int item_count = 0;
+    private int offset = 0;
+    private int item_count = 0;
 
     /*
     * Terminologies and concepts
@@ -184,7 +189,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     void setupRecyclerView()
     {
-        adapter = new AdapterShopItem(dataset,getActivity(),item,this);
+        adapter = new Adapter(dataset,getActivity(),item,this);
 
         recyclerView.setAdapter(adapter);
 
@@ -265,7 +270,9 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-    void swipeRefresh()
+
+
+    private void swipeRefresh()
     {
 
         swipeContainer.post(new Runnable() {
@@ -286,7 +293,9 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-    void fetchNewCartItems()
+
+
+    private void fetchNewCartItems()
     {
         // fetch shop items from shops with carts not filled
 
@@ -520,7 +529,9 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-    void showToastMessage(String message)
+
+
+    private void showToastMessage(String message)
     {
         if(getActivity()!=null)
         {

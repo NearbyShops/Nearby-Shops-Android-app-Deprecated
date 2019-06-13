@@ -13,12 +13,11 @@ import butterknife.OnClick;
 import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsAvailableForItem.ShopItemFragment.ShopItemFragment;
 import org.nearbyshops.enduserappnew.ShopsAvailableForItem.SlidingLayerSort.SlidingLayerSortShopItem;
 
 
 
-public class ShopItemByItemNew extends AppCompatActivity implements NotifySort {
+public class ShopItemByItem extends AppCompatActivity implements NotifySort {
 
 
     public static final String TAG_FRAGMENT = "tag_shop_item_fragment";

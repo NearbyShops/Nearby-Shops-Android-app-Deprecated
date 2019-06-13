@@ -49,7 +49,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener,
+public class OrdersFragment extends Fragment implements Adapter.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener,
         NotifySort, NotifySearch, RefreshFragment {
 
 
@@ -66,7 +66,7 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
     OrderService orderService;
 
     private RecyclerView recyclerView;
-    private AdapterOrders adapter;
+    private Adapter adapter;
 
     public List<Order> dataset = new ArrayList<>();
 
@@ -91,7 +91,7 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
     @BindView(R.id.empty_screen) LinearLayout emptyScreen;
     @BindView(R.id.service_name) TextView serviceName;
 
-    public OrdersFragmentNew() {
+    public OrdersFragment() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -100,8 +100,8 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
     }
 
 
-    public static OrdersFragmentNew newInstance() {
-        OrdersFragmentNew fragment = new OrdersFragmentNew();
+    public static OrdersFragment newInstance() {
+        OrdersFragment fragment = new OrdersFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -281,7 +281,7 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
     private void setupRecyclerView()
     {
 
-        adapter = new AdapterOrders(dataset,this,this,getActivity());
+        adapter = new Adapter(dataset,this,this,getActivity());
 
         recyclerView.setAdapter(adapter);
 
@@ -420,7 +420,7 @@ public class OrdersFragmentNew extends Fragment implements AdapterOrders.NotifyC
 
             Integer shopID = null;
 
-            if(getActivity().getIntent().getBooleanExtra(OrderHistoryNew.IS_FILTER_BY_SHOP,false))
+            if(getActivity().getIntent().getBooleanExtra(OrderHistory.IS_FILTER_BY_SHOP,false))
             {
                 Shop shop = PrefShopHome.getShop(getActivity());
 

@@ -34,7 +34,7 @@ import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Markets.MarketsFragmentNew;
 import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
-import org.nearbyshops.enduserappnew.OrderHistory.OrdersFragmentNew;
+import org.nearbyshops.enduserappnew.OrderHistory.OrdersFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
@@ -204,7 +204,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 {
                     bottomBar.getMenu().getItem(4).setChecked(true);
                 }
-                else if(fragment instanceof OrdersFragmentNew)
+                else if(fragment instanceof OrdersFragment)
                 {
                     bottomBar.getMenu().getItem(3).setChecked(true);
 
@@ -441,7 +441,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, new OrdersFragmentNew(), TAG_ORDERS_FRAGMENT)
+                    .replace(R.id.fragment_container, new OrdersFragment(), TAG_ORDERS_FRAGMENT)
                     .addToBackStack(null)
                     .commit();
         }
