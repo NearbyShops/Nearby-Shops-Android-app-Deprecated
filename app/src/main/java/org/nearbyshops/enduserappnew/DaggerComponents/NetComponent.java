@@ -43,15 +43,15 @@ import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderSavedMarket;
 import org.nearbyshops.enduserappnew.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.OrderDetail.FragmentOrderDetail;
+import org.nearbyshops.enduserappnew.OrderHistory.OrdersFragmentKotlin;
 import org.nearbyshops.enduserappnew.OrderHistory.OrdersFragment;
-import org.nearbyshops.enduserappnew.OrderHistory.OrdersFragmentNew;
 import org.nearbyshops.enduserappnew.ProfileFragment;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.ShopDetail.RateReviewDialog;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetailFragment;
 import org.nearbyshops.enduserappnew.ShopImages.ShopImageListFragment;
-import org.nearbyshops.enduserappnew.ShopsAvailableForItem.ShopItemFragment.AdapterShopItem;
-import org.nearbyshops.enduserappnew.ShopsAvailableForItem.ShopItemFragment.ShopItemFragment;
+import org.nearbyshops.enduserappnew.ShopsAvailableForItem.Adapter;
+import org.nearbyshops.enduserappnew.ShopsAvailableForItem.ShopItemFragment;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewAdapter;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewStats;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
@@ -81,7 +81,7 @@ public interface NetComponent {
 
     void Inject(UpdateOneSignalID updateOneSignalID);
 
-    void Inject(AdapterShopItem adapterShopItem);
+    void Inject(Adapter adapter);
 
     void Inject(ShopItemFragment shopItemFragment);
 
@@ -101,7 +101,7 @@ public interface NetComponent {
 
     void Inject(LoginFragment loginFragment);
 
-    void Inject(OrdersFragmentNew ordersFragmentNew);
+    void Inject(OrdersFragment ordersFragment);
 
     void Inject(FragmentOrderDetail fragmentOrderDetail);
 
@@ -167,7 +167,7 @@ public interface NetComponent {
 
     void Inject(ShopReviewStats shopReviewStats);
 
-    void Inject(@NotNull OrdersFragment ordersFragment);
+    void Inject(@NotNull OrdersFragmentKotlin ordersFragmentKotlin);
 
     void Inject(FragmentEmailOrPhone fragmentEmailOrPhone);
 

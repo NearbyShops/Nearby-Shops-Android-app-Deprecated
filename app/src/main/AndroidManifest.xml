@@ -63,7 +63,7 @@
         </activity>
 
 
-        <activity android:name=".ShopsAvailableForItem.ShopItemByItemNew"/>
+        <activity android:name=".ShopsAvailableForItem.ShopItemByItem"/>
 
 
         <activity android:name=".Login.Login"/>
@@ -103,7 +103,7 @@
         <activity android:name=".Checkout.PlaceOrderActivity"/>
 
 
-        <activity android:name=".OrderHistory.OrderHistoryNew"/>
+        <activity android:name=".OrderHistory.OrderHistory"/>
 
 
         <activity android:name=".MarketDetail.MarketDetail"/>

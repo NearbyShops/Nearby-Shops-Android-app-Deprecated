@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Created by sumeet on 13/6/16.
  */
-class AdapterOrders extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private List<Order> dataset = null;
     private NotifyConfirmOrder notifyConfirmOrder;
@@ -39,7 +39,7 @@ class AdapterOrders extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private Context context;
     private Fragment fragment;
 
-    AdapterOrders(List<Order> dataset, NotifyConfirmOrder notifyConfirmOrder, Fragment fragment, Context context) {
+    Adapter(List<Order> dataset, NotifyConfirmOrder notifyConfirmOrder, Fragment fragment, Context context) {
         this.dataset = dataset;
         this.notifyConfirmOrder = notifyConfirmOrder;
         this.fragment = fragment;
@@ -216,9 +216,9 @@ class AdapterOrders extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             LoadingViewHolder viewHolder = (LoadingViewHolder) holderVH;
 
-            if(fragment instanceof OrdersFragmentNew)
+            if(fragment instanceof OrdersFragment)
             {
-                int items_count = ((OrdersFragmentNew) fragment).item_count;
+                int items_count = ((OrdersFragment) fragment).item_count;
 
                 if(dataset.size() == items_count)
                 {

@@ -277,7 +277,10 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-    void setupSlidingLayer()
+
+
+
+    private void setupSlidingLayer()
     {
 
         ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
@@ -318,7 +321,9 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-    void setupRecyclerView()
+
+
+    private void setupRecyclerView()
         {
             if(recyclerView == null)
             {
@@ -536,6 +541,16 @@ public class FragmentShopsList extends Fragment implements
 
 
 
+                    if(offset + limit >= item_count)
+                    {
+                        adapter.setLoadMore(false);
+                    }
+                    else
+                    {
+                        adapter.setLoadMore(true);
+                    }
+
+
 
                     notifyMapDataChanged();
                     swipeContainer.setRefreshing(false);
@@ -612,7 +627,10 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-    void notifyMapDataChanged()
+
+
+
+    private void notifyMapDataChanged()
     {
         Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("map_tag");
 
@@ -628,7 +646,10 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-    String searchQuery = null;
+
+
+
+    private String searchQuery = null;
 
     @Override
     public void search(final String searchString) {

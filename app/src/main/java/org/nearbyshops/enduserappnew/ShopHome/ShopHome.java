@@ -18,7 +18,7 @@ import org.nearbyshops.enduserappnew.CartItemList.CartItemListActivity;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.OrderHistory.OrderHistoryNew;
+import org.nearbyshops.enduserappnew.OrderHistory.OrderHistory;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
@@ -218,8 +218,8 @@ public class ShopHome extends AppCompatActivity {
         }
 
 
-        Intent intent = new Intent(this, OrderHistoryNew.class);
-        intent.putExtra(OrderHistoryNew.IS_FILTER_BY_SHOP,true);
+        Intent intent = new Intent(this, OrderHistory.class);
+        intent.putExtra(OrderHistory.IS_FILTER_BY_SHOP,true);
 //        intent.putExtra(IS_FILTER_BY_SHOP,getIntent().getBooleanExtra(IS_FILTER_BY_SHOP,false));
         startActivity(intent);
     }

@@ -45,13 +45,13 @@ import java.util.ArrayList
 
 
 
-class OrdersFragment : Fragment(), AdapterOrders.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener,
+class OrdersFragmentKotlin : Fragment(), Adapter.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener,
     NotifySort, NotifySearch, RefreshFragment {
 
     @Inject lateinit var orderService: OrderService
 
     internal var recyclerView: RecyclerView? = null
-    internal var adapter: AdapterOrders? = null
+    internal var adapter: Adapter? = null
 
     var dataset: MutableList<Order> = ArrayList()
 
@@ -181,7 +181,7 @@ class OrdersFragment : Fragment(), AdapterOrders.NotifyConfirmOrder, SwipeRefres
 
     internal fun setupRecyclerView() {
 
-        adapter = AdapterOrders(dataset, this, this, activity)
+        adapter = Adapter(dataset, this, this, activity)
 
         recyclerView?.adapter = adapter
 
@@ -285,7 +285,7 @@ class OrdersFragment : Fragment(), AdapterOrders.NotifyConfirmOrder, SwipeRefres
 
         var shopID: Int? = null
 
-        if (activity!!.intent.getBooleanExtra(OrderHistoryNew.IS_FILTER_BY_SHOP, false)) {
+        if (activity!!.intent.getBooleanExtra(OrderHistory.IS_FILTER_BY_SHOP, false)) {
             val shop = PrefShopHome.getShop(activity!!)
 
             if (shop != null) {
@@ -532,8 +532,8 @@ class OrdersFragment : Fragment(), AdapterOrders.NotifyConfirmOrder, SwipeRefres
         val IS_FILTER_BY_SHOP = "IS_FILTER_BY_SHOP"
 
 
-        fun newInstance(): OrdersFragmentNew {
-            val fragment = OrdersFragmentNew()
+        fun newInstance(): OrdersFragment {
+            val fragment = OrdersFragment()
             val args = Bundle()
             fragment.arguments = args
             return fragment

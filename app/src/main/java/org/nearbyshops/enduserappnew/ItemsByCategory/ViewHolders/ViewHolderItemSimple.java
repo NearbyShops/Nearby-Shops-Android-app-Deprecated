@@ -23,9 +23,7 @@ import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsAvailableForItem.ShopItemByItemNew;
-
-
+import org.nearbyshops.enduserappnew.ShopsAvailableForItem.ShopItemByItem;
 
 
 public class ViewHolderItemSimple extends RecyclerView.ViewHolder {
@@ -76,7 +74,7 @@ public class ViewHolderItemSimple extends RecyclerView.ViewHolder {
     public void listItemClick()
     {
 
-        Intent intent = new Intent(context, ShopItemByItemNew.class);
+        Intent intent = new Intent(context, ShopItemByItem.class);
 
         Gson gson = UtilityFunctions.provideGson();
         String jsonString = gson.toJson(item);
