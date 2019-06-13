@@ -24,10 +24,12 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.MarketDetail.MarketDetail;
 import org.nearbyshops.enduserappnew.MarketDetail.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
+import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderSignIn;
 import org.nearbyshops.enduserappnew.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
@@ -39,7 +41,7 @@ import java.util.List;
 
 
 public class MarketsFragmentNew extends Fragment implements
-        listItemMarketNotifications, SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, LocationUpdated {
+        listItemMarketNotifications, SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, LocationUpdated, ViewHolderSignIn.VHSignIn {
 
 
 
@@ -169,7 +171,7 @@ public class MarketsFragmentNew extends Fragment implements
 
 
 
-    void setupSwipeContainer()
+    private void setupSwipeContainer()
     {
         if(swipeContainer!=null) {
 
@@ -186,13 +188,14 @@ public class MarketsFragmentNew extends Fragment implements
 
 
 
-    void setupRecyclerView()
+    private void setupRecyclerView()
     {
 
         adapter = new AdapterMarkets(dataset,this);
         recyclerView.setAdapter(adapter);
 
         adapter.setLoadMore(false);
+
 
 
         recyclerView.addItemDecoration(
@@ -401,5 +404,25 @@ public class MarketsFragmentNew extends Fragment implements
     }
 
 
+    @Override
+    public void signInClick() {
+
+        Intent intent = new Intent(getActivity(), Login.class);
+        startActivityForResult(intent,123);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==123)
+        {
+            makeRefreshNetworkCall();
+        }
+    }
+
+
 
 }
+

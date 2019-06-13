@@ -33,7 +33,6 @@ public class MarketDetail extends AppCompatActivity {
 //        String shopJson = getIntent().getStringExtra(TAG_JSON_STRING);
 //        Shop market = UtilityFunctions.provideGson().fromJson(shopJson, Shop.class);
 
-
 //        getSupportActionBar().setTitle(market.getShopName());
 
 

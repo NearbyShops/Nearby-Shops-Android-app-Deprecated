@@ -70,7 +70,7 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
     {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_market_saved_type_two,parent,false);
+                .inflate(R.layout.list_item_market_type_two,parent,false);
 
         return new ViewHolderSavedMarket(view,context,subscriber);
     }

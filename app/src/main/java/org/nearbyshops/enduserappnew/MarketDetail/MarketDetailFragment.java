@@ -201,6 +201,9 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
         ButterKnife.bind(this,rootView);
 
 
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+
+
         ratingBar_rate.setOnRatingBarChangeListener(this);
 
 //        setupSwipeContainer();

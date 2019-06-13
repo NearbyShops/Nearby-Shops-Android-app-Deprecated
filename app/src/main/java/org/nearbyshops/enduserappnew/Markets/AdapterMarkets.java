@@ -11,6 +11,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.gson.Gson;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
+import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.*;
 import org.nearbyshops.enduserappnew.ModelUtility.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
@@ -36,7 +38,8 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int view_type_user_profile = 3;
     private static final int view_type_markets_header = 4;
     private static final int VIEW_TYPE_Market = 5;
-    private static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 6;
+    private static final int view_type_sign_in = 6;
+    private static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 7;
 
 
     @Inject Gson gson;
@@ -105,6 +108,10 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return ViewHolderHeaderMarket.create(parent,fragment.getActivity());
 
         }
+        else if(viewType == view_type_sign_in)
+        {
+            return ViewHolderSignIn.create(parent,fragment.getActivity(),fragment);
+        }
         else if (viewType == VIEW_TYPE_Market) {
 
 
@@ -142,9 +149,18 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
             return view_type_current_market;
         }
-        else if(dataset.get(position) instanceof List<?>)
+//        else if(dataset.get(position) instanceof List<?>)
+//        {
+//            return view_type_saved_markets_list;
+//        }
+
+        else if(dataset.get(position) instanceof MarketsList)
         {
             return view_type_saved_markets_list;
+        }
+        else if(dataset.get(position) instanceof SignInMarker)
+        {
+            return view_type_sign_in;
         }
         else if(dataset.get(position) instanceof User)
         {
@@ -175,11 +191,16 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holderCurrentMarket.setItem((ServiceConfigurationLocal) dataset.get(position));
 
         }
+//        else if(holderVH instanceof ViewHolderSavedMarketList)
+//        {
+//
+//            ((ViewHolderSavedMarketList) holderVH).setItem((List<ServiceConfigurationGlobal>) dataset.get(position));
+//
+//        }
         else if(holderVH instanceof ViewHolderSavedMarketList)
         {
 
-            ((ViewHolderSavedMarketList) holderVH).setItem((List<ServiceConfigurationGlobal>) dataset.get(position));
-
+            ((ViewHolderSavedMarketList) holderVH).setItem((MarketsList) dataset.get(position));
         }
         else if(holderVH instanceof ViewHolderUserProfile)
         {

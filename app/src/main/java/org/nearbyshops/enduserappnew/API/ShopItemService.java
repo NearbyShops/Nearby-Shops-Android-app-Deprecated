@@ -47,6 +47,33 @@ public interface ShopItemService {
 
 
 
+
+
+    @GET("/api/v1/ShopItem")
+    Call<ShopItemEndPoint> getShopItemEndpoint(
+            @Query("ItemCategoryID") Integer ItemCategoryID,
+            @Query("GetSubcategories")boolean getSubcategories,
+            @Query("ShopID") Integer ShopID, @Query("ItemID") Integer itemID,
+            @Query("latCenter") Double latCenter, @Query("lonCenter") Double lonCenter,
+            @Query("deliveryRangeMax") Double deliveryRangeMax,
+            @Query("deliveryRangeMin") Double deliveryRangeMin,
+            @Query("proximity") Double proximity,
+            @Query("EndUserID") Integer endUserID, @Query("IsFilledCart") Boolean isFilledCart,
+            @Query("IsOutOfStock") Boolean isOutOfStock, @Query("PriceEqualsZero") Boolean priceEqualsZero,
+            @Query("MinPrice") Integer minPrice, @Query("MaxPrice") Integer maxPrice,
+            @Query("SearchString") String searchString,
+            @Query("ShopEnabled") Boolean shopEnabled,
+            @Query("SortBy") String sortBy,
+            @Query("Limit") Integer limit, @Query("Offset") Integer offset,
+            @Query("metadata_only") Boolean metaonly,
+            @Query("GetExtras") Boolean getExtras
+    );
+
+
+
+
+
+
 //
 //    @POST("/api/v1/ShopItemParcelable")
 //    Call<ResponseBody> postShopItem(@Body ShopItemParcelable shopItem);

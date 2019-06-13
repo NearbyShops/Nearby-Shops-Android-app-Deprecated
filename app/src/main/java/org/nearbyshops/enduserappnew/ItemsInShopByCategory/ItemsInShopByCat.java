@@ -22,6 +22,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ItemsByCategoryTypeOne.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.SlidingLayerSort.SlidingLayerSortItemsInShop;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategoryNew.ItemsInShopByCatFragmentNew;
 import org.nearbyshops.enduserappnew.R;
 
 
@@ -65,11 +66,13 @@ public class ItemsInShopByCat extends AppCompatActivity implements NotifyIndicat
 
 
 
+
+
         if(getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT)==null)
         {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragment_container,new ItemsInShopByCatFragment(),TAG_FRAGMENT)
+                    .add(R.id.fragment_container,new ItemsInShopByCatFragmentNew(),TAG_FRAGMENT)
                     .commit();
         }
 

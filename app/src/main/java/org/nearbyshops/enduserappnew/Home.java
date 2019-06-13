@@ -249,6 +249,13 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
     @Override
     public void loginSuccess() {
+
+
+        getSupportFragmentManager().popBackStackImmediate(
+                null,
+                FragmentManager.POP_BACK_STACK_INCLUSIVE
+        );
+
         marketSelected();
     }
 

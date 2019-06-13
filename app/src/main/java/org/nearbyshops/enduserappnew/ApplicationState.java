@@ -9,7 +9,8 @@ import org.nearbyshops.enduserappnew.Model.Shop;
  */
 public class ApplicationState {
 
-    static ApplicationState instance = null;
+    private static ApplicationState instance = null;
+
 
     static double latCenterCurrent = 0;
     static double lonCenterCurrent = 0;
@@ -18,9 +19,9 @@ public class ApplicationState {
     static double proximityFilter = 0;
 
 
-    Shop currentShop = null;
+    private Shop currentShop = null;
 
-    MyApplication myApplication;
+    private MyApplication myApplication;
 
 
     private ApplicationState() {
@@ -104,11 +105,12 @@ public class ApplicationState {
     }
 
 
-    public MyApplication getMyApplication() {
+
+    MyApplication getMyApplication() {
         return myApplication;
     }
 
-    public void setMyApplication(MyApplication myApplication) {
+    void setMyApplication(MyApplication myApplication) {
         this.myApplication = myApplication;
     }
 }

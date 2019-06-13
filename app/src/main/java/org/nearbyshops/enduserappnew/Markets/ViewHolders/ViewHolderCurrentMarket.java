@@ -63,7 +63,7 @@ public class ViewHolderCurrentMarket extends RecyclerView.ViewHolder {
 
 
 
-    void setItem(ServiceConfigurationLocal item)
+    public void setItem(ServiceConfigurationLocal item)
     {
 
         this.configurationLocal = item;

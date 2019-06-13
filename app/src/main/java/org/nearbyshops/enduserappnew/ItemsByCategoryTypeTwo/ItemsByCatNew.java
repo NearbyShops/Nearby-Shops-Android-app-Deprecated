@@ -568,6 +568,8 @@ public class ItemsByCatNew extends Fragment implements
 
 
 
+
+
         if(searchQuery==null)
         {
             endPointCall = itemService.getItemsEndpoint(currentCategory.getItemCategoryID(),

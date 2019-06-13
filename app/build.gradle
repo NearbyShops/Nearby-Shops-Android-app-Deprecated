@@ -68,11 +68,11 @@ dependencies {
     implementation 'com.wunderlist:sliding-layer:1.2.5'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'com.onesignal:OneSignal:3.10.8'
+    implementation 'com.onesignal:OneSignal:3.10.9'
     implementation 'com.hbb20:ccp:2.2.7'
-    implementation 'com.googlecode.libphonenumber:libphonenumber:8.10.12'
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.10.13'
     implementation 'com.github.sujithkanna:smileyrating:1.6.8'
-    implementation 'com.alexvasilkov:gesture-views:2.4.0'
+    implementation 'com.alexvasilkov:gesture-views:2.5.2'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:6.5.0'
     implementation 'com.github.stfalcon:smsverifycatcher:0.3.2'
 
@@ -82,10 +82,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'com.google.android.material:material:1.1.0-alpha06'
+    implementation 'com.google.android.material:material:1.1.0-alpha07'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.vectordrawable:vectordrawable:1.0.1'
-    implementation 'androidx.preference:preference:1.1.0-alpha05'
+    implementation 'androidx.preference:preference:1.1.0-beta01'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
 
@@ -96,14 +96,14 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.14.2'
 
 
-    implementation 'com.google.dagger:dagger:2.22.1'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.22.1'
+    implementation 'com.google.dagger:dagger:2.23.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.23.1'
 
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
     testImplementation 'junit:junit:4.12'
 
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
