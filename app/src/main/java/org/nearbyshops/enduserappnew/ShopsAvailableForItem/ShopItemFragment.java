@@ -23,6 +23,7 @@ import butterknife.OnClick;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.API.ShopItemService;
+import org.nearbyshops.enduserappnew.CartsList.CartsList;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
@@ -676,6 +677,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
                 .into(categoryImage);
 
     }
+
 
 
 

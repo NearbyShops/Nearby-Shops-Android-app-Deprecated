@@ -29,6 +29,7 @@ import org.nearbyshops.enduserappnew.API.CartItemService;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.API.ItemCategoryService;
 import org.nearbyshops.enduserappnew.API.ShopItemService;
+import org.nearbyshops.enduserappnew.CartsList.CartsList;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
@@ -214,6 +215,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
             // add this at every rotation
 //            listAdapter.shopItemMap.putAll(shopItemMapTemp);
         }
+
+
 
 
 
@@ -760,11 +763,17 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         startActivityForResult(intent,123);
     }
 
+
+
+
+
+
     @Override
     public void setCartTotal(double cartTotalValue, boolean save) {
 
 
-        cartStatsBlock.setVisibility(View.VISIBLE);
+
+//        cartStatsBlock.setVisibility(View.VISIBLE);
 
 //        cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(cartTotalValue));
         cartTotal.setText(PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(cartTotalValue));
@@ -784,11 +793,23 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+
+
+
     @Override
     public void setItemsInCart(int itemsInCartValue, boolean save) {
 
 
-        cartStatsBlock.setVisibility(View.VISIBLE);
+//        if(itemsInCartValue==0)
+//        {
+//            cartStatsBlock.setVisibility(View.GONE);
+//        }
+//        else
+//        {
+//            cartStatsBlock.setVisibility(View.VISIBLE);
+//        }
+
+
 
 //        itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items in Cart");
         itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items");
@@ -842,7 +863,6 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-
     @OnClick({R.id.app_bar,R.id.collapsing_toolbar,R.id.toolbar})
     void shopClick()
     {
@@ -854,6 +874,17 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     }
 
 
+
+
+
+
+//    @OnClick({R.id.view_cart_icon,R.id.view_cart_text})
+    @OnClick({R.id.cart_stats})
+    void viewCartClick()
+    {
+        Intent intent = new Intent(getActivity(), CartsList.class);
+        startActivity(intent);
+    }
 
 
 
@@ -956,7 +987,9 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
                 listAdapter.cartStatsMap.clear();
 
-                if(response.body()!=null)
+
+
+                if(response.isSuccessful() && response.body()!=null)
                 {
                     for(CartStats cartStats: response.body())
                     {
@@ -971,6 +1004,17 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
                     }
                 }
+                else
+                {
+
+                    CartStats cartStatsLocal = new CartStats(0,0,shop.getShopID());
+                    listAdapter.cartStatsMap.put(cartStatsLocal.getShopID(),cartStatsLocal);
+
+
+                    setItemsInCart(cartStatsLocal.getItemsInCart(),false);
+                    setCartTotal(cartStatsLocal.getCart_Total(),false);
+                }
+
 
 
 
