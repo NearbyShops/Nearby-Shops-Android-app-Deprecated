@@ -34,7 +34,7 @@ import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Markets.MarketsFragmentNew;
 import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
-import org.nearbyshops.enduserappnew.OrderHistory.OrdersFragment;
+import org.nearbyshops.enduserappnew.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
@@ -204,7 +204,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 {
                     bottomBar.getMenu().getItem(4).setChecked(true);
                 }
-                else if(fragment instanceof OrdersFragment)
+                else if(fragment instanceof OrdersHistoryFragment)
                 {
                     bottomBar.getMenu().getItem(3).setChecked(true);
 
@@ -276,11 +276,15 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
     @Override
     public void showLoginFragment() {
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, new FragmentSignInMessage(), TAG_LOGIN)
-                .addToBackStack(null)
-                .commit();
+
+        if(getSupportFragmentManager().findFragmentByTag(TAG_LOGIN)==null)
+        {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new FragmentSignInMessage(), TAG_LOGIN)
+                    .commit();
+        }
+
     }
 
 
@@ -361,20 +365,20 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
         if (PrefGeneral.getMultiMarketMode(this)) {
             // no market selected therefore show available markets in users area
-//            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-//                        .addToBackStack(null)
-//                        .commit();
-//            }
+
+            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
+                        .commit();
+            }
 
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                    .addToBackStack(null)
-                    .commit();
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
+//                    .addToBackStack(null)
+//                    .commit();
 
 
         } else {
@@ -386,13 +390,19 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 showLoginFragment();
 
             }
-            else
+            else {
+
+
+
+                if(getSupportFragmentManager().findFragmentByTag(TAG_PROFILE)==null)
                 {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, new ProfileFragment(), TAG_PROFILE)
-                        .addToBackStack(null)
-                        .commit();
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, new ProfileFragment(), TAG_PROFILE)
+                            .commit();
+                }
+
+
             }
 
         }
@@ -411,20 +421,20 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
             // no market selected therefore show available markets in users area
 
 
-//            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-//                        .commit();
-//
-//            }
+            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
+                        .commit();
+
+            }
 
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                    .addToBackStack(null)
-                    .commit();
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
+//                    .addToBackStack(null)
+//                    .commit();
 
 
         } else if (PrefLogin.getUser(getBaseContext()) == null) {
@@ -439,11 +449,14 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
         else {
 
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, new OrdersFragment(), TAG_ORDERS_FRAGMENT)
-                    .addToBackStack(null)
-                    .commit();
+            if(getSupportFragmentManager().findFragmentByTag(TAG_ORDERS_FRAGMENT)==null)
+            {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new OrdersHistoryFragment(), TAG_ORDERS_FRAGMENT)
+                        .commit();
+
+            }
         }
     }
 
@@ -457,19 +470,19 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
             // no market selected therefore show available markets in users area
 
 
-//            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-//                        .commit();
-//
-//            }
+            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
+                        .commit();
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                    .addToBackStack(null)
-                    .commit();
+            }
+
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
+//                    .addToBackStack(null)
+//                    .commit();
 
 
 
@@ -482,11 +495,26 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
         else {
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, new CartsListFragment(), TAG_CARTS_FRAGMENT)
-                    .addToBackStack(null)
-                    .commit();
+
+            if(getSupportFragmentManager().findFragmentByTag(TAG_CARTS_FRAGMENT)==null)
+            {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new CartsListFragment(), TAG_CARTS_FRAGMENT)
+                        .commit();
+
+            }
+
+
+
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragment_container, new CartsListFragment(), TAG_CARTS_FRAGMENT)
+//                    .addToBackStack(null)
+//                    .commit();
+
+
+
         }
     }
 
@@ -505,20 +533,21 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
-//            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-//                        .commit();
-//
-//            }
+
+            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
+                        .commit();
+
+            }
 
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                    .addToBackStack(null)
-                    .commit();
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
+//                    .addToBackStack(null)
+//                    .commit();
 
 
 
@@ -526,13 +555,6 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
-//            if (getSupportFragmentManager().findFragmentByTag(TAG_SHOPS_FRAGMENT) == null) {
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fragment_container, FragmentShopNewBackup.newInstance(false), TAG_SHOPS_FRAGMENT)
-//                        .addToBackStack(null)
-//                        .commit();
-//            }
 //            else
 //            {
 //                getSupportFragmentManager()
@@ -568,11 +590,21 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, FragmentShopsList.newInstance(false), TAG_SHOPS_FRAGMENT)
-                    .addToBackStack("shop_fragment")
-                    .commit();
+
+
+            if (getSupportFragmentManager().findFragmentByTag(TAG_SHOPS_FRAGMENT) == null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, FragmentShopsList.newInstance(false), TAG_SHOPS_FRAGMENT)
+                        .commit();
+            }
+
+//
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragment_container, FragmentShopsList.newInstance(false), TAG_SHOPS_FRAGMENT)
+//                    .addToBackStack("shop_fragment")
+//                    .commit();
 
 
 
@@ -595,20 +627,20 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
             // no market selected therefore show available markets in users area
 
 
-//            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-//                        .commit();
-//
-//            }
+            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
+                        .commit();
+
+            }
 
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                    .addToBackStack(null)
-                    .commit();
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
+//                    .addToBackStack(null)
+//                    .commit();
 
 
         }
@@ -616,21 +648,23 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
-//            if (getSupportFragmentManager().findFragmentByTag(TAG_ITEMS_FRAGMENT) == null) {
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fragment_container, new ItemsByCatNew(), TAG_ITEMS_FRAGMENT)
-//                        .commit();
-//            } else {
+            if (getSupportFragmentManager().findFragmentByTag(TAG_ITEMS_FRAGMENT) == null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new ItemsByCatNew(), TAG_ITEMS_FRAGMENT)
+                        .commit();
+            }
+
+//            else {
 //                getSupportFragmentManager().popBackStack();
 //            }
 
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, new ItemsByCatNew(), TAG_ITEMS_FRAGMENT)
-                    .addToBackStack("items")
-                    .commit();
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragment_container, new ItemsByCatNew(), TAG_ITEMS_FRAGMENT)
+//                    .addToBackStack("items")
+//                    .commit();
 
 
 
@@ -646,6 +680,8 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
     {
         if (PrefGeneral.getMultiMarketMode(this) && PrefGeneral.getServiceURL(this) == null) {
             // no market selected therefore show available markets in users area
+
+
 
             getSupportFragmentManager()
                     .beginTransaction()

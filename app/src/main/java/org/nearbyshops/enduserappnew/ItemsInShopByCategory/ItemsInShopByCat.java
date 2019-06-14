@@ -41,6 +41,7 @@ public class ItemsInShopByCat extends AppCompatActivity implements NotifyIndicat
 
     @BindView(R.id.text_sub)
     TextView itemHeader;
+
     @BindView(R.id.slidingLayer)
     SlidingLayer slidingLayer;
 

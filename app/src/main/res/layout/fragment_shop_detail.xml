@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             app:expandedTitleMarginStart="20dp"
             app:expandedTitleMarginEnd="0dp"
+            android:theme="@style/ToolBarStyle"
             app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 

@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
@@ -81,10 +82,13 @@ public class ViewHolderShop extends RecyclerView.ViewHolder{
     @OnClick(R.id.list_item)
     void listItemClick()
     {
+//        Intent shopHomeIntent = new Intent(context, ShopHome.class);
+//        context.startActivity(shopHomeIntent);
 
-        Intent shopHomeIntent = new Intent(context, ShopHome.class);
-        PrefShopHome.saveShop(shop,context);
-        context.startActivity(shopHomeIntent);
+        if(fragment instanceof ListItemClick)
+        {
+            ((ListItemClick) fragment).listItemClick(shop,getAdapterPosition());
+        }
     }
 
 
@@ -189,12 +193,22 @@ public class ViewHolderShop extends RecyclerView.ViewHolder{
 
 
 
+
+
     //        @OnClick(R.id.shop_logo)
     void shopLogoClick()
     {
 //            Intent intent = new Intent(context, MarketDetail.class);
 //            intent.putExtra(MarketDetail.SHOP_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
 //            context.startActivity(intent);
+    }
+
+
+
+
+    public interface ListItemClick
+    {
+        void listItemClick(Shop shop, int position);
     }
 
 }

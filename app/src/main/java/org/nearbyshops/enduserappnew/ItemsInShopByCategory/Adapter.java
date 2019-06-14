@@ -10,9 +10,11 @@ import org.nearbyshops.enduserappnew.ItemsByCategory.AdapterItemCatHorizontalLis
 import org.nearbyshops.enduserappnew.ItemsByCategory.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
+import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
+import org.nearbyshops.enduserappnew.ShopsList.ViewHolders.ViewHolderShop;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenData;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;
@@ -46,11 +48,13 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public static final int VIEW_TYPE_ITEM_CATEGORY = 1;
     public static final int VIEW_TYPE_ITEM_CATEGORY_LIST = 2;
     public static final int VIEW_TYPE_SHOP_ITEM = 3;
+    public static final int VIEW_TYPE_SHOP = 4;
 
 
-    public static final int VIEW_TYPE_HEADER = 4;
-    public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 5;
-    public static final int VIEW_TYPE_EMPTY_SCREEN = 6;
+
+    public static final int VIEW_TYPE_HEADER = 10;
+    public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 11;
+    public static final int VIEW_TYPE_EMPTY_SCREEN = 12;
 
 
 
@@ -99,6 +103,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             viewHolderShopItem = ViewHolderShopItem.create(parent,context,fragment,this,cartItemMap,cartStatsMap);
             return viewHolderShopItem;
+
+        }
+        else if(viewType == VIEW_TYPE_SHOP)
+        {
+            return ViewHolderShop.create(parent,context,fragment,this);
         }
         else if(viewType == VIEW_TYPE_HEADER)
         {
@@ -123,7 +132,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
 
-        if(holder instanceof ViewHolderItemCategory)
+        if(holder instanceof ViewHolderShop)
+        {
+            ((ViewHolderShop) holder).setItem((Shop) dataset.get(position));
+        }
+        else if(holder instanceof ViewHolderItemCategory)
         {
             ((ViewHolderItemCategory) holder).bindItemCategory((ItemCategory) dataset.get(position));
         }
@@ -172,6 +185,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         if(position == dataset.size())
         {
             return VIEW_TYPE_SCROLL_PROGRESS_BAR;
+        }
+        else if(dataset.get(position) instanceof Shop)
+        {
+            return VIEW_TYPE_SHOP;
         }
         else if(dataset.get(position) instanceof ItemCategory)
         {

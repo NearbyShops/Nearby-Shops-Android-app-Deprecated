@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.OrderHistory
+package org.nearbyshops.enduserappnew.OrderHistory.BackupDeprecated
 
 import android.content.Intent
 import android.os.Bundle
@@ -31,6 +31,8 @@ import org.nearbyshops.enduserappnew.ModelCartOrder.Endpoints.OrderEndPoint
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order
 import org.nearbyshops.enduserappnew.OrderDetail.OrderDetail
 import org.nearbyshops.enduserappnew.OrderDetail.PrefOrderDetail
+import org.nearbyshops.enduserappnew.OrderHistory.OrderHistory
+import org.nearbyshops.enduserappnew.OrderHistory.OrdersHistoryFragment
 import org.nearbyshops.enduserappnew.OrderHistory.SlidingLayerSort.PrefSortOrders
 import org.nearbyshops.enduserappnew.OrderHistory.SlidingLayerSort.SlidingLayerSortOrders
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin
@@ -165,7 +167,9 @@ class OrdersFragmentKotlin : Fragment(), Adapter.NotifyConfirmOrder, SwipeRefres
             if (childFragmentManager.findFragmentByTag(TAG_SLIDING_LAYER) == null) {
                 childFragmentManager
                     .beginTransaction()
-                    .add(R.id.slidinglayerfragment, SlidingLayerSortOrders(), TAG_SLIDING_LAYER)
+                    .add(R.id.slidinglayerfragment, SlidingLayerSortOrders(),
+                        TAG_SLIDING_LAYER
+                    )
                     .commit()
             }
 
@@ -532,8 +536,8 @@ class OrdersFragmentKotlin : Fragment(), Adapter.NotifyConfirmOrder, SwipeRefres
         val IS_FILTER_BY_SHOP = "IS_FILTER_BY_SHOP"
 
 
-        fun newInstance(): OrdersFragment {
-            val fragment = OrdersFragment()
+        fun newInstance(): OrdersHistoryFragment {
+            val fragment = OrdersHistoryFragment()
             val args = Bundle()
             fragment.arguments = args
             return fragment
