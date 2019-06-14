@@ -13,6 +13,7 @@
 
         <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
         <androidx.appcompat.widget.Toolbar
+            android:theme="@style/ToolBarStyle"
             android:id="@+id/toolbar"
             app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
