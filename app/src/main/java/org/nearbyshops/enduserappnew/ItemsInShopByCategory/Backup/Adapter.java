@@ -1,13 +1,13 @@
-package org.nearbyshops.enduserappnew.ItemsInShopByCategory;
+package org.nearbyshops.enduserappnew.ItemsInShopByCategory.Backup;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ItemsByCategory.AdapterItemCatHorizontalList;
 import org.nearbyshops.enduserappnew.ItemsByCategory.Model.ItemCategoriesList;
+import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -37,8 +37,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 //    Map<Integer,Item> selectedItems = new HashMap<>();
 
 
-    public Map<Integer, CartItem> cartItemMap = new HashMap<>();
-    public Map<Integer, CartStats> cartStatsMap = new HashMap<>();
+    private Map<Integer, CartItem> cartItemMap = new HashMap<>();
+    private Map<Integer, CartStats> cartStatsMap = new HashMap<>();
 
 
 
@@ -238,6 +238,22 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     {
         this.loadMore = loadMore;
     }
+
+
+
+
+
+
+//
+//    public void getCartStats(final boolean notifyChange, final int position, final boolean notifyDatasetChanged)
+//    {
+//        if(viewHolderShopItem!=null)
+//        {
+//            viewHolderShopItem.getCartStats(notifyChange,position,notifyDatasetChanged);
+//        }
+//    }
+//
+
 
 
 
