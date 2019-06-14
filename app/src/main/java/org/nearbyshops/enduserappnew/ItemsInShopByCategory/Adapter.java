@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ItemsByCategory.AdapterItemCatHorizontalList;
 import org.nearbyshops.enduserappnew.ItemsByCategory.Model.ItemCategoriesList;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItem;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItemSimplified;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
@@ -64,7 +64,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     private Fragment fragment;
-    private ViewHolderShopItem viewHolderShopItem;
+//    private ViewHolderShopItem viewHolderShopItem;
 
 
 
@@ -101,8 +101,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(viewType == VIEW_TYPE_SHOP_ITEM)
         {
-            viewHolderShopItem = ViewHolderShopItem.create(parent,context,fragment,this,cartItemMap,cartStatsMap);
-            return viewHolderShopItem;
+
+//            viewHolderShopItem = ;
+            return ViewHolderShopItemSimplified.create(parent,context,fragment,this,cartItemMap,cartStatsMap);
 
         }
         else if(viewType == VIEW_TYPE_SHOP)
@@ -147,10 +148,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             ((ViewHolderHorizontalList) holder).setItem(new AdapterItemCatHorizontalList(list,context,fragment));
 
+
         }
-        else if(holder instanceof ViewHolderShopItem)
+        else if(holder instanceof ViewHolderShopItemSimplified)
         {
-            ((ViewHolderShopItem) holder).bindShopItems((ShopItem) dataset.get(position));
+            ((ViewHolderShopItemSimplified) holder).bindShopItems((ShopItem) dataset.get(position));
         }
         else if (holder instanceof ViewHolderHeaderSimple) {
 

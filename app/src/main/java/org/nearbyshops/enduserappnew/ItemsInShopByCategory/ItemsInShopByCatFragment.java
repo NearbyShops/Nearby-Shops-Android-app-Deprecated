@@ -23,7 +23,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.API.CartItemService;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
@@ -39,13 +38,13 @@ import org.nearbyshops.enduserappnew.ItemsByCategory.Interfaces.NotifyBackPresse
 import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ItemsByCategory.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategoryHorizontal;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.SlidingLayerSort.PrefSortItemsInShop;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItem;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItemSimplified;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
@@ -74,9 +73,11 @@ import static android.app.Activity.RESULT_OK;
  * Created by sumeet on 2/12/16.
  */
 
+
+
 public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
         ViewHolderItemCategoryHorizontal.ListItemClick,
-        ViewHolderItemCategory.ListItemClick, ViewHolderShopItem.ListItemClick,
+        ViewHolderItemCategory.ListItemClick, ViewHolderShopItemSimplified.ListItemClick,
         NotifyBackPressed, NotifySort, NotifySearch,
         ViewHolderShop.ListItemClick {
 
@@ -263,6 +264,10 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+//        itemCategoriesList.addItemDecoration(new DividerItemDecoration(getActivity(), RecyclerView.VERTICAL));
+
+
+
         // Code for Staggered Grid Layout
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 
@@ -288,7 +293,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                     return (6/spanCount);
 
                 }
-                else if(dataset.get(position) instanceof Item)
+                else if(dataset.get(position) instanceof ShopItem)
                 {
 
                     return 6;
