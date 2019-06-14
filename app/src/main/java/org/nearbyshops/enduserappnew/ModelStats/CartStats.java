@@ -15,8 +15,15 @@ public class CartStats{
     private Shop shop;
 
 
+    public CartStats(int itemsInCart, double cart_Total, int shopID) {
+        this.itemsInCart = itemsInCart;
+        this.cart_Total = cart_Total;
+        this.shopID = shopID;
+    }
 
 
+    public CartStats() {
+    }
 
     // Getter and Setter Methods
     public int getCartID() {

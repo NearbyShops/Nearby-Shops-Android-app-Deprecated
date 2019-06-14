@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.ShopsAvailableForItem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.wunderlist.slidinglayer.SlidingLayer;
+import org.nearbyshops.enduserappnew.CartsList.CartsList;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopsAvailableForItem.SlidingLayerSort.SlidingLayerSortShopItem;
@@ -106,6 +108,14 @@ public class ShopItemByItem extends AppCompatActivity implements NotifySort {
 
 
 
+
+
+    @OnClick({R.id.icon_checkout,R.id.text_checkout})
+    void viewCartClick()
+    {
+        Intent intent = new Intent(this, CartsList.class);
+        startActivity(intent);
+    }
 
 
 
