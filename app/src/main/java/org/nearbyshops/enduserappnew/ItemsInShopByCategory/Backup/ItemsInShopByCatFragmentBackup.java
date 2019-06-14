@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemsInShopByCategory;
+package org.nearbyshops.enduserappnew.ItemsInShopByCategory.Backup;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -23,10 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
-import org.nearbyshops.enduserappnew.API.CartItemService;
-import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.API.ItemCategoryService;
 import org.nearbyshops.enduserappnew.API.ShopItemService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -35,29 +32,24 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailNew;
 import org.nearbyshops.enduserappnew.ItemsByCategory.Interfaces.NotifyBackPressed;
-import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ItemsByCategory.Model.ItemCategoriesList;
+import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategoryHorizontal;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.SlidingLayerSort.PrefSortItemsInShop;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
-import org.nearbyshops.enduserappnew.ModelRoles.User;
-import org.nearbyshops.enduserappnew.ModelStats.CartStats;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
-import org.nearbyshops.enduserappnew.ShopDetail.ShopDetailFragment;
-import org.nearbyshops.enduserappnew.ShopsList.ViewHolders.ViewHolderShop;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
+import org.nearbyshops.enduserappnew.ShopDetail.ShopDetailFragment;
+import org.nearbyshops.enduserappnew.ShopsList.ViewHolders.ViewHolderShop;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderItemsList;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,7 +57,6 @@ import retrofit2.Response;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -73,9 +64,9 @@ import static android.app.Activity.RESULT_OK;
  * Created by sumeet on 2/12/16.
  */
 
-public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
+public class ItemsInShopByCatFragmentBackup extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
         ViewHolderItemCategoryHorizontal.ListItemClick,
-        ViewHolderItemCategory.ListItemClick, ViewHolderShopItem.ListItemClick,
+        ViewHolderItemCategory.ListItemClick, ViewHolderShopItemBackup.ListItemClick,
         NotifyBackPressed, NotifySort, NotifySearch,
         ViewHolderShop.ListItemClick {
 
@@ -140,7 +131,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     private ItemCategory currentCategory = null;
 
 
-    public ItemsInShopByCatFragment() {
+    public ItemsInShopByCatFragmentBackup() {
         super();
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -215,9 +206,6 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 //            listAdapter.shopItemMap.putAll(shopItemMapTemp);
         }
 
-
-
-        getCartStats(false,0,true);
 
         notifyItemIndicatorChanged();
 
@@ -342,13 +330,13 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-
-
-
-
     @Override
     public void onRefresh() {
+
+
         makeRequestShopItem(true,true);
+//        listAdapter.getCartStats(true,0,true);
+
     }
 
 
@@ -485,6 +473,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+
                     if(clearDataset)
                     {
                         dataset.clear();
@@ -616,6 +605,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                 swipeContainer.setRefreshing(false);
                 listAdapter.notifyDataSetChanged();
                 notifyItemIndicatorChanged();
+
             }
 
             @Override
@@ -760,54 +750,32 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         startActivityForResult(intent,123);
     }
 
-    @Override
-    public void setCartTotal(double cartTotalValue, boolean save) {
 
+
+    @BindView(R.id.cart_stats) LinearLayout cartStatsBlock;
+
+    @Override
+    public void setCartTotal(double cartTotalValue) {
 
         cartStatsBlock.setVisibility(View.VISIBLE);
 
+
 //        cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(cartTotalValue));
         cartTotal.setText(PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(cartTotalValue));
-
-
-        if(save)
-        {
-            Shop shop = PrefShopHome.getShop(getActivity());
-
-            CartStats cartStats = listAdapter.cartStatsMap.get(shop.getShopID());
-            cartStats.setCart_Total(cartTotalValue);
-            listAdapter.cartStatsMap.put(shop.getShopID(),cartStats);
-        }
     }
 
 
 
 
-
     @Override
-    public void setItemsInCart(int itemsInCartValue, boolean save) {
-
+    public void setItemsInCart(int itemsInCartValue) {
 
         cartStatsBlock.setVisibility(View.VISIBLE);
 
 //        itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items in Cart");
         itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items");
 
-
-        if(save)
-        {
-            Shop shop = PrefShopHome.getShop(getActivity());
-
-            CartStats cartStats = listAdapter.cartStatsMap.get(shop.getShopID());
-            cartStats.setItemsInCart(itemsInCartValue);
-            listAdapter.cartStatsMap.put(shop.getShopID(),cartStats);
-
-        }
     }
-
-
-    @BindView(R.id.cart_stats) LinearLayout cartStatsBlock;
-
 
 
 
@@ -817,11 +785,10 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
         if(requestCode==123 && resultCode == RESULT_OK)
         {
             // login success
-            getCartStats(true,0,true);
+//            listAdapter.getCartStats(true,0,true);
         }
     }
 
@@ -852,152 +819,6 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         intent.putExtra(ShopDetailFragment.TAG_JSON_STRING,jsonString);
         startActivity(intent);
     }
-
-
-
-
-
-
-
-
-
-    @Inject
-    CartItemService cartItemService;
-
-    @Inject
-    CartStatsService cartStatsService;
-
-
-
-
-
-
-
-
-
-
-    public void getCartStats(final boolean notifyChange, final int position, final boolean notifyDatasetChanged)
-    {
-
-
-        listAdapter.cartItemMap.clear();
-        listAdapter.cartStatsMap.clear();
-
-        User endUser = PrefLogin.getUser(getActivity());
-
-        if(endUser == null)
-        {
-            return;
-        }
-
-
-
-        Shop shop = PrefShopHome.getShop(getActivity());
-
-
-        Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,null,
-                endUser.getUserID(),shop.getShopID(),false);
-
-
-
-
-        cartItemCall.enqueue(new Callback<List<CartItem>>() {
-
-            @Override
-            public void onResponse(Call<List<CartItem>> call, Response<List<CartItem>> response) {
-
-                listAdapter.cartItemMap.clear();
-
-                if(response.body()!=null)
-                {
-                    for(CartItem cartItem: response.body())
-                    {
-                        listAdapter.cartItemMap.put(cartItem.getItemID(),cartItem);
-                    }
-                }
-
-                if(notifyChange)
-                {
-                    listAdapter.notifyItemChanged(position);
-                }
-
-                if(notifyDatasetChanged)
-                {
-                    listAdapter.notifyDataSetChanged();
-                }
-
-
-
-
-
-
-            }
-
-
-
-            @Override
-            public void onFailure(Call<List<CartItem>> call, Throwable t) {
-
-                Toast.makeText(getActivity()," Unsuccessful !",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-
-
-        Call<List<CartStats>> listCall = cartStatsService
-                .getCart(endUser.getUserID(), null,shop.getShopID(),false,null,null);
-
-
-
-        listCall.enqueue(new Callback<List<CartStats>>() {
-            @Override
-            public void onResponse(Call<List<CartStats>> call, Response<List<CartStats>> response) {
-
-                listAdapter.cartStatsMap.clear();
-
-                if(response.body()!=null)
-                {
-                    for(CartStats cartStats: response.body())
-                    {
-                        listAdapter.cartStatsMap.put(cartStats.getShopID(),cartStats);
-
-
-
-//                        CartStats cartStatsLocal = listAdapter.cartStatsMap.get(shop.getShopID());
-
-                        setItemsInCart(cartStats.getItemsInCart(),false);
-                        setCartTotal(cartStats.getCart_Total(),false);
-
-                    }
-                }
-
-
-
-
-                if(notifyChange)
-                {
-                    listAdapter.notifyItemChanged(position);
-                }
-
-
-
-                if(notifyDatasetChanged)
-                {
-                    listAdapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<CartStats>> call, Throwable t) {
-
-                Toast.makeText(getActivity()," Unsuccessful !",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-    }
-
 
 
 }

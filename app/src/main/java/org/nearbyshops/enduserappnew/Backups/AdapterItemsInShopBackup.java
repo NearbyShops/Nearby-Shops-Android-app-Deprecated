@@ -369,7 +369,7 @@ public class AdapterItemsInShopBackup extends RecyclerView.Adapter<RecyclerView.
             ButterKnife.bind(this,itemView);
         }
 
-    }// ViewHolderShopItem Class declaration ends
+    }// ViewHolderShopItemBackup Class declaration ends
 
 
 
@@ -431,7 +431,7 @@ public class AdapterItemsInShopBackup extends RecyclerView.Adapter<RecyclerView.
         }
 
 
-    }// ViewHolderShopItem Class declaration ends
+    }// ViewHolderShopItemBackup Class declaration ends
 
 
 

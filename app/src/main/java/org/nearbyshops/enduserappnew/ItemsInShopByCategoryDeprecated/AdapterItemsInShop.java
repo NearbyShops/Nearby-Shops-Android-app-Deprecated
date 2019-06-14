@@ -237,7 +237,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
             ButterKnife.bind(this,itemView);
         }
 
-    }// ViewHolderShopItem Class declaration ends
+    }// ViewHolderShopItemBackup Class declaration ends
 
 
 
@@ -303,7 +303,7 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
 
 
-    }// ViewHolderShopItem Class declaration ends
+    }// ViewHolderShopItemBackup Class declaration ends
 
 
 
@@ -316,17 +316,17 @@ public class AdapterItemsInShop extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
 
-
-
-    public void getCartStats(final boolean notifyChange, final int position, final boolean notifyDatasetChanged)
-    {
-        if(viewHolderShopItem!=null)
-        {
-            viewHolderShopItem.getCartStats(notifyChange,position,notifyDatasetChanged);
-        }
-    }
-
-
+//
+//
+//    public void getCartStats(final boolean notifyChange, final int position, final boolean notifyDatasetChanged)
+//    {
+//        if(viewHolderShopItem!=null)
+//        {
+//            viewHolderShopItem.getCartStats(notifyChange,position,notifyDatasetChanged);
+//        }
+//    }
+//
+//
 
 
 

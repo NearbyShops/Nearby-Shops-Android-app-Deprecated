@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders;
+package org.nearbyshops.enduserappnew.ItemsInShopByCategory.Backup;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -39,18 +39,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 
 
-public class ViewHolderShopItem extends RecyclerView.ViewHolder{
+public class ViewHolderShopItemBackup extends RecyclerView.ViewHolder{
 
 
     private Map<Integer, CartItem> cartItemMap;
     private Map<Integer, CartStats> cartStatsMap;
-
 
 
 
@@ -59,7 +57,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
     @Inject
     CartStatsService cartStatsService;
-
 
 
 
@@ -97,28 +94,21 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
-    int itemsInCart;
-    double cartTotal;
 
 
 
-
-    public static ViewHolderShopItem create(ViewGroup parent, Context context, Fragment fragment, RecyclerView.Adapter adapter,
-                                            Map<Integer, CartItem> cartItemMap, Map<Integer, CartStats> cartStatsMap)
+    public static ViewHolderShopItemBackup create(ViewGroup parent, Context context, Fragment fragment, RecyclerView.Adapter adapter,
+                                                  Map<Integer, CartItem> cartItemMap, Map<Integer, CartStats> cartStatsMap)
     {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_item_by_shop,parent,false);
-        return new ViewHolderShopItem(view,context,fragment,adapter,cartItemMap,cartStatsMap);
+        return new ViewHolderShopItemBackup(view,context,fragment,adapter,cartItemMap,cartStatsMap);
     }
 
 
 
-
-
-
-
-    public ViewHolderShopItem(@NonNull View itemView, Context context, Fragment fragment,RecyclerView.Adapter listAdapter,
-                              Map<Integer, CartItem> cartItemMap, Map<Integer, CartStats> cartStatsMap) {
+    public ViewHolderShopItemBackup(@NonNull View itemView, Context context, Fragment fragment, RecyclerView.Adapter listAdapter,
+                                    Map<Integer, CartItem> cartItemMap, Map<Integer, CartStats> cartStatsMap) {
 
         super(itemView);
         ButterKnife.bind(this,itemView);
@@ -183,11 +173,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 //                                }
 
 
-
-                                itemsInCart = cartStats.getItemsInCart();
                                 if(fragment instanceof ListItemClick)
                                 {
-                                    ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart(),false);
+                                    ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart());
                                 }
 
 
@@ -201,10 +189,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 //                                }
 
 
-                                itemsInCart = cartStats.getItemsInCart()-1;
                                 if(fragment instanceof ListItemClick)
                                 {
-                                    ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart() - 1,false);
+                                    ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart() - 1);
                                     addToCartText.setText("Remove Item");
                                 }
 
@@ -223,25 +210,20 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 //                                }
 
 
-                                itemsInCart = cartStats.getItemsInCart()+1;
-
                                 if(fragment instanceof ListItemClick)
                                 {
-                                    ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart() + 1,false);
+                                    ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart() + 1);
                                 }
 
                             }else
                             {
                                 // shop Exist
 
-
-                                itemsInCart = cartStats.getItemsInCart();
-
                                 if(fragment instanceof ListItemClick)
                                 {
 //                                    ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
 
-                                    ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart(),false);
+                                    ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart());
 
                                 }
 
@@ -269,18 +251,10 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 //                }
 
 
-
-
-
-
-                cartTotal = cartTotalNeutral() + total;
-
                 if(fragment instanceof ListItemClick)
                 {
-                    ((ListItemClick) fragment).setCartTotal(cartTotal,false);
+                    ((ListItemClick) fragment).setCartTotal(cartTotalNeutral() + total);
                 }
-
-
 
 
             }
@@ -318,13 +292,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
-
-
-        cartItem = cartItemMap.get(shopItem.getItemID());
-        cartStats = cartStatsMap.get(shopItem.getShopID());
-
-
-        CartItem cartItem = cartItemMap.get(shopItem.getItemID());
+            CartItem cartItem = cartItemMap.get(shopItem.getItemID());
 
             if(cartItem!=null)
             {
@@ -431,7 +399,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
-    public ViewHolderShopItem(View itemView) {
+    public ViewHolderShopItemBackup(View itemView) {
         super(itemView);
 
         ButterKnife.bind(this,itemView);
@@ -442,12 +410,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
     @OnClick(R.id.add_to_cart_text)
     void addToCartClick(View view) {
-
-
-
-        cartItem = cartItemMap.get(shopItem.getItemID());
-        cartStats = cartStatsMap.get(shopItem.getShopID());
-
 
 
 
@@ -510,19 +472,8 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
                             Toast.makeText(context, "Add to cart successful !", Toast.LENGTH_SHORT).show();
 
-//                            getCartStats(true,getLayoutPosition(),false);
+                            getCartStats(true,getLayoutPosition(),false);
 
-
-                            if(fragment instanceof ListItemClick)
-                            {
-                                ((ListItemClick) fragment).setCartTotal(cartTotal,true);
-                                ((ListItemClick) fragment).setItemsInCart(itemsInCart,true);
-                            }
-
-
-
-                            cartItemMap.put(cartItem.getItemID(),cartItem);
-                            listAdapter.notifyItemChanged(getAdapterPosition());
 
 
                             addToCartText.setBackgroundColor(ContextCompat.getColor(context, R.color.blueGrey800));
@@ -591,25 +542,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
                             addToCartText.setText("Add to Cart");
 
-
-
-
-                            if(fragment instanceof ListItemClick)
-                            {
-                                ((ListItemClick) fragment).setCartTotal(cartTotal,true);
-                                ((ListItemClick) fragment).setItemsInCart(itemsInCart,true);
-                            }
-
-
-
-                            cartItemMap.remove(cartItem.getItemID());
-                            listAdapter.notifyItemChanged(getLayoutPosition());
-
-
-
-
-
-//                            getCartStats(true,getLayoutPosition(),false);
+                            getCartStats(true,getLayoutPosition(),false);
 
                             //makeNetworkCall();
 
@@ -678,21 +611,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
                         if (response.code() == 200) {
 
                             Toast.makeText(context, "Update cart successful !", Toast.LENGTH_SHORT).show();
-//                            getCartStats(false,getLayoutPosition(),false);
-
-
-                            if(fragment instanceof ListItemClick)
-                            {
-                                ((ListItemClick) fragment).setCartTotal(cartTotal,true);
-                                ((ListItemClick) fragment).setItemsInCart(itemsInCart,true);
-                            }
-
-
-
-                            cartItemMap.put(cartItem.getItemID(),cartItem);
-                            listAdapter.notifyItemChanged(getAdapterPosition());
-
-
+                            getCartStats(false,getLayoutPosition(),false);
 
                             addToCartText.setBackgroundColor(ContextCompat.getColor(context, R.color.blueGrey800));
                             itemTotal.setBackgroundColor(ContextCompat.getColor(context, R.color.blueGrey800));
@@ -715,11 +634,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
             }
         }
     }
-
-
-
-
-
 
 
 
@@ -858,6 +772,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
+
+
+
     @OnClick(R.id.increaseQuantity)
     void increaseQuantityClick(View view)
     {
@@ -956,6 +873,118 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
+
+    public void getCartStats(final boolean notifyChange, final int position, final boolean notifyDatasetChanged)
+    {
+
+        cartItemMap.clear();
+        cartStatsMap.clear();
+
+        User endUser = PrefLogin.getUser(context);
+
+        if(endUser == null)
+        {
+            return;
+        }
+
+
+        Shop shop = PrefShopHome.getShop(context);
+
+
+        Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,null,
+                endUser.getUserID(),shop.getShopID(),false);
+
+
+
+
+        cartItemCall.enqueue(new Callback<List<CartItem>>() {
+
+            @Override
+            public void onResponse(Call<List<CartItem>> call, Response<List<CartItem>> response) {
+
+                cartItemMap.clear();
+
+                if(response.body()!=null)
+                {
+                    for(CartItem cartItem: response.body())
+                    {
+                        cartItemMap.put(cartItem.getItemID(),cartItem);
+                    }
+                }
+
+                if(notifyChange)
+                {
+                    listAdapter.notifyItemChanged(position);
+                }
+
+                if(notifyDatasetChanged)
+                {
+                    listAdapter.notifyDataSetChanged();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<CartItem>> call, Throwable t) {
+
+                Toast.makeText(context," Unsuccessful !",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+        Call<List<CartStats>> listCall = cartStatsService
+                .getCart(endUser.getUserID(), null,shop.getShopID(),false,null,null);
+
+
+
+        listCall.enqueue(new Callback<List<CartStats>>() {
+            @Override
+            public void onResponse(Call<List<CartStats>> call, Response<List<CartStats>> response) {
+
+                cartStatsMap.clear();
+
+                if(response.body()!=null)
+                {
+                    for(CartStats cartStats: response.body())
+                    {
+                        cartStatsMap.put(cartStats.getShopID(),cartStats);
+                    }
+                }
+
+
+
+
+                if(notifyChange)
+                {
+                    listAdapter.notifyItemChanged(position);
+                }
+
+
+
+                if(notifyDatasetChanged)
+                {
+                    listAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CartStats>> call, Throwable t) {
+
+                Toast.makeText(context," Unsuccessful !",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+
+
+
+
+
     private void showToastMessage(String message)
     {
         Toast.makeText(context,message, Toast.LENGTH_SHORT).show();
@@ -988,11 +1017,13 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
+
+
     public interface ListItemClick{
         void notifyItemImageClick(Item item);
         void showLogin();
-        void setCartTotal(double cartTotal, boolean save);
-        void setItemsInCart(int itemsInCart, boolean save);
+        void setCartTotal(double cartTotal);
+        void setItemsInCart(int itemsInCart);
 
     }
 

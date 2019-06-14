@@ -260,7 +260,7 @@ public class ItemsInShopByCatFragmentDeprecated extends Fragment implements Swip
         makeRequestItemCategory();
         makeRequestShopItem(true,true);
 
-        listAdapter.getCartStats(true,0,true);
+//        listAdapter.getCartStats(true,0,true);
 
     }
 
@@ -752,18 +752,17 @@ public class ItemsInShopByCatFragmentDeprecated extends Fragment implements Swip
         startActivityForResult(intent,123);
     }
 
-
-
-
     @Override
-    public void setCartTotal(double cartTotalValue) {
+    public void setCartTotal(double cartTotalValue, boolean save) {
         cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(cartTotalValue));
     }
 
+
     @Override
-    public void setItemsInCart(int itemsInCartValue) {
+    public void setItemsInCart(int itemsInCartValue, boolean save) {
         itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items in Cart");
     }
+
 
 
     @Override
@@ -773,7 +772,7 @@ public class ItemsInShopByCatFragmentDeprecated extends Fragment implements Swip
         if(requestCode==123 && resultCode == RESULT_OK)
         {
             // login success
-            listAdapter.getCartStats(true,0,true);
+//            listAdapter.getCartStats(true,0,true);
         }
     }
 
