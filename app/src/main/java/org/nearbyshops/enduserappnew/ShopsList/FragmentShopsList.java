@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.ShopsList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -24,14 +25,19 @@ import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCatNew;
+import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopsList.Interfaces.NotifyDatasetChanged;
 import org.nearbyshops.enduserappnew.ShopsList.SlidingLayerSort.PrefSortShopsByCategory;
 import org.nearbyshops.enduserappnew.ShopsList.SlidingLayerSort.SlidingLayerSortShops;
+import org.nearbyshops.enduserappnew.ShopsList.ViewHolders.ViewHolderShop;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,7 +54,8 @@ import static org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByC
  * Created by sumeet on 25/5/16.
  */
 public class FragmentShopsList extends Fragment implements
-        SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifyDatasetChanged, NotifySearch {
+        SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifyDatasetChanged, NotifySearch ,
+        ViewHolderShop.ListItemClick {
 
         ArrayList<Object> dataset = new ArrayList<>();
 
@@ -678,6 +685,15 @@ public class FragmentShopsList extends Fragment implements
 
 
 
+
+
+    @Override
+    public void listItemClick(Shop shop, int position) {
+
+        PrefShopHome.saveShop(shop,getActivity());
+        Intent intent = new Intent(getActivity(), ItemsInShopByCatNew.class);
+        startActivity(intent);
+    }
 
 
 

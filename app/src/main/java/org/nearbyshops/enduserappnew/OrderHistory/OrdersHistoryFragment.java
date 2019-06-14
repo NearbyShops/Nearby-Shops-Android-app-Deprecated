@@ -36,6 +36,7 @@ import org.nearbyshops.enduserappnew.OrderDetail.OrderDetail;
 import org.nearbyshops.enduserappnew.OrderDetail.PrefOrderDetail;
 import org.nearbyshops.enduserappnew.OrderHistory.SlidingLayerSort.PrefSortOrders;
 import org.nearbyshops.enduserappnew.OrderHistory.SlidingLayerSort.SlidingLayerSortOrders;
+import org.nearbyshops.enduserappnew.OrderHistory.ViewHolders.ViewHolderOrder;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
@@ -49,7 +50,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrdersFragment extends Fragment implements Adapter.NotifyConfirmOrder, SwipeRefreshLayout.OnRefreshListener,
+public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.ListItemClick, SwipeRefreshLayout.OnRefreshListener,
         NotifySort, NotifySearch, RefreshFragment {
 
 
@@ -68,7 +69,8 @@ public class OrdersFragment extends Fragment implements Adapter.NotifyConfirmOrd
     private RecyclerView recyclerView;
     private Adapter adapter;
 
-    public List<Order> dataset = new ArrayList<>();
+
+    public List<Object> dataset = new ArrayList<>();
 
     private GridLayoutManager layoutManager;
     private SwipeRefreshLayout swipeContainer;
@@ -91,7 +93,7 @@ public class OrdersFragment extends Fragment implements Adapter.NotifyConfirmOrd
     @BindView(R.id.empty_screen) LinearLayout emptyScreen;
     @BindView(R.id.service_name) TextView serviceName;
 
-    public OrdersFragment() {
+    public OrdersHistoryFragment() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -100,8 +102,8 @@ public class OrdersFragment extends Fragment implements Adapter.NotifyConfirmOrd
     }
 
 
-    public static OrdersFragment newInstance() {
-        OrdersFragment fragment = new OrdersFragment();
+    public static OrdersHistoryFragment newInstance() {
+        OrdersHistoryFragment fragment = new OrdersHistoryFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -281,7 +283,7 @@ public class OrdersFragment extends Fragment implements Adapter.NotifyConfirmOrd
     private void setupRecyclerView()
     {
 
-        adapter = new Adapter(dataset,this,this,getActivity());
+        adapter = new Adapter(dataset,this,getActivity());
 
         recyclerView.setAdapter(adapter);
 

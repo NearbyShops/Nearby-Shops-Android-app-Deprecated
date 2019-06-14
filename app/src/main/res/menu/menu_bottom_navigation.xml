@@ -21,7 +21,7 @@
         android:id="@+id/bottom_tab_cart"
         android:enabled="true"
         android:icon="@drawable/ic_shopping_basket_white_24px"
-        android:title="Cart"
+        android:title="Carts"
         app:showAsAction="ifRoom" />
 
 

@@ -1,20 +1,30 @@
 package org.nearbyshops.enduserappnew.ItemsInShopByCategory;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.API.ItemCategoryService;
 import org.nearbyshops.enduserappnew.API.ShopItemService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -34,6 +44,9 @@ import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
+import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
+import org.nearbyshops.enduserappnew.ShopDetail.ShopDetailFragment;
+import org.nearbyshops.enduserappnew.ShopsList.ViewHolders.ViewHolderShop;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
@@ -56,9 +69,19 @@ import static android.app.Activity.RESULT_OK;
 public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
         ViewHolderItemCategoryHorizontal.ListItemClick,
         ViewHolderItemCategory.ListItemClick, ViewHolderShopItem.ListItemClick,
-        NotifyBackPressed, NotifySort, NotifySearch {
+        NotifyBackPressed, NotifySort, NotifySearch,
+        ViewHolderShop.ListItemClick {
 
 
+
+
+
+
+    @BindView(R.id.shop_profile_photo) ImageView itemImage;
+//    @BindView(R.id.image_count) TextView imagesCount;
+
+    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
+//    @BindView(R.id.fab) FloatingActionButton fab;
 
 
 
@@ -121,6 +144,13 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         currentCategory.setParentCategoryID(-1);
     }
 
+
+
+
+    @BindView(R.id.shop_name) TextView shopName;
+    @BindView(R.id.shop_address) TextView shopAddress;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -130,6 +160,38 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         View rootView = inflater.inflate(R.layout.fragment_items_in_stock_by_cat, container, false);
 
         ButterKnife.bind(this,rootView);
+
+
+
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+
+        Shop shop = PrefShopHome.getShop(getActivity());
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(shop.getShopName());
+
+
+
+
+        shopName.setText(shop.getShopName());
+        shopAddress.setText(String.format("%.2f Km",shop.getRt_distance()) + " | " + shop.getShopAddress());
+
+
+
+
+        String imagePath = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/Shop/Image/five_hundred_"
+                + shop.getLogoImagePath() + ".jpg";
+
+
+        Drawable placeholder = VectorDrawableCompat
+                .create(getResources(),
+                        R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
+
+
+        Picasso.get().load(imagePath)
+                .placeholder(placeholder)
+                .into(itemImage);
+
 
 
         setupRecyclerView();
@@ -421,6 +483,9 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+                        // show current shop profile at the top of the list
+//                        dataset.add(PrefShopHome.getShop(getActivity()));
+
 
 
                         if(response.body()!=null)
@@ -622,20 +687,34 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+    @BindView(R.id.text_sub) TextView itemHeader;
+
+
 
     private void notifyItemIndicatorChanged()
     {
-        if(getActivity() instanceof NotifyIndicatorChanged)
-        {
-            ((NotifyIndicatorChanged) getActivity()).notifyItemIndicatorChanged(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items in Shop");
-        }
+
+//        if(getActivity() instanceof NotifyIndicatorChanged)
+//        {
+//            ((NotifyIndicatorChanged) getActivity()).notifyItemIndicatorChanged(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items in Shop");
+//        }
+
+
+
+
+        itemHeader.setText(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items");
+
     }
+
+
+
+
 
 
     @Override
     public void notifySortChanged() {
 
-        System.out.println("Notify Sort Clicked !");
+//        System.out.println("Notify Sort Clicked !");
         makeRefreshNetworkCall();
     }
 
@@ -675,9 +754,16 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+    @BindView(R.id.cart_stats) LinearLayout cartStatsBlock;
+
     @Override
     public void setCartTotal(double cartTotalValue) {
-        cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(cartTotalValue));
+
+        cartStatsBlock.setVisibility(View.VISIBLE);
+
+
+//        cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(cartTotalValue));
+        cartTotal.setText(PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(cartTotalValue));
     }
 
 
@@ -685,7 +771,12 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
     @Override
     public void setItemsInCart(int itemsInCartValue) {
-        itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items in Cart");
+
+        cartStatsBlock.setVisibility(View.VISIBLE);
+
+//        itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items in Cart");
+        itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items");
+
     }
 
 
@@ -702,5 +793,34 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
             listAdapter.getCartStats(true,0,true);
         }
     }
+
+
+
+
+
+    @Override
+    public void listItemClick(Shop shop, int position) {
+
+        Intent intent = new Intent(getActivity(), ShopDetail.class);
+        String jsonString = UtilityFunctions.provideGson().toJson(shop);
+        intent.putExtra(ShopDetailFragment.TAG_JSON_STRING,jsonString);
+        startActivity(intent);
+    }
+
+
+
+
+
+
+    @OnClick({R.id.app_bar,R.id.collapsing_toolbar,R.id.toolbar})
+    void shopClick()
+    {
+        Shop shop = PrefShopHome.getShop(getActivity());
+        Intent intent = new Intent(getActivity(), ShopDetail.class);
+        String jsonString = UtilityFunctions.provideGson().toJson(shop);
+        intent.putExtra(ShopDetailFragment.TAG_JSON_STRING,jsonString);
+        startActivity(intent);
+    }
+
 
 }

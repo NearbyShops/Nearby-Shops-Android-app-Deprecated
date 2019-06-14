@@ -39,7 +39,7 @@ public class OrderHistory extends AppCompatActivity {
         if (getSupportFragmentManager().findFragmentByTag("order_history_fragment") == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, new OrdersFragment(), "order_history_fragment")
+                    .replace(R.id.fragment_container, new OrdersHistoryFragment(), "order_history_fragment")
                     .commit();
         }
 

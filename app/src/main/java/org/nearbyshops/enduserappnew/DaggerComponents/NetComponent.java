@@ -43,8 +43,9 @@ import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderSavedMarket;
 import org.nearbyshops.enduserappnew.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.OrderDetail.FragmentOrderDetail;
-import org.nearbyshops.enduserappnew.OrderHistory.OrdersFragmentKotlin;
-import org.nearbyshops.enduserappnew.OrderHistory.OrdersFragment;
+import org.nearbyshops.enduserappnew.OrderHistory.BackupDeprecated.OrdersFragment;
+import org.nearbyshops.enduserappnew.OrderHistory.BackupDeprecated.OrdersFragmentKotlin;
+import org.nearbyshops.enduserappnew.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.ProfileFragment;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.ShopDetail.RateReviewDialog;
@@ -101,7 +102,7 @@ public interface NetComponent {
 
     void Inject(LoginFragment loginFragment);
 
-    void Inject(OrdersFragment ordersFragment);
+    void Inject(OrdersHistoryFragment ordersHistoryFragment);
 
     void Inject(FragmentOrderDetail fragmentOrderDetail);
 
@@ -193,4 +194,7 @@ public interface NetComponent {
     void Inject(ItemsInShopByCatFragment itemsInShopByCatFragment);
 
     void Inject(FragmentShopNewBackup fragmentShopNewBackup);
+
+    void Inject(OrdersFragment ordersFragment);
+
 }
