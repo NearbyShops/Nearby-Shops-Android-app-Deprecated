@@ -38,7 +38,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     public Map<Integer, CartItem> cartItemMap = new HashMap<>();
-    public Map<Integer, CartStats> cartStatsMap = new HashMap<>();
+//    public Map<Integer, CartStats> cartStatsMap = new HashMap<>();
+    public CartStats cartStats = new CartStats();
 
 
 
@@ -102,8 +103,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(viewType == VIEW_TYPE_SHOP_ITEM)
         {
 
+
 //            viewHolderShopItem = ;
-            return ViewHolderShopItemSimplified.create(parent,context,fragment,this,cartItemMap,cartStatsMap);
+            return ViewHolderShopItemSimplified.create(parent,context,fragment,this,cartItemMap,cartStats);
 
         }
         else if(viewType == VIEW_TYPE_SHOP)

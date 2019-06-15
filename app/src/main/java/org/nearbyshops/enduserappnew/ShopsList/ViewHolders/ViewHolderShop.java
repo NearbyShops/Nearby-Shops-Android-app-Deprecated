@@ -1,7 +1,6 @@
 package org.nearbyshops.enduserappnew.ShopsList.ViewHolders;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +16,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopHome.ShopHome;
 
 public class ViewHolderShop extends RecyclerView.ViewHolder{
 

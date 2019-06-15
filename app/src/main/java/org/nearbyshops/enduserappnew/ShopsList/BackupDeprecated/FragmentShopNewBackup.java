@@ -41,7 +41,7 @@ import retrofit2.Response;
 import javax.inject.Inject;
 import java.util.ArrayList;
 
-import static org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat.TAG_SLIDING;
+import static org.nearbyshops.enduserappnew.ItemsInShopByCategory.BackupDeprecated.ItemsInShopByCatDeprecated.TAG_SLIDING;
 
 
 //import icepick.State;

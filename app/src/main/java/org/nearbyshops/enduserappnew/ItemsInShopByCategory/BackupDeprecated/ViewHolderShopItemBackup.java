@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemsInShopByCategory.Backup;
+package org.nearbyshops.enduserappnew.ItemsInShopByCategory.BackupDeprecated;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
