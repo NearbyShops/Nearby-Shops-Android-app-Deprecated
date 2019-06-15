@@ -26,7 +26,6 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCatNew;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
@@ -45,7 +44,7 @@ import retrofit2.Response;
 import javax.inject.Inject;
 import java.util.ArrayList;
 
-import static org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat.TAG_SLIDING;
+import static org.nearbyshops.enduserappnew.ItemsInShopByCategory.BackupDeprecated.ItemsInShopByCatDeprecated.TAG_SLIDING;
 
 
 //import icepick.State;
@@ -691,7 +690,7 @@ public class FragmentShopsList extends Fragment implements
     public void listItemClick(Shop shop, int position) {
 
         PrefShopHome.saveShop(shop,getActivity());
-        Intent intent = new Intent(getActivity(), ItemsInShopByCatNew.class);
+        Intent intent = new Intent(getActivity(), ItemsInShopByCat.class);
         startActivity(intent);
     }
 

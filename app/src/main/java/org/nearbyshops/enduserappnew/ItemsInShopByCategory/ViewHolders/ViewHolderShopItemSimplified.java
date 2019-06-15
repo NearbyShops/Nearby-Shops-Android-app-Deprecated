@@ -45,7 +45,8 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
 
     private Map<Integer, CartItem> cartItemMap;
-    private Map<Integer, CartStats> cartStatsMap;
+//    private Map<Integer, CartStats> cartStatsMap;
+    private CartStats cartStats;
 
 
 
@@ -75,7 +76,7 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
     private ShopItem shopItem;
     private CartItem cartItem;
-    private CartStats cartStats;
+//    private CartStats cartStats;
 
     private Context context;
     private Fragment fragment;
@@ -94,12 +95,12 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
 
     public static ViewHolderShopItemSimplified create(ViewGroup parent, Context context, Fragment fragment, RecyclerView.Adapter adapter,
-                                                      Map<Integer, CartItem> cartItemMap, Map<Integer, CartStats> cartStatsMap)
+                                                      Map<Integer, CartItem> cartItemMap, CartStats cartStats)
     {
 
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_item_small,parent,false);
-        return new ViewHolderShopItemSimplified(view,context,fragment,adapter,cartItemMap,cartStatsMap);
+        return new ViewHolderShopItemSimplified(view,context,fragment,adapter,cartItemMap,cartStats);
     }
 
 
@@ -111,7 +112,7 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
 
     public ViewHolderShopItemSimplified(@NonNull View itemView, Context context, Fragment fragment, RecyclerView.Adapter listAdapter,
-                                        Map<Integer, CartItem> cartItemMap, Map<Integer, CartStats> cartStatsMap) {
+                                        Map<Integer, CartItem> cartItemMap, CartStats cartStats) {
 
         super(itemView);
         ButterKnife.bind(this,itemView);
@@ -124,7 +125,8 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
         this.listAdapter = listAdapter;
 
         this.cartItemMap = cartItemMap;
-        this.cartStatsMap = cartStatsMap;
+//        this.cartStatsMap = cartStatsMap;
+        this.cartStats = cartStats;
 
 
 
@@ -141,7 +143,7 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
 
                 cartItem = cartItemMap.get(shopItem.getItemID());
-                cartStats = cartStatsMap.get(shopItem.getShopID());
+//                cartStats = cartStatsMap.get(shopItem.getShopID());
 
 
                 double total = 0;
@@ -302,7 +304,7 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
 
         cartItem = cartItemMap.get(shopItem.getItemID());
-        cartStats = cartStatsMap.get(shopItem.getShopID());
+//        cartStats = cartStatsMap.get(shopItem.getShopID());
 
 
         CartItem cartItem = cartItemMap.get(shopItem.getItemID());
@@ -425,7 +427,7 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
 
         cartItem = cartItemMap.get(shopItem.getItemID());
-        cartStats = cartStatsMap.get(shopItem.getShopID());
+//        cartStats = cartStatsMap.get(shopItem.getShopID());
 
 
 
@@ -718,9 +720,10 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
         Shop shop = PrefShopHome.getShop(context);
 
-        CartStats cartStats = cartStatsMap.get(shop.getShopID());
+//        CartStats cartStats = cartStatsMap.get(shop.getShopID());
 
-        if(cartStats!=null)
+
+        if(cartStats !=null)
         {
             cartTotalValue = cartStats.getCart_Total();
         }

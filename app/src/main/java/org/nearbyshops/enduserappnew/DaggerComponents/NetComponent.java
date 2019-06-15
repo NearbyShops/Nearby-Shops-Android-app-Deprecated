@@ -24,7 +24,7 @@ import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemImages.ItemImageListFragment;
 import org.nearbyshops.enduserappnew.ItemsByCategory.ItemsByCatNew;
 import org.nearbyshops.enduserappnew.ItemsByCategoryDeprecated.ItemCategoriesFragmentSimple;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.Backup.ViewHolderShopItemBackup;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.BackupDeprecated.ViewHolderShopItemBackup;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItemSimplified;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategoryDeprecated.AdapterItemsInShop;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategoryDeprecated.ItemsInShopByCatFragmentDeprecated;
@@ -201,7 +201,7 @@ public interface NetComponent {
 
     void Inject(ViewHolderShopItemBackup viewHolderShopItemBackup);
 
-    void Inject(org.nearbyshops.enduserappnew.ItemsInShopByCategory.Backup.ItemsInShopByCatFragmentBackup itemsInShopByCatFragmentBackup);
+    void Inject(org.nearbyshops.enduserappnew.ItemsInShopByCategory.BackupDeprecated.ItemsInShopByCatFragmentBackup itemsInShopByCatFragmentBackup);
 
 
 

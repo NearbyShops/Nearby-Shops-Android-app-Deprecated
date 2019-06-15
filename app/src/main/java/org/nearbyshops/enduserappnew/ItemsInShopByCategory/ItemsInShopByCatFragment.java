@@ -649,6 +649,9 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+
+
+
     @Override
     public void notifyRequestSubCategory(ItemCategory itemCategory) {
 
@@ -707,6 +710,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+
+
     private void notifyItemIndicatorChanged()
     {
 
@@ -717,9 +722,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-
         itemHeader.setText(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items");
-
     }
 
 
@@ -788,11 +791,13 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
         if(save)
         {
-            Shop shop = PrefShopHome.getShop(getActivity());
+//            Shop shop = PrefShopHome.getShop(getActivity());
+//
+//            CartStats cartStats = listAdapter.cartStatsMap.get(shop.getShopID());
+//            cartStats.setCart_Total(cartTotalValue);
+//            listAdapter.cartStatsMap.put(shop.getShopID(),cartStats);
 
-            CartStats cartStats = listAdapter.cartStatsMap.get(shop.getShopID());
-            cartStats.setCart_Total(cartTotalValue);
-            listAdapter.cartStatsMap.put(shop.getShopID(),cartStats);
+            listAdapter.cartStats.setCart_Total(cartTotalValue);
         }
     }
 
@@ -824,11 +829,15 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
         if(save)
         {
-            Shop shop = PrefShopHome.getShop(getActivity());
 
-            CartStats cartStats = listAdapter.cartStatsMap.get(shop.getShopID());
-            cartStats.setItemsInCart(itemsInCartValue);
-            listAdapter.cartStatsMap.put(shop.getShopID(),cartStats);
+//            Shop shop = PrefShopHome.getShop(getActivity());
+
+//            CartStats cartStats = listAdapter.cartStatsMap.get(shop.getShopID());
+//            cartStats.setItemsInCart(itemsInCartValue);
+//            listAdapter.cartStatsMap.put(shop.getShopID(),cartStats);
+
+            listAdapter.cartStats.setItemsInCart(itemsInCartValue);
+
 
         }
     }
@@ -909,17 +918,14 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-
-
-
-
-
     public void getCartStats(final boolean notifyChange, final int position, final boolean notifyDatasetChanged)
     {
 
 
+
+
         listAdapter.cartItemMap.clear();
-        listAdapter.cartStatsMap.clear();
+//        listAdapter.cartStatsMap.clear();
 
         User endUser = PrefLogin.getUser(getActivity());
 
@@ -992,7 +998,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
             @Override
             public void onResponse(Call<List<CartStats>> call, Response<List<CartStats>> response) {
 
-                listAdapter.cartStatsMap.clear();
+//                listAdapter.cartStatsMap.clear();
+
 
 
 
@@ -1000,7 +1007,11 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                 {
                     for(CartStats cartStats: response.body())
                     {
-                        listAdapter.cartStatsMap.put(cartStats.getShopID(),cartStats);
+
+//                        listAdapter.cartStatsMap.put(cartStats.getShopID(),cartStats);
+                        listAdapter.cartStats.setItemsInCart(cartStats.getItemsInCart());
+                        listAdapter.cartStats.setCart_Total(cartStats.getCart_Total());
+                        listAdapter.cartStats.setShopID(cartStats.getShopID());
 
 
 
@@ -1014,12 +1025,16 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                 else
                 {
 
-                    CartStats cartStatsLocal = new CartStats(0,0,shop.getShopID());
-                    listAdapter.cartStatsMap.put(cartStatsLocal.getShopID(),cartStatsLocal);
 
+//                    CartStats cartStatsLocal = new CartStats(0,0,shop.getShopID());
+//                    listAdapter.cartStatsMap.put(cartStatsLocal.getShopID(),cartStatsLocal);
 
-                    setItemsInCart(cartStatsLocal.getItemsInCart(),false);
-                    setCartTotal(cartStatsLocal.getCart_Total(),false);
+                    listAdapter.cartStats.setItemsInCart(0);
+                    listAdapter.cartStats.setCart_Total(0);
+                    listAdapter.cartStats.setShopID(shop.getShopID());
+
+                    setItemsInCart(0,false);
+                    setCartTotal(0,false);
                 }
 
 

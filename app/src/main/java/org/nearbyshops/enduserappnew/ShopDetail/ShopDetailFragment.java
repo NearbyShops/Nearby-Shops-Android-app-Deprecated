@@ -140,11 +140,12 @@ public class ShopDetailFragment extends Fragment
     @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
 
 
-    Shop shop;
+
+    private Shop shop;
 
 
 
-    ShopReview reviewForUpdate;
+    private ShopReview reviewForUpdate;
 
 
 
@@ -295,7 +296,11 @@ public class ShopDetailFragment extends Fragment
 
 
 
-    void bindViews()
+
+
+
+
+    private void bindViews()
     {
         shopName.setText(shop.getShopName());
         shopRatingNumeric.setText(String.format("%.2f",shop.getRt_rating_avg()));
@@ -381,15 +386,7 @@ public class ShopDetailFragment extends Fragment
 
 
 
-
-
-
-
-
-
-
-
-    void getShopImageCount()
+    private void getShopImageCount()
     {
         Call<ShopImageEndPoint> call = shopImageService.getShopImages(
                 shop.getShopID(), ShopImage.IMAGE_ORDER,
@@ -445,8 +442,7 @@ public class ShopDetailFragment extends Fragment
 
 
 
-
-    boolean isDestroyed = false;
+    private boolean isDestroyed = false;
 
 
 
@@ -974,8 +970,11 @@ public class ShopDetailFragment extends Fragment
 //    ShopReview reviewForUpdate;
 
 
+
+
+
     // method to check whether the user has written the review or not if the user is currently logged in.
-    void checkUserReview() {
+    private void checkUserReview() {
 
 
 
@@ -1103,12 +1102,6 @@ public class ShopDetailFragment extends Fragment
         }
 
     }
-
-
-
-
-
-
 
 
 
