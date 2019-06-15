@@ -503,6 +503,8 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
                             cartItemMap.put(cartItem.getItemID(),cartItem);
 //                            listAdapter.notifyItemChanged(getAdapterPosition());
+
+
                             bindShopItems(shopItem);
 
 

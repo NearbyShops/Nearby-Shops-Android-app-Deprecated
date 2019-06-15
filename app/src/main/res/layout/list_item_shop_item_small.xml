@@ -47,7 +47,6 @@
         app:layout_constraintStart_toStartOf="@id/item_image"
         app:layout_constraintBottom_toBottomOf="@id/item_image"
         android:layout_marginTop="3dp"
-        android:textSize="15sp"
         android:id="@+id/rating"
         android:textColor="@color/white"
         android:background="@color/gplus_color_1"
