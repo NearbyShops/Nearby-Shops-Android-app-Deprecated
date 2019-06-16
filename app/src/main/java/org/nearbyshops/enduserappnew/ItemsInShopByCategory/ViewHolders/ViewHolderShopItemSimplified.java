@@ -41,6 +41,7 @@ import javax.inject.Inject;
 import java.util.Map;
 
 
+
 public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
 
@@ -108,11 +109,8 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
 
 
-
-
-
-    public ViewHolderShopItemSimplified(@NonNull View itemView, Context context, Fragment fragment, RecyclerView.Adapter listAdapter,
-                                        Map<Integer, CartItem> cartItemMap, CartStats cartStats) {
+    private ViewHolderShopItemSimplified(@NonNull View itemView, Context context, Fragment fragment, RecyclerView.Adapter listAdapter,
+                                         Map<Integer, CartItem> cartItemMap, CartStats cartStats) {
 
         super(itemView);
         ButterKnife.bind(this,itemView);
@@ -275,15 +273,8 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
         });
 
-
-
-
-
 //        getCartStats(false,0,true);
     }
-
-
-
 
 
 
