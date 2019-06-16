@@ -28,6 +28,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailNew;
+import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -560,9 +561,14 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public void notifyShopLogoClick(Shop shop) {
 
-        Intent shopHomeIntent = new Intent(getActivity(), ShopHome.class);
+//        Intent shopHomeIntent = new Intent(getActivity(), ShopHome.class);
+//        PrefShopHome.saveShop(shop,getActivity());
+//        startActivity(shopHomeIntent);
+
+
         PrefShopHome.saveShop(shop,getActivity());
-        startActivity(shopHomeIntent);
+        Intent intent = new Intent(getActivity(), ItemsInShopByCat.class);
+        startActivity(intent);
     }
 
 

@@ -923,20 +923,31 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+        Shop shop = PrefShopHome.getShop(getActivity());
 
         listAdapter.cartItemMap.clear();
 //        listAdapter.cartStatsMap.clear();
+
+
 
         User endUser = PrefLogin.getUser(getActivity());
 
         if(endUser == null)
         {
+
+            listAdapter.cartStats.setItemsInCart(0);
+            listAdapter.cartStats.setCart_Total(0);
+            listAdapter.cartStats.setShopID(shop.getShopID());
+
+            setItemsInCart(0,false);
+            setCartTotal(0,false);
+
             return;
         }
 
 
 
-        Shop shop = PrefShopHome.getShop(getActivity());
+
 
 
         Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,null,
