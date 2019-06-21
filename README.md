@@ -1,4 +1,13 @@
 
+Important : Commertial Use Restricted !
+---------------------------------------------
+
+Nearby Shops is Nonprofit open-source project. We want people to use this project for good purpose and not use it to create another business like amazon and wallmart which monopolise markets and stifle fair compitition and harms people. 
+
+Therefore commertial Use of Nearby Shops open-source project is restricted. Please read more about it on this link : https://blog.nearbyshops.org/nearby-shops-software-license-usage-terms/
+
+
+
 
 Nearby Shops End-User android app
 ====================================
