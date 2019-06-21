@@ -1,7 +1,7 @@
 package org.nearbyshops.enduserappnew.API;
 
 import okhttp3.ResponseBody;
-import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import retrofit2.Call;
 import retrofit2.http.*;
 

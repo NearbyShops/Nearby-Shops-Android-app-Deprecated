@@ -4,8 +4,8 @@ package org.nearbyshops.enduserappnew.API;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import org.nearbyshops.enduserappnew.Model.Image;
-import org.nearbyshops.enduserappnew.ModelEndPoints.ShopImageEndPoint;
-import org.nearbyshops.enduserappnew.ModelImages.ShopImage;
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopImageEndPoint;
+import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
 import retrofit2.Call;
 import retrofit2.http.*;
 

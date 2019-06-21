@@ -1,8 +1,8 @@
 package org.nearbyshops.enduserappnew.API;
 
 import okhttp3.ResponseBody;
-import org.nearbyshops.enduserappnew.ModelEndPoints.FavouriteShopEndpoint;
-import org.nearbyshops.enduserappnew.ModelReviewShop.FavouriteShop;
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.FavouriteShopEndpoint;
+import org.nearbyshops.enduserappnew.Model.ModelReviewShop.FavouriteShop;
 import retrofit2.Call;
 import retrofit2.http.*;
 

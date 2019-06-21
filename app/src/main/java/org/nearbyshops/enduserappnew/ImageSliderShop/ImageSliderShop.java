@@ -12,7 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.nearbyshops.enduserappnew.ModelImages.ItemImage;
+import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 
