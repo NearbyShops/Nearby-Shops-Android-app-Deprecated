@@ -58,12 +58,6 @@ Admin app : https://github.com/SumeetMoray/Nearby-Shops-Admin-App
 Source code for Server Side JSON Based REST API is available in this repository https://github.com/SumeetMoray/Nearby-Shops-API
 
 
-Important : Commertial Use allowed with certain Restrictions !
--------------------------------------------------------------------
-
-Nearby Shops is Nonprofit open-source project. Commertial use is allowed but with restrictions ... Please read our full license ... to know more about it !
-
-https://blog.nearbyshops.org/nearby-shops-software-license-usage-terms/
 
 
 
