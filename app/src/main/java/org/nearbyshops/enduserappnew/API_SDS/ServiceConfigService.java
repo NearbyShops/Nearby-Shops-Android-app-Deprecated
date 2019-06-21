@@ -4,8 +4,8 @@ package org.nearbyshops.enduserappnew.API_SDS;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import org.nearbyshops.enduserappnew.Model.Image;
-import org.nearbyshops.enduserappnew.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
-import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import retrofit2.Call;
 import retrofit2.http.*;
 

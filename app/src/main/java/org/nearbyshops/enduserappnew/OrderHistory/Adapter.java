@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
+import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.OrderHistory.ViewHolders.ViewHolderOrder;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenData;

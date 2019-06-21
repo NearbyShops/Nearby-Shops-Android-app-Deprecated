@@ -1,7 +1,7 @@
 package org.nearbyshops.enduserappnew.API;
 
 import okhttp3.ResponseBody;
-import org.nearbyshops.enduserappnew.ModelCartOrder.CartItem;
+import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
 import retrofit2.Call;
 import retrofit2.http.*;
 

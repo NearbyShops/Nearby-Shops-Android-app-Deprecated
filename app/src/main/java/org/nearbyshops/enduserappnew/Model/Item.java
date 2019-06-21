@@ -1,6 +1,6 @@
 package org.nearbyshops.enduserappnew.Model;
 
-import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
+import org.nearbyshops.enduserappnew.Model.ModelStats.ItemStats;
 import java.sql.Timestamp;
 
 public class Item{
