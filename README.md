@@ -11,6 +11,13 @@ It has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON 
 <img src="https://nearbyshops.org/images/3.png" width="208">   <img src="https://nearbyshops.org/images/5.png" width="208">   <img src="https://nearbyshops.org/images/6.png" width="208">
 
 
+Contributions Requied in following Areas 
+-------------------------------------------
+
+https://forum.nearbyshops.org/t/project-roadmap-and-contributions-required/34/4
+
+
+
 Download
 --------
 
