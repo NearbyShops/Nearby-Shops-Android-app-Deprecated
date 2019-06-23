@@ -16,6 +16,12 @@ apply plugin: 'kotlin-android-extensions'
 
 
 
+def localPropertiesFile = rootProject.file("local.properties")
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(localPropertiesFile))
+
+
+
 android {
 
 
@@ -32,10 +38,13 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         multiDexEnabled =true
-        versionCode 10
-        versionName "1.0"
+        versionCode 11
+        versionName "1.1"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "Mapbox_Style_URL", localProperties['mapbox_style_url']
+
+
 
         manifestPlaceholders = [onesignal_app_id               : "b6fe253c-2a93-4452-8cd7-36555aa046ca",
                                 // Project number pulled from dashboard, local value is ignored.
