@@ -17,6 +17,25 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
 
 
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/orders_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/shops_compressed.gif" width="208"> 
+
+
+Table of Contents
+-------------------------
+
+## 🚩 Table of Contents
+- [Tech Stack and App Architecture](#tech-stack-and-app-architecture)
+- [Features and highlights](#features-and-highlights)
+- [Libraries Used](#libraries-used)
+- [Third Party Integrations](#third-party-integrations)
+- [Source Code for Shop Owner and Admin app and REST API](#source-code-for-shop-owner-admin-app-and-server-side)
+- [Contributions Required](#contributions-requied-in-following-areas)
+- [Community forum](#community---need-help-)
+- [Development Instructions](#development-instructions)
+
+
+
+
 
 Tech Stack and app Architecture
 --------------------------------
@@ -34,7 +53,6 @@ Uses Single activity Architecture where most of the screens are fragments and th
 The project has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. The Source for REST API is provided. 
 
 
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/orders_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/shops_compressed.gif" width="208"> 
 
 
 
@@ -84,13 +102,6 @@ If you want any help regarding anything. Feel free to contact us. Send a message
 
 Reach out to us - Please Visit - https://forum.nearbyshops.org
 
-Get paid to Contribute
---------------------------
-
-Developer time is valuable and its not fair to expect developers to contribute to the project without getting reasonably compensated. 
-
-Therefore we are planning to arrange funds which will help us compensate those who contribute to the project. For more information please visit https://forum.nearbyshops.org and get in touch with us !
-
 
 Source code for Shop-Owner, Admin app and Server Side
 -------------------------------------------------------
@@ -121,6 +132,14 @@ This project uses mapbox android sdk which requires mapbox style url. To add the
 
 mapbox_style_url="your-mapbox-style-url"
 
+
+
+Get paid to Contribute
+--------------------------
+
+Developer time is valuable and its not fair to expect developers to contribute to the project without getting reasonably compensated. 
+
+Therefore we are planning to arrange funds which will help us compensate those who contribute to the project. For more information please visit https://forum.nearbyshops.org and get in touch with us !
 
 
 
