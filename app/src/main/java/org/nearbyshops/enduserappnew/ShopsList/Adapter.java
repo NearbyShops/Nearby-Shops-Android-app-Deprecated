@@ -22,8 +22,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
-
-
     private List<Object> dataset = null;
     private Context context;
     private Fragment fragment;
