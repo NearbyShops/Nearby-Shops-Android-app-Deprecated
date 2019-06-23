@@ -17,7 +17,6 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
 
 
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/orders_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/shops_compressed.gif" width="208"> 
 
 Tech Stack and app Architecture
 --------------------------------
@@ -28,7 +27,15 @@ Written in both Java and Kotlin : Migeration to kotlin is planned and will be co
 
 Built using Butterknife, Retrofit, Ok-HTTP, Picasso, Dagger, Mapbox android SDK
 
+Heavily uses View-Holder Pattern to make the UI code more modular and Reusable. 
+
+Uses Single activity Architecture where most of the screens are fragments and there are only 2-3 activities in the entire project.
+
 The project has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. The Source for REST API is provided. 
+
+
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/orders_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/shops_compressed.gif" width="208"> 
+
 
 
 Features and Highlights
@@ -47,6 +54,7 @@ Home Delivery and Pick From Shop (Online-to-Offline) Shopping Concept is Support
 Location Based Filtering is available which means that customers will see only those shops which can deliver to their address and other shops will get filtered out. 
 
 Vendors / Shop-Owners can track order's through orders inventory and update the order progress !
+
 
 
 Screenshots
