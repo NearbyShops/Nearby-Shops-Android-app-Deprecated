@@ -4,32 +4,54 @@ Nearby Shops End-User android app
 
 <img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
 
-Nearby Shops is an Open-Source food delivery, Grocery and Hyperlocal platform. 
-For more information visit https://nearbyshops.org | Developers visit http://developer.nearbyshops.org
+Nearby Shops is an Open-Source food delivery, grocery and Hyperlocal platform. You can install it on Digital Ocean 
+and get your grocery or food delivery market up and running in just 5 $ per month hosting fee. 
 
-It has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. 
+Nearby Shops implements Alibaba's Grocery online-and-offline Concept. Where customers can place order from the app and pick their orders from the shop. 
 
+The installation guide and app customization guide is provided at http://developer.nearbyshops.org
 
-![Items](https://nearbyshops.org/images/gifs/items_new_compressed.gif)
-
-
-<img src="https://nearbyshops.org/images/gifs/items_new_compressed.gif" width="208">   <img src="https://nearbyshops.org/images/gifs/shops_compressed.gif" width="208">   <img src="https://nearbyshops.org/images/gifs/orders_compressed.gif" width="208"> 
+Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
 <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
 
+
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/orders_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/shops_compressed.gif" width="208"> 
+
+Tech Stack and app Architecture
+--------------------------------
+
+Uses Android Jetpack and Google’s Recommended Architecture Patterns - Migeration to MVVM is planned
+
+Written in both Java and Kotlin : Migeration to kotlin is planned and will be coming in future
+
+Built using Butterknife, Retrofit, Ok-HTTP, Picasso, Dagger, Mapbox android SDK
+
+The project has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. The Source for REST API is provided. 
+
+
+Features and Highlights
+----------------------------
+
+Mobile Based - Multi-Vendor Platform where customers can send orders to multiple shops / Restaurants
+
+Integrations for Sending SMS-OTP, E-mail and Push Notifications are available
+
+Order Tracking and Live status updates using e-mail, SMS and Push Notifications
+
+Rating and Reviews for Items and Shops
+
+Home Delivery and Pick From Shop (Online-to-Offline) Shopping Concept is Supported
+
+Location Based Filtering is available which means that customers will see only those shops which can deliver to them 
+and other shops will get filtered out. 
 
 
 Screenshots
 -----------------
 
 <img src="https://nearbyshops.org/images/3.png" width="208">   <img src="https://nearbyshops.org/images/5.png" width="208">   <img src="https://nearbyshops.org/images/6.png" width="208">
-
-Animated GIFs
----------------
-
-<img src="https://nearbyshops.org/images/gifs/items_new_compressed.gif" width="208">   <img src="https://nearbyshops.org/images/gifs/shops_compressed.gif" width="208">   
-<img src="https://nearbyshops.org/images/gifs/orders_compressed.gif" width="208"> 
 
 
 
