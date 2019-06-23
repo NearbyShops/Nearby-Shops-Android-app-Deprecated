@@ -25,12 +25,6 @@ Screenshots
 
 <img src="https://nearbyshops.org/images/3.png" width="208">   <img src="https://nearbyshops.org/images/5.png" width="208">   <img src="https://nearbyshops.org/images/6.png" width="208">
 
-Animated GIFs
----------------
-
-<img src="https://nearbyshops.org/images/gifs/items_new_compressed.gif" width="208">   <img src="https://nearbyshops.org/images/gifs/shops_compressed.gif" width="208">   
-<img src="https://nearbyshops.org/images/gifs/orders_compressed.gif" width="208"> 
-
 
 
 
