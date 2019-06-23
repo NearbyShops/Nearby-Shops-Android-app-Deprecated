@@ -4,15 +4,15 @@ Nearby Shops End-User android app
 
 <img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
 
-Nearby Shops is an Open-Source food delivery, Grocery and Hyperlocal platform. 
-For more information visit https://nearbyshops.org | Developers visit http://developer.nearbyshops.org
+Nearby Shops is an Open-Source food delivery, Grocery and Hyperlocal platform. You can install it on Digital Ocean 
+and get your grocery, food delivery market up and running in just 5 $ per month. 
 
-It has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. 
+The installation guide and app customization guide is provided in the developer guide at http://developer.nearbyshops.org
+
+Website:  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
 <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
-
-
 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/orders_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/shops_compressed.gif" width="208"> 
