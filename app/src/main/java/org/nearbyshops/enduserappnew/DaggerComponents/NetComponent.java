@@ -3,8 +3,8 @@ package org.nearbyshops.enduserappnew.DaggerComponents;
 
 import dagger.Component;
 import org.jetbrains.annotations.NotNull;
-import org.nearbyshops.enduserappnew.Backups.AdapterItemsInShopBackup;
-import org.nearbyshops.enduserappnew.Backups.ItemsInShopByCatFragmentBackup;
+import org.nearbyshops.enduserappnew.BackupsDeprecated.AdapterItemsInShopBackup;
+import org.nearbyshops.enduserappnew.BackupsDeprecated.ItemsInShopByCatFragmentBackup;
 import org.nearbyshops.enduserappnew.CartItemList.CartItemAdapter;
 import org.nearbyshops.enduserappnew.CartItemList.CartItemListActivity;
 import org.nearbyshops.enduserappnew.CartsList.CartsListFragment;
@@ -22,7 +22,7 @@ import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfileGlobal;
 import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemImages.ItemImageListFragment;
-import org.nearbyshops.enduserappnew.ItemsByCategory.ItemsByCatNew;
+import org.nearbyshops.enduserappnew.ItemsByCategory.ItemsByCategoryFragment;
 import org.nearbyshops.enduserappnew.ItemsByCategoryDeprecated.ItemCategoriesFragmentSimple;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.BackupDeprecated.ViewHolderShopItemBackup;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItemSimplified;
@@ -191,7 +191,7 @@ public interface NetComponent {
 
     void Inject(ViewHolderShopItem viewHolderShopItem);
 
-    void Inject(ItemsByCatNew itemsByCatNew);
+    void Inject(ItemsByCategoryFragment itemsByCategoryFragment);
 
     void Inject(ItemsInShopByCatFragment itemsInShopByCatFragment);
 
