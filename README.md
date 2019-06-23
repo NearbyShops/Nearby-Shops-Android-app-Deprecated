@@ -24,6 +24,7 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 
 
 ## 🚩 Table of Contents
+- [Concept](#concept)
 - [Tech Stack and App Architecture](#tech-stack-and-app-architecture)
 - [Features and highlights](#features-and-highlights)
 - [Screenshots](#screenshots)
@@ -33,6 +34,21 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Source Code for Shop Owner and Admin app and REST API](#source-code-for-shop-owner-admin-app-and-server-side)
 - [Contributions Required](#contributions-requied-in-following-areas)
 - [Development Instructions](#development-instructions)
+
+
+Concept
+----------
+Nearby Shops is a Hyerlocal Shopping platform where a customer can buy directly from the shops available in his/her local area and get his orders delivered to the home or just pick the order from the shop if home delivery is not available. 
+
+In the new emerging world customers are getting tired of routine chores of going outside for shopping. They would much prefer if they can simply place an order and get the products delivered to their Home the same day. 
+
+The conventional e-commerce has issues ... the delivery takes a long time and its more difficult to trust the vendors which you cannot see and meet physically. Hyperlocal e-commerce tends to solve these issues because delivery is faster and customers can reach out to vendors easily. 
+
+Nearby Shops can also be used as a food Delivery platform where restaurants can use it to deliver food instead of items. 
+
+Nearby Shops implements Alibaba's New Offline-to-Online Concept where customers discover products online and then pick those products from Physical Stores. 
+
+![Online to Offline](https://www.innovationiseverywhere.com/wp-content/uploads/2015/05/what-is-o2o-online-to-offline-digital-ecommerce-retail-china-gmic-1-2.jpg)
 
 
 
@@ -73,6 +89,10 @@ Home Delivery and Pick From Shop (Online-to-Offline) Shopping Concept is Support
 Location Based Filtering is available which means that customers will see only those shops which can deliver to their address and other shops will get filtered out. 
 
 Vendors / Shop-Owners can track order's through orders inventory and update the order progress !
+
+Billing and Payments are supported ... Shop-owners are billed according to number of orders they deliver successfully. And Service Providers (Market Owners) can collect payments from the shop-owners. 
+
+Commertial Use - This is not just an hobby project and you can actually use it to setup your business and Earn some real money. 
 
 
 
