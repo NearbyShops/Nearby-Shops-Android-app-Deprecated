@@ -10,13 +10,13 @@ For more information visit https://nearbyshops.org | Developers visit http://dev
 It has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. 
 
 
-![Items](https://nearbyshops.org/images/gifs/items_new_compressed.gif)
-
-
-<img src="https://nearbyshops.org/images/gifs/items_new_compressed.gif" width="208">   <img src="https://nearbyshops.org/images/gifs/shops_compressed.gif" width="208">   <img src="https://nearbyshops.org/images/gifs/orders_compressed.gif" width="208"> 
-
-
 <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
+
+
+
+
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/orders_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/shops_compressed.gif" width="208"> 
+
 
 
 
