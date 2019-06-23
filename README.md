@@ -4,12 +4,14 @@ Nearby Shops End-User android app
 
 <img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
 
-Nearby Shops is an Open-Source food delivery, Grocery and Hyperlocal platform. You can install it on Digital Ocean 
-and get your grocery, food delivery market up and running in just 5 $ per month. 
+Nearby Shops is an Open-Source food delivery, grocery and Hyperlocal platform. You can install it on Digital Ocean 
+and get your grocery or food delivery market up and running in just 5 $ per month hosting fee. 
+
+Nearby Shops implements Alibaba's Grocery online-and-offline Concept. Where customers can place order from the app and pick their orders from the shop. 
 
 The installation guide and app customization guide is provided at http://developer.nearbyshops.org
 
-Website:  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
+Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
 <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
@@ -40,7 +42,7 @@ Order Tracking and Live status updates using e-mail, SMS and Push Notifications
 
 Rating and Reviews for Items and Shops
 
-Home Delivery and Pick From Shop feature is Supported
+Home Delivery and Pick From Shop (Online-to-Offline) Shopping Concept is Supported
 
 Location Based Filtering is available which means that customers will see only those shops which can deliver to them 
 and other shops will get filtered out. 
