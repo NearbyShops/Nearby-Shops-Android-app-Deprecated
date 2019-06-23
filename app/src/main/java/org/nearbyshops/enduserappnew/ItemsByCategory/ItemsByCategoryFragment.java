@@ -61,7 +61,7 @@ import static org.nearbyshops.enduserappnew.ItemsInShopByCategory.BackupDeprecat
 
 
 
-public class ItemsByCatNew extends Fragment implements
+public class ItemsByCategoryFragment extends Fragment implements
         LocationUpdated,
         SwipeRefreshLayout.OnRefreshListener,
         ViewHolderItemCategoryHorizontal.ListItemClick,
@@ -116,7 +116,7 @@ public class ItemsByCatNew extends Fragment implements
 
 
 
-    public ItemsByCatNew() {
+    public ItemsByCategoryFragment() {
         super();
 
         DaggerComponentBuilder.getInstance()

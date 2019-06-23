@@ -128,6 +128,9 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     private Adapter listAdapter;
 
 
+
+
+
     @Inject
     ItemCategoryService itemCategoryService;
 

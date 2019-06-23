@@ -22,10 +22,9 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-import org.nearbyshops.enduserappnew.APIKeys;
+import org.nearbyshops.enduserappnew.BuildConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.R;
-
-import java.util.ArrayList;
 
 
 public class PickLocation extends AppCompatActivity {
@@ -89,7 +88,7 @@ public class PickLocation extends AppCompatActivity {
 
 
 
-        mapView.setStyleUrl(APIKeys.styleURLBright);
+        mapView.setStyleUrl(BuildConfig.Mapbox_Style_URL);
 
 
 
@@ -158,8 +157,14 @@ public class PickLocation extends AppCompatActivity {
 //                    ),2000);
 
 
-                    showLogMessage("Lat Lon Zero");
-                    requestLocationUpdates();
+//                    showLogMessage("Lat Lon Zero");
+//                    requestLocationUpdates();
+
+                    latLng = new LatLng(
+                            PrefLocation.getLatitude(PickLocation.this),PrefLocation.getLongitude(PickLocation.this)
+                    );
+
+
                 }
                 else
                 {
@@ -169,26 +174,31 @@ public class PickLocation extends AppCompatActivity {
                             getIntent().getDoubleExtra("lon_dest",0)
                     );
 
+
                     showLogMessage("Lat Lon not zero");
 
-                    if(center!=null)
-                    {
-                        mapboxMap.removeMarker(center);
-                    }
+                }
 
 
-                    center = mapboxMap.addMarker(new MarkerOptions().setPosition(latLng));
+
+
+                if(center!=null)
+                {
+                    mapboxMap.removeMarker(center);
+                }
+
+
+                center = mapboxMap.addMarker(new MarkerOptions().setPosition(latLng));
 
 
 //                    updateMap();
 
 
-                    //
-                    mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,17),
-                            2000
-                    );
+                //
+                mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,17),
+                        2000
+                );
 
-                }
 
 
 
@@ -233,41 +243,44 @@ public class PickLocation extends AppCompatActivity {
 
 
 
-    public int getZoomLevel()
-    {
-        int zoomLevel = 11;
 
-        double scale = radius / 500;
-        zoomLevel = (int) Math.floor((15 - Math.log(scale) / Math.log(2)));
-//        zoomLevel = (int) Math.floor((16 - Math.log(scale) / Math.log(2)));
-
-        return zoomLevel ;
-    }
-
-
-
-
-
-    private ArrayList<LatLng> polygonCircleForCoordinate(LatLng location, double radius){
-        int degreesBetweenPoints = 8; //45 sides
-        int numberOfPoints = (int) Math.floor(360 / degreesBetweenPoints);
-        double distRadians = radius / 6371000.0; // earth radius in meters
-        double centerLatRadians = location.getLatitude() * Math.PI / 180;
-        double centerLonRadians = location.getLongitude() * Math.PI / 180;
-        ArrayList<LatLng> polygons = new ArrayList<>(); //array to hold all the points
-        for (int index = 0; index < numberOfPoints; index++) {
-            double degrees = index * degreesBetweenPoints;
-            double degreeRadians = degrees * Math.PI / 180;
-            double pointLatRadians = Math.asin(Math.sin(centerLatRadians) * Math.cos(distRadians) + Math.cos(centerLatRadians) * Math.sin(distRadians) * Math.cos(degreeRadians));
-            double pointLonRadians = centerLonRadians + Math.atan2(Math.sin(degreeRadians) * Math.sin(distRadians) * Math.cos(centerLatRadians),
-                    Math.cos(distRadians) - Math.sin(centerLatRadians) * Math.sin(pointLatRadians));
-            double pointLat = pointLatRadians * 180 / Math.PI;
-            double pointLon = pointLonRadians * 180 / Math.PI;
-            LatLng point = new LatLng(pointLat, pointLon);
-            polygons.add(point);
-        }
-        return polygons;
-    }
+//
+//
+//    public int getZoomLevel()
+//    {
+//        int zoomLevel = 11;
+//
+//        double scale = radius / 500;
+//        zoomLevel = (int) Math.floor((15 - Math.log(scale) / Math.log(2)));
+////        zoomLevel = (int) Math.floor((16 - Math.log(scale) / Math.log(2)));
+//
+//        return zoomLevel ;
+//    }
+//
+//
+//
+//
+//
+//    private ArrayList<LatLng> polygonCircleForCoordinate(LatLng location, double radius){
+//        int degreesBetweenPoints = 8; //45 sides
+//        int numberOfPoints = (int) Math.floor(360 / degreesBetweenPoints);
+//        double distRadians = radius / 6371000.0; // earth radius in meters
+//        double centerLatRadians = location.getLatitude() * Math.PI / 180;
+//        double centerLonRadians = location.getLongitude() * Math.PI / 180;
+//        ArrayList<LatLng> polygons = new ArrayList<>(); //array to hold all the points
+//        for (int index = 0; index < numberOfPoints; index++) {
+//            double degrees = index * degreesBetweenPoints;
+//            double degreeRadians = degrees * Math.PI / 180;
+//            double pointLatRadians = Math.asin(Math.sin(centerLatRadians) * Math.cos(distRadians) + Math.cos(centerLatRadians) * Math.sin(distRadians) * Math.cos(degreeRadians));
+//            double pointLonRadians = centerLonRadians + Math.atan2(Math.sin(degreeRadians) * Math.sin(distRadians) * Math.cos(centerLatRadians),
+//                    Math.cos(distRadians) - Math.sin(centerLatRadians) * Math.sin(pointLatRadians));
+//            double pointLat = pointLatRadians * 180 / Math.PI;
+//            double pointLon = pointLonRadians * 180 / Math.PI;
+//            LatLng point = new LatLng(pointLat, pointLon);
+//            polygons.add(point);
+//        }
+//        return polygons;
+//    }
 
 
 
@@ -368,6 +381,11 @@ public class PickLocation extends AppCompatActivity {
 
         finish();
     }
+
+
+
+
+
 
 
 
