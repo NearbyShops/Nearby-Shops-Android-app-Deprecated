@@ -50,7 +50,6 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
     private CartStats cartStats;
 
 
-
     @Inject
     CartItemService cartItemService;
 
@@ -402,9 +401,6 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
         }
     }
-
-
-
 
 
 
