@@ -101,6 +101,19 @@ Contributions Requied in following Areas
 https://forum.nearbyshops.org/t/project-roadmap-and-contributions-required/34/4
 
 
+Development Instructions
+-------------------------
+
+If you're a developer looking to work on the source code follow these instructions to start developing !
+
+git clone https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app.git
+
+This project uses mapbox android sdk which requires mapbox style url. To add the style url in the project open this project in the android studio and add the Mapbox Style URL in the local.properties file. 
+
+mapbox_style_url="your-mapbox-style-url"
+
+
+
 
 License
 =======
