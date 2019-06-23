@@ -20,14 +20,6 @@ Screenshots
 <img src="https://nearbyshops.org/images/3.png" width="208">   <img src="https://nearbyshops.org/images/5.png" width="208">   <img src="https://nearbyshops.org/images/6.png" width="208">
 
 
-Contributions Requied in following Areas 
--------------------------------------------
-
-https://forum.nearbyshops.org/t/project-roadmap-and-contributions-required/34/4
-
-
-
-
 Libraries Used
 ---------------
 
@@ -64,6 +56,13 @@ Shop-Owner app : https://github.com/SumeetMoray/Nearby-Shops-Shop-Owner-Android-
 Admin app : https://github.com/SumeetMoray/Nearby-Shops-Admin-App
 
 Source code for Server Side JSON Based REST API is available in this repository https://github.com/SumeetMoray/Nearby-Shops-API
+
+
+
+Contributions Requied in following Areas 
+-------------------------------------------
+
+https://forum.nearbyshops.org/t/project-roadmap-and-contributions-required/34/4
 
 
 
