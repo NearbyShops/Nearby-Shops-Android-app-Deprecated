@@ -4,9 +4,18 @@ Nearby Shops End-User android app
 
 <img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
 
-Nearby Shops is an Open-Source food delivery and Grocery platform. Simple and Easy to setup mobile based hyperlocal platform. For more information visit https://nearbyshops.org | Developers visit http://developer.nearbyshops.org
+Nearby Shops is an Open-Source food delivery, Grocery and Hyperlocal platform. 
+For more information visit https://nearbyshops.org | Developers visit http://developer.nearbyshops.org
 
 It has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. 
+
+
+<a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
+
+
+
+Screenshots
+-----------------
 
 <img src="https://nearbyshops.org/images/3.png" width="208">   <img src="https://nearbyshops.org/images/5.png" width="208">   <img src="https://nearbyshops.org/images/6.png" width="208">
 
@@ -16,14 +25,6 @@ Contributions Requied in following Areas
 
 https://forum.nearbyshops.org/t/project-roadmap-and-contributions-required/34/4
 
-
-
-Download
---------
-
-Get it from Google play store
-
-<a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
 
 
 
@@ -63,8 +64,6 @@ Shop-Owner app : https://github.com/SumeetMoray/Nearby-Shops-Shop-Owner-Android-
 Admin app : https://github.com/SumeetMoray/Nearby-Shops-Admin-App
 
 Source code for Server Side JSON Based REST API is available in this repository https://github.com/SumeetMoray/Nearby-Shops-API
-
-
 
 
 
