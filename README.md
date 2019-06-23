@@ -7,7 +7,7 @@ Nearby Shops End-User android app
 Nearby Shops is an Open-Source food delivery, Grocery and Hyperlocal platform. You can install it on Digital Ocean 
 and get your grocery, food delivery market up and running in just 5 $ per month. 
 
-The installation guide and app customization guide is provided in the developer guide at http://developer.nearbyshops.org
+The installation guide and app customization guide is provided at http://developer.nearbyshops.org
 
 Website:  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
