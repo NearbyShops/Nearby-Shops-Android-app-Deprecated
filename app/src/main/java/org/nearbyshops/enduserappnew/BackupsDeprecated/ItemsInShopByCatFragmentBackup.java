@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Backups;
+package org.nearbyshops.enduserappnew.BackupsDeprecated;
 
 import android.content.Intent;
 import android.os.Bundle;
