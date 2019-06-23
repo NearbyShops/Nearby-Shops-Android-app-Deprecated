@@ -162,15 +162,6 @@ mapbox_style_url="your-mapbox-style-url"
 
 
 
-Get paid to Contribute
---------------------------
-
-Developer time is valuable and its not fair to expect developers to contribute to the project without getting reasonably compensated. 
-
-Therefore we are planning to arrange funds which will help us compensate those who contribute to the project. For more information please visit https://forum.nearbyshops.org and get in touch with us !
-
-
-
 License
 =======
 
