@@ -1,7 +1,7 @@
 Nearby Shops 
 =============
 
-> Self-Hosted Mobile Based Hypderlocal and Food Delivery Platform
+> Self-Hosted Mobile Based Hyperlocal and Food Delivery Platform
 
 
 <img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
@@ -89,6 +89,8 @@ Home Delivery and Pick From Shop (Online-to-Offline) Shopping Concept is Support
 Location Based Filtering is available which means that customers will see only those shops which can deliver to their address and other shops will get filtered out. 
 
 Vendors / Shop-Owners can track order's through orders inventory and update the order progress !
+
+Shop-Owners can deliver order by themselves by adding delivery staff. Shared Delivery Logistics will also be available which we are planning to implement in future releases of Nearby Shops. 
 
 Billing and Payments are supported ... Shop-owners are billed according to number of orders they deliver successfully. And Service Providers (Market Owners) can collect payments from the shop-owners. 
 
