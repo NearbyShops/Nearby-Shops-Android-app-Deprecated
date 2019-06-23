@@ -6,7 +6,7 @@ Nearby Shops
 
 <img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
 
-Nearby Shops is an Open-Source food delivery, grocery and Hyperlocal platform. You can install it on Digital Ocean 
+Nearby Shops is an Open-Source food delivery, grocery and Hyperlocal platform. You can install self-host on Digital Ocean 
 and get your grocery or food delivery market up and running in just 5 $ per month hosting fee. 
 
 Nearby Shops implements Alibaba's Grocery online-and-offline Concept. Where customers can place order from the app and pick their orders from the shop. 
@@ -149,11 +149,16 @@ Development Instructions
 
 If you're a developer looking to work on the source code follow these instructions to start developing !
 
+```js
 git clone https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app.git
+```
+
 
 This project uses mapbox android sdk which requires mapbox style url. To add the style url in the project open this project in the android studio and add the Mapbox Style URL in the local.properties file. 
 
+```js
 mapbox_style_url="your-mapbox-style-url"
+```
 
 
 
