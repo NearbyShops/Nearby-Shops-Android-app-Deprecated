@@ -17,7 +17,33 @@ Website:  https://nearbyshops.org | Developers Guide: http://developer.nearbysho
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/orders_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/shops_compressed.gif" width="208"> 
 
+Tech Stack and app Architecture
+--------------------------------
 
+Uses Android Jetpack and Google’s Recommended Architecture Patterns - Migeration to MVVM is planned
+
+Written in both Java and Kotlin : Migeration to kotlin is planned and will be coming in future
+
+Built using Butterknife, Retrofit, Ok-HTTP, Picasso, Dagger, Mapbox android SDK
+
+The project has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. The Source for REST API is provided. 
+
+
+Features and Highlights
+----------------------------
+
+Mobile Based - Multi-Vendor Platform where customers can send orders to multiple shops / Restaurants
+
+Integrations for Sending SMS-OTP, E-mail and Push Notifications are available
+
+Order Tracking and Live status updates using e-mail, SMS and Push Notifications
+
+Rating and Reviews for Items and Shops
+
+Home Delivery and Pick From Shop feature is Supported
+
+Location Based Filtering is available which means that customers will see only those shops which can deliver to them 
+and other shops will get filtered out. 
 
 
 Screenshots
