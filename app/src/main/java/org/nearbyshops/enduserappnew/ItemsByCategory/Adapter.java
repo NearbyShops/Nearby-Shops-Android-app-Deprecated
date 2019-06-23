@@ -40,7 +40,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public static final int VIEW_TYPE_HEADER = 4;
     public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 5;
     public static final int VIEW_TYPE_EMPTY_SCREEN = 6;
-
+    
 
     private boolean loadMore;
 

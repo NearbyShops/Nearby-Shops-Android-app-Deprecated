@@ -918,6 +918,9 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+
+
+
     public void getCartStats(final boolean notifyChange, final int position, final boolean notifyDatasetChanged)
     {
 
