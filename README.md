@@ -38,14 +38,15 @@ Mobile Based - Multi-Vendor Platform where customers can send orders to multiple
 
 Integrations for Sending SMS-OTP, E-mail and Push Notifications are available
 
-Order Tracking and Live status updates using e-mail, SMS and Push Notifications
+Order Tracking with Live status updates for Customer using e-mail, SMS and Push Notifications
 
 Rating and Reviews for Items and Shops
 
 Home Delivery and Pick From Shop (Online-to-Offline) Shopping Concept is Supported
 
-Location Based Filtering is available which means that customers will see only those shops which can deliver to them 
-and other shops will get filtered out. 
+Location Based Filtering is available which means that customers will see only those shops which can deliver to their address and other shops will get filtered out. 
+
+Vendors / Shop-Owners can track order's through orders inventory and update the order progress !
 
 
 Screenshots
