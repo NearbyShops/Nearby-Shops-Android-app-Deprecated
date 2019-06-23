@@ -1,5 +1,7 @@
-Nearby Shops End-User android app
-====================================
+Nearby Shops 
+=============
+
+> Self-Hosted Mobile Based Hypderlocal and Food Delivery Platform
 
 
 <img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
