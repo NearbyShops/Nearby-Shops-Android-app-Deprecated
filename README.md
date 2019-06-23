@@ -20,17 +20,16 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/orders_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/shops_compressed.gif" width="208"> 
 
 
-Table of Contents
--------------------------
 
 ## 🚩 Table of Contents
 - [Tech Stack and App Architecture](#tech-stack-and-app-architecture)
 - [Features and highlights](#features-and-highlights)
+- [Screenshots](#screenshots)
 - [Libraries Used](#libraries-used)
 - [Third Party Integrations](#third-party-integrations)
+- [Community forum](#community---need-help-)
 - [Source Code for Shop Owner and Admin app and REST API](#source-code-for-shop-owner-admin-app-and-server-side)
 - [Contributions Required](#contributions-requied-in-following-areas)
-- [Community forum](#community---need-help-)
 - [Development Instructions](#development-instructions)
 
 
