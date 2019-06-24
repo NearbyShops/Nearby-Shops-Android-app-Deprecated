@@ -33,7 +33,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
-import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailNew;
+import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail;
 import org.nearbyshops.enduserappnew.ItemsByCategory.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ItemsByCategory.Model.ItemCategoriesList;
@@ -230,6 +230,10 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
         return rootView;
     }
+
+
+
+
 
 
 
@@ -750,7 +754,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     @Override
     public void notifyItemImageClick(Item item) {
 
-        Intent intent = new Intent(getActivity(), ItemDetailNew.class);
+        Intent intent = new Intent(getActivity(), ItemDetail.class);
 //        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
 
         String itemJson = UtilityFunctions.provideGson().toJson(item);
