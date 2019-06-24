@@ -3,8 +3,8 @@ Nearby Shops
 
 > Self-Hosted Mobile Based Hyperlocal and Food Delivery Platform
 
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
 
-<img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
 
 Nearby Shops is an Open-Source food delivery, grocery and Hyperlocal platform. You can install self-host on Digital Ocean 
 and get your grocery or food delivery market up and running in just 5 $ per month hosting fee. 
