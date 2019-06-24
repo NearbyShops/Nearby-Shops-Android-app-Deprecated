@@ -125,6 +125,7 @@ public class AdapterItemSpecifications extends RecyclerView.Adapter<RecyclerView
         }
 
 
+
 //
 //        @OnClick(R.id.list_item)
 //        public void itemCategoryListItemClick()

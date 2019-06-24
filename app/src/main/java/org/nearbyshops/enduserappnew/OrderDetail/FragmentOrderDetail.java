@@ -16,7 +16,7 @@ import org.nearbyshops.enduserappnew.API.OrderItemService;
 import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
-import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailNew;
+import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Endpoints.OrderItemEndPoint;
@@ -429,7 +429,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
     @Override
     public void notifyItemClicked(Item item) {
-        Intent intent = new Intent(getActivity(), ItemDetailNew.class);
+        Intent intent = new Intent(getActivity(), ItemDetail.class);
 //        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
         String itemJson = UtilityFunctions.provideGson().toJson(item);
         intent.putExtra(ItemDetailFragment.TAG_JSON_STRING,itemJson);
