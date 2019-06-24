@@ -1,10 +1,12 @@
-Nearby Shops End-User android app
-====================================
+Nearby Shops 
+=============
+
+> Self-Hosted Mobile Based Hyperlocal and Food Delivery Platform
 
 
 <img src="https://i1.wp.com/nearbyshops.org/wp-content/uploads/2018/12/Untitled-design-e1545575054544.png" width="140"> 
 
-Nearby Shops is an Open-Source food delivery, grocery and Hyperlocal platform. You can install it on Digital Ocean 
+Nearby Shops is an Open-Source food delivery, grocery and Hyperlocal platform. You can install self-host on Digital Ocean 
 and get your grocery or food delivery market up and running in just 5 $ per month hosting fee. 
 
 Nearby Shops implements Alibaba's Grocery online-and-offline Concept. Where customers can place order from the app and pick their orders from the shop. 
@@ -19,6 +21,39 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/orders_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/shops_compressed.gif" width="208"> 
 
+
+
+## 🚩 Table of Contents
+- [Concept](#concept)
+- [Tech Stack and App Architecture](#tech-stack-and-app-architecture)
+- [Features and highlights](#features-and-highlights)
+- [Screenshots](#screenshots)
+- [Libraries Used](#libraries-used)
+- [Third Party Integrations](#third-party-integrations)
+- [Community forum](#community---need-help-)
+- [Source Code for Shop Owner and Admin app and REST API](#source-code-for-shop-owner-admin-app-and-server-side)
+- [Contributions Required](#contributions-requied-in-following-areas)
+- [Development Instructions](#development-instructions)
+
+
+Concept
+----------
+Nearby Shops is a Hyerlocal Shopping platform where a customer can buy directly from the shops available in his/her local area and get his orders delivered to the home or just pick the order from the shop if home delivery is not available. 
+
+In the new emerging world customers are getting tired of routine chores of going outside for shopping. They would much prefer if they can simply place an order and get the products delivered to their Home the same day. 
+
+The conventional e-commerce has issues ... the delivery takes a long time and its more difficult to trust the vendors which you cannot see and meet physically. Hyperlocal e-commerce tends to solve these issues because delivery is faster and customers can reach out to vendors easily. 
+
+Nearby Shops can also be used as a food Delivery platform where restaurants can use it to deliver food instead of items. 
+
+Nearby Shops implements Alibaba's New Offline-to-Online Concept where customers discover products online and then pick those products from Physical Stores. 
+
+![Online to Offline](https://www.innovationiseverywhere.com/wp-content/uploads/2015/05/what-is-o2o-online-to-offline-digital-ecommerce-retail-china-gmic-1-2.jpg)
+
+
+
+
+
 Tech Stack and app Architecture
 --------------------------------
 
@@ -28,7 +63,14 @@ Written in both Java and Kotlin : Migeration to kotlin is planned and will be co
 
 Built using Butterknife, Retrofit, Ok-HTTP, Picasso, Dagger, Mapbox android SDK
 
+Heavily uses View-Holder Pattern to make the UI code more modular and Reusable. 
+
+Uses Single activity Architecture where most of the screens are fragments and there are only 2-3 activities in the entire project.
+
 The project has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. The Source for REST API is provided. 
+
+
+
 
 
 Features and Highlights
@@ -38,14 +80,22 @@ Mobile Based - Multi-Vendor Platform where customers can send orders to multiple
 
 Integrations for Sending SMS-OTP, E-mail and Push Notifications are available
 
-Order Tracking and Live status updates using e-mail, SMS and Push Notifications
+Order Tracking with Live status updates for Customer using e-mail, SMS and Push Notifications
 
 Rating and Reviews for Items and Shops
 
 Home Delivery and Pick From Shop (Online-to-Offline) Shopping Concept is Supported
 
-Location Based Filtering is available which means that customers will see only those shops which can deliver to them 
-and other shops will get filtered out. 
+Location Based Filtering is available which means that customers will see only those shops which can deliver to their address and other shops will get filtered out. 
+
+Vendors / Shop-Owners can track order's through orders inventory and update the order progress !
+
+Shop-Owners can deliver order by themselves by adding delivery staff. Shared Delivery Logistics will also be available which we are planning to implement in future releases of Nearby Shops. 
+
+Billing and Payments are supported ... Shop-owners are billed according to number of orders they deliver successfully. And Service Providers (Market Owners) can collect payments from the shop-owners. 
+
+Commertial Use - This is not just an hobby project and you can actually use it to setup your business and Earn some real money. 
+
 
 
 Screenshots
@@ -75,13 +125,6 @@ If you want any help regarding anything. Feel free to contact us. Send a message
 
 Reach out to us - Please Visit - https://forum.nearbyshops.org
 
-Get paid to Contribute
---------------------------
-
-Developer time is valuable and its not fair to expect developers to contribute to the project without getting reasonably compensated. 
-
-Therefore we are planning to arrange funds which will help us compensate those who contribute to the project. For more information please visit https://forum.nearbyshops.org and get in touch with us !
-
 
 Source code for Shop-Owner, Admin app and Server Side
 -------------------------------------------------------
@@ -99,6 +142,23 @@ Contributions Requied in following Areas
 -------------------------------------------
 
 https://forum.nearbyshops.org/t/project-roadmap-and-contributions-required/34/4
+
+
+Development Instructions
+-------------------------
+
+If you're a developer looking to work on the source code follow these instructions to start developing !
+
+```js
+git clone https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app.git
+```
+
+
+This project uses mapbox android sdk which requires mapbox style url. To add the style url in the project open this project in the android studio and add the Mapbox Style URL in the local.properties file. 
+
+```js
+mapbox_style_url="your-mapbox-style-url"
+```
 
 
 
