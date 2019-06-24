@@ -158,7 +158,9 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
-    void bindViews()
+
+
+    private void bindViews()
     {
         itemName.setText(item.getItemName());
 
@@ -217,9 +219,6 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
-
-
-
     @OnClick(R.id.see_reviews)
     void seeAllReviews()
     {
@@ -229,7 +228,7 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
-    void showToastMessage(String message)
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message,Toast.LENGTH_LONG).show();
     }
@@ -362,7 +361,7 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
-    void setupRecyclerViewSpecs()
+    private void setupRecyclerViewSpecs()
     {
         adapterItemSpecs = new AdapterItemSpecifications(datasetSpecs,getActivity());
         itemSpecsList.setAdapter(adapterItemSpecs);
@@ -376,7 +375,8 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
-    void makeNetworkCallSpecs(final boolean clearDataset)
+
+    private void makeNetworkCallSpecs(final boolean clearDataset)
     {
         Call<List<ItemSpecificationName>> call = itemSpecNameService.getItemSpecName(
                 item.getItemID(),null
@@ -436,7 +436,9 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
-    boolean isDestroyed = false;
+
+
+    private boolean isDestroyed = false;
 
     @Override
     public void onResume() {
@@ -457,7 +459,10 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
-    boolean isFavourite = false;
+
+
+
+    private boolean isFavourite = false;
 
 
     @OnClick(R.id.fab)
@@ -499,7 +504,9 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
-    void insertFavourite()
+
+
+    private void insertFavourite()
     {
 
 
@@ -537,7 +544,10 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
-    void deleteFavourite()
+
+
+
+    private void deleteFavourite()
     {
 
         if(item !=null && PrefLogin.getUser(getActivity())!=null)
@@ -571,7 +581,11 @@ public class ItemDetailFragment extends Fragment implements Target {
     }
 
 
-    void setFavouriteIcon(boolean isFavourite)
+
+
+
+
+    private void setFavouriteIcon(boolean isFavourite)
     {
 
         this.isFavourite = isFavourite;
@@ -597,7 +611,10 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
-    void checkFavourite()
+
+
+
+    private void checkFavourite()
     {
 
         // make a network call to check the favourite
@@ -661,7 +678,9 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
-    void getItemImageCount()
+
+
+    private void getItemImageCount()
     {
 
         Call<ItemImageEndPoint> call = itemImageService.getItemImages(

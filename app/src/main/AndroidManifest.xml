@@ -68,7 +68,7 @@
 
         <activity android:name=".Login.Login"/>
 
-        <activity android:name=".ItemDetail.ItemDetailNew"/>
+        <activity android:name=".ItemDetail.ItemDetail"/>
 
         <activity android:name=".ShopDetail.ShopDetail"/>
 

@@ -26,7 +26,7 @@ import org.nearbyshops.enduserappnew.API.ShopItemService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
-import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailNew;
+import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Item;
@@ -602,7 +602,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
     void listItemClick()
     {
 
-        Intent intent = new Intent(getActivity(), ItemDetailNew.class);
+        Intent intent = new Intent(getActivity(), ItemDetail.class);
 //        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
 
         String itemJson = UtilityFunctions.provideGson().toJson(item);
