@@ -8,7 +8,7 @@ import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserappnew.R;
 
 
-public class ItemDetailNew extends AppCompatActivity {
+public class ItemDetail extends AppCompatActivity {
 
 
     public static final String SHOP_DETAIL_INTENT_KEY = "item_detail";

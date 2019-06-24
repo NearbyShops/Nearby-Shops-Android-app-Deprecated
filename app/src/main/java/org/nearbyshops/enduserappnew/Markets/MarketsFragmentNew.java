@@ -47,7 +47,8 @@ public class MarketsFragmentNew extends Fragment implements
 
     @Inject Gson gson;
 
-    AdapterMarkets adapter;
+
+    private AdapterMarkets adapter;
     @BindView(R.id.recyclerView) RecyclerView recyclerView;
     @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
 
@@ -61,7 +62,8 @@ public class MarketsFragmentNew extends Fragment implements
     boolean isDestroyed;
 
 
-    MarketViewModel viewModel;
+
+    private MarketViewModel viewModel;
 
 
 
@@ -233,7 +235,9 @@ public class MarketsFragmentNew extends Fragment implements
 
 
 
-    void makeRefreshNetworkCall()
+
+
+    private void makeRefreshNetworkCall()
     {
 
         swipeContainer.post(new Runnable() {
@@ -266,7 +270,8 @@ public class MarketsFragmentNew extends Fragment implements
 
 
 
-    void showToastMessage(String message)
+
+    private void showToastMessage(String message)
     {
         if(getActivity()!=null)
         {
@@ -299,7 +304,9 @@ public class MarketsFragmentNew extends Fragment implements
 
 
 
-    String searchQuery = null;
+
+
+    private String searchQuery = null;
 
 
 

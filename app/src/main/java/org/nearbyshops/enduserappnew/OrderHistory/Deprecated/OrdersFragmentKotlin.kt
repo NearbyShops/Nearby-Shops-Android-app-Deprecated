@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.OrderHistory.BackupDeprecated
+package org.nearbyshops.enduserappnew.OrderHistory.Deprecated
 
 import android.content.Intent
 import android.os.Bundle
