@@ -6,8 +6,7 @@ Nearby Shops
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
 
 
-Nearby Shops is an Open-Source food delivery, grocery and Hyperlocal platform. You can install self-host on Digital Ocean 
-and get your grocery or food delivery market up and running in just 5 $ per month hosting fee. 
+Nearby Shops is an Open-Source food delivery, grocery and Hyperlocal platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running in just 5 $ per month hosting fee. 
 
 Nearby Shops implements Alibaba's Grocery online-and-offline Concept. Where customers can place order from the app and pick their orders from the shop. 
 
@@ -34,15 +33,17 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Source Code for Shop Owner and Admin app and REST API](#source-code-for-shop-owner-admin-app-and-server-side)
 - [Contributions Required](#contributions-requied-in-following-areas)
 - [Development Instructions](#development-instructions)
+- [Commertial Use](#commertial-use-permitted)
+- [License](#license)
 
 
 Concept
 ----------
 Nearby Shops is a Hyerlocal Shopping platform where a customer can buy directly from the shops available in his/her local area and get his orders delivered to the home or just pick the order from the shop if home delivery is not available. 
 
-In the new emerging world customers are getting tired of routine chores of going outside for shopping. They would much prefer if they can simply place an order and get the products delivered to their Home the same day. 
+In the new emerging world customers are getting tired of daily shopping routine of going outside for shopping. They would much prefer if they can simply place an order and get the products delivered to their Home the same day. 
 
-The conventional e-commerce has issues ... the delivery takes a long time and its more difficult to trust the vendors which you cannot see and meet physically. Hyperlocal e-commerce tends to solve these issues because delivery is faster and customers can reach out to vendors easily. 
+The conventional e-commerce has issues ... the delivery takes a long time and its more difficult to trust the vendors which you cannot see and meet physically. Hyperlocal e-commerce tends to solve these issues because delivery is faster and customers can reach out to the vendors easily. 
 
 Nearby Shops can also be used as a food Delivery platform where restaurants can use it to deliver food instead of items. 
 
@@ -59,13 +60,13 @@ Tech Stack and app Architecture
 
 Uses Android Jetpack and Google’s Recommended Architecture Patterns - Migeration to MVVM is planned
 
-Written in both Java and Kotlin : Migeration to kotlin is planned and will be coming in future
+Written in both Java and Kotlin : Migeration to kotlin is planned and will be coming in near future
 
 Built using Butterknife, Retrofit, Ok-HTTP, Picasso, Dagger, Mapbox android SDK
 
-Heavily uses View-Holder Pattern to make the UI code more modular and Reusable. 
+Software is made of modular View-Holder Pattern which makes the UI blocks modular and easy to reuse, modify and understand.
 
-Uses Single activity Architecture where most of the screens are fragments and there are only 2-3 activities in the entire project.
+The app uses Single activity Architecture where most of the screens are implemented as fragments and there are only 2-3 activities in the entire project.
 
 The project has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. The Source for REST API is provided. 
 
@@ -138,8 +139,8 @@ Source code for Server Side JSON Based REST API is available in this repository 
 
 
 
-Contributions Requied in following Areas 
--------------------------------------------
+Contributions in following Areas are welcome
+-----------------------------------------------
 
 https://forum.nearbyshops.org/t/project-roadmap-and-contributions-required/34/4
 
@@ -153,29 +154,31 @@ If you're a developer looking to work on the source code follow these instructio
 git clone https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app.git
 ```
 
+You should now open the project with the latest version of Android Studio. The project will not compile unless you add the following property in the local.properties file. 
 
 This project uses mapbox android sdk which requires mapbox style url. To add the style url in the project open this project in the android studio and add the Mapbox Style URL in the local.properties file. 
+
+It is okay if you dont have an actual Mapbox style url in that case just put some dummy text in place of url. 
 
 ```js
 mapbox_style_url="your-mapbox-style-url"
 ```
 
 
+Commertial Use Permitted 
+==============================
+All the source code of Nearby Shops Open-Source project is released under a liberal MIT license which allows you to use this software for commertial use. 
+
 
 License
 =======
 
-    Copyright 2017-19 Bluetree Software LLP, Inc.
+The MIT License (MIT)
+Copyright 2017-19 Bluetree Software LLP, Inc. | http://nearbyshops.org
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-       http://www.apache.org/licenses/LICENSE-2.0
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
