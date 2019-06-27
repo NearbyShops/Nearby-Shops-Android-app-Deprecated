@@ -46,7 +46,7 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 
 Concept
 ----------
-Nearby Shops is a Hyerlocal Shopping platform where a customer can buy directly from the shops available in his/her local area and get their orders delivered to their home or just pick the order up from the shop. 
+Nearby Shops is a Hyperlocal Shopping platform where a customer can buy directly from the shops available in his/her local area and get their orders delivered to their home or just pick the order up from the shop. 
 
 In the new emerging world, customers are getting tired of going outside the home to shop every day. They would much prefer to simply place an order and have the products delivered to their home the same day. 
 
