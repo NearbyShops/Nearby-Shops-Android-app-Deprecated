@@ -172,7 +172,7 @@ mapbox_style_url="your-mapbox-style-url"
 ```
 
 
-Commertial Use Permitted 
+Commercial Use Permitted 
 ==============================
 All the source code of Nearby Shops Open-Source project is released under a liberal MIT license which allows you to use this software for commertial use. 
 
