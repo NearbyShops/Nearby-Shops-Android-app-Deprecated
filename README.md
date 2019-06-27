@@ -5,15 +5,15 @@ Nearby Shops
 
 
 ### Commercial Use Permitted
-All the source code of Nearby Shops Open-Source project is released under a liberal MIT license which allows you to use this software for commercial use.
+All the source code of the Nearby Shops Open-Source project is released under a liberal MIT license which allows you to use this software for commercial use.
 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
 
 
-Nearby Shops is an Open-Source food delivery, grocery and Hyperlocal platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running in just 5 $ per month hosting fee. 
+Nearby Shops is an Open-Source food delivery, grocery and hyperlocal platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running for just $ 5 per month in hosting fees. 
 
-Nearby Shops implements Alibaba's Grocery online-to-offline Concept. Where customers can place order from the app and pick their orders from the shop. 
+Nearby Shops implements Alibaba's Grocery Online-to-Offline Concept. Customers can place and order from the app and pick it up in the store. 
 
 The installation guide and app customization guide is provided at http://developer.nearbyshops.org
 
@@ -46,15 +46,15 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 
 Concept
 ----------
-Nearby Shops is a Hyerlocal Shopping platform where a customer can buy directly from the shops available in his/her local area and get his orders delivered to the home or just pick the order from the shop if home delivery is not available. 
+Nearby Shops is a Hyerlocal Shopping platform where a customer can buy directly from the shops available in his/her local area and get their orders delivered to their home or just pick the order up from the shop. 
 
-In the new emerging world customers are getting tired of daily shopping routine of going outside for shopping. They would much prefer if they can simply place an order and get the products delivered to their Home the same day. 
+In the new emerging world, customers are getting tired of going outside the home to shop every day. They would much prefer to simply place an order and have the products delivered to their home the same day. 
 
-The conventional e-commerce has issues ... the delivery takes a long time and its more difficult to trust the vendors which you cannot see and meet physically. Hyperlocal e-commerce tends to solve these issues because delivery is faster and customers can reach out to the vendors easily. 
+Conventional e-commerce has issues ... the delivery takes a long time and it's more difficult to trust unknown vendors whom you cannot see and meet. Hyperlocal e-commerce solves these issues because delivery is faster and customers can reach out to the vendors easily. 
 
-Nearby Shops can also be used as a food Delivery platform where restaurants can use it to deliver food instead of items. 
+Nearby Shops can also be used as a food Delivery platform where restaurants can use it to deliver food. 
 
-Nearby Shops implements Alibaba's New Offline-to-Online Concept where customers discover products online and then pick those products from Physical Stores. 
+Nearby Shops implements Alibaba's New Offline-to-Online Concept, where customers discover products online and then pick those products up from physical stores. 
 
 ![Online to Offline](https://www.innovationiseverywhere.com/wp-content/uploads/2015/05/what-is-o2o-online-to-offline-digital-ecommerce-retail-china-gmic-1-2.jpg)
 
@@ -65,17 +65,17 @@ Nearby Shops implements Alibaba's New Offline-to-Online Concept where customers 
 Tech Stack and app Architecture
 --------------------------------
 
-Uses Android Jetpack and Google’s Recommended Architecture Patterns - Migeration to MVVM is planned
+Uses Android Jetpack and Google’s Recommended Architecture Patterns - Migration to MVVM is planned
 
 Written in both Java and Kotlin : Migration to kotlin is planned and will be coming in near future
 
-Built using Butterknife, Retrofit, Ok-HTTP, Picasso, Dagger, Mapbox android SDK
+Built using Butterknife, Retrofit, Ok-HTTP, Picasso, Dagger, and the Mapbox Android SDK
 
-Software is made of modular View-Holder Pattern which makes the UI blocks modular and easy to reuse, modify and understand.
+Software is made using the modular View-Holder Pattern which makes the UI blocks modular, easy to reuse, modify and understand.
 
-The app uses Single activity Architecture where most of the screens are implemented as fragments and there are only 2-3 activities in the entire project.
+The app uses Single Activity Architecture, where most of the screens are implemented as fragments and there are only 2-3 activities in the entire project.
 
-The project has 3 android apps each for End-User, Shop-Owner and adminstrator and a JSON based REST API at the backend. The Source for REST API is provided. 
+The project has 3 Android apps. One app each for the end-user, shop-owner and adminstrator. There is also a JSON-based REST API on the backend. The source for the REST API is provided. 
 
 
 
@@ -84,25 +84,25 @@ The project has 3 android apps each for End-User, Shop-Owner and adminstrator an
 Features and Highlights
 ----------------------------
 
-Mobile Based - Multi-Vendor Platform where customers can send orders to multiple shops / Restaurants
+Mobile Based - Multi-Vendor Platform where customers can send orders to multiple shops / restaurants
 
 Integrations for Sending SMS-OTP, E-mail and Push Notifications are available
 
-Order Tracking with Live status updates for Customer using e-mail, SMS and Push Notifications
+Order Tracking, with live status updates for customers using e-mail, SMS and push notifications
 
-Rating and Reviews for Items and Shops
+Rating and Reviews for items and shops
 
-Home Delivery and Pick From Shop (Online-to-Offline) Shopping Concept is Supported
+Home delivery and pick-up from the shop (Online-to-Offline) Shopping Concept is Supported
 
-Location Based Filtering is available which means that customers will see only those shops which can deliver to their address and other shops will get filtered out. 
+Location based filtering is available, which means that customers will see only those shops which can deliver to their address -- other shops will be filtered out. 
 
-Vendors / Shop-Owners can track order's through orders inventory and update the order progress !
+Vendors / shop-owners can track orders through orders inventory and update the order progress !
 
-Shop-Owners can deliver order by themselves by adding delivery staff. Shared Delivery Logistics will also be available which we are planning to implement in future releases of Nearby Shops. 
+By adding delivery staff, shop-owners can deliver orders by themselves. Shared delivery logistics will also be available in future releases of Nearby Shops. 
 
-Billing and Payments are supported ... Shop-owners are billed according to number of orders they deliver successfully. And Service Providers (Market Owners) can collect payments from the shop-owners. 
+Billing and payments are supported. Shop-owners are billed according to the number of orders they deliver successfully. And Service Providers (Market Owners) can collect payments from the shop-owners. 
 
-Commercial Use - This is not just an hobby project and you can actually use it to setup your business and Earn some real money. 
+Commercial Use - This is not just a hobby project and you can actually use it to setup your business and earn some real money. 
 
 
 
@@ -123,20 +123,20 @@ Android-Jetpack, Retrofit, Ok-Http, Event-Bus, Picasso, butterknife, dagger2, U-
 Third Party Integrations
 -------------------------
 
-Nearby Shops has latest integrations for SMS-OTP verification(MSG91), E-mail (Simple-Java-Mail), One-Signal and Firebase (for push notifications), Mapbox Android SDK for Maps
+Nearby Shops has the latest integrations for SMS-OTP verification(MSG91), E-mail (Simple-Java-Mail), One-Signal, Firebase (for push notifications), and Mapbox Android SDK for Maps
 
 
 Community - Need Help ? 
 ------------------------
 
-If you want any help regarding anything. Feel free to contact us. Send a message through our forum or you can simply post an issue. Your issues will not be ignored and you will surely receive help. 
+If you want any help regarding anything. Feel free to contact us -- send a message through our forum or you can simply post an issue. Your issues will not be ignored and you will surely receive help. 
 
 Reach out to us - Please Visit - https://forum.nearbyshops.org
 
 
 Source code for Shop-Owner, Admin app and Server Side
 -------------------------------------------------------
-If you want to see source code for Shop-Owner app, Admin-app and server side the links are provided below
+If you want to see source code for the Shop-Owner app, Admin-app and the server side -- links are provided below
 
 Shop-Owner app : https://github.com/SumeetMoray/Nearby-Shops-Shop-Owner-Android-app
 
@@ -165,7 +165,7 @@ You should now open the project with the latest version of Android Studio. The p
 
 This project uses mapbox android sdk which requires mapbox style url. To add the style url in the project open this project in the android studio and add the Mapbox Style URL in the local.properties file. 
 
-It is okay if you dont have an actual Mapbox style url in that case just put some dummy text in place of url. 
+It is okay if you don't have an actual Mapbox style url. In that case, just put some dummy text in place of the url. 
 
 ```js
 mapbox_style_url="your-mapbox-style-url"
