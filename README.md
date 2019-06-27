@@ -4,8 +4,8 @@ Nearby Shops
 > Self-Hosted Mobile Based Hyperlocal and Food Delivery Platform
 
 
-### Commertial Use Permitted
-All the source code of Nearby Shops Open-Source project is released under a liberal MIT license which allows you to use this software for commertial use.
+### Commercial Use Permitted
+All the source code of Nearby Shops Open-Source project is released under a liberal MIT license which allows you to use this software for commercial use.
 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
@@ -40,7 +40,7 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Source Code for Shop Owner and Admin app and REST API](#source-code-for-shop-owner-admin-app-and-server-side)
 - [Contributions Required](#contributions-requied-in-following-areas)
 - [Development Instructions](#development-instructions)
-- [Commertial Use](#commertial-use-permitted)
+- [Commercial Use](#commercial-use-permitted)
 - [License](#license)
 
 
@@ -102,7 +102,7 @@ Shop-Owners can deliver order by themselves by adding delivery staff. Shared Del
 
 Billing and Payments are supported ... Shop-owners are billed according to number of orders they deliver successfully. And Service Providers (Market Owners) can collect payments from the shop-owners. 
 
-Commertial Use - This is not just an hobby project and you can actually use it to setup your business and Earn some real money. 
+Commercial Use - This is not just an hobby project and you can actually use it to setup your business and Earn some real money. 
 
 
 
@@ -172,9 +172,9 @@ mapbox_style_url="your-mapbox-style-url"
 ```
 
 
-Commertial Use Permitted 
+Commercial Use Permitted 
 ==============================
-All the source code of Nearby Shops Open-Source project is released under a liberal MIT license which allows you to use this software for commertial use. 
+All the source code of Nearby Shops Open-Source project is released under a liberal MIT license which allows you to use this software for commercial use. 
 
 
 License
