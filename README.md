@@ -3,6 +3,11 @@ Nearby Shops
 
 > Self-Hosted Mobile Based Hyperlocal and Food Delivery Platform
 
+
+### Commertial Use Permitted
+All the source code of Nearby Shops Open-Source project is released under a liberal MIT license which allows you to use this software for commertial use.
+
+
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
 
 
@@ -12,10 +17,12 @@ Nearby Shops implements Alibaba's Grocery online-and-offline Concept. Where cust
 
 The installation guide and app customization guide is provided at http://developer.nearbyshops.org
 
+
 Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
 <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
+
 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/items_new_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/orders_compressed.gif" width="208">   <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/shops_compressed.gif" width="208"> 
