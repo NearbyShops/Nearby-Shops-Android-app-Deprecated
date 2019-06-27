@@ -4,7 +4,7 @@ Nearby Shops
 > Self-Hosted Mobile Based Hyperlocal and Food Delivery Platform
 
 
-### Commertial Use Permitted
+#### Commertial Use Permitted
 All the source code of Nearby Shops Open-Source project is released under a liberal MIT license which allows you to use this software for commertial use.
 
 
