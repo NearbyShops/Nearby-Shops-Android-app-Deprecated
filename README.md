@@ -67,7 +67,7 @@ Tech Stack and app Architecture
 
 Uses Android Jetpack and Google’s Recommended Architecture Patterns - Migeration to MVVM is planned
 
-Written in both Java and Kotlin : Migeration to kotlin is planned and will be coming in near future
+Written in both Java and Kotlin : Migration to kotlin is planned and will be coming in near future
 
 Built using Butterknife, Retrofit, Ok-HTTP, Picasso, Dagger, Mapbox android SDK
 
