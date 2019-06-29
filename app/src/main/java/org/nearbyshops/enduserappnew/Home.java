@@ -643,7 +643,6 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 //                    .addToBackStack(null)
 //                    .commit();
 
-
         }
         else {
 
