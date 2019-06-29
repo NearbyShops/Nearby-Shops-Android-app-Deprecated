@@ -3,6 +3,8 @@ package org.nearbyshops.enduserappnew.Markets;
 import android.app.Dialog;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -146,14 +148,21 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
 
 
 
-    void createMarketMessage()
+    private void createMarketMessage()
     {
-        showToastMessage("Create market click !");
+        String url = "https://nearbyshops.org/entrepreneur.html";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
 
 
-    void submit_click()
+
+
+
+
+    private void submit_click()
     {
 
 
@@ -182,6 +191,11 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+                if(!isVisible())
+                {
+                    return;
+                }
+
                 if(response.code()==200)
                 {
                     showToastMessage("Updated Successfully !");
@@ -202,6 +216,13 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                if(!isVisible())
+                {
+                    return;
+                }
+
+
+
                 progressBar.setVisibility(View.INVISIBLE);
                 submit_button.setVisibility(View.VISIBLE);
                 showToastMessage("Failed !");
@@ -213,7 +234,7 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
 
 
 
-    void showToastMessage(String message)
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
@@ -223,7 +244,10 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
 
 
 
-    void signUp_click()
+
+
+
+    private void signUp_click()
     {
 //        Intent intent = new Intent(getContext(),SignUp.class);
 //        startActivity(intent);

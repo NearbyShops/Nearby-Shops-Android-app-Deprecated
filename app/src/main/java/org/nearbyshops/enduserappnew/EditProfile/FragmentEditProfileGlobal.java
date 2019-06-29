@@ -69,11 +69,12 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
+    boolean isDestroyed = false;
+
 
 
     /* Token renewal variables : BEGIN */
 
-    boolean isDestroyed = false;
 
     // constants - request codes for token renewal
     public static final int REQUEST_CODE_DELETE_IMAGE = 1;
@@ -314,7 +315,8 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
-    void setActionBarTitle()
+
+    private void setActionBarTitle()
     {
         if(getActivity() instanceof AppCompatActivity)
         {
@@ -338,7 +340,9 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
-    void updateIDFieldVisibility()
+
+
+    private void updateIDFieldVisibility()
     {
 
         if(current_mode==MODE_ADD)
@@ -446,7 +450,9 @@ public class FragmentEditProfileGlobal extends Fragment {
     }
 
 
-    boolean validateData()
+
+
+    private boolean validateData()
     {
         boolean isValid = true;
 
@@ -558,7 +564,8 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
-    void addAccount()
+
+    private void addAccount()
     {
         if(isImageChanged)
         {
@@ -583,7 +590,7 @@ public class FragmentEditProfileGlobal extends Fragment {
     }
 
 
-    void update()
+    private void update()
     {
 
         if(isImageChanged)
@@ -619,7 +626,9 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
-    void bindDataToViews()
+
+
+    private void bindDataToViews()
     {
         if(user !=null) {
 
@@ -649,7 +658,10 @@ public class FragmentEditProfileGlobal extends Fragment {
     }
 
 
-    void getDataFromViews()
+
+
+
+    private void getDataFromViews()
     {
 
         user.setName(name.getText().toString());
@@ -698,7 +710,8 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
-    public void retrofitPUTRequest()
+
+    private void retrofitPUTRequest()
     {
 
         getDataFromViews();
@@ -815,7 +828,8 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
-    void retrofitPOSTRequest()
+
+    private void retrofitPOSTRequest()
     {
         getDataFromViews();
 
@@ -887,7 +901,8 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
-    void showToastMessage(String message)
+
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
@@ -914,7 +929,8 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
-    public static void clearCache(Context context)
+
+    private static void clearCache(Context context)
     {
         File file = new File(context.getCacheDir().getPath() + "/" + "SampleCropImage.jpeg");
         file.delete();
@@ -1026,8 +1042,10 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
+
+
     // upload image after being picked up
-    void startCropActivity(Uri sourceUri, Context context) {
+    private void startCropActivity(Uri sourceUri, Context context) {
 
 
 
@@ -1099,11 +1117,7 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
-
-
-
-
-    public void uploadPickedImage(final boolean isModeEdit)
+    private void uploadPickedImage(final boolean isModeEdit)
     {
 
         Log.d("applog", "onClickUploadImage");
@@ -1286,10 +1300,7 @@ public class FragmentEditProfileGlobal extends Fragment {
 
 
 
-
-
-
-    void deleteImage(String filename)
+    private void deleteImage(String filename)
     {
 
 

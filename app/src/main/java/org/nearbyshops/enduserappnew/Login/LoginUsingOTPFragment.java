@@ -98,7 +98,9 @@ public class LoginUsingOTPFragment extends Fragment {
 
 
 
-    void showToastMessage(String message)
+
+
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
@@ -155,7 +157,10 @@ public class LoginUsingOTPFragment extends Fragment {
 
 
 
-    boolean validateData()
+
+
+
+    private boolean validateData()
     {
         boolean isValid = true;
 //        boolean phoneValidity = false;
@@ -217,7 +222,8 @@ public class LoginUsingOTPFragment extends Fragment {
 
 
 
-    boolean validatePhone()
+
+    private boolean validatePhone()
     {
         boolean isValid = true;
         boolean phoneValidity = false;
@@ -297,7 +303,8 @@ public class LoginUsingOTPFragment extends Fragment {
 
 
 
-    void makeRequestLogin()
+
+    private void makeRequestLogin()
     {
 
         if(!validateData())
@@ -452,7 +459,8 @@ public class LoginUsingOTPFragment extends Fragment {
 
 
 
-    void sendOTP()
+
+    private void sendOTP()
     {
 
         if(!validatePhone())
