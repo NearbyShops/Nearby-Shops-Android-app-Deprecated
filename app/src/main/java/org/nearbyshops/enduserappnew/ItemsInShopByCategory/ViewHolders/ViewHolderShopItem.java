@@ -96,8 +96,8 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
-    int itemsInCart;
-    double cartTotal;
+    private int itemsInCart;
+    private double cartTotal;
 
 
 
