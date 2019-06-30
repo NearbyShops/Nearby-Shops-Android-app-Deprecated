@@ -42,8 +42,7 @@ android {
         versionName "1.1"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "Mapbox_Style_URL", localProperties['mapbox_style_url']
-
+//        buildConfigField "String", "Mapbox_Style_URL", localProperties['mapbox_style_url']
 
 
         manifestPlaceholders = [onesignal_app_id               : "b6fe253c-2a93-4452-8cd7-36555aa046ca",
