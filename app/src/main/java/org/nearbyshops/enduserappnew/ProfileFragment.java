@@ -204,10 +204,16 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-    void showToastMessage(String message)
+
+
+
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
+
+
+
 
 
 
@@ -245,7 +251,10 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-    void logout()
+
+
+
+    private void logout()
     {
         // log out
         PrefLogin.saveUserProfile(null,getActivity());
@@ -288,7 +297,10 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-    void getUserProfile()
+
+
+
+    private void getUserProfile()
     {
 
         if(getActivity()==null)
@@ -376,7 +388,10 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-    void bindUserProfile()
+
+
+
+    private void bindUserProfile()
     {
 
         User user = PrefLogin.getUser(getActivity());
