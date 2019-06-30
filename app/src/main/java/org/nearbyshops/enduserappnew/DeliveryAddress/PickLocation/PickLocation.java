@@ -22,6 +22,8 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+
+import org.nearbyshops.enduserappnew.AppConfig;
 import org.nearbyshops.enduserappnew.BuildConfig;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.R;
@@ -88,7 +90,8 @@ public class PickLocation extends AppCompatActivity {
 
 
 
-        mapView.setStyleUrl(BuildConfig.Mapbox_Style_URL);
+
+        mapView.setStyleUrl(AppConfig.MAPBOX_STYLE_URL);
 
 
 
