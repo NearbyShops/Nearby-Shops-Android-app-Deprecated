@@ -13,7 +13,7 @@ All the source code of the Nearby Shops Open-Source project is released under a 
 
 Nearby Shops is an Open-Source food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running for just $ 5 per month in hosting fees. 
 
-Nearby Shops implements Alibaba's Grocery Online-to-Offline Concept. Customers can place and order from the app and pick it up in the store. 
+Nearby Shops implements Alibaba's Grocery Online-to-Offline Concept. Customers can place and order from the app and pick it up in the store. Home Delivery is also available !
 
 The installation guide and app customization guide is provided at http://developer.nearbyshops.org
 
