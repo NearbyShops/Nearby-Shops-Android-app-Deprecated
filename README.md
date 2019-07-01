@@ -1,4 +1,5 @@
 Nearby Shops 
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Open%20Source%Food0%20Delivery%20and%20Hyperlocal%20app&url=https://www.nearbyshops.org&via=sumeetmoray&hashtags=opensource,androiddev,fooddelivery,android,ecommerce)
 =============
 
 > Self-Hosted Mobile Based Hyperlocal and Food Delivery Platform
@@ -9,6 +10,7 @@ All the source code of the Nearby Shops Open-Source project is released under a 
 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
+
 
 
 Nearby Shops is an Open-Source food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running for just $ 5 per month in hosting fees. 
