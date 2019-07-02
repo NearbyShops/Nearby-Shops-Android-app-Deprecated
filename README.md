@@ -40,8 +40,9 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Third Party Integrations](#third-party-integrations)
 - [Community forum](#community---need-help-)
 - [Source Code for Shop Owner and Admin app and REST API](#source-code-for-shop-owner-admin-app-and-server-side)
-- [Contributions Required](#contributions-requied-in-following-areas)
+- [Contributions Required](#contributions-welcome)
 - [Development Instructions](#development-instructions)
+- [Nonprofit and Open-Source](#nonprofit-and-open-source)
 - [Commercial Use](#commercial-use-permitted)
 - [License](#license)
 
@@ -159,10 +160,18 @@ Source code for Server Side JSON Based REST API is available in this repository 
 
 
 
-Contributions in following Areas are welcome
+Contributions Welcome
 -----------------------------------------------
 
 https://forum.nearbyshops.org/t/project-roadmap-and-contributions-required/34/4
+
+Develop a PWA and Web app for Nearby Shops
+i18n Internationalization support
+Payment Gateway Integrations
+
+Performance Testing and Optimization
+Suggestions and Improvements in App Architecture
+Code Review and Architecture
 
 
 Development Instructions
@@ -185,8 +194,15 @@ mapbox_style_url="your-mapbox-style-url"
 ```
 
 
+Nonprofit and Open Source
+--------------------------
+Nearby Shops is not just open-source its Nonprofit also. Which means that we are not under any obligation to commertialize the project. This is good because commertialization of an open-source project often leads to restrictions in licensing.
+
+This is an assurance from our side that this project will always be free and open-source. 
+
+
 Commercial Use Permitted 
-==============================
+-----------------------------
 All the source code of Nearby Shops Open-Source project is released under a liberal MIT license which allows you to use this software for commercial use. 
 
 
