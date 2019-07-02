@@ -165,12 +165,18 @@ Contributions Welcome
 
 https://forum.nearbyshops.org/t/project-roadmap-and-contributions-required/34/4
 
+Improved Search with Search Suggestions for android app
+
 Develop a PWA and Web app for Nearby Shops
+
 i18n Internationalization support
+
 Payment Gateway Integrations
 
 Performance Testing and Optimization
+
 Suggestions and Improvements in App Architecture
+
 Code Review and Architecture
 
 
