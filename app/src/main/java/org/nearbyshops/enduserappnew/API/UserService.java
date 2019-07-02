@@ -118,8 +118,6 @@ public interface UserService {
 
 
 
-
-
     @GET ("/api/v1/User/GetProfileWithLogin")
     Call<User> getProfile(@Header("Authorization") String headers);
 
@@ -177,18 +175,10 @@ public interface UserService {
 
 
 
-
-
-
     @PUT ("/api/v1/User/UpdateProfileEndUser")
     Call<ResponseBody> updateProfileEndUser(
             @Header("Authorization") String headers,
             @Body User user
     );
-
-
-
-
-
 
 }

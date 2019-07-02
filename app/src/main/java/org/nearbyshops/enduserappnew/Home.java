@@ -63,17 +63,12 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
-
     BottomNavigationView bottomBar;
 
     LocationManager locationManager;
     LocationListener locationListener;
 
-    // fragments
-    ItemCategoriesFragmentSimple itemsFragment;
 
-
-    boolean isFirstLaunch = true;
 
 
     public Home() {
@@ -744,6 +739,11 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
             super.onBackPressed();
         }
     }
+
+
+
+
+
 
 
     @Override
