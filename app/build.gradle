@@ -16,9 +16,9 @@ apply plugin: 'kotlin-android-extensions'
 
 
 
-def localPropertiesFile = rootProject.file("local.properties")
-def localProperties = new Properties()
-localProperties.load(new FileInputStream(localPropertiesFile))
+//def localPropertiesFile = rootProject.file("local.properties")
+//def localProperties = new Properties()
+//localProperties.load(new FileInputStream(localPropertiesFile))
 
 
 
