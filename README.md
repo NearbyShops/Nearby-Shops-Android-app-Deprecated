@@ -5,10 +5,6 @@ Nearby Shops
 > Self-Hosted Mobile Based Hyperlocal and Food Delivery Platform
 
 
-### Commercial Use Permitted
-All the source code of the Nearby Shops Open-Source project is released under a liberal MIT license which allows you to use this software for commercial use.
-
-
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
 
 
@@ -42,8 +38,6 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Source Code for Shop Owner and Admin app and REST API](#source-code-for-shop-owner-admin-app-and-server-side)
 - [Contributions Required](#contributions-welcome)
 - [Development Instructions](#development-instructions)
-- [Nonprofit and Open-Source](#nonprofit-and-open-source)
-- [Commercial Use](#commercial-use-permitted)
 - [License](#license)
 
 
@@ -198,18 +192,6 @@ It is okay if you don't have an actual Mapbox style url. In that case, just put 
 ```js
 mapbox_style_url="your-mapbox-style-url"
 ```
-
-
-Nonprofit and Open Source
---------------------------
-Nearby Shops is not just open-source its Nonprofit also. Which means that we are not under any obligation to commertialize the project. This is good because commertialization of an open-source project often leads to restrictions in licensing.
-
-This is an assurance from our side that this project will always be free and open-source. 
-
-
-Commercial Use Permitted 
------------------------------
-All the source code of Nearby Shops Open-Source project is released under a liberal MIT license which allows you to use this software for commercial use. 
 
 
 License
