@@ -116,6 +116,8 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
+
+
     public ViewHolderShopItem(@NonNull View itemView, Context context, Fragment fragment,RecyclerView.Adapter listAdapter,
                               Map<Integer, CartItem> cartItemMap, Map<Integer, CartStats> cartStatsMap) {
 
@@ -290,10 +292,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
             }
 
         });
-
-
-
-
 
 //        getCartStats(false,0,true);
     }
@@ -857,6 +855,8 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
+
+
     @OnClick(R.id.increaseQuantity)
     void increaseQuantityClick(View view)
     {
@@ -959,6 +959,8 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
     {
         Toast.makeText(context,message, Toast.LENGTH_SHORT).show();
     }
+
+
 
 
 

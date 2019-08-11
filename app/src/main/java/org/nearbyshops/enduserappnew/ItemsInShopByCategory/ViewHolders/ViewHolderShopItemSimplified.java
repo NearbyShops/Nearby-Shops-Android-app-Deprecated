@@ -856,9 +856,15 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
     private void addToCartTimer()
     {
+        progressBar.setVisibility(View.VISIBLE);
+
         countDownTimer.cancel();
         countDownTimer.start();
     }
+
+
+
+
 
 
 
@@ -875,6 +881,8 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
             addToCartClick();
         }
     };
+
+
 
 
 

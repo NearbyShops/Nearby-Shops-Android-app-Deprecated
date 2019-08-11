@@ -38,6 +38,8 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
 
 
 
+
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -46,6 +48,9 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
 
         return new ViewHolder(view);
     }
+
+
+
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {

@@ -538,6 +538,19 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
                     }
 
 
+
+
+                    if(offset+limit >= item_count)
+                    {
+                        adapter.setLoadMore(false);
+                    }
+                    else
+                    {
+                        adapter.setLoadMore(true);
+                    }
+
+
+
                     swipeContainer.setRefreshing(false);
                 }
 

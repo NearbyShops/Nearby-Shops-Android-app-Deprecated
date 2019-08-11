@@ -437,10 +437,6 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
             showLoginFragment();
 
-
-
-
-            return;
         }
         else {
 

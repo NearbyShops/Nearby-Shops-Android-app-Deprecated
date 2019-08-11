@@ -39,7 +39,9 @@ import static android.app.Activity.RESULT_OK;
 
 public class EditAddressFragment extends Fragment {
 
-    DeliveryAddress deliveryAddress;
+
+
+    private DeliveryAddress deliveryAddress;
 
     public static final String DELIVERY_ADDRESS_INTENT_KEY = "edit_delivery_address_intent_key";
 
@@ -357,7 +359,10 @@ public class EditAddressFragment extends Fragment {
 
 
 
-    void updateAddress()
+
+
+
+    private void updateAddress()
     {
         getDataFromViews();
 
@@ -400,7 +405,7 @@ public class EditAddressFragment extends Fragment {
     }
 
 
-    void showToastMessage(String message)
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
     }
@@ -411,6 +416,9 @@ public class EditAddressFragment extends Fragment {
         super.onDestroyView();
 //        ButterKnife.unbind(this);
     }
+
+
+
 
 
     private int REQUEST_CODE_PICK_LAT_LON = 23;
