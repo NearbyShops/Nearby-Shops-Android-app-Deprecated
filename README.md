@@ -5,7 +5,15 @@ Nearby Shops
 > Self-Hosted Mobile Based Hyperlocal and Food Delivery Platform
 
 
+### Commercial Use
+
+We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. 
+
+Commercial use of this software requires a commercial license. Please visit https://nearbyshops.org/pricing.html to know more about our pricing. 
+
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
+
+
 
 
 
@@ -26,21 +34,6 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/items_reduced.gif" width="208">   <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/order_detail_reduced.gif" width="208">   <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/shop_home_reduced.gif" width="208"> 
 
 
-Contributor Compensation Program
-------------------------------------
-
-We believe developer's must be compensated for the work they do. 
-
-How many times you have made a contribution to a project you love but havent received any compensation for that. Unfortunately unpaid working hours is the sad reality for many open-source developers ...
-
-We want to change this ...Therefore we have launched contributor compensation scheme !
-When you make a contribution to this project you will be paid at the rate of 10-15 $ per hour. 
-
-Please note that we reserve the right to accept your contribution or not. You will be paid only if your contribution is accepted. 
-
-Ability to pay for contributions depend on availibilty of funds ... we recommend you to contact us and talk with us before you plan to make any contribution to this project. 
-
-
 
 
 
@@ -54,6 +47,7 @@ Ability to pay for contributions depend on availibilty of funds ... we recommend
 - [Community forum](#community---need-help-)
 - [Source Code for Shop Owner and Admin app and REST API](#source-code-for-shop-owner-admin-app-and-server-side)
 - [Contributions Required](#contributions-welcome)
+- [Contributor Compensation Program](#contributor-compensation-program)
 - [Development Instructions](#development-instructions)
 - [License](#license)
 
@@ -189,6 +183,23 @@ Performance Testing and Optimization
 Suggestions and Improvements in App Architecture
 
 Code Review and Architecture
+
+
+
+Contributor Compensation Program
+------------------------------------
+
+We believe developer's must be compensated for the work they do. 
+
+How many times you have made a contribution to a project you love but havent received any compensation for that. Unfortunately unpaid working hours is the sad reality for many open-source developers ...
+
+We want to change this ...Therefore we have launched contributor compensation scheme !
+When you make a contribution to this project you will be paid at the rate of 10-15 $ per hour we can make it upto 50 $ per hour for contributors from countries where cost of living is high. 
+
+Please note that we reserve the right to accept or reject your contribution. You will be paid only if your contribution is accepted. 
+
+Ability to pay for contributions depend on availibilty of funds ... we recommend you to contact us and talk with us before you plan to make any contribution to this project. 
+
 
 
 Development Instructions
