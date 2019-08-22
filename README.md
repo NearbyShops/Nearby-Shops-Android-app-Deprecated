@@ -222,7 +222,7 @@ Copyright 2017-19 Bluetree Software LLP, Inc. | http://nearbyshops.org
 
 You may use this software for academic and non-commercial use without paying any license fee. But for commercial use you will be required to pay a license fee. Please see our pricing given at https://nearbyshops.org/pricing.html . 
 
-Using the source-code of this project in direct or indirect form even for customized software built using Nearby Shops core software would be considered commercial use. 
+Using the source-code of this project in direct or indirect form using Nearby Shops core software would be considered commercial use. 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
