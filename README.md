@@ -26,6 +26,23 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/items_reduced.gif" width="208">   <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/order_detail_reduced.gif" width="208">   <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/shop_home_reduced.gif" width="208"> 
 
 
+Contributor Compensation Program
+------------------------------------
+
+We believe developer's must be compensated for the work they do. 
+
+How many times you have made a contribution to a project you love but havent received any compensation for that. Unfortunately unpaid working hours is the sad reality for many open-source developers ...
+
+We want to change this ...Therefore we have launched contributor compensation scheme !
+When you make a contribution to this project you will be paid at the rate of 10-15 $ per hour. 
+
+Please note that we reserve the right to accept your contribution or not. You will be paid only if your contribution is accepted. 
+
+Ability to pay for contributions depend on availibilty of funds ... we recommend you to contact us and talk with us before you plan to make any contribution to this project. 
+
+
+
+
 
 ## 🚩 Table of Contents
 - [Concept](#concept)
