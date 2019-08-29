@@ -5,7 +5,15 @@ Nearby Shops
 > Self-Hosted Mobile Based Hyperlocal and Food Delivery Platform
 
 
+### Commercial Use
+
+We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. 
+
+Commercial use of this software requires a commercial license. Please visit https://nearbyshops.org/pricing.html to know more about our pricing. 
+
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
+
+
 
 
 
@@ -19,11 +27,13 @@ The installation guide and app customization guide is provided at http://develop
 Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
-<a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
+<a href="https://nearbyshops.org"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
 
 
 
 <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/items_reduced.gif" width="208">   <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/order_detail_reduced.gif" width="208">   <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/shop_home_reduced.gif" width="208"> 
+
+
 
 
 
@@ -37,6 +47,7 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Community forum](#community---need-help-)
 - [Source Code for Shop Owner and Admin app and REST API](#source-code-for-shop-owner-admin-app-and-server-side)
 - [Contributions Required](#contributions-welcome)
+- [Contributor Compensation Program](#contributor-compensation-program)
 - [Development Instructions](#development-instructions)
 - [License](#license)
 
@@ -174,6 +185,23 @@ Suggestions and Improvements in App Architecture
 Code Review and Architecture
 
 
+
+Contributor Compensation Program
+------------------------------------
+
+We believe developer's must be compensated for the work they do. 
+
+How many times you have made a contribution to a project you love but havent received any compensation for that. Unfortunately unpaid working hours is the sad reality for many open-source developers ...
+
+We want to change this ...Therefore we have launched contributor compensation scheme !
+When you make a contribution to this project you will be paid at the rate of 10-15 $ per hour we can make it upto 50 $ per hour for contributors from countries where cost of living is high. 
+
+Please note that we reserve the right to accept or reject your contribution. You will be paid only if your contribution is accepted. 
+
+Ability to pay for contributions depend on availibilty of funds ... we recommend you to [contact us and talk with us](https://forum.nearbyshops.org/t/contributor-compensation-program/93) before you plan to make any contribution to this project. 
+
+
+
 Development Instructions
 -------------------------
 
@@ -183,24 +211,18 @@ If you're a developer looking to work on the source code follow these instructio
 git clone https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app.git
 ```
 
-You should now open the project with the latest version of Android Studio. The project will not compile unless you add the following property in the local.properties file. 
-
-This project uses mapbox android sdk which requires mapbox style url. To add the style url in the project open this project in the android studio and add the Mapbox Style URL in the local.properties file. 
-
-It is okay if you don't have an actual Mapbox style url. In that case, just put some dummy text in place of the url. 
-
-```js
-mapbox_style_url="your-mapbox-style-url"
-```
+You should now open the project with the latest version of Android Studio.
 
 
 License
 =======
 
-The MIT License (MIT)
+Nearby Shops Open-Source License
 Copyright 2017-19 Bluetree Software LLP, Inc. | http://nearbyshops.org
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+You may use this software for academic and non-commercial use without paying any license fee. But for commercial use you will be required to pay a license fee. Please see our pricing given at https://nearbyshops.org/pricing.html . 
+
+Using the source-code of this project in direct or indirect form using Nearby Shops core software would be considered commercial use. 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
