@@ -1,6 +1,6 @@
 package org.nearbyshops.enduserappnew.Markets.Model;
 
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 
 import java.util.List;
 

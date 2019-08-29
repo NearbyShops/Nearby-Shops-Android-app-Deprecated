@@ -1,7 +1,7 @@
 package org.nearbyshops.enduserappnew.API;
 
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopEndPoint;
+import org.nearbyshops.enduserappnew.ModelEndPoints.ShopEndPoint;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

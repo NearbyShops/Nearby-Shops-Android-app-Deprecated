@@ -3,7 +3,7 @@ package org.nearbyshops.enduserappnew.API;
 
 
 
-import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopItemEndPoint;
+import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

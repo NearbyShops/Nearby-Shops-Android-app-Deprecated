@@ -22,8 +22,8 @@ import butterknife.OnClick;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
@@ -140,7 +140,7 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-    void setupSwipeContainer()
+    private void setupSwipeContainer()
     {
 
         if(swipeContainer!=null) {
@@ -154,7 +154,11 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
     }
 
-    void setupRecyclerView()
+
+
+
+
+    private void setupRecyclerView()
     {
 
 
@@ -191,10 +195,15 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
     }
 
 
-    void showToastMessage(String message)
+
+
+
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
     }
+
+
 
     @Override
     public void onRefresh() {
@@ -204,7 +213,9 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-    void makeNetworkCall()
+
+
+    private void makeNetworkCall()
     {
 
 
@@ -267,6 +278,8 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
         */
 
     }
+
+
 
 
     @Override

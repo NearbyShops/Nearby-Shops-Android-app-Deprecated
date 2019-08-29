@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import org.nearbyshops.enduserappnew.API.ShopReviewService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Model.ModelReviewShop.ShopReviewStatRow;
+import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReviewStatRow;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
-import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDelivery;
-import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusPickFromShop;
+import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
+import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusHomeDelivery;
+import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusPickFromShop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 

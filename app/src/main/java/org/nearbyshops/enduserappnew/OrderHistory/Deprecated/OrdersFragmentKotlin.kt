@@ -27,8 +27,8 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySearch
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort
 import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment
 import org.nearbyshops.enduserappnew.Login.Login
-import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Endpoints.OrderEndPoint
-import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order
+import org.nearbyshops.enduserappnew.ModelCartOrder.Endpoints.OrderEndPoint
+import org.nearbyshops.enduserappnew.ModelCartOrder.Order
 import org.nearbyshops.enduserappnew.OrderDetail.OrderDetail
 import org.nearbyshops.enduserappnew.OrderDetail.PrefOrderDetail
 import org.nearbyshops.enduserappnew.OrderHistory.OrderHistory

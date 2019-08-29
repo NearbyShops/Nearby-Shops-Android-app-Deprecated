@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 import org.nearbyshops.enduserappnew.Markets.AdapterSavedMarkets;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.R;
 
 import java.util.List;

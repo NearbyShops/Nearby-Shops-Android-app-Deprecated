@@ -64,10 +64,10 @@ public class SlidingLayerSortShops extends Fragment {
 
 
 
-    @BindView(R.id.filter_home_delivery) TextView filterHomeDelivery;
-    @BindView(R.id.filter_pick_from_shop) TextView filterPickFromShop;
-    @BindView(R.id.clear_filter_delivery_type) TextView clearFilterDeliveryType;
-    @BindView(R.id.filter_option_description) TextView filterOptionDescription;
+//    @BindView(R.id.filter_home_delivery) TextView filterHomeDelivery;
+//    @BindView(R.id.filter_pick_from_shop) TextView filterPickFromShop;
+//    @BindView(R.id.clear_filter_delivery_type) TextView clearFilterDeliveryType;
+//    @BindView(R.id.filter_option_description) TextView filterOptionDescription;
 
 
 
@@ -79,7 +79,7 @@ public class SlidingLayerSortShops extends Fragment {
         ButterKnife.bind(this,view);
 
         loadDefaultSort();
-        bindDeliveryType();
+//        bindDeliveryType();
 
         return view;
     }
@@ -227,7 +227,9 @@ public class SlidingLayerSortShops extends Fragment {
 
 
 
-    void clearSelectionSort()
+
+
+    private void clearSelectionSort()
     {
         sort_by_distance.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
         sort_by_rating.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
@@ -240,7 +242,10 @@ public class SlidingLayerSortShops extends Fragment {
 
 
 
-    void clearSelectionAscending()
+
+
+
+    private void clearSelectionAscending()
     {
         sort_ascending.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
         sort_descending.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
@@ -252,87 +257,87 @@ public class SlidingLayerSortShops extends Fragment {
 
 
 
+//
+//
+//    @OnClick(R.id.clear_filter_delivery_type)
+//    void clearDeliveryType()
+//    {
+//        PrefSortShopsByCategory.saveFilterByDeliveryType(getActivity(),true);
+//        bindDeliveryType();
+//
+//        if(getParentFragment() instanceof NotifySort)
+//        {
+//            ((NotifySort)getParentFragment()).notifySortChanged();
+//        }
+//    }
+//
+//
+//
+//
+//
+//    @OnClick(R.id.filter_pick_from_shop)
+//    void filterByPickFromShop()
+//    {
+//        PrefSortShopsByCategory.saveFilterByDeliveryType(getActivity(),false);
+//        bindDeliveryType();
+//
+//        if(getParentFragment() instanceof NotifySort)
+//        {
+//            ((NotifySort)getParentFragment()).notifySortChanged();
+//        }
+//    }
+//
+//
+//    @OnClick(R.id.filter_home_delivery)
+//    void filterByHomeDelivery()
+//    {
+//        PrefSortShopsByCategory.saveFilterByDeliveryType(getActivity(),true);
+//        bindDeliveryType();
+//
+//        if(getParentFragment() instanceof NotifySort)
+//        {
+//            ((NotifySort)getParentFragment()).notifySortChanged();
+//        }
+//    }
 
 
-    @OnClick(R.id.clear_filter_delivery_type)
-    void clearDeliveryType()
-    {
-        PrefSortShopsByCategory.saveFilterByDeliveryType(getActivity(),true);
-        bindDeliveryType();
-
-        if(getParentFragment() instanceof NotifySort)
-        {
-            ((NotifySort)getParentFragment()).notifySortChanged();
-        }
-    }
 
 
-
-
-
-    @OnClick(R.id.filter_pick_from_shop)
-    void filterByPickFromShop()
-    {
-        PrefSortShopsByCategory.saveFilterByDeliveryType(getActivity(),false);
-        bindDeliveryType();
-
-        if(getParentFragment() instanceof NotifySort)
-        {
-            ((NotifySort)getParentFragment()).notifySortChanged();
-        }
-    }
-
-
-    @OnClick(R.id.filter_home_delivery)
-    void filterByHomeDelivery()
-    {
-        PrefSortShopsByCategory.saveFilterByDeliveryType(getActivity(),true);
-        bindDeliveryType();
-
-        if(getParentFragment() instanceof NotifySort)
-        {
-            ((NotifySort)getParentFragment()).notifySortChanged();
-        }
-    }
-
-
-
-
-    void bindDeliveryType()
-    {
-        boolean isHomeDelivery = PrefSortShopsByCategory.getFilterByDeliveryType(getActivity());
-
-
-        if(isHomeDelivery)
-        {
-            clearFilterDeliveryType.setVisibility(View.GONE);
-
-            filterHomeDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.buttonColor));
-            filterHomeDelivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-
-            filterPickFromShop.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
-            filterPickFromShop.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
-
-            filterOptionDescription.setText("Items will be delivered to the user's address and services will be provided at user premises !");
-
-        }
-        else
-        {
-
-            clearFilterDeliveryType.setVisibility(View.VISIBLE);
-
-            filterHomeDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
-            filterHomeDelivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
-
-            filterPickFromShop.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.buttonColor));
-            filterPickFromShop.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-
-            filterOptionDescription.setText("Items are required to be picked up from the shop and Services will be provided at the shop premises !");
-
-        }
-
-
-    }
+//    void bindDeliveryType()
+//    {
+//        boolean isHomeDelivery = PrefSortShopsByCategory.getFilterByDeliveryType(getActivity());
+//
+//
+//        if(isHomeDelivery)
+//        {
+//            clearFilterDeliveryType.setVisibility(View.GONE);
+//
+//            filterHomeDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.buttonColor));
+//            filterHomeDelivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+//
+//            filterPickFromShop.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+//            filterPickFromShop.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+//
+//            filterOptionDescription.setText("Items will be delivered to the user's address and services will be provided at user premises !");
+//
+//        }
+//        else
+//        {
+//
+//            clearFilterDeliveryType.setVisibility(View.VISIBLE);
+//
+//            filterHomeDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+//            filterHomeDelivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+//
+//            filterPickFromShop.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.buttonColor));
+//            filterPickFromShop.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+//
+//            filterOptionDescription.setText("Items are required to be picked up from the shop and Services will be provided at the shop premises !");
+//
+//        }
+//
+//
+//    }
 
 
 

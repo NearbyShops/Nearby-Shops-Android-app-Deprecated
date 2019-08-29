@@ -4,7 +4,7 @@ package org.nearbyshops.enduserappnew.API;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import org.nearbyshops.enduserappnew.Model.Image;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import retrofit2.Call;
 import retrofit2.http.*;
 

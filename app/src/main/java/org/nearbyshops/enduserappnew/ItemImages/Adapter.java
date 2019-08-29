@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
+import org.nearbyshops.enduserappnew.ModelImages.ItemImage;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;

@@ -1,6 +1,6 @@
 package org.nearbyshops.enduserappnew.API;
 
-import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
+import org.nearbyshops.enduserappnew.ModelStats.CartStats;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

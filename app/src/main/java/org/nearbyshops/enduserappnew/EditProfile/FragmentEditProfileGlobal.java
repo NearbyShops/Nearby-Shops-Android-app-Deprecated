@@ -41,7 +41,7 @@ import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.ChangePhone;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.PrefChangePhone;
 import org.nearbyshops.enduserappnew.EditProfile.Interfaces.NotifyChangePassword;
 import org.nearbyshops.enduserappnew.Model.Image;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;

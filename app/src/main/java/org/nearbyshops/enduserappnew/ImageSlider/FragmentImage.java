@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
+import org.nearbyshops.enduserappnew.ModelImages.ItemImage;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;

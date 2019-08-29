@@ -3,7 +3,7 @@ package org.nearbyshops.enduserappnew.Preferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 import com.google.gson.Gson;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.R;
 

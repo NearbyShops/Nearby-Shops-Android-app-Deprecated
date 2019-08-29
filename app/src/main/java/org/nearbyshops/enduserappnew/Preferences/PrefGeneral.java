@@ -15,18 +15,14 @@ public class PrefGeneral {
 
     public static final String SERVICE_URL_LOCAL_HOTSPOT = "http://192.168.43.73:5121";
     public static final String SERVICE_URL_NEARBYSHOPS = "http://api.nearbyshops.org";
+    public static final String SERVICE_URL_NEARBYSHOPS_DEMO = "http://api-demo.nearbyshops.org";
     public static final String SERVICE_URL_LOCAL = "http://192.168.0.5:5120";
 
 
     // for multi-market mode set default service url to null and multi market mode to true
     // for single-market mode set multi-market mode false and set default service url to your api server url
-    public static final String DEFAULT_SERVICE_URL = null;
-    public static final boolean MULTI_MARKET_MODE_ENABLED = true;
-
-
-
-
-
+    public static final String DEFAULT_SERVICE_URL = SERVICE_URL_NEARBYSHOPS_DEMO;
+    public static final boolean MULTI_MARKET_MODE_ENABLED = false;
 
 
 

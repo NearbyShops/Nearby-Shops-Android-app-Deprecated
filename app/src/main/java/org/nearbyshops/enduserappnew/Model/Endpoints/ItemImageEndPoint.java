@@ -3,7 +3,7 @@ package org.nearbyshops.enduserappnew.Model.Endpoints;
 
 
 
-import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
+import org.nearbyshops.enduserappnew.ModelImages.ItemImage;
 
 import java.util.List;
 

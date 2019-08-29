@@ -36,8 +36,8 @@ import org.nearbyshops.enduserappnew.ItemsByCategory.SlidingLayerSort.SlidingLay
 import org.nearbyshops.enduserappnew.ItemsByCategory.SlidingLayerSort.PrefSortItemsByCategory;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
-import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemCategoryEndPoint;
-import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemEndPoint;
+import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
+import org.nearbyshops.enduserappnew.ModelEndPoints.ItemEndPoint;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;

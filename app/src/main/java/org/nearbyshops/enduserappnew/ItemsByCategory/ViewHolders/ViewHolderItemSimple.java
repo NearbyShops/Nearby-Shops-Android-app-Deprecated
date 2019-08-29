@@ -19,7 +19,7 @@ import butterknife.OnClick;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.Model.ModelStats.ItemStats;
+import org.nearbyshops.enduserappnew.ModelStats.ItemStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;

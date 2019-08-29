@@ -688,7 +688,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, new ItemsByCategoryFragment(), TAG_ITEMS_FRAGMENT)
+                    .replace(R.id.fragment_container, FragmentShopsList.newInstance(false), TAG_SHOPS_FRAGMENT)
                     .commit();
 
         }
