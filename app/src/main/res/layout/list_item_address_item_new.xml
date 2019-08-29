@@ -4,6 +4,7 @@
     android:id="@+id/list_item_delivery_address"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
     android:background="#22000000"
     android:padding="10dp">
 
