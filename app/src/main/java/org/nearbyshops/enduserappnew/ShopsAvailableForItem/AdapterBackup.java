@@ -8,14 +8,17 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 import com.squareup.picasso.Picasso;
-import okhttp3.ResponseBody;
+
 import org.nearbyshops.enduserappnew.API.CartItemService;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -27,23 +30,28 @@ import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.InputFilterMinMax;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
  * Created by sumeet on 27/5/16.
  */
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
+public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder>{
 
 
     @Inject
@@ -68,7 +76,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
 
 
-    public Adapter(List<ShopItem> dataset, Context context, Item item, NotifyFilledCart notifyFilledCart) {
+    public AdapterBackup(List<ShopItem> dataset, Context context, Item item, NotifyFilledCart notifyFilledCart) {
         this.dataset = dataset;
         this.context = context;
         this.item = item;
@@ -213,7 +221,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
             if(cartItem!=null)
             {
-                holder.itemQuantity.setText(UtilityFunctions.refinedString(cartItem.getItemQuantity()));
+                holder.itemQuantity.setText(String.valueOf(cartItem.getItemQuantity()));
                 holder.shopItemListItem.setBackgroundResource(R.color.backgroundTinted);
 
                 double total = shopItem.getItemPrice() * cartItem.getItemQuantity();
@@ -345,8 +353,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
 
 
-
-
     @Override
     public int getItemCount() {
         return dataset.size();
@@ -430,7 +436,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-//                    setFilter();
+                    setFilter();
 
                 }
 
@@ -482,16 +488,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
                         try{
 
-                            if(Double.parseDouble(itemQuantity.getText().toString())>availableItems)
+                            if(Integer.parseInt(itemQuantity.getText().toString())>availableItems)
                             {
 
                                 return;
                             }
 
-                            total = shopItem.getItemPrice() * Double.parseDouble(itemQuantity.getText().toString());
+                            total = shopItem.getItemPrice() * Integer.parseInt(itemQuantity.getText().toString());
 
 
-                            if(Double.parseDouble(itemQuantity.getText().toString())==0)
+                            if(Integer.parseInt(itemQuantity.getText().toString())==0)
                             {
                                 if(cartItem==null)
                                 {
@@ -599,13 +605,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
             if (!itemQuantity.getText().toString().equals("")) {
 
-                cartItem.setItemQuantity(Double.parseDouble(itemQuantity.getText().toString()));
+                cartItem.setItemQuantity(Integer.parseInt(itemQuantity.getText().toString()));
             }
 
             if (!cartItemMap.containsKey(dataset.get(getLayoutPosition()).getShopID()))
             {
 
-                if (Double.parseDouble(itemQuantity.getText().toString()) == 0) {
+                if (Integer.parseInt(itemQuantity.getText().toString()) == 0) {
                     showToastMessage("Please select quantity greater than Zero !");
 
                 } else {
@@ -665,7 +671,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             } else {
 
 
-                double quantity = Double.parseDouble(itemQuantity.getText().toString());
+                int quantity = Integer.parseInt(itemQuantity.getText().toString());
 
                 if(quantity==0)
                 {
@@ -834,7 +840,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
                 try{
 
-                    if(Double.parseDouble(itemQuantity.getText().toString())<=0) {
+                    if(Integer.parseInt(itemQuantity.getText().toString())<=0) {
 
                         if(cartStats!=null) {
 
@@ -850,29 +856,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
                         }
 
-
-
-
-                        itemQuantity.setText("0");
                         return;
                     }
 
+                    itemQuantity.setText(String.valueOf(Integer.parseInt(itemQuantity.getText().toString()) - 1));
 
-
-                    if((Double.parseDouble(itemQuantity.getText().toString()) - 1) < 0)
-                    {
-                        itemQuantity.setText("0");
-                    }
-                    else
-                    {
-                        itemQuantity.setText(UtilityFunctions.refinedString(Double.parseDouble(itemQuantity.getText().toString()) - 1));
-                    }
-
-
-
-
-
-                    total = shopItem.getItemPrice() * Double.parseDouble(itemQuantity.getText().toString());
+                    total = shopItem.getItemPrice() * Integer.parseInt(itemQuantity.getText().toString());
 
                 }
                 catch (Exception ex)
@@ -915,7 +904,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
                     if (cartStats != null) {
 
                         if (cartItem == null) {
-                            if (Double.parseDouble(itemQuantity.getText().toString()) > 0) {
+                            if (Integer.parseInt(itemQuantity.getText().toString()) > 0) {
                                 itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
                             }
 
@@ -933,15 +922,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
                 try {
 
-                    if (Double.parseDouble(itemQuantity.getText().toString()) >= availableItems) {
+                    if (Integer.parseInt(itemQuantity.getText().toString()) >= availableItems) {
                         return;
                     }
 
 
-                        itemQuantity.setText(UtilityFunctions.refinedString(Double.parseDouble(itemQuantity.getText().toString()) + 1));
+                        itemQuantity.setText(String.valueOf(Integer.parseInt(itemQuantity.getText().toString()) + 1));
 
 
-                    total = shopItem.getItemPrice() * Double.parseDouble(itemQuantity.getText().toString());
+                    total = shopItem.getItemPrice() * Integer.parseInt(itemQuantity.getText().toString());
 
                 }catch (Exception ex)
                 {

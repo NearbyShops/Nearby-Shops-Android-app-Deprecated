@@ -36,13 +36,47 @@ public class OrderItem {
 
 
     // instance variables
-    private Integer itemID;
-    private Integer orderID;
-    private Integer itemQuantity;
-    private Integer itemPriceAtOrder;
+    private int itemID;
+    private int orderID;
+    private double itemQuantity;
+    private double itemPriceAtOrder;
 
     private Item item;
 
+
+
+
+    public int getItemID() {
+        return itemID;
+    }
+
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
+    }
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
+    public double getItemQuantity() {
+        return itemQuantity;
+    }
+
+    public void setItemQuantity(double itemQuantity) {
+        this.itemQuantity = itemQuantity;
+    }
+
+    public double getItemPriceAtOrder() {
+        return itemPriceAtOrder;
+    }
+
+    public void setItemPriceAtOrder(double itemPriceAtOrder) {
+        this.itemPriceAtOrder = itemPriceAtOrder;
+    }
 
     public Item getItem() {
         return item;
@@ -50,37 +84,5 @@ public class OrderItem {
 
     public void setItem(Item item) {
         this.item = item;
-    }
-
-    public Integer getItemID() {
-        return itemID;
-    }
-
-    public void setItemID(Integer itemID) {
-        this.itemID = itemID;
-    }
-
-    public Integer getOrderID() {
-        return orderID;
-    }
-
-    public void setOrderID(Integer orderID) {
-        this.orderID = orderID;
-    }
-
-    public Integer getItemQuantity() {
-        return itemQuantity;
-    }
-
-    public void setItemQuantity(Integer itemQuantity) {
-        this.itemQuantity = itemQuantity;
-    }
-
-    public Integer getItemPriceAtOrder() {
-        return itemPriceAtOrder;
-    }
-
-    public void setItemPriceAtOrder(Integer itemPriceAtOrder) {
-        this.itemPriceAtOrder = itemPriceAtOrder;
     }
 }

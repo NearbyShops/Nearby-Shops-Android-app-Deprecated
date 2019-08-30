@@ -22,6 +22,7 @@ import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.InputFilterMinMax;
 import retrofit2.Call;
@@ -113,7 +114,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
         {
             holder.itemName.setText(item.getItemName());
 
-            holder.itemQuantity.setText(String.valueOf(cartItem.getItemQuantity()));
+            holder.itemQuantity.setText(UtilityFunctions.refinedString(cartItem.getItemQuantity()));
             holder.itemPrice.setText("Price : " + String.format( "%.2f", cartItem.getRt_itemPrice()) + " per " + item.getQuantityUnit());
 
             //holder.itemTotal.setText(" x " + cartItem.getRt_availableItemQuantity() + " (Unit Price) = "
@@ -380,14 +381,14 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
                 try{
 
-                    if(Integer.parseInt(itemQuantity.getText().toString())<=0) {
+                    if(Double.parseDouble(itemQuantity.getText().toString())<=0) {
 
                         return;
                     }
 
-                    itemQuantity.setText(String.valueOf(Integer.parseInt(itemQuantity.getText().toString()) - 1));
+                    itemQuantity.setText(UtilityFunctions.refinedString(Double.parseDouble(itemQuantity.getText().toString()) - 1));
 
-                    total = cartItem.getRt_itemPrice() * Integer.parseInt(itemQuantity.getText().toString());
+                    total = cartItem.getRt_itemPrice() * Double.parseDouble(itemQuantity.getText().toString());
 
                 }
                 catch (Exception ex)
@@ -407,6 +408,11 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
 
 
+
+
+
+
+
         public void increaseQuantityClick()
         {
             setFilter();
@@ -422,13 +428,13 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
                 try {
 
 
-                    if (Integer.parseInt(itemQuantity.getText().toString()) >= availableItems) {
+                    if (Double.parseDouble(itemQuantity.getText().toString()) >= availableItems) {
                         return;
                     }
 
-                    itemQuantity.setText(String.valueOf(Integer.parseInt(itemQuantity.getText().toString()) + 1));
+                    itemQuantity.setText(UtilityFunctions.refinedString(Double.parseDouble(itemQuantity.getText().toString()) + 1));
 
-                    total = cartItem.getRt_itemPrice() * Integer.parseInt(itemQuantity.getText().toString());
+                    total = cartItem.getRt_itemPrice() * Double.parseDouble(itemQuantity.getText().toString());
 
 
                 }catch (Exception ex)
@@ -445,6 +451,9 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
             }
 
         }
+
+
+
 
 
         @Override
@@ -469,13 +478,14 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
                 try{
 
 
-                    total = cartItem.getRt_itemPrice() * Integer.parseInt(itemQuantity.getText().toString());
+                    total = cartItem.getRt_itemPrice() * Double.parseDouble(itemQuantity.getText().toString());
 
-                    cartItem.setItemQuantity(Integer.parseInt(itemQuantity.getText().toString()));
+                    cartItem.setItemQuantity(Double.parseDouble(itemQuantity.getText().toString()));
 
 
-                    if(Integer.parseInt(itemQuantity.getText().toString())==0)
+                    if(Double.parseDouble(itemQuantity.getText().toString())==0)
                     {
+
 
 
                         //itemsInCart.setText(String.valueOf(0) + " " + "Items in Cart");
@@ -523,20 +533,25 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
         }
 
 
+
+
+
+
+
         void setFilter() {
 
-            CartItem cartItem = null;
-
-            if (getLayoutPosition() != -1) {
-
-                cartItem = dataset.get(getLayoutPosition());
-            }
-
-            if (cartItem != null) {
-                int availableItems = cartItem.getRt_availableItemQuantity();
-
-                itemQuantity.setFilters(new InputFilter[]{new InputFilterMinMax("0", String.valueOf(availableItems))});
-            }
+//            CartItem cartItem = null;
+//
+//            if (getLayoutPosition() != -1) {
+//
+//                cartItem = dataset.get(getLayoutPosition());
+//            }
+//
+//            if (cartItem != null) {
+//                int availableItems = cartItem.getRt_availableItemQuantity();
+//
+//                itemQuantity.setFilters(new InputFilter[]{new InputFilterMinMax("0", String.valueOf(availableItems))});
+//            }
 
         }
 

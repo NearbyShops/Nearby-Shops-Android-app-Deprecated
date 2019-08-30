@@ -9,17 +9,19 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 import com.squareup.picasso.Picasso;
-import okhttp3.ResponseBody;
+
 import org.nearbyshops.enduserappnew.API.CartItemService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.Item;
@@ -33,16 +35,21 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.InputFilterMinMax;
+
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import javax.inject.Inject;
-import java.util.Map;
 
-
-
-public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
+public class ViewHolderShopItemSimplifiedBackup extends RecyclerView.ViewHolder{
 
 
     private Map<Integer, CartItem> cartItemMap;
@@ -86,7 +93,6 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
     @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
-    @BindView(R.id.item_total) TextView itemTotalText;
 
 //    @BindView(R.id.label) TextView label;
 
@@ -101,13 +107,13 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
 
 
-    public static ViewHolderShopItemSimplified create(ViewGroup parent, Context context, Fragment fragment, RecyclerView.Adapter adapter,
-                                                      Map<Integer, CartItem> cartItemMap, CartStats cartStats)
+    public static ViewHolderShopItemSimplifiedBackup create(ViewGroup parent, Context context, Fragment fragment, RecyclerView.Adapter adapter,
+                                                            Map<Integer, CartItem> cartItemMap, CartStats cartStats)
     {
 
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_item_small,parent,false);
-        return new ViewHolderShopItemSimplified(view,context,fragment,adapter,cartItemMap,cartStats);
+        return new ViewHolderShopItemSimplifiedBackup(view,context,fragment,adapter,cartItemMap,cartStats);
     }
 
 
@@ -115,8 +121,8 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
 
 
-    private ViewHolderShopItemSimplified(@NonNull View itemView, Context context, Fragment fragment, RecyclerView.Adapter listAdapter,
-                                         Map<Integer, CartItem> cartItemMap, CartStats cartStats) {
+    private ViewHolderShopItemSimplifiedBackup(@NonNull View itemView, Context context, Fragment fragment, RecyclerView.Adapter listAdapter,
+                                               Map<Integer, CartItem> cartItemMap, CartStats cartStats) {
 
         super(itemView);
         ButterKnife.bind(this,itemView);
@@ -160,20 +166,16 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
                     try{
 
-                        if(Double.parseDouble(itemQuantityText.getText().toString())>availableItems)
+                        if(Integer.parseInt(itemQuantityText.getText().toString())>availableItems)
                         {
+
                             return;
                         }
 
+                        total = shopItem.getItemPrice() * Integer.parseInt(itemQuantityText.getText().toString());
 
 
-                        total = shopItem.getItemPrice() * Double.parseDouble(itemQuantityText.getText().toString());
-                        itemTotalText.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + refinedString(total));
-
-
-
-
-                        if(Double.parseDouble(itemQuantityText.getText().toString())==0)
+                        if(Integer.parseInt(itemQuantityText.getText().toString())==0)
                         {
                             if(cartItem==null)
                             {
@@ -212,8 +214,7 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
                             }
 
-                        }
-                        else
+                        }else
                         {
                             if(cartItem==null)
                             {
@@ -233,8 +234,7 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
                                     ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart() + 1,false);
                                 }
 
-                            }
-                            else
+                            }else
                             {
                                 // shop Exist
 
@@ -259,6 +259,10 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
                     }
 
                 }
+
+
+
+
 
 
 
@@ -318,15 +322,12 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
         if (!itemQuantityText.getText().toString().equals("")){
 
-            itemQuantityText.setText("0.50");
+            itemQuantityText.setText("0.5");
         }
 
 //            itemQuantityText.setText(String.valueOf(Double.parseDouble(itemQuantityText.getText().toString()) + 0.5));
 
-
-
-        itemQuantityText.setText("0.50");
-
+        itemQuantityText.setText("0.5");
         addToCartTimer();
     }
 
@@ -356,15 +357,11 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
         CartItem cartItem = cartItemMap.get(shopItem.getItemID());
 
-
-
-
             if(cartItem!=null)
             {
 
 
-                itemQuantityText.setText(refinedString(cartItem.getItemQuantity()));
-
+                itemQuantityText.setText(String.valueOf(cartItem.getItemQuantity()));
 
 
 //                label.setText(String.format("%.2f",cartItem.getItemQuantity()));
@@ -372,9 +369,8 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
 
                 double total = shopItem.getItemPrice() * cartItem.getItemQuantity();
-                itemTotalText.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + refinedString(total));
 
-
+//                itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
 
                 if(cartItem.getItemQuantity()==0)
                 {
@@ -388,8 +384,6 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
             }else
             {
-                itemTotalText.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " 0");
-
 
 //                shopItemListItem.setBackgroundResource(R.color.colorWhite);
                 itemQuantityText.setText(String.valueOf(0));
@@ -808,24 +802,15 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
             try{
 
-                if(Double.parseDouble(itemQuantityText.getText().toString())<=0) {
+                if(Integer.parseInt(itemQuantityText.getText().toString())<=0) {
+
 
                     return;
                 }
 
 
 
-                if((Double.parseDouble(itemQuantityText.getText().toString()) - 1)<0)
-                {
-                    itemQuantityText.setText(refinedString(0));
-                }
-                else
-                {
-                    itemQuantityText.setText(refinedString(Double.parseDouble(itemQuantityText.getText().toString()) - 1));
-                }
-
-
-
+                itemQuantityText.setText(String.valueOf(Integer.parseInt(itemQuantityText.getText().toString()) - 1));
                 addToCartTimer();
 
             }
@@ -864,12 +849,12 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
             try {
 
-                if (Double.parseDouble(itemQuantityText.getText().toString()) >= availableItems) {
+                if (Integer.parseInt(itemQuantityText.getText().toString()) >= availableItems) {
                     return;
                 }
 
 
-                itemQuantityText.setText(refinedString(Double.parseDouble(itemQuantityText.getText().toString()) + 1));
+                itemQuantityText.setText(String.valueOf(Integer.parseInt(itemQuantityText.getText().toString()) + 1));
                 addToCartTimer();
 
 
@@ -895,7 +880,7 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
     private void showToastMessage(String message)
     {
-//        Toast.makeText(context,message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,message, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -969,7 +954,7 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
 
 
-    private String refinedString(double number)
+    String refinedString(double number)
     {
         if(number % 1 !=0)
         {
@@ -988,12 +973,12 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
 
 
 
-
     public interface ListItemClick{
         void notifyItemImageClick(Item item);
         void showLogin();
         void setCartTotal(double cartTotal, boolean save);
         void setItemsInCart(int itemsInCart, boolean save);
+
     }
 
 

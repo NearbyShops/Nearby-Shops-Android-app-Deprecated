@@ -25,4 +25,22 @@ public class UtilityFunctions {
 //        .setDateFormat("yyyy-MM-dd hh:mm:ss.S")
     }
 
+
+
+
+
+    public static String refinedString(double number)
+    {
+        if(number % 1 !=0)
+        {
+            // contains decimal numbers
+
+            return String.format("%.2f",number);
+        }
+        else
+        {
+            return String.format("%.0f",number);
+        }
+    }
+
 }

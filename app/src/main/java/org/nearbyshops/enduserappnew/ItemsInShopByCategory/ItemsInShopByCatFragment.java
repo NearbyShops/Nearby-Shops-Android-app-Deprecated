@@ -793,7 +793,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 //        cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(cartTotalValue));
-        cartTotal.setText(PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.format("%.0f",cartTotalValue));
+
+        cartTotal.setText(PrefGeneral.getCurrencySymbol(getActivity()) + " " + UtilityFunctions.refinedString(cartTotalValue));
 
 
         if(save)
