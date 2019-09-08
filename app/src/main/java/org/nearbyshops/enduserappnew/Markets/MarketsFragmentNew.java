@@ -1,6 +1,7 @@
 package org.nearbyshops.enduserappnew.Markets;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -34,6 +35,7 @@ import org.nearbyshops.enduserappnew.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreen;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -41,7 +43,7 @@ import java.util.List;
 
 
 public class MarketsFragmentNew extends Fragment implements
-        listItemMarketNotifications, SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, LocationUpdated, ViewHolderSignIn.VHSignIn {
+        listItemMarketNotifications, SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, LocationUpdated, ViewHolderSignIn.VHSignIn, ViewHolderEmptyScreen.VHEmptyScreen {
 
 
 
@@ -431,5 +433,14 @@ public class MarketsFragmentNew extends Fragment implements
 
 
 
+
+
+    @Override
+    public void buttonClick(String url) {
+
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+    }
 }
 

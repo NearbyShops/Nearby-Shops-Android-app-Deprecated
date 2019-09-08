@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import org.nearbyshops.enduserappnew.DeliveryAddress.ViewHolders.ViewHolderDeliveryAdddress;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenMarker;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreen;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreenFullScreen;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 
 import java.util.List;
@@ -44,10 +44,10 @@ public class DeliveryAddressAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
         else if(viewType == VIEW_TYPE_EMPTY_SCREEN)
         {
-            return ViewHolderEmptyScreen.create(parent,context);
+            return ViewHolderEmptyScreenFullScreen.create(parent,context);
         }
 
-        return ViewHolderEmptyScreen.create(parent,context);
+        return ViewHolderEmptyScreenFullScreen.create(parent,context);
     }
 
 

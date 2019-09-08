@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.OrderHistory.ViewHolders.ViewHolderOrder;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.LoadingViewHolder;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenData;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreenNew;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreenFullScreenNew;
 
 import java.util.List;
 
@@ -62,7 +62,7 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(viewType==VIEW_TYPE_EMPTY_SCREEN)
         {
-            return ViewHolderEmptyScreenNew.create(parent,context);
+            return ViewHolderEmptyScreenFullScreenNew.create(parent,context);
         }
 
 
@@ -83,7 +83,7 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return VIEW_TYPE_ORDER;
         }
-        else if(dataset.get(position) instanceof EmptyScreenData)
+        else if(dataset.get(position) instanceof EmptyScreenDataFullScreen)
         {
             return VIEW_TYPE_EMPTY_SCREEN;
         }
@@ -107,9 +107,9 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ((LoadingViewHolder) holderVH).setLoading(loadMore);
 
         }
-        else if(holderVH instanceof ViewHolderEmptyScreenNew)
+        else if(holderVH instanceof ViewHolderEmptyScreenFullScreenNew)
         {
-            ((ViewHolderEmptyScreenNew) holderVH).setItem((EmptyScreenData) dataset.get(position));
+            ((ViewHolderEmptyScreenFullScreenNew) holderVH).setItem((EmptyScreenDataFullScreen) dataset.get(position));
         }
 
     }

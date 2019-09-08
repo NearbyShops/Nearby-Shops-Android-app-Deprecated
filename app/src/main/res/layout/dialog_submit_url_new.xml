@@ -70,18 +70,21 @@
 
 
             <TextView
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_marginTop="10dp"
-                android:text="Do you know ? "
+                android:text="Create your own market using free and open-source technology. Then Submit your market here !"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
 
+
+
             <TextView
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="15dp"
                 app:layout_constraintTop_toBottomOf="@id/header_title_submit"
-                android:text="You can create your own local market. Its easy and doesnt cost a lot of money ... press here to know more ..."
+                android:text=""
                 android:id="@+id/create_market_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

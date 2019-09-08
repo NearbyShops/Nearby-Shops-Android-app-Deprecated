@@ -6,53 +6,54 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenData;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.R;
+import butterknife.OnClick;
 
 
 public class ViewHolderEmptyScreen extends RecyclerView.ViewHolder{
 
 
 
-
-    @BindView(R.id.graphic_image) ImageView graphicImage;
-    @BindView(R.id.title) TextView title;
-    @BindView(R.id.message) TextView message;
-
-
-
-
     private Context context;
+    private Fragment fragment;
 
-    private NotifyDeliveryAddress notifyDeliveryAddress;
-
-
-    private DeliveryAddress item;
-
-
+    @BindView(R.id.message) TextView message;
+    @BindView(R.id.button) TextView button;
+    @BindView(R.id.image) ImageView graphicImage;
 
 
-    public static ViewHolderEmptyScreen create(ViewGroup parent, Context context)
+    private EmptyScreenData data;
+
+//    Create your own Market and help local Economy ... Its free !
+
+
+
+    public static ViewHolderEmptyScreen create(ViewGroup parent, Context context, Fragment fragment)
     {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_empty_screen,parent,false);
+                .inflate(R.layout.list_item_empty_screen, parent, false);
 
-        return new ViewHolderEmptyScreen(view,context,null);
+        return new ViewHolderEmptyScreen(view,parent,context, fragment);
     }
 
 
 
 
 
-    public ViewHolderEmptyScreen(View itemView, Context context, NotifyDeliveryAddress fragment) {
+    public ViewHolderEmptyScreen(View itemView, ViewGroup parent, Context context, Fragment fragment)
+    {
         super(itemView);
-
         ButterKnife.bind(this,itemView);
         this.context = context;
+        this.fragment = fragment;
     }
 
 
@@ -60,26 +61,47 @@ public class ViewHolderEmptyScreen extends RecyclerView.ViewHolder{
 
 
 
-
-
-    public interface NotifyDeliveryAddress{
-
-        void notifyEdit(DeliveryAddress deliveryAddress);
-        void notifyRemove(DeliveryAddress deliveryAddress, int position);
-        void notifyListItemClick(DeliveryAddress deliveryAddress);
-        void selectButtonClick(DeliveryAddress deliveryAddress, int position);
-    }
-
-
-
-    public void setItem(DeliveryAddress address)
+    @OnClick(R.id.button)
+    void selectMarket()
     {
+        if(fragment instanceof VHEmptyScreen)
+        {
+            ((VHEmptyScreen) fragment).buttonClick(data.getUrlForButtonClick());
+        }
+    }
 
+
+
+
+
+    public void setItem(EmptyScreenData data)
+    {
+        this.data = data;
+
+        message.setText(data.getMessage());
+        button.setText(data.getButtonText());
+
+        if(data.getImageResource()==0)
+        {
+            graphicImage.setVisibility(View.GONE);
+        }
+        else
+        {
+            graphicImage.setVisibility(View.VISIBLE);
+            graphicImage.setImageResource(data.getImageResource());
+        }
 
     }
 
 
 
+
+    public interface VHEmptyScreen
+    {
+        void buttonClick(String url);
+    }
 
 }
+
+
 

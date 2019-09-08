@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenData;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenDataFullScreen;
 
 
-public class ViewHolderEmptyScreenNew extends RecyclerView.ViewHolder{
+public class ViewHolderEmptyScreenFullScreenNew extends RecyclerView.ViewHolder{
 
 
 
@@ -26,25 +26,25 @@ public class ViewHolderEmptyScreenNew extends RecyclerView.ViewHolder{
 
 
     private Context context;
-    private EmptyScreenData item;
+    private EmptyScreenDataFullScreen item;
 
 
 
 
-    public static ViewHolderEmptyScreenNew create(ViewGroup parent, Context context)
+    public static ViewHolderEmptyScreenFullScreenNew create(ViewGroup parent, Context context)
     {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_empty_screen,parent,false);
+                .inflate(R.layout.list_item_empty_screen_full_screen,parent,false);
 
-        return new ViewHolderEmptyScreenNew(view,context);
+        return new ViewHolderEmptyScreenFullScreenNew(view,context);
     }
 
 
 
 
 
-    public ViewHolderEmptyScreenNew(View itemView, Context context) {
+    public ViewHolderEmptyScreenFullScreenNew(View itemView, Context context) {
         super(itemView);
 
         ButterKnife.bind(this,itemView);
@@ -55,7 +55,7 @@ public class ViewHolderEmptyScreenNew extends RecyclerView.ViewHolder{
 
 
 
-    public void setItem(EmptyScreenData data)
+    public void setItem(EmptyScreenDataFullScreen data)
     {
         title.setText(data.getTitle());
         message.setText(data.getMessage());

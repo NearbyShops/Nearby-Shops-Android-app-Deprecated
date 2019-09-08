@@ -41,8 +41,6 @@ public class PrefGeneral {
 
 
 
-
-
     public static boolean getMultiMarketMode(Context context)
     {
 //        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);

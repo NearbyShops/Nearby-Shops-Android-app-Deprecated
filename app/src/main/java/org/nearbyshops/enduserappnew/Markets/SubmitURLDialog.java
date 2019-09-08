@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,6 +95,39 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
         submit_button.setOnClickListener(this);
         dismiss_dialog_button.setOnClickListener(this);
 
+
+
+        service_url.setText("http://");
+        Selection.setSelection(service_url.getText(), service_url.getText().length());
+
+
+        service_url.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(!s.toString().startsWith("http://")){
+                    service_url.setText("http://");
+                    Selection.setSelection(service_url.getText(), service_url.getText().length());
+
+                }
+
+            }
+        });
+
+
         return view;
     }
 
@@ -150,7 +186,7 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
 
     private void createMarketMessage()
     {
-        String url = "https://nearbyshops.org/entrepreneur.html";
+        String url = "https://nearbyshops.org";
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
@@ -173,6 +209,14 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
 
             return;
         }
+        else if(service_url.getText().toString().equals("http://"))
+        {
+
+            service_url.setError("Enter Market URL");
+            service_url.requestFocus();
+            return;
+        }
+
 
 
         Retrofit retrofit = new Retrofit.Builder()

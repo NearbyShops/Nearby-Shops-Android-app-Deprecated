@@ -25,6 +25,7 @@ import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopEndPoint;
@@ -56,24 +57,28 @@ public class FragmentShopsList extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifyDatasetChanged, NotifySearch ,
         ViewHolderShop.ListItemClick {
 
-        ArrayList<Object> dataset = new ArrayList<>();
+
+        private ArrayList<Object> dataset = new ArrayList<>();
 
         boolean isSaved;
+
+
         @Inject
         ShopService shopService;
 
-        RecyclerView recyclerView;
-        Adapter adapter;
+
+        private RecyclerView recyclerView;
+        private Adapter adapter;
 //        GridLayoutManager layoutManager;
 
         SwipeRefreshLayout swipeContainer;
 
         final private int limit = 10;
-        int offset = 0;
-        int item_count = 0;
+        private int offset = 0;
+        private int item_count = 0;
 
-        boolean switchMade = false;
-        boolean isDestroyed;
+        private boolean switchMade = false;
+        private boolean isDestroyed;
 
 
 
@@ -82,8 +87,7 @@ public class FragmentShopsList extends Fragment implements
 
 //    @BindView(R.id.icon_list) ImageView mapIcon;
     @BindView(R.id.shop_count_indicator) TextView shopCountIndicator;
-    @BindView(R.id.slidingLayer)
-    SlidingLayer slidingLayer;
+    @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
 
 
 
@@ -94,6 +98,7 @@ public class FragmentShopsList extends Fragment implements
     @BindView(R.id.service_name) TextView serviceName;
 
 
+    @BindView(R.id.button_try_again) TextView buttonTryAgain;
 
 
 
@@ -181,10 +186,14 @@ public class FragmentShopsList extends Fragment implements
             {
                 serviceName.setVisibility(View.VISIBLE);
                 serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+
+                buttonTryAgain.setText("Change Market");
             }
             else
             {
                 serviceName.setVisibility(View.GONE);
+
+                buttonTryAgain.setText("Try Again");
             }
 
 
@@ -585,10 +594,24 @@ public class FragmentShopsList extends Fragment implements
 
 
 
+
         @OnClick(R.id.button_try_again)
         void tryAgainClick()
         {
-            makeRefreshNetworkCall();
+
+            if(PrefGeneral.getMultiMarketMode(getActivity()))
+            {
+
+                if(getActivity() instanceof ShowFragment)
+                {
+                    ((ShowFragment) getActivity()).showProfileFragment();
+                }
+            }
+            else
+            {
+
+                makeRefreshNetworkCall();
+            }
         }
 
 
@@ -596,8 +619,7 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-
-        void showToastMessage(String message)
+        private void showToastMessage(String message)
         {
             Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
         }

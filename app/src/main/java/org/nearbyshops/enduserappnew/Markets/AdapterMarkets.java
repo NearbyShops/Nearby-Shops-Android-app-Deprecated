@@ -14,12 +14,14 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
 import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.*;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenData;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreen;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -40,6 +42,7 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int VIEW_TYPE_Market = 5;
     private static final int view_type_sign_in = 6;
     private static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 7;
+    private static final int VIEW_TYPE_create_market = 8;
 
 
     @Inject Gson gson;
@@ -53,8 +56,6 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         this.dataset = dataset;
         this.fragment = fragment;
-
-
 
 
         DaggerComponentBuilder.getInstance()
@@ -123,13 +124,19 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return ViewHolderMarket.create(parent,fragment.getActivity(), (listItemMarketNotifications) fragment);
 
 
-        } else if (viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR) {
+        }
+        else if (viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR) {
 
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_item_progress_bar, parent, false);
 
             return new LoadingViewHolder(view);
         }
+        else if(viewType==VIEW_TYPE_create_market)
+        {
+            return ViewHolderEmptyScreen.create(parent,fragment.getActivity(),fragment);
+        }
+
 
 
         return null;
@@ -174,6 +181,12 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             return VIEW_TYPE_Market;
         }
+        else if(dataset.get(position) instanceof EmptyScreenData)
+        {
+
+            return VIEW_TYPE_create_market;
+        }
+
 
         return -1;
     }
@@ -216,6 +229,13 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             ((ViewHolderMarket)holderVH).setItem((ServiceConfigurationGlobal) dataset.get(position));
 
+        }
+        else if(holderVH instanceof ViewHolderEmptyScreen)
+        {
+            if(dataset.get(position) instanceof EmptyScreenData)
+            {
+                ((ViewHolderEmptyScreen) holderVH).setItem((EmptyScreenData) dataset.get(position));
+            }
         }
         else if (holderVH instanceof LoadingViewHolder) {
 

@@ -11,6 +11,7 @@ import org.nearbyshops.enduserappnew.API_SDS.ServiceConfigService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
 import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenData;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderItemsList;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
@@ -206,9 +207,22 @@ public class MarketViewModel extends AndroidViewModel {
 //                                dataset.add(new HeaderItemsList());
 //                            }
 
+                                if(response.body().getResults().size()>0)
+                                {
+                                    dataset.add(new HeaderItemsList());
+                                    dataset.addAll(response.body().getResults());
+                                    dataset.add(EmptyScreenData.getCreateMarketData());
+                                }
+                                else
+                                {
+                                    dataset.add(EmptyScreenData.createMarketNoMarketsAvailable());
+                                }
 
-                                dataset.add(new HeaderItemsList());
-                                dataset.addAll(response.body().getResults());
+
+
+
+
+
 //                                dataset.add(new MarketsList("Markets in your Area",response.body().getResults()));
                             }
 

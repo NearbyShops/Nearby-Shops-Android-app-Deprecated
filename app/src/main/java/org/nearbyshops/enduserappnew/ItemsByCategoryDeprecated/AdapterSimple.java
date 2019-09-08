@@ -10,9 +10,9 @@ import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemS
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.LoadingViewHolder;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenData;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreenNew;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreenFullScreenNew;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderHeaderSimple;
 
 import java.util.List;
@@ -77,7 +77,7 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
         else if(viewType==VIEW_TYPE_EMPTY_SCREEN)
         {
-            return ViewHolderEmptyScreenNew.create(parent,context);
+            return ViewHolderEmptyScreenFullScreenNew.create(parent,context);
         }
 
 
@@ -115,9 +115,9 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             ((LoadingViewHolder) holder).setLoading(loadMore);
 
         }
-        else if(holder instanceof ViewHolderEmptyScreenNew)
+        else if(holder instanceof ViewHolderEmptyScreenFullScreenNew)
         {
-            ((ViewHolderEmptyScreenNew) holder).setItem((EmptyScreenData) dataset.get(position));
+            ((ViewHolderEmptyScreenFullScreenNew) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
         }
 
 
@@ -148,7 +148,7 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         {
             return VIEW_TYPE_HEADER;
         }
-        else if(dataset.get(position) instanceof EmptyScreenData)
+        else if(dataset.get(position) instanceof EmptyScreenDataFullScreen)
         {
             return VIEW_TYPE_EMPTY_SCREEN;
         }

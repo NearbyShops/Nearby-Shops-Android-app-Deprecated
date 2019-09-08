@@ -43,7 +43,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Explore local markets in your area and shop locally !"
+                android:text="Discover local markets in your area and shop locally !"
                 android:layout_width="wrap_content"/>
 
 
