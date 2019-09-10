@@ -5,13 +5,11 @@ Nearby Shops
 > Self-Hosted Mobile Based Hyperlocal and Food Delivery Platform
 
 
-### Commercial Use
+### Commercial Use Requires License
 
-We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. Its free of non-commercial use but commercial use of this software requires a permission. 
+We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. This project is free only for non-commercial use but commercial use requires license.
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
-
-
 
 
 
