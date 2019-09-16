@@ -30,6 +30,8 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -163,7 +165,9 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
 
 
 
-    void fetchConfiguration(final ServiceConfigurationGlobal configurationGlobal)
+
+
+    private void fetchConfiguration(final ServiceConfigurationGlobal configurationGlobal)
     {
 
 //            PrefGeneral.saveServiceURL(configurationGlobal.getServiceURL(),getApplicationContext());
@@ -213,6 +217,7 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
 
 
                     ServiceConfigurationLocal config = response.body();
+
 
                     if(config!=null)
                     {
@@ -364,9 +369,7 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
 
 
                     ServiceConfigurationLocal configurationLocal = user.getServiceConfigurationLocal();
-
                     PrefServiceConfig.saveServiceConfigLocal(configurationLocal,context);
-
 
 
                     if(configurationLocal!=null)
@@ -376,6 +379,8 @@ public class ViewHolderSavedMarket extends RecyclerView.ViewHolder {
                     }
 
 
+
+                    UtilityFunctions.updateFirebaseSubscriptions();
 
 
                     subscriber.selectMarketSuccessful(configurationGlobal,getLayoutPosition());

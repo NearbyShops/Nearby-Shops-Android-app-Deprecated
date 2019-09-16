@@ -114,7 +114,7 @@ public class RateReviewDialog extends DialogFragment {
 
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View view = inflater.inflate(R.layout.dialog_rate_review, container);
+        View view = inflater.inflate(R.layout.dialog_rate_review_shop, container);
 
         ButterKnife.bind(this,view);
 

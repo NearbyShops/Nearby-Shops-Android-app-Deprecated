@@ -70,5 +70,6 @@
     <string name="network_request_failed">Network request failed. Please check your connection !</string>
 
     <string name="sign_in_header">Log In to shop around you</string>
+    <string name="default_notification_channel_id">nbs_end_user</string>
 
 </resources>

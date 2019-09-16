@@ -23,7 +23,7 @@ import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusHomeDelivery;
 import org.nearbyshops.enduserappnew.ModelStatusCodes.OrderStatusPickFromShop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetailFragment;

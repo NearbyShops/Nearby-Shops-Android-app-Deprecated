@@ -25,7 +25,7 @@ import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;

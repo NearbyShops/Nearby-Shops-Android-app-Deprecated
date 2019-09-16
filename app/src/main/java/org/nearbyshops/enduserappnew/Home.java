@@ -11,6 +11,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +25,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.FirebaseApp;
+
 import org.nearbyshops.enduserappnew.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Interfaces.*;
 import org.nearbyshops.enduserappnew.ItemsByCategory.ItemsByCategoryFragment;
@@ -41,7 +44,10 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.ShopsList.FragmentShopsList;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
+import java.util.Currency;
+import java.util.Locale;
 
 
 public class Home extends AppCompatActivity implements ShowFragment, NotifyAboutLogin, MarketSelected {
@@ -91,6 +97,28 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 //        bottomBar.setDefaultTab(R.id.tab_search);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
+
+
+        startService(new Intent(this,UpdateServiceConfiguration.class));
+
+
+
+        FirebaseApp.initializeApp(getApplicationContext());
+        UtilityFunctions.updateFirebaseSubscriptions();
+
+
+
+
+
+//        TelephonyManager tm = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+//        String countryCodeValue = tm.getNetworkCountryIso();
+//        Currency currency = Currency.getInstance(new Locale("",countryCodeValue));
+//        PrefGeneral.saveCurrencySymbol(currency.getSymbol(),this);
+//
+
+
+
 
 
         if (PrefGeneral.getMultiMarketMode(this)) {

@@ -27,7 +27,7 @@ import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.InputFilterMinMax;
 import retrofit2.Call;

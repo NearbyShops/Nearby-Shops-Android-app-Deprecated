@@ -22,7 +22,7 @@ import org.nearbyshops.enduserappnew.ImageSlider.ImageSlider;
 import org.nearbyshops.enduserappnew.Interfaces.OnFilterChanged;
 import org.nearbyshops.enduserappnew.Model.Endpoints.ItemImageEndPoint;
 import org.nearbyshops.enduserappnew.ModelImages.ItemImage;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;
 import retrofit2.Call;

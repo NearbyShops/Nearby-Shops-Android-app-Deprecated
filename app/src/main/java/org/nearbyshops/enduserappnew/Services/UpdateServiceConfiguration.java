@@ -61,6 +61,13 @@ public class UpdateServiceConfiguration extends IntentService {
     void getLocalConfig()
     {
 
+
+        if(PrefGeneral.getServiceURL(getApplicationContext())==null)
+        {
+            return;
+        }
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
@@ -88,6 +95,7 @@ public class UpdateServiceConfiguration extends IntentService {
                 if(response.code()==200)
                 {
                     PrefServiceConfig.saveServiceConfigLocal(response.body(),getApplicationContext());
+
 
 
                     ServiceConfigurationLocal config = response.body();

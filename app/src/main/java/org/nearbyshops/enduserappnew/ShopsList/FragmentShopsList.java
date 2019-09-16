@@ -85,6 +85,8 @@ public class FragmentShopsList extends Fragment implements
 
 
 
+
+
 //    @BindView(R.id.icon_list) ImageView mapIcon;
     @BindView(R.id.shop_count_indicator) TextView shopCountIndicator;
     @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
@@ -93,6 +95,8 @@ public class FragmentShopsList extends Fragment implements
 
     @BindView(R.id.empty_screen) LinearLayout emptyScreen;
     @BindView(R.id.progress_bar_fetching_location) LinearLayout progressBarFetchingLocation;
+
+    @BindView(R.id.empty_screen_message) TextView emptyScreenMessage;
 
 
     @BindView(R.id.service_name) TextView serviceName;
@@ -188,11 +192,13 @@ public class FragmentShopsList extends Fragment implements
                 serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
 
                 buttonTryAgain.setText("Change Market");
+                emptyScreenMessage.setText("Uh .. oh .. no shops available at your location .. change your market ... and explore other markets !");
             }
             else
             {
                 serviceName.setVisibility(View.GONE);
 
+                emptyScreenMessage.setText("Uh .. oh .. no shops available at your location .. change your location ... and try again");
                 buttonTryAgain.setText("Try Again");
             }
 

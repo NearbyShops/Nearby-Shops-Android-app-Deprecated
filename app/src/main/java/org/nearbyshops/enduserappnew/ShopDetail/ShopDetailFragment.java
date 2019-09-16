@@ -42,7 +42,7 @@ import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopImages.ShopImageList;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;

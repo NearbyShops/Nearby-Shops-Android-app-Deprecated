@@ -56,7 +56,7 @@ import org.nearbyshops.enduserappnew.ShopsList.ViewHolders.ViewHolderShop;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderItemsList;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;
 import retrofit2.Call;

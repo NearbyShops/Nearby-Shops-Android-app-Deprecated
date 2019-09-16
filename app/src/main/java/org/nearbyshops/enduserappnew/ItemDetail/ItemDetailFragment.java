@@ -45,7 +45,7 @@ import org.nearbyshops.enduserappnew.ModelReviewItem.FavouriteItem;
 import org.nearbyshops.enduserappnew.ModelReviewItem.FavouriteItemEndpoint;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -219,10 +219,12 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
+
+
     @OnClick(R.id.see_reviews)
     void seeAllReviews()
     {
-        showToastMessage("See all reviews click !");
+//        showToastMessage("See all reviews click !");
     }
 
 

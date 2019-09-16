@@ -33,7 +33,7 @@ import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotificati
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderSignIn;
 import org.nearbyshops.enduserappnew.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreen;
 

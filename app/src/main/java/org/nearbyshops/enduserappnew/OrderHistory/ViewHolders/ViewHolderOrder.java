@@ -179,7 +179,7 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
             if (statusCode == OrderStatusPickFromShop.ORDER_PLACED ||
                     statusCode == OrderStatusPickFromShop.ORDER_CONFIRMED ||
                     statusCode == OrderStatusPickFromShop.ORDER_PACKED) {
-                closeButton.setVisibility(View.VISIBLE);
+//                closeButton.setVisibility(View.VISIBLE);
             } else {
                 closeButton.setVisibility(View.GONE);
             }
@@ -205,7 +205,7 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
             if (statusCode == OrderStatusHomeDelivery.ORDER_PLACED ||
                     statusCode == OrderStatusHomeDelivery.ORDER_CONFIRMED ||
                     statusCode == OrderStatusHomeDelivery.ORDER_PACKED) {
-                closeButton.setVisibility(View.VISIBLE);
+//                closeButton.setVisibility(View.VISIBLE);
             } else {
                 closeButton.setVisibility(View.GONE);
             }

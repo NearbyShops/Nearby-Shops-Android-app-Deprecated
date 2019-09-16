@@ -16,7 +16,7 @@ import org.nearbyshops.enduserappnew.CartItemList.CartItemListActivity;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 
 import java.util.List;

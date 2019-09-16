@@ -32,6 +32,8 @@ import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.ForgotPassword;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceForgotPassword;
 import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
 import org.nearbyshops.enduserappnew.SignUp.SignUp;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -289,7 +291,9 @@ public class LoginGlobalFragment extends Fragment {
 
 
 
-    void loginToGlobalEndpoint()
+
+
+    private void loginToGlobalEndpoint()
     {
         if(!validateData())
         {
@@ -376,10 +380,6 @@ public class LoginGlobalFragment extends Fragment {
 
 
 
-
-
-
-
 //                    PrefOneSignal.saveToken(getActivity(),PrefOneSignal.getLastToken(getActivity()));
 //
 //                    if(PrefOneSignal.getToken(getActivity())!=null)
@@ -401,6 +401,10 @@ public class LoginGlobalFragment extends Fragment {
                     {
 //                        showToastMessage("Notify about login !");
                         ((NotifyAboutLogin) getActivity()).loginSuccess();
+
+
+
+
                     }
 
 
@@ -447,7 +451,7 @@ public class LoginGlobalFragment extends Fragment {
 
 
 
-    void loginToLocalEndpoint()
+    private void loginToLocalEndpoint()
     {
         if(!validateData())
         {
@@ -583,6 +587,8 @@ public class LoginGlobalFragment extends Fragment {
 
 
 
+
+                    UtilityFunctions.updateFirebaseSubscriptions();
 
 
 

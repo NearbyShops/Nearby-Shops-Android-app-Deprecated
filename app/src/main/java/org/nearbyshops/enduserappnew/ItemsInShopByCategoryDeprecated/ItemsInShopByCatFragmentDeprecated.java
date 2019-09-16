@@ -36,7 +36,7 @@ import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
 import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;

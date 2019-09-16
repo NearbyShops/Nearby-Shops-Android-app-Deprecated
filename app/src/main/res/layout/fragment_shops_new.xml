@@ -300,7 +300,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:id="@+id/empty_screen_message"
-            android:text="Uh .. oh .. no shops available at your location .. change your location ... and try again "
+            android:text=""
             android:layout_width="300dp"
             android:layout_height="wrap_content" />
 

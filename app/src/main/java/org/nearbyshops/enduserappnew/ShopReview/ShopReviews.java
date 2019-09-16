@@ -27,7 +27,7 @@ import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.ModelReviewShop.ShopReviewThanks;
 import org.nearbyshops.enduserappnew.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopReview.Interfaces.NotifyLoginByAdapter;
 import org.nearbyshops.enduserappnew.ShopReview.SlidingLayerSort.SlidingLayerSortReview;

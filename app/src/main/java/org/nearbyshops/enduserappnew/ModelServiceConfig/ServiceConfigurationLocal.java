@@ -132,6 +132,7 @@ public class ServiceConfigurationLocal {
 
 
     private boolean rt_login_using_otp_enabled;
+    private String rt_market_id_for_fcm;
 
 
 
@@ -142,6 +143,14 @@ public class ServiceConfigurationLocal {
 
     // getter and setter
 
+
+    public String getRt_market_id_for_fcm() {
+        return rt_market_id_for_fcm;
+    }
+
+    public void setRt_market_id_for_fcm(String rt_market_id_for_fcm) {
+        this.rt_market_id_for_fcm = rt_market_id_for_fcm;
+    }
 
     public int getServiceID() {
         return serviceID;

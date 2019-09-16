@@ -19,19 +19,21 @@ public class EmptyScreenData {
         EmptyScreenData data = new EmptyScreenData();
         data.setMessage("Create your own Market ... help local Economy ... !");
         data.setButtonText("Create Market");
-        data.setUrlForButtonClick("https://nearbyshops.org");
+        data.setUrlForButtonClick("https://nearbyshops.org/volunteer.html");
 
         return data;
     }
 
 
 
+
+
     public static EmptyScreenData createMarketNoMarketsAvailable()
     {
         EmptyScreenData data = new EmptyScreenData();
-        data.setMessage("No markets available in your area. \n\nYou can create your own local market and Help Local Vendors and Local Economy");
+        data.setMessage("No markets available in your area. \n\nCreate your own local market using free open-source technology and Help Local Vendors and Local Economy");
         data.setButtonText("Create Market");
-        data.setUrlForButtonClick("https://nearbyshops.org");
+        data.setUrlForButtonClick("https://nearbyshops.org/volunteer.html");
 
         data.setImageResource(R.drawable.ic_local_florist_black_24dp);
 

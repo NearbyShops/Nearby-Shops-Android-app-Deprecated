@@ -74,6 +74,9 @@ public class ViewHolderEmptyScreen extends RecyclerView.ViewHolder{
 
 
 
+
+
+
     public void setItem(EmptyScreenData data)
     {
         this.data = data;

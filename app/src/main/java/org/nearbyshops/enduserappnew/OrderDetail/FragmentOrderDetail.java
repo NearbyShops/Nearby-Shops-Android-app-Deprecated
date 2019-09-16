@@ -23,7 +23,7 @@ import org.nearbyshops.enduserappnew.ModelCartOrder.Endpoints.OrderItemEndPoint;
 import org.nearbyshops.enduserappnew.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.UtilityFunctions;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;

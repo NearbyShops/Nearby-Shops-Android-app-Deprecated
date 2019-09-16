@@ -10,6 +10,9 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 
+
+
+
 /**
  * Created by sumeet on 5/5/16.
  */
@@ -24,14 +27,13 @@ public class PrefGeneral {
 
     // for multi-market mode set default service url to null and multi market mode to true
     // for single-market mode set multi-market mode false and set default service url to your api server url
-    public static final String DEFAULT_SERVICE_URL = null;
+    public static final String DEFAULT_SERVICE_URL = SERVICE_URL_LOCAL_HOTSPOT;
     public static final boolean MULTI_MARKET_MODE_ENABLED = true;
 
 
 
     private static final String TAG_PREF_CURRENCY = "currency_symbol";
     private static final String TAG_MULTI_MARKET_MODE = "multi_market_mode";
-
 
 
     public static final String TAG_SERVICE_URL = "tag_pref_service_url";
@@ -112,7 +114,7 @@ public class PrefGeneral {
 
 
 
-
+    // viewholdersavedmarket //viewholdermarket //updateserviceconfiguration
     public static void saveCurrencySymbol(String symbol, Context context)
     {
         context = MyApplication.getAppContext();
@@ -122,9 +124,6 @@ public class PrefGeneral {
         prefsEditor.putString(TAG_PREF_CURRENCY, symbol);
         prefsEditor.apply();
     }
-
-
-
 
 
 
