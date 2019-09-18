@@ -7,8 +7,6 @@ Nearby Shops
 
 ### Commercial Use Requires License
 
-Enough Exploitation of Developers and Artists. If you are just looking for some free code and dont care to support Developers ... you are not welcome here ! 
-
 More and more developers are turning away from open-source. Because unpaid working hours have become a sad reality of open-source work. Please read https://medium.com/@kitze/github-stars-wont-pay-your-rent-8b348e12baed. 
 
 Developers have families also. We have our bills to pay.  
