@@ -7,11 +7,7 @@ Nearby Shops
 
 ### Commercial Use Requires License
 
-More and more developers are turning away from open-source. Because unpaid working hours have become a sad reality of open-source work. Please read https://medium.com/@kitze/github-stars-wont-pay-your-rent-8b348e12baed. 
-
-Developers have families also. We have our bills to pay.  
-
-Dont be responsible for exploitation of developers and artists. Please pay the license fee. For more information please visit https://nearbyshops.co
+This software is free only for non-commercial use. If you want to use the source code for any commercial purpose please pay the license fee. For more information please visit https://nearbyshops.co/pricing.html
 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
