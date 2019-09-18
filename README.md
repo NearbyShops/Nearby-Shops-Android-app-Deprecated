@@ -11,7 +11,7 @@ More and more developers are turning away from open-source. Because unpaid worki
 
 Developers have families also. We have our bills to pay.  
 
-Dont be responsible for exploitation of developers and artists. If you want to use the source code for commercial use. Please pay the license fee. For more information please visit https://nearbyshops.co
+Dont be responsible for exploitation of developers and artists. Please pay the license fee. For more information please visit https://nearbyshops.co
 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
