@@ -7,7 +7,7 @@ Nearby Shops
 
 ### Commercial Use Requires License
 
-This software is free only for non-commercial use. If you want to use the source code for any commercial purpose please pay the license fee. For more information please visit https://nearbyshops.co/pricing.html
+We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. This project is free only for non-commercial use, experimentation, testing and trial purpose but commercial use requires license. For more information please visit https://nearbyshops.co	
 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
