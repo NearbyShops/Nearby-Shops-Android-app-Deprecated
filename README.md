@@ -5,7 +5,7 @@ Nearby Shops
 > Self-Hosted Mobile First Hyperlocal and Food Delivery Platform
 
 
-### Commercial Use Requires License	
+### Commercial Use Without License is Illegal and will Attract Legal Action
 
 Dont be responsible for exploitation of developers and artists. If you want to use the source code for commercial use. Please pay the license fee. For more information please visit https://nearbyshops.co
 
