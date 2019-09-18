@@ -2,7 +2,12 @@ Nearby Shops
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Nearby%20Shops%20Open%20Source%20Food%20Delivery%20and%20Hyperlocal%20app&url=https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app&via=moraysumeet&hashtags=opensource,androiddev,fooddelivery,android,ecommerce)
 =============
 
-> Self-Hosted Mobile Based Hyperlocal and Food Delivery Platform
+> Self-Hosted Mobile First Hyperlocal and Food Delivery Platform
+
+
+### Commercial Use Requires License	
+
+Dont be responsible for exploitation of developers and artists. If you want to use the source code for commercial use. Please pay the license fee. For more information please visit https://nearbyshops.co
 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
