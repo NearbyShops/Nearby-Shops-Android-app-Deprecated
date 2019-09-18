@@ -5,7 +5,13 @@ Nearby Shops
 > Self-Hosted Mobile First Hyperlocal and Food Delivery Platform
 
 
-### Commercial Use Without License is Illegal and will Attract Legal Action
+### Commercial Use Requires License
+
+Enough Exploitation of Developers and Artists. If you are just looking for some free code and dont care to support Developers ... you are not welcome here ! 
+
+More and more developers are turning away from open-source. Because unpaid working hours have become a sad reality of open-source work. Please read https://medium.com/@kitze/github-stars-wont-pay-your-rent-8b348e12baed. 
+
+Developers have families also. We have our bills to pay.  
 
 Dont be responsible for exploitation of developers and artists. If you want to use the source code for commercial use. Please pay the license fee. For more information please visit https://nearbyshops.co
 
@@ -89,7 +95,7 @@ Features and Highlights
 
 Support for Multiple Currencies : You can set your locale and country and currency for your local market will be set accordingly.
 
-Mobile Based - Multi-Vendor Platform where customers can send orders to multiple Shops / Restaurants
+Mobile First - Multi-Vendor Platform where customers can send orders to multiple Shops / Restaurants
 
 Integrations for Sending SMS-OTP, E-mail and Push Notifications are available
 
@@ -111,7 +117,7 @@ App Customization Permitted - You can whitelabel or customize the android app wi
 
 Nearby Shops Multi-Market Mode - you can add your local market to nearby shops market discovery service and your market becomes visible and accessible to Global audience of Nearby Shops app. Read more about Nearby Shops multi-market mode !
 
-Commercial Use - This is not just a hobby project and you can actually use it to setup your business and earn some real money. 
+Commercial Use requires license. 
 
 
 
