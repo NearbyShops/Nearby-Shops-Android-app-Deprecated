@@ -146,11 +146,11 @@ Source code for Shop-Owner, Admin app and Server Side
 -------------------------------------------------------
 If you want to see source code for the Shop-Owner app, Admin-app and the server side -- links are provided below
 
-Shop-Owner app : https://nearbyshops.co/pricing.html
+Shop-Owner app : https://nearbyshops.org
 
-Admin app : https://nearbyshops.co/pricing.html
+Admin app : https://nearbyshops.org
 
-Source code for Server Side JSON Based REST API is available in this repository https://nearbyshops.co/pricing.html
+Source code for Server Side JSON Based REST API is available in this repository https://nearbyshops.org
 
 
 
