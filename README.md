@@ -15,10 +15,10 @@ Nearby Shops implements Alibaba's Grocery Online-to-Offline Concept. Customers c
 The installation guide and app customization guide is provided at http://developer.nearbyshops.org
 
 
-Website :  https://nearbyshops.co | Developers Guide: http://developer.nearbyshops.org
+Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
-<a href="https://nearbyshops.co"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
+<a href="https://nearbyshops.org"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
 
 
 
