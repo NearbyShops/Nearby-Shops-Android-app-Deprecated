@@ -7,7 +7,7 @@ Nearby Shops
 
 ### Donate
 
-We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. You can help us in the development and improvement of this project by donating. Please visit : https://nearbyshops.org/donations.html
+We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. You can help us in the development and improvement of this project by donating. To know more please visit : https://nearbyshops.org/donations.html
 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
