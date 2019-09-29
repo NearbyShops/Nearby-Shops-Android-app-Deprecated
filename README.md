@@ -5,9 +5,9 @@ Nearby Shops
 > Self-Hosted Mobile First Hyperlocal and Food Delivery Platform	
 
 
-### Commercial Use Requires License	
+### Donate
 
-We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. This project is free for non-commercial use, experimentation, testing and trial purpose but commercial use requires license. For more information please visit https://nearbyshops.co
+We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. You can help us in the development and improvement of this project by donating. Please visit : https://nearbyshops.org/donations.html
 
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
