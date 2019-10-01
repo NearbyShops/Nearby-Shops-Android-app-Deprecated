@@ -145,11 +145,11 @@ Source code for Shop-Owner, Admin app and Server Side
 -------------------------------------------------------
 If you want to see source code for the Shop-Owner app, Admin-app and the server side -- links are provided below
 
-Shop-Owner app : https://nearbyshops.org
+Shop-Owner app : https://github.com/NearbyShops/Nearby-Shops-Shop-Owner-Android-app
 
-Admin app : https://nearbyshops.org
+Admin app : https://github.com/NearbyShops/Nearby-Shops-Admin-App
 
-Source code for Server Side JSON Based REST API is available in this repository https://nearbyshops.org
+Source code for Server Side JSON Based REST API is available in this repository https://github.com/SumeetMoray/Nearby-Shops-API
 
 
 
