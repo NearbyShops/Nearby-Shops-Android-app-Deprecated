@@ -9,7 +9,7 @@ Nearby Shops
 How it works ? 
 -----------------
 
-Nearby Shops is a distributed ecosystem of local markets conceptually similar to [Mastadon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance and create their local market on Nearby Shops. The technology is fully open-source and funded by Donations. We dont charge any fee or comission in order to use the platform.
+Nearby Shops is a distributed ecosystem of local markets. This project is conceptually similar to [Mastadon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance and create their local market on Nearby Shops. The technology is fully open-source and funded by Donations. We dont charge any fee or comission in order to use the platform.
 
 Although the platform and technology is free but Service Providers (Market Creators) are allowed to charge for their services in order to recover their expenses and cost of human efforts and Man-Hours. You can make a reasonable middle-class income if your local market gets a decent enough traction in your city or local area.
 
