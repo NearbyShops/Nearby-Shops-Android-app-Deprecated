@@ -11,7 +11,7 @@ Nearby Shops
 How it works ? 
 -----------------
 
-Nearby Shops is a free of cost nonprofit e-commerce platform for local vendors. Anyone can get listed as seller and deliver orders for free without any need to pay any comission. Its run and managed by volunteers and cooperatives. And the technology is fully open-source and free of cost. 
+Nearby Shops is a free of cost nonprofit e-commerce platform for local vendors. Anyone can get listed as seller and deliver orders for free without any need to pay any comission. It is run and managed by volunteers and cooperatives. And the technology is fully open-source and free of cost. 
 
 It is a first of its kind democratic, non-commercial, Open-Source and Nonprofit E-commerce platform. We aim to provide world class free of cost e-commerce platform to the sellers. 
 
