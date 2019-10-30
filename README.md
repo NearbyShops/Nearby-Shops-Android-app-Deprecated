@@ -7,7 +7,21 @@ Nearby Shops
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140">    <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew&hl=en"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="120" height="40" /></a> 
 
 
-Buy and Sell Nearby for free
+
+How it works ? 
+-----------------
+
+Nearby Shops is a free of cost nonprofit e-commerce platform for local vendors. Anyone can get listed as seller and deliver orders for free without any need to pay any comission. Its run and managed by volunteers and cooperatives. And the technology is fully open-source and free of cost. 
+
+It is a first of its kind democratic, non-commercial and Open-Source and Nonprofit E-commerce platform. We aim to provide world class free of cost e-commerce platform to the sellers. 
+
+Technically Nearby Shops is a distributed ecosystem of local markets. This project is conceptually similar to [Mastadon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance and create their local market on Nearby Shops. The technology is fully open-source and funded by Donations. We dont charge any fee or comission in order to use the platform.
+
+Local Market's are generally self-hosted by independent Volunteers, Service Providers and local vendor cooperatives who seek the welfare of their local vendors.
+
+
+
+About Nearby Shops
 --------------------
 
 Nearby Shops is an Open-Source food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running for just $ 5 per month in hosting fees.
@@ -202,16 +216,6 @@ git clone https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app.git
 ```
 
 You should now open the project with the latest version of Android Studio.
-
-
-How it works ? 
------------------
-
-Nearby Shops is a distributed ecosystem of local markets. This project is conceptually similar to [Mastadon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance and create their local market on Nearby Shops. The technology is fully open-source and funded by Donations. We dont charge any fee or comission in order to use the platform.
-
-Although the platform and technology is free but Service Providers (Market Creators) are allowed to charge for their services in order to recover their expenses and cost of human efforts and Man-Hours. You can make a reasonable middle-class income if your local market gets a decent enough traction in your city or local area.
-
-Local Market's are generally self-hosted by independent Volunteers, Service Providers and local vendor cooperatives who seek the welfare of their local vendors.
 
 
 
