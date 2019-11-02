@@ -21,6 +21,26 @@ Local Market's are generally self-hosted by independent Volunteers, Service Prov
 
 
 
+Volunteer and Help us Kill the Coporate Monopoly
+-------------------------------------------------
+
+Our goal is to provide an e-commerce platform which is technologically advanced, free of cost, open, democratic and Non-Commercial. 
+
+If you like this Idea and this project Please volunteer and Help us ! 
+You can help us in various ways even if you do not know how to write code !
+
+1. Host an instance of Local market where other sellers could register. You will work as the administrator of your local market.
+2. Help us to Promote this project in your local community !
+
+
+This is an International Platform with support for multiple curriencies. You can create your market anywhere ! 
+
+Please help us making e-commerce truly free of cost for everyone. 
+
+
+
+
+
 About Nearby Shops
 --------------------
 
