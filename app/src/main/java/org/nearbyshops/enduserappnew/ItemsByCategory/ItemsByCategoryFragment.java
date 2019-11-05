@@ -27,13 +27,13 @@ import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
-import org.nearbyshops.enduserappnew.ItemsByCategory.Model.ItemCategoriesList;
-import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategoryHorizontal;
+import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategoryHorizontal;
 import org.nearbyshops.enduserappnew.ItemsByCategory.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ItemsByCategory.Interfaces.NotifyHeaderChanged;
 import org.nearbyshops.enduserappnew.ItemsByCategory.SlidingLayerSort.SlidingLayerSortItems;
 import org.nearbyshops.enduserappnew.ItemsByCategory.SlidingLayerSort.PrefSortItemsByCategory;
-import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategory;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemEndPoint;
@@ -48,8 +48,6 @@ import retrofit2.Response;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-
-import static org.nearbyshops.enduserappnew.ItemsInShopByCategory.BackupDeprecated.ItemsInShopByCatDeprecated.TAG_SLIDING;
 
 /**
  * Created by sumeet on 2/12/16.
@@ -67,8 +65,7 @@ public class ItemsByCategoryFragment extends Fragment implements
         ViewHolderItemCategory.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch {
 
 
-
-
+    private static final String TAG_SLIDING = "tag_sliding_sort";
     private boolean isDestroyed = false;
 
 

@@ -1,5 +1,7 @@
-package org.nearbyshops.enduserappnew.Model.ModelReviewMarket;
+package org.nearbyshops.enduserappnew.Model.ModelEndPoints;
 
+
+import org.nearbyshops.enduserappnew.Model.ModelReviewMarket.MarketReview;
 
 import java.util.List;
 

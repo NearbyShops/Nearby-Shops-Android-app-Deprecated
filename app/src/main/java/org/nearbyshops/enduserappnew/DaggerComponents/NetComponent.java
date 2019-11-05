@@ -3,8 +3,6 @@ package org.nearbyshops.enduserappnew.DaggerComponents;
 
 import dagger.Component;
 import org.jetbrains.annotations.NotNull;
-import org.nearbyshops.enduserappnew.BackupsDeprecated.AdapterItemsInShopBackup;
-import org.nearbyshops.enduserappnew.BackupsDeprecated.ItemsInShopByCatFragmentBackup;
 import org.nearbyshops.enduserappnew.CartItemList.CartItemAdapter;
 import org.nearbyshops.enduserappnew.CartItemList.CartItemListActivity;
 import org.nearbyshops.enduserappnew.CartsList.CartsListFragment;
@@ -23,13 +21,8 @@ import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ItemImages.ItemImageListFragment;
 import org.nearbyshops.enduserappnew.ItemsByCategory.ItemsByCategoryFragment;
-import org.nearbyshops.enduserappnew.ItemsByCategoryDeprecated.ItemCategoriesFragmentSimple;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.BackupDeprecated.ViewHolderShopItemBackup;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItemSimplified;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItemSimplifiedBackup;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategoryDeprecated.AdapterItemsInShop;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategoryDeprecated.ItemsInShopByCatFragmentDeprecated;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders.ViewHolderShopItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplified;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplifiedBackup;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCatFragment;
 import org.nearbyshops.enduserappnew.Login.LoginFragment;
 import org.nearbyshops.enduserappnew.Login.LoginGlobalFragment;
@@ -60,7 +53,6 @@ import org.nearbyshops.enduserappnew.ShopsAvailableForItem.ShopItemFragment;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewAdapter;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewStats;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
-import org.nearbyshops.enduserappnew.ShopsList.BackupDeprecated.FragmentShopNewBackup;
 import org.nearbyshops.enduserappnew.ShopsList.FragmentShopsList;
 import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentCheckResetCode;
 import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentEnterCredentials;
@@ -79,9 +71,6 @@ import javax.inject.Singleton;
 @Singleton
 @Component(modules={AppModule.class, NetModule.class})
 public interface NetComponent {
-
-
-    void Inject(ItemCategoriesFragmentSimple itemCategoriesFragmentSimple);
 
 
     void Inject(UpdateOneSignalID updateOneSignalID);
@@ -125,10 +114,6 @@ public interface NetComponent {
     void Inject(PlaceOrderActivity placeOrderActivity);
 
     void Inject(FragmentShopsList fragmentShopsList);
-
-    void Inject(AdapterItemsInShop adapterItemsInShop);
-
-    void Inject(ItemsInShopByCatFragmentDeprecated itemsInShopByCatFragmentDeprecated);
 
     void Inject(EditAddressFragment editAddressFragment);
 
@@ -186,25 +171,13 @@ public interface NetComponent {
 
     void Inject(FragmentResetPassword fragmentResetPassword);
 
-    void Inject(AdapterItemsInShopBackup adapterItemsInShopBackup);
-
-    void Inject(ItemsInShopByCatFragmentBackup itemsInShopByCatFragmentBackup);
-
-
-    void Inject(ViewHolderShopItem viewHolderShopItem);
 
     void Inject(ItemsByCategoryFragment itemsByCategoryFragment);
 
     void Inject(ItemsInShopByCatFragment itemsInShopByCatFragment);
 
-    void Inject(FragmentShopNewBackup fragmentShopNewBackup);
 
     void Inject(OrdersFragment ordersFragment);
-
-    void Inject(ViewHolderShopItemBackup viewHolderShopItemBackup);
-
-    void Inject(org.nearbyshops.enduserappnew.ItemsInShopByCategory.BackupDeprecated.ItemsInShopByCatFragmentBackup itemsInShopByCatFragmentBackup);
-
 
 
     void Inject(ViewHolderShopItemSimplified viewHolderShopItemSimplified);

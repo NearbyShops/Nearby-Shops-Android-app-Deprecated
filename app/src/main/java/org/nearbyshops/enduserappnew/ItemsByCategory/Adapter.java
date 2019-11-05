@@ -5,12 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import org.nearbyshops.enduserappnew.ItemsByCategory.Model.ItemCategoriesList;
+import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItem;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreenFullScreenNew;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderHeader;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderHorizontalList;
-import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategory;
-import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemSimple;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.LoadingViewHolder;
@@ -74,7 +74,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(viewType == VIEW_TYPE_ITEM)
         {
 
-            return ViewHolderItemSimple.create(parent,context,fragment);
+            return ViewHolderItem.create(parent,context,fragment);
         }
         else if(viewType == VIEW_TYPE_HEADER)
         {
@@ -113,10 +113,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ((ViewHolderHorizontalList) holder).setItem(new AdapterItemCatHorizontalList(list,context,fragment));
 
         }
-        else if(holder instanceof ViewHolderItemSimple)
+        else if(holder instanceof ViewHolderItem)
         {
 
-            ((ViewHolderItemSimple) holder).bindItem((Item) dataset.get(position));
+            ((ViewHolderItem) holder).bindItem((Item) dataset.get(position));
 
         }
         else if (holder instanceof ViewHolderHeader) {

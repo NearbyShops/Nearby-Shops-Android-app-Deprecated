@@ -1,18 +1,20 @@
-package org.nearbyshops.enduserappnew.Model.ModelReviewItem;
+package org.nearbyshops.enduserappnew.Model.ModelEndPoints;
 
+
+import org.nearbyshops.enduserappnew.Model.ModelReviewMarket.FavouriteMarket;
 
 import java.util.List;
 
 /**
  * Created by sumeet on 9/8/16.
  */
-public class ItemReviewEndPoint {
+public class FavouriteMarketEndpoint {
 
     private Integer itemCount;
     private Integer offset;
     private Integer limit;
     private Integer max_limit;
-    private List<ItemReview> results;
+    private List<FavouriteMarket> results;
 
 
     public Integer getItemCount() {
@@ -48,11 +50,12 @@ public class ItemReviewEndPoint {
     }
 
 
-    public List<ItemReview> getResults() {
+
+    public List<FavouriteMarket> getResults() {
         return results;
     }
 
-    public void setResults(List<ItemReview> results) {
+    public void setResults(List<FavouriteMarket> results) {
         this.results = results;
     }
 }

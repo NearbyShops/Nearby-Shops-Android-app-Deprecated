@@ -36,7 +36,7 @@ import org.nearbyshops.enduserappnew.OrderDetail.OrderDetail;
 import org.nearbyshops.enduserappnew.OrderDetail.PrefOrderDetail;
 import org.nearbyshops.enduserappnew.OrderHistory.SlidingLayerSort.PrefSortOrders;
 import org.nearbyshops.enduserappnew.OrderHistory.SlidingLayerSort.SlidingLayerSortOrders;
-import org.nearbyshops.enduserappnew.OrderHistory.ViewHolders.ViewHolderOrder;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderOrder;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;

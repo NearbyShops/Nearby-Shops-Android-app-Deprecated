@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.OrderHistory.ViewHolders;
+package org.nearbyshops.enduserappnew.ViewHolders;
 
 import android.content.Context;
 import android.view.LayoutInflater;

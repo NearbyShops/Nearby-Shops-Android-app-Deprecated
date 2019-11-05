@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemsByCategory.Model;
+package org.nearbyshops.enduserappnew.ViewHolders.Model;
 
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 

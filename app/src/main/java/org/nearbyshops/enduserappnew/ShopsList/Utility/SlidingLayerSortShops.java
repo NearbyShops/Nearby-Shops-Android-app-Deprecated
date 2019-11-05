@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ShopsList.SlidingLayerSort;
+package org.nearbyshops.enduserappnew.ShopsList.Utility;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

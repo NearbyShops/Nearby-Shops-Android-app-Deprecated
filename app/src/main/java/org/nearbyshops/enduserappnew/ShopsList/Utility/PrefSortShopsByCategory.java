@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ShopsList.SlidingLayerSort;
+package org.nearbyshops.enduserappnew.ShopsList.Utility;
 
 import android.content.Context;
 import android.content.SharedPreferences;

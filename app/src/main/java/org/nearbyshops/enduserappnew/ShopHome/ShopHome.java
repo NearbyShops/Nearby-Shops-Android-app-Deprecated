@@ -15,7 +15,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.CartItemList.CartItemListActivity;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.BackupDeprecated.ItemsInShopByCatDeprecated;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.OrderHistory.OrderHistory;
@@ -172,8 +171,8 @@ public class ShopHome extends AppCompatActivity {
 
 //        Intent intent = new Intent(this, ShopItemsInShopByCat.class);
 
-        Intent intent = new Intent(this, ItemsInShopByCatDeprecated.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, ItemsInShopByCatDeprecated.class);
+//        startActivity(intent);
     }
 
 

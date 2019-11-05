@@ -35,9 +35,9 @@ import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopsList.Interfaces.NotifyDatasetChanged;
-import org.nearbyshops.enduserappnew.ShopsList.SlidingLayerSort.PrefSortShopsByCategory;
-import org.nearbyshops.enduserappnew.ShopsList.SlidingLayerSort.SlidingLayerSortShops;
-import org.nearbyshops.enduserappnew.ShopsList.ViewHolders.ViewHolderShop;
+import org.nearbyshops.enduserappnew.ShopsList.Utility.PrefSortShopsByCategory;
+import org.nearbyshops.enduserappnew.ShopsList.Utility.SlidingLayerSortShops;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShop;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,7 +45,7 @@ import retrofit2.Response;
 import javax.inject.Inject;
 import java.util.ArrayList;
 
-import static org.nearbyshops.enduserappnew.ItemsInShopByCategory.BackupDeprecated.ItemsInShopByCatDeprecated.TAG_SLIDING;
+
 
 
 //import icepick.State;
@@ -58,7 +58,8 @@ public class FragmentShopsList extends Fragment implements
         ViewHolderShop.ListItemClick {
 
 
-        private ArrayList<Object> dataset = new ArrayList<>();
+    private static final String TAG_SLIDING = "tag_sliding_layer_sort_shops";
+    private ArrayList<Object> dataset = new ArrayList<>();
 
         boolean isSaved;
 

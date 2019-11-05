@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemsInShopByCategory.ViewHolders;
+package org.nearbyshops.enduserappnew.ViewHolders;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

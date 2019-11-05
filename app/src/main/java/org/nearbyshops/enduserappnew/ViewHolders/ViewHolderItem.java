@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders;
+package org.nearbyshops.enduserappnew.ViewHolders;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,7 +26,7 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopsAvailableForItem.ShopItemByItem;
 
 
-public class ViewHolderItemSimple extends RecyclerView.ViewHolder {
+public class ViewHolderItem extends RecyclerView.ViewHolder {
 
 
 
@@ -48,17 +48,17 @@ public class ViewHolderItemSimple extends RecyclerView.ViewHolder {
 
 
 
-    public static ViewHolderItemSimple create(ViewGroup parent, Context context, Fragment fragment)
+    public static ViewHolderItem create(ViewGroup parent, Context context, Fragment fragment)
     {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_guide,parent,false);
-        return new ViewHolderItemSimple(view,context,fragment);
+        return new ViewHolderItem(view,context,fragment);
     }
 
 
 
 
-    public ViewHolderItemSimple(View itemView, Context context, Fragment fragment) {
+    public ViewHolderItem(View itemView, Context context, Fragment fragment) {
         super(itemView);
         ButterKnife.bind(this,itemView);
 

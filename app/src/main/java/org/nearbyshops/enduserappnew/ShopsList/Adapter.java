@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.ShopsList.ViewHolders.ViewHolderShop;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShop;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;
