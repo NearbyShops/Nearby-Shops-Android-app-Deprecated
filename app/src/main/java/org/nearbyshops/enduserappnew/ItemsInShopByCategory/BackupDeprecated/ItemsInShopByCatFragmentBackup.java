@@ -40,7 +40,7 @@ import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.ModelEndPoints.ShopItemEndPoint;
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -48,7 +48,6 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
 import org.nearbyshops.enduserappnew.ShopDetail.ShopDetailFragment;
 import org.nearbyshops.enduserappnew.ShopsList.ViewHolders.ViewHolderShop;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderItemsList;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -277,7 +276,7 @@ public class ItemsInShopByCatFragmentBackup extends Fragment implements SwipeRef
 
                     return 6;
                 }
-                else if(dataset.get(position) instanceof HeaderItemsList)
+                else if(dataset.get(position) instanceof HeaderTitle)
                 {
                     return 6;
                 }

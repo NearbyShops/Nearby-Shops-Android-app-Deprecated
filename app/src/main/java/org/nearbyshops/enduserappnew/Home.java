@@ -210,6 +210,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
+
         getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {

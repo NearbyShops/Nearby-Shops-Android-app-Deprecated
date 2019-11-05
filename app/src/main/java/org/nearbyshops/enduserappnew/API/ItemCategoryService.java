@@ -1,6 +1,6 @@
 package org.nearbyshops.enduserappnew.API;
 
-import org.nearbyshops.enduserappnew.ModelEndPoints.ItemCategoryEndPoint;
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemCategoryEndPoint;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

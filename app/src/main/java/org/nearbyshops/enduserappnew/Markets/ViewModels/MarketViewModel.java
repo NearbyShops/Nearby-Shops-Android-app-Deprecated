@@ -12,13 +12,14 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
 import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenData;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderItemsList;
-import org.nearbyshops.enduserappnew.ModelRoles.User;
-import org.nearbyshops.enduserappnew.ModelServiceConfig.Endpoints.ServiceConfigurationEndPoint;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -207,9 +208,10 @@ public class MarketViewModel extends AndroidViewModel {
 //                                dataset.add(new HeaderItemsList());
 //                            }
 
+
                                 if(response.body().getResults().size()>0)
                                 {
-                                    dataset.add(new HeaderItemsList());
+                                    dataset.add(new HeaderTitle("Please Select a Market"));
                                     dataset.addAll(response.body().getResults());
                                     dataset.add(EmptyScreenData.getCreateMarketData());
                                 }

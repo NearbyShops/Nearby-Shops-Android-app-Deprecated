@@ -2,7 +2,7 @@ package org.nearbyshops.enduserappnew.API;
 
 
 import okhttp3.ResponseBody;
-import org.nearbyshops.enduserappnew.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import retrofit2.Call;
 import retrofit2.http.*;
 

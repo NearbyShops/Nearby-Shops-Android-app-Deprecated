@@ -36,8 +36,7 @@ import org.nearbyshops.enduserappnew.ItemsByCategory.SlidingLayerSort.PrefSortIt
 import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
-import org.nearbyshops.enduserappnew.ModelEndPoints.ItemEndPoint;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderItemsList;
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemEndPoint;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
@@ -342,7 +341,7 @@ public class ItemsByCategoryFragment extends Fragment implements
 
                     return 6;
                 }
-                else if(dataset.get(position) instanceof HeaderItemsList)
+                else if(dataset.get(position) instanceof HeaderTitle)
                 {
                     return 6;
                 }

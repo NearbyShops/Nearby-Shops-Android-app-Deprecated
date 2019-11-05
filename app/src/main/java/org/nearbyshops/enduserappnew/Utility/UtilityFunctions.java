@@ -1,15 +1,13 @@
 package org.nearbyshops.enduserappnew.Utility;
 
-import android.content.Context;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.nearbyshops.enduserappnew.ModelRoles.User;
-import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 

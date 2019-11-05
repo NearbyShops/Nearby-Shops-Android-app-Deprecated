@@ -32,10 +32,10 @@ import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderSignIn;
 import org.nearbyshops.enduserappnew.Markets.ViewModels.MarketViewModel;
-import org.nearbyshops.enduserappnew.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreen;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreenListItem;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ import java.util.List;
 
 
 public class MarketsFragmentNew extends Fragment implements
-        listItemMarketNotifications, SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, LocationUpdated, ViewHolderSignIn.VHSignIn, ViewHolderEmptyScreen.VHEmptyScreen {
+        listItemMarketNotifications, SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, LocationUpdated, ViewHolderSignIn.VHSignIn, ViewHolderEmptyScreenListItem.VHEmptyScreen {
 
 
 

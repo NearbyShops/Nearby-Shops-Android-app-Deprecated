@@ -123,7 +123,7 @@
 
         <activity android:name=".DeliveryAddress.DeliveryAddressActivity"/>
 
-        <activity android:name=".DeliveryAddress.EditAddress.EditDeliveryAddress"/>
+        <activity android:name=".EditAddress.EditDeliveryAddress"/>
 
         <activity android:name=".DeliveryAddress.PickLocation.PickLocation"/>
 

@@ -1,20 +1,13 @@
 package org.nearbyshops.enduserappnew;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
+
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 import com.mapbox.mapboxsdk.Mapbox;
 //import com.onesignal.OSNotification;
 //import com.onesignal.OSNotificationOpenResult;
 //import com.onesignal.OneSignal;
-import org.greenrobot.eventbus.EventBus;
-import org.json.JSONObject;
-import org.nearbyshops.enduserappnew.ModelUtility.NotificationEvent;
-import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
-import org.nearbyshops.enduserappnew.Preferences.PrefBadgeCount;
-
 
 
 /**

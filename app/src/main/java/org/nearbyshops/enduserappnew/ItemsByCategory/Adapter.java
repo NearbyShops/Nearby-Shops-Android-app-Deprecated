@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import org.nearbyshops.enduserappnew.ItemsByCategory.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreenFullScreenNew;
+import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderHeader;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderHorizontalList;
 import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ItemsByCategory.ViewHolders.ViewHolderItemSimple;
@@ -15,7 +16,6 @@ import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderHeaderSimple;
 
 import java.util.List;
 
@@ -78,7 +78,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(viewType == VIEW_TYPE_HEADER)
         {
-            return ViewHolderHeaderSimple.create(parent,context);
+            return ViewHolderHeader.create(parent,context);
         }
         else if(viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR)
         {
@@ -119,11 +119,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ((ViewHolderItemSimple) holder).bindItem((Item) dataset.get(position));
 
         }
-        else if (holder instanceof ViewHolderHeaderSimple) {
+        else if (holder instanceof ViewHolderHeader) {
 
             if (dataset.get(position) instanceof HeaderTitle) {
 
-                ((ViewHolderHeaderSimple) holder).setItem((HeaderTitle) dataset.get(position));
+                ((ViewHolderHeader) holder).setItem((HeaderTitle) dataset.get(position));
             }
 
         }

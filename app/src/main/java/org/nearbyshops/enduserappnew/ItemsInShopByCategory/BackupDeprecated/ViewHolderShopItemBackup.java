@@ -27,9 +27,9 @@ import org.nearbyshops.enduserappnew.ItemsInShopByCategoryDeprecated.ItemsInShop
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
-import org.nearbyshops.enduserappnew.ModelCartOrder.CartItem;
-import org.nearbyshops.enduserappnew.ModelRoles.User;
-import org.nearbyshops.enduserappnew.ModelStats.CartStats;
+import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;

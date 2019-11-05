@@ -18,12 +18,12 @@ import okhttp3.ResponseBody;
 import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
 import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenMarker;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress.EditAddressFragment;
-import org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress.EditDeliveryAddress;
+import org.nearbyshops.enduserappnew.EditAddress.EditAddressFragment;
+import org.nearbyshops.enduserappnew.EditAddress.EditDeliveryAddress;
 import org.nearbyshops.enduserappnew.DeliveryAddress.ViewHolders.ViewHolderDeliveryAdddress;
 import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.enduserappnew.ModelRoles.User;
-import org.nearbyshops.enduserappnew.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
@@ -42,7 +42,7 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
     DeliveryAddressService deliveryAddressService;
 
     RecyclerView recyclerView;
-    DeliveryAddressAdapter adapter;
+    Adapter adapter;
     GridLayoutManager layoutManager;
     SwipeRefreshLayout swipeContainer;
 
@@ -118,7 +118,7 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
     {
 
 
-        adapter = new DeliveryAddressAdapter(dataset,this,this);
+        adapter = new Adapter(dataset,this,this);
         recyclerView.setAdapter(adapter);
         layoutManager = new GridLayoutManager(this,1);
         recyclerView.setLayoutManager(layoutManager);

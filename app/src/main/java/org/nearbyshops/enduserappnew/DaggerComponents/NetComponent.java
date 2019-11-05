@@ -12,7 +12,7 @@ import org.nearbyshops.enduserappnew.Checkout.PlaceOrderActivity;
 import org.nearbyshops.enduserappnew.DaggerModules.AppModule;
 import org.nearbyshops.enduserappnew.DaggerModules.NetModule;
 import org.nearbyshops.enduserappnew.DeliveryAddress.DeliveryAddressActivity;
-import org.nearbyshops.enduserappnew.DeliveryAddress.EditAddress.EditAddressFragment;
+import org.nearbyshops.enduserappnew.EditAddress.EditAddressFragment;
 import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.FragmentChangeEmail;
 import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.FragmentVerifyEmail;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePassword.FragmentChangePassword;
