@@ -2,19 +2,31 @@ Nearby Shops
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Nearby%20Shops%20Open%20Source%20Food%20Delivery%20and%20Hyperlocal%20app&url=https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app&via=moraysumeet&hashtags=opensource,androiddev,fooddelivery,android,ecommerce)
 =============
 
-> Self-Hosted Mobile Based Hyperlocal and Food Delivery Platform
+> Self-Hosted Mobile First Hyperlocal and Food Delivery Platform	
 
-
-### Commercial Use Requires License
-
-We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. This project is free for non-commercial use, experimentation, testing and trial purpose but commercial use requires license. For more information please visit https://nearbyshops.co
-
-
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140"> 
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140">    <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew&hl=en"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="120" height="40" /></a> 
 
 
 
-Nearby Shops is an Open-Source food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running for just $ 5 per month in hosting fees. 
+How it works ? 
+-----------------
+
+Nearby Shops is a free of cost nonprofit e-commerce platform for local vendors. Anyone can get listed as seller and deliver orders for free without any need to pay any comission. It is run and managed by volunteers and cooperatives. And the technology is fully open-source and free of cost. 
+
+It is a first of its kind democratic, non-commercial, Open-Source and Nonprofit E-commerce platform. We aim to provide world class free of cost e-commerce platform to the sellers. 
+
+Technically Nearby Shops is a distributed ecosystem of local markets. This project is conceptually similar to [Mastadon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance and create their local market on Nearby Shops. The technology is fully open-source and funded by Donations. We dont charge any fee or comission in order to use the platform.
+
+Local Market's are generally self-hosted by independent Volunteers, Service Providers and local vendor cooperatives who seek the welfare of their local vendors.
+
+
+
+
+About Nearby Shops
+--------------------
+
+Nearby Shops is an Open-Source food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running for just $ 5 per month in hosting fees.
+
 
 Nearby Shops implements Alibaba's Grocery Online-to-Offline Concept. Customers can place and order from the app and pick it up in the store. Home Delivery is also available !
 
@@ -24,13 +36,10 @@ The installation guide and app customization guide is provided at http://develop
 Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
-<a href="https://nearbyshops.org"><img class="alignnone" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="219" height="90" /></a>
 
 
 
 <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/items_reduced.gif" width="208">   <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/order_detail_reduced.gif" width="208">   <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/shop_home_reduced.gif" width="208"> 
-
-
 
 
 
@@ -89,7 +98,7 @@ Features and Highlights
 
 Support for Multiple Currencies : You can set your locale and country and currency for your local market will be set accordingly.
 
-Mobile Based - Multi-Vendor Platform where customers can send orders to multiple Shops / Restaurants
+Mobile First - Multi-Vendor Platform where customers can send orders to multiple Shops / Restaurants
 
 Integrations for Sending SMS-OTP, E-mail and Push Notifications are available
 
@@ -111,7 +120,7 @@ App Customization Permitted - You can whitelabel or customize the android app wi
 
 Nearby Shops Multi-Market Mode - you can add your local market to nearby shops market discovery service and your market becomes visible and accessible to Global audience of Nearby Shops app. Read more about Nearby Shops multi-market mode !
 
-Commercial Use - This is not just a hobby project and you can actually use it to setup your business and earn some real money. 
+Commercial Use requires license. 
 
 
 
@@ -154,12 +163,11 @@ Source code for Shop-Owner, Admin app and Server Side
 -------------------------------------------------------
 If you want to see source code for the Shop-Owner app, Admin-app and the server side -- links are provided below
 
-Shop-Owner app : https://github.com/SumeetMoray/Nearby-Shops-Shop-Owner-Android-app
+Shop-Owner app : https://github.com/NearbyShops/Nearby-Shops-Shop-Owner-Android-app
 
-Admin app : https://github.com/SumeetMoray/Nearby-Shops-Admin-App
+Admin app : https://github.com/NearbyShops/Nearby-Shops-Admin-App
 
 Source code for Server Side JSON Based REST API is available in this repository https://github.com/SumeetMoray/Nearby-Shops-API
-
 
 
 Contributions Welcome
@@ -195,7 +203,7 @@ When you make a contribution to this project you will be paid at the rate of 10-
 
 Please note that we reserve the right to accept or reject your contribution. You will be paid only if your contribution is accepted. 
 
-Ability to pay for contributions depend on availibilty of funds ... we recommend you to [contact us and talk with us](https://forum.nearbyshops.org/t/contributor-compensation-program/93) before you plan to make any contribution to this project. 
+Ability to pay for contributions depend on availibilty of funds ... we recommend you to [contact us and talk with us](https://forum.nearbyshops.org/t/contributor-compensation-program/93) before you plan to make any contribution to this project.
 
 
 
@@ -209,6 +217,30 @@ git clone https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app.git
 ```
 
 You should now open the project with the latest version of Android Studio.
+
+
+
+Volunteer and Help us
+-------------------------------------------------
+
+Our goal is to provide an e-commerce platform which is technologically advanced, free of cost, open, democratic and Non-Commercial. 
+
+If you like this Idea and this project Please volunteer and Help us ! 
+You can help us in various ways even if you do not know how to write code !
+
+1. Host an instance of Local market where other sellers could register. You will work as the administrator of your local market.
+2. Help us to Promote this project in your local community !
+
+
+This is an International Platform with support for multiple curriencies. Please help us making e-commerce truly free of cost for everyone. 
+
+To participate please contact us on support@nearbyshops.org or simply post your thoughts on our forum 
+https://forum.nearbyshops.org
+
+
+### Commercial Use Requires License	
+
+We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. This project is free for non-commercial use, experimentation, testing and trial purpose but commercial use requires license. For more information please visit https://nearbyshops.co
 
 
 License
