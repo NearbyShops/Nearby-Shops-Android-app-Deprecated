@@ -116,11 +116,7 @@ By adding delivery staff, shop-owners can deliver orders by themselves. Shared d
 
 Billing and payments are supported. Shop-owners are billed according to the number of orders they deliver successfully. And Service Providers (Market Owners) can collect payments from the shop-owners. 
 
-App Customization Permitted - You can whitelabel or customize the android app with your own branding using this customization guide. https://developer.nearbyshops.org/installation/customize-apps.html
-
 Nearby Shops Multi-Market Mode - you can add your local market to nearby shops market discovery service and your market becomes visible and accessible to Global audience of Nearby Shops app. Read more about Nearby Shops multi-market mode !
-
-Commercial Use requires license. 
 
 
 
@@ -240,7 +236,9 @@ https://forum.nearbyshops.org
 
 ### Commercial Use Requires License	
 
-We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. This project is free for non-commercial use, experimentation, testing and trial purpose but commercial use requires license. For more information please visit https://nearbyshops.co
+App Customization Permitted - You can whitelabel or customize the android app with your own branding using this customization guide. https://developer.nearbyshops.org/installation/customize-apps.html
+
+Unethical commercial use - (the kind of use that encourages monopoly and kills fair compitition) of Nearby Shops is Restricted. Please read the license terms and Conditions If you want to use this software for commercial use.
 
 
 License
@@ -249,9 +247,7 @@ License
 Nearby Shops Open-Source License
 Copyright 2017-19 Bluetree Software LLP, Inc. | http://nearbyshops.org
 
-You may use this software for academic and non-commercial use without paying any license fee. But for commercial use you require permission please contact us for any kind of commercial use. 
-
-Using the source-code of this project in direct or indirect form using Nearby Shops core software would be considered commercial use. 
+Commercial Use of Nearby Shops open-source project must comply with our ethical guidlines. This is done to ensure that people dont use this software for unfair and unethical use. The kind of usage that promotes monopoly and destroys local business and fair competition in the economy. 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
