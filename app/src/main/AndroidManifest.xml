@@ -97,15 +97,15 @@
 
         <activity android:name=".Login.Login"/>
 
-        <activity android:name=".ItemDetail.ItemDetail"/>
+        <activity android:name=".DetailItem.ItemDetail"/>
 
-        <activity android:name=".ShopDetail.ShopDetail"/>
+        <activity android:name=".DetailShop.ShopDetail"/>
 
-        <activity android:name=".ShopImages.ShopImageList"/>
+        <activity android:name=".ImagesShop.ShopImageList"/>
 
         <activity android:name=".ImageSliderShop.ImageSliderShop"/>
 
-        <activity android:name=".ItemImages.ItemImageList"/>
+        <activity android:name=".ImagesItem.ItemImageList"/>
 
         <activity android:name=".ImageSlider.ImageSlider"/>
 
@@ -135,9 +135,9 @@
         <activity android:name=".OrderHistory.OrderHistory"/>
 
 
-        <activity android:name=".MarketDetail.MarketDetail"/>
+        <activity android:name=".DetailMarket.MarketDetail"/>
 
-        <activity android:name=".OrderDetail.OrderDetail"/>
+        <activity android:name=".DetailOrder.OrderDetail"/>
 
 
         <activity android:name=".ShopHome.ShopHome"/>

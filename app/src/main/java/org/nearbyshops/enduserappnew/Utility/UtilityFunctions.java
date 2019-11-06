@@ -38,7 +38,6 @@ public class UtilityFunctions {
 
 
 
-
     public static String refinedString(double number)
     {
         if(number % 1 !=0)

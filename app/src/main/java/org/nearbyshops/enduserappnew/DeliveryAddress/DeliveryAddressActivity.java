@@ -20,7 +20,7 @@ import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenMarker;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditAddress.EditAddressFragment;
 import org.nearbyshops.enduserappnew.EditAddress.EditDeliveryAddress;
-import org.nearbyshops.enduserappnew.DeliveryAddress.ViewHolders.ViewHolderDeliveryAdddress;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeliveryAdddress;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;

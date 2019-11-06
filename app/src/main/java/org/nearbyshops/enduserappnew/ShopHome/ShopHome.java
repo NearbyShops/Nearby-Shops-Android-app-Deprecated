@@ -23,8 +23,8 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
-import org.nearbyshops.enduserappnew.ShopDetail.ShopDetailFragment;
+import org.nearbyshops.enduserappnew.DetailShop.ShopDetail;
+import org.nearbyshops.enduserappnew.DetailShop.ShopDetailFragment;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
 
 

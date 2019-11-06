@@ -28,20 +28,8 @@ public class Item{
 	public static final String IS_WAITLISTED = "IS_WAITLISTED";
 
 
-	// Create Table Statement
-	public static final String createTableItemPostgres = "CREATE TABLE IF NOT EXISTS "
-			+ Item.TABLE_NAME + "("
-			+ " " + Item.ITEM_ID + " SERIAL PRIMARY KEY,"
-			+ " " + Item.ITEM_NAME + " text,"
-			+ " " + Item.ITEM_DESC + " text,"
-			+ " " + Item.ITEM_DESCRIPTION_LONG + " text,"
-			+ " " + Item.ITEM_IMAGE_URL + " text,"
-			+ " " + Item.QUANTITY_UNIT + " text,"
-			+ " " + Item.ITEM_CATEGORY_ID + " INT,"
-			+ " " + Item.IS_ENABLED + " boolean,"
-			+ " " + Item.IS_WAITLISTED + " boolean,"
-			+ " " + Item.DATE_TIME_CREATED + "  timestamp with time zone NOT NULL DEFAULT now(),"
-			+ " FOREIGN KEY(" + Item.ITEM_CATEGORY_ID +") REFERENCES ITEM_CATEGORY(ID))";
+
+
 
 
 	// Instance Variables

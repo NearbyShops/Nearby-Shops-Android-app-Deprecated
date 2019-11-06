@@ -32,8 +32,8 @@ import org.nearbyshops.enduserappnew.CartsList.CartsList;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.ItemDetail.ItemDetailFragment;
-import org.nearbyshops.enduserappnew.ItemDetail.ItemDetail;
+import org.nearbyshops.enduserappnew.DetailItem.ItemDetailFragment;
+import org.nearbyshops.enduserappnew.DetailItem.ItemDetail;
 import org.nearbyshops.enduserappnew.ItemsByCategory.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
@@ -50,8 +50,8 @@ import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopItemEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.ShopDetail.ShopDetail;
-import org.nearbyshops.enduserappnew.ShopDetail.ShopDetailFragment;
+import org.nearbyshops.enduserappnew.DetailShop.ShopDetail;
+import org.nearbyshops.enduserappnew.DetailShop.ShopDetailFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
@@ -474,7 +474,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
             endPointCall = shopItemService.getShopItemEndpoint(
                     null,clearDataset,
                     currentShop.getShopID(),
-                    null,null,null,null,null,null,null,null,null,
+                    null,null,null,null,null,
+                    null,null,null,null,
                     null,null,null,
                     searchQuery,
                     true,current_sort,
