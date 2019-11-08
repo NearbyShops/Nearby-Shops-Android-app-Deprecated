@@ -11,9 +11,9 @@ Nearby Shops
 How it works ? 
 -----------------
 
-Nearby Shops is a free of cost nonprofit e-commerce platform for local vendors. Anyone can get listed as seller and deliver orders for free without any need to pay any commission. It is run and managed by volunteers and cooperatives. And the technology is fully open-source and free of cost. 
+Nearby Shops is a free of cost International nonprofit e-commerce platform for local vendors. Anyone can get listed as seller and deliver orders for free without any need to pay any commission. It is run and managed by volunteers and cooperatives. And the technology is fully open-source and free of cost. 
 
-It is a first of its kind democratic, non-commercial, Open-Source and Nonprofit E-commerce platform. We aim to provide world class free of cost e-commerce platform to the sellers. 
+It is a first of its kind democratic, non-commercial, Open-Source and  International Nonprofit E-commerce platform. We aim to provide world class free of cost e-commerce platform to the sellers. 
 
 Technically Nearby Shops is a distributed ecosystem of local markets. This project is conceptually similar to [Mastadon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance and create their local market on Nearby Shops. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
@@ -37,9 +37,7 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 
 
 
-
-
-<img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/items_reduced.gif" width="208">   <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/order_detail_reduced.gif" width="208">   <img src="https://raw.githubusercontent.com/SumeetMoray/Nearby-Shops-End-User-Android-app/master/media/shop_home_reduced.gif" width="208"> 
+<img src="https://nearbyshops.org/images/screenshots_usa/shops_list_san_francisco.png" width="208">   <img src="https://nearbyshops.org/images/screenshots_usa/order_detail_john_doe.png" width="208">   <img src="https://nearbyshops.org/images/items-in-shop-new.png" width="208"> 
 
 
 
@@ -47,7 +45,6 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Concept](#concept)
 - [Tech Stack and App Architecture](#tech-stack-and-app-architecture)
 - [Features and highlights](#features-and-highlights)
-- [Screenshots](#screenshots)
 - [Libraries Used](#libraries-used)
 - [Third Party Integrations](#third-party-integrations)
 - [Community forum](#community---need-help-)
@@ -117,13 +114,6 @@ By adding delivery staff, shop-owners can deliver orders by themselves. Shared d
 Billing and payments are supported. Shop-owners are billed according to the number of orders they deliver successfully. And Service Providers (Market Owners) can collect payments from the shop-owners. 
 
 Nearby Shops Multi-Market Mode - you can add your local market to nearby shops market discovery service and your market becomes visible and accessible to Global audience of Nearby Shops app. Read more about Nearby Shops multi-market mode !
-
-
-
-Screenshots
------------------
-
-<img src="https://nearbyshops.org/images/3.png" width="208">   <img src="https://nearbyshops.org/images/5.png" width="208">   <img src="https://nearbyshops.org/images/6.png" width="208">
 
 
 
