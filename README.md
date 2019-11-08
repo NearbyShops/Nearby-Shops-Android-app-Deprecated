@@ -143,8 +143,11 @@ Connect With us - Need Help ?
 If you want any help regarding anything. Feel free to contact us -- send a message through our forum or you can simply post an issue. Your issues will not be ignored and you will surely receive help. 
 
 Discourse Forum - https://forum.nearbyshops.org
+
 Follow us Twitter - https://twitter.com/nearbyshopsapp
+
 Facebook - https://www.facebook.com/nearbyshops
+
 Facebook Group - https://www.facebook.com/groups/1144257952430940/
 
 
