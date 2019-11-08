@@ -45,7 +45,6 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Concept](#concept)
 - [Tech Stack and App Architecture](#tech-stack-and-app-architecture)
 - [Features and highlights](#features-and-highlights)
-- [Screenshots](#screenshots)
 - [Libraries Used](#libraries-used)
 - [Third Party Integrations](#third-party-integrations)
 - [Community forum](#community---need-help-)
@@ -115,13 +114,6 @@ By adding delivery staff, shop-owners can deliver orders by themselves. Shared d
 Billing and payments are supported. Shop-owners are billed according to the number of orders they deliver successfully. And Service Providers (Market Owners) can collect payments from the shop-owners. 
 
 Nearby Shops Multi-Market Mode - you can add your local market to nearby shops market discovery service and your market becomes visible and accessible to Global audience of Nearby Shops app. Read more about Nearby Shops multi-market mode !
-
-
-
-Screenshots
------------------
-
-<img src="https://nearbyshops.org/images/3.png" width="208">   <img src="https://nearbyshops.org/images/5.png" width="208">   <img src="https://nearbyshops.org/images/6.png" width="208">
 
 
 
