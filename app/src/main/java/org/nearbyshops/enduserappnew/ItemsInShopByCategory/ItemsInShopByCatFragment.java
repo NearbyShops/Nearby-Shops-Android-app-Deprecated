@@ -28,6 +28,7 @@ import org.nearbyshops.enduserappnew.API.CartItemService;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.API.ItemCategoryService;
 import org.nearbyshops.enduserappnew.API.ShopItemService;
+import org.nearbyshops.enduserappnew.CartItemList.CartItemListActivity;
 import org.nearbyshops.enduserappnew.CartsList.CartsList;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
@@ -906,9 +907,21 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     @OnClick({R.id.cart_stats})
     void viewCartClick()
     {
-        Intent intent = new Intent(getActivity(), CartsList.class);
+//                Intent intent = new Intent(getActivity(), CartsList.class);
+//        startActivity(intent);
+
+        Intent intent = new Intent(getActivity(), CartItemListActivity.class);
+
+
+        String shopJson = UtilityFunctions.provideGson().toJson(PrefShopHome.getShop(getActivity()));
+        intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,shopJson);
+
+        String cartStatsJson = UtilityFunctions.provideGson().toJson(listAdapter.cartStats);
+        intent.putExtra(CartItemListActivity.CART_STATS_INTENT_KEY,cartStatsJson);
+
         startActivity(intent);
     }
+
 
 
 
@@ -1012,7 +1025,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
         Call<List<CartStats>> listCall = cartStatsService
-                .getCart(endUser.getUserID(), null,shop.getShopID(),false,null,null);
+                .getCart(endUser.getUserID(), null,shop.getShopID(),
+                        true,null,null);
 
 
 
@@ -1030,10 +1044,13 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                     for(CartStats cartStats: response.body())
                     {
 
-//                        listAdapter.cartStatsMap.put(cartStats.getShopID(),cartStats);
-                        listAdapter.cartStats.setItemsInCart(cartStats.getItemsInCart());
-                        listAdapter.cartStats.setCart_Total(cartStats.getCart_Total());
-                        listAdapter.cartStats.setShopID(cartStats.getShopID());
+
+////                        listAdapter.cartStatsMap.put(cartStats.getShopID(),cartStats);
+//                        listAdapter.cartStats.setItemsInCart(cartStats.getItemsInCart());
+//                        listAdapter.cartStats.setCart_Total(cartStats.getCart_Total());
+//                        listAdapter.cartStats.setShopID(cartStats.getShopID());
+
+                        listAdapter.cartStats = cartStats;
 
 
 

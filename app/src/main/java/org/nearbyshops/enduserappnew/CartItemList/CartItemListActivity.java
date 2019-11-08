@@ -358,6 +358,8 @@ public class CartItemListActivity extends AppCompatActivity
             return;
         }
 
+
+
         if(shop==null)
         {
             swipeContainer.setRefreshing(false);

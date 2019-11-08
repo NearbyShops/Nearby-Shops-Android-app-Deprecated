@@ -87,7 +87,7 @@ public class ViewHolderItem extends RecyclerView.ViewHolder {
 
 
 
-    public void bindItem(Item item)
+    public void setItem(Item item)
     {
         this.item = item;
 
