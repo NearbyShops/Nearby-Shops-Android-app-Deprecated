@@ -47,7 +47,7 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Features and highlights](#features-and-highlights)
 - [Libraries Used](#libraries-used)
 - [Third Party Integrations](#third-party-integrations)
-- [Community forum](#community---need-help-)
+- [Connect with Us](#community---need-help-)
 - [Source Code for Shop Owner and Admin app and REST API](#source-code-for-shop-owner-admin-app-and-server-side)
 - [Contributions Required](#contributions-welcome)
 - [Contributor Compensation Program](#contributor-compensation-program)
@@ -137,12 +137,17 @@ Maps using Mapbox Android SDK and Google Maps
 Payment Gateway (Coming Soon ...)
 
 
-Community - Need Help ? 
+Connect With us - Need Help ? 
 ------------------------
 
 If you want any help regarding anything. Feel free to contact us -- send a message through our forum or you can simply post an issue. Your issues will not be ignored and you will surely receive help. 
 
-Reach out to us - Please Visit - https://forum.nearbyshops.org
+Discourse Forum - https://forum.nearbyshops.org
+Follow us Twitter - https://twitter.com/nearbyshopsapp
+Facebook - https://www.facebook.com/nearbyshops
+Facebook Group - https://www.facebook.com/groups/1144257952430940/
+
+
 
 
 Source code for Shop-Owner, Admin app and Server Side
