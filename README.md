@@ -9,6 +9,11 @@ Nearby Shops
 <img src="https://www.mathlearningcenter.org/sites/default/files/images/Follow%20on%20Twitter.png"
 width="140">
 </a>
+<a href="https://www.facebook.com/groups/nearbyshops/" class="twitter-follow-button" data-show-count="false">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh-uZQTw-MeQZaEsJekq1a2F-VEZxLI4pAfZRorOrdp2T30dBGPQ&s"
+width="140">
+</a>
+
 
 
 How it works ? 
