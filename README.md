@@ -5,7 +5,10 @@ Nearby Shops
 > Self-Hosted Mobile First Hyperlocal and Food Delivery Platform	
 
 <img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140">    <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew&hl=en"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="120" height="40" /></a> 
-
+   <a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
+<img src="https://www.mathlearningcenter.org/sites/default/files/images/Follow%20on%20Twitter.png"
+width="140">
+</a>
 
 
 How it works ? 
