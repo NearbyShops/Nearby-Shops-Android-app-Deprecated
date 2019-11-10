@@ -4,28 +4,12 @@ Nearby Shops
 
 > Self-Hosted Mobile First Hyperlocal and Food Delivery Platform	
 
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="80">    <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew&hl=en"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="130" height="40" /></a> 
-
-
-
-### If you like the Project - Please Share and Connect with us !
-
-
-
-<a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="80">    <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew&hl=en"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="130" height="40" /></a> <a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
 <img src="https://www.mathlearningcenter.org/sites/default/files/images/Follow%20on%20Twitter.png"
 width="140">
 </a>
 <a href="https://www.facebook.com/groups/nearbyshops/" class="twitter-follow-button" data-show-count="false">
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh-uZQTw-MeQZaEsJekq1a2F-VEZxLI4pAfZRorOrdp2T30dBGPQ&s"
-width="140">
-</a>
-<a href="https://www.reddit.com/r/NearbyShops/" >
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsg_3_Dpq_Q_pST_iMjCiKe4WbulTH797BE-R7NVlasfvZRJnw&s"
-width="140">
-</a>
-<a href="https://chat.whatsapp.com/F4YLZJceJtn1THSZapUlWr" >
-<img src="https://www.iimmbangalore.org/wp-content/uploads/2018/05/whatspp-768x209.png"
 width="140">
 </a>
 
