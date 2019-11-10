@@ -4,7 +4,8 @@ Nearby Shops
 
 > Self-Hosted Mobile First Hyperlocal and Food Delivery Platform	
 
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140">    <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew&hl=en"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="120" height="40" /></a> 
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="120">    <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew&hl=en"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="150" height="50" /></a> 
+
    <a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
 <img src="https://www.mathlearningcenter.org/sites/default/files/images/Follow%20on%20Twitter.png"
 width="140">
@@ -17,6 +18,11 @@ width="140">
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsg_3_Dpq_Q_pST_iMjCiKe4WbulTH797BE-R7NVlasfvZRJnw&s"
 width="140">
 </a>
+<a href="https://chat.whatsapp.com/F4YLZJceJtn1THSZapUlWr" >
+<img src="https://www.iimmbangalore.org/wp-content/uploads/2018/05/whatspp-768x209.png"
+width="140">
+</a>
+
 
 
 
