@@ -249,12 +249,6 @@ To participate please contact us on support@nearbyshops.org or simply post your 
 https://forum.nearbyshops.org
 
 
-### Commercial Use Requires License	
-
-App Customization Permitted - You can whitelabel or customize the android app with your own branding using this customization guide. https://developer.nearbyshops.org/installation/customize-apps.html
-
-Unethical commercial use - (the kind of use that encourages monopoly and kills fair compitition) of Nearby Shops is Restricted. Please read the license terms and Conditions If you want to use this software for commercial use.
-
 
 License
 =======
