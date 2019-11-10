@@ -13,6 +13,10 @@ width="140">
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh-uZQTw-MeQZaEsJekq1a2F-VEZxLI4pAfZRorOrdp2T30dBGPQ&s"
 width="140">
 </a>
+<a href="https://www.reddit.com/r/NearbyShops/" >
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsg_3_Dpq_Q_pST_iMjCiKe4WbulTH797BE-R7NVlasfvZRJnw&s"
+width="140">
+</a>
 
 
 
