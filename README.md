@@ -23,15 +23,15 @@ width="140">
 How it works ? 
 -----------------
 
-Nearby Shops is a free of cost International nonprofit e-commerce platform for local vendors. Anyone can get listed as seller and deliver orders for free without any need to pay any commission. It is run and managed by volunteers and cooperatives. And the technology is fully open-source and free of cost. 
+Nearby Shops is a free of cost International Nonprofit e-commerce platform for local vendors. Anyone can <a href="https://github.com/NearbyShops/Nearby-Shops-Shop-Owner-Android-app#sell-nearby-at-zero-commission-">get listed as seller </a> and deliver orders for free without any need to pay any commission. It is run and managed by volunteers and cooperatives. And the technology is fully open-source and free of cost. 
 
-It is a first of its kind democratic, non-commercial, Open-Source and  International Nonprofit E-commerce platform. We aim to provide world class free of cost e-commerce platform to the sellers. 
+It is a first of its kind decentralized, non-commercial, Open-Source and  International Nonprofit E-commerce platform. We aim to provide world class free of cost e-commerce platform to the sellers. 
 
 Technically Nearby Shops is a distributed ecosystem of local markets. This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance and create their local market on Nearby Shops. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
 Local Market's are generally self-hosted by independent Volunteers, Service Providers and local vendor cooperatives who seek the welfare of their local vendors.
 
-
+The end-users can access local markets available in their area <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew&hl=en"> through single mobile app </a> and login account. 
 
 
 About Nearby Shops
