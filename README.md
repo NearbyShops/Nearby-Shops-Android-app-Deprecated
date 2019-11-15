@@ -241,7 +241,7 @@ https://forum.nearbyshops.org
 
 
 
-### Commercial Use Requires License		
+### Commercial Use Requires Permission		
 
 We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. This project is free for non-commercial use, experimentation, testing and trial purpose but commercial use requires Permission. For more information please visit https://nearbyshops.co	
 
