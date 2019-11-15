@@ -241,6 +241,13 @@ https://forum.nearbyshops.org
 
 
 
+### Commercial Use Requires License		
+
+We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. This project is free for non-commercial use, experimentation, testing and trial purpose but commercial use requires Permission. For more information please visit https://nearbyshops.co	
+
+App Customization Permitted - You can whitelabel or customize the android app with your own branding using this customization guide. https://developer.nearbyshops.org/installation/customize-apps.html
+
+
 License
 =======
 
