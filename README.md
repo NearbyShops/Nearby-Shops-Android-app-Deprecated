@@ -4,22 +4,30 @@ Nearby Shops
 
 > Self-Hosted Mobile First Hyperlocal and Food Delivery Platform	
 
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="140">    <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew&hl=en"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="120" height="40" /></a> 
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="80">    <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew&hl=en"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="130" height="40" /></a> <a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
+<img src="https://www.mathlearningcenter.org/sites/default/files/images/Follow%20on%20Twitter.png"
+width="140">
+</a>
+<a href="https://www.facebook.com/groups/nearbyshops/" class="twitter-follow-button" data-show-count="false">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh-uZQTw-MeQZaEsJekq1a2F-VEZxLI4pAfZRorOrdp2T30dBGPQ&s"
+width="140">
+</a>
+
 
 
 
 How it works ? 
 -----------------
 
-Nearby Shops is a free of cost International nonprofit e-commerce platform for local vendors. Anyone can get listed as seller and deliver orders for free without any need to pay any commission. It is run and managed by volunteers and cooperatives. And the technology is fully open-source and free of cost. 
+Nearby Shops is a free of cost International Nonprofit e-commerce platform for local vendors. Anyone can <a href="https://github.com/NearbyShops/Nearby-Shops-Shop-Owner-Android-app#sell-nearby-at-zero-commission-">get listed as seller </a> and deliver orders for free without any need to pay any commission. It is run and managed by volunteers and cooperatives. And the technology is fully open-source and free of cost. 
 
-It is a first of its kind democratic, non-commercial, Open-Source and  International Nonprofit E-commerce platform. We aim to provide world class free of cost e-commerce platform to the sellers. 
+It is a first of its kind decentralized, non-commercial, Open-Source and  International Nonprofit E-commerce platform. We aim to provide world class free of cost e-commerce platform to the sellers. 
 
-Technically Nearby Shops is a distributed ecosystem of local markets. This project is conceptually similar to [Mastadon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance and create their local market on Nearby Shops. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
+Technically Nearby Shops is a distributed ecosystem of local markets. This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance and create their local market on Nearby Shops. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
 Local Market's are generally self-hosted by independent Volunteers, Service Providers and local vendor cooperatives who seek the welfare of their local vendors.
 
-
+The end-users can access local markets available in their area <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew&hl=en"> through single mobile app </a> and login account. 
 
 
 About Nearby Shops
@@ -47,7 +55,7 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Features and highlights](#features-and-highlights)
 - [Libraries Used](#libraries-used)
 - [Third Party Integrations](#third-party-integrations)
-- [Community forum](#community---need-help-)
+- [Connect with Us](#community---need-help-)
 - [Source Code for Shop Owner and Admin app and REST API](#source-code-for-shop-owner-admin-app-and-server-side)
 - [Contributions Required](#contributions-welcome)
 - [Contributor Compensation Program](#contributor-compensation-program)
@@ -137,12 +145,20 @@ Maps using Mapbox Android SDK and Google Maps
 Payment Gateway (Coming Soon ...)
 
 
-Community - Need Help ? 
+Connect With us - Need Help ? 
 ------------------------
 
 If you want any help regarding anything. Feel free to contact us -- send a message through our forum or you can simply post an issue. Your issues will not be ignored and you will surely receive help. 
 
-Reach out to us - Please Visit - https://forum.nearbyshops.org
+Discourse Forum - https://forum.nearbyshops.org
+
+Follow us Twitter - https://twitter.com/nearbyshopsapp
+
+Facebook - https://www.facebook.com/nearbyshops
+
+Facebook Group - https://www.facebook.com/groups/1144257952430940/
+
+
 
 
 Source code for Shop-Owner, Admin app and Server Side
@@ -224,11 +240,12 @@ To participate please contact us on support@nearbyshops.org or simply post your 
 https://forum.nearbyshops.org
 
 
-### Commercial Use Requires License	
+
+### Commercial Use Requires Permission		
+
+We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. This project is free for non-commercial use, experimentation, testing and trial purpose but commercial use requires Permission. For more information please visit https://nearbyshops.co	
 
 App Customization Permitted - You can whitelabel or customize the android app with your own branding using this customization guide. https://developer.nearbyshops.org/installation/customize-apps.html
-
-Unethical commercial use - (the kind of use that encourages monopoly and kills fair compitition) of Nearby Shops is Restricted. Please read the license terms and Conditions If you want to use this software for commercial use.
 
 
 License
