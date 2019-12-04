@@ -3,10 +3,9 @@ package org.nearbyshops.enduserappnew.CartsList;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+
 import butterknife.ButterKnife;
-import org.nearbyshops.enduserappnew.ItemsByCategory.Interfaces.NotifyBackPressed;
-import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCatFragment;
+
 import org.nearbyshops.enduserappnew.R;
 
 

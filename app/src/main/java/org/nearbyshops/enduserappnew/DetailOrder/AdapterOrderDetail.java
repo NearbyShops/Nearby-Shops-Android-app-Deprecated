@@ -15,14 +15,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
-import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
-import org.nearbyshops.enduserappnew.Model.ModelCartOrder.OrderItem;
-import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDelivery;
-import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusPickFromShop;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+
+import org.nearbyshops.core.Model.Item;
+import org.nearbyshops.core.Model.ModelCartOrder.Order;
+import org.nearbyshops.core.Model.ModelCartOrder.OrderItem;
+import org.nearbyshops.core.Model.ModelStats.DeliveryAddress;
+import org.nearbyshops.core.Model.ModelStatusCodes.OrderStatusHomeDelivery;
+import org.nearbyshops.core.Model.ModelStatusCodes.OrderStatusPickFromShop;
+import org.nearbyshops.core.Model.Shop;
+import org.nearbyshops.core.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.DetailShop.ShopDetail;
@@ -72,6 +73,9 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             return new ViewHolderOrderItem(view);
         }
     }
+
+
+
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
@@ -170,7 +174,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
 
 
-        @OnClick(R.id.list_item)
+        @OnClick(R.id.list_item_shop)
         void shopDetailsClick()
         {
             if(dataset.get(getLayoutPosition()) instanceof Order)
@@ -178,7 +182,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 Order order = (Order)dataset.get(getLayoutPosition());
                 Shop shop = order.getShop();
 
-//                Intent shopHomeIntent = new Intent(context, ShopHome.class);
+//                Intent shopHomeIntent = new Intent(context, ShopDashboard.class);
 //                UtilityShopHome.saveShop(shop,context);
 //                context.startActivity(shopHomeIntent);
 
@@ -320,7 +324,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                     holder.shopAddress.setText(shop.getShopAddress() + ", " +  shop.getCity() +" - " + String.valueOf(shop.getPincode()));
                 }
 
-//                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())
 //                        + shop.getLogoImagePath();
 
                 String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
@@ -458,7 +462,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         // bind Item Image
 
-//        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext()) + item.getItemImageURL();
+//        String imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext()) + item.getItemImageURL();
 
 
         String imagePath = PrefGeneral.getServiceURL(context)

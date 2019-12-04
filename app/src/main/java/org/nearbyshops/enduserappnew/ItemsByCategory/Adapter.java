@@ -5,17 +5,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.nearbyshops.core.Model.Item;
+import org.nearbyshops.core.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItem;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreenFullScreenNew;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderHeader;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderHorizontalList;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderEmptyScreenFullScreen;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderHeader;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderHorizontalList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
-import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.Model.ItemCategory;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.LoadingViewHolder;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenDataFullScreen;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.LoadingViewHolder;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.HeaderTitle;
 
 import java.util.List;
 
@@ -86,7 +87,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(viewType==VIEW_TYPE_EMPTY_SCREEN)
         {
-            return ViewHolderEmptyScreenFullScreenNew.create(parent,context);
+            return ViewHolderEmptyScreenFullScreen.create(parent,context);
         }
 
 
@@ -132,9 +133,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ((LoadingViewHolder) holder).setLoading(loadMore);
 
         }
-        else if(holder instanceof ViewHolderEmptyScreenFullScreenNew)
+        else if(holder instanceof ViewHolderEmptyScreenFullScreen)
         {
-            ((ViewHolderEmptyScreenFullScreenNew) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
+            ((ViewHolderEmptyScreenFullScreen) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
         }
 
 
@@ -177,6 +178,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         return -1;
     }
+
+
+
 
     @Override
     public int getItemCount() {

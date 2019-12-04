@@ -8,9 +8,32 @@ import com.google.gson.GsonBuilder;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
-import org.nearbyshops.enduserappnew.API.*;
+
+import org.nearbyshops.core.API.CartItemService;
+import org.nearbyshops.core.API.CartService;
+import org.nearbyshops.core.API.CartStatsService;
+import org.nearbyshops.core.API.DeliveryAddressService;
+import org.nearbyshops.core.API.DeliveryGuyLoginService;
+import org.nearbyshops.core.API.FavouriteItemService;
+import org.nearbyshops.core.API.FavouriteShopService;
+import org.nearbyshops.core.API.ItemCategoryService;
+import org.nearbyshops.core.API.ItemImageService;
+import org.nearbyshops.core.API.ItemReviewService;
+import org.nearbyshops.core.API.ItemService;
+import org.nearbyshops.core.API.ItemSpecNameService;
+import org.nearbyshops.core.API.OrderItemService;
+import org.nearbyshops.core.API.OrderService;
+import org.nearbyshops.core.API.OrderServiceShopStaff;
+import org.nearbyshops.core.API.ServiceConfigurationService;
+import org.nearbyshops.core.API.ShopImageService;
+import org.nearbyshops.core.API.ShopItemService;
+import org.nearbyshops.core.API.ShopReviewService;
+import org.nearbyshops.core.API.ShopReviewThanksService;
+import org.nearbyshops.core.API.ShopService;
+import org.nearbyshops.core.API.TransactionService;
+import org.nearbyshops.core.API.UserService;
 import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.core.Preferences.PrefGeneral;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -91,7 +114,7 @@ public class NetModule {
     @Provides
     Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
 
-//        Log.d("applog","Retrofit: " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
+//        Log.d("applog","Retrofit: " + PrefGeneral.getServiceURL(MyApplicationCoreNew.getAppContext()));
 
 
         if(PrefGeneral.getServiceURL(MyApplication.getAppContext())!=null)
@@ -131,7 +154,7 @@ public class NetModule {
     CartService provideCartService(Retrofit retrofit)
     {
 
-//        Log.d("applog","CartService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
+//        Log.d("applog","CartService : " + PrefGeneral.getServiceURL(MyApplicationCoreNew.getAppContext()));
 
         return retrofit.create(CartService.class);
     }
@@ -141,7 +164,7 @@ public class NetModule {
     CartItemService provideCartItemService(Retrofit retrofit)
     {
 
-//        Log.d("applog","CartItemService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
+//        Log.d("applog","CartItemService : " + PrefGeneral.getServiceURL(MyApplicationCoreNew.getAppContext()));
 
         return retrofit.create(CartItemService.class);
     }
@@ -150,14 +173,14 @@ public class NetModule {
     @Provides
     CartStatsService provideCartStatsService(Retrofit retrofit)
     {
-//        Log.d("applog","CartStatsService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
+//        Log.d("applog","CartStatsService : " + PrefGeneral.getServiceURL(MyApplicationCoreNew.getAppContext()));
         return retrofit.create(CartStatsService.class);
     }
 
     @Provides
     DeliveryAddressService provideDeliveryAddressService(Retrofit retrofit)
     {
-        //        Log.d("applog","DeliveryAddressService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
+        //        Log.d("applog","DeliveryAddressService : " + PrefGeneral.getServiceURL(MyApplicationCoreNew.getAppContext()));
         return retrofit.create(DeliveryAddressService.class);
     }
 
@@ -165,7 +188,7 @@ public class NetModule {
     @Provides
     OrderService provideOrderService(Retrofit retrofit)
     {
-//        Log.d("applog","OrderServicePFS : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
+//        Log.d("applog","OrderServicePFS : " + PrefGeneral.getServiceURL(MyApplicationCoreNew.getAppContext()));
         return retrofit.create(OrderService.class);
     }
 
@@ -183,7 +206,7 @@ public class NetModule {
     {
         ItemCategoryService service = retrofit.create(ItemCategoryService.class);
 
-//        Log.d("applog","ItemCategoryService : " + PrefGeneral.getServiceURL(MyApplication.getAppContext()));
+//        Log.d("applog","ItemCategoryService : " + PrefGeneral.getServiceURL(MyApplicationCoreNew.getAppContext()));
 
         return service;
     }
@@ -290,6 +313,39 @@ public class NetModule {
     {
         return retrofit.create(ServiceConfigurationService.class);
     }
+
+
+
+
+
+    @Provides
+    OrderServiceShopStaff orderServiceShopStaff(Retrofit retrofit)
+    {
+        return retrofit.create(OrderServiceShopStaff.class);
+    }
+
+
+
+
+    @Provides
+    DeliveryGuyLoginService deliveryGuyLoginService(Retrofit retrofit)
+    {
+        return retrofit.create(DeliveryGuyLoginService.class);
+    }
+
+
+
+
+
+
+    @Provides
+    TransactionService transactionService(Retrofit retrofit)
+    {
+        return retrofit.create(TransactionService.class);
+    }
+
+
+
 
 
 

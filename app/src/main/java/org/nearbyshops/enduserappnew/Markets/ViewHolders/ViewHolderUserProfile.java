@@ -18,13 +18,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
+
+import org.nearbyshops.core.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
-import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfileGlobal;
+import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
-import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.core.Preferences.PrefLogin;
+import org.nearbyshops.core.Preferences.PrefLoginGlobal;
+import org.nearbyshops.core.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 
 public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
@@ -93,7 +94,7 @@ public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
     {
         Intent  intent = new Intent(context, EditProfile.class);
         intent.putExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,true);
-        intent.putExtra(FragmentEditProfileGlobal.EDIT_MODE_INTENT_KEY,FragmentEditProfileGlobal.MODE_UPDATE);
+        intent.putExtra(FragmentEditProfile.EDIT_MODE_INTENT_KEY, FragmentEditProfile.MODE_UPDATE);
         context.startActivity(intent);
     }
 

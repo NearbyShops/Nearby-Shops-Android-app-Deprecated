@@ -10,19 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.gson.Gson;
+
+import org.nearbyshops.core.Model.ModelRoles.User;
+import org.nearbyshops.core.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.core.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
 import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.*;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenData;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.HeaderTitle;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreenListItem;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderHeader;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderEmptyScreenListItem;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderHeader;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -183,7 +184,7 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             return VIEW_TYPE_Market;
         }
-        else if(dataset.get(position) instanceof EmptyScreenData)
+        else if(dataset.get(position) instanceof EmptyScreenDataListItem)
         {
 
             return VIEW_TYPE_create_market;
@@ -234,9 +235,9 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
         else if(holderVH instanceof ViewHolderEmptyScreenListItem)
         {
-            if(dataset.get(position) instanceof EmptyScreenData)
+            if(dataset.get(position) instanceof EmptyScreenDataListItem)
             {
-                ((ViewHolderEmptyScreenListItem) holderVH).setItem((EmptyScreenData) dataset.get(position));
+                ((ViewHolderEmptyScreenListItem) holderVH).setItem((EmptyScreenDataListItem) dataset.get(position));
             }
         }
         else if(holderVH instanceof ViewHolderHeader)

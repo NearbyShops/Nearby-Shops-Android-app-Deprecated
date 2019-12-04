@@ -17,18 +17,19 @@ import butterknife.OnTextChanged;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
-import org.nearbyshops.enduserappnew.API.UserService;
+
+import org.nearbyshops.core.API.UserService;
+import org.nearbyshops.core.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.core.Preferences.PrefGeneral;
+import org.nearbyshops.core.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.ForgotPassword;
-import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceForgotPassword;
-import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
-import org.nearbyshops.enduserappnew.SignUp.SignUp;
+import org.nearbyshops.core.SignUp.ForgotPassword.ForgotPassword;
+import org.nearbyshops.core.SignUp.PrefSignUp.PrefrenceForgotPassword;
+import org.nearbyshops.core.SignUp.PrefSignUp.PrefrenceSignUp;
+import org.nearbyshops.core.SignUp.SignUp;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -146,6 +147,8 @@ public class LoginFragment extends Fragment {
 //            ((ServiceIndicatorFragment)fragment).refresh();
 //        }
 //    }
+
+
 
 
 
@@ -435,7 +438,7 @@ public class LoginFragment extends Fragment {
 //
 //        Retrofit retrofit = new Retrofit.Builder()
 //                .addConverterFactory(GsonConverterFactory.create(gson))
-//                .baseUrl(PrefServiceConfig.getSDSURL(MyApplication.getAppContext()))
+//                .baseUrl(PrefServiceConfig.getSDSURL(MyApplicationCoreNew.getAppContext()))
 //                .client(new OkHttpClient().newBuilder().build())
 //                .build();
 //

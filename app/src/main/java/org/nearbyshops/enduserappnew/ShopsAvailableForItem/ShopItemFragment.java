@@ -22,22 +22,26 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-import org.nearbyshops.enduserappnew.API.ShopItemService;
+
+import org.nearbyshops.core.API.ShopItemService;
+import org.nearbyshops.core.Model.Item;
+import org.nearbyshops.core.Model.ModelEndPoints.ShopItemEndPoint;
+import org.nearbyshops.core.Model.ModelRoles.User;
+import org.nearbyshops.core.Model.ModelStats.ItemStats;
+import org.nearbyshops.core.Model.Shop;
+import org.nearbyshops.core.Model.ShopItem;
+import org.nearbyshops.core.Preferences.PrefGeneral;
+import org.nearbyshops.core.Preferences.PrefLocation;
+import org.nearbyshops.core.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.DetailItem.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.DetailItem.ItemDetail;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Model.ShopItem;
-import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopItemEndPoint;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.ModelStats.ItemStats;
-import org.nearbyshops.enduserappnew.Preferences.*;
+import org.nearbyshops.enduserappnew.PreferencesDeprecated.*;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsAvailableForItem.Utility.PrefSortShopItems;
+import org.nearbyshops.enduserappnew.ShopsAvailableForItem.SlidingLayerSort.PrefSortShopItems;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import retrofit2.Call;
@@ -561,7 +565,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public void notifyShopLogoClick(Shop shop) {
 
-//        Intent shopHomeIntent = new Intent(getActivity(), ShopHome.class);
+//        Intent shopHomeIntent = new Intent(getActivity(), ShopDashboard.class);
 //        PrefShopHome.saveShop(shop,getActivity());
 //        startActivity(shopHomeIntent);
 

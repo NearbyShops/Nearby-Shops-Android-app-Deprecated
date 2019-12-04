@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-
-
-
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_marginTop="5dp"
     android:id="@+id/list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

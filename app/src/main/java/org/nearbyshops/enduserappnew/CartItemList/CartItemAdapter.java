@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import com.squareup.picasso.Picasso;
 import okhttp3.ResponseBody;
-import org.nearbyshops.enduserappnew.API.CartItemService;
-import org.nearbyshops.enduserappnew.API.CartStatsService;
+
+import org.nearbyshops.core.API.CartItemService;
+import org.nearbyshops.core.API.CartStatsService;
+import org.nearbyshops.core.Model.Item;
+import org.nearbyshops.core.Model.ModelCartOrder.CartItem;
+import org.nearbyshops.core.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
-import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.core.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 
@@ -127,7 +128,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
 
 
-//            imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//            imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())
 //                    + item.getItemImageURL();
 
             String imagePath = PrefGeneral.getServiceURL(context)

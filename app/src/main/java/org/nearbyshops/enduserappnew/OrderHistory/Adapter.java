@@ -6,11 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderOrder;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.LoadingViewHolder;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenDataFullScreen;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreenFullScreenNew;
+
+import org.nearbyshops.core.Model.ModelCartOrder.Order;
+import org.nearbyshops.enduserappnew.ViewHoldersForOrders.ViewHolderOrder;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.LoadingViewHolder;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderEmptyScreenFullScreen;
 
 import java.util.List;
 
@@ -23,9 +24,10 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     public static final int VIEW_TYPE_ORDER = 1;
-
     public static final int VIEW_TYPE_EMPTY_SCREEN = 3;
     private final static int VIEW_TYPE_PROGRESS_BAR = 6;
+
+
 
 
     private boolean loadMore;
@@ -62,7 +64,7 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(viewType==VIEW_TYPE_EMPTY_SCREEN)
         {
-            return ViewHolderEmptyScreenFullScreenNew.create(parent,context);
+            return ViewHolderEmptyScreenFullScreen.create(parent,context);
         }
 
 
@@ -107,9 +109,9 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ((LoadingViewHolder) holderVH).setLoading(loadMore);
 
         }
-        else if(holderVH instanceof ViewHolderEmptyScreenFullScreenNew)
+        else if(holderVH instanceof ViewHolderEmptyScreenFullScreen)
         {
-            ((ViewHolderEmptyScreenFullScreenNew) holderVH).setItem((EmptyScreenDataFullScreen) dataset.get(position));
+            ((ViewHolderEmptyScreenFullScreen) holderVH).setItem((EmptyScreenDataFullScreen) dataset.get(position));
         }
 
     }

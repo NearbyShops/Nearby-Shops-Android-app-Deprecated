@@ -18,12 +18,16 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.Model.ModelStats.ItemStats;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+
+import org.nearbyshops.core.Model.Item;
+import org.nearbyshops.core.Model.ModelStats.ItemStats;
+import org.nearbyshops.core.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopsAvailableForItem.ShopItemByItem;
+
+
+
 
 
 public class ViewHolderItem extends RecyclerView.ViewHolder {

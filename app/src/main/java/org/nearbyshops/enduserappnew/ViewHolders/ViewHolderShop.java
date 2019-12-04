@@ -16,8 +16,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+
+import org.nearbyshops.core.Model.Shop;
+import org.nearbyshops.core.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 
 public class ViewHolderShop extends RecyclerView.ViewHolder{
@@ -72,13 +73,10 @@ public class ViewHolderShop extends RecyclerView.ViewHolder{
 
 
 
-
-
-
-    @OnClick(R.id.list_item)
+    @OnClick(R.id.list_item_shop)
     void listItemClick()
     {
-//        Intent shopHomeIntent = new Intent(context, ShopHome.class);
+//        Intent shopHomeIntent = new Intent(context, ShopDashboard.class);
 //        context.startActivity(shopHomeIntent);
 
         if(fragment instanceof ListItemClick)
@@ -130,7 +128,7 @@ public class ViewHolderShop extends RecyclerView.ViewHolder{
                 shopAddress.setText(shop.getShopAddress() + ", " + shop.getCity()  + " - " + String.valueOf(shop.getPincode()));
             }
 
-//                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())
 //                        + shop.getLogoImagePath();
 
             String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"

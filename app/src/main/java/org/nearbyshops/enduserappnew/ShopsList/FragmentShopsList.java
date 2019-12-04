@@ -21,22 +21,22 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.wunderlist.slidinglayer.SlidingLayer;
-import org.nearbyshops.enduserappnew.API.ShopService;
+
+import org.nearbyshops.core.API.ShopService;
+import org.nearbyshops.core.Model.ModelEndPoints.ShopEndPoint;
+import org.nearbyshops.core.Model.Shop;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCat;
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopEndPoint;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
-import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
+import org.nearbyshops.core.Preferences.PrefGeneral;
+import org.nearbyshops.core.Preferences.PrefLocation;
+import org.nearbyshops.core.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ShopsList.Interfaces.NotifyDatasetChanged;
-import org.nearbyshops.enduserappnew.ShopsList.Utility.PrefSortShopsByCategory;
-import org.nearbyshops.enduserappnew.ShopsList.Utility.SlidingLayerSortShops;
+import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortShopsByCategory;
+import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortShops;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShop;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,7 +54,7 @@ import java.util.ArrayList;
  * Created by sumeet on 25/5/16.
  */
 public class FragmentShopsList extends Fragment implements
-        SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifyDatasetChanged, NotifySearch ,
+        SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch ,
         ViewHolderShop.ListItemClick {
 
 
@@ -236,38 +236,6 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-
-
-        @Override
-        public void notifyDatasetChanged()
-        {
-//            if(dataset == null)
-//            {
-//                if(getActivity() instanceof GetDataset)
-//                {
-//                    dataset = ((GetDataset)getActivity()).getDataset();
-//                }
-//            }
-
-
-            setupRecyclerView();
-
-        }
-
-
-
-
-
-
-
-
-       /* void notifyDataset()
-        {
-            if(getActivity() instanceof NotifyDataset)
-            {
-                ((NotifyDataset)getActivity()).setDataset(dataset);
-            }
-        }*/
 
 
 
@@ -574,7 +542,6 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-                    notifyMapDataChanged();
                     swipeContainer.setRefreshing(false);
 
                 }
@@ -659,24 +626,6 @@ public class FragmentShopsList extends Fragment implements
     public void notifySortChanged() {
         makeRefreshNetworkCall();
     }
-
-
-
-
-
-
-    private void notifyMapDataChanged()
-    {
-        Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("map_tag");
-
-        if(fragment instanceof NotifyDatasetChanged)
-        {
-            ((NotifyDatasetChanged)fragment).notifyDatasetChanged();
-        }
-    }
-
-
-
 
 
 

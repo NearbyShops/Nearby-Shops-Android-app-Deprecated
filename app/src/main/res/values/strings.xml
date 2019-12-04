@@ -5,6 +5,14 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_settings">Settings</string>
     <string name="dialog_dismissed">Dismissed !</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="notice_account_deactivated">Notice :\nYour account is not activated. Please contact support to activate your account.</string>
+    <string name="low_balance_message">Alert : Your service is stopped due to low balance in your account. Please add balance to start your service.</string>
+
+
+    <string name="notice_low_balance">Attention : Your services are paused due to low balance in your account please add balance to resume your services !</string>
+
 
     <string name="phone_registration_message">Currently registration through phone is available only for Indian Phone Numbers. We are making efforts to extend the phone service for all the countries !.</string>
 
@@ -37,7 +45,6 @@
     <string name="delivery_type_description_home_delivery">Home Delivery - This order will be delivered to your home by the shop owner.</string>
 
 
-
     <!--API Response Messages-->
 
     <string name="udate_successful_api_response">Update Successful !</string>
@@ -45,12 +52,8 @@
     <string name="api_response_no_item_updated">No item updated !</string>
 
 
-
-
-
     <!--Content Description-->
     <string name="content_description_close_dialog">Close Dialog</string>
-
 
 
     <!--Rate Review Dialog Messages-->
@@ -63,8 +66,6 @@
 
     <string name="sort_by_ascending">Ascending</string>
     <string name="sort_by_descending">Descending</string>
-
-
 
 
     <string name="network_request_failed">Network request failed. Please check your connection !</string>

@@ -22,17 +22,18 @@ import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduserappnew.API.CartItemService;
+
+import org.nearbyshops.core.API.CartItemService;
+import org.nearbyshops.core.Model.Item;
+import org.nearbyshops.core.Model.ModelCartOrder.CartItem;
+import org.nearbyshops.core.Model.ModelRoles.User;
+import org.nearbyshops.core.Model.ModelStats.CartStats;
+import org.nearbyshops.core.Model.Shop;
+import org.nearbyshops.core.Model.ShopItem;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Model.ShopItem;
-import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
+import org.nearbyshops.core.Preferences.PrefGeneral;
+import org.nearbyshops.core.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.InputFilterMinMax;
 
@@ -429,7 +430,7 @@ public class ViewHolderShopItemSimplifiedBackup extends RecyclerView.ViewHolder{
 
 
 
-//                imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//                imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())
 //                        + item.getItemImageURL();
 
                 imagePath = PrefGeneral.getServiceURL(context)
@@ -594,7 +595,7 @@ public class ViewHolderShopItemSimplifiedBackup extends RecyclerView.ViewHolder{
             {
                 // Delete from cart
 
-                //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
+                //UtilityGeneral.getEndUserID(MyApplicationCoreNew.getAppContext())
                 User endUser = PrefLogin.getUser(context);
                 if(endUser==null)
                 {
@@ -674,7 +675,7 @@ public class ViewHolderShopItemSimplifiedBackup extends RecyclerView.ViewHolder{
             {
                 // Update from cart
 
-                //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
+                //UtilityGeneral.getEndUserID(MyApplicationCoreNew.getAppContext())
                 User endUser = PrefLogin.getUser(context);
 
                 if(endUser==null)

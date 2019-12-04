@@ -36,12 +36,27 @@ public class OrderHistory extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
+
+        boolean filterByUserID = false;
+        boolean filterByShopID = false;
+
+
+        if(getIntent().getBooleanExtra(OrderHistory.IS_FILTER_BY_SHOP,false))
+        {
+            filterByShopID = true;
+        }
+
+
+
         if (getSupportFragmentManager().findFragmentByTag("order_history_fragment") == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, new OrdersHistoryFragment(), "order_history_fragment")
+                    .replace(R.id.fragment_container,
+                            OrdersHistoryFragment.newInstance(false,filterByShopID,false),
+                            "order_history_fragment")
                     .commit();
         }
+
 
     }
 

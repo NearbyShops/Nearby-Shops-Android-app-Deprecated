@@ -53,7 +53,7 @@ public class EditProfile extends AppCompatActivity implements NotifyChangePasswo
 //            {
 //                getSupportFragmentManager()
 //                        .beginTransaction()
-//                        .add(R.id.fragment_container,new FragmentEditProfileGlobal(),TAG_FRAGMENT_EDIT)
+//                        .add(R.id.fragment_container,new FragmentEditProfile(),TAG_FRAGMENT_EDIT)
 //                        .commit();
 //
 //            }
@@ -68,7 +68,7 @@ public class EditProfile extends AppCompatActivity implements NotifyChangePasswo
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragment_container,new FragmentEditProfileGlobal(),TAG_FRAGMENT_EDIT)
+                    .add(R.id.fragment_container,new FragmentEditProfile(),TAG_FRAGMENT_EDIT)
                     .commit();
         }
     }

@@ -24,14 +24,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
-import org.nearbyshops.enduserappnew.API.UserService;
+
+import org.nearbyshops.core.API.UserService;
+import org.nearbyshops.core.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
-import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfileGlobal;
+import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.core.Preferences.PrefGeneral;
+import org.nearbyshops.core.Preferences.PrefLogin;
+import org.nearbyshops.core.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.SellerModule.ShopAdminHome.ShopAdminHome;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -113,6 +116,9 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         }
 
 
+        bindDashboard();
+
+
         return rootView;
     }
 
@@ -138,12 +144,57 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
+    @BindView(R.id.dashboard_name) TextView dashboardName;
+    @BindView(R.id.dashboard_description) TextView dashboardDescription;
+
+
+    private void bindDashboard()
+    {
+        User user = PrefLogin.getUser(getActivity());
+
+        if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+        {
+            dashboardName.setText("Shop Dashboard");
+            dashboardDescription.setText("Press here to access the shop dashboard !");
+        }
+        else if(user.getRole()==User.ROLE_END_USER_CODE)
+        {
+            dashboardName.setText("Create Shop : Become a Seller");
+            dashboardDescription.setText("Press here to create a shop and become a seller on currently selected market !");
+        }
+
+    }
+
+
+
+
+
+
+    @OnClick(R.id.dashboard_by_role)
+    void dashboardClick()
+    {
+        User user = PrefLogin.getUser(getActivity());
+
+        if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+        {
+
+            Intent intent = new Intent(getActivity(), ShopAdminHome.class);
+            startActivity(intent);
+        }
+        else
+        {
+
+        }
+    }
+
+
+
 
     @OnClick({R.id.profile_image, R.id.user_profile})
     void editProfileClick()
     {
         Intent intent = new Intent(getActivity(), EditProfile.class);
-        intent.putExtra(FragmentEditProfileGlobal.EDIT_MODE_INTENT_KEY, FragmentEditProfileGlobal.MODE_UPDATE);
+        intent.putExtra(FragmentEditProfile.EDIT_MODE_INTENT_KEY, FragmentEditProfile.MODE_UPDATE);
         startActivity(intent);
 
     }

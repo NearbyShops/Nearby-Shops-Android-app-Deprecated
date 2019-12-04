@@ -16,17 +16,18 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
 import okhttp3.ResponseBody;
-import org.nearbyshops.enduserappnew.API.CartItemService;
-import org.nearbyshops.enduserappnew.API.CartStatsService;
+
+import org.nearbyshops.core.API.CartItemService;
+import org.nearbyshops.core.API.CartStatsService;
+import org.nearbyshops.core.Model.Item;
+import org.nearbyshops.core.Model.ModelCartOrder.CartItem;
+import org.nearbyshops.core.Model.ModelRoles.User;
+import org.nearbyshops.core.Model.ModelStats.CartStats;
+import org.nearbyshops.core.Model.Shop;
+import org.nearbyshops.core.Model.ShopItem;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Model.ShopItem;
-import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.core.Preferences.PrefGeneral;
+import org.nearbyshops.core.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.InputFilterMinMax;
@@ -56,7 +57,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
 
 
-    private Map<Integer,CartItem> cartItemMap = new HashMap<>();
+    private Map<Integer, CartItem> cartItemMap = new HashMap<>();
     private Map<Integer, CartStats> cartStatsMap = new HashMap<>();
 
 
@@ -296,7 +297,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
 
 
-//            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
+//            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())
 //                    + shop.getLogoImagePath();
 
 
@@ -671,7 +672,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
                 {
                     // Delete from cart
 
-                    //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
+                    //UtilityGeneral.getEndUserID(MyApplicationCoreNew.getAppContext())
 //                    User endUser = PrefLogin.getUser(context);
 //                    if(endUser==null)
 //                    {
@@ -736,7 +737,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
                 {
                     // Update from cart
 
-                    //UtilityGeneral.getEndUserID(MyApplication.getAppContext())
+                    //UtilityGeneral.getEndUserID(MyApplicationCoreNew.getAppContext())
 //                    User endUser = PrefLogin.getUser(context);
 //
 //                    if(endUser==null)

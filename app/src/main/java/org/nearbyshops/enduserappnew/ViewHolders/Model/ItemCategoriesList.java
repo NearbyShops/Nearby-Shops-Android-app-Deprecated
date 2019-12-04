@@ -1,6 +1,6 @@
 package org.nearbyshops.enduserappnew.ViewHolders.Model;
 
-import org.nearbyshops.enduserappnew.Model.ItemCategory;
+import org.nearbyshops.core.Model.ItemCategory;
 
 import java.util.List;
 

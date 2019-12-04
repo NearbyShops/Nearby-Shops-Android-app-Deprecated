@@ -757,6 +757,38 @@
                     app:layout_constraintTop_toBottomOf="@id/billing_info">
 
 
+
+                    <LinearLayout
+                        android:id="@+id/dashboard_by_role"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/darkGreen"
+                        android:minHeight="60dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/dashboard_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/white"
+                            android:textSize="24sp" />
+
+                        <!--Check the faq's before you contact support this will save your ti-->
+
+                        <TextView
+                            android:id="@+id/dashboard_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
+
+
                     <LinearLayout
                         android:id="@+id/faqs_block"
                         android:layout_width="match_parent"

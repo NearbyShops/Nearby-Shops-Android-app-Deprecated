@@ -5,6 +5,13 @@ import android.content.Context;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 import com.mapbox.mapboxsdk.Mapbox;
+
+import org.nearbyshops.core.Model.ModelCartOrder.Order;
+import org.nearbyshops.core.MyApplicationCoreNew;
+
+import java.util.ArrayList;
+
+
 //import com.onesignal.OSNotification;
 //import com.onesignal.OSNotificationOpenResult;
 //import com.onesignal.OneSignal;
@@ -16,6 +23,8 @@ import com.mapbox.mapboxsdk.Mapbox;
 public class MyApplication extends MultiDexApplication {
 
     private static Context context;
+
+
 
 
 
@@ -46,6 +55,9 @@ public class MyApplication extends MultiDexApplication {
         super.onCreate();
 
         MyApplication.context = getApplicationContext();
+        MyApplicationCoreNew.context = getApplicationContext();
+
+
 
         //LeakCanary.install(this);
 
@@ -84,10 +96,10 @@ public class MyApplication extends MultiDexApplication {
 //
 //
 //
-//                            if(notificationType== MyApplication.ORDER_PLACED ||
-//                                    notificationType== MyApplication.ORDER_PACKED ||
-//                                    notificationType== MyApplication.ORDER_CONFIRMED||
-//                                    notificationType== MyApplication.ORDER_OUT_FOR_DELIVERY)
+//                            if(notificationType== MyApplicationCoreNew.ORDER_PLACED ||
+//                                    notificationType== MyApplicationCoreNew.ORDER_PACKED ||
+//                                    notificationType== MyApplicationCoreNew.ORDER_CONFIRMED||
+//                                    notificationType== MyApplicationCoreNew.ORDER_OUT_FOR_DELIVERY)
 //                            {
 //                                PrefBadgeCount.saveBadgeCountOrders(PrefBadgeCount.getBadgeCountOrders(getApplicationContext())+1,
 //                                        getApplicationContext());
@@ -96,10 +108,10 @@ public class MyApplication extends MultiDexApplication {
 //
 //
 //
-////                            if(notificationType==MyApplication.PICKUP_STARTED ||
-////                                    notificationType== MyApplication.TRIP_STARTED ||
-////                                    notificationType==MyApplication.TRIP_FINISHED ||
-////                                    notificationType==MyApplication.TRIP_CANCELLED_BY_DRIVER)
+////                            if(notificationType==MyApplicationCoreNew.PICKUP_STARTED ||
+////                                    notificationType== MyApplicationCoreNew.TRIP_STARTED ||
+////                                    notificationType==MyApplicationCoreNew.TRIP_FINISHED ||
+////                                    notificationType==MyApplicationCoreNew.TRIP_CANCELLED_BY_DRIVER)
 ////                            {
 ////
 ////                                PrefBadgeCount.saveBadgeCountCarts(PrefBadgeCount.getBadgeCountCarts(getApplicationContext())+1,

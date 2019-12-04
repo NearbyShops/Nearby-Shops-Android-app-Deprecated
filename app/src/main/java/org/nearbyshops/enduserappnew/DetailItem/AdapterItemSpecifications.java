@@ -10,8 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import org.nearbyshops.enduserappnew.Model.ModelItemSpecs.ItemSpecificationName;
-import org.nearbyshops.enduserappnew.Model.ModelItemSpecs.ItemSpecificationValue;
+
+import org.nearbyshops.core.Model.ModelItemSpecs.ItemSpecificationName;
+import org.nearbyshops.core.Model.ModelItemSpecs.ItemSpecificationValue;
 import org.nearbyshops.enduserappnew.R;
 
 import java.util.List;

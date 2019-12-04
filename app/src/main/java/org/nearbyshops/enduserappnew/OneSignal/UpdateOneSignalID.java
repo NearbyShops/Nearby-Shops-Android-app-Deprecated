@@ -5,9 +5,10 @@ import android.content.Intent;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import okhttp3.ResponseBody;
-import org.nearbyshops.enduserappnew.API.UserService;
+
+import org.nearbyshops.core.API.UserService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.core.Preferences.PrefLogin;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

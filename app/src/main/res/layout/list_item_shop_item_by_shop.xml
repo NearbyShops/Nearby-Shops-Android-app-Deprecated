@@ -35,7 +35,7 @@
             android:id="@+id/item_title"
             android:textSize="20sp"
             android:layout_marginTop="5dp"
-            android:text="Item Name long form"
+            android:text="Item Name"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EndUserApp.iml" filepath="$PROJECT_DIR$/EndUserApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nbscore/EndUserApp-nbscorenew.iml" filepath="$PROJECT_DIR$/nbscore/EndUserApp-nbscorenew.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aNearbyShops-EndUserApp.iml" filepath="$PROJECT_DIR$/aNearbyShops-EndUserApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nbscore/nbscorenew.iml" filepath="$PROJECT_DIR$/nbscore/nbscorenew.iml" />
     </modules>
   </component>
 </project>

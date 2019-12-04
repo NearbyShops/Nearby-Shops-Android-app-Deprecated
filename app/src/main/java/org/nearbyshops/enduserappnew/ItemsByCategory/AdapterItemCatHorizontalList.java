@@ -5,8 +5,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategoryHorizontal;
-import org.nearbyshops.enduserappnew.Model.ItemCategory;
+
+import org.nearbyshops.core.Model.ItemCategory;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategorySmall;
 
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class AdapterItemCatHorizontalList extends RecyclerView.Adapter<RecyclerV
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        return ViewHolderItemCategoryHorizontal.create(viewGroup,context,fragment,this);
+        return ViewHolderItemCategorySmall.create(viewGroup,context,fragment,this);
     }
 
 
@@ -50,9 +51,9 @@ public class AdapterItemCatHorizontalList extends RecyclerView.Adapter<RecyclerV
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
 
-        if(viewHolder instanceof ViewHolderItemCategoryHorizontal)
+        if(viewHolder instanceof ViewHolderItemCategorySmall)
         {
-            ((ViewHolderItemCategoryHorizontal) viewHolder).bindItemCategory(dataset.get(i));
+            ((ViewHolderItemCategorySmall) viewHolder).bindItemCategory(dataset.get(i));
         }
     }
 

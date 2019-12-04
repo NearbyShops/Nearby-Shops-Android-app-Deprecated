@@ -4,7 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
+
+import org.nearbyshops.core.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.R;
 
 import static android.content.Context.MODE_PRIVATE;

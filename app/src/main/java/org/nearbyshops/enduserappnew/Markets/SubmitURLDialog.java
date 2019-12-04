@@ -20,10 +20,11 @@ import androidx.fragment.app.DialogFragment;
 import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
-import org.nearbyshops.enduserappnew.API_SDS.ServiceConfigService;
+
+import org.nearbyshops.core.API_SDS.ServiceConfigService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.core.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;

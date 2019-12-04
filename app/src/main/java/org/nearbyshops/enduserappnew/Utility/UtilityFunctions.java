@@ -1,17 +1,17 @@
 package org.nearbyshops.enduserappnew.Utility;
 
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-
-import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
+import org.nearbyshops.core.Model.ModelRoles.User;
+import org.nearbyshops.core.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.core.Preferences.PrefLogin;
+import org.nearbyshops.core.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.MyApplication;
 
 /**
  * Created by sumeet on 10/7/17.
@@ -55,6 +55,8 @@ public class UtilityFunctions {
 
 
 
+
+
     public static void updateFirebaseSubscriptions()
     {
         // update topic subscriptions for fcm
@@ -62,8 +64,8 @@ public class UtilityFunctions {
 
 //        FirebaseApp.getInstance().delete();
 
-        User user = PrefLogin.getUser(getApplicationContext());
-        ServiceConfigurationLocal localConfig = PrefServiceConfig.getServiceConfigLocal(getApplicationContext());
+        User user = PrefLogin.getUser(MyApplication.getAppContext());
+        ServiceConfigurationLocal localConfig = PrefServiceConfig.getServiceConfigLocal(MyApplication.getAppContext());
 
 
         if(user==null || localConfig==null || localConfig.getRt_market_id_for_fcm()==null)
@@ -72,7 +74,7 @@ public class UtilityFunctions {
         }
 
 
-        FirebaseApp.initializeApp(getApplicationContext());
+        FirebaseApp.initializeApp(MyApplication.getAppContext());
 
         String topic_name = localConfig.getRt_market_id_for_fcm()  + "end_user_" + user.getUserID();
 

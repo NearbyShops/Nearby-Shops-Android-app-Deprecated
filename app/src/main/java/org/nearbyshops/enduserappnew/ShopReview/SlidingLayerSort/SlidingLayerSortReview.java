@@ -11,8 +11,9 @@ import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import org.nearbyshops.core.Model.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.Model.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.R;
 
 /**

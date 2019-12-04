@@ -11,7 +11,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,24 +28,20 @@ import com.google.firebase.FirebaseApp;
 
 import org.nearbyshops.enduserappnew.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Interfaces.*;
-import org.nearbyshops.enduserappnew.ItemsByCategory.ItemsByCategoryFragment;
-import org.nearbyshops.enduserappnew.ItemsByCategory.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduserappnew.ItemsByCategory.ItemsByCatFragment;
 import org.nearbyshops.enduserappnew.LoginPlaceholder.FragmentSignInMessage;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Markets.MarketsFragmentNew;
 import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.OrderHistory.OrdersHistoryFragment;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.core.Preferences.PrefGeneral;
+import org.nearbyshops.core.Preferences.PrefLocation;
+import org.nearbyshops.core.Preferences.PrefLogin;
+import org.nearbyshops.core.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.ShopsList.FragmentShopsList;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-
-import java.util.Currency;
-import java.util.Locale;
 
 
 public class Home extends AppCompatActivity implements ShowFragment, NotifyAboutLogin, MarketSelected {
@@ -240,7 +235,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 {
                     bottomBar.getMenu().getItem(1).setChecked(true);
                 }
-                else if(fragment instanceof ItemsByCategoryFragment)
+                else if(fragment instanceof ItemsByCatFragment)
                 {
 
                     bottomBar.getMenu().getItem(0).setChecked(true);
@@ -469,11 +464,12 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
         else {
 
 
+
             if(getSupportFragmentManager().findFragmentByTag(TAG_ORDERS_FRAGMENT)==null)
             {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, new OrdersHistoryFragment(), TAG_ORDERS_FRAGMENT)
+                        .replace(R.id.fragment_container, OrdersHistoryFragment.newInstance(true,false,false), TAG_ORDERS_FRAGMENT)
                         .commit();
 
             }
@@ -670,7 +666,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
             if (getSupportFragmentManager().findFragmentByTag(TAG_ITEMS_FRAGMENT) == null) {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, new ItemsByCategoryFragment(), TAG_ITEMS_FRAGMENT)
+                        .replace(R.id.fragment_container, new ItemsByCatFragment(), TAG_ITEMS_FRAGMENT)
                         .commit();
             }
 
@@ -681,7 +677,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 //            getSupportFragmentManager()
 //                    .beginTransaction()
-//                    .replace(R.id.fragment_container, new ItemsByCategoryFragment(), TAG_ITEMS_FRAGMENT)
+//                    .replace(R.id.fragment_container, new ItemsByCatFragment(), TAG_ITEMS_FRAGMENT)
 //                    .addToBackStack("items")
 //                    .commit();
 

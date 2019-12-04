@@ -2,7 +2,7 @@ package org.nearbyshops.enduserappnew.DaggerComponents;
 
 
 import dagger.Component;
-import org.jetbrains.annotations.NotNull;
+
 import org.nearbyshops.enduserappnew.CartItemList.CartItemAdapter;
 import org.nearbyshops.enduserappnew.CartItemList.CartItemListActivity;
 import org.nearbyshops.enduserappnew.CartsList.CartsListFragment;
@@ -11,16 +11,30 @@ import org.nearbyshops.enduserappnew.DaggerModules.AppModule;
 import org.nearbyshops.enduserappnew.DaggerModules.NetModule;
 import org.nearbyshops.enduserappnew.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserappnew.EditAddress.EditAddressFragment;
+import org.nearbyshops.enduserappnew.EditItem.EditItemFragmentNew;
+import org.nearbyshops.enduserappnew.EditItemImage.EditItemImageFragment;
 import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.FragmentChangeEmail;
 import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.FragmentVerifyEmail;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePassword.FragmentChangePassword;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.FragmentChangePhone;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.FragmentVerifyPhone;
-import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfileGlobal;
+import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
+import org.nearbyshops.enduserappnew.EditShop.EditShopFragment;
+import org.nearbyshops.enduserappnew.EditShopImage.EditShopImageFragment;
 import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.DetailItem.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ImagesItem.ItemImageListFragment;
-import org.nearbyshops.enduserappnew.ItemsByCategory.ItemsByCategoryFragment;
+import org.nearbyshops.enduserappnew.ItemsByCategory.ItemsByCatFragment;
+import org.nearbyshops.enduserappnew.SellerModule.ItemsDatabase.ItemsDatabaseFragment;
+import org.nearbyshops.enduserappnew.SellerModule.ItemsInShopByCatSeller.ItemsInShopByCatSellerFragment;
+import org.nearbyshops.enduserappnew.SellerModule.ItemsInShopSeller.ItemsInShopFragment;
+import org.nearbyshops.enduserappnew.SellerModule.OrdersInventory.Fragment.OrdersInventoryFragment;
+import org.nearbyshops.enduserappnew.SellerModule.QuickStockEditor.FragmentShopItem;
+import org.nearbyshops.enduserappnew.SellerModule.SelectDeliveryGuy.SelectDeliveryFragment;
+import org.nearbyshops.enduserappnew.SellerModule.ShopAdminHome.ShopAdminHomeFragment;
+import org.nearbyshops.enduserappnew.SellerModule.StaffListDelivery.DeliveryGuyListFragment;
+import org.nearbyshops.enduserappnew.Transactions.TransactionFragment;
+import org.nearbyshops.enduserappnew.ViewHolderSeller.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplified;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplifiedBackup;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCatFragment;
@@ -39,8 +53,6 @@ import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderSavedMarket;
 import org.nearbyshops.enduserappnew.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.DetailOrder.FragmentOrderDetail;
-import org.nearbyshops.enduserappnew.OrderHistory.Deprecated.OrdersFragment;
-import org.nearbyshops.enduserappnew.OrderHistory.Deprecated.OrdersFragmentKotlin;
 import org.nearbyshops.enduserappnew.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.ProfileFragment;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
@@ -54,12 +66,12 @@ import org.nearbyshops.enduserappnew.ShopReview.ShopReviewAdapter;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewStats;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
 import org.nearbyshops.enduserappnew.ShopsList.FragmentShopsList;
-import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentCheckResetCode;
-import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentEnterCredentials;
-import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentResetPassword;
-import org.nearbyshops.enduserappnew.SignUp.FragmentEmailOrPhone;
-import org.nearbyshops.enduserappnew.SignUp.FragmentEnterPassword;
-import org.nearbyshops.enduserappnew.SignUp.FragmentVerify;
+import org.nearbyshops.core.SignUp.ForgotPassword.FragmentCheckResetCode;
+import org.nearbyshops.core.SignUp.ForgotPassword.FragmentEnterCredentials;
+import org.nearbyshops.core.SignUp.ForgotPassword.FragmentResetPassword;
+import org.nearbyshops.core.SignUp.FragmentEmailOrPhone;
+import org.nearbyshops.core.SignUp.FragmentEnterPassword;
+import org.nearbyshops.core.SignUp.FragmentVerify;
 
 
 import javax.inject.Singleton;
@@ -147,7 +159,7 @@ public interface NetComponent {
 
     void Inject(FragmentVerifyPhone fragmentVerifyPhone);
 
-    void Inject(FragmentEditProfileGlobal fragmentEditProfileGlobal);
+    void Inject(FragmentEditProfile fragmentEditProfile);
 
     void Inject(ProfileFragment profileFragment);
 
@@ -156,8 +168,6 @@ public interface NetComponent {
     void Inject(ShopReviewAdapter shopReviewAdapter);
 
     void Inject(ShopReviewStats shopReviewStats);
-
-    void Inject(@NotNull OrdersFragmentKotlin ordersFragmentKotlin);
 
     void Inject(FragmentEmailOrPhone fragmentEmailOrPhone);
 
@@ -172,12 +182,9 @@ public interface NetComponent {
     void Inject(FragmentResetPassword fragmentResetPassword);
 
 
-    void Inject(ItemsByCategoryFragment itemsByCategoryFragment);
+    void Inject(ItemsByCatFragment itemsByCatFragment);
 
     void Inject(ItemsInShopByCatFragment itemsInShopByCatFragment);
-
-
-    void Inject(OrdersFragment ordersFragment);
 
 
     void Inject(ViewHolderShopItemSimplified viewHolderShopItemSimplified);
@@ -185,4 +192,34 @@ public interface NetComponent {
     void Inject(ViewHolderShopItemSimplifiedBackup viewHolderShopItemSimplifiedBackup);
 
     void Inject(AdapterBackup adapterBackup);
+
+    void Inject(ViewHolderShopItemSeller viewHolderShopItemSeller);
+
+    void Inject(org.nearbyshops.enduserappnew.SellerModule.ItemsInShopByCatSeller.Adapter adapter);
+
+    void Inject(ItemsInShopFragment itemsInShopFragment);
+
+    void Inject(ItemsDatabaseFragment itemsDatabaseFragment);
+
+    void Inject(ItemsInShopByCatSellerFragment itemsInShopByCatSellerFragment);
+
+    void Inject(OrdersInventoryFragment ordersInventoryFragment);
+
+    void Inject(DeliveryGuyListFragment deliveryGuyListFragment);
+
+    void Inject(SelectDeliveryFragment selectDeliveryFragment);
+
+    void Inject(FragmentShopItem fragmentShopItem);
+
+    void Inject(ShopAdminHomeFragment shopAdminHomeFragment);
+
+    void Inject(EditShopFragment editShopFragment);
+
+    void Inject(EditShopImageFragment editShopImageFragment);
+
+    void Inject(TransactionFragment transactionFragment);
+
+    void Inject(EditItemImageFragment editItemImageFragment);
+
+    void Inject(EditItemFragmentNew editItemFragmentNew);
 }

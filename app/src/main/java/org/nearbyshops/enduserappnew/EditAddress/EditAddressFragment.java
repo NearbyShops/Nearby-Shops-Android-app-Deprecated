@@ -19,11 +19,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
-import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
+
+import org.nearbyshops.core.API.DeliveryAddressService;
+import org.nearbyshops.core.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.DeliveryAddress.PickLocation.PickLocation;
-import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.LocationPicker.PickLocation;
+import org.nearbyshops.core.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
@@ -35,7 +36,7 @@ import javax.inject.Inject;
 import static android.app.Activity.RESULT_OK;
 
 //import org.nearbyshops.enduserappnew.DeliveryAddress.PickLocationActivity;
-//import org.nearbyshops.enduserappnew.DeliveryAddress.PickLocation.PickLocation;
+//import PickLocation;
 
 public class EditAddressFragment extends Fragment {
 

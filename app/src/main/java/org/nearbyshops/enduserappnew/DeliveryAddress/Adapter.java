@@ -3,10 +3,11 @@ package org.nearbyshops.enduserappnew.DeliveryAddress;
 import android.content.Context;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.nearbyshops.core.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeliveryAdddress;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.Models.EmptyScreenMarker;
-import org.nearbyshops.enduserappnew.ViewHolderCommon.ViewHolderEmptyScreenFullScreen;
-import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.EmptyScreenDataListItem;
+import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderEmptyScreenFullScreen;
 
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private Context context;
     private ViewHolderDeliveryAdddress.NotifyDeliveryAddress notifyDeliveryAddress;
 
+
+
     private final int VIEW_TYPE_EMPTY_SCREEN = 1;
     private final int VIEW_TYPE_DELIVERY_ADDRESS = 2;
 
@@ -31,6 +34,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         this.context = context;
         this.notifyDeliveryAddress = notifyDeliveryAddress;
     }
+
+
 
 
 
@@ -49,6 +54,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         return ViewHolderEmptyScreenFullScreen.create(parent,context);
     }
+
+
+
 
 
     @Override
@@ -84,7 +92,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         int viewType = 0;
 
-        if(dataset.get(position) instanceof EmptyScreenMarker)
+        if(dataset.get(position) instanceof EmptyScreenDataListItem)
         {
             return VIEW_TYPE_EMPTY_SCREEN;
         }

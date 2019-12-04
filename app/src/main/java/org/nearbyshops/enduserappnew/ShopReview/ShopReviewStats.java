@@ -11,10 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import org.nearbyshops.enduserappnew.API.ShopReviewService;
+
+import org.nearbyshops.core.API.ShopReviewService;
+import org.nearbyshops.core.Model.ModelReviewShop.ShopReviewStatRow;
+import org.nearbyshops.core.Model.Shop;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Model.ModelReviewShop.ShopReviewStatRow;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
