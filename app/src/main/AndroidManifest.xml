@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.nearbyshops.enduserappnew">
 
     <dist:module dist:instant="true" /> <!-- To auto-complete the email text field in the loginActivity form with the user's emails -->
@@ -17,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SellerModule.ShopAdminHome.ShopAdminHome"></activity>
+
         <!--
      Set custom default icon. This is used when no icon is set for incoming notification messages.
      See README(https://goo.gl/l4GJaQ) for more.
@@ -75,15 +76,25 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
+
+
+
+        <activity android:name=".aSellerModule.DeliveryGuyHome.DeliveryHome"/>
+
+        <activity android:name=".adminModule.AdminDashboard.AdminDashboard"/>
+        <activity android:name=".aSellerModule.ShopAdminHome.ShopAdminHome"/>
         <activity android:name=".ShopsAvailableForItem.ShopItemByItem" />
         <activity android:name=".Login.Login" />
         <activity android:name=".DetailItem.ItemDetail" />
         <activity android:name=".DetailShop.ShopDetail" />
-        <activity android:name=".ImagesShop.ShopImageList" />
-        <activity android:name=".ImageSliderShop.ImageSliderShop" />
-        <activity android:name=".ImagesItem.ItemImageList" />
-        <activity android:name=".ImageSlider.ImageSlider" />
+        <activity android:name=".ImageListForShop.ShopImageList" />
+        <activity android:name=".ImageSliderForShop.ImageSliderShop" />
+        <activity android:name=".ImageListForItem.ItemImageList" />
+        <activity android:name=".ImageSliderForItem.ImageSlider" />
         <activity android:name=".EditProfile.EditProfile" />
+
+
+
         <activity
             android:name=".EditProfile.ChangeEmail.ChangeEmail"
             android:theme="@style/AppTheme"
@@ -94,13 +105,17 @@
             android:windowSoftInputMode="adjustResize" />
 
 
+        <activity android:name=".EditShopStaffPermissions.EditShopStaffPermissions" />
+        <activity android:name=".EditStaffPermissions.EditStaffPermissions" />
 
+
+        <activity android:name=".UsersList.UsersList" />
         <activity android:name=".DeliveryAddress.DeliveryAddressActivity" />
         <activity android:name=".EditAddress.EditDeliveryAddress" />
         <activity android:name=".LocationPicker.PickLocation" />
         <activity android:name=".CartItemList.CartItemListActivity" />
         <activity android:name=".Checkout.PlaceOrderActivity" />
-        <activity android:name=".OrderHistory.OrderHistory" />
+<!--        <activity android:name=".OrderHistory.OrderHistory" />-->
         <activity android:name=".DetailMarket.MarketDetail" />
         <activity android:name=".DetailOrder.OrderDetail" />
         <activity android:name=".ItemsInShopByCategory.ItemsInShopByCat" />
@@ -108,32 +123,288 @@
         <activity android:name=".CartsList.CartsList" />
 
 
-        <activity android:name=".SellerModule.ItemsDatabase.ItemsDatabase" />
+<!--        <activity android:name=".aSellerModule.ItemsDatabase.ItemsDatabase" />-->
         <activity android:name=".EditItem.EditItem" />
         <activity android:name=".EditItemImage.EditItemImage" />
         <activity android:name=".EditShop.EditShop" />
         <activity android:name=".EditShopImage.EditShopImage" />
-        <activity android:name=".SellerModule.ItemsInShopByCatSeller.ItemsInShopByCat" />
-        <activity android:name=".SellerModule.ItemsInShopSeller.ItemsInShop" />
+<!--        <activity android:name=".aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat" />-->
+<!--        <activity android:name=".aSellerModule.ItemsInShopSeller.ItemsInShop" />-->
         <activity android:name=".LocationPickerWithRadius.PickDeliveryRange" />
-        <activity android:name=".SellerModule.OrdersInventory.HomeDeliveryInventory.HomeDelivery" />
-        <activity android:name=".SellerModule.OrdersInventory.PickFromShopInventory.PickFromShopInventory" />
-        <activity android:name=".SellerModule.QuickStockEditor.QuickStockEditor" />
-        <activity android:name=".SellerModule.SelectDeliveryGuy.SelectDeliveryGuy" />
-        <activity android:name=".SellerModule.ShopDashboard.ShopDashboard" />
+<!--        <activity android:name=".aSellerModule.OrdersInventory.HomeDeliveryInventory.HomeDelivery" />-->
+<!--        <activity android:name=".aSellerModule.OrdersInventory.PickFromShopInventory.PickFromShopInventory" />-->
+<!--        <activity android:name=".aSellerModule.QuickStockEditor.QuickStockEditor" />-->
+        <activity android:name=".aSellerModule.SelectDeliveryGuy.SelectDeliveryGuy" />
+
+        <activity android:name=".aSellerModule.ShopDashboard.ShopDashboard" />
         <activity android:name=".Transactions.Transactions" />
 
 
 
+
         <activity
-            android:name="org.nearbyshops.core.SignUp.ForgotPassword.ForgotPassword"
+            android:launchMode="singleTop"
+            android:name=".OrderHistory.OrderHistory"
+            android:label="Order History"
+            android:parentActivityName=".aSellerModule.ShopDashboard.ShopDashboard">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".aSellerModule.ShopDashboard.ShopDashboard" />
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+        </activity>
+
+
+
+
+        <activity
+            android:launchMode="singleTop"
+            android:name=".aSellerModule.OrdersInventory.PickFromShopInventory.PickFromShopInventory"
+            android:label="Pick From Shop Inventory"
+            android:parentActivityName=".aSellerModule.ShopDashboard.ShopDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".aSellerModule.ShopDashboard.ShopDashboard" />
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+
+        <activity
+            android:launchMode="singleTop"
+            android:name=".aSellerModule.OrdersInventory.HomeDeliveryInventory.HomeDelivery"
+            android:label="Home Delivery Inventory"
+            android:parentActivityName=".aSellerModule.ShopDashboard.ShopDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".aSellerModule.ShopDashboard.ShopDashboard" />
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+
+
+        <activity
+            android:name=".aSellerModule.QuickStockEditor.QuickStockEditor"
+            android:label="Quick Stock Editor"
+            android:parentActivityName=".aSellerModule.ShopDashboard.ShopDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".aSellerModule.ShopDashboard.ShopDashboard" />
+        </activity>
+
+
+
+
+        <activity
+            android:name=".aSellerModule.ItemsDatabase.ItemsDatabase"
+            android:label="Items Database"
+            android:launchMode="singleTop"
+            android:parentActivityName=".aSellerModule.ShopDashboard.ShopDashboard">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".aSellerModule.ShopDashboard.ShopDashboard" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+        <activity
+            android:name=".aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat"
+            android:label="Items In Shop"
+            android:launchMode="singleTop"
+            android:parentActivityName=".aSellerModule.ShopDashboard.ShopDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".aSellerModule.ShopDashboard.ShopDashboard" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+
+        <activity
+            android:name=".aSellerModule.ItemsInShopSeller.ItemsInShop"
+            android:label="Items In Shop"
+            android:launchMode="singleTop"
+            android:parentActivityName=".aSellerModule.ShopDashboard.ShopDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".aSellerModule.ShopDashboard.ShopDashboard" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+
+        <activity
+            android:name=".SignUp.ForgotPassword.ForgotPassword"
             android:label="Forgot Password"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="org.nearbyshops.core.SignUp.SignUp"
+            android:name=".SignUp.SignUp"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
+
+
+
+
+        <activity
+            android:name=".adminModule.ShopsList.ShopsDatabase"
+            android:label="Shops"
+            android:launchMode="singleTop"
+            android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".adminModule.AdminDashboard.AdminDashboard" />
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".EditItemCategory.EditItemCategory"
+            android:label="Edit Item Category"
+            android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".adminModule.AdminDashboard.AdminDashboard" />
+        </activity>
+
+
+
+        <activity
+            android:name=".adminModule.ItemsDatabaseForAdmin.ItemsDatabaseAdmin"
+            android:label="Items by Category"
+            android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".adminModule.AdminDashboard.AdminDashboard" />
+
+        </activity>
+
+
+        <activity
+            android:name=".EditShopForAdmin.EditShopForAdmin"
+            android:label="Edit Shop"
+            android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".adminModule.AdminDashboard.AdminDashboard" />
+        </activity>
+
+
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
+
+
+        <activity
+            android:name=".adminModule.SelectParent.ItemCategoriesParent"
+            android:label="Select Parent Category"
+            android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".adminModule.AdminDashboard.AdminDashboard" />
+
+        </activity>
+
+
+        <activity
+            android:name=".adminModule.AddCredit.AddCredit"
+            android:windowSoftInputMode="adjustPan" />
+
+
+
+        <activity
+            android:name=".EditServiceConfig.EditConfiguration"
+            android:label="Edit Configuration"
+            android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".adminModule.AdminDashboard.AdminDashboard" />
+        </activity>
+
+
+
+
+
+        <activity
+            android:launchMode="singleTop"
+            android:name=".aSellerModule.DeliveryPersonInventory.DeliveryGuyDashboard"
+            android:label="Delivery Inventory"
+            android:parentActivityName=".Home">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+
+
     </application>
 
 </manifest>

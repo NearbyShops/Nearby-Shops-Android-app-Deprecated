@@ -19,13 +19,13 @@ import com.hsalf.smilerating.SmileRating;
 import com.squareup.picasso.Picasso;
 import okhttp3.ResponseBody;
 
-import org.nearbyshops.core.API.ShopReviewService;
-import org.nearbyshops.core.Model.ModelReviewShop.ShopReview;
-import org.nearbyshops.core.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.API.ShopReviewService;
+import org.nearbyshops.enduserappnew.Model.ModelReviewShop.ShopReview;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
-import org.nearbyshops.core.Preferences.PrefGeneral;
-import org.nearbyshops.core.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -221,7 +221,9 @@ public class RateReviewDialog extends DialogFragment {
 
 
 
-    void cancel_button()
+
+
+    private void cancel_button()
     {
         dismiss();
         showToastMessage("Cancelled !");
@@ -241,21 +243,16 @@ public class RateReviewDialog extends DialogFragment {
 
 
 
-    void showToastMessage(String message)
+
+
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
 
-        /*if(unbinder!=null)
-        {
-            unbinder.unbind();
-        }*/
-    }
+
 
 
     public void setMode(ShopReview reviewForUpdate, boolean isModeEdit, int book_id)
@@ -272,7 +269,9 @@ public class RateReviewDialog extends DialogFragment {
 
 
 
-    void setMember()
+
+
+    private void setMember()
     {
 
         User endUser = PrefLogin.getUser(getActivity());
@@ -374,7 +373,10 @@ public class RateReviewDialog extends DialogFragment {
     }
 
 
-    void submitReview()
+
+
+
+    private void submitReview()
     {
         ShopReview bookReview = new ShopReview();
 //        bookReview.setReviewDate(new java.sql.Date(System.currentTimeMillis()));
@@ -417,7 +419,9 @@ public class RateReviewDialog extends DialogFragment {
 
 
 
-    void updateReview()
+
+
+    private void updateReview()
     {
         if(review_for_edit!=null)
         {

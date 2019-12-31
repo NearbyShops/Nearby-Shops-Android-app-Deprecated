@@ -16,18 +16,18 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.ButterKnife;
 import okhttp3.ResponseBody;
 
-import org.nearbyshops.core.API.DeliveryAddressService;
-import org.nearbyshops.core.Model.ModelRoles.User;
-import org.nearbyshops.core.Model.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditAddress.EditAddressFragment;
 import org.nearbyshops.enduserappnew.EditAddress.EditDeliveryAddress;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeliveryAdddress;
 import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.core.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -8,18 +8,18 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 
-import org.nearbyshops.core.API_SDS.ServiceConfigService;
-import org.nearbyshops.core.Model.ModelEndPoints.ServiceConfigurationEndPoint;
-import org.nearbyshops.core.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.API_SDS.ServiceConfigService;
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
 import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.EmptyScreenDataListItem;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.core.Preferences.PrefLocation;
-import org.nearbyshops.core.Preferences.PrefLoginGlobal;
-import org.nearbyshops.core.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
 
 import retrofit2.Call;
 import retrofit2.Callback;

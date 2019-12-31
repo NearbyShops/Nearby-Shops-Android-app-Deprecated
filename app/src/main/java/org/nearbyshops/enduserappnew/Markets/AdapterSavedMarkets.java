@@ -5,9 +5,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.core.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
-import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderSavedMarket;
+import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderMarketSmall;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class AdapterSavedMarkets extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        return ViewHolderSavedMarket.create(viewGroup,context,subscriber);
+        return ViewHolderMarketSmall.create(viewGroup,context,subscriber);
     }
 
 
@@ -47,9 +47,9 @@ public class AdapterSavedMarkets extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
 
-        if(viewHolder instanceof ViewHolderSavedMarket)
+        if(viewHolder instanceof ViewHolderMarketSmall)
         {
-            ((ViewHolderSavedMarket) viewHolder).setItem(dataset.get(i));
+            ((ViewHolderMarketSmall) viewHolder).setItem(dataset.get(i));
         }
     }
 

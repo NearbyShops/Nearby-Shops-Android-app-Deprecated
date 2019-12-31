@@ -7,11 +7,11 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.core.Model.ModelCartOrder.Order;
+import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.ViewHoldersForOrders.ViewHolderOrder;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.LoadingViewHolder;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.EmptyScreenDataFullScreen;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderEmptyScreenFullScreen;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.LoadingViewHolder;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 
 import java.util.List;
 

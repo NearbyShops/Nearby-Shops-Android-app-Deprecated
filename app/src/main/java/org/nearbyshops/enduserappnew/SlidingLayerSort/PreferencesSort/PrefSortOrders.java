@@ -37,12 +37,11 @@ public class PrefSortOrders {
 
 
 
+
     public static String getSort(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String sort_by = sharedPref.getString("sort_orders_home_delivery", SlidingLayerSortOrders.SORT_BY_DATE_TIME);
-
-        return sort_by;
+        return sharedPref.getString("sort_orders_home_delivery", SlidingLayerSortOrders.SORT_BY_DATE_TIME);
     }
 
 
@@ -68,9 +67,7 @@ public class PrefSortOrders {
     public static String getAscending(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String descending = sharedPref.getString("sort_descending_orders_hd", SlidingLayerSortOrders.SORT_DESCENDING);
-
-        return descending;
+        return sharedPref.getString("sort_descending_orders_hd", SlidingLayerSortOrders.SORT_DESCENDING);
     }
 
 
@@ -135,10 +132,7 @@ public class PrefSortOrders {
 
     public static int getFilterByDeliveryType(Context context)
     {
-
-
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-
         return sharedPref.getInt("filter_orders_by_delivery_type", SlidingLayerSortOrders.CLEAR_FILTERS_DELIVERY_TYPE);
     }
 

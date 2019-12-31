@@ -20,11 +20,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
 
-import org.nearbyshops.core.API.DeliveryAddressService;
-import org.nearbyshops.core.Model.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
+import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.LocationPicker.PickLocation;
-import org.nearbyshops.core.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
@@ -35,8 +35,7 @@ import javax.inject.Inject;
 
 import static android.app.Activity.RESULT_OK;
 
-//import org.nearbyshops.enduserappnew.DeliveryAddress.PickLocationActivity;
-//import PickLocation;
+
 
 public class EditAddressFragment extends Fragment {
 
@@ -91,7 +90,7 @@ public class EditAddressFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.content_edit_address, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_edit_address, container, false);
         ButterKnife.bind(this,rootView);
 
 //        setContentView(R.layout.activity_edit_address);
@@ -128,7 +127,10 @@ public class EditAddressFragment extends Fragment {
 
 
 
-    void setActionBarTitle()
+
+
+
+    private void setActionBarTitle()
     {
         if(getActivity() instanceof AppCompatActivity)
         {
@@ -165,11 +167,7 @@ public class EditAddressFragment extends Fragment {
 
 
 
-
-
-
-
-    void getDataFromViews()
+    private void getDataFromViews()
     {
         if(deliveryAddress!=null)
         {
@@ -187,7 +185,10 @@ public class EditAddressFragment extends Fragment {
     }
 
 
-    void bindDataToViews()
+
+
+
+    private void bindDataToViews()
     {
         if(deliveryAddress!=null)
         {
@@ -203,6 +204,10 @@ public class EditAddressFragment extends Fragment {
 
         }
     }
+
+
+
+
 
 
 
@@ -228,7 +233,11 @@ public class EditAddressFragment extends Fragment {
 
 
 
-    boolean validateData()
+
+
+
+
+    private boolean validateData()
     {
         boolean isValid = true;
 
@@ -296,7 +305,9 @@ public class EditAddressFragment extends Fragment {
 
 
 
-    void addDeliveryAddress()
+
+
+    private void addDeliveryAddress()
     {
         if(PrefLogin.getUser(getActivity())==null)
         {
@@ -412,11 +423,6 @@ public class EditAddressFragment extends Fragment {
     }
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-//        ButterKnife.unbind(this);
-    }
 
 
 

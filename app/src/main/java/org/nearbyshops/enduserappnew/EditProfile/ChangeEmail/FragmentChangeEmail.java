@@ -24,13 +24,13 @@ import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
-import org.nearbyshops.core.API.UserService;
-import org.nearbyshops.core.API_SDS.UserServiceGlobal;
-import org.nearbyshops.core.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.API_SDS.UserServiceGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.core.Preferences.PrefGeneral;
-import org.nearbyshops.core.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;

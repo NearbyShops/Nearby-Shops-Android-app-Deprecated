@@ -111,9 +111,9 @@
 
 
 
+
         <ImageView
             android:visibility="gone"
-            android:background="#55000000"
             android:id="@+id/more_options"
             android:padding="10dp"
             android:paddingTop="5dp"
@@ -124,7 +124,9 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_more_vert_black_48px"/>
+            app:srcCompat="@drawable/ic_more_vert_white_48px"/>
+
+
 
 
         <LinearLayout

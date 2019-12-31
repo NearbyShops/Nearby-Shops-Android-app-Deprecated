@@ -6,23 +6,23 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.core.Model.ItemCategory;
-import org.nearbyshops.core.Model.ModelCartOrder.CartItem;
-import org.nearbyshops.core.Model.ModelStats.CartStats;
-import org.nearbyshops.core.Model.Shop;
-import org.nearbyshops.core.Model.ShopItem;
+import org.nearbyshops.enduserappnew.Model.ItemCategory;
+import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
+import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
+import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ItemsByCategory.AdapterItemCatHorizontalList;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplified;
 
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShop;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.LoadingViewHolder;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.EmptyScreenDataFullScreen;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.HeaderTitle;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderEmptyScreenFullScreen;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderHeader;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderHorizontalList;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.LoadingViewHolder;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderHeader;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderHorizontalList;
 
 import java.util.HashMap;
 import java.util.List;

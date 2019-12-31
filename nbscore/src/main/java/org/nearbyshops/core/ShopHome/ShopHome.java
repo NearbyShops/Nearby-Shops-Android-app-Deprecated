@@ -15,9 +15,9 @@
 //import butterknife.OnClick;
 //import com.squareup.picasso.Picasso;
 //
-//import org.nearbyshops.core.Model.Shop;
-//import org.nearbyshops.core.Preferences.PrefGeneral;
-//import org.nearbyshops.core.Preferences.PrefLogin;
+//import Shop;
+//import PrefGeneral;
+//import PrefLogin;
 //import org.nearbyshops.core.R;
 //import org.nearbyshops.core.R2;
 //import org.nearbyshops.core.UtilityFunctions;

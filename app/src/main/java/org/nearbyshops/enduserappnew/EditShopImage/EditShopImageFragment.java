@@ -29,11 +29,11 @@ import com.squareup.picasso.Picasso;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
-import org.nearbyshops.core.API.ShopImageService;
-import org.nearbyshops.core.Model.Image;
-import org.nearbyshops.core.Model.ModelImages.ShopImage;
-import org.nearbyshops.core.Preferences.PrefGeneral;
-import org.nearbyshops.core.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.API.ShopImageService;
+import org.nearbyshops.enduserappnew.Model.Image;
+import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
 

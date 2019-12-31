@@ -11,19 +11,22 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.gson.Gson;
 
-import org.nearbyshops.core.Model.ModelRoles.User;
-import org.nearbyshops.core.Model.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.core.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
 import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.*;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.EmptyScreenDataListItem;
+import org.nearbyshops.enduserappnew.ViewHolderDeprecated.ViewHolderSavedMarketList;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.HeaderTitle;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderEmptyScreenListItem;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderHeader;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderHeader;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderSignIn;
+import org.nearbyshops.enduserappnew.ViewHolderUserProfile.ViewHolderUserProfile;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -88,8 +91,10 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         else if(viewType==view_type_saved_markets_list)
         {
 
-            return ViewHolderSavedMarketList.create(parent,fragment.getActivity(), (listItemMarketNotifications) fragment);
 
+
+            return ViewHolderSavedMarketList.create(parent,fragment.getActivity(), (listItemMarketNotifications) fragment);
+//            return ViewHolderHorizontalList.create(parent,fragment.getActivity(),fragment);
         }
         else if(viewType == view_type_user_profile)
         {
@@ -271,37 +276,16 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
 
-
     public void setData(List<Object> data)
     {
         dataset = data;
     }
 
 
-//
-//    void setTotalItemsCount(int totalItemsCount)
-//    {
-//        total_items_count = totalItemsCount;
-//    }
-
-
-
 
 
     @Override
     public int getItemCount() {
-
-
-//
-//        if(dataset!=null)
-//        {
-//            return (dataset.size()+1);
-//        }
-//        else
-//        {
-//            return 0;
-//        }
-
 
         return (dataset.size()+1);
     }
@@ -319,13 +303,5 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ButterKnife.bind(this,itemView);
         }
     }
-
-
-
-
-    public class SavedMarketsMarker{
-
-    }
-
 
 }

@@ -12,8 +12,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import org.nearbyshops.core.Model.Item;
-import org.nearbyshops.core.Model.ShopItem;
+import org.nearbyshops.enduserappnew.Model.Item;
+import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortItemsInShop;
 import org.nearbyshops.enduserappnew.R;
@@ -80,7 +80,7 @@ public class SlidingLayerSortItemsInShop extends Fragment {
 
 
     void loadDefaultSort() {
-//        String[] sort_options = UtilitySortShops.getSort(getActivity());
+//        String[] sort_options = PrefSortShops.getSort(getActivity());
 
         currentSort = PrefSortItemsInShop.getSort(getActivity());
         currentAscending = PrefSortItemsInShop.getAscending(getActivity());

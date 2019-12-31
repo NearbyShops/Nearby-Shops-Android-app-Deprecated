@@ -41,11 +41,12 @@
             android:layout_height="1dp" />
 
 
+<!--        android:text="Items"-->
         <TextView
             android:padding="5dp"
             android:layout_marginTop="10dp"
             android:id="@+id/header_items"
-            android:text="Items"
+            android:text="Step 1 : Add Items to Shop"
             android:textSize="17sp"
             android:background="@color/light_grey"
             android:layout_width="match_parent"
@@ -100,12 +101,14 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
 
+
+<!--        android:text="Items in Shop"-->
         <TextView
             android:layout_below="@id/borderOne"
             android:padding="5dp"
             android:layout_marginTop="10dp"
             android:id="@+id/header_stock_items"
-            android:text="Items in Shop"
+            android:text="Step 2 : Set Prices and Availability"
             android:textSize="17sp"
             android:background="@color/light_grey"
             android:layout_width="match_parent"
@@ -250,7 +253,7 @@
             android:layout_marginTop="10dp"
             android:id="@+id/header_delivery"
             android:layout_below="@id/border_delivery"
-            android:text="Orders and Delivery"
+            android:text="Step 3 : Manage Orders and Delivery"
             android:textSize="17sp"
             android:background="@color/light_grey"
             android:layout_width="match_parent"
@@ -393,7 +396,7 @@
             android:layout_marginTop="10dp"
             android:id="@+id/header_accounts"
             android:layout_below="@id/bordertwo"
-            android:text="Staff Accounts"
+            android:text="Accounts and Profile"
             android:textSize="17sp"
             android:background="@color/light_grey"
             android:layout_width="match_parent"
@@ -477,7 +480,7 @@
                     android:textSize="@dimen/menu_item_text_size"
                     android:layout_alignParentBottom="true"
                     android:textColor="#ffffff"
-                    android:text="Delivery Accounts"
+                    android:text="Shop Profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </RelativeLayout>

@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 
-import org.nearbyshops.core.Model.ModelCartOrder.Order;
-import org.nearbyshops.core.Model.ModelStatusCodes.OrderStatusHomeDelivery;
+import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
+import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDelivery;
 import org.nearbyshops.enduserappnew.R;
 
 import butterknife.BindView;
@@ -256,7 +256,6 @@ public class ViewHolderOrderButtonSingle extends ViewHolderOrder {
 
         void confirmOrderHD(Order order, int position, TextView button, ProgressBar progressBar);
         void setOrderPackedHD(Order order, int position, TextView button, ProgressBar progressBar);
-
 
         void acceptHandover(Order order, int position, TextView button, ProgressBar progressBar);
         void pickupOrder(Order order, int position, TextView button, ProgressBar progressBar);

@@ -31,13 +31,13 @@ import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
 
-import org.nearbyshops.core.API.ShopService;
-import org.nearbyshops.core.Model.Image;
-import org.nearbyshops.core.Model.Shop;
-import org.nearbyshops.core.Preferences.PrefGeneral;
-import org.nearbyshops.core.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.API.ShopService;
+import org.nearbyshops.enduserappnew.Model.Image;
+import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ImagesShop.ShopImageList;
+import org.nearbyshops.enduserappnew.ImageListForShop.ShopImageList;
 import org.nearbyshops.enduserappnew.LocationPickerWithRadius.PickDeliveryRange;
 import org.nearbyshops.enduserappnew.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
@@ -161,7 +161,7 @@ public class EditShopFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.content_edit_shop_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_edit_shop_fragment, container, false);
 
         ButterKnife.bind(this,rootView);
 

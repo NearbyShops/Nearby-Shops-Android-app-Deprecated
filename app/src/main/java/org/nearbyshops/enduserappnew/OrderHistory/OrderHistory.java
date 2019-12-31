@@ -11,7 +11,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
-import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserappnew.R;
 
 
@@ -19,10 +18,7 @@ public class OrderHistory extends AppCompatActivity {
 
 
 
-//    @BindView(R.id.slidingLayer)
-//    SlidingLayer slidingLayer;
 
-    public static final String TAG_SLIDING_LAYER = "sliding_layer";
 
     public static final String IS_FILTER_BY_SHOP = "IS_FILTER_BY_SHOP";
 
@@ -32,7 +28,7 @@ public class OrderHistory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_history_new);
+        setContentView(R.layout.activity_fragment_container);
         ButterKnife.bind(this);
 
 
@@ -106,7 +102,6 @@ public class OrderHistory extends AppCompatActivity {
 
 
 
-
         return true;
     }
 
@@ -128,8 +123,6 @@ public class OrderHistory extends AppCompatActivity {
 
             Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
-
-
             if(fragment instanceof NotifySearch)
             {
                 ((NotifySearch) fragment).search(query);
@@ -137,19 +130,6 @@ public class OrderHistory extends AppCompatActivity {
         }
     }
 
-
-
-//    @Override
-    public void NotifyLogin() {
-
-
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-
-        if(fragment instanceof RefreshFragment)
-        {
-            ((RefreshFragment) fragment).refreshFragment();
-        }
-    }
 
 
 }

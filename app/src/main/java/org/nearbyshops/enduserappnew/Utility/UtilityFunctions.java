@@ -1,16 +1,19 @@
 package org.nearbyshops.enduserappnew.Utility;
 
 
+import android.content.Context;
+import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.nearbyshops.core.Model.ModelRoles.User;
-import org.nearbyshops.core.Model.ModelServiceConfig.ServiceConfigurationLocal;
-import org.nearbyshops.core.Preferences.PrefLogin;
-import org.nearbyshops.core.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.MyApplication;
 
 /**
@@ -22,8 +25,11 @@ public class UtilityFunctions {
     public static final String TAG_LOG = "app_log";
 
 
-    /* Utility Functions */
 
+
+
+
+    /* Utility Functions */
     public static Gson provideGson() {
 
         GsonBuilder gsonBuilder = new GsonBuilder();
@@ -89,6 +95,16 @@ public class UtilityFunctions {
                 });
 
     }
+
+
+
+
+
+    public static void showToastMessage(String message, Context context)
+    {
+        Toast.makeText(context,message, Toast.LENGTH_SHORT).show();
+    }
+
 
 
 }

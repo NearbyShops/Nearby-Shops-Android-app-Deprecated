@@ -24,7 +24,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 
 import org.nearbyshops.enduserappnew.AppConfig;
-import org.nearbyshops.core.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.R;
 
 

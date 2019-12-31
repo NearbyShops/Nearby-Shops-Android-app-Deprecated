@@ -30,11 +30,11 @@ import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
 
-import org.nearbyshops.core.API.ItemImageService;
-import org.nearbyshops.core.Model.Image;
-import org.nearbyshops.core.Model.ModelImages.ItemImage;
-import org.nearbyshops.core.Preferences.PrefGeneral;
-import org.nearbyshops.core.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.API.ItemImageService;
+import org.nearbyshops.enduserappnew.Model.Image;
+import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
 

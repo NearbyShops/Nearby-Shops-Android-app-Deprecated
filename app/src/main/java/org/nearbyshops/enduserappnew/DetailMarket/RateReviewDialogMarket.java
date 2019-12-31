@@ -21,13 +21,13 @@ import com.squareup.picasso.Picasso;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
-import org.nearbyshops.core.API_SDS.MarketReviewService;
-import org.nearbyshops.core.Model.ModelReviewMarket.MarketReview;
-import org.nearbyshops.core.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.API_SDS.MarketReviewService;
+import org.nearbyshops.enduserappnew.Model.ModelReviewMarket.MarketReview;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
-import org.nearbyshops.core.Preferences.PrefLoginGlobal;
-import org.nearbyshops.core.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -230,7 +230,8 @@ public class RateReviewDialogMarket extends DialogFragment {
 
 
 
-    void cancel_button()
+
+    private void cancel_button()
     {
         dismiss();
         showToastMessage("Cancelled !");
@@ -250,7 +251,10 @@ public class RateReviewDialogMarket extends DialogFragment {
 
 
 
-    void showToastMessage(String message)
+
+
+
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
@@ -281,7 +285,9 @@ public class RateReviewDialogMarket extends DialogFragment {
 
 
 
-    void setMember()
+
+
+    private void setMember()
     {
 
         User endUser = PrefLoginGlobal.getUser(getActivity());

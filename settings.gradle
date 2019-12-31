@@ -1,2 +1,1 @@
-include ':app', ':nbscorenew'
-project(':nbscorenew').projectDir = new File('nbscore')
+include ':app'

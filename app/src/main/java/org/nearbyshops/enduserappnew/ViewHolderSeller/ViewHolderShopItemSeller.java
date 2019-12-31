@@ -22,12 +22,12 @@ import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import com.squareup.picasso.Picasso;
 
 
-import org.nearbyshops.core.API.ShopItemService;
-import org.nearbyshops.core.Model.Item;
-import org.nearbyshops.core.Model.ShopItem;
+import org.nearbyshops.enduserappnew.API.ShopItemService;
+import org.nearbyshops.enduserappnew.Model.Item;
+import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.core.Preferences.PrefGeneral;
-import org.nearbyshops.core.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
 
 import java.util.List;

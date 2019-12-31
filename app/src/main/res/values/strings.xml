@@ -73,4 +73,36 @@
     <string name="sign_in_header">Log In to shop around you</string>
     <string name="default_notification_channel_id">nbs_end_user</string>
 
+
+
+    <string-array name="service_level">
+        <item>City</item>
+        <item>State</item>
+        <item>Country</item>
+        <item>Global</item>
+    </string-array>
+
+
+
+
+
+    <string name="leaf_node_item_category_usage">
+        You cannot have a sub Item Category Under a leaf node Item Category.
+        But you can have Items placed under a Leaf Node Item Category.
+        Leaf Node Item Category is an Item Category which can have Items placed under them but cannot have Sub Item Category / Item Categories under it.</string>
+
+    <!-- An Abstract Item Category can have only Sub Item Categories and cannot contain items under them. -->
+    <string name="abstract_category_usage">
+        Item Categories Marked as abstract cannot have Items placed under them.
+        But they can have Sub Item Categories Under them.
+        Consider An Example: You have an Item Category : Groceries.
+        You may not want to add / place items directly under Item Category : Groceries.
+        You may want to create sub Item Categories like Dairy\, Shampoo\, Soap under Groceries and then add items under these categories.
+        If i add item \"Milk\" directly under Groceries that will not make sense, but if i add \"Milk\" under Dairy that will make more sense.
+        There are certain Item Categories which doesn\'t need to contain Items placed directly under them and you will want to make it abstract.
+        Making the Item Categories as Abstract will protect / prevent someone from placing items directly under it.</string>
+
+
+
+
 </resources>

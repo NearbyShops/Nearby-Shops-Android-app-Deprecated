@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.EditProfile;
 
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -33,10 +34,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
-import org.nearbyshops.core.API.UserService;
-import org.nearbyshops.core.API_SDS.UserServiceGlobal;
-import org.nearbyshops.core.Model.Image;
-import org.nearbyshops.core.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.API_SDS.UserServiceGlobal;
+import org.nearbyshops.enduserappnew.Model.Image;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.ChangeEmail;
 import org.nearbyshops.enduserappnew.EditProfile.ChangeEmail.PrefChangeEmail;
@@ -44,11 +45,13 @@ import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.ChangePhone;
 import org.nearbyshops.enduserappnew.EditProfile.ChangePhone.PrefChangePhone;
 import org.nearbyshops.enduserappnew.EditProfile.Interfaces.NotifyChangePassword;
 import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.core.Preferences.PrefGeneral;
-import org.nearbyshops.core.Preferences.PrefLogin;
-import org.nearbyshops.core.Preferences.PrefLoginGlobal;
-import org.nearbyshops.core.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,95 +73,57 @@ public class FragmentEditProfile extends Fragment {
 
 
 
-    boolean isDestroyed = false;
-
+    private boolean isDestroyed = false;
 
     public static int PICK_IMAGE_REQUEST = 21;
-    // Upload the image after picked up
     private static final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 56;
 
-
-//    Validator validator;
-
-
-//    @Inject
-//    DeliveryGuySelfService deliveryService;
 
     @Inject
     UserService userService;
 
 
     // flag for knowing whether the image is changed or not
-    boolean isImageChanged = false;
-    boolean isImageRemoved = false;
+    private boolean isImageChanged = false;
+    private boolean isImageRemoved = false;
+
+
+
 
 
     // bind views
-    @BindView(R.id.uploadImage)
-    ImageView resultView;
-
-    @BindView(R.id.choice_male)
-    RadioButton choiceMale;
-    @BindView(R.id.choice_female)
-    RadioButton choiceFemale;
+    @BindView(R.id.uploadImage) ImageView resultView;
+    @BindView(R.id.choice_male) RadioButton choiceMale;
+    @BindView(R.id.choice_female) RadioButton choiceFemale;
 
 
-    @BindView(R.id.item_id)
-    EditText item_id;
-    @BindView(R.id.name)
-    EditText name;
-    @BindView(R.id.username)
-    EditText username;
-    @BindView(R.id.password)
-    EditText password;
-    @BindView(R.id.email)
-    EditText email;
-    @BindView(R.id.phone)
-    EditText phone;
-    @BindView(R.id.about)
-    EditText about;
-    @BindView(R.id.saveButton)
-    TextView saveButton;
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
+    @BindView(R.id.item_id) EditText item_id;
+    @BindView(R.id.name) EditText name;
+    @BindView(R.id.username) EditText username;
+    @BindView(R.id.password) EditText password;
+    @BindView(R.id.email) EditText email;
+    @BindView(R.id.phone) EditText phone;
+    @BindView(R.id.about) EditText about;
+    @BindView(R.id.saveButton) TextView saveButton;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
-//    @BindView(R.id.label_verify_email) TextView messageEmailVerified;
-//    @BindView(R.id.label_change_password)
-//    TextView messageChangePassword;
-//
-//    @BindView(R.id.label_add_or_change_email)
-//    TextView messageChangeEmail;
-//
-//    @BindView(R.id.label_add_or_change_phone)
-//    TextView messageChangePhone;
 
     @BindViews({R.id.label_change_password, R.id.label_add_or_change_email})
     List<TextView> label_instructions;
 
-//    static final ButterKnife.Action<View> GONE = new ButterKnife.Action<View>() {
-//        @Override
-//        public void apply(View view, int index) {
-//            view.setVisibility(View.GONE);
-//        }
-//    };
-//
-//    static final ButterKnife.Action<View> VISIBLE = new ButterKnife.Action<View>() {
-//        @Override
-//        public void apply(View view, int index) {
-//            view.setVisibility(View.VISIBLE);
-//        }
-//    };
 
     public static final String EDIT_MODE_INTENT_KEY = "edit_mode";
 
+    public static final int MODE_UPDATE_BY_ADMIN = 55;
     public static final int MODE_UPDATE = 52;
     public static final int MODE_ADD = 51;
 
-    int current_mode = MODE_ADD;
+    private int current_mode;
 
-//    DeliveryGuySelf deliveryGuySelf = new DeliveryGuySelf();
-    User user = new User();
+
+
+    private User user = new User();
 
 
 
@@ -182,7 +147,7 @@ public class FragmentEditProfile extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.content_edit_profile, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_edit_profile, container, false);
 
         ButterKnife.bind(this,rootView);
 
@@ -190,8 +155,6 @@ public class FragmentEditProfile extends Fragment {
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        ContextCompat.getColor(getActivity(), R.color.mapbox_blue);
 
 
 
@@ -202,9 +165,6 @@ public class FragmentEditProfile extends Fragment {
 
             if(current_mode == MODE_UPDATE)
             {
-
-//                getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false)
-
 
                 if(PrefGeneral.getMultiMarketMode(getActivity()))
                 {
@@ -217,33 +177,30 @@ public class FragmentEditProfile extends Fragment {
 
 
                 if(user !=null) {
-                    bindDataToViews();
+                    bindUserData();
                 }
             }
+            else if(current_mode==MODE_UPDATE_BY_ADMIN)
+            {
 
-//            showLogMessage("Inside OnCreateView - Saved Instance State !");
+                String jsonString = getActivity().getIntent().getStringExtra("user_profile");
+                user = UtilityFunctions.provideGson().fromJson(jsonString,User.class);
+                bindUserData();
+
+                getUserDetails();
+            }
         }
 
 
-        updateIDFieldVisibility();
+
+
+        updateFieldVisibility();
 
 
         if(user !=null) {
             loadImage(user.getProfileImagePath());
             System.out.println("Loading Image !");
-//            showLogMessage("Inside OnCreateView : DeliveryGUySelf : Not Null !");
         }
-
-
-
-        showLogMessage("Inside On Create View !");
-
-
-
-//        if(current_mode==MODE_UPDATE)
-//        {
-//            checkTokenExpired(false);
-//        }
 
 
         setActionBarTitle();
@@ -251,6 +208,66 @@ public class FragmentEditProfile extends Fragment {
         return rootView;
     }
 
+
+
+
+
+
+
+
+    private void getUserDetails()
+    {
+
+        final ProgressDialog pd = new ProgressDialog(getActivity());
+        pd.setMessage("Please with ... Getting user details !");
+        pd.show();
+
+        Call<User> call = userService.getUserDetails(
+                PrefLogin.getAuthorizationHeaders(getActivity()),
+                user.getUserID()
+        );
+
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+
+                if(!isVisible())
+                {
+                    return;
+                }
+
+                pd.dismiss();
+
+
+
+                if(response.code()==200)
+                {
+                    user = response.body();
+
+                    bindUserData();
+                }
+                else
+                {
+                    showToastMessage("Failed to get User Details : Code : " + response.code());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+                if(!isVisible())
+                {
+                    return;
+                }
+
+                showToastMessage("Failed !");
+
+            }
+        });
+
+    }
 
 
 
@@ -284,13 +301,6 @@ public class FragmentEditProfile extends Fragment {
     {
         PrefChangePhone.saveUser(null,getActivity());
         Intent intent = new Intent(getActivity(), ChangePhone.class);
-
-//        if(getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false))
-//        {
-//            intent.putExtra(ChangePhone.TAG_IS_GLOBAL_PROFILE,true);
-//        }
-
-
         startActivityForResult(intent,10);
     }
 
@@ -312,7 +322,7 @@ public class FragmentEditProfile extends Fragment {
                 {
                     actionBar.setTitle("Sign Up");
                 }
-                else if(current_mode==MODE_UPDATE)
+                else if(current_mode==MODE_UPDATE || current_mode==MODE_UPDATE_BY_ADMIN)
                 {
                     actionBar.setTitle("Edit Profile");
                 }
@@ -326,17 +336,13 @@ public class FragmentEditProfile extends Fragment {
 
 
 
-    private void updateIDFieldVisibility()
+    private void updateFieldVisibility()
     {
 
         if(current_mode==MODE_ADD)
         {
             saveButton.setText("Sign Up");
             item_id.setVisibility(GONE);
-
-
-//            messageEmailVerified.setVisibility(View.GONE);
-//            ButterKnife.apply(label_instructions,GONE);
 
             password.setEnabled(true);
             password.setText("");
@@ -348,18 +354,6 @@ public class FragmentEditProfile extends Fragment {
         {
             item_id.setVisibility(VISIBLE);
             saveButton.setText("Save");
-
-//            ButterKnife.apply(label_instructions,VISIBLE);
-
-
-//            if(!user.isEmailVerified())
-//            {
-//                messageEmailVerified.setVisibility(View.VISIBLE);
-//            }
-//            else
-//            {
-//                messageEmailVerified.setVisibility(View.GONE);
-//            }
 
             password.setEnabled(false);
             password.setText("Password");
@@ -377,7 +371,7 @@ public class FragmentEditProfile extends Fragment {
 
     public static final String TAG_LOG = "edit_profile";
 
-    void showLogMessage(String message)
+    private void showLogMessage(String message)
     {
         Log.d(TAG_LOG,message);
         System.out.println(message);
@@ -387,7 +381,9 @@ public class FragmentEditProfile extends Fragment {
 
 
 
-    void loadImage(String imagePath) {
+
+
+    private void loadImage(String imagePath) {
 
         String imagePathLocal = "";
 
@@ -427,7 +423,7 @@ public class FragmentEditProfile extends Fragment {
         {
             addAccount();
         }
-        else if(current_mode == MODE_UPDATE)
+        else if(current_mode == MODE_UPDATE || current_mode==MODE_UPDATE_BY_ADMIN)
         {
             update();
         }
@@ -612,7 +608,7 @@ public class FragmentEditProfile extends Fragment {
 
 
 
-    private void bindDataToViews()
+    private void bindUserData()
     {
         if(user !=null) {
 
@@ -714,32 +710,58 @@ public class FragmentEditProfile extends Fragment {
         Call<ResponseBody> call;
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+
+        if(current_mode==MODE_UPDATE)
         {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
-                    .client(new OkHttpClient().newBuilder().build())
-                    .build();
+            if(PrefGeneral.getMultiMarketMode(getActivity()))
+            {
+                Retrofit retrofit = new Retrofit.Builder()
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                        .client(new OkHttpClient().newBuilder().build())
+                        .build();
 
 
 
-            call = retrofit.create(UserServiceGlobal.class).updateProfileEndUser(
-                    PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                call = retrofit.create(UserServiceGlobal.class).updateProfileEndUser(
+                        PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                        user
+                );
+
+
+            }
+            else
+            {
+
+                // update Item Call
+                call = userService.updateProfileEndUser(
+                        PrefLogin.getAuthorizationHeaders(getActivity()),
+                        user
+                );
+            }
+
+
+
+        }
+        else if(current_mode==MODE_UPDATE_BY_ADMIN)
+        {
+            // update Item Call
+            call = userService.updateProfileByAdmin(
+                    PrefLogin.getAuthorizationHeaders(getActivity()),
                     user
             );
-
 
         }
         else
         {
 
-            // update Item Call
-            call = userService.updateProfileEndUser(
-                    PrefLogin.getAuthorizationHeaders(getActivity()),
-                    user
-            );
+
+            showToastMessage("Current Mode : " + current_mode);
+            saveButton.setVisibility(VISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
+            return;
         }
+
 
 
 
@@ -838,9 +860,9 @@ public class FragmentEditProfile extends Fragment {
 //                    showToastMessage("Add successful !");
 //
 //                    current_mode = MODE_UPDATE;
-//                    updateIDFieldVisibility();
+//                    updateFieldVisibility();
 //                    user = response.body();
-//                    bindDataToViews();
+//                    bindUserData();
 //
 //                    PrefLogin.saveCredentials(
 //                            getContext(), user.getUsername(),
@@ -986,7 +1008,7 @@ public class FragmentEditProfile extends Fragment {
                 user = PrefLogin.getUser(getContext());
 
                 if(user !=null) {
-                    bindDataToViews();
+                    bindUserData();
                 }
             }
 
@@ -1389,37 +1411,6 @@ public class FragmentEditProfile extends Fragment {
 
 
 
-
-    // Image Methods Ends
-//
-//
-//    boolean checkTokenExpired(boolean showMessage)
-//    {
-//        if(PrefLogin.getUsername(getActivity())==null)
-//        {
-//            // not logged in
-//            return false;
-//        }
-//
-//
-//        if(PrefLogin.getExpires(getActivity())
-//                .before(new Timestamp(System.currentTimeMillis())))
-//        {
-//            // Token expired renew the token
-//
-//            if(showMessage)
-//            {
-//                showToastMessage("Please try again !");
-//            }
-//            getActivity().startService(new Intent(getActivity(),RenewToken.class));
-//
-//            return true;
-//        }
-//        else
-//        {
-//            return false;
-//        }
-//    }
 
 
     @Override

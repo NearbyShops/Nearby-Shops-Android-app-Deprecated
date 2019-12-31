@@ -2,9 +2,7 @@ package org.nearbyshops.core;
 
 
 import org.nearbyshops.core.DaggerComponents.DaggerNetComponent;
-import org.nearbyshops.core.DaggerComponents.NetComponent;
 import org.nearbyshops.core.DaggerModules.AppModule;
-import org.nearbyshops.core.DaggerModules.NetModule;
 
 /**
  * Created by sumeet on 14/5/16.

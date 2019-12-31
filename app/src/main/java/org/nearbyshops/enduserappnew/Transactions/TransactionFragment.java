@@ -18,14 +18,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.gson.Gson;
 
 
-import org.nearbyshops.core.API.TransactionService;
-import org.nearbyshops.core.Model.ModelBilling.Transaction;
-import org.nearbyshops.core.Model.ModelBilling.TransactionEndpoint;
-import org.nearbyshops.core.Model.ModelRoles.User;
-import org.nearbyshops.core.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.API.TransactionService;
+import org.nearbyshops.enduserappnew.Model.ModelBilling.Transaction;
+import org.nearbyshops.enduserappnew.Model.ModelBilling.TransactionEndpoint;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
 
 import java.util.ArrayList;
 

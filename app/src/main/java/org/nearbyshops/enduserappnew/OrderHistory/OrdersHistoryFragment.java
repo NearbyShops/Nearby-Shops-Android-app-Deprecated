@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,11 +27,10 @@ import butterknife.OnClick;
 import com.wunderlist.slidinglayer.SlidingLayer;
 import okhttp3.ResponseBody;
 
-import org.nearbyshops.core.API.OrderService;
-import org.nearbyshops.core.Model.ModelCartOrder.Order;
-import org.nearbyshops.core.Model.ModelEndPoints.OrderEndPoint;
-import org.nearbyshops.core.Model.ModelRoles.User;
-import org.nearbyshops.core.Model.Shop;
+import org.nearbyshops.enduserappnew.API.OrderService;
+import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.OrderEndPoint;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
@@ -38,10 +41,9 @@ import org.nearbyshops.enduserappnew.DetailOrder.PrefOrderDetail;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortOrders;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortOrders;
 import org.nearbyshops.enduserappnew.ViewHoldersForOrders.ViewHolderOrder;
-import org.nearbyshops.core.Preferences.PrefGeneral;
-import org.nearbyshops.core.Preferences.PrefLogin;
-import org.nearbyshops.core.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.PreferencesDeprecated.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -113,6 +115,9 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
                              Bundle savedInstanceState) {
 
 
+
+
+
         setRetainInstance(true);
         View rootView = inflater.inflate(R.layout.fragment_orders_new, container, false);
         ButterKnife.bind(this,rootView);
@@ -132,6 +137,9 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 //        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 //        toolbar.setTitle(getString(R.string.app_name));
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+
+
 //
 
 
@@ -197,6 +205,17 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 //            }
 //        }
 //    }
+
+
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+
+    }
+
 
 
 
@@ -472,7 +491,6 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
             Call<OrderEndPoint> call = orderService.getOrders(
                         PrefLogin.getAuthorizationHeaders(getActivity()),
-                        null,
                         filterOrdersByShop,
                         filterOrdersByUser,
                         null,

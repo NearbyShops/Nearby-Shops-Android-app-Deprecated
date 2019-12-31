@@ -1,9 +1,6 @@
 package org.nearbyshops.enduserappnew;
 
-import android.util.Log;
-
-import org.nearbyshops.core.Model.ModelCartOrder.Order;
-import org.nearbyshops.core.Model.Shop;
+import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 
 import java.util.ArrayList;
 

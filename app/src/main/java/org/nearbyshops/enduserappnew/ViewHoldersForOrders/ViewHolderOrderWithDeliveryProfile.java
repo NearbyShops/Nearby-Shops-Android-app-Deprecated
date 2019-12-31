@@ -13,10 +13,10 @@ import androidx.fragment.app.Fragment;
 import com.squareup.picasso.Picasso;
 
 
-import org.nearbyshops.core.Model.ModelCartOrder.Order;
-import org.nearbyshops.core.Model.ModelRoles.User;
-import org.nearbyshops.core.Model.ModelStatusCodes.OrderStatusHomeDelivery;
-import org.nearbyshops.core.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDelivery;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 
 import butterknife.BindView;

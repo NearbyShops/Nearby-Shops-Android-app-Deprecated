@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 
 
-import org.nearbyshops.core.Model.ModelImages.ShopImage;
+import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 

@@ -21,10 +21,10 @@ import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import com.squareup.picasso.Picasso;
 
 
-import org.nearbyshops.core.Model.Item;
-import org.nearbyshops.core.Model.ModelStats.ItemStats;
-import org.nearbyshops.core.Model.ShopItem;
-import org.nearbyshops.core.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Model.Item;
+import org.nearbyshops.enduserappnew.Model.ModelStats.ItemStats;
+import org.nearbyshops.enduserappnew.Model.ShopItem;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 
 import java.util.Map;

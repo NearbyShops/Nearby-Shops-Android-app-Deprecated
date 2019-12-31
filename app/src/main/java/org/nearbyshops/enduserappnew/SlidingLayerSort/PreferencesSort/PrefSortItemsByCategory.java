@@ -75,10 +75,9 @@ public class PrefSortItemsByCategory {
             context = MyApplication.getAppContext();
         }
 
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String descending = sharedPref.getString("sort_descending_items_by_category", SlidingLayerSortItems_.SORT_DESCENDING);
 
-        return descending;
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        return sharedPref.getString("sort_descending_items_by_category", SlidingLayerSortItems_.SORT_DESCENDING);
     }
 
 }

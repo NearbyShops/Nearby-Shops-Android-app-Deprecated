@@ -21,10 +21,10 @@ import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
-import org.nearbyshops.core.API_SDS.ServiceConfigService;
+import org.nearbyshops.enduserappnew.API_SDS.ServiceConfigService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.core.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -80,12 +80,12 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
 
         View view = inflater.inflate(R.layout.dialog_submit_url_new, container);
 
-        dismiss_dialog_button = (ImageView) view.findViewById(R.id.dialog_dismiss_icon);
-        cancel_button = (TextView) view.findViewById(R.id.cancel_button);
-        submit_button = (TextView) view.findViewById(R.id.submit_button);
-        service_url = (EditText) view.findViewById(R.id.service_url);
-//        password = (EditText) view.findViewById(R.id.password);
-        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+        dismiss_dialog_button = view.findViewById(R.id.dialog_dismiss_icon);
+        cancel_button = view.findViewById(R.id.cancel_button);
+        submit_button = view.findViewById(R.id.submit_button);
+        service_url = view.findViewById(R.id.service_url);
+        progressBar = view.findViewById(R.id.progress_bar);
+
 
         createMarketMessage = view.findViewById(R.id.create_market_message);
 
@@ -289,28 +289,16 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
 
 
 
-
-
-
     private void signUp_click()
     {
-//        Intent intent = new Intent(getContext(),SignUp.class);
-//        startActivity(intent);
-
 
         ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-//        ClipData clip = ClipData.newPlainText("URL", serviceURL.getText().toString());
-//        clipboard.setPrimaryClip(clip);
-
 
         if(clipboard.getPrimaryClip()!=null)
         {
             service_url.setText(clipboard.getPrimaryClip().getItemAt(0).getText());
         }
 
-
-
-//        dismiss();
     }
 
 }

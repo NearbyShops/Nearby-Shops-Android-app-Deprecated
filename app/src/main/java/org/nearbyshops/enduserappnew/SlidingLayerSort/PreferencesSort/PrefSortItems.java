@@ -32,12 +32,11 @@ public class PrefSortItems {
     }
 
 
+
     public static String getSort(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String sort_by = sharedPref.getString("sort_items_by_category_simple", SlidingLayerSortItems.SORT_BY_ITEM_RATING);
-
-        return sort_by;
+        return sharedPref.getString("sort_items_by_category_simple", SlidingLayerSortItems.SORT_BY_ITEM_RATING);
     }
 
 
@@ -64,9 +63,7 @@ public class PrefSortItems {
     {
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String descending = sharedPref.getString("sort_descending_items_by_category_simple", SlidingLayerSortItems.SORT_DESCENDING);
-
-        return descending;
+        return sharedPref.getString("sort_descending_items_by_category_simple", SlidingLayerSortItems.SORT_DESCENDING);
     }
 
 }

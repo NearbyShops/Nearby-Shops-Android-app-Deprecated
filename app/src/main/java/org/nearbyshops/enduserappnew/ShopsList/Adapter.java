@@ -6,13 +6,13 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.core.Model.Shop;
+import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShop;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.LoadingViewHolder;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.EmptyScreenDataFullScreen;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.HeaderTitle;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderEmptyScreenFullScreen;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderHeader;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.LoadingViewHolder;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderHeader;
 
 import java.util.List;
 
@@ -107,9 +107,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             ((ViewHolderEmptyScreenFullScreen) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
         }
-
-
-
 
     }
 

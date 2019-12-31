@@ -5,11 +5,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import org.nearbyshops.core.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragmentSelectService;
-import org.nearbyshops.core.Preferences.PrefGeneral;
-import org.nearbyshops.core.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 
 
@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
 
 //        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
 
-        setContentView(R.layout.activity_login_new);
+        setContentView(R.layout.activity_fragment_container);
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.white));

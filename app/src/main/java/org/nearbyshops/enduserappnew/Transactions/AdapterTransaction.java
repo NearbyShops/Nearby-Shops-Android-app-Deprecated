@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import org.nearbyshops.core.Model.ModelBilling.Transaction;
+import org.nearbyshops.enduserappnew.Model.ModelBilling.Transaction;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
 
 import java.util.List;
 

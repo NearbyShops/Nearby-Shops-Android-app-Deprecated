@@ -11,15 +11,23 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
 
+<!--    <item-->
+<!--        android:icon="@drawable/ic_sort_black_24px"-->
+<!--        android:id="@+id/action_sort"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="@string/action_settings"-->
+<!--        app:showAsAction="ifRoom" />-->
 
-<!--
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
--->
+
+    <!--
+
+        <item
+            android:id="@+id/action_settings"
+            android:orderInCategory="100"
+            android:title="@string/action_settings"
+            app:showAsAction="never" />
+    -->
 
 
     <!--android:actionViewClass="android.widget.SearchView"-->

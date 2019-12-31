@@ -1,7 +1,7 @@
 package org.nearbyshops.enduserappnew.Markets.Interfaces;
 
 
-import org.nearbyshops.core.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 
 public interface listItemMarketNotifications
 {

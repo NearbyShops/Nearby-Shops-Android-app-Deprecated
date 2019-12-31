@@ -6,17 +6,17 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.core.Model.Item;
-import org.nearbyshops.core.Model.ItemCategory;
+import org.nearbyshops.enduserappnew.Model.Item;
+import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItem;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderEmptyScreenFullScreen;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderHeader;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.ViewHolderHorizontalList;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderHeader;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderHorizontalList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.LoadingViewHolder;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.EmptyScreenDataFullScreen;
-import org.nearbyshops.enduserappnew.ViewHoldersUtility.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.LoadingViewHolder;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
 
 import java.util.List;
 

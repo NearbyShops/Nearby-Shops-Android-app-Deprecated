@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 
 
-import org.nearbyshops.core.Model.Item;
+import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.R;
 
 import static android.content.Context.MODE_PRIVATE;

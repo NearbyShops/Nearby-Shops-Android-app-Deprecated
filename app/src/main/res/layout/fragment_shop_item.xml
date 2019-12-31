@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/include"
-                layout="@layout/list_item_item_guide"/>
+                layout="@layout/list_item_item"/>
 
             <TextView
                 android:layout_marginLeft="5dp"

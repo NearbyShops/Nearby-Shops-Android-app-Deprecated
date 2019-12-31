@@ -25,15 +25,17 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.core.API.UserService;
-import org.nearbyshops.core.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
-import org.nearbyshops.core.Preferences.PrefGeneral;
-import org.nearbyshops.core.Preferences.PrefLogin;
-import org.nearbyshops.core.Preferences.PrefLoginGlobal;
-import org.nearbyshops.enduserappnew.SellerModule.ShopAdminHome.ShopAdminHome;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.aSellerModule.DeliveryGuyHome.DeliveryHome;
+import org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome.ShopAdminHome;
+import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboard;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -127,7 +129,9 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-    void setupSwipeContainer()
+
+
+    private void setupSwipeContainer()
     {
 
         if(swipeContainer!=null) {
@@ -157,11 +161,24 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
             dashboardName.setText("Shop Dashboard");
             dashboardDescription.setText("Press here to access the shop dashboard !");
         }
+        else if(user.getRole()==User.ROLE_DELIVERY_GUY_SELF_CODE)
+        {
+
+            dashboardName.setText("Delivery Dashboard");
+            dashboardDescription.setText("Press here to access the Delivery dashboard !");
+        }
+        else if(user.getRole()==User.ROLE_ADMIN_CODE)
+        {
+            dashboardName.setText("Admin Dashboard");
+            dashboardDescription.setText("Press here to access the admin dashboard !");
+
+        }
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {
-            dashboardName.setText("Create Shop : Become a Seller");
+            dashboardName.setText("Become a Seller : Create Shop");
             dashboardDescription.setText("Press here to create a shop and become a seller on currently selected market !");
         }
+
 
     }
 
@@ -181,11 +198,19 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
             Intent intent = new Intent(getActivity(), ShopAdminHome.class);
             startActivity(intent);
         }
-        else
+        else if(user.getRole()==User.ROLE_ADMIN_CODE)
         {
-
+            Intent intent = new Intent(getActivity(), AdminDashboard.class);
+            startActivity(intent);
         }
+        else if(user.getRole()==User.ROLE_DELIVERY_GUY_SELF_CODE)
+        {
+            Intent intent = new Intent(getActivity(), DeliveryHome.class);
+            startActivity(intent);
+        }
+
     }
+
 
 
 
@@ -226,7 +251,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     @OnClick(R.id.privacy_policy_block)
     void privacyPolicyClick()
     {
-        String url = "https://taxireferral.org/privacy-policy/";
+        String url = "";
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
@@ -234,10 +259,12 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
+
+
     @OnClick(R.id.tos_block)
     void termsOfServiceClick()
     {
-        String url = "https://taxireferral.org/terms-of-service/";
+        String url = "";
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
@@ -341,9 +368,6 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 //        countDownTimer.start();
         getUserProfile();
     }
-
-
-
 
 
 
@@ -529,15 +553,10 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-
-
     void showLogMessage(String message)
     {
         Log.d("location_service",message);
     }
-
-
-
 
 
 }

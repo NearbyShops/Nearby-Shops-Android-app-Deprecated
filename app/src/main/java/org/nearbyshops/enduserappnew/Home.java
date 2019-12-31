@@ -35,10 +35,10 @@ import org.nearbyshops.enduserappnew.Markets.MarketsFragmentNew;
 import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.OrderHistory.OrdersHistoryFragment;
-import org.nearbyshops.core.Preferences.PrefGeneral;
-import org.nearbyshops.core.Preferences.PrefLocation;
-import org.nearbyshops.core.Preferences.PrefLogin;
-import org.nearbyshops.core.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.ShopsList.FragmentShopsList;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -707,7 +707,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
         }
         else {
 
-//            new ItemCategoriesFragmentSimple()
+//            new ItemsDatabaseForAdminFragment()
 
 
             getSupportFragmentManager()

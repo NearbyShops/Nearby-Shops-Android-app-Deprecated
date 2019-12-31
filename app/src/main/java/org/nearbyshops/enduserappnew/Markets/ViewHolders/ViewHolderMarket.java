@@ -18,17 +18,17 @@ import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import okhttp3.OkHttpClient;
 
-import org.nearbyshops.core.API.LoginUsingOTPService;
-import org.nearbyshops.core.API.ServiceConfigurationService;
-import org.nearbyshops.core.Model.ModelRoles.User;
-import org.nearbyshops.core.Model.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.core.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.API.LoginUsingOTPService;
+import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
-import org.nearbyshops.core.Preferences.PrefGeneral;
-import org.nearbyshops.core.Preferences.PrefLogin;
-import org.nearbyshops.core.Preferences.PrefLoginGlobal;
-import org.nearbyshops.core.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 

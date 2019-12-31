@@ -13,11 +13,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import org.nearbyshops.core.Model.ModelCartOrder.Order;
-import org.nearbyshops.core.Model.ModelStats.DeliveryAddress;
-import org.nearbyshops.core.Model.ModelStatusCodes.OrderStatusHomeDelivery;
-import org.nearbyshops.core.Model.ModelStatusCodes.OrderStatusPickFromShop;
-import org.nearbyshops.core.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
+import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDelivery;
+import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusPickFromShop;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 
 

@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import org.nearbyshops.core.Model.ShopItem;
+import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortItemsInShopSeller;
 import org.nearbyshops.enduserappnew.R;
@@ -75,7 +75,7 @@ public class SlidingLayerSortItemsInShopSeller extends Fragment {
 
 
     void loadDefaultSort() {
-//        String[] sort_options = UtilitySortShops.getSort(getActivity());
+//        String[] sort_options = PrefSortShops.getSort(getActivity());
 
         currentSort = PrefSortItemsInShopSeller.getSort(getActivity());
         currentAscending = PrefSortItemsInShopSeller.getAscending(getActivity());

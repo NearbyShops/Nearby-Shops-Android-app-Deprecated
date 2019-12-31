@@ -3,37 +3,40 @@ package org.nearbyshops.enduserappnew.DaggerModules;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
 
-import org.nearbyshops.core.API.CartItemService;
-import org.nearbyshops.core.API.CartService;
-import org.nearbyshops.core.API.CartStatsService;
-import org.nearbyshops.core.API.DeliveryAddressService;
-import org.nearbyshops.core.API.DeliveryGuyLoginService;
-import org.nearbyshops.core.API.FavouriteItemService;
-import org.nearbyshops.core.API.FavouriteShopService;
-import org.nearbyshops.core.API.ItemCategoryService;
-import org.nearbyshops.core.API.ItemImageService;
-import org.nearbyshops.core.API.ItemReviewService;
-import org.nearbyshops.core.API.ItemService;
-import org.nearbyshops.core.API.ItemSpecNameService;
-import org.nearbyshops.core.API.OrderItemService;
-import org.nearbyshops.core.API.OrderService;
-import org.nearbyshops.core.API.OrderServiceShopStaff;
-import org.nearbyshops.core.API.ServiceConfigurationService;
-import org.nearbyshops.core.API.ShopImageService;
-import org.nearbyshops.core.API.ShopItemService;
-import org.nearbyshops.core.API.ShopReviewService;
-import org.nearbyshops.core.API.ShopReviewThanksService;
-import org.nearbyshops.core.API.ShopService;
-import org.nearbyshops.core.API.TransactionService;
-import org.nearbyshops.core.API.UserService;
+import org.nearbyshops.enduserappnew.API.CartItemService;
+import org.nearbyshops.enduserappnew.API.CartService;
+import org.nearbyshops.enduserappnew.API.CartStatsService;
+import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
+import org.nearbyshops.enduserappnew.API.DeliveryGuyLoginService;
+import org.nearbyshops.enduserappnew.API.FavouriteItemService;
+import org.nearbyshops.enduserappnew.API.FavouriteShopService;
+import org.nearbyshops.enduserappnew.API.ItemCategoryService;
+import org.nearbyshops.enduserappnew.API.ItemImageService;
+import org.nearbyshops.enduserappnew.API.ItemReviewService;
+import org.nearbyshops.enduserappnew.API.ItemService;
+import org.nearbyshops.enduserappnew.API.ItemSpecNameService;
+import org.nearbyshops.enduserappnew.API.OrderItemService;
+import org.nearbyshops.enduserappnew.API.OrderService;
+import org.nearbyshops.enduserappnew.API.OrderServiceDeliveryPersonSelf;
+import org.nearbyshops.enduserappnew.API.OrderServiceShopStaff;
+import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
+import org.nearbyshops.enduserappnew.API.ShopImageService;
+import org.nearbyshops.enduserappnew.API.ShopItemService;
+import org.nearbyshops.enduserappnew.API.ShopReviewService;
+import org.nearbyshops.enduserappnew.API.ShopReviewThanksService;
+import org.nearbyshops.enduserappnew.API.ShopService;
+import org.nearbyshops.enduserappnew.API.ShopStaffService;
+import org.nearbyshops.enduserappnew.API.TransactionService;
+import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.core.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -347,7 +350,18 @@ public class NetModule {
 
 
 
+    @Provides
+    ShopStaffService getShopStaffService(Retrofit retrofit)
+    {
+        return retrofit.create(ShopStaffService.class);
+    }
 
 
+
+    @Provides
+    OrderServiceDeliveryPersonSelf getOrderDeliveryService(Retrofit retrofit)
+    {
+        return retrofit.create(OrderServiceDeliveryPersonSelf.class);
+    }
 
 }
