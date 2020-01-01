@@ -470,10 +470,15 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
             }
             else if(loggedInUser.getRole()==User.ROLE_SHOP_ADMIN_CODE)
             {
-                Intent intent = new Intent(getActivity(), EditShopStaffPermissions.class);
-                intent.putExtra(EditShopStaffPermissionsFragment.EDIT_MODE_INTENT_KEY, EditShopStaffPermissionsFragment.MODE_UPDATE);
-                intent.putExtra(EditShopStaffPermissionsFragment.STAFF_ID_INTENT_KEY,user.getUserID());
-                startActivity(intent);
+
+                if(user.getRole()==User.ROLE_SHOP_STAFF_CODE)
+                {
+                    Intent intent = new Intent(getActivity(), EditShopStaffPermissions.class);
+                    intent.putExtra(EditShopStaffPermissionsFragment.EDIT_MODE_INTENT_KEY, EditShopStaffPermissionsFragment.MODE_UPDATE);
+                    intent.putExtra(EditShopStaffPermissionsFragment.STAFF_ID_INTENT_KEY,user.getUserID());
+                    startActivity(intent);
+                }
+
             }
 
 

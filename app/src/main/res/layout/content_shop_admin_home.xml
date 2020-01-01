@@ -76,6 +76,12 @@
                 android:layout_height="25dp"/>
 
 
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/blueGrey800" />
+
+
             <Switch
                 android:id="@+id/shop_open_switch"
                 android:layout_gravity="center"
@@ -84,13 +90,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <TextView
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/blueGrey800" />
-
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -395,6 +397,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
