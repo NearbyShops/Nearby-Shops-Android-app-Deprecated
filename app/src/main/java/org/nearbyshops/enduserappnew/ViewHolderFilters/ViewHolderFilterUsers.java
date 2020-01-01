@@ -90,6 +90,8 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
         bindFilterUserRoles(false);
         bindSortOrder(false);
         bindSort(false);
+
+        hideBottomStrip();
     }
 
 
@@ -122,13 +124,13 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
         {
             bottomStrip.setVisibility(View.GONE);
             roleEndUser.setVisibility(View.GONE);
-            clearFilterRoles.setVisibility(View.GONE);
+//            clearFilterRoles.setVisibility(View.GONE);
         }
         else
         {
             bottomStrip.setVisibility(View.VISIBLE);
             roleEndUser.setVisibility(View.VISIBLE);
-            clearFilterRoles.setVisibility(View.VISIBLE);
+//            clearFilterRoles.setVisibility(View.VISIBLE);
         }
     }
 
@@ -344,8 +346,6 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
         int userRole = getFilterByRole(context);
 
         clearFilterUserRole();
-
-        hideBottomStrip();
 
 
         if(notifyUpdate)

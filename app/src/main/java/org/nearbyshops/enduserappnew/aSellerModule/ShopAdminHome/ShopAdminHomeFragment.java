@@ -357,52 +357,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    @OnClick(R.id.logout)
-    void logoutClick()
-    {
 
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-
-        dialog.setTitle("Confirm Logout !")
-                .setMessage("Do you want to log out !")
-                .setPositiveButton("Yes",new DialogInterface.OnClickListener(){
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        logout();
-
-                    }
-                })
-                .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        showToastMessage("Cancelled !");
-                    }
-                })
-                .show();
-    }
-
-
-
-
-    private void logout()
-    {
-        // log out
-        PrefLogin.saveUserProfile(null,getActivity());
-        PrefLogin.saveCredentials(getActivity(),null,null);
-        PrefShopHome.saveShop(null,getActivity());
-
-        FirebaseApp.getInstance().delete();
-
-        // stop location update service
-
-        if(getActivity() instanceof NotifyAboutLogin)
-        {
-            ((NotifyAboutLogin) getActivity()).loginSuccess();
-        }
-    }
 
 
 

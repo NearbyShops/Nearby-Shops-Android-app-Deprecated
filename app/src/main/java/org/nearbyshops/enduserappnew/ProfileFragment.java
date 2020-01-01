@@ -23,6 +23,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import com.google.firebase.FirebaseApp;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.API.UserService;
@@ -33,6 +35,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.aSellerModule.DeliveryGuyHome.DeliveryHome;
 import org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome.ShopAdminHome;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboard;
@@ -341,6 +344,11 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         PrefLoginGlobal.saveUserProfile(null,getActivity());
         PrefLoginGlobal.saveCredentials(getActivity(),null,null);
 
+        PrefShopHome.saveShop(null,getActivity());
+
+
+
+//        FirebaseApp.getInstance().delete();
 
 
 
