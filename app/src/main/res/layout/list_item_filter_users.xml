@@ -211,13 +211,13 @@
 
 
         <TextView
-            android:id="@+id/role_shop_admin"
+            android:id="@+id/role_delivery"
+            android:text="Delivery"
             android:layout_marginStart="1dp"
             android:padding="5dp"
             android:gravity="center"
             android:background="@color/buttonColor"
             android:textColor="@color/white"
-            android:text="ShopAdmin"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
@@ -239,7 +239,9 @@
 
 
 
+
     <LinearLayout
+        android:id="@+id/bottom_strip"
         android:layout_marginTop="1dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -272,13 +274,13 @@
 
 
         <TextView
-            android:id="@+id/role_delivery"
+            android:id="@+id/role_shop_admin"
+            android:text="ShopAdmin"
             android:layout_marginStart="1dp"
             android:padding="5dp"
             android:gravity="center"
             android:background="@color/buttonColor"
             android:textColor="@color/white"
-            android:text="Delivery"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>

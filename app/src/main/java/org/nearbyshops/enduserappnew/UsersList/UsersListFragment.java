@@ -34,6 +34,7 @@ import org.nearbyshops.enduserappnew.EditShopStaffPermissions.EditShopStaffPermi
 import org.nearbyshops.enduserappnew.EditShopStaffPermissions.EditShopStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+import org.nearbyshops.enduserappnew.ViewHolderFilters.UserFilters;
 import org.nearbyshops.enduserappnew.ViewHolderFilters.ViewHolderFilterUsers;
 import org.nearbyshops.enduserappnew.ViewHolderUserProfile.ViewHolderUserProfileItem;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
@@ -113,6 +114,16 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
         toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(),R.color.white));
         toolbar.setTitle("Users List");
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+
+
+
+
+        User user = PrefLogin.getUser(getActivity());
+
+        if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+        {
+            ViewHolderFilterUsers.saveFilterByRole(getActivity(),User.ROLE_SHOP_STAFF_CODE);
+        }
 
 
 
@@ -244,6 +255,9 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
+
+
+
     @Override
     public void onRefresh() {
 
@@ -269,6 +283,10 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
         User user = PrefLogin.getUser(getActivity());
+
+
+
+
         Integer userRole = null;
 
         int role = ViewHolderFilterUsers.getFilterByRole(getActivity());
@@ -322,10 +340,14 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-                        if(user.getRole()==User.ROLE_ADMIN_CODE || user.getRole()==User.ROLE_STAFF_CODE)
-                        {
-                            dataset.add(new ViewHolderFilterUsers.UserFilters());
-                        }
+
+//                        if(user.getRole()==User.ROLE_ADMIN_CODE || user.getRole()==User.ROLE_STAFF_CODE)
+//                        {
+//                            dataset.add(new ViewHolderFilterUsers.UserFilters());
+//                        }
+
+
+                        dataset.add(new UserFilters());
 
 
 
@@ -367,7 +389,6 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
                 listAdapter.notifyDataSetChanged();
-
                 swipeContainer.setRefreshing(false);
             }
 

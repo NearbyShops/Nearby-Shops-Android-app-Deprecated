@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
 
 import butterknife.BindView;
@@ -59,6 +60,12 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
     @BindView(R.id.reset_sort_order) TextView resetSortOrder;
 
 
+    @BindView(R.id.bottom_strip)
+    LinearLayout bottomStrip;
+
+
+
+
     private Context context;
     //    private User user;
     private Fragment fragment;
@@ -80,21 +87,14 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
         this.fragment = fragment;
 
 
-        bindFilterUserRoles();
-        bindSortOrder();
-        bindSort();
+        bindFilterUserRoles(false);
+        bindSortOrder(false);
+        bindSort(false);
     }
 
 
 
 
-
-
-    // marker class for user filters
-    public static class UserFilters
-    {
-
-    }
 
 
 
@@ -106,6 +106,31 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
 //
 //    }
 
+
+
+
+
+
+
+
+    private void hideBottomStrip()
+    {
+
+        User user = PrefLogin.getUser(context);
+
+        if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+        {
+            bottomStrip.setVisibility(View.GONE);
+            roleEndUser.setVisibility(View.GONE);
+            clearFilterRoles.setVisibility(View.GONE);
+        }
+        else
+        {
+            bottomStrip.setVisibility(View.VISIBLE);
+            roleEndUser.setVisibility(View.VISIBLE);
+            clearFilterRoles.setVisibility(View.VISIBLE);
+        }
+    }
 
 
 
@@ -132,7 +157,7 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
     void sortByTimeClick()
     {
         saveSortBy(context,User.TIMESTAMP_CREATED);
-        bindSort();
+        bindSort(true);
     }
 
 
@@ -141,17 +166,22 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
     void sortByUserIDClick()
     {
         saveSortBy(context,User.USER_ID);
-        bindSort();
+        bindSort(true);
     }
 
 
 
 
-    private void bindSort()
+    private void bindSort(boolean notifyUpdate)
     {
         String sortBy = getSortBy(context);
 
-        notifyFiltersUpdated();
+
+        if(notifyUpdate)
+        {
+            notifyFiltersUpdated();
+        }
+
 
         if(sortBy.equals(User.TIMESTAMP_CREATED))
         {
@@ -181,7 +211,7 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
     void ascendingClick()
     {
         saveSortOrder(context,MyApplication.SORT_ASCENDING);
-        bindSortOrder();
+        bindSortOrder(true);
     }
 
 
@@ -189,18 +219,22 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
     void descendingClick()
     {
         saveSortOrder(context,MyApplication.SORT_DESCENDING);
-        bindSortOrder();
+        bindSortOrder(true);
     }
 
 
 
 
-    private void bindSortOrder() {
+    private void bindSortOrder(boolean notifyUpdate) {
 
 
         String sortOrder = getSortOrder(context);
 
-        notifyFiltersUpdated();
+        if(notifyUpdate)
+        {
+            notifyFiltersUpdated();
+        }
+
 
         if (sortOrder.equals(MyApplication.SORT_ASCENDING)) {
             sortAscending.setTextColor(ContextCompat.getColor(context, R.color.white));
@@ -227,7 +261,7 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
     void resetSort()
     {
         saveSortBy(context,User.TIMESTAMP_CREATED);
-        bindSort();
+        bindSort(true);
     }
 
 
@@ -236,7 +270,7 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
     void resetSortOrder()
     {
         saveSortOrder(context,MyApplication.SORT_ASCENDING);
-        bindSortOrder();
+        bindSortOrder(true);
     }
 
 
@@ -247,21 +281,21 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
     void roleEndUserClick()
     {
         saveFilterByRole(context,User.ROLE_END_USER_CODE);
-        bindFilterUserRoles();
+        bindFilterUserRoles(true);
     }
 
     @OnClick(R.id.role_shop_admin)
     void roleShopAdminClick()
     {
         saveFilterByRole(context,User.ROLE_SHOP_ADMIN_CODE);
-        bindFilterUserRoles();
+        bindFilterUserRoles(true);
     }
 
     @OnClick(R.id.role_shop_staff)
     void roleShopStaffClick()
     {
         saveFilterByRole(context,User.ROLE_SHOP_STAFF_CODE);
-        bindFilterUserRoles();
+        bindFilterUserRoles(true);
     }
 
 
@@ -270,7 +304,7 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
     void roleDeliveryClick()
     {
         saveFilterByRole(context,User.ROLE_DELIVERY_GUY_SELF_CODE);
-        bindFilterUserRoles();
+        bindFilterUserRoles(true);
     }
 
 
@@ -278,7 +312,7 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
     void roleAdminClick()
     {
         saveFilterByRole(context,User.ROLE_ADMIN_CODE);
-        bindFilterUserRoles();
+        bindFilterUserRoles(true);
     }
 
 
@@ -287,7 +321,7 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
     void roleStaffClick()
     {
         saveFilterByRole(context,User.ROLE_STAFF_CODE);
-        bindFilterUserRoles();
+        bindFilterUserRoles(true);
     }
 
 
@@ -299,19 +333,26 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
     void clearFilterRoles()
     {
         saveFilterByRole(context,0);
-        bindFilterUserRoles();
+        bindFilterUserRoles(true);
     }
 
 
 
 
-    private void bindFilterUserRoles()
+    private void bindFilterUserRoles(boolean notifyUpdate)
     {
         int userRole = getFilterByRole(context);
 
         clearFilterUserRole();
 
-        notifyFiltersUpdated();
+        hideBottomStrip();
+
+
+        if(notifyUpdate)
+        {
+            notifyFiltersUpdated();
+        }
+
 
 
         if(userRole!=0)
@@ -475,6 +516,15 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
         return sharedPref.getString("sort_order_for_user_list", MyApplication.SORT_ASCENDING);
     }
+
+
+
+
+
+
+
+
+
 
 
 }

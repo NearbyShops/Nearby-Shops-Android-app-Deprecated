@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.ViewHolderFilters.UserFilters;
 import org.nearbyshops.enduserappnew.ViewHolderFilters.ViewHolderFilterUsers;
 import org.nearbyshops.enduserappnew.ViewHolderUserProfile.ViewHolderUserProfileItem;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.LoadingViewHolder;
@@ -130,7 +131,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             return VIEW_TYPE_SCROLL_PROGRESS_BAR;
         }
-        else if(dataset.get(position) instanceof ViewHolderFilterUsers.UserFilters)
+        else if(dataset.get(position) instanceof UserFilters)
         {
             return VIEW_TYPE_FILTER_USERS;
         }

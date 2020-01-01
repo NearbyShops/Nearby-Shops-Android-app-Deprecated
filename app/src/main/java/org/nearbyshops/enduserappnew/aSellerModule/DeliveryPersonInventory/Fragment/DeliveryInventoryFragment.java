@@ -255,15 +255,15 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
 
 
 
+
     private void makeNetworkCall(final boolean clearDataset)
     {
 
-//            Shop currentShop = UtilityShopHome.getShop(getContext());
 
+//            Shop currentShop = UtilityShopHome.getShop(getContext());
 
         String current_sort = "";
         current_sort = PrefSortOrders.getSort(getContext()) + " " + PrefSortOrders.getAscending(getContext());
-
 
 
         int orderStatus = getArguments().getInt("order_status");
@@ -272,6 +272,8 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
 
         Integer orderStatusHD = null;
         Integer orderStatusPFS = null;
+
+
 
         if(isPickFromShop)
         {
@@ -287,9 +289,6 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
 
 
         Integer deliveryGuyID = null;
-
-
-
 
         deliveryGuyID = getActivity().getIntent().getIntExtra("delivery_guy_id",0);
 
