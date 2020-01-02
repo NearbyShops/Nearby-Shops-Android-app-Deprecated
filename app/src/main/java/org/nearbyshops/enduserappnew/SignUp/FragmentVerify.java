@@ -68,16 +68,19 @@ public class FragmentVerify extends Fragment {
     @BindView(R.id.progress_bar_resend) ProgressBar progressBarResend;
     @BindView(R.id.message_resend) TextView messageResend;
 
-    SmsVerifyCatcher smsVerifyCatcher;
+
+    private SmsVerifyCatcher smsVerifyCatcher;
+
+
 
 
     @Inject
     UserService userService;
 
-    User user;
 
 
-    boolean isDestroyed = false;
+    private User user;
+    private boolean isDestroyed = false;
 
 
 //    boolean verificationCodeValid = false; // flag to keep record of verification code
@@ -206,7 +209,7 @@ public class FragmentVerify extends Fragment {
 
 
 
-    boolean validateVerificationCode(boolean showError)
+    private boolean validateVerificationCode(boolean showError)
     {
 
         boolean isValid = true;
@@ -283,7 +286,10 @@ public class FragmentVerify extends Fragment {
 
 
 
-    void verifyPhoneCode(boolean initiateNext)
+
+
+
+    private void verifyPhoneCode(boolean initiateNext)
     {
 
 
@@ -403,8 +409,7 @@ public class FragmentVerify extends Fragment {
 
 
 
-
-    void verifyEmailCode(final boolean initiateNext)
+    private void verifyEmailCode(final boolean initiateNext)
     {
 
 //        User user = null;
@@ -601,7 +606,9 @@ public class FragmentVerify extends Fragment {
 
 
 
-    void createAccount()
+
+
+    private void createAccount()
     {
 
 //        if(getActivity() instanceof ReadWriteUser)
@@ -709,7 +716,10 @@ public class FragmentVerify extends Fragment {
 
 
 
-    void showToastMessage(String message)
+
+
+
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
@@ -748,7 +758,11 @@ public class FragmentVerify extends Fragment {
 
 
 
-    void resendCodeEmail()
+
+
+
+
+    private void resendCodeEmail()
     {
 
 
@@ -831,8 +845,7 @@ public class FragmentVerify extends Fragment {
 
 
 
-
-    void resendCodePhone()
+    private void resendCodePhone()
     {
 
 
@@ -911,6 +924,7 @@ public class FragmentVerify extends Fragment {
 
 
 
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -923,7 +937,5 @@ public class FragmentVerify extends Fragment {
         super.onResume();
         isDestroyed = false;
     }
-
-
 
 }
