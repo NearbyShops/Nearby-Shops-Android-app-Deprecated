@@ -260,7 +260,8 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-    void loginToLocalEndpoint(final ServiceConfigurationGlobal configurationGlobal)
+
+    private void loginToLocalEndpoint(final ServiceConfigurationGlobal configurationGlobal)
     {
 
 //        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
@@ -417,8 +418,7 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-
-    void showToastMessage(String message)
+    private void showToastMessage(String message)
     {
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
     }

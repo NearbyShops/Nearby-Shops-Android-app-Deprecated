@@ -101,52 +101,8 @@ public class DeliveryGuyHomeFragment extends Fragment {
 
 
 
-    @OnClick(R.id.logout)
-    void logoutClick()
-    {
-
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-
-        dialog.setTitle("Confirm Logout !")
-                .setMessage("Do you want to log out !")
-                .setPositiveButton("Yes",new DialogInterface.OnClickListener(){
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        logout();
-
-                    }
-                })
-                .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        showToastMessage("Cancelled !");
-                    }
-                })
-                .show();
-    }
 
 
-
-
-
-
-    void logout()
-    {
-        // log out
-        PrefLogin.saveUserProfile(null,getActivity());
-        PrefLogin.saveCredentials(getActivity(),null,null);
-        PrefShopHome.saveShop(null,getActivity());
-
-        // stop location update service
-
-        if(getActivity() instanceof NotifyAboutLogin)
-        {
-            ((NotifyAboutLogin) getActivity()).loginSuccess();
-        }
-    }
 
 
 
