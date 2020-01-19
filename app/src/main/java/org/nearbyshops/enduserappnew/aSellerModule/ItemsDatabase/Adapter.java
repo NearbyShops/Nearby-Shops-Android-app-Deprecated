@@ -134,7 +134,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             List<ItemCategory> list = ((ItemCategoriesList)dataset.get(position)).getItemCategories();
 
-            ((ViewHolderHorizontalList) holder).setItem(new AdapterHorizontalList(list,context,fragment));
+            ((ViewHolderHorizontalList) holder).setItem(new AdapterHorizontalList(list,context,fragment),null);
 
         }
         else if (holder instanceof ViewHolderHeader) {

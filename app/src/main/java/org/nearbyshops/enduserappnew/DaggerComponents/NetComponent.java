@@ -7,8 +7,8 @@ import org.nearbyshops.enduserappnew.EditItemCategory.EditItemCategoryFragment;
 import org.nearbyshops.enduserappnew.EditShopStaffPermissions.AddUserToStaffDialog;
 import org.nearbyshops.enduserappnew.EditShopStaffPermissions.EditShopStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.EditStaffPermissions.EditStaffPermissionsFragment;
-import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderMarketBackup;
-import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderMarketSmallBackup;
+import org.nearbyshops.enduserappnew.Markets.ViewHolders.BackupViewHolderMarket;
+import org.nearbyshops.enduserappnew.Markets.ViewHolders.BackupViewHolderMarketSmall;
 import org.nearbyshops.enduserappnew.aSellerModule.DeliveryPersonInventory.Fragment.DeliveryInventoryFragment;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.FragmentAddCredit;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboardFragment;
@@ -264,7 +264,7 @@ public interface NetComponent {
 
     void Inject(DeliveryInventoryFragment deliveryInventoryFragment);
 
-    void Inject(ViewHolderMarketBackup viewHolderMarketBackup);
+    void Inject(BackupViewHolderMarket backupViewHolderMarket);
 
-    void Inject(ViewHolderMarketSmallBackup viewHolderMarketSmallBackup);
+    void Inject(BackupViewHolderMarketSmall backupViewHolderMarketSmall);
 }

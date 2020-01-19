@@ -1,14 +1,11 @@
 package org.nearbyshops.enduserappnew.Markets;
 
 
-import android.view.LayoutInflater;
+
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
@@ -18,14 +15,16 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
 import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.*;
-import org.nearbyshops.enduserappnew.ViewHolderDeprecated.ViewHolderSavedMarketList;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataListItem;
-import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderHeader;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderHorizontalList;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderSignIn;
 import org.nearbyshops.enduserappnew.ViewHolderUserProfile.ViewHolderUserProfile;
+
+
 
 import javax.inject.Inject;
 import java.util.List;
@@ -78,43 +77,20 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         if(viewType == view_type_current_market)
         {
-//            view = LayoutInflater.from(parent.getContext())
-//                    .inflate(R.layout.list_item_market_current,parent,false);
-//
-//            return new ViewHolderCurrentMarket(view,fragment.getActivity());
-
 
             return ViewHolderCurrentMarket.create(parent,fragment.getActivity());
-
         }
         else if(viewType==view_type_saved_markets_list)
         {
-
-
-
-            return ViewHolderSavedMarketList.create(parent,fragment.getActivity(), fragment);
-//            return ViewHolderHorizontalList.create(parent,fragment.getActivity(),fragment);
+            return ViewHolderHorizontalList.create(parent,fragment.getActivity(),fragment);
         }
         else if(viewType == view_type_user_profile)
         {
-//            view = LayoutInflater.from(parent.getContext())
-//                    .inflate(R.layout.list_item_user_profile,parent,false);
-//
-//            return new ViewHolderUserProfile(view,fragment.getActivity());
-
             return ViewHolderUserProfile.create(parent,fragment.getActivity());
-
         }
         else if(viewType == view_type_markets_header)
         {
-//            view = LayoutInflater.from(parent.getContext())
-//                    .inflate(R.layout.list_item_header_markets,parent,false);
-//
-//            return new ViewHolderHeaderMarket(view);
-
-
             return ViewHolderHeader.create(parent,fragment.getActivity());
-
         }
         else if(viewType == view_type_sign_in)
         {
@@ -123,21 +99,12 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         else if (viewType == VIEW_TYPE_Market) {
 
 
-//            view = LayoutInflater.from(parent.getContext())
-//                    .inflate(R.layout.list_item_market, parent, false);
-
-//            return new ViewHolderMarket(view, parent, fragment.getActivity(), (ViewHolderMarket.listItemMarketNotifications) fragment);
-
             return ViewHolderMarket.create(parent,fragment.getActivity(), fragment);
-
-
         }
         else if (viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR) {
 
-            view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_progress_bar, parent, false);
 
-            return new LoadingViewHolder(view);
+            return LoadingViewHolder.create(parent,fragment.getActivity());
         }
         else if(viewType==VIEW_TYPE_create_market)
         {
@@ -217,10 +184,20 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //            ((ViewHolderSavedMarketList) holderVH).setItem((List<ServiceConfigurationGlobal>) dataset.get(position));
 //
 //        }
-        else if(holderVH instanceof ViewHolderSavedMarketList)
+//        else if(holderVH instanceof ViewHolderSavedMarketList)
+//        {
+//
+//            ((ViewHolderSavedMarketList) holderVH).setItem((MarketsList) dataset.get(position));
+//
+//        }
+        else if(holderVH instanceof ViewHolderHorizontalList)
         {
 
-            ((ViewHolderSavedMarketList) holderVH).setItem((MarketsList) dataset.get(position));
+            MarketsList marketsList = (MarketsList) dataset.get(position);
+            AdapterSavedMarkets adapter = new AdapterSavedMarkets(marketsList.getDataset(),fragment.getActivity(),fragment);
+            ((ViewHolderHorizontalList) holderVH).setItem(adapter,"Favourite Markets");
+
+
         }
         else if(holderVH instanceof ViewHolderUserProfile)
         {
@@ -229,9 +206,6 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         }
         else if (holderVH instanceof ViewHolderMarket) {
-
-//            ViewHolderMarket holder = (ViewHolderMarket) holderVH;
-//            holder.setItem((ServiceConfigurationGlobal) dataset.get(position));
 
 
             ((ViewHolderMarket)holderVH).setItem((ServiceConfigurationGlobal) dataset.get(position));
@@ -250,17 +224,7 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
         else if (holderVH instanceof LoadingViewHolder) {
 
-
-            LoadingViewHolder viewHolder = (LoadingViewHolder) holderVH;
-
-
-            if (loadMore) {
-                viewHolder.progressBar.setVisibility(View.VISIBLE);
-                viewHolder.progressBar.setIndeterminate(true);
-            }
-            else {
-                viewHolder.progressBar.setVisibility(View.GONE);
-            }
+            ((LoadingViewHolder) holderVH).setLoading(loadMore);
         }
     }
 
@@ -290,17 +254,5 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
-
-
-    public class LoadingViewHolder extends  RecyclerView.ViewHolder{
-
-        @BindView(R.id.progress_bar)
-        ProgressBar progressBar;
-
-        public LoadingViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this,itemView);
-        }
-    }
 
 }
