@@ -626,7 +626,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-    void bindItem()
+    private void bindItem()
     {
 
         if(item==null)
@@ -645,9 +645,10 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
             currency = PrefGeneral.getCurrencySymbol(getActivity());
 
             priceRange.setText("Price Range :\n" + currency + " " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
-            priceAverage.setText("Price Average :\n" + currency + " " + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
+            priceAverage.setText("Price Average :\n" + currency + " " + String.format("%.2f",itemStats.getAvg_price()) + " per " + item.getQuantityUnit());
             shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
         }
+
 
         itemRating.setText(String.format("%.2f",item.getRt_rating_avg()));
         ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " Ratings )");

@@ -107,10 +107,11 @@ public class ViewHolderItem extends RecyclerView.ViewHolder {
             currency = PrefGeneral.getCurrencySymbol(context);
 
             priceRange.setText("Price Range :\n" + currency + " " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
-            priceAverage.setText("Price Average :\n" + currency + " " + itemStats.getAvg_price() + " per " + item.getQuantityUnit());
+            priceAverage.setText("Price Average :\n" + currency + " " + String.format("%.2f",itemStats.getAvg_price()) + " per " + item.getQuantityUnit());
             shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
 //            System.out.println("Rating : " + itemStats.getRating_avg() + " : Ratings Count " + itemStats.getRatingCount());
         }
+
 
 
 
