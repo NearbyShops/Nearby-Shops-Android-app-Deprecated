@@ -20,7 +20,6 @@ import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.*;
 import org.nearbyshops.enduserappnew.ViewHolderDeprecated.ViewHolderSavedMarketList;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataListItem;
-import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
@@ -93,7 +92,7 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
 
-            return ViewHolderSavedMarketList.create(parent,fragment.getActivity(), (listItemMarketNotifications) fragment);
+            return ViewHolderSavedMarketList.create(parent,fragment.getActivity(), fragment);
 //            return ViewHolderHorizontalList.create(parent,fragment.getActivity(),fragment);
         }
         else if(viewType == view_type_user_profile)
@@ -129,7 +128,7 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 //            return new ViewHolderMarket(view, parent, fragment.getActivity(), (ViewHolderMarket.listItemMarketNotifications) fragment);
 
-            return ViewHolderMarket.create(parent,fragment.getActivity(), (listItemMarketNotifications) fragment);
+            return ViewHolderMarket.create(parent,fragment.getActivity(), fragment);
 
 
         }

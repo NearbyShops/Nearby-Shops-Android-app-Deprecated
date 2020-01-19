@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.google.gson.Gson;
 
+import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
@@ -31,7 +32,6 @@ import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.DetailMarket.MarketDetail;
 import org.nearbyshops.enduserappnew.DetailMarket.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
-import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderSignIn;
 import org.nearbyshops.enduserappnew.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -43,8 +43,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
 public class MarketsFragmentNew extends Fragment implements
-        listItemMarketNotifications, SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch, LocationUpdated, ViewHolderSignIn.VHSignIn, ViewHolderEmptyScreenListItem.VHEmptyScreen {
+        ViewHolderMarket.ListItemClick, SwipeRefreshLayout.OnRefreshListener,
+        NotifySort, NotifySearch, LocationUpdated, ViewHolderSignIn.VHSignIn,
+        ViewHolderEmptyScreenListItem.VHEmptyScreen {
 
 
 
@@ -112,7 +116,6 @@ public class MarketsFragmentNew extends Fragment implements
     //        setRetainInstance(true);
             View rootView = inflater.inflate(R.layout.fragment_markets, container, false);
             ButterKnife.bind(this,rootView);
-
 
 
 
@@ -360,7 +363,6 @@ public class MarketsFragmentNew extends Fragment implements
             ((MarketSelected) getActivity()).marketSelected();
         }
 
-
     }
 
 
@@ -371,9 +373,6 @@ public class MarketsFragmentNew extends Fragment implements
     public void showMessage(String message) {
         showToastMessage(message);
     }
-
-
-
 
 
 

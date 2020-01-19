@@ -881,11 +881,12 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
         } else if (tabId == R.id.bottom_tab_orders) {
 
             showOrdersFragment();
+
         } else if (tabId == R.id.bottom_tab_profile) {
 
 //                showProfileFragment();
 //                showItemsFragment();
-            bottomBar.setSelectedItemId(R.id.bottom_tab_items);
+            bottomBar.setSelectedItemId(R.id.bottom_tab_shops);
 
         }
 
@@ -959,12 +960,6 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
-
-
-
-
-
-
     void saveLocation(Location location)
     {
 
@@ -993,8 +988,6 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
         }
 
     }
-
-
 
 
 

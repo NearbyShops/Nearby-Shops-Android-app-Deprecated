@@ -1,6 +1,8 @@
 package org.nearbyshops.enduserappnew.Markets.ViewModels;
 
 import android.app.Application;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -8,12 +10,19 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 
+import org.nearbyshops.enduserappnew.API.LoginUsingOTPService;
+import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API_SDS.ServiceConfigService;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
 import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
@@ -29,14 +38,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 
 public class MarketViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Object>> datasetLive;
     private List<Object> dataset;
-    private MutableLiveData<Integer> status;
+    private MutableLiveData<Integer> event;
     private MutableLiveData<String> message;
+
+
+    public static int EVENT_LOCAL_CONFIG_FETCHED = 1;
+    public static int EVENT_LOGGED_IN_TO_LOCAL_SUCCESS = 2;
+    public static int EVENT_NETWORK_FAILED = 3;
+
 
 
 
@@ -55,7 +72,7 @@ public class MarketViewModel extends AndroidViewModel {
     public MarketViewModel(@NonNull Application application) {
         super(application);
 
-        status = new MutableLiveData<>();
+        event = new MutableLiveData<>();
         message = new MutableLiveData<>();
         datasetLive = new MutableLiveData<>();
         dataset = new ArrayList<>();
@@ -78,18 +95,11 @@ public class MarketViewModel extends AndroidViewModel {
 
 
 
-    void loadMoreData()
-    {
-    }
 
-
-
-
-
-    public LiveData<Integer> getStatus()
+    public LiveData<Integer> getEvent()
     {
 
-        return status;
+        return event;
     }
 
 
@@ -102,19 +112,6 @@ public class MarketViewModel extends AndroidViewModel {
         return message;
     }
 
-
-
-    void search(String searchString)
-    {
-
-    }
-
-
-
-    void endSearchMode()
-    {
-
-    }
 
 
 
@@ -305,6 +302,261 @@ public class MarketViewModel extends AndroidViewModel {
 
         }
 
+
+
+
+
+
+
+    public void fetchLocalConfiguration(final ServiceConfigurationGlobal configurationGlobal)
+    {
+
+//            PrefGeneral.saveServiceURL(configurationGlobal.getServiceURL(),getApplicationContext());
+//            PrefServiceConfig.saveServiceConfigLocal(null,getApplicationContext());
+
+
+
+//            PrefGeneral.getServiceURL(MyApplicationCoreNew.getAppContext())
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(configurationGlobal.getServiceURL())
+                .client(new OkHttpClient().newBuilder().build())
+                .build();
+
+
+
+
+
+        ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
+
+        Call<ServiceConfigurationLocal> call = service.getServiceConfiguration(0.0,0.0);
+
+
+
+//        selectMarket.setVisibility(View.INVISIBLE);
+//        progressBarSelect.setVisibility(View.VISIBLE);
+
+
+        call.enqueue(new Callback<ServiceConfigurationLocal>() {
+            @Override
+            public void onResponse(Call<ServiceConfigurationLocal> call, Response<ServiceConfigurationLocal> response) {
+
+
+//                selectMarket.setVisibility(View.VISIBLE);
+//                progressBarSelect.setVisibility(View.INVISIBLE);
+
+
+
+                if(response.code()==200)
+                {
+
+                    PrefGeneral.saveServiceURL(configurationGlobal.getServiceURL(),getApplication());
+                    PrefServiceConfig.saveServiceConfigLocal(response.body(),getApplication());
+
+
+                    ServiceConfigurationLocal config = response.body();
+
+                    if(config!=null)
+                    {
+                        Currency currency = Currency.getInstance(new Locale("",config.getISOCountryCode()));
+                        PrefGeneral.saveCurrencySymbol(currency.getSymbol(),getApplication());
+                    }
+
+
+
+
+                    event.postValue(MarketViewModel.EVENT_LOCAL_CONFIG_FETCHED);
+
+
+                }
+                else
+                {
+
+
+                    message.postValue("Failed Code : " + String.valueOf(response.code()));
+                    message.postValue("Service URL : " + configurationGlobal.getServiceURL());
+
+
+
+                    event.postValue(MarketViewModel.EVENT_NETWORK_FAILED);
+                }
+
+
+            }
+
+
+
+            @Override
+            public void onFailure(Call<ServiceConfigurationLocal> call, Throwable t) {
+
+
+//                selectMarket.setVisibility(View.VISIBLE);
+//                progressBarSelect.setVisibility(View.INVISIBLE);
+
+                    event.postValue(MarketViewModel.EVENT_NETWORK_FAILED);
+                    message.postValue("Failed ... Please check your network ! ");
+            }
+        });
+    }
+
+
+
+    public void loginToLocalEndpoint(final ServiceConfigurationGlobal configurationGlobal)
+    {
+
+//        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
+
+
+
+
+//        selectMarket.setVisibility(View.INVISIBLE);
+//        progressBarSelect.setVisibility(View.VISIBLE);
+
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(configurationGlobal.getServiceURL())
+                .client(new OkHttpClient().newBuilder().build())
+                .build();
+
+
+
+
+
+        Call<User> call = retrofit.create(LoginUsingOTPService.class).loginWithGlobalCredentials(
+                PrefLoginGlobal.getAuthorizationHeaders(getApplication()),
+                PrefServiceConfig.getServiceURL_SDS(getApplication()),
+                123,true,false
+        );
+
+
+
+
+
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+
+
+
+
+//                selectMarket.setVisibility(View.VISIBLE);
+//                progressBarSelect.setVisibility(View.INVISIBLE);
+
+
+
+                if(response.code()==200)
+                {
+                    // save username and password
+
+
+
+
+                    PrefGeneral.saveServiceURL(configurationGlobal.getServiceURL(),getApplication());
+
+
+
+                    User user = response.body();
+
+
+//                    PrefLogin.saveCredentials(
+//                            context,
+//                            user.getPhone(),
+//                            user.getPassword()
+//                    );
+
+                    String username = "";
+
+                    if(user.getPhone()!=null)
+                    {
+                        username = user.getPhone();
+                    }
+                    else if(user.getEmail()!=null)
+                    {
+                        username = user.getEmail();
+                    }
+                    else if(user.getUsername()!=null)
+                    {
+                        username = user.getUsername();
+                    }
+                    else if(user.getUserID()!=0)
+                    {
+                        username = String.valueOf(user.getUserID());
+                    }
+
+                    // local username can be different from the supplied username
+
+                    PrefLogin.saveCredentials(
+                            getApplication(),
+                            username,
+                            user.getPassword()
+                    );
+
+
+
+//                    PrefLogin.saveCredentials(
+//                            context,
+//                            PrefLoginGlobal.getUsername(context),
+//                            PrefLoginGlobal.getPassword(context)
+//                    );
+
+
+                    PrefLogin.saveUserProfile(
+                            user,
+                            getApplication()
+                    );
+
+
+
+                    ServiceConfigurationLocal configurationLocal = user.getServiceConfigurationLocal();
+
+                    PrefServiceConfig.saveServiceConfigLocal(configurationLocal,getApplication());
+
+
+
+                    if(configurationLocal!=null)
+                    {
+                        Currency currency = Currency.getInstance(new Locale("",configurationLocal.getISOCountryCode()));
+                        PrefGeneral.saveCurrencySymbol(currency.getSymbol(),getApplication());
+                    }
+
+
+
+                    UtilityFunctions.updateFirebaseSubscriptions();
+
+                    event.postValue(MarketViewModel.EVENT_LOGGED_IN_TO_LOCAL_SUCCESS);
+
+                }
+                else
+                {
+                    event.postValue(MarketViewModel.EVENT_NETWORK_FAILED);
+                    message.postValue("Login Failed : Username or password is incorrect !");
+
+                }
+
+            }
+
+
+
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+
+                message.postValue("Failed ... Please check your network connection !");
+                event.postValue(MarketViewModel.EVENT_NETWORK_FAILED);
+
+//                selectMarket.setVisibility(View.VISIBLE);
+//                progressBarSelect.setVisibility(View.INVISIBLE);
+
+
+            }
+        });
+    }
 
 
 }

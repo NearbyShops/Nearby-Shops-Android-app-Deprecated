@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -13,7 +14,6 @@ import butterknife.ButterKnife;
 
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.Markets.AdapterSavedMarkets;
-import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
 import org.nearbyshops.enduserappnew.R;
 
@@ -28,7 +28,7 @@ public class ViewHolderSavedMarketList extends RecyclerView.ViewHolder {
 
 //    private List<ServiceConfigurationGlobal> configurationGlobal;
     private Context context;
-    private listItemMarketNotifications subscriber;
+    private Fragment subscriber;
 
 
     @BindView(R.id.list_title) TextView listTitle;
@@ -37,7 +37,7 @@ public class ViewHolderSavedMarketList extends RecyclerView.ViewHolder {
 
 
 
-    public static ViewHolderSavedMarketList create(ViewGroup parent, Context context, listItemMarketNotifications subscriber)
+    public static ViewHolderSavedMarketList create(ViewGroup parent, Context context, Fragment subscriber)
     {
 
         View view = LayoutInflater.from(parent.getContext())
@@ -49,7 +49,7 @@ public class ViewHolderSavedMarketList extends RecyclerView.ViewHolder {
 
 
 
-    public ViewHolderSavedMarketList(@NonNull View itemView, Context context, listItemMarketNotifications subscriber) {
+    public ViewHolderSavedMarketList(@NonNull View itemView, Context context, Fragment subscriber) {
         super(itemView);
         ButterKnife.bind(this,itemView);
         this.context = context;

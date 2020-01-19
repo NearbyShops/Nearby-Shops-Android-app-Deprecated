@@ -24,6 +24,7 @@ import org.nearbyshops.enduserappnew.R;
 public class ViewHolderOrder extends RecyclerView.ViewHolder {
 
 
+
     @BindView(R.id.order_id)
     public TextView orderID;
 
@@ -166,7 +167,7 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
         //holder.currentStatus.setText();
 
 
-        //                String status = UtilityOrderStatus.getStatus(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
+        //                String status = UtilityOrderStatus.getEvent(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
         String status = "";
 
 

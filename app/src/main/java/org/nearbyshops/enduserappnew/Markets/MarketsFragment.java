@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 
 import org.nearbyshops.enduserappnew.API_SDS.ServiceConfigService;
+import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
@@ -31,7 +32,6 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.DetailMarket.MarketDetail;
 import org.nearbyshops.enduserappnew.DetailMarket.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
-import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
@@ -51,7 +51,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MarketsFragment extends Fragment implements listItemMarketNotifications, SwipeRefreshLayout.OnRefreshListener,
+public class MarketsFragment extends Fragment implements ViewHolderMarket.ListItemClick, SwipeRefreshLayout.OnRefreshListener,
         NotifySort, NotifySearch, LocationUpdated {
 
 

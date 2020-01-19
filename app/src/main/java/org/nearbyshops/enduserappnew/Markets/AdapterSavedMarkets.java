@@ -3,10 +3,10 @@ package org.nearbyshops.enduserappnew.Markets;
 import android.content.Context;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.Markets.Interfaces.listItemMarketNotifications;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.ViewHolderMarketSmall;
 
 import java.util.List;
@@ -18,12 +18,12 @@ public class AdapterSavedMarkets extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private List<ServiceConfigurationGlobal> dataset;
     private Context context;
-    private listItemMarketNotifications subscriber;
+    private Fragment subscriber;
 
 
 
 
-    public AdapterSavedMarkets(List<ServiceConfigurationGlobal> dataset, Context context, listItemMarketNotifications subscriber) {
+    public AdapterSavedMarkets(List<ServiceConfigurationGlobal> dataset, Context context, Fragment subscriber) {
         this.dataset = dataset;
         this.context = context;
         this.subscriber = subscriber;
