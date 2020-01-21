@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -106,7 +108,9 @@ public class ServiceIndicatorFragment extends Fragment {
 
 
 
-    void bindViews()
+
+
+    private void bindViews()
     {
 
 
@@ -176,13 +180,6 @@ public class ServiceIndicatorFragment extends Fragment {
 
 
 
-
-
-
-
-
-
-
     @OnClick(R.id.reconnect)
     void getLocalConfig()
     {
@@ -240,6 +237,11 @@ public class ServiceIndicatorFragment extends Fragment {
                     status.setText("Not available");
 
 
+
+                    showToastMessage("Failed Code : " + String.valueOf(response.code()));
+
+
+
 //                    noServiceBlock.setVisibility(View.GONE);
 
 
@@ -263,6 +265,7 @@ public class ServiceIndicatorFragment extends Fragment {
 
 
 
+
                 progressBar.setVisibility(View.GONE);
                 serviceInfoBlock.setVisibility(View.VISIBLE);
 //                noServiceBlock.setVisibility(View.GONE);
@@ -276,6 +279,16 @@ public class ServiceIndicatorFragment extends Fragment {
 
     }
 
+
+
+
+
+
+
+    private void showToastMessage(String message)
+    {
+        Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
+    }
 
 
 

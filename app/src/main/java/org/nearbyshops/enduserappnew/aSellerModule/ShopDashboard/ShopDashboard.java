@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsDatabase.ItemsDatabase;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat;
@@ -124,17 +125,6 @@ public class ShopDashboard extends AppCompatActivity {
 
 
 
-
-    @OnClick(R.id.option_delivery_guy_accounts)
-    void DeliveryAccountsClick(View view)
-    {
-//        startActivity(new Intent(this, DeliveryGuyAccounts.class));
-        startActivity(new Intent(this, UsersList.class));
-    }
-
-
-
-
     @OnClick(R.id.option_add_items)
     void optionItemsByCategory()
     {
@@ -159,7 +149,22 @@ public class ShopDashboard extends AppCompatActivity {
     @OnClick(R.id.option_staff_accounts)
     void optionStaffAccounts()
     {
-        startActivity(new Intent(this, UsersList.class));
+        Intent intent = new Intent(this, UsersList.class);
+        intent.putExtra("default_role", User.ROLE_SHOP_STAFF_CODE);
+
+        startActivity(intent);
+    }
+
+
+
+
+    @OnClick(R.id.option_delivery_guy_accounts)
+    void optionDeliveryAccounts()
+    {
+        Intent intent = new Intent(this, UsersList.class);
+        intent.putExtra("default_role", User.ROLE_DELIVERY_GUY_SELF_CODE);
+
+        startActivity(intent);
     }
 
 

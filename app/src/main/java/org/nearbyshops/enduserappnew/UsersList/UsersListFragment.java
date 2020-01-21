@@ -61,8 +61,6 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-
-
     private boolean isDestroyed = false;
 
 
@@ -122,7 +120,8 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
         if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
         {
-            ViewHolderFilterUsers.saveFilterByRole(getActivity(),User.ROLE_SHOP_STAFF_CODE);
+            int defaultRole = getActivity().getIntent().getIntExtra("default_role",User.ROLE_SHOP_STAFF_CODE);
+            ViewHolderFilterUsers.saveFilterByRole(getActivity(),defaultRole);
         }
 
 
@@ -270,7 +269,6 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-
     private void getUsers()
     {
 
@@ -341,13 +339,10 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-//                        if(user.getRole()==User.ROLE_ADMIN_CODE || user.getRole()==User.ROLE_STAFF_CODE)
-//                        {
-//                            dataset.add(new ViewHolderFilterUsers.UserFilters());
-//                        }
-
-
-                        dataset.add(new UserFilters());
+                        if(user.getRole()==User.ROLE_ADMIN_CODE || user.getRole()==User.ROLE_STAFF_CODE)
+                        {
+                            dataset.add(new UserFilters());
+                        }
 
 
 
@@ -370,8 +365,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
                     if(item_count==0)
                     {
-                        dataset.add(EmptyScreenDataFullScreen.emptyScreenStaffList());
-//                        ViewHolderFilterUsers.resetFilters(getActivity());
+                        dataset.add(getEmptyScreen());
                     }
 
 
@@ -419,13 +413,37 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
+    private EmptyScreenDataFullScreen getEmptyScreen()
+    {
+        User user = PrefLogin.getUser(getActivity());
+
+        if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+        {
+            int defaultRole = getActivity().getIntent().getIntExtra("default_role",User.ROLE_SHOP_STAFF_CODE);
+
+            if(defaultRole==User.ROLE_SHOP_STAFF_CODE)
+            {
+                return EmptyScreenDataFullScreen.emptyScreenStaffList();
+            }
+            else if(defaultRole==User.ROLE_DELIVERY_GUY_SELF_CODE)
+            {
+                return EmptyScreenDataFullScreen.emptyScreenDeliveryStaff();
+            }
+
+
+        }
+
+
+        return EmptyScreenDataFullScreen.emptyScreenStaffList();
+    }
+
+
 
 
     private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
-
 
 
 
@@ -490,12 +508,6 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
     }
-
-
-
-
-
-
 
 
 

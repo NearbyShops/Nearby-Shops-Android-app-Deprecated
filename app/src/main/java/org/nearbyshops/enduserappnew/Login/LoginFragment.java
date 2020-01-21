@@ -95,7 +95,9 @@ public class LoginFragment extends Fragment {
 
 
 
-    void showToastMessage(String message)
+
+
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
@@ -194,7 +196,10 @@ public class LoginFragment extends Fragment {
 
 
 
-    boolean validateData()
+
+
+
+    private boolean validateData()
     {
         boolean isValid = true;
 //        boolean phoneValidity = false;

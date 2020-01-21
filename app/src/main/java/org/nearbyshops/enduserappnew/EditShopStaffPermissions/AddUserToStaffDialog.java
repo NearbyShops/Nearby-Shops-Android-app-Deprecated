@@ -72,6 +72,7 @@ public class AddUserToStaffDialog extends DialogFragment {
 
 
 
+
 //    Unbinder unbinder;
 
 
@@ -132,7 +133,7 @@ public class AddUserToStaffDialog extends DialogFragment {
     @OnClick(R.id.role_delivery)
     void roleDeliveryClick()
     {
-        selectedRole = User.ROLE_DELIVERY_GUY_CODE;
+        selectedRole = User.ROLE_DELIVERY_GUY_SELF_CODE;
         bindRole();
     }
 
@@ -151,7 +152,7 @@ public class AddUserToStaffDialog extends DialogFragment {
             roleDelivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
             roleDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
         }
-        else if(selectedRole==User.ROLE_DELIVERY_GUY_CODE)
+        else if(selectedRole==User.ROLE_DELIVERY_GUY_SELF_CODE)
         {
             roleDelivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
             roleDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.buttonColor));
@@ -177,6 +178,9 @@ public class AddUserToStaffDialog extends DialogFragment {
 
 
     @BindView(R.id.progress_bar_add_member) ProgressBar progressAddMember;
+
+
+
 
 
 

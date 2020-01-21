@@ -430,9 +430,10 @@
 <!--            android:layout_marginEnd="5dp"-->
 
             <RelativeLayout
+                android:layout_marginEnd="5dp"
                 android:id="@+id/option_staff_accounts"
                 android:background="@color/phonographyBlue"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/menu_item_width">
 
@@ -458,7 +459,7 @@
 
 
             <RelativeLayout
-                android:visibility="gone"
+                android:layout_marginStart="5dp"
                 android:id="@+id/option_delivery_guy_accounts"
                 android:background="@color/buttonColorDark"
                 android:layout_weight="1"
@@ -479,7 +480,7 @@
                     android:textSize="@dimen/menu_item_text_size"
                     android:layout_alignParentBottom="true"
                     android:textColor="#ffffff"
-                    android:text="Shop Profile"
+                    android:text="Delivery Accounts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </RelativeLayout>

@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -19,6 +20,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +31,7 @@ import butterknife.OnClick;
 import com.google.firebase.FirebaseApp;
 import com.squareup.picasso.Picasso;
 
+import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
@@ -36,6 +41,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.PreferencesDeprecated.PrefShopHome;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.aSellerModule.DeliveryGuyHome.DeliveryHome;
 import org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome.ShopAdminHome;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboard;
@@ -55,7 +61,10 @@ import javax.inject.Inject;
 public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
 
-    boolean isDestroyed = false;
+
+    private boolean isDestroyed = false;
+
+
 
     @BindView(R.id.label_login)TextView labelLogin;
     @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
@@ -79,10 +88,21 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
+    private ViewModelShop viewModelShop;
+
+
+    private ProgressDialog progressDialog;
+
+
+
+
     public ProfileFragment() {
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
     }
+
+
+
 
     @Nullable
     @Override
@@ -97,6 +117,42 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(),R.color.white));
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+
+
+
+
+
+        viewModelShop = ViewModelProviders.of(this).get(ViewModelShop.class);
+
+
+        viewModelShop.getEvent().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+
+                if(integer == ViewModelShop.EVENT_BECOME_A_SELLER_SUCCESSFUL)
+                {
+                    if(progressDialog!=null)
+                    {
+                        progressDialog.dismiss();
+                    }
+
+
+                    onRefresh();
+                }
+
+            }
+        });
+
+
+
+
+        viewModelShop.getMessage().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                showToastMessage(s);
+            }
+        });
+
 
 
 
@@ -151,6 +207,9 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
+
+
+
     @BindView(R.id.dashboard_name) TextView dashboardName;
     @BindView(R.id.dashboard_description) TextView dashboardDescription;
 
@@ -178,12 +237,16 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         }
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {
-            dashboardName.setText("Become a Seller : Create Shop");
+            dashboardName.setText("Become a Seller");
             dashboardDescription.setText("Press here to create a shop and become a seller on currently selected market !");
         }
 
 
     }
+
+
+
+
 
 
 
@@ -210,6 +273,16 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         {
             Intent intent = new Intent(getActivity(), DeliveryHome.class);
             startActivity(intent);
+        }
+        else if(user.getRole()==User.ROLE_END_USER_CODE)
+        {
+
+            viewModelShop.becomeASeller();
+
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage("Please wait ... converting you to a seller !");
+            progressDialog.show();
+
         }
 
     }
@@ -332,9 +405,6 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-
-
-
     private void logout()
     {
         // log out
@@ -441,6 +511,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
                 bindUserProfile();
+                bindDashboard();
+
                 swipeContainer.setRefreshing(false);
 
             }
@@ -456,17 +528,14 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
                 bindUserProfile();
+                bindDashboard();
+
                 swipeContainer.setRefreshing(false);
 
             }
         });
 
     }
-
-
-
-
-
 
 
 
@@ -558,13 +627,9 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     }
 
 
-
-
-
-    void showLogMessage(String message)
+    private void showLogMessage(String message)
     {
         Log.d("location_service",message);
     }
-
 
 }
