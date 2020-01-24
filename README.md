@@ -22,7 +22,7 @@ How it works ?
 Nearby Shops is a free of cost International Nonprofit e-commerce platform for local vendors. 
 It is a first of its kind decentralized, non-commercial, Open-Source and  International Nonprofit E-commerce platform.
 
-Technically Nearby Shops is a distributed ecosystem of local markets. This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance and create their local market on Nearby Shops. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
+Technically Nearby Shops is a decentralized ecosystem of local markets. This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance and create their local market on Nearby Shops. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
 Local Market's are generally self-hosted by independent Volunteers, Service Providers and local vendor cooperatives who seek the welfare of their local vendors.
 
@@ -43,7 +43,6 @@ The installation guide and app customization guide is provided at http://develop
 Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
-
 <img src="https://nearbyshops.org/images/screenshots_usa/shops_list_san_francisco.png" width="208">   <img src="https://nearbyshops.org/images/screenshots_usa/order_detail_john_doe.png" width="208">   <img src="https://nearbyshops.org/images/items-in-shop-new.png" width="208"> 
 
 
@@ -55,7 +54,6 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Libraries Used](#libraries-used)
 - [Third Party Integrations](#third-party-integrations)
 - [Connect with Us](#community---need-help-)
-- [Source Code for Shop Owner and Admin app and REST API](#source-code-for-shop-owner-admin-app-and-server-side)
 - [Contributions Required](#contributions-welcome)
 - [Contributor Compensation Program](#contributor-compensation-program)
 - [Development Instructions](#development-instructions)
@@ -75,8 +73,6 @@ Nearby Shops can also be used as a food Delivery platform where restaurants can 
 Nearby Shops implements Alibaba's New Offline-to-Online Concept, where customers discover products online and then pick those products up from physical stores. 
 
 ![Online to Offline](https://www.innovationiseverywhere.com/wp-content/uploads/2015/05/what-is-o2o-online-to-offline-digital-ecommerce-retail-china-gmic-1-2.jpg)
-
-
 
 
 
@@ -124,7 +120,6 @@ Nearby Shops Multi-Market Mode - you can add your local market to nearby shops m
 
 
 
-
 Libraries Used
 ---------------
 
@@ -157,18 +152,6 @@ Facebook - https://www.facebook.com/nearbyshops
 
 Facebook Group - https://www.facebook.com/groups/1144257952430940/
 
-
-
-
-Source code for Shop-Owner, Admin app and Server Side
--------------------------------------------------------
-If you want to see source code for the Shop-Owner app, Admin-app and the server side -- links are provided below
-
-Shop-Owner app : https://github.com/NearbyShops/Nearby-Shops-Shop-Owner-Android-app
-
-Admin app : https://github.com/NearbyShops/Nearby-Shops-Admin-App
-
-Source code for Server Side JSON Based REST API is available in this repository https://github.com/SumeetMoray/Nearby-Shops-API
 
 
 Contributions Welcome
