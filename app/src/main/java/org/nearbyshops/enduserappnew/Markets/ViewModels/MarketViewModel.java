@@ -23,6 +23,7 @@ import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurati
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+import org.nearbyshops.enduserappnew.ViewHolderUserProfile.RoleDashboardMarker;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
@@ -250,10 +251,12 @@ public class MarketViewModel extends AndroidViewModel {
 
 
 
+
                             User user = PrefLoginGlobal.getUser(getApplication());
 
                             if(user!=null)
                             {
+                                dataset.add(new RoleDashboardMarker());
                                 dataset.add(user);
                             }
                             else

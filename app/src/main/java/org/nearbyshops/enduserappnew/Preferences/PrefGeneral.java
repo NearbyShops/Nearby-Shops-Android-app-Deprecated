@@ -28,8 +28,6 @@ public class PrefGeneral {
 
 
 
-
-
     // for multi-market mode set default service url to null and multi market mode to true
     // for single-market mode set multi-market mode false and set default service url to your api server url
     public static final String DEFAULT_SERVICE_URL = SERVICE_URL_LOCAL_HOTSPOT;
@@ -81,10 +79,6 @@ public class PrefGeneral {
 
 
 
-
-
-
-
     public static void saveServiceURL(String service_url, Context context)
     {
         context = MyApplication.getAppContext();
@@ -116,9 +110,6 @@ public class PrefGeneral {
 
 
 
-
-
-
     // viewholdersavedmarket //viewholdermarket //updateserviceconfiguration
     public static void saveCurrencySymbol(String symbol, Context context)
     {
@@ -129,8 +120,6 @@ public class PrefGeneral {
         prefsEditor.putString(TAG_PREF_CURRENCY, symbol);
         prefsEditor.apply();
     }
-
-
 
 
     public static String getCurrencySymbol(Context context)

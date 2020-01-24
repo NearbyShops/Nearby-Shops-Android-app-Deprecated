@@ -120,8 +120,6 @@ public class ViewModelShop extends AndroidViewModel {
 
 
 
-
-
     public void becomeASeller()
     {
 
@@ -133,6 +131,12 @@ public class ViewModelShop extends AndroidViewModel {
 
                 if(response.code()==200)
                 {
+
+                    User user = PrefLogin.getUser(getApplication());
+                    user.setRole(User.ROLE_SHOP_ADMIN_CODE);
+                    PrefLogin.saveUserProfile(user,getApplication());
+
+
                     message.postValue("Successful !");
                     event.postValue(ViewModelShop.EVENT_BECOME_A_SELLER_SUCCESSFUL);
                 }

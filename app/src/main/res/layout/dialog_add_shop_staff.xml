@@ -87,7 +87,27 @@
             <TextView
                 android:textSize="15sp"
                 android:layout_marginTop="15dp"
-                android:text="Step 2 : Enter E-mail ID"
+                android:text="Step 2 : Enter Email or Phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+            <EditText
+                android:inputType="text"
+                android:id="@+id/input_user_id"
+                android:hint="Email, Phone or UserID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
+
+
+            <TextView
+                android:textSize="15sp"
+                android:layout_marginTop="15dp"
+                android:text="Step 3 : Enter Secret Code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -95,10 +115,13 @@
 
             <EditText
                 android:inputType="number"
-                android:id="@+id/input_user_id"
-                android:hint="E-mail ID"
+                android:id="@+id/input_secret_code"
+                android:hint="Secret Code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+
+
 
 
 
@@ -169,12 +192,7 @@
                     android:layout_height="wrap_content"/>
 
 
-
             </LinearLayout>
-
-
-
-
 
         </LinearLayout>
 

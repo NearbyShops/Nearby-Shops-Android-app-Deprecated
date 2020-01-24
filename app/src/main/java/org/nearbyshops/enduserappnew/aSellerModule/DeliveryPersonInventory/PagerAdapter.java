@@ -43,23 +43,25 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
 
 
+//        if(position==0)
+//        {
+//            return DeliveryInventoryFragment.newInstance(OrderStatusHomeDelivery.ORDER_PACKED,false);
+//        }
+//        else
+
         if(position==0)
-        {
-            return DeliveryInventoryFragment.newInstance(OrderStatusHomeDelivery.ORDER_PACKED,false);
-        }
-        else if(position==1)
         {
             return DeliveryInventoryFragment.newInstance(OrderStatusHomeDelivery.HANDOVER_REQUESTED,false);
 
-        }else if(position == 2)
+        }else if(position == 1)
         {
             return DeliveryInventoryFragment.newInstance(OrderStatusHomeDelivery.OUT_FOR_DELIVERY,false);
         }
-        else if(position==3)
+        else if(position==2)
         {
             return DeliveryInventoryFragment.newInstance(OrderStatusHomeDelivery.RETURN_REQUESTED,false);
         }
-        else if(position==4)
+        else if(position==3)
         {
             return DeliveryInventoryFragment.newInstance(OrderStatusHomeDelivery.DELIVERED,false);
         }
@@ -74,7 +76,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 3 total pages.
-        return 5;
+        return 4;
     }
 
 
@@ -82,15 +84,16 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
 
+//            case 0:
+//                return titleOrderPacked;
+
             case 0:
-                return titleOrderPacked;
-            case 1:
                 return titlePendingHandover;
-            case 2:
+            case 1:
                 return titleConfirmed;
-            case 3:
+            case 2:
                 return titleReturnPending;
-            case 4:
+            case 3:
                 return titlePaymentPending;
 
         }

@@ -29,10 +29,10 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
-import org.nearbyshops.enduserappnew.EditShopStaffPermissions.AddUserToStaffDialog;
 import org.nearbyshops.enduserappnew.EditShopStaffPermissions.EditShopStaffPermissions;
 import org.nearbyshops.enduserappnew.EditShopStaffPermissions.EditShopStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.UsersList.Dialogs.AddUserToStaffDialog;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolderFilters.UserFilters;
 import org.nearbyshops.enduserappnew.ViewHolderFilters.ViewHolderFilterUsers;
@@ -125,6 +125,14 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
         }
 
 
+        boolean selectDeliveryGuy = getActivity().getIntent().getBooleanExtra("select_delivery_guy",false);
+
+        if(selectDeliveryGuy)
+        {
+            ViewHolderFilterUsers.saveFilterByRole(getActivity(),User.ROLE_DELIVERY_GUY_SELF_CODE);
+        }
+
+        
 
         setupSwipeContainer();
         setupRecyclerView();
@@ -534,7 +542,14 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
             FragmentManager fm = getChildFragmentManager();
             AddUserToStaffDialog dialog = new AddUserToStaffDialog();
+
+
+            int defaultRole = getActivity().getIntent().getIntExtra("default_role",User.ROLE_SHOP_STAFF_CODE);
+            dialog.setSelectedRole(defaultRole);
+
+
             dialog.show(fm, "add_user_to_shop_staff");
+
         }
 
 

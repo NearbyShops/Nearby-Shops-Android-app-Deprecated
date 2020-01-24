@@ -172,18 +172,38 @@
                     android:text="Remove Picture"/>
 
 
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/local_user_id_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:enabled="false"
+                        android:id="@+id/local_user_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Local User ID"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:enabled="false"
-                        android:id="@+id/item_id"
+                        android:id="@+id/global_user_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter ID"/>
+                        android:hint="User ID"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
 

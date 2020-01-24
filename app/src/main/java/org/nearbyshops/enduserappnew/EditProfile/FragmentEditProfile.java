@@ -25,6 +25,8 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.yalantis.ucrop.UCrop;
@@ -97,7 +99,8 @@ public class FragmentEditProfile extends Fragment {
     @BindView(R.id.choice_female) RadioButton choiceFemale;
 
 
-    @BindView(R.id.item_id) EditText item_id;
+    @BindView(R.id.local_user_id) EditText localUserID;
+    @BindView(R.id.global_user_id) EditText globalUserID;
     @BindView(R.id.name) EditText name;
     @BindView(R.id.username) EditText username;
     @BindView(R.id.password) EditText password;
@@ -106,6 +109,9 @@ public class FragmentEditProfile extends Fragment {
     @BindView(R.id.about) EditText about;
     @BindView(R.id.saveButton) TextView saveButton;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
+
+    @BindView(R.id.local_user_id_block) TextInputLayout localUserIDBlock;
+
 
 
 
@@ -342,7 +348,7 @@ public class FragmentEditProfile extends Fragment {
         if(current_mode==MODE_ADD)
         {
             saveButton.setText("Sign Up");
-            item_id.setVisibility(GONE);
+            localUserID.setVisibility(GONE);
 
             password.setEnabled(true);
             password.setText("");
@@ -352,12 +358,26 @@ public class FragmentEditProfile extends Fragment {
         }
         else if(current_mode== MODE_UPDATE)
         {
-            item_id.setVisibility(VISIBLE);
+            localUserID.setVisibility(VISIBLE);
             saveButton.setText("Save");
 
             password.setEnabled(false);
             password.setText("Password");
             email.setEnabled(false);
+        }
+
+
+
+
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            // multi-market mode enabled
+            localUserIDBlock.setVisibility(VISIBLE);
+        }
+        else
+        {
+            localUserIDBlock.setVisibility(GONE);
         }
 
 
@@ -612,13 +632,22 @@ public class FragmentEditProfile extends Fragment {
     {
         if(user !=null) {
 
-            item_id.setText(String.valueOf(user.getUserID()));
+
+            if(PrefGeneral.getMultiMarketMode(getActivity()))
+            {
+                User localUserProfile = PrefLogin.getUser(getActivity());
+                localUserID.setText(String.valueOf(localUserProfile.getUserID()));
+            }
+
+
+            globalUserID.setText(String.valueOf(user.getUserID()));
             name.setText(user.getName());
             username.setText(user.getUsername());
 //            password.setText(user.getPassword());
             email.setText(user.getEmail());
             about.setText(user.getAbout());
             phone.setText(user.getPhone());
+
 
 
             if(user.getGender()!=null)

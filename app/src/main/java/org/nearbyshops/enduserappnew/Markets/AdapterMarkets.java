@@ -15,6 +15,8 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
 import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.*;
+import org.nearbyshops.enduserappnew.ViewHolderUserProfile.RoleDashboardMarker;
+import org.nearbyshops.enduserappnew.ViewHolderUserProfile.ViewHolderRoleDashboard;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
@@ -46,6 +48,7 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int view_type_sign_in = 6;
     private static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 7;
     private static final int VIEW_TYPE_create_market = 8;
+    private static final int view_type_role_dashboard = 9;
 
 
     @Inject Gson gson;
@@ -110,6 +113,10 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
             return ViewHolderEmptyScreenListItem.create(parent,fragment.getActivity(),fragment);
         }
+        else if(viewType ==view_type_role_dashboard)
+        {
+            return ViewHolderRoleDashboard.create(parent,fragment.getActivity(),fragment);
+        }
 
 
 
@@ -159,6 +166,10 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
 
             return VIEW_TYPE_create_market;
+        }
+        else if(dataset.get(position) instanceof RoleDashboardMarker)
+        {
+            return view_type_role_dashboard;
         }
 
 

@@ -132,9 +132,10 @@ public class PagerAdapter extends FragmentPagerAdapter {
             case 6:
                 return titleReturnedOrders;
             case 7:
-                return titleDelivered;
-            case 8:
                 return titlePaymentReceived;
+
+            case 8:
+                return titleDelivered;
 
 
         }
@@ -153,8 +154,8 @@ public class PagerAdapter extends FragmentPagerAdapter {
     private String titleOutForDelivery = "Out For Delivery";
     private String titleReturnRequested = "Return Requested";
     private String titleReturnedOrders = "Returned Orders";
+    private String titlePaymentReceived = "Payment Pending";
     private String titleDelivered = "Delivered";
-    private String titlePaymentReceived = "Payment Received";
 
 
 

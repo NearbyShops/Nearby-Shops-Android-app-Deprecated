@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.EditShopStaffPermissions;
+package org.nearbyshops.enduserappnew.UsersList.Dialogs;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -54,7 +54,7 @@ public class AddUserToStaffDialog extends DialogFragment {
 
 
     private int selectedRole = User.ROLE_SHOP_STAFF_CODE;
-    private int userID = 0;
+    private String userID;
 
 
 
@@ -106,6 +106,11 @@ public class AddUserToStaffDialog extends DialogFragment {
 
 
 
+
+    public void setSelectedRole(int role)
+    {
+        selectedRole = role;
+    }
 
 
 
@@ -171,7 +176,7 @@ public class AddUserToStaffDialog extends DialogFragment {
     void editUserID()
     {
 
-        userID = Integer.parseInt(inputUserID.getText().toString());
+        userID = inputUserID.getText().toString();
     }
 
 

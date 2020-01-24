@@ -143,9 +143,6 @@ public class ShopDashboard extends AppCompatActivity {
 
 
 
-
-
-
     @OnClick(R.id.option_staff_accounts)
     void optionStaffAccounts()
     {

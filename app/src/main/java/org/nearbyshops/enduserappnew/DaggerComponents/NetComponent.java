@@ -4,7 +4,7 @@ package org.nearbyshops.enduserappnew.DaggerComponents;
 import dagger.Component;
 
 import org.nearbyshops.enduserappnew.EditItemCategory.EditItemCategoryFragment;
-import org.nearbyshops.enduserappnew.EditShopStaffPermissions.AddUserToStaffDialog;
+import org.nearbyshops.enduserappnew.UsersList.Dialogs.AddUserToStaffDialog;
 import org.nearbyshops.enduserappnew.EditShopStaffPermissions.EditShopStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.EditStaffPermissions.EditStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.BackupViewHolderMarket;
