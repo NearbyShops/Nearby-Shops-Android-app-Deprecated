@@ -42,7 +42,7 @@ import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
 import org.nearbyshops.enduserappnew.Model.ModelItemSpecs.ItemSpecificationName;
 import org.nearbyshops.enduserappnew.Model.ModelReviewItem.FavouriteItem;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.ImageLists.ImageListForItem.ItemImageList;
+import org.nearbyshops.enduserappnew.ListsForImages.ImageListForItem.ItemImageList;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;

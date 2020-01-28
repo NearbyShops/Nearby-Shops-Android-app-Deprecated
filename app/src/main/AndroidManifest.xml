@@ -87,10 +87,10 @@
         <activity android:name=".Login.Login" />
         <activity android:name=".DetailScreens.DetailItem.ItemDetail" />
         <activity android:name=".DetailScreens.DetailShop.ShopDetail" />
-        <activity android:name=".ImageLists.ImageListForShop.ShopImageList" />
-        <activity android:name=".ImageLists.ImageSliderForShop.ImageSliderShop" />
-        <activity android:name=".ImageLists.ImageListForItem.ItemImageList" />
-        <activity android:name=".ImageLists.ImageSliderForItem.ImageSlider" />
+        <activity android:name=".ListsForImages.ImageListForShop.ShopImageList" />
+        <activity android:name=".ListsForImages.ImageSliderForShop.ImageSliderShop" />
+        <activity android:name=".ListsForImages.ImageListForItem.ItemImageList" />
+        <activity android:name=".ListsForImages.ImageSliderForItem.ImageSlider" />
         <activity android:name=".EditDataScreens.EditProfile.EditProfile" />
 
 

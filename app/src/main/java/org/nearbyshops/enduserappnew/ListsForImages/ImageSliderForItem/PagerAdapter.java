@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ImageLists.ImageSliderForItem;
+package org.nearbyshops.enduserappnew.ListsForImages.ImageSliderForItem;
 
 import android.os.Bundle;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ImageLists.ImageSliderForShop;
+package org.nearbyshops.enduserappnew.ListsForImages.ImageSliderForItem;
 
 
 import android.os.Bundle;
@@ -25,7 +25,7 @@ import java.util.List;
  * Created by sumeet on 23/4/17.
  */
 
-public class ImageSliderShop extends AppCompatActivity {
+public class ImageSlider extends AppCompatActivity {
 
 
     @BindView(R.id.view_pager)
@@ -42,7 +42,6 @@ public class ImageSliderShop extends AppCompatActivity {
 
         setContentView(R.layout.image_slider);
         ButterKnife.bind(this);
-
 
 
         Gson gson = UtilityFunctions.provideGson();

@@ -45,7 +45,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ImageLists.ImageListForShop.ShopImageList;
+import org.nearbyshops.enduserappnew.ListsForImages.ImageListForShop.ShopImageList;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
 import retrofit2.Call;
 import retrofit2.Callback;

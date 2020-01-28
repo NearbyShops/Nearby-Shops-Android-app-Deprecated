@@ -1,7 +1,8 @@
-package org.nearbyshops.enduserappnew.ImageLists.ImageSliderForShop;
+package org.nearbyshops.enduserappnew.ListsForImages.ImageSliderForItem;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import butterknife.ButterKnife;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
+import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
@@ -26,11 +27,11 @@ import org.nearbyshops.enduserappnew.R;
  * Created by sumeet on 27/6/17.
  */
 
-public class FragmentShopImage extends Fragment {
+public class FragmentImage extends Fragment {
 
 
 
-    ShopImage shopImageData;
+    ItemImage itemImageData;
     @BindView(R.id.taxi_image) ImageView taxiImage;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
 
@@ -54,29 +55,29 @@ public class FragmentShopImage extends Fragment {
 
 
         // decoding the object passed to the activity
-        String jsonString = getArguments().getString("shop_image");
+        String jsonString = getArguments().getString("item_image");
 
 
         Gson gson = UtilityFunctions.provideGson();
-        shopImageData = gson.fromJson(jsonString, ShopImage.class);
+        itemImageData = gson.fromJson(jsonString, ItemImage.class);
 
 
         Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.ic_nature_people_white_48px);
 
-//        String imagePath = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/TaxiImages/Image/" + "nine_hundred_"+ shopImageData.getImageFilename() + ".jpg";
-//        String image_url = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/TaxiImages/Image/" + shopImageData.getImageFilename();
+//        String imagePath = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/TaxiImages/Image/" + "nine_hundred_"+ itemImageData.getImageFilename() + ".jpg";
+//        String image_url = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/TaxiImages/Image/" + itemImageData.getImageFilename();
 
-        String imagePathSmall = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/ShopImage/Image/five_hundred_"
-                + shopImageData.getImageFilename() + ".jpg";
-
-
-        String imagePathFullSize = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/ShopImage/Image/"
-                + shopImageData.getImageFilename();
+        String imagePathSmall = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/ItemImage/Image/five_hundred_"
+                + itemImageData.getImageFilename() + ".jpg";
 
 
-        titleText.setText(shopImageData.getCaptionTitle());
-        descriptionText.setText(shopImageData.getCaption());
-        copyrightText.setText(shopImageData.getCopyrights());
+        String imagePathFullSize = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/ItemImage/Image/"
+                + itemImageData.getImageFilename();
+
+
+        titleText.setText(itemImageData.getCaptionTitle());
+        descriptionText.setText(itemImageData.getCaption());
+        copyrightText.setText(itemImageData.getImageCopyrights());
 
 
         progressBar.setVisibility(View.VISIBLE);
@@ -93,16 +94,32 @@ public class FragmentShopImage extends Fragment {
 
                     }
 
+
+
                     @Override
                     public void onError(Exception e) {
 
                     }
+
 
                 });
 
 
 
         return rootView;
+    }
+
+
+
+
+
+
+
+
+
+    void showLogMessage(String string)
+    {
+        Log.d("taxi_detail",string);
     }
 
 
