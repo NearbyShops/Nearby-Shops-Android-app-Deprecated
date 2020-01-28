@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment;
 
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.EditAddDataScreens.EditProfile.EditProfile;
-import org.nearbyshops.enduserappnew.EditAddDataScreens.EditProfile.FragmentEditProfile;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.aSellerModule.DeliveryPersonInventory.DeliveryGuyDashboard;
 

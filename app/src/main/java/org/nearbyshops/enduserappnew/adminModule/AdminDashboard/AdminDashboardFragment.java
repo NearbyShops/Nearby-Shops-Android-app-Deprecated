@@ -15,13 +15,13 @@ import androidx.fragment.app.Fragment;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.EditAddDataScreens.EditServiceConfig.EditConfiguration;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditServiceConfig.EditConfiguration;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
 import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsDatabaseAdmin;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.ShopsDatabase;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.EditAddDataScreens.EditProfile.EditProfile;
-import org.nearbyshops.enduserappnew.EditAddDataScreens.EditProfile.FragmentEditProfile;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrderHistory;
 import org.nearbyshops.enduserappnew.R;
 

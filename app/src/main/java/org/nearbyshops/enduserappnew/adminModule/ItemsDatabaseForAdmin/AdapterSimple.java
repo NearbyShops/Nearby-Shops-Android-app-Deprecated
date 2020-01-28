@@ -30,12 +30,12 @@ import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.ModelStats.ItemStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.EditAddDataScreens.EditItem.EditItem;
-import org.nearbyshops.enduserappnew.EditAddDataScreens.EditItem.EditItemFragmentNew;
-import org.nearbyshops.enduserappnew.EditAddDataScreens.EditItem.PrefItem;
-import org.nearbyshops.enduserappnew.EditAddDataScreens.EditItemCategory.EditItemCategory;
-import org.nearbyshops.enduserappnew.EditAddDataScreens.EditItemCategory.EditItemCategoryFragment;
-import org.nearbyshops.enduserappnew.EditAddDataScreens.EditItemCategory.PrefItemCategory;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditItem.EditItem;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditItem.EditItemFragmentNew;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditItem.PrefItem;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategory;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategoryFragment;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.PrefItemCategory;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 

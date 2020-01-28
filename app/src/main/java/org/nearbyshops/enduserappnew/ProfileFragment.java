@@ -31,8 +31,8 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.EditAddDataScreens.EditProfile.EditProfile;
-import org.nearbyshops.enduserappnew.EditAddDataScreens.EditProfile.FragmentEditProfile;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
