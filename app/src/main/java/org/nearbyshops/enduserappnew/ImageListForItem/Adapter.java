@@ -8,9 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.ImageListForItem.ViewHolders.ViewHolderItemImage;
-import org.nearbyshops.enduserappnew.ImageListForShop.ViewHolders.ViewHolderShopImage;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
-import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;

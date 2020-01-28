@@ -1,9 +1,7 @@
-package org.nearbyshops.enduserappnew.ImageListForShop.ViewHolders;
+package org.nearbyshops.enduserappnew.ImageListForShop;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 
@@ -31,14 +28,12 @@ public class ViewHolderShopImage extends RecyclerView.ViewHolder{
 
 
 
-
     @BindView(R.id.title) TextView imageTitle;
     @BindView(R.id.description) TextView imageDescription;
     @BindView(R.id.copyright_info) TextView copyrights;
     @BindView(R.id.taxi_image) ImageView shopImageView;
     @BindView(R.id.list_item) ConstraintLayout listItem;
     @BindView(R.id.check_icon) ImageView checkIcon;
-
 
 
 

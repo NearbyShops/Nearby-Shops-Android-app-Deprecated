@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.DetailOrder;
+package org.nearbyshops.enduserappnew.DetailOrder.Backups;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,14 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 import com.squareup.picasso.Picasso;
 
+import org.nearbyshops.enduserappnew.DetailShop.ShopDetail;
+import org.nearbyshops.enduserappnew.DetailShop.ShopDetailFragment;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.OrderItem;
@@ -24,17 +25,19 @@ import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDeliv
 import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusPickFromShop;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.DetailShop.ShopDetail;
-import org.nearbyshops.enduserappnew.DetailShop.ShopDetailFragment;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by sumeet on 13/6/16.
  */
-class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+class AdapterOrderDetailBackup extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private List<Object> dataset = null;
 //    private NotifyConfirmOrder notifyConfirmOrder;
@@ -46,7 +49,7 @@ class AdapterOrderDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     NotifyItemClick notifyItemClick;
 
 
-    AdapterOrderDetail(List<Object> dataset, Context context,NotifyItemClick notifyItemClick) {
+    AdapterOrderDetailBackup(List<Object> dataset, Context context, NotifyItemClick notifyItemClick) {
         this.dataset = dataset;
         this.context = context;
         this.notifyItemClick = notifyItemClick;

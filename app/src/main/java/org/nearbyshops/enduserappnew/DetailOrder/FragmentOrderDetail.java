@@ -15,6 +15,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.nearbyshops.enduserappnew.API.OrderItemService;
 import org.nearbyshops.enduserappnew.API.ShopService;
+import org.nearbyshops.enduserappnew.DetailOrder.ViewHolders.ViewHolderOrderItem;
+import org.nearbyshops.enduserappnew.DetailOrder.ViewHolders.ViewHolderOrderWithBill;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.OrderItemEndPoint;
@@ -38,7 +40,9 @@ import java.util.List;
  * Created by sumeet on 15/11/16.
  */
 
-public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.OnRefreshListener , AdapterOrderDetail.NotifyItemClick{
+public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
+        ViewHolderOrderWithBill.ListItemClick, ViewHolderOrderItem.ListItemClick
+        {
 
     private Order order;
 
@@ -46,7 +50,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     OrderItemService orderItemService;
 
     private RecyclerView recyclerView;
-    private AdapterOrderDetail adapter;
+    private Adapter adapter;
 
     public List<Object> dataset = new ArrayList<>();
 
@@ -88,8 +92,6 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
 
 
-
-
         if(savedInstanceState==null)
         {
             makeRefreshNetworkCall();
@@ -103,7 +105,6 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
 
         return rootView;
-
     }
 
 
@@ -128,7 +129,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     private void setupRecyclerView()
     {
 
-        adapter = new AdapterOrderDetail(dataset,getActivity(),this);
+        adapter = new Adapter(dataset,getActivity(),this);
         layoutManager = new GridLayoutManager(getActivity(),1);
 
 
@@ -162,11 +163,11 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
                 System.out.println("Position : " + position);
 
 
-//                if(adapter.getItemViewType(position)==AdapterOrderDetail.TAG_VIEW_HOLDER_ORDER_ITEM)
+//                if(adapter.getItemViewType(position)==Adapter.TAG_VIEW_HOLDER_ORDER_ITEM)
 //                {
 //                    return 1;
 //                }
-//                else if(adapter.getItemViewType(position)==AdapterOrderDetail.TAG_VIEW_HOLDER_ORDER)
+//                else if(adapter.getItemViewType(position)==Adapter.TAG_VIEW_HOLDER_ORDER)
 //                {
 //
 
@@ -428,8 +429,32 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         isDestroyed=true;
     }
 
+
+
+
+
+    private void showLog(String message)
+    {
+        Log.d("order_detail",message);
+    }
+
+
+
     @Override
-    public void notifyItemClicked(Item item) {
+    public void listItemClick(Order order, int position) {
+
+    }
+
+    @Override
+    public boolean listItemLongClick(View view, Order order, int position) {
+        return false;
+    }
+
+
+
+    @Override
+    public void listItemClick(Item item, int position) {
+
         Intent intent = new Intent(getActivity(), ItemDetail.class);
 //        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
         String itemJson = UtilityFunctions.provideGson().toJson(item);
@@ -443,8 +468,4 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
 
 
-    void showLog(String message)
-    {
-        Log.d("order_detail",message);
-    }
 }

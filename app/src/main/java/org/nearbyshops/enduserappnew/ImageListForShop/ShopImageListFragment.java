@@ -19,7 +19,6 @@ import butterknife.ButterKnife;
 
 import org.nearbyshops.enduserappnew.API.ShopImageService;
 import org.nearbyshops.enduserappnew.API.UserService;
-import org.nearbyshops.enduserappnew.ImageListForShop.ViewHolders.ViewHolderShopImage;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;

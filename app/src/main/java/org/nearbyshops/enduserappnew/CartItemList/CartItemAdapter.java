@@ -38,15 +38,13 @@ import java.util.List;
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHolder>{
 
 
-    List<CartItem> dataset = null;
+    private List<CartItem> dataset = null;
+    private Context context;
+    private NotifyCartItem notifyCartItem;
 
+    private CartStats cartStats;
+    private double cartTotal = 0;
 
-    Context context;
-    NotifyCartItem notifyCartItem;
-
-    CartStats cartStats;
-
-    double cartTotal = 0;
 
 
     @Inject
@@ -56,9 +54,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
     CartStatsService cartStatsService;
 
 
-    public CartItemAdapter() {
 
-    }
+
 
 
 
@@ -560,15 +557,9 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
 
     public interface NotifyCartItem{
-
         void notifyUpdate(CartItem cartItem);
-
         void notifyRemove(CartItem cartItem);
-
         void notifyTotal(double total);
-
-
-
     }
 
 

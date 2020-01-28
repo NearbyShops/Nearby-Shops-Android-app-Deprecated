@@ -184,7 +184,6 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
 
 
-
     void makeNetworkCall()
     {
         User endUser = PrefLogin.getUser(this);
@@ -218,18 +217,18 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
                         if(response.body().size()==0)
                         {
-                            dataset.add(new EmptyScreenDataFullScreen());
+                            dataset.add(EmptyScreenDataFullScreen.emptyScreenDeliveryAddress());
                         }
                     }
                     else
                     {
-                        dataset.add(new EmptyScreenDataFullScreen());
+                        dataset.add(EmptyScreenDataFullScreen.getOffline());
                     }
 
                 }
                 else if(response.code()==204)
                 {
-                    dataset.add(new EmptyScreenDataFullScreen());
+                    dataset.add(EmptyScreenDataFullScreen.getOffline());
                 }
                 else
                 {
@@ -253,8 +252,11 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
                 }
 
 
+                dataset.add(EmptyScreenDataFullScreen.getOffline());
 
-                showToastMessage("Network Request failed ... Check your connection !");
+//                showToastMessage("Network Request failed ... Check your connection !");
+
+
                 swipeContainer.setRefreshing(false);
 
             }
@@ -427,6 +429,9 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
         }
 
     }
+
+
+
 
 
 

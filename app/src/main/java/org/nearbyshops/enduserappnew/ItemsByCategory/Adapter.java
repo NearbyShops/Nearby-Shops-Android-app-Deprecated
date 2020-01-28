@@ -57,6 +57,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         this.fragment = fragment;
     }
 
+
+
+
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -93,8 +97,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         return null;
     }
-
-
 
 
 
@@ -141,6 +143,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     }
+
+
+
 
 
     @Override
