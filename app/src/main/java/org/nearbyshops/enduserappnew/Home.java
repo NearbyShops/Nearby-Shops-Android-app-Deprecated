@@ -29,7 +29,7 @@ import com.google.firebase.FirebaseApp;
 import org.nearbyshops.enduserappnew.Lists.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Interfaces.*;
 import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.ItemsByCatFragment;
-import org.nearbyshops.enduserappnew.LoginPlaceholder.FragmentSignInMessage;
+import org.nearbyshops.enduserappnew.Login.LoginPlaceholder.FragmentSignInMessage;
 import org.nearbyshops.enduserappnew.Lists.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Lists.Markets.MarketsFragmentNew;
 import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;

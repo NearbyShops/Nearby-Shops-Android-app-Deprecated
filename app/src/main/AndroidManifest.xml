@@ -83,7 +83,7 @@
 
         <activity android:name=".adminModule.AdminDashboard.AdminDashboard"/>
         <activity android:name=".aSellerModule.ShopAdminHome.ShopAdminHome"/>
-        <activity android:name=".ShopsAvailableForItem.ShopItemByItem" />
+        <activity android:name=".Lists.ShopsAvailableForItem.ShopItemByItem" />
         <activity android:name=".Login.Login" />
         <activity android:name=".DetailScreens.DetailItem.ItemDetail" />
         <activity android:name=".DetailScreens.DetailShop.ShopDetail" />
@@ -137,7 +137,7 @@
         <activity android:name=".aSellerModule.SelectDeliveryGuy.SelectDeliveryGuy" />
 
         <activity android:name=".aSellerModule.ShopDashboard.ShopDashboard" />
-        <activity android:name=".Transactions.Transactions" />
+        <activity android:name=".Lists.Transactions.Transactions" />
 
 
 

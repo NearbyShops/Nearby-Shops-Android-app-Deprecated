@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Transactions;
+package org.nearbyshops.enduserappnew.Lists.Transactions;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;

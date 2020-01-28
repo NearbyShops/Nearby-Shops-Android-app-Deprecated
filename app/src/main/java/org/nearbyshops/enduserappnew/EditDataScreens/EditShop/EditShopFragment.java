@@ -39,7 +39,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ImageLists.ImageListForShop.ShopImageList;
 import org.nearbyshops.enduserappnew.LocationPickerWithRadius.PickDeliveryRange;
-import org.nearbyshops.enduserappnew.PreferencesDeprecated.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 
 import java.io.File;

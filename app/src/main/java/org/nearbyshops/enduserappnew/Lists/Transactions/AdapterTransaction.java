@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Transactions;
+package org.nearbyshops.enduserappnew.Lists.Transactions;
 
 import android.content.Context;
 import android.view.LayoutInflater;

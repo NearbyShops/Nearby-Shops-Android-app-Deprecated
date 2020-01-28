@@ -4,21 +4,18 @@ package org.nearbyshops.enduserappnew.Utility;
 import android.content.Context;
 import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.PreferencesDeprecated.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopHome;
 
 /**
  * Created by sumeet on 10/7/17.

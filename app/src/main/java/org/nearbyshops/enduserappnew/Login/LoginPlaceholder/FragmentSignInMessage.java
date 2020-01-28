@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.LoginPlaceholder;
+package org.nearbyshops.enduserappnew.Login.LoginPlaceholder;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -28,7 +28,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.PreferencesDeprecated.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortItemsInShop;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;

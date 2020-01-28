@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.PreferencesDeprecated;
+package org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated;
 
 public class PrefDeprecatedLocation {
 

@@ -18,7 +18,7 @@ import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrderHistory;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.OrdersInventory.HomeDeliveryInventory.HomeDelivery;
 import org.nearbyshops.enduserappnew.aSellerModule.OrdersInventory.PickFromShopInventory.PickFromShopInventory;
-import org.nearbyshops.enduserappnew.PreferencesDeprecated.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.aSellerModule.QuickStockEditor.QuickStockEditor;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
