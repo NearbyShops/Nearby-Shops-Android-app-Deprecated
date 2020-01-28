@@ -20,14 +20,14 @@ import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.EditAddress.EditAddressFragment;
-import org.nearbyshops.enduserappnew.EditAddress.EditDeliveryAddress;
+import org.nearbyshops.enduserappnew.EditAddDataScreens.EditAddress.EditAddressFragment;
+import org.nearbyshops.enduserappnew.EditAddDataScreens.EditAddress.EditDeliveryAddress;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeliveryAdddress;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 
 import retrofit2.Call;
 import retrofit2.Callback;

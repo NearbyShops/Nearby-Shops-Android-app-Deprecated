@@ -85,49 +85,49 @@
         <activity android:name=".aSellerModule.ShopAdminHome.ShopAdminHome"/>
         <activity android:name=".ShopsAvailableForItem.ShopItemByItem" />
         <activity android:name=".Login.Login" />
-        <activity android:name=".DetailItem.ItemDetail" />
-        <activity android:name=".DetailShop.ShopDetail" />
-        <activity android:name=".ImageListForShop.ShopImageList" />
-        <activity android:name=".ImageSliderForShop.ImageSliderShop" />
-        <activity android:name=".ImageListForItem.ItemImageList" />
-        <activity android:name=".ImageSliderForItem.ImageSlider" />
-        <activity android:name=".EditProfile.EditProfile" />
+        <activity android:name=".DetailScreens.DetailItem.ItemDetail" />
+        <activity android:name=".DetailScreens.DetailShop.ShopDetail" />
+        <activity android:name=".ListsImage.ImageListForShop.ShopImageList" />
+        <activity android:name=".ListsImage.ImageSliderForShop.ImageSliderShop" />
+        <activity android:name=".ListsImage.ImageListForItem.ItemImageList" />
+        <activity android:name=".ListsImage.ImageSliderForItem.ImageSlider" />
+        <activity android:name=".EditAddDataScreens.EditProfile.EditProfile" />
 
 
 
         <activity
-            android:name=".EditProfile.ChangeEmail.ChangeEmail"
+            android:name=".EditAddDataScreens.EditProfile.ChangeEmail.ChangeEmail"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".EditProfile.ChangePhone.ChangePhone"
+            android:name=".EditAddDataScreens.EditProfile.ChangePhone.ChangePhone"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
 
 
-        <activity android:name=".EditShopStaffPermissions.EditShopStaffPermissions" />
-        <activity android:name=".EditStaffPermissions.EditStaffPermissions" />
+        <activity android:name=".EditAddDataScreens.EditShopStaffPermissions.EditShopStaffPermissions" />
+        <activity android:name=".EditAddDataScreens.EditStaffPermissions.EditStaffPermissions" />
 
 
-        <activity android:name=".UsersList.UsersList" />
+        <activity android:name=".Lists.UsersList.UsersList" />
         <activity android:name=".DeliveryAddress.DeliveryAddressActivity" />
-        <activity android:name=".EditAddress.EditDeliveryAddress" />
+        <activity android:name=".EditAddDataScreens.EditAddress.EditDeliveryAddress" />
         <activity android:name=".LocationPicker.PickLocation" />
-        <activity android:name=".CartItemList.CartItemListActivity" />
+        <activity android:name=".Lists.CartItemList.CartItemListActivity" />
         <activity android:name=".Checkout.PlaceOrderActivity" />
 <!--        <activity android:name=".OrderHistory.OrderHistory" />-->
-        <activity android:name=".DetailMarket.MarketDetail" />
-        <activity android:name=".DetailOrder.OrderDetail" />
-        <activity android:name=".ItemsInShopByCategory.ItemsInShopByCat" />
+        <activity android:name=".DetailScreens.DetailMarket.MarketDetail" />
+        <activity android:name=".DetailScreens.DetailOrder.OrderDetail" />
+        <activity android:name=".Lists.ItemsInShopByCategory.ItemsInShopByCat" />
         <activity android:name=".ShopReview.ShopReviews" />
-        <activity android:name=".CartsList.CartsList" />
+        <activity android:name=".Lists.CartsList.CartsList" />
 
 
 <!--        <activity android:name=".aSellerModule.ItemsDatabase.ItemsDatabase" />-->
-        <activity android:name=".EditItem.EditItem" />
-        <activity android:name=".EditItemImage.EditItemImage" />
-        <activity android:name=".EditShop.EditShop" />
-        <activity android:name=".EditShopImage.EditShopImage" />
+        <activity android:name=".EditAddDataScreens.EditItem.EditItem" />
+        <activity android:name=".EditAddDataScreens.EditItemImage.EditItemImage" />
+        <activity android:name=".EditAddDataScreens.EditShop.EditShop" />
+        <activity android:name=".EditAddDataScreens.EditShopImage.EditShopImage" />
 <!--        <activity android:name=".aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat" />-->
 <!--        <activity android:name=".aSellerModule.ItemsInShopSeller.ItemsInShop" />-->
         <activity android:name=".LocationPickerWithRadius.PickDeliveryRange" />
@@ -144,7 +144,7 @@
 
         <activity
             android:launchMode="singleTop"
-            android:name=".OrderHistory.OrderHistory"
+            android:name=".Lists.OrderHistory.OrderHistory"
             android:label="Order History"
             android:parentActivityName=".aSellerModule.ShopDashboard.ShopDashboard">
 
@@ -314,7 +314,7 @@
 
 
         <activity
-            android:name=".EditItemCategory.EditItemCategory"
+            android:name=".EditAddDataScreens.EditItemCategory.EditItemCategory"
             android:label="Edit Item Category"
             android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
 
@@ -337,7 +337,7 @@
 
 
         <activity
-            android:name=".EditShopForAdmin.EditShopForAdmin"
+            android:name=".EditAddDataScreens.EditShopForAdmin.EditShopForAdmin"
             android:label="Edit Shop"
             android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
             <meta-data
@@ -371,7 +371,7 @@
 
 
         <activity
-            android:name=".EditServiceConfig.EditConfiguration"
+            android:name=".EditAddDataScreens.EditServiceConfig.EditConfiguration"
             android:label="Edit Configuration"
             android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
             <meta-data

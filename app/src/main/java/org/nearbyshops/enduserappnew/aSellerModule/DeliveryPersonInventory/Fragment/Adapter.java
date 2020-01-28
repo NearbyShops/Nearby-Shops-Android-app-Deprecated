@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDelivery;
-import org.nearbyshops.enduserappnew.ViewHoldersForOrders.ViewHolderOrder;
-import org.nearbyshops.enduserappnew.ViewHoldersForOrders.ViewHolderOrderButtonDouble;
-import org.nearbyshops.enduserappnew.ViewHoldersForOrders.ViewHolderOrderButtonSingle;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.LoadingViewHolder;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersForOrders.ViewHolderOrder;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersForOrders.ViewHolderOrderButtonDouble;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersForOrders.ViewHolderOrderButtonSingle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 
 import java.util.List;
 

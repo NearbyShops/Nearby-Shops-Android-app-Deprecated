@@ -25,8 +25,8 @@ import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDeliv
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.DetailOrder.OrderDetail;
-import org.nearbyshops.enduserappnew.DetailOrder.PrefOrderDetail;
+import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.OrderDetail;
+import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.PrefOrderDetail;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyLocation;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
@@ -34,10 +34,10 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChangedNew;
 import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortOrders;
-import org.nearbyshops.enduserappnew.ViewHoldersForOrders.ViewHolderOrder;
-import org.nearbyshops.enduserappnew.ViewHoldersForOrders.ViewHolderOrderButtonDouble;
-import org.nearbyshops.enduserappnew.ViewHoldersForOrders.ViewHolderOrderButtonSingle;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersForOrders.ViewHolderOrder;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersForOrders.ViewHolderOrderButtonDouble;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersForOrders.ViewHolderOrderButtonSingle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 
 import java.util.ArrayList;
 import java.util.List;

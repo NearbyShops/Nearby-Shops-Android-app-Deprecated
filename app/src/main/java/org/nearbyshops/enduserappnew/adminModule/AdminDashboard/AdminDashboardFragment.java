@@ -1,7 +1,6 @@
 package org.nearbyshops.enduserappnew.adminModule.AdminDashboard;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,23 +9,20 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.EditServiceConfig.EditConfiguration;
-import org.nearbyshops.enduserappnew.UsersList.UsersList;
+import org.nearbyshops.enduserappnew.EditAddDataScreens.EditServiceConfig.EditConfiguration;
+import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
 import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsDatabaseAdmin;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.ShopsDatabase;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
-import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
-import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
-import org.nearbyshops.enduserappnew.OrderHistory.OrderHistory;
+import org.nearbyshops.enduserappnew.EditAddDataScreens.EditProfile.EditProfile;
+import org.nearbyshops.enduserappnew.EditAddDataScreens.EditProfile.FragmentEditProfile;
+import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrderHistory;
 import org.nearbyshops.enduserappnew.R;
 
 import javax.inject.Inject;

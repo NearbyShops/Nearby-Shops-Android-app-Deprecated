@@ -29,14 +29,14 @@ import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.enduserappnew.DetailMarket.MarketDetail;
-import org.nearbyshops.enduserappnew.DetailMarket.MarketDetailFragment;
+import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.MarketDetail;
+import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderSignIn;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSignIn;
 import org.nearbyshops.enduserappnew.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 
 import javax.inject.Inject;
 import java.util.ArrayList;

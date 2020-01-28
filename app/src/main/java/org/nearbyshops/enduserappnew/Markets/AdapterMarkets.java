@@ -15,16 +15,16 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Markets.Model.MarketsList;
 import org.nearbyshops.enduserappnew.Markets.Model.SignInMarker;
 import org.nearbyshops.enduserappnew.Markets.ViewHolders.*;
-import org.nearbyshops.enduserappnew.ViewHolderUserProfile.RoleDashboardMarker;
-import org.nearbyshops.enduserappnew.ViewHolderUserProfile.ViewHolderRoleDashboard;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.LoadingViewHolder;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataListItem;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderHeader;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderHorizontalList;
-import org.nearbyshops.enduserappnew.ViewHoldersCommon.ViewHolderSignIn;
-import org.nearbyshops.enduserappnew.ViewHolderUserProfile.ViewHolderUserProfile;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.RoleDashboardMarker;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderRoleDashboard;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHorizontalList;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSignIn;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderUserProfile;
 
 
 

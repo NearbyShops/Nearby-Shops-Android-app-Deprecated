@@ -1,6 +1,5 @@
 package org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,24 +7,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import com.google.firebase.FirebaseApp;
 
 import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
-import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
-import org.nearbyshops.enduserappnew.EditShop.EditShop;
-import org.nearbyshops.enduserappnew.EditShop.EditShopFragment;
-import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.EditAddDataScreens.EditProfile.EditProfile;
+import org.nearbyshops.enduserappnew.EditAddDataScreens.EditProfile.FragmentEditProfile;
+import org.nearbyshops.enduserappnew.EditAddDataScreens.EditShop.EditShop;
+import org.nearbyshops.enduserappnew.EditAddDataScreens.EditShop.EditShopFragment;
 import org.nearbyshops.enduserappnew.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.aSellerModule.ShopDashboard.ShopDashboard;

@@ -14,14 +14,14 @@ import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsDatabase.ItemsDatabase;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopSeller.ItemsInShop;
-import org.nearbyshops.enduserappnew.OrderHistory.OrderHistory;
-import org.nearbyshops.enduserappnew.OrderHistory.OrdersHistoryFragment;
+import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrderHistory;
+import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.OrdersInventory.HomeDeliveryInventory.HomeDelivery;
 import org.nearbyshops.enduserappnew.aSellerModule.OrdersInventory.PickFromShopInventory.PickFromShopInventory;
 import org.nearbyshops.enduserappnew.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.aSellerModule.QuickStockEditor.QuickStockEditor;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.UsersList.UsersList;
+import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

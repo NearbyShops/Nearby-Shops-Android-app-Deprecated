@@ -21,21 +21,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import com.google.firebase.FirebaseApp;
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.EditProfile.EditProfile;
-import org.nearbyshops.enduserappnew.EditProfile.FragmentEditProfile;
+import org.nearbyshops.enduserappnew.EditAddDataScreens.EditProfile.EditProfile;
+import org.nearbyshops.enduserappnew.EditAddDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;

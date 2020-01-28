@@ -12,7 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.wunderlist.slidinglayer.SlidingLayer;
-import org.nearbyshops.enduserappnew.CartsList.CartsList;
+import org.nearbyshops.enduserappnew.Lists.CartsList.CartsList;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ShopsAvailableForItem.SlidingLayerSort.SlidingLayerSortShopItem;

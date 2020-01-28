@@ -26,21 +26,21 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
 
-import org.nearbyshops.enduserappnew.CartsList.CartsListFragment;
+import org.nearbyshops.enduserappnew.Lists.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Interfaces.*;
-import org.nearbyshops.enduserappnew.ItemsByCategory.ItemsByCatFragment;
+import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.ItemsByCatFragment;
 import org.nearbyshops.enduserappnew.LoginPlaceholder.FragmentSignInMessage;
 import org.nearbyshops.enduserappnew.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Markets.MarketsFragmentNew;
 import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
-import org.nearbyshops.enduserappnew.OrderHistory.OrdersHistoryFragment;
+import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
-import org.nearbyshops.enduserappnew.ShopsList.FragmentShopsList;
+import org.nearbyshops.enduserappnew.Lists.ShopsList.FragmentShopsList;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 
