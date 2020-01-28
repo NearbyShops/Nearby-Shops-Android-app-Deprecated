@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import org.nearbyshops.enduserappnew.API.ItemImageService;
+import org.nearbyshops.enduserappnew.ImageListForItem.ViewHolders.ViewHolderItemImage;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -24,6 +25,7 @@ import org.nearbyshops.enduserappnew.ImageSliderForItem.ImageSlider;
 import org.nearbyshops.enduserappnew.Interfaces.OnFilterChanged;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,10 +41,10 @@ import java.util.List;
 
 
 public class ItemImageListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        Adapter.NotificationsFromAdapter , OnFilterChanged {
+        ViewHolderItemImage.ListItemClick, OnFilterChanged {
 
 
-    boolean isDestroyed = false;
+
 
     @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
@@ -51,36 +53,30 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-//    @Inject UserService userService;
-
     @Inject
     ItemImageService service;
 
-    GridLayoutManager layoutManager;
-    Adapter listAdapter;
-
-    List<Object> dataset = new ArrayList<>();
-    List<ItemImage> imageListData;
+    private GridLayoutManager layoutManager;
+    private Adapter listAdapter;
+    private List<Object> dataset = new ArrayList<>();
 
 
 
-//    @BindView(R.id.empty_screen) LinearLayout emptyScreen;
 
+    private boolean isDestroyed = false;
 
     // flags
-    boolean clearDataset = false;
+    private boolean clearDataset = false;
 
-//    boolean getRowCountVehicle = false;
-//    boolean resetOffsetVehicle = false;
 
 
     private int limit = 30;
-    int offset = 0;
+    private int offset = 0;
     public int item_count = 0;
 
 
-//    @BindView(R.id.drivers_count) TextView driversCount;
-//    int i = 1;
+
+
 
     public ItemImageListFragment() {
 
@@ -126,7 +122,9 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    void setupSwipeContainer()
+
+
+    private void setupSwipeContainer()
     {
 
         if(swipeContainer!=null) {
@@ -143,10 +141,10 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    void setupRecyclerView()
+    private void setupRecyclerView()
     {
 
-        listAdapter = new Adapter(dataset,getActivity(),this,this);
+        listAdapter = new Adapter(dataset,getActivity(),this);
         recyclerView.setAdapter(listAdapter);
 
 
@@ -209,7 +207,9 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    void makeRefreshNetworkCall()
+
+
+    private void makeRefreshNetworkCall()
     {
         progressBar.setVisibility(View.VISIBLE);
 
@@ -248,7 +248,7 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    void getItemImages()
+    private void getItemImages()
     {
 
 //        if(resetOffsetVehicle)
@@ -330,6 +330,7 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
                     if(item_count==0)
                     {
 //                        emptyScreen.setVisibility(View.VISIBLE);
+                        dataset.add(EmptyScreenDataFullScreen.emptyScreenItemImages());
                     }
                     else
                     {
@@ -341,7 +342,7 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
                     {
                         dataset.addAll(response.body().getResults());
 
-                        imageListData = response.body().getResults();
+//                        imageListData = response.body().getResults();
                     }
 
                     listAdapter.notifyDataSetChanged();
@@ -376,7 +377,10 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    void showToastMessage(String message)
+
+
+
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
@@ -390,18 +394,6 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-
-
-
-
-
-
-
-
-
-    @Override
-    public void notifyListItemSelected() {
-    }
 
 
 
@@ -428,10 +420,10 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
+
+
     @Override
     public boolean listItemLongClick(View view, ItemImage tripRequest, int position) {
-
-
         return true;
     }
 

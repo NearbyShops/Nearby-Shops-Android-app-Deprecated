@@ -30,11 +30,12 @@ public interface ShopStaffService {
 
 
 
-    @PUT ("/api/v1/User/ShopStaffLogin/UpgradeUser/{emailorphone}/{Role}")
+    @PUT ("/api/v1/User/ShopStaffLogin/UpgradeUser/{emailorphone}/{Role}/{SecretCode}")
     Call<ResponseBody> upgradeUserToShopStaff(
             @Header("Authorization") String headers,
             @Path("emailorphone")String emailorphone,
-            @Path("Role")int role
+            @Path("Role")int role,
+            @Path("SecretCode")int secretCode
     );
 
 

@@ -199,7 +199,7 @@
                         android:id="@+id/global_user_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="User ID"/>
+                        android:hint="Global User ID"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -219,6 +219,23 @@
                         android:hint="Enter Name"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:inputType="number"
+                        android:id="@+id/secret_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Secret Code"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
                 <com.google.android.material.textfield.TextInputLayout

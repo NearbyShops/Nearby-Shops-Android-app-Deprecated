@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ViewHolderSeller;
+package org.nearbyshops.enduserappnew.aSellerModule.ViewHolderSeller;
 
 
 import android.content.Context;

@@ -72,6 +72,34 @@ public class EmptyScreenDataFullScreen {
 
 
 
+    public static EmptyScreenDataFullScreen emptyScreenShopImages()
+    {
+        EmptyScreenDataFullScreen data = new EmptyScreenDataFullScreen();
+        data.setTitle("No Images to Show !");
+        data.setShowDesignedByFreepik(false);
+        data.setMessage("No extra images available for this Shop !");
+        data.setDrawableResource(R.drawable.ic_barcode);
+
+        return data;
+    }
+
+
+
+
+    public static EmptyScreenDataFullScreen emptyScreenItemImages()
+    {
+        EmptyScreenDataFullScreen data = new EmptyScreenDataFullScreen();
+        data.setTitle("No Images to Show !");
+        data.setShowDesignedByFreepik(false);
+        data.setMessage("No extra images available for this Item !");
+        data.setDrawableResource(R.drawable.ic_dashboard_black_24dp);
+
+        return data;
+    }
+
+
+
+
 
 
 

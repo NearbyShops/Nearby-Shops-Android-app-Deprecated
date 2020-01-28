@@ -11,7 +11,7 @@ import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
-import org.nearbyshops.enduserappnew.ViewHolderSeller.ViewHolderShopItemSeller;
+import org.nearbyshops.enduserappnew.aSellerModule.ViewHolderSeller.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;

@@ -102,6 +102,7 @@ public class FragmentEditProfile extends Fragment {
     @BindView(R.id.local_user_id) EditText localUserID;
     @BindView(R.id.global_user_id) EditText globalUserID;
     @BindView(R.id.name) EditText name;
+    @BindView(R.id.secret_code) EditText secretCode;
     @BindView(R.id.username) EditText username;
     @BindView(R.id.password) EditText password;
     @BindView(R.id.email) EditText email;
@@ -374,10 +375,12 @@ public class FragmentEditProfile extends Fragment {
         {
             // multi-market mode enabled
             localUserIDBlock.setVisibility(VISIBLE);
+            globalUserID.setHint("Global User ID");
         }
         else
         {
             localUserIDBlock.setVisibility(GONE);
+            globalUserID.setHint("User ID");
         }
 
 
@@ -425,6 +428,8 @@ public class FragmentEditProfile extends Fragment {
                 .load(imagePathLocal)
                 .into(resultView);
     }
+
+
 
 
 
@@ -642,6 +647,8 @@ public class FragmentEditProfile extends Fragment {
 
             globalUserID.setText(String.valueOf(user.getUserID()));
             name.setText(user.getName());
+            secretCode.setText(String.valueOf(user.getSecretCode()));
+
             username.setText(user.getUsername());
 //            password.setText(user.getPassword());
             email.setText(user.getEmail());
@@ -674,11 +681,12 @@ public class FragmentEditProfile extends Fragment {
     {
 
         user.setName(name.getText().toString());
+
+        user.setSecretCode(Integer.parseInt(secretCode.getText().toString()));
+
         user.setUsername(username.getText().toString());
         user.setAbout(about.getText().toString());
         user.setGender(choiceMale.isChecked());
-
-
 
 
         if(username.getText().toString().length()==0)
@@ -713,10 +721,6 @@ public class FragmentEditProfile extends Fragment {
 
 
     }
-
-
-
-
 
 
 

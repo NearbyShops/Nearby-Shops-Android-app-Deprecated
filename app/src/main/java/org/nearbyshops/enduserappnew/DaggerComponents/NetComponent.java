@@ -45,7 +45,7 @@ import org.nearbyshops.enduserappnew.aSellerModule.SelectDeliveryGuy.SelectDeliv
 import org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome.ShopAdminHomeFragment;
 import org.nearbyshops.enduserappnew.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Transactions.TransactionFragment;
-import org.nearbyshops.enduserappnew.ViewHolderSeller.ViewHolderShopItemSeller;
+import org.nearbyshops.enduserappnew.aSellerModule.ViewHolderSeller.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplified;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplifiedBackup;
 import org.nearbyshops.enduserappnew.ItemsInShopByCategory.ItemsInShopByCatFragment;
@@ -270,4 +270,5 @@ public interface NetComponent {
     void Inject(BackupViewHolderMarketSmall backupViewHolderMarketSmall);
 
     void Inject(ViewModelShop viewModelShop);
+
 }

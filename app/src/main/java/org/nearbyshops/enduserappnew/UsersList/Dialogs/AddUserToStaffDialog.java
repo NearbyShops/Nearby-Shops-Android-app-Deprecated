@@ -44,6 +44,7 @@ public class AddUserToStaffDialog extends DialogFragment {
     @BindView(R.id.role_delivery) TextView roleDelivery;
 
     @BindView(R.id.input_user_id) EditText inputUserID;
+    @BindView(R.id.input_secret_code) EditText secretCode;
 
     @BindView(R.id.add_member) TextView addMember;
     @BindView(R.id.dismiss) TextView dismiss;
@@ -55,6 +56,7 @@ public class AddUserToStaffDialog extends DialogFragment {
 
     private int selectedRole = User.ROLE_SHOP_STAFF_CODE;
     private String userID;
+    private int secretCodeInteger;
 
 
 
@@ -181,6 +183,17 @@ public class AddUserToStaffDialog extends DialogFragment {
 
 
 
+    @OnTextChanged(R.id.input_secret_code)
+    void editSecretCode()
+    {
+        if(secretCode.getText().toString().length()>0)
+        {
+            secretCodeInteger = Integer.parseInt(secretCode.getText().toString());
+        }
+    }
+
+
+
 
     @BindView(R.id.progress_bar_add_member) ProgressBar progressAddMember;
 
@@ -202,11 +215,21 @@ public class AddUserToStaffDialog extends DialogFragment {
 
             return;
         }
+        else if(secretCode.getText().toString().equals(""))
+        {
+            secretCode.setError("Please enter Secret Code");
+            secretCode.requestFocus();
+
+            return;
+        }
+
+
 
 
         Call<ResponseBody> call = shopStaffService.upgradeUserToShopStaff(
                 PrefLogin.getAuthorizationHeaders(getActivity()),
-                userID,selectedRole
+                userID,selectedRole,
+                secretCodeInteger
         );
 
 

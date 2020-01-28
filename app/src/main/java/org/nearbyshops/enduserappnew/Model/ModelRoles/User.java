@@ -93,64 +93,6 @@ public class User {
 
 
 
-    // Create Table CurrentServiceConfiguration Provider
-    public static final String createTableUsernamesPostgres =
-
-            "CREATE TABLE IF NOT EXISTS "
-                    + User.TABLE_NAME + "("
-                    + " " + User.USER_ID + " SERIAL PRIMARY KEY,"
-                    + " " + User.USERNAME + " text UNIQUE ,"
-                    + " " + User.PASSWORD + " text NOT NULL,"
-
-                    + " " + User.PASSWORD_RESET_CODE + " text ,"
-                    + " " + User.RESET_CODE_EXPIRES + " timestamp with time zone NOT NULL default now(),"
-
-                    + " " + User.E_MAIL + " text UNIQUE ,"
-                    + " " + User.PHONE + " text UNIQUE,"
-                    + " " + User.NAME + " text,"
-
-                    + " " + User.GENDER + " boolean,"
-                    + " " + User.PROFILE_IMAGE_URL + " text,"
-                    + " " + User.ROLE + " int,"
-
-                    + " " + User.IS_ACCOUNT_PRIVATE + " boolean NOT NULL default 't',"
-                    + " " + User.ABOUT + " text,"
-                    + " " + User.ENABLED + " boolean NOT NULL default 'f',"
-                    + " " + User.GOOGLE_ID + " text,"
-                    + " " + User.FIREBASE_ID + " text,"
-
-                    + " " + User.TIMESTAMP_CREATED + "  timestamp with time zone NOT NULL DEFAULT now(),"
-                    + " " + User.TIMESTAMP_UPDATED + "  timestamp with time zone NOT NULL DEFAULT now(),"
-
-                    + " " + User.TOKEN + "  text,"
-                    + " " + User.TIMESTAMP_TOKEN_EXPIRES + "  timestamp with time zone,"
-
-                    + " " + User.CURRENT_DUES + " float NOT NULL default 0,"
-                    + " " + User.TOTAL_SERVICE_CHARGES + " float NOT NULL default 0,"
-                    + " " + User.TOTAL_CREDITS + " float NOT NULL default 0,"
-                    + " " + User.TOTAL_PAID + " float NOT NULL default 0,"
-                    + " " + User.EXTENDED_CREDIT_LIMIT + " float NOT NULL default 0,"
-
-                    + " " + User.REFERRED_BY + " int,"
-                    + " " + User.IS_REFERRER_CREDITED + " boolean NOT NULL default 'f',"
-
-                    + " " + User.IS_VERIFIED + " boolean NOT NULL default 'f',"
-
-                    + " " + User.IP_ADDRESS + "  text,"
-                    + " " + User.PORT + "  int,"
-
-                    + "CHECK (" + User.USERNAME + " IS NOT NULL OR " + User.E_MAIL + " IS NOT NULL OR " + User.PHONE + " IS NOT NULL " +  ")"
-                    + ")";
-
-
-
-    public static final String upgradeTableSchema =
-                    " ALTER TABLE IF EXISTS " + User.TABLE_NAME +
-                    " ADD COLUMN IF NOT EXISTS " + User.EXTENDED_CREDIT_LIMIT + " float NOT NULL default 0," +
-                    " ADD COLUMN IF NOT EXISTS " + " " + User.PASSWORD_RESET_CODE + " text," +
-                    " ADD COLUMN IF NOT EXISTS " + " " + User.RESET_CODE_EXPIRES + " timestamp with time zone";
-
-
 
 
 
@@ -166,6 +108,7 @@ public class User {
     private String email;
     private String phone;
     private String name;
+    private int secretCode;
 
     private Boolean gender;
     private String profileImagePath;
@@ -240,6 +183,14 @@ public class User {
 
     // Getters and Setters
 
+
+    public int getSecretCode() {
+        return secretCode;
+    }
+
+    public void setSecretCode(int secretCode) {
+        this.secretCode = secretCode;
+    }
 
     public ShopStaffPermissions getRt_shop_staff_permissions() {
         return rt_shop_staff_permissions;

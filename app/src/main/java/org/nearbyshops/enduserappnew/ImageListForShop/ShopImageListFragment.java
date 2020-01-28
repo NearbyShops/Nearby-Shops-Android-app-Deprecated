@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 
 import org.nearbyshops.enduserappnew.API.ShopImageService;
 import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.ImageListForShop.ViewHolders.ViewHolderShopImage;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -26,6 +27,7 @@ import org.nearbyshops.enduserappnew.ImageSliderForShop.ImageSliderShop;
 import org.nearbyshops.enduserappnew.Interfaces.OnFilterChanged;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +42,7 @@ import java.util.List;
  */
 
 public class ShopImageListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        Adapter.NotificationsFromAdapter , OnFilterChanged {
+        ViewHolderShopImage.ListItemClick, OnFilterChanged {
 
     boolean isDestroyed = false;
 
@@ -60,11 +62,11 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
     @Inject
     ShopImageService service;
 
-    GridLayoutManager layoutManager;
-    Adapter listAdapter;
+    private GridLayoutManager layoutManager;
+    private Adapter listAdapter;
 
-    List<Object> dataset = new ArrayList<>();
-    List<ShopImage> shopListData;
+    private List<Object> dataset = new ArrayList<>();
+//    List<ShopImage> shopListData;
 
 
     // flags
@@ -134,7 +136,9 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    void setupSwipeContainer()
+
+
+    private void setupSwipeContainer()
     {
 
         if(swipeContainer!=null) {
@@ -151,10 +155,12 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    void setupRecyclerView()
+
+
+    private void setupRecyclerView()
     {
 
-        listAdapter = new Adapter(dataset,getActivity(),this,this);
+        listAdapter = new Adapter(dataset,getActivity(),this);
         recyclerView.setAdapter(listAdapter);
 
         layoutManager = new GridLayoutManager(getActivity(),1, RecyclerView.VERTICAL,false);
@@ -216,7 +222,9 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    void makeRefreshNetworkCall()
+
+
+    private void makeRefreshNetworkCall()
     {
         progressBar.setVisibility(View.VISIBLE);
 
@@ -255,7 +263,9 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    void getShopImages()
+
+
+    private void getShopImages()
     {
 
 //        if(resetOffsetVehicle)
@@ -304,7 +314,7 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
                         item_count = response.body().getItemCount();
 
-                        listAdapter.setItemCount(item_count);
+//                        listAdapter.setItemCount(item_count);
 
                         if(item_count>0)
                         {
@@ -315,12 +325,16 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
                     if(item_count==0)
                     {
-                        emptyScreen.setVisibility(View.VISIBLE);
+//                        emptyScreen.setVisibility(View.VISIBLE);
+
+                        dataset.add(EmptyScreenDataFullScreen.emptyScreenShopImages());
                     }
                     else
                     {
-                        emptyScreen.setVisibility(View.GONE);
+//                        emptyScreen.setVisibility(View.GONE);
                     }
+
+
 
 
 
@@ -328,8 +342,7 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
                     if(response.body().getResults()!=null)
                     {
                         dataset.addAll(response.body().getResults());
-
-                        shopListData = response.body().getResults();
+//                        shopListData = response.body().getResults();
                     }
 
                     listAdapter.notifyDataSetChanged();
@@ -361,10 +374,15 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    void showToastMessage(String message)
+
+
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
+
+
+
 
 
     @Override
@@ -372,22 +390,6 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
         makeRefreshNetworkCall();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    @Override
-    public void notifyListItemSelected() {
-
-    }
 
 
 

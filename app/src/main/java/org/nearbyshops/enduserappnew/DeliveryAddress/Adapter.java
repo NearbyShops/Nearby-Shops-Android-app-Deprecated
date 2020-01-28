@@ -82,10 +82,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 
-
-
-
-
     @Override
     public int getItemViewType(int position) {
         super.getItemViewType(position);

@@ -32,7 +32,7 @@ import org.nearbyshops.enduserappnew.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortItemsInShop;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
-import org.nearbyshops.enduserappnew.ViewHolderSeller.ViewHolderShopItemSeller;
+import org.nearbyshops.enduserappnew.aSellerModule.ViewHolderSeller.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
 
 import java.util.ArrayList;

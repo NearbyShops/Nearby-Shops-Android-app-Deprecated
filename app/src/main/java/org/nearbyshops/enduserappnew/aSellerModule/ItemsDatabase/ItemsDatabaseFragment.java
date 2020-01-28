@@ -42,7 +42,7 @@ import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategorySmall;
-import org.nearbyshops.enduserappnew.ViewHolderSeller.ViewHolderItemInShop;
+import org.nearbyshops.enduserappnew.aSellerModule.ViewHolderSeller.ViewHolderItemInShop;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHoldersCommon.Models.HeaderTitle;
 

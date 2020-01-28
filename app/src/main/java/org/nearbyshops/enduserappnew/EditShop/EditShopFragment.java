@@ -250,6 +250,7 @@ public class EditShopFragment extends Fragment {
 
 
 
+
     @OnClick(R.id.uploadImage)
     void imageClick()
     {
