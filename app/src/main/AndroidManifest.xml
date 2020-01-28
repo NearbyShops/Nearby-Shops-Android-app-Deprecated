@@ -137,7 +137,7 @@
         <activity android:name=".aSellerModule.SelectDeliveryGuy.SelectDeliveryGuy" />
 
         <activity android:name=".aSellerModule.ShopDashboard.ShopDashboard" />
-        <activity android:name=".Lists.Transactions.Transactions" />
+        <activity android:name=".Lists.TransactionHistory.Transactions" />
 
 
 

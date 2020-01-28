@@ -44,7 +44,7 @@ import org.nearbyshops.enduserappnew.aSellerModule.QuickStockEditor.FragmentShop
 import org.nearbyshops.enduserappnew.aSellerModule.SelectDeliveryGuy.SelectDeliveryFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome.ShopAdminHomeFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
-import org.nearbyshops.enduserappnew.Lists.Transactions.TransactionFragment;
+import org.nearbyshops.enduserappnew.Lists.TransactionHistory.TransactionFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.ViewHolderSeller.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplified;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplifiedBackup;

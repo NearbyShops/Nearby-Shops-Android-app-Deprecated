@@ -24,7 +24,7 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
 import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.aSellerModule.ShopDashboard.ShopDashboard;
-import org.nearbyshops.enduserappnew.Lists.Transactions.Transactions;
+import org.nearbyshops.enduserappnew.Lists.TransactionHistory.Transactions;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import butterknife.BindView;
