@@ -39,8 +39,8 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
-import org.nearbyshops.enduserappnew.aSellerModule.DeliveryGuyHome.DeliveryHome;
-import org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome.ShopAdminHome;
+import org.nearbyshops.enduserappnew.SellerModule.DeliveryGuyHome.DeliveryHome;
+import org.nearbyshops.enduserappnew.SellerModule.ShopAdminHome.ShopAdminHome;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboard;
 
 import retrofit2.Call;

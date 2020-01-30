@@ -4,13 +4,15 @@ package org.nearbyshops.enduserappnew.DaggerComponents;
 import dagger.Component;
 
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategoryFragment;
+import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersDataSource;
+import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersListPagingFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToStaffDialog;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.EditShopStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarket;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarketSmall;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
-import org.nearbyshops.enduserappnew.aSellerModule.DeliveryPersonInventory.Fragment.DeliveryInventoryFragment;
+import org.nearbyshops.enduserappnew.SellerModule.DeliveryPersonInventory.Fragment.DeliveryInventoryFragment;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.FragmentAddCredit;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboardFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditServiceConfig.EditConfigurationFragment;
@@ -36,16 +38,16 @@ import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ListsForImages.ImageListForItem.ItemImageListFragment;
 import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.ItemsByCatFragment;
-import org.nearbyshops.enduserappnew.aSellerModule.ItemsDatabase.ItemsDatabaseFragment;
-import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCatSellerFragment;
-import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopSeller.ItemsInShopFragment;
-import org.nearbyshops.enduserappnew.aSellerModule.OrdersInventory.Fragment.OrdersInventoryFragment;
-import org.nearbyshops.enduserappnew.aSellerModule.QuickStockEditor.FragmentShopItem;
-import org.nearbyshops.enduserappnew.aSellerModule.SelectDeliveryGuy.SelectDeliveryFragment;
-import org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome.ShopAdminHomeFragment;
+import org.nearbyshops.enduserappnew.SellerModule.ItemsDatabase.ItemsDatabaseFragment;
+import org.nearbyshops.enduserappnew.SellerModule.ItemsInShopByCatSeller.ItemsInShopByCatSellerFragment;
+import org.nearbyshops.enduserappnew.SellerModule.ItemsInShopSeller.ItemsInShopFragment;
+import org.nearbyshops.enduserappnew.SellerModule.OrdersInventory.Fragment.OrdersInventoryFragment;
+import org.nearbyshops.enduserappnew.SellerModule.QuickStockEditor.FragmentShopItem;
+import org.nearbyshops.enduserappnew.SellerModule.SelectDeliveryGuy.SelectDeliveryFragment;
+import org.nearbyshops.enduserappnew.SellerModule.ShopAdminHome.ShopAdminHomeFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Lists.TransactionHistory.TransactionFragment;
-import org.nearbyshops.enduserappnew.aSellerModule.ViewHolderSeller.ViewHolderShopItemSeller;
+import org.nearbyshops.enduserappnew.SellerModule.ViewHolderSeller.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplified;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplifiedBackup;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCatFragment;
@@ -211,7 +213,7 @@ public interface NetComponent {
 
     void Inject(ViewHolderShopItemSeller viewHolderShopItemSeller);
 
-    void Inject(org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.Adapter adapter);
+    void Inject(org.nearbyshops.enduserappnew.SellerModule.ItemsInShopByCatSeller.Adapter adapter);
 
     void Inject(ItemsInShopFragment itemsInShopFragment);
 
@@ -255,6 +257,7 @@ public interface NetComponent {
 
     void Inject(ItemCategoriesParent itemCategoriesParent);
 
+
     void Inject(FragmentShopList fragmentShopList);
 
     void Inject(EditStaffPermissionsFragment editStaffPermissionsFragment);
@@ -271,4 +274,7 @@ public interface NetComponent {
 
     void Inject(ViewModelShop viewModelShop);
 
+    void Inject(OrdersListPagingFragment ordersListPagingFragment);
+
+    void Inject(OrdersDataSource ordersDataSource);
 }

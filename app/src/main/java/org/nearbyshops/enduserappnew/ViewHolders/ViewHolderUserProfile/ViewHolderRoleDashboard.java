@@ -18,8 +18,8 @@ import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
-import org.nearbyshops.enduserappnew.aSellerModule.DeliveryGuyHome.DeliveryHome;
-import org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome.ShopAdminHome;
+import org.nearbyshops.enduserappnew.SellerModule.DeliveryGuyHome.DeliveryHome;
+import org.nearbyshops.enduserappnew.SellerModule.ShopAdminHome.ShopAdminHome;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboard;
 
 import butterknife.BindView;

@@ -41,7 +41,6 @@ import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetail;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopHome;
-import org.nearbyshops.enduserappnew.PreferencesDeprecated.*;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
