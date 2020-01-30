@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ListsForImages.ImageListForItem;
+package org.nearbyshops.enduserappnew.ImageList.ImageListForItem;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,8 +17,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import org.nearbyshops.enduserappnew.API.ItemImageService;
-import org.nearbyshops.enduserappnew.ListsForImages.ImageListForItem.ViewHolders.ViewHolderItemImage;
-import org.nearbyshops.enduserappnew.ListsForImages.ImageSliderForItem.ImageSlider;
+import org.nearbyshops.enduserappnew.ImageList.ImageListForItem.ViewHolders.ViewHolderItemImage;
+import org.nearbyshops.enduserappnew.ImageSlider.ImageSliderForItem.ImageSlider;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;

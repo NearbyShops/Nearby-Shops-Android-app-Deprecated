@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ListsForImages.ImageListForShop;
+package org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ViewHolder;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

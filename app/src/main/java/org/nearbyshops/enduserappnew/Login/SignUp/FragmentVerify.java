@@ -48,8 +48,6 @@ import javax.inject.Inject;
 public class FragmentVerify extends Fragment {
 
 
-
-
     @BindView(R.id.check_icon) ImageView checkIcon;
     @BindView(R.id.cross_icon) ImageView crossIcon;
     @BindView(R.id.message) TextView textAvailable;

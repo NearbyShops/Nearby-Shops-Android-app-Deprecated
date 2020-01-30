@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ListsForImages.ImageSliderForItem;
+package org.nearbyshops.enduserappnew.ImageSlider.ImageSliderForShop;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -32,7 +32,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        FragmentImage fragment = new FragmentImage();
+        FragmentShopImage fragment = new FragmentShopImage();
 
         Bundle bundle = new Bundle();
         ItemImage taxiData = (ItemImage) imagesList.get(position);
@@ -40,8 +40,9 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 .toJson(taxiData);
 
 
-        bundle.putString("item_image",jsonString);
+        bundle.putString("shop_image",jsonString);
         fragment.setArguments(bundle);
+
 
 
 
@@ -52,10 +53,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
 
 
-
-
-
-    private void showLogMessage(String string)
+    void showLogMessage(String string)
     {
         Log.d("image_slider",string);
     }

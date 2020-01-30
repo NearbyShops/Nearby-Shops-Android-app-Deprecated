@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ListsForImages.ImageListForShop;
+package org.nearbyshops.enduserappnew.ImageList.ImageListForShop;
 
 import android.os.Bundle;
 import android.widget.Toast;

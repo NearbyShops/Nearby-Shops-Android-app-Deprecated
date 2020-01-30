@@ -27,15 +27,12 @@ import butterknife.OnClick;
 public class ViewHolderShopNew extends RecyclerView.ViewHolder{
 
 
-
     @BindView(R.id.shop_name) TextView shopName;
     @BindView(R.id.shop_address) TextView shopAddress;
     @BindView(R.id.shop_logo) ImageView shopLogo;
     @BindView(R.id.delivery) TextView delivery;
-//    @BindView(R.id.distance) TextView distance;
     @BindView(R.id.rating) TextView rating;
     @BindView(R.id.rating_count) TextView rating_count;
-//    @BindView(R.id.description) TextView description;
     @BindView(R.id.indicator_pick_from_shop) TextView pickFromShopIndicator;
     @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
 
