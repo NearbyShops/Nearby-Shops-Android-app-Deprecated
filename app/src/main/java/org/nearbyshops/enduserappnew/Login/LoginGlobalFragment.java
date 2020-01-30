@@ -29,10 +29,10 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.ForgotPassword;
-import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceForgotPassword;
-import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
-import org.nearbyshops.enduserappnew.SignUp.SignUp;
+import org.nearbyshops.enduserappnew.Login.SignUp.ForgotPassword.ForgotPassword;
+import org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp.PrefrenceForgotPassword;
+import org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp.PrefrenceSignUp;
+import org.nearbyshops.enduserappnew.Login.SignUp.SignUp;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import retrofit2.Call;

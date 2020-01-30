@@ -1,9 +1,10 @@
 package org.nearbyshops.enduserappnew;
 
-import org.nearbyshops.enduserappnew.DaggerComponents.DaggerNetComponent;
-import org.nearbyshops.enduserappnew.DaggerComponents.NetComponent;
-import org.nearbyshops.enduserappnew.DaggerModules.AppModule;
-import org.nearbyshops.enduserappnew.DaggerModules.NetModule;
+
+import org.nearbyshops.enduserappnew.DI.DaggerComponents.DaggerNetComponent;
+import org.nearbyshops.enduserappnew.DI.DaggerComponents.NetComponent;
+import org.nearbyshops.enduserappnew.DI.DaggerModules.AppModule;
+import org.nearbyshops.enduserappnew.DI.DaggerModules.NetModule;
 
 /**
  * Created by sumeet on 14/5/16.

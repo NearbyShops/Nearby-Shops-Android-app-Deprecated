@@ -12,10 +12,13 @@ import com.google.gson.GsonBuilder;
 
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopHome;
+
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
 /**
  * Created by sumeet on 10/7/17.
@@ -96,6 +99,57 @@ public class UtilityFunctions {
                 });
 
     }
+
+
+
+
+
+
+    public static void updateFirebaseSubscriptionsForShop()
+    {
+//        FirebaseApp.getInstance().delete();
+//        FirebaseApp.initializeApp(getApplicationContext());
+
+
+        Shop shop = PrefShopHome.getShop(getApplicationContext());
+        ServiceConfigurationLocal localConfig = PrefServiceConfig.getServiceConfigLocal(getApplicationContext());
+
+
+        if(shop==null || localConfig==null || localConfig.getRt_market_id_for_fcm()==null)
+        {
+            return;
+        }
+
+
+        String topic_name = localConfig.getRt_market_id_for_fcm() + "shop_" + shop.getShopID();
+
+
+
+        try {
+
+
+            FirebaseMessaging.getInstance().subscribeToTopic(topic_name)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            System.out.println("Subscribed to : " + topic_name);
+
+                        }
+                    });
+
+
+        }
+        catch (Exception ignored)
+        {
+
+
+        }
+
+
+    }
+
+
 
 
 

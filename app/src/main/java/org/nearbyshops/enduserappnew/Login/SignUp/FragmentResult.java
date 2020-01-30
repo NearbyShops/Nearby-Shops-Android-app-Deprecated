@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SignUp;
+package org.nearbyshops.enduserappnew.Login.SignUp;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,9 +12,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
+import org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp.PrefrenceSignUp;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
 
 /**
  * Created by sumeet on 27/6/17.

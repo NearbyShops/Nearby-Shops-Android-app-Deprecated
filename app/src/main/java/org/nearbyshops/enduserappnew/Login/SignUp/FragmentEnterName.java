@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SignUp;
+package org.nearbyshops.enduserappnew.Login.SignUp;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,10 +12,10 @@ import butterknife.OnClick;
 import com.google.android.material.textfield.TextInputEditText;
 
 
+import org.nearbyshops.enduserappnew.Login.SignUp.Interfaces.ShowFragmentSignUp;
+import org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp.PrefrenceSignUp;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SignUp.Interfaces.ShowFragmentSignUp;
-import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
 
 
 /**

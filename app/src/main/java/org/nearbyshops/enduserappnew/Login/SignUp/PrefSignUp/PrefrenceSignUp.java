@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SignUp.PrefSignUp;
+package org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp;
 
 import android.content.Context;
 import android.content.SharedPreferences;

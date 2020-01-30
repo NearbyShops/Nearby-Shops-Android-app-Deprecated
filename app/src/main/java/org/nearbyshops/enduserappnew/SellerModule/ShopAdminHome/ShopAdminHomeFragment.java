@@ -514,9 +514,9 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
                 {
                     PrefShopHome.saveShop(response.body(),getActivity());
 
-                    bindAllFields();
 
-                    UtilityFunctions.updateFirebaseSubscriptions();
+                    bindAllFields();
+                    UtilityFunctions.updateFirebaseSubscriptionsForShop();
 
                 }
                 else if(response.code()==204)

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SignUp;
+package org.nearbyshops.enduserappnew.Login.SignUp.ForgotPassword;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -11,11 +11,11 @@ import com.stfalcon.smsverifycatcher.OnSmsCatchListener;
 import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
 
 
+import org.nearbyshops.enduserappnew.Login.SignUp.Interfaces.ShowFragmentForgotPassword;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SignUp.Interfaces.ShowFragmentSignUp;
 
 
-public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
+public class ForgotPassword extends AppCompatActivity implements ShowFragmentForgotPassword {
 
 
     public static final String TAG_STEP_ONE = "tag_step_one";
@@ -28,43 +28,30 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
     SmsVerifyCatcher smsVerifyCatcher;
 
 
-
-
-
-
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        Fabric.with(this, new Crashlytics());
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
+
 //        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_forgot_password);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
-        toolbar.setTitle("Sign Up");
+//        toolbar.setTitle("Forgot Password");
         setSupportActionBar(toolbar);
 
-
-
-//        if(getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT)==null)
-//        {
 
 
         if(savedInstanceState==null)
         {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container,new FragmentEnterName(),TAG_STEP_ONE)
+                    .replace(R.id.fragment_container,new FragmentEnterCredentials(),TAG_STEP_ONE)
                     .commitNow();
         }
-
-
 
 
 
@@ -76,11 +63,8 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
             }
         });
 
-//        }
+
     }
-
-
-
 
 
 
@@ -92,56 +76,28 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
     }
 
 
-
     @Override
-    public void showEmailPhone() {
+    public void showCheckResetCode() {
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
-                    .replace(R.id.fragment_container,new FragmentEmailOrPhone(),TAG_STEP_TWO)
-                    .addToBackStack("step_two")
-                    .commit();
-
-//
-    }
-
-
-
-
-
-
-
-
-    @Override
-    public void showVerifyEmail() {
 
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
-                .replace(R.id.fragment_container,new FragmentVerify(),TAG_STEP_THREE)
-                .addToBackStack("step_three")
-                .commit();
-    }
-
-
-
-
-    @Override
-    public void showEnterPassword() {
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
-                .replace(R.id.fragment_container,new FragmentEnterPassword(),TAG_STEP_FOUR)
+                .replace(R.id.fragment_container,new FragmentCheckResetCode(),TAG_STEP_FOUR)
                 .addToBackStack("step_four")
                 .commit();
-
-//                        .addToBackStack("step_four")
     }
 
+    @Override
+    public void showResetPassword() {
 
-
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+                .replace(R.id.fragment_container,new FragmentResetPassword(),TAG_STEP_FOUR)
+                .addToBackStack("step_four")
+                .commit();
+    }
 
 
 
@@ -155,7 +111,7 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
-                .replace(R.id.fragment_container,new FragmentResult())
+                .replace(R.id.fragment_container,new FragmentResultForgot())
                 .commit();
 
     }
@@ -163,23 +119,6 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
 
 
 
-//    @Override
-//    public User getSignUpProfile() {
-//        return signUpProfile;
-//    }
-//
-//    @Override
-//    public void setSignUpProfile(User signUpProfile) {
-//        this.signUpProfile = signUpProfile;
-//    }
-//
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        smsVerifyCatcher.onStop();
-    }
 
 
     @Override
@@ -189,11 +128,20 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
     }
 
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        smsVerifyCatcher.onStop();
+    }
+
+
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        smsVerifyCatcher.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        smsVerifyCatcher.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
 }

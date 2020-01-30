@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShop;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopNew;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
@@ -58,7 +59,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if(viewType == VIEW_TYPE_SHOP)
         {
-            return ViewHolderShop.create(parent,context,fragment,this);
+            return ViewHolderShopNew.create(parent,context,fragment,this);
         }
         else if(viewType == VIEW_TYPE_HEADER)
         {
@@ -85,9 +86,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
 
-        if(holder instanceof ViewHolderShop)
+        if(holder instanceof ViewHolderShopNew)
         {
-            ((ViewHolderShop) holder).setItem((Shop) dataset.get(position));
+            ((ViewHolderShopNew) holder).setItem((Shop) dataset.get(position));
         }
         else if (holder instanceof ViewHolderHeader) {
 

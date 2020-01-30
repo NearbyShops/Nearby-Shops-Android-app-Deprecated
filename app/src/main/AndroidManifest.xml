@@ -130,7 +130,7 @@
         <activity android:name=".EditDataScreens.EditShopImage.EditShopImage" />
 <!--        <activity android:name=".aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat" />-->
 <!--        <activity android:name=".aSellerModule.ItemsInShopSeller.ItemsInShop" />-->
-        <activity android:name=".LocationPickerWithRadius.PickDeliveryRange" />
+        <activity android:name=".LocationPicker.LocationPickerWithRadius.PickDeliveryRange" />
 <!--        <activity android:name=".aSellerModule.OrdersInventory.HomeDeliveryInventory.HomeDelivery" />-->
 <!--        <activity android:name=".aSellerModule.OrdersInventory.PickFromShopInventory.PickFromShopInventory" />-->
 <!--        <activity android:name=".aSellerModule.QuickStockEditor.QuickStockEditor" />-->
@@ -304,12 +304,12 @@
 
 
         <activity
-            android:name=".SignUp.ForgotPassword.ForgotPassword"
+            android:name=".Login.SignUp.ForgotPassword.ForgotPassword"
             android:label="Forgot Password"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".SignUp.SignUp"
+            android:name=".Login.SignUp.SignUp"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
 

@@ -971,14 +971,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
 
 
-    void showToastMessage(String message)
+    private void showToastMessage(String message)
     {
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
     }
 
 
 
-    void cartDataChanged()
+
+    private void cartDataChanged()
     {
         getCartStats();
     }

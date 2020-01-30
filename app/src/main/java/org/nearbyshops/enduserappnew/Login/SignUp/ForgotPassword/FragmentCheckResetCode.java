@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SignUp.ForgotPassword;
+package org.nearbyshops.enduserappnew.Login.SignUp.ForgotPassword;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -32,8 +32,8 @@ import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SignUp.Interfaces.ShowFragmentForgotPassword;
-import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceForgotPassword;
+import org.nearbyshops.enduserappnew.Login.SignUp.Interfaces.ShowFragmentForgotPassword;
+import org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp.PrefrenceForgotPassword;
 
 import retrofit2.Call;
 import retrofit2.Callback;

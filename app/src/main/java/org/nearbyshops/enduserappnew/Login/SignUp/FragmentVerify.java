@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SignUp;
+package org.nearbyshops.enduserappnew.Login.SignUp;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -26,13 +26,13 @@ import okhttp3.ResponseBody;
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.API.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Login.SignUp.Interfaces.ShowFragmentSignUp;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SignUp.Interfaces.ShowFragmentSignUp;
-import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceSignUp;
+import org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp.PrefrenceSignUp;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

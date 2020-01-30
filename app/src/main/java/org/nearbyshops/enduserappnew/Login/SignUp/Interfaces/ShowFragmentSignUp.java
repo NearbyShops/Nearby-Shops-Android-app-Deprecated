@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SignUp.Interfaces;
+package org.nearbyshops.enduserappnew.Login.SignUp.Interfaces;
 
 /**
  * Created by sumeet on 28/6/17.

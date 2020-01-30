@@ -1,8 +1,10 @@
-package org.nearbyshops.enduserappnew.DaggerComponents;
+package org.nearbyshops.enduserappnew.DI.DaggerComponents;
 
 
 import dagger.Component;
 
+import org.nearbyshops.enduserappnew.DI.DaggerModules.AppModule;
+import org.nearbyshops.enduserappnew.DI.DaggerModules.NetModule;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategoryFragment;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersDataSource;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersListPagingFragment;
@@ -20,8 +22,6 @@ import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemAdapter;
 import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListActivity;
 import org.nearbyshops.enduserappnew.Lists.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Checkout.PlaceOrderActivity;
-import org.nearbyshops.enduserappnew.DaggerModules.AppModule;
-import org.nearbyshops.enduserappnew.DaggerModules.NetModule;
 import org.nearbyshops.enduserappnew.Lists.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditAddress.EditAddressFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItem.EditItemFragmentNew;
@@ -79,12 +79,12 @@ import org.nearbyshops.enduserappnew.ShopReview.ShopReviewAdapter;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewStats;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
 import org.nearbyshops.enduserappnew.Lists.ShopsList.FragmentShopsList;
-import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentCheckResetCode;
-import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentEnterCredentials;
-import org.nearbyshops.enduserappnew.SignUp.ForgotPassword.FragmentResetPassword;
-import org.nearbyshops.enduserappnew.SignUp.FragmentEmailOrPhone;
-import org.nearbyshops.enduserappnew.SignUp.FragmentEnterPassword;
-import org.nearbyshops.enduserappnew.SignUp.FragmentVerify;
+import org.nearbyshops.enduserappnew.Login.SignUp.ForgotPassword.FragmentCheckResetCode;
+import org.nearbyshops.enduserappnew.Login.SignUp.ForgotPassword.FragmentEnterCredentials;
+import org.nearbyshops.enduserappnew.Login.SignUp.ForgotPassword.FragmentResetPassword;
+import org.nearbyshops.enduserappnew.Login.SignUp.FragmentEmailOrPhone;
+import org.nearbyshops.enduserappnew.Login.SignUp.FragmentEnterPassword;
+import org.nearbyshops.enduserappnew.Login.SignUp.FragmentVerify;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopForAdmin.EditShopForAdminFragment;
 import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsDatabaseForAdminFragment;
 import org.nearbyshops.enduserappnew.adminModule.SelectParent.ItemCategoriesParent;

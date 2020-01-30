@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.SignUp.ForgotPassword;
+package org.nearbyshops.enduserappnew.Login.SignUp.ForgotPassword;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import butterknife.OnClick;
 
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SignUp.PrefSignUp.PrefrenceForgotPassword;
+import org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp.PrefrenceForgotPassword;
 
 
 /**

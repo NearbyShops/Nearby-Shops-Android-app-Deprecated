@@ -38,6 +38,8 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortShopsByCategory;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortShops;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShop;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopNew;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,7 +57,7 @@ import java.util.ArrayList;
  */
 public class FragmentShopsList extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch ,
-        ViewHolderShop.ListItemClick {
+        ViewHolderShopNew.ListItemClick {
 
 
     private static final String TAG_SLIDING = "tag_sliding_layer_sort_shops";
@@ -338,9 +340,9 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-            recyclerView.addItemDecoration(
-                    new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL)
-            );
+//            recyclerView.addItemDecoration(
+//                    new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL)
+//            );
 
 
 //            recyclerView.addItemDecoration(

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.DaggerModules;
+package org.nearbyshops.enduserappnew.DI.DaggerModules;
 
 import android.app.Application;
 import android.content.SharedPreferences;

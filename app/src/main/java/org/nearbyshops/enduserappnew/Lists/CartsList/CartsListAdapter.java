@@ -129,6 +129,10 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
 
 
 
+
+
+
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView shopImage;
