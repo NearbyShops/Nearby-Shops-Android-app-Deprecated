@@ -665,6 +665,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         currentCategory.setParentCategory(temp);
 
         makeRefreshNetworkCall();
+//        getCartStats(true,0,true);
 
         // End Search Mode
         searchQuery = null;
@@ -684,6 +685,10 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
         // clear selected items
 //        listAdapter.selectedItems.clear();
+
+//        getCartStats(true,0,true);
+
+
 
         if(currentCategory!=null) {
 
@@ -778,6 +783,20 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+    @Override
+    public void cartUpdated() {
+
+
+        if(listAdapter.cartStats.getCartID()==0)
+        {
+            System.out.println("Cart ID Zero !");
+            getCartStats(true,0,true);
+        }
+
+    }
+
+
+
 
 
 
@@ -805,6 +824,19 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
             listAdapter.cartStats.setCart_Total(cartTotalValue);
         }
+        else
+        {
+
+//            if(listAdapter.cartStats.getCartID()==0)
+//            {
+//                getCartStats(true,0,true);
+//            }
+
+        }
+
+
+
+
     }
 
 
@@ -831,6 +863,14 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 //        itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items in Cart");
         itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items");
+
+
+
+
+//        if(itemsInCartValue==1 && listAdapter.cartStats.getCartID()==0)
+//        {
+//            getCartStats(true,0,true);
+//        }
 
 
         if(save)
@@ -1043,11 +1083,14 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 ////                        listAdapter.cartStatsMap.put(cartStats.getShopID(),cartStats);
-//                        listAdapter.cartStats.setItemsInCart(cartStats.getItemsInCart());
-//                        listAdapter.cartStats.setCart_Total(cartStats.getCart_Total());
-//                        listAdapter.cartStats.setShopID(cartStats.getShopID());
 
-                        listAdapter.cartStats = cartStats;
+                        listAdapter.cartStats.setItemsInCart(cartStats.getItemsInCart());
+                        listAdapter.cartStats.setCart_Total(cartStats.getCart_Total());
+                        listAdapter.cartStats.setShopID(cartStats.getShopID());
+                        listAdapter.cartStats.setCartID(cartStats.getCartID());
+                        listAdapter.cartStats.setShop(cartStats.getShop());
+
+//                        listAdapter.cartStats = cartStats;
 
 
 

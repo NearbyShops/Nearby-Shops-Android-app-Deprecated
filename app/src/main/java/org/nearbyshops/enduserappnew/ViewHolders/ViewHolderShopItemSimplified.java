@@ -560,6 +560,9 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
                             {
                                 ((ListItemClick) fragment).setCartTotal(cartTotal,true);
                                 ((ListItemClick) fragment).setItemsInCart(itemsInCart,true);
+
+
+                                ((ListItemClick) fragment).cartUpdated();
                             }
 
 
@@ -639,6 +642,8 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
                             {
                                 ((ListItemClick) fragment).setCartTotal(cartTotal,true);
                                 ((ListItemClick) fragment).setItemsInCart(itemsInCart,true);
+
+                                ((ListItemClick) fragment).cartUpdated();
                             }
 
 
@@ -728,6 +733,8 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
                             {
                                 ((ListItemClick) fragment).setCartTotal(cartTotal,true);
                                 ((ListItemClick) fragment).setItemsInCart(itemsInCart,true);
+
+                                ((ListItemClick) fragment).cartUpdated();
                             }
 
 
@@ -996,6 +1003,9 @@ public class ViewHolderShopItemSimplified extends RecyclerView.ViewHolder{
     public interface ListItemClick{
         void notifyItemImageClick(Item item);
         void showLogin();
+
+        void cartUpdated();
+
         void setCartTotal(double cartTotal, boolean save);
         void setItemsInCart(int itemsInCart, boolean save);
     }

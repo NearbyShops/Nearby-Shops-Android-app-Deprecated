@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import org.nearbyshops.enduserappnew.Model.ShopItem;
-import org.nearbyshops.enduserappnew.SellerModule.ViewHolderSeller.ViewHolderShopItemSeller;
+import org.nearbyshops.enduserappnew.SellerModule.ViewHolders.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;

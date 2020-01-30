@@ -86,11 +86,14 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
 
-
-
-
         return null;
     }
+
+
+
+
+
+
 
 
     @Override
@@ -119,6 +122,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         }
     }
+
+
+
+
 
 
     @Override

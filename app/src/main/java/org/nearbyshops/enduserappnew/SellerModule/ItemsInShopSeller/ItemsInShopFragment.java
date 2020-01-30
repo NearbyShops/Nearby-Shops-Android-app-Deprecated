@@ -28,7 +28,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortItemsInShop;
 import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SellerModule.ViewHolderSeller.ViewHolderShopItemSeller;
+import org.nearbyshops.enduserappnew.SellerModule.ViewHolders.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 
 import java.util.ArrayList;

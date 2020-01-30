@@ -22,7 +22,7 @@ import org.nearbyshops.enduserappnew.Lists.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Checkout.PlaceOrderActivity;
 import org.nearbyshops.enduserappnew.DaggerModules.AppModule;
 import org.nearbyshops.enduserappnew.DaggerModules.NetModule;
-import org.nearbyshops.enduserappnew.DeliveryAddress.DeliveryAddressActivity;
+import org.nearbyshops.enduserappnew.Lists.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditAddress.EditAddressFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItem.EditItemFragmentNew;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemImage.EditItemImageFragment;
@@ -47,7 +47,7 @@ import org.nearbyshops.enduserappnew.SellerModule.SelectDeliveryGuy.SelectDelive
 import org.nearbyshops.enduserappnew.SellerModule.ShopAdminHome.ShopAdminHomeFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Lists.TransactionHistory.TransactionFragment;
-import org.nearbyshops.enduserappnew.SellerModule.ViewHolderSeller.ViewHolderShopItemSeller;
+import org.nearbyshops.enduserappnew.SellerModule.ViewHolders.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplified;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplifiedBackup;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCatFragment;

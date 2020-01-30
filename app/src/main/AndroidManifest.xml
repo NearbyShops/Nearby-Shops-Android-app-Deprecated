@@ -110,7 +110,7 @@
 
 
         <activity android:name=".Lists.UsersList.UsersList" />
-        <activity android:name=".DeliveryAddress.DeliveryAddressActivity" />
+        <activity android:name=".Lists.DeliveryAddress.DeliveryAddressActivity" />
         <activity android:name=".EditDataScreens.EditAddress.EditDeliveryAddress" />
         <activity android:name=".LocationPicker.PickLocation" />
         <activity android:name=".Lists.CartItemList.CartItemListActivity" />

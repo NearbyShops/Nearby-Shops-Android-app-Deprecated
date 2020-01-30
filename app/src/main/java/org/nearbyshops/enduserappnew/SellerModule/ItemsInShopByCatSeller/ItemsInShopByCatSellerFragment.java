@@ -32,7 +32,7 @@ import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopH
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortItemsInShop;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
-import org.nearbyshops.enduserappnew.SellerModule.ViewHolderSeller.ViewHolderShopItemSeller;
+import org.nearbyshops.enduserappnew.SellerModule.ViewHolders.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 
 import java.util.ArrayList;
@@ -50,7 +50,8 @@ import retrofit2.Response;
  * Created by sumeet on 2/12/16.
  */
 
-public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, ViewHolderShopItemSeller.ShopItemUpdates, ViewHolderItemCategory.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch {
+public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
+        ViewHolderShopItemSeller.ShopItemUpdates, ViewHolderItemCategory.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch {
 
 
 //    Map<Integer,ShopItem> shopItemMapTemp = new HashMap<>();
@@ -441,7 +442,9 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
 
 
 
-    void refreshAdapter()
+
+
+    private void refreshAdapter()
     {
         dataset.clear();
 
@@ -480,7 +483,10 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
 
 
 
-    String searchQuery = null;
+    private String searchQuery = null;
+
+
+
 
     @Override
     public void search(final String searchString) {
@@ -497,7 +503,8 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
 
 
 
-    void makeRequestShopItem(final boolean clearDataset, boolean resetOffset)
+
+    private void makeRequestShopItem(final boolean clearDataset, boolean resetOffset)
     {
 
         if(resetOffset)
@@ -680,6 +687,9 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
         // reset previous flag
 
     }
+
+
+
 
 
 
@@ -880,13 +890,19 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
     }
 
 
-    void notifyItemIndicatorChanged()
+
+
+
+    private void notifyItemIndicatorChanged()
     {
         if(getActivity() instanceof NotifyIndicatorChanged)
         {
             ((NotifyIndicatorChanged) getActivity()).notifyItemIndicatorChanged(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items");
         }
     }
+
+
+
 
 
     @Override

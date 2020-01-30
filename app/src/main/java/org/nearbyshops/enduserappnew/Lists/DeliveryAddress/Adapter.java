@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.DeliveryAddress;
+package org.nearbyshops.enduserappnew.Lists.DeliveryAddress;
 
 import android.content.Context;
 import android.view.ViewGroup;
@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeliveryAdddress;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 
@@ -66,6 +67,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         if(holder instanceof ViewHolderDeliveryAdddress)
         {
             ((ViewHolderDeliveryAdddress) holder).setItem((DeliveryAddress) dataset.get(position));
+        }
+        else if(holder instanceof ViewHolderEmptyScreenFullScreen)
+        {
+            ((ViewHolderEmptyScreenFullScreen) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
         }
 
 

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.DeliveryAddress;
+package org.nearbyshops.enduserappnew.Lists.DeliveryAddress;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -222,17 +222,19 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
                     }
                     else
                     {
-                        dataset.add(EmptyScreenDataFullScreen.getOffline());
+                        dataset.add(EmptyScreenDataFullScreen.emptyScreenDeliveryAddress());
                     }
 
                 }
                 else if(response.code()==204)
                 {
-                    dataset.add(EmptyScreenDataFullScreen.getOffline());
+//                    dataset.add(EmptyScreenDataFullScreen.getErrorTemplate(204));
+                    dataset.add(EmptyScreenDataFullScreen.emptyScreenDeliveryAddress());
                 }
                 else
                 {
-                    showToastMessage("Failed Code : " + response.code());
+//                    showToastMessage("Failed Code : " + response.code());
+                    dataset.add(EmptyScreenDataFullScreen.getErrorTemplate(response.code()));
                 }
 
 
