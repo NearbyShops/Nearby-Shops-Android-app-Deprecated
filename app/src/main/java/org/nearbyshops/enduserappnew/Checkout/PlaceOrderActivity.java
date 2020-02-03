@@ -3,6 +3,7 @@ package org.nearbyshops.enduserappnew.Checkout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -67,6 +68,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     @BindView(R.id.radioPickFromShop) RadioButton pickFromShopCheck;
     @BindView(R.id.radioHomeDelivery) RadioButton homeDelieryCheck;
     @BindView(R.id.placeOrder) TextView placeOrder;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
     // address views
@@ -460,9 +462,18 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     {
         Call<ResponseBody> call = orderService.postOrder(order,cartStatsFromNetworkCall.getCartID());
 
+
+        placeOrder.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+                placeOrder.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
+
 
                 if(response!=null)
                 {
@@ -491,6 +502,11 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                placeOrder.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
+
 
                 showToastMessage("Network connection Failed !");
 
