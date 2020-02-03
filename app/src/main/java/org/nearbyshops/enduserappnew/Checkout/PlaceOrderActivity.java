@@ -245,9 +245,11 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
 
         Call<List<CartStats>> call = cartStatsService.getCart(
-                PrefLogin.getUser(this).getUserID(),cartStats.getCartID(),
-                null,true,null,null
+                PrefLogin.getUser(this).getUserID(),null,
+                cartStats.getShopID(),true,null,null
         );
+
+
 
 
         System.out.println("Cart ID : " + cartStats.getCartID());

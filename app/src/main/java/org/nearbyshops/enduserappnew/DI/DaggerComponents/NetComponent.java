@@ -13,6 +13,7 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.Ed
 import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarket;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarketSmall;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.SellerModule.DeliveryPersonInventory.Fragment.DeliveryInventoryFragment;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.FragmentAddCredit;
@@ -277,4 +278,6 @@ public interface NetComponent {
     void Inject(OrdersListPagingFragment ordersListPagingFragment);
 
     void Inject(OrdersDataSource ordersDataSource);
+
+    void Inject(ViewHolderShopItem viewHolderShopItem);
 }

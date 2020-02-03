@@ -14,6 +14,7 @@ import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.AdapterItemCatHorizontalList;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplified;
 
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShop;
@@ -156,6 +157,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(holder instanceof ViewHolderShopItemSimplified)
         {
             ((ViewHolderShopItemSimplified) holder).bindShopItems((ShopItem) dataset.get(position));
+        }
+        else if(holder instanceof ViewHolderShopItem)
+        {
+            ((ViewHolderShopItem) holder).bindShopItems((ShopItem) dataset.get(position));
         }
         else if (holder instanceof ViewHolderHeader) {
 
