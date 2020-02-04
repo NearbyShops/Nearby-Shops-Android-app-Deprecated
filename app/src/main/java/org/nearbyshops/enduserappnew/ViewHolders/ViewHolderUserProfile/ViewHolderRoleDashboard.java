@@ -11,10 +11,12 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviderKt;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
@@ -127,6 +129,11 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
 
         User user = PrefLogin.getUser(context);
 
+        if(user==null)
+        {
+            return;
+        }
+
         if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
         {
 
@@ -163,6 +170,11 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
     private void bindDashboard()
     {
         User user = PrefLogin.getUser(context);
+
+        if(user==null)
+        {
+            return;
+        }
 
         if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
         {

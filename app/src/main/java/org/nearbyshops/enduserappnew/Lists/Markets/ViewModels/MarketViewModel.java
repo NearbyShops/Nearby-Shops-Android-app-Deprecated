@@ -329,6 +329,11 @@ public class MarketViewModel extends AndroidViewModel {
 
 
 
+//        message.postValue("Fetch configuration OnGoing !");
+
+
+
+
 
 
         ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
@@ -378,12 +383,16 @@ public class MarketViewModel extends AndroidViewModel {
 
 
                     message.postValue("Failed Code : " + String.valueOf(response.code()));
-                    message.postValue("Service URL : " + configurationGlobal.getServiceURL());
+//                    message.postValue("Service URL : " + configurationGlobal.getServiceURL());
 
 
 
                     event.postValue(MarketViewModel.EVENT_NETWORK_FAILED);
                 }
+
+
+
+
 
 
             }

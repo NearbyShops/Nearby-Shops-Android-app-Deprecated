@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -23,6 +25,7 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
@@ -90,12 +93,16 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 //                .inflate(R.layout.list_item_market,parent,false);
 
 
-        viewModel  = ViewModelProviders.of(fragment).get(MarketViewModel.class);
-
+//        viewModel  = ViewModelProviders.of(fragment).get(MarketViewModel.class);
+        viewModel = new MarketViewModel(MyApplication.application);
 
         viewModel.getEvent().observe(fragment, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
+
+
+//                showToastMessage("Event : " + integer);
+
 
 
                 if(integer==MarketViewModel.EVENT_LOCAL_CONFIG_FETCHED || integer==MarketViewModel.EVENT_LOGGED_IN_TO_LOCAL_SUCCESS)
@@ -256,8 +263,6 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 
 
 
-
-
         if(PrefLoginGlobal.getUser(context)==null)
         {
             // user not logged in so just fetch configuration
@@ -292,6 +297,16 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
         void selectMarketSuccessful(ServiceConfigurationGlobal configurationGlobal, int position);
         void showMessage(String message);
     }
+
+
+
+
+
+    private void showToastMessage(String message)
+    {
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
+    }
+
 
 }
 

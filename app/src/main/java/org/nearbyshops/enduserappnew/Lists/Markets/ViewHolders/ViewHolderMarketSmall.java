@@ -25,6 +25,7 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
@@ -80,7 +81,8 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
         this.fragment = fragment;
 
 
-        viewModel  = ViewModelProviders.of(fragment).get(MarketViewModel.class);
+//        viewModel  = ViewModelProviders.of(fragment).get(MarketViewModel.class);
+        viewModel  = new MarketViewModel(MyApplication.application);
 
 
         viewModel.getEvent().observe(fragment, new Observer<Integer>() {

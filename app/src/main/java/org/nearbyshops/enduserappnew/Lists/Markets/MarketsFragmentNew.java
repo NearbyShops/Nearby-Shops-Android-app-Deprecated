@@ -32,6 +32,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.MarketDetail;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.MarketDetailFragment;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSignIn;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -131,11 +132,12 @@ public class MarketsFragmentNew extends Fragment implements
 
 
 
-            viewModel  = ViewModelProviders.of(this).get(MarketViewModel.class);
+//            viewModel  = ViewModelProviders.of(this).get(MarketViewModel.class);
+
+            viewModel = new MarketViewModel(MyApplication.application);
 
 
-
-            viewModel.getData().observe(this, new Observer<List<Object>>() {
+            viewModel.getData().observe(getViewLifecycleOwner(), new Observer<List<Object>>() {
                 @Override
                 public void onChanged(@Nullable List<Object> objects) {
 
@@ -159,7 +161,7 @@ public class MarketsFragmentNew extends Fragment implements
 
 
 
-            viewModel.getMessage().observe(this, new Observer<String>() {
+            viewModel.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
                 @Override
                 public void onChanged(@Nullable String s) {
 
@@ -168,6 +170,7 @@ public class MarketsFragmentNew extends Fragment implements
                     swipeContainer.setRefreshing(false);
                 }
             });
+
 
 
 

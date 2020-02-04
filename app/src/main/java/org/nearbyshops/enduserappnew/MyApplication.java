@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew;
 
 import android.content.Context;
 
+import androidx.core.content.ContextCompat;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 import com.mapbox.mapboxsdk.Mapbox;
@@ -20,6 +21,7 @@ import com.mapbox.mapboxsdk.Mapbox;
 public class MyApplication extends MultiDexApplication {
 
     private static Context context;
+    public static MyApplication application;
 
 
     public static String SORT_DESCENDING = " DESC NULLS LAST ";
@@ -54,6 +56,8 @@ public class MyApplication extends MultiDexApplication {
         super.onCreate();
 
         MyApplication.context = getApplicationContext();
+        MyApplication.application = this;
+
 //        MyApplicationCoreNew.context = getApplicationContext();
 
 
