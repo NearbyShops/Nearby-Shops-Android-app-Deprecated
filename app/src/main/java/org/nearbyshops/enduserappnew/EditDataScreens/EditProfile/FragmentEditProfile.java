@@ -741,6 +741,7 @@ public class FragmentEditProfile extends Fragment {
 //        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
 
         Call<ResponseBody> call;
+        Call<ResponseBody> callUpdateLocal = null;
 
 
 
@@ -758,6 +759,15 @@ public class FragmentEditProfile extends Fragment {
 
                 call = retrofit.create(UserServiceGlobal.class).updateProfileEndUser(
                         PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                        user
+                );
+
+
+
+
+
+                callUpdateLocal = userService.updateProfileEndUser(
+                        PrefLogin.getAuthorizationHeaders(getActivity()),
                         user
                 );
 
@@ -864,6 +874,33 @@ public class FragmentEditProfile extends Fragment {
 
             }
         });
+
+
+
+
+
+
+        if(callUpdateLocal!=null)
+        {
+            callUpdateLocal.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                    if(response.code()==200)
+                    {
+//                        showToastMessage("Updated Locally !");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                }
+            });
+        }
+
+
+
     }
 
 
