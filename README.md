@@ -22,7 +22,7 @@ Nearby Shops is a first of its kind decentralized, non-commercial, Open-Source a
 This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance (Server) and create their local market. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
 
-Volunteer and help us Overcome Corporate Greed and Monopoly
+Volunteer and help overcome Corporate Monopoly
 --------------------------------
 
 Do you feel that commercial e-commerce platforms are exploiting the local vendors and local economy ? 
