@@ -25,10 +25,7 @@ This project is conceptually similar to [Mastodon project](https://github.com/to
 Volunteer and help overcome Corporate Monopoly
 --------------------------------
 
-Do you feel that commercial e-commerce platforms are exploiting the local vendors and local economy ? 
-Do you feel that we have had enough of capitalism and corporate greed and corporate monopoly ?
-
-Do you feel that we need a better e-commerce platform that values and treat its sellers and customers in a more humane manner ? 
+Do you feel that we need a better e-commerce platform that values and treats people in a more humane manner ? 
 
 Please Help us improve the e-commerce and do your bit to make this world a better place !
 
