@@ -198,6 +198,28 @@ public class MarketViewModel extends AndroidViewModel {
 
 
 
+
+
+                            User user = PrefLoginGlobal.getUser(getApplication());
+
+
+                            if(user!=null)
+                            {
+                                dataset.add(new RoleDashboardMarker());
+                                dataset.add(user);
+                            }
+                            else
+                            {
+                                dataset.add(new SignInMarker());
+                            }
+
+
+
+
+
+
+
+
                             if(response.body().getResults()!=null)
                             {
 
@@ -249,19 +271,6 @@ public class MarketViewModel extends AndroidViewModel {
 
 
 
-
-
-                            User user = PrefLoginGlobal.getUser(getApplication());
-
-                            if(user!=null)
-                            {
-                                dataset.add(new RoleDashboardMarker());
-                                dataset.add(user);
-                            }
-                            else
-                            {
-                                dataset.add(new SignInMarker());
-                            }
 
 
 

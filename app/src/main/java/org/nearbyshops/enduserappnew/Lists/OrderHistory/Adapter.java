@@ -133,7 +133,6 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 
-
     public void setLoadMore(boolean loadMore)
     {
         this.loadMore = loadMore;

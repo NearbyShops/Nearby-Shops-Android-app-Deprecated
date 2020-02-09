@@ -108,7 +108,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 //            viewHolderShopItem = ;
-            return ViewHolderShopItemSimplified.create(parent,context,fragment,this,cartItemMap,cartStats);
+            return ViewHolderShopItem.create(parent,context,fragment,this,cartItemMap,cartStats);
 
         }
         else if(viewType == VIEW_TYPE_SHOP)

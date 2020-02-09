@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviderKt;
@@ -16,8 +18,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.SellerModule.DeliveryGuyHome.DeliveryHome;
@@ -37,6 +41,7 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
 
 
     @BindView(R.id.dashboard_name) TextView dashboardName;
+    @BindView(R.id.market_name) TextView marketName;
     @BindView(R.id.dashboard_description) TextView dashboardDescription;
 
 
@@ -77,7 +82,9 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
 
 
 
-        viewModelShop = ViewModelProviders.of(fragment).get(ViewModelShop.class);
+//        viewModelShop = ViewModelProviders.of(fragment).get(ViewModelShop.class);
+
+        viewModelShop = new ViewModelShop(MyApplication.application);
 
 
 
@@ -153,11 +160,35 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {
 
-            viewModelShop.becomeASeller();
+            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
 
-            progressDialog = new ProgressDialog(context);
-            progressDialog.setMessage("Please wait ... converting you to a seller !");
-            progressDialog.show();
+            dialog.setTitle("Confirm Become a Seller !")
+                    .setMessage("Do you want to Create your Shop and become a seller !")
+                    .setPositiveButton("Yes",new DialogInterface.OnClickListener(){
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            viewModelShop.becomeASeller();
+
+
+
+                            progressDialog = new ProgressDialog(context);
+                            progressDialog.setMessage("Please wait ... converting you to a seller !");
+                            progressDialog.show();
+
+                        }
+                    })
+                    .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            showToastMessage("Cancelled !");
+                        }
+                    })
+                    .show();
+
+
 
         }
 
@@ -167,38 +198,49 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
 
 
 
+
+
+
     private void bindDashboard()
     {
         User user = PrefLogin.getUser(context);
 
-        if(user==null)
+        ServiceConfigurationLocal globalConfig = PrefServiceConfig.getServiceConfigLocal(context);
+
+        if(user==null || globalConfig==null)
         {
             return;
         }
 
+
+        String marketNameString = globalConfig.getServiceName() + " | " + globalConfig.getCity();
+
         if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
         {
+
+            marketName.setText(marketNameString);
             dashboardName.setText("Shop Dashboard");
             dashboardDescription.setText("Press here to access the shop dashboard !");
         }
         else if(user.getRole()==User.ROLE_DELIVERY_GUY_SELF_CODE)
         {
-
+            marketName.setText(marketNameString);
             dashboardName.setText("Delivery Dashboard");
             dashboardDescription.setText("Press here to access the Delivery dashboard !");
         }
         else if(user.getRole()==User.ROLE_ADMIN_CODE)
         {
+            marketName.setText(marketNameString);
             dashboardName.setText("Admin Dashboard");
             dashboardDescription.setText("Press here to access the admin dashboard !");
 
         }
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {
+            marketName.setText(marketNameString);
             dashboardName.setText("Become a Seller");
             dashboardDescription.setText("Press here to create a shop and become a seller on currently selected market !");
         }
-
 
     }
 

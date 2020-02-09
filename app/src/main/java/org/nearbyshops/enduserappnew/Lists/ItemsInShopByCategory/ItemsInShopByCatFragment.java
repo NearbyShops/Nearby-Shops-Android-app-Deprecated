@@ -666,7 +666,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         currentCategory.setParentCategory(temp);
 
         makeRefreshNetworkCall();
-//        getCartStats(true,0,true);
+        getCartStats(true,0,true);
 
         // End Search Mode
         searchQuery = null;

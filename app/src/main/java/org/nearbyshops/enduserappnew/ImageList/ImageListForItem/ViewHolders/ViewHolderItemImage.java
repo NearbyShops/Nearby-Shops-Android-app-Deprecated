@@ -27,16 +27,12 @@ import butterknife.OnClick;
 public class ViewHolderItemImage extends RecyclerView.ViewHolder{
 
 
-
-
     @BindView(R.id.title) TextView imageTitle;
     @BindView(R.id.description) TextView imageDescription;
     @BindView(R.id.copyright_info) TextView copyrights;
     @BindView(R.id.taxi_image) ImageView shopImageView;
     @BindView(R.id.list_item) ConstraintLayout listItem;
     @BindView(R.id.check_icon) ImageView checkIcon;
-
-
 
 
     private Context context;
