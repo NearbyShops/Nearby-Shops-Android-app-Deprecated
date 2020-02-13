@@ -60,7 +60,7 @@ public class EmptyScreenDataFullScreen {
     public static EmptyScreenDataFullScreen emptyScreenDeliveryAddress()
     {
         EmptyScreenDataFullScreen data = new EmptyScreenDataFullScreen();
-        data.setTitle("No Delivery Address Added !");
+        data.setTitle("Please add a Delivery Address !");
         data.setShowDesignedByFreepik(false);
         data.setMessage("You have not added any delivery address ... Please add a delivery address !");
         data.setDrawableResource(R.drawable.ic_local_shipping_color);
