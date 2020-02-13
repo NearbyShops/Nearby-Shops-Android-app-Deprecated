@@ -14,8 +14,11 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditSt
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarket;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarketSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemTypeTwo;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemTypeTwoBackup;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.SellerModule.DeliveryPersonInventory.Fragment.DeliveryInventoryFragment;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.FragmentAddCredit;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboardFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditServiceConfig.EditConfigurationFragment;
@@ -49,8 +52,6 @@ import org.nearbyshops.enduserappnew.SellerModule.ShopAdminHome.ShopAdminHomeFra
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Lists.TransactionHistory.TransactionFragment;
 import org.nearbyshops.enduserappnew.SellerModule.ViewHolders.ViewHolderShopItemSeller;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplified;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemSimplifiedBackup;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCatFragment;
 import org.nearbyshops.enduserappnew.Login.LoginFragment;
 import org.nearbyshops.enduserappnew.Login.LoginGlobalFragment;
@@ -206,9 +207,9 @@ public interface NetComponent {
     void Inject(ItemsInShopByCatFragment itemsInShopByCatFragment);
 
 
-    void Inject(ViewHolderShopItemSimplified viewHolderShopItemSimplified);
+    void Inject(ViewHolderShopItemTypeTwo viewHolderShopItemTypeTwo);
 
-    void Inject(ViewHolderShopItemSimplifiedBackup viewHolderShopItemSimplifiedBackup);
+    void Inject(ViewHolderShopItemTypeTwoBackup viewHolderShopItemTypeTwoBackup);
 
     void Inject(AdapterBackup adapterBackup);
 
@@ -280,4 +281,6 @@ public interface NetComponent {
     void Inject(OrdersDataSource ordersDataSource);
 
     void Inject(ViewHolderShopItem viewHolderShopItem);
+
+    void Inject(ViewModelUser viewModelUser);
 }

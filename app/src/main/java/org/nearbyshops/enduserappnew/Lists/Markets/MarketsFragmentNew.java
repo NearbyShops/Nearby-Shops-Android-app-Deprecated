@@ -33,11 +33,14 @@ import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.MarketDetail;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSignIn;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -72,6 +75,7 @@ public class MarketsFragmentNew extends Fragment implements
 
 
     private MarketViewModel viewModel;
+    private ViewModelUser viewModelUser;
 
 
 
@@ -135,27 +139,30 @@ public class MarketsFragmentNew extends Fragment implements
 //            viewModel  = ViewModelProviders.of(this).get(MarketViewModel.class);
 
             viewModel = new MarketViewModel(MyApplication.application);
+            viewModelUser = new ViewModelUser(MyApplication.application);
+
+
 
 
             viewModel.getData().observe(getViewLifecycleOwner(), new Observer<List<Object>>() {
-                @Override
-                public void onChanged(@Nullable List<Object> objects) {
+                    @Override
+                    public void onChanged(@Nullable List<Object> objects) {
 
-                    dataset.clear();
+                        dataset.clear();
 
-                    if(objects!=null)
-                    {
-                        dataset.addAll(objects);
+                        if(objects!=null)
+                        {
+                            dataset.addAll(objects);
+                        }
+
+
+                        adapter.setLoadMore(false);
+                        adapter.notifyDataSetChanged();
+
+
+                        swipeContainer.setRefreshing(false);
                     }
-
-
-                    adapter.setLoadMore(false);
-                    adapter.notifyDataSetChanged();
-
-
-                    swipeContainer.setRefreshing(false);
-                }
-            });
+                });
 
 
 
@@ -170,6 +177,33 @@ public class MarketsFragmentNew extends Fragment implements
                     swipeContainer.setRefreshing(false);
                 }
             });
+
+
+
+
+
+                viewModelUser.getEvent().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+                    @Override
+                    public void onChanged(Integer integer) {
+
+                        if(integer == ViewModelUser.EVENT_profile_fetched)
+                        {
+                            adapter.notifyDataSetChanged();
+                        }
+
+                    }
+                });
+
+
+
+
+                viewModelUser.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
+                        @Override
+                        public void onChanged(String s) {
+
+                            showToastMessage(s);
+                        }
+                });
 
 
 
@@ -241,6 +275,10 @@ public class MarketsFragmentNew extends Fragment implements
 
         viewModel.loadData(true);
 //        showToastMessage("OnRefresh()");
+
+        viewModelUser.getUserProfile();
+
+
     }
 
 

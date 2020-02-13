@@ -504,7 +504,15 @@ public class EditShopFragment extends Fragment {
         shop.setShopAddress(shopAddress.getText().toString());
 
         shop.setCity(city.getText().toString());
-        shop.setPincode(Long.parseLong(pincode.getText().toString()));
+
+
+
+        if(!pincode.getText().toString().equals(""))
+        {
+            shop.setPincode(Long.parseLong(pincode.getText().toString()));
+        }
+
+
         shop.setLandmark(landmark.getText().toString());
         shop.setCustomerHelplineNumber(customerHelplineNumber.getText().toString());
 
@@ -589,7 +597,10 @@ public class EditShopFragment extends Fragment {
     }
 
 
-    void retrofitPOSTRequest()
+
+
+
+    private void retrofitPOSTRequest()
     {
         getDataFromViews();
 

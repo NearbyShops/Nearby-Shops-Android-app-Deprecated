@@ -7,32 +7,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+public class ViewHolderShopType1 extends RecyclerView.ViewHolder{
 
-public class ViewHolderShopNew extends RecyclerView.ViewHolder{
 
 
     @BindView(R.id.shop_name) TextView shopName;
     @BindView(R.id.shop_address) TextView shopAddress;
     @BindView(R.id.shop_logo) ImageView shopLogo;
     @BindView(R.id.delivery) TextView delivery;
+    @BindView(R.id.distance) TextView distance;
     @BindView(R.id.rating) TextView rating;
     @BindView(R.id.rating_count) TextView rating_count;
+    @BindView(R.id.description) TextView description;
     @BindView(R.id.indicator_pick_from_shop) TextView pickFromShopIndicator;
     @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
 
@@ -45,12 +45,12 @@ public class ViewHolderShopNew extends RecyclerView.ViewHolder{
 
 
 
-    public static ViewHolderShopNew create(ViewGroup parent, Context context, Fragment fragment,
-                                           RecyclerView.Adapter adapter)
+    public static ViewHolderShopType1 create(ViewGroup parent, Context context, Fragment fragment,
+                                             RecyclerView.Adapter adapter)
     {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_new,parent,false);
-        return new ViewHolderShopNew(view,context,fragment);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop,parent,false);
+        return new ViewHolderShopType1(view,context,fragment);
     }
 
 
@@ -58,7 +58,7 @@ public class ViewHolderShopNew extends RecyclerView.ViewHolder{
 
 
 
-    public ViewHolderShopNew(@NonNull View itemView, Context context, Fragment fragment) {
+    public ViewHolderShopType1(@NonNull View itemView, Context context, Fragment fragment) {
         super(itemView);
         ButterKnife.bind(this,itemView);
 
@@ -125,10 +125,8 @@ public class ViewHolderShopNew extends RecyclerView.ViewHolder{
 
             if(shop.getShopAddress()!=null)
             {
-                shopAddress.setText(String.format( "%.2f", shop.getRt_distance()) + " Km - " + shop.getShopAddress());
+                shopAddress.setText(shop.getShopAddress() + ", " + shop.getCity()  + " - " + String.valueOf(shop.getPincode()));
             }
-
-
 
 //                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())
 //                        + shop.getLogoImagePath();
@@ -151,22 +149,8 @@ public class ViewHolderShopNew extends RecyclerView.ViewHolder{
             String currency = "";
             currency = PrefGeneral.getCurrencySymbol(context);
 
-
-            if(shop.getDeliveryCharges()==0)
-            {
-                delivery.setText(" Free home delivery ");
-                delivery.setBackgroundColor(ContextCompat.getColor(context,R.color.darkGreen));
-                delivery.setTextColor(ContextCompat.getColor(context,R.color.white));
-            }
-            else
-            {
-                delivery.setText("Delivery : " + currency + " " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
-
-                delivery.setBackgroundColor(ContextCompat.getColor(context,R.color.white));
-                delivery.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));
-            }
-
-//            distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
+            delivery.setText("Delivery : " + currency + " " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
+            distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
 
 
             if(shop.getRt_rating_count()==0)
@@ -187,10 +171,10 @@ public class ViewHolderShopNew extends RecyclerView.ViewHolder{
             }
 
 
-//            if(shop.getShortDescription()!=null)
-//            {
-//                description.setText(shop.getShortDescription());
-//            }
+            if(shop.getShortDescription()!=null)
+            {
+                description.setText(shop.getShortDescription());
+            }
 
         }
 

@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -37,8 +36,7 @@ import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopH
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortShopsByCategory;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortShops;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShop;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopNew;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopType2;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,7 +55,7 @@ import java.util.ArrayList;
  */
 public class FragmentShopsList extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch ,
-        ViewHolderShopNew.ListItemClick {
+        ViewHolderShopType2.ListItemClick {
 
 
     private static final String TAG_SLIDING = "tag_sliding_layer_sort_shops";

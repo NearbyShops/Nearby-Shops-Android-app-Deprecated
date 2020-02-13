@@ -212,10 +212,13 @@ public class AdminDashboardFragment extends Fragment {
 
 
 
+
+
+
     @OnClick(R.id.orders_database)
     void ordersClick()
     {
-        Intent intent = new Intent(getActivity(), OrderHistoryPaging.class);
+        Intent intent = new Intent(getActivity(), OrderHistory.class);
         startActivity(intent);
     }
 

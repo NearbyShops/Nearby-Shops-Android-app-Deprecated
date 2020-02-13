@@ -17,6 +17,8 @@ import androidx.lifecycle.ViewModelProviderKt;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;
@@ -169,13 +171,17 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                            viewModelShop.becomeASeller();
+//                            viewModelShop.becomeASeller();
+//                            progressDialog = new ProgressDialog(context);
+//                            progressDialog.setMessage("Please wait ... converting you to a seller !");
+//                            progressDialog.show();
 
 
+                            //     open edit shop in edit mode
+                            Intent intent = new Intent(context, EditShop.class);
+                            intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_ADD);
+                            context.startActivity(intent);
 
-                            progressDialog = new ProgressDialog(context);
-                            progressDialog.setMessage("Please wait ... converting you to a seller !");
-                            progressDialog.show();
 
                         }
                     })

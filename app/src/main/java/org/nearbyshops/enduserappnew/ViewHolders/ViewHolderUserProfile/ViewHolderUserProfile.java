@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,10 +25,12 @@ import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 
 public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
 
@@ -39,26 +43,29 @@ public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
 
 
     private Context context;
+    private Fragment fragment;
 
 
 
 
-    public static ViewHolderUserProfile create(ViewGroup parent, Context context)
+    public static ViewHolderUserProfile create(ViewGroup parent, Context context, Fragment fragment)
     {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_user_profile,parent,false);
 
-        return new ViewHolderUserProfile(view,context);
+        return new ViewHolderUserProfile(view,context,fragment);
     }
 
 
 
 
-    public ViewHolderUserProfile(@NonNull View itemView, Context context) {
+    public ViewHolderUserProfile(@NonNull View itemView, Context context, Fragment fragment) {
         super(itemView);
-        this.context = context;
-        ButterKnife.bind(this,itemView);
 
+        this.context = context;
+        this.fragment = fragment;
+
+        ButterKnife.bind(this,itemView);
     }
 
 

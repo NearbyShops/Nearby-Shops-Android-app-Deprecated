@@ -24,6 +24,7 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 
 
 import org.nearbyshops.enduserappnew.AppConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.R;
 
 import java.util.ArrayList;
@@ -171,7 +172,16 @@ public class PickDeliveryRange extends AppCompatActivity {
 //                    ),2000);
 
 
-                    showLogMessage("Lat Lon Zero");
+//                    showLogMessage("Lat Lon Zero");
+
+
+
+                    latLng = new LatLng(
+                            PrefLocation.getLatitude(PickDeliveryRange.this),
+                            PrefLocation.getLongitude(PickDeliveryRange.this)
+                    );
+
+
                 }
                 else
                 {
@@ -181,27 +191,26 @@ public class PickDeliveryRange extends AppCompatActivity {
                             getIntent().getDoubleExtra("lon_dest",0)
                     );
 
-                    showLogMessage("Lat Lon not zero");
-
-                    if(center!=null)
-                    {
-                        mapboxMap.removeMarker(center);
-                    }
+//                    showLogMessage("Lat Lon not zero");
+                }
 
 
-                    center = mapboxMap.addMarker(new MarkerOptions().setPosition(latLng));
+                if(center!=null)
+                {
+                    mapboxMap.removeMarker(center);
+                }
 
 
-                    updateMap();
+                center = mapboxMap.addMarker(new MarkerOptions().setPosition(latLng));
 
 
-                    //
+                updateMap();
+
+
+                //
 //                    mapboxMap.animateCamera(CameraUpdateFactory.newLatLng(),
 //                            2000
 //                    );
-
-                }
-
 
 
 //                mapboxMap.setOnMapLongClickListener(new MapboxMap.OnMapLongClickListener() {

@@ -90,7 +90,7 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
         else if(viewType == view_type_user_profile)
         {
-            return ViewHolderUserProfile.create(parent,fragment.getActivity());
+            return ViewHolderUserProfile.create(parent,fragment.getActivity(),fragment);
         }
         else if(viewType == view_type_markets_header)
         {

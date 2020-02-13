@@ -144,6 +144,9 @@ public interface ShopService {
                         @Body Shop shop);
 
 
+
+
+
     @PUT("/api/v1/Shop/UpdateBySelf")
     Call<ResponseBody> updateBySelf(@Header("Authorization") String headers,
                                     @Body Shop shop);

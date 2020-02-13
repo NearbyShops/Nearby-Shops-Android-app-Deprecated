@@ -403,6 +403,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:text="0"
                 android:id="@+id/latitude"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -417,6 +418,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:text="0"
                 android:id="@+id/longitude"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -442,7 +444,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <EditText
+                android:text="0"
                 android:id="@+id/rangeOfDelivery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
