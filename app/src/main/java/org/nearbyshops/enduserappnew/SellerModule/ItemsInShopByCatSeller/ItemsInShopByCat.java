@@ -43,10 +43,9 @@ public class ItemsInShopByCat extends AppCompatActivity implements NotifyIndicat
 //    @Bind(R.id.fab_add_selected_to_shop)
 //    FloatingActionButton fab_add_selected;
 
-    @BindView(R.id.text_sub)
-    TextView itemHeader;
-    @BindView(R.id.slidingLayer)
-    SlidingLayer slidingLayer;
+
+    @BindView(R.id.text_sub) TextView itemHeader;
+    @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

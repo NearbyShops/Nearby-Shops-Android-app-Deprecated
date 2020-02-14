@@ -75,24 +75,17 @@ public class EditShopFragment extends Fragment {
     private static final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 56;
 
 
-//    Validator validator;
-
-
-//    @Inject
-//    DeliveryGuySelfService deliveryService;
-
     @Inject
     ShopService shopService;
 
 
     // flag for knowing whether the image is changed or not
-    boolean isImageChanged = false;
-    boolean isImageRemoved = false;
+    private boolean isImageChanged = false;
+    private boolean isImageRemoved = false;
 
 
     // bind views
-    @BindView(R.id.uploadImage)
-    ImageView resultView;
+    @BindView(R.id.uploadImage) ImageView resultView;
 
 
     // fields for admin options
@@ -105,47 +98,66 @@ public class EditShopFragment extends Fragment {
     @BindView(R.id.account_balance) TextView accountBalance;
 
 
-
     @BindView(R.id.shop_open) CheckBox shopOpen;
 //    @BindView(R.id.shop_id) EditText shopID;
 
-    @BindView(R.id.enter_shop_id) EditText shopIDEnter;
-    @BindView(R.id.shopName) EditText shopName;
+    @BindView(R.id.enter_shop_id)
+    EditText shopIDEnter;
+    @BindView(R.id.shopName)
+    EditText shopName;
 
-    @BindView(R.id.shopAddress) EditText shopAddress;
-    @BindView(R.id.shopCity) EditText city;
-    @BindView(R.id.shopPincode) EditText pincode;
-    @BindView(R.id.shopLandmark) EditText landmark;
+    @BindView(R.id.shopAddress)
+    EditText shopAddress;
+    @BindView(R.id.shopCity)
+    EditText city;
+    @BindView(R.id.shopPincode)
+    EditText pincode;
+    @BindView(R.id.shopLandmark)
+    EditText landmark;
 
-    @BindView(R.id.customerHelplineNumber) EditText customerHelplineNumber;
-    @BindView(R.id.deliveryHelplineNumber) EditText deliveryHelplineNumber;
+    @BindView(R.id.customerHelplineNumber)
+    EditText customerHelplineNumber;
+    @BindView(R.id.deliveryHelplineNumber)
+    EditText deliveryHelplineNumber;
 
-    @BindView(R.id.shopShortDescription) EditText shopDescriptionShort;
-    @BindView(R.id.shopLongDescription) EditText shopDescriptionLong;
+    @BindView(R.id.shopShortDescription)
+    EditText shopDescriptionShort;
+    @BindView(R.id.shopLongDescription)
+    EditText shopDescriptionLong;
 
-    @BindView(R.id.latitude) EditText latitude;
-    @BindView(R.id.longitude) EditText longitude;
-    @BindView(R.id.pick_location_button) TextView pickLocationButton;
-    @BindView(R.id.rangeOfDelivery) EditText rangeOfDelivery;
+    @BindView(R.id.latitude)
+    EditText latitude;
+    @BindView(R.id.longitude)
+    EditText longitude;
+    @BindView(R.id.pick_location_button)
+    TextView pickLocationButton;
+    @BindView(R.id.rangeOfDelivery)
+    EditText rangeOfDelivery;
 
-    @BindView(R.id.deliveryCharges) EditText deliveryCharge;
-    @BindView(R.id.billAmountForFreeDelivery) EditText billAmountForFreeDelivery;
+    @BindView(R.id.deliveryCharges)
+    EditText deliveryCharge;
+    @BindView(R.id.billAmountForFreeDelivery)
+    EditText billAmountForFreeDelivery;
 
-    @BindView(R.id.pick_from_shop_available) CheckBox pickFromShopAvailable;
-    @BindView(R.id.home_delivery_available) CheckBox homeDeliveryAvailable;
+    @BindView(R.id.pick_from_shop_available)
+    CheckBox pickFromShopAvailable;
+    @BindView(R.id.home_delivery_available)
+    CheckBox homeDeliveryAvailable;
 
-    @BindView(R.id.error_delivery_option) TextView errorDeliveryOption;
-    @BindView(R.id.error_delivery_option_top) TextView errorDeliveryOptionTop;
-
-
-
-    @BindView(R.id.saveButton) TextView saveButton;
-    @BindView(R.id.progress_bar) ProgressBar progressBar;
-
-
-    @BindView(R.id.admin_options_block) LinearLayout adminOptionsBlock;
+    @BindView(R.id.error_delivery_option)
+    TextView errorDeliveryOption;
+    @BindView(R.id.error_delivery_option_top)
+    TextView errorDeliveryOptionTop;
 
 
+    @BindView(R.id.saveButton)
+    TextView saveButton;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
+
+
+    @BindView(R.id.admin_options_block)
+    LinearLayout adminOptionsBlock;
 
 
     public static final String SHOP_INTENT_KEY = "shop_intent_key";
@@ -167,8 +179,6 @@ public class EditShopFragment extends Fragment {
     }
 
 
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -177,30 +187,25 @@ public class EditShopFragment extends Fragment {
         setRetainInstance(true);
         View rootView = inflater.inflate(R.layout.fragment_edit_shop_fragment, container, false);
 
-        ButterKnife.bind(this,rootView);
+        ButterKnife.bind(this, rootView);
 
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
-        if(savedInstanceState==null)
-        {
+        if (savedInstanceState == null) {
 //            shopAdmin = getActivity().getIntent().getParcelableExtra(SHOP_ADMIN_INTENT_KEY);
 
-            current_mode = getActivity().getIntent().getIntExtra(EDIT_MODE_INTENT_KEY,MODE_ADD);
+            current_mode = getActivity().getIntent().getIntExtra(EDIT_MODE_INTENT_KEY, MODE_ADD);
 
-            if(current_mode == MODE_UPDATE)
-            {
+            if (current_mode == MODE_UPDATE) {
                 shop = PrefShopHome.getShop(getContext());
 
-                if(shop!=null) {
+                if (shop != null) {
                     bindShopData();
                 }
-            }
-            else if(current_mode==MODE_UPDATE_BY_ADMIN)
-            {
+            } else if (current_mode == MODE_UPDATE_BY_ADMIN) {
 
                 String jsonString = getActivity().getIntent().getStringExtra("shop_profile");
                 shop = UtilityFunctions.provideGson().fromJson(jsonString, Shop.class);
@@ -208,45 +213,29 @@ public class EditShopFragment extends Fragment {
 
                 getShopDetails();
             }
-
-//            showLogMessage("Inside OnCreateView - Saved Instance State !");
         }
 
 
-
-//        if(validator==null)
-//        {
-//            validator = new Validator(this);
-//            validator.setValidationListener(this);
-//        }
-
-        updateIDFieldVisibility();
+        updateFieldVisibility();
 
 
-        if(shop!=null) {
+        if (shop != null) {
             loadImage(shop.getLogoImagePath());
-            showLogMessage("Inside OnCreateView : DeliveryGUySelf : Not Null !");
         }
 
-
-        showLogMessage("Inside On Create View !");
 
         return rootView;
     }
 
 
-
-
-
-    private void getShopDetails()
-    {
+    private void getShopDetails() {
 
         final ProgressDialog pd = new ProgressDialog(getActivity());
-        pd.setMessage("Please with ... Getting user details !");
+        pd.setMessage("Please with ... Getting shop details !");
         pd.show();
 
         Call<Shop> call = shopService.getShopDetails(
-                shop.getShopID(),0d,0d
+                shop.getShopID(), 0d, 0d
         );
 
 
@@ -254,23 +243,18 @@ public class EditShopFragment extends Fragment {
             @Override
             public void onResponse(Call<Shop> call, Response<Shop> response) {
 
-                if(!isVisible())
-                {
+                if (!isVisible()) {
                     return;
                 }
 
                 pd.dismiss();
 
 
-
-                if(response.code()==200)
-                {
+                if (response.code() == 200) {
                     shop = response.body();
 
                     bindShopData();
-                }
-                else
-                {
+                } else {
                     showToastMessage("Failed to get Shop Details : Code : " + response.code());
                 }
             }
@@ -279,8 +263,7 @@ public class EditShopFragment extends Fragment {
             public void onFailure(Call<Shop> call, Throwable t) {
 
 
-                if(!isVisible())
-                {
+                if (!isVisible()) {
                     return;
                 }
 
@@ -288,35 +271,22 @@ public class EditShopFragment extends Fragment {
 
             }
         });
-
-
-
-
     }
 
 
+    private void updateFieldVisibility() {
 
-
-
-    private void updateIDFieldVisibility()
-    {
-
-        if(current_mode==MODE_ADD)
-        {
+        if (current_mode == MODE_ADD) {
             saveButton.setText("Add Shop");
             shopIDEnter.setVisibility(View.GONE);
             adminOptionsBlock.setVisibility(View.GONE);
 
-        }
-        else if(current_mode== MODE_UPDATE)
-        {
+        } else if (current_mode == MODE_UPDATE) {
             shopIDEnter.setVisibility(View.VISIBLE);
             saveButton.setText("Save");
             adminOptionsBlock.setVisibility(View.GONE);
 
-        }
-        else if(current_mode==MODE_UPDATE_BY_ADMIN)
-        {
+        } else if (current_mode == MODE_UPDATE_BY_ADMIN) {
             shopIDEnter.setVisibility(View.VISIBLE);
             saveButton.setText("Save");
             adminOptionsBlock.setVisibility(VISIBLE);
@@ -324,20 +294,12 @@ public class EditShopFragment extends Fragment {
     }
 
 
-
-
-
-
     public static final String TAG_LOG = "TAG_LOG";
 
-    private void showLogMessage(String message)
-    {
-        Log.i(TAG_LOG,message);
+    private void showLogMessage(String message) {
+        Log.i(TAG_LOG, message);
         System.out.println(message);
     }
-
-
-
 
 
     private void loadImage(String imagePath) {
@@ -352,13 +314,11 @@ public class EditShopFragment extends Fragment {
 
 
 
-
-
     @OnClick(R.id.uploadImage)
-    void imageClick()
-    {
+    void imageClick() {
         Intent intent = new Intent(getActivity(), ShopImageList.class);
-        intent.putExtra("shop_id",shop.getShopID());
+        intent.putExtra("shop_id", shop.getShopID());
+        intent.putExtra("is_admin_mode",true);
         startActivity(intent);
     }
 
@@ -366,46 +326,34 @@ public class EditShopFragment extends Fragment {
 
 
 
-
     @OnClick(R.id.saveButton)
-    public void UpdateButtonClick()
-    {
+    public void UpdateButtonClick() {
 
-        if(!validateData())
-        {
+        if (!validateData()) {
 //            showToastMessage("Please correct form data before save !");
             return;
         }
 
 
-        if(current_mode == MODE_ADD)
-        {
+        if (current_mode == MODE_ADD) {
             addAccount();
-        }
-        else if(current_mode == MODE_UPDATE || current_mode==MODE_UPDATE_BY_ADMIN)
-        {
+        } else if (current_mode == MODE_UPDATE || current_mode == MODE_UPDATE_BY_ADMIN) {
             update();
         }
     }
 
 
-
-
-
-    private boolean validateData()
-    {
+    private boolean validateData() {
         boolean isValid = true;
 
-        if(shopName.getText().toString().length()==0)
-        {
+        if (shopName.getText().toString().length() == 0) {
             shopName.setError("Please enter Shop Name");
             shopName.requestFocus();
-            isValid= false;
+            isValid = false;
         }
 
 
-        if(!homeDeliveryAvailable.isChecked() && !pickFromShopAvailable.isChecked())
-        {
+        if (!homeDeliveryAvailable.isChecked() && !pickFromShopAvailable.isChecked()) {
             homeDeliveryAvailable.setError("You must pick at least one delivery Option");
             pickFromShopAvailable.setError("You must pick at least one delivery Option");
 
@@ -416,82 +364,61 @@ public class EditShopFragment extends Fragment {
             pickFromShopAvailable.requestFocus();
 
             isValid = false;
-        }
-        else
-        {
+        } else {
 
             errorDeliveryOption.setVisibility(View.GONE);
             errorDeliveryOptionTop.setVisibility(View.GONE);
         }
 
 
-
-
-        if(latitude.getText().toString().length()==0)
-        {
+        if (latitude.getText().toString().length() == 0) {
             latitude.setError("Latitude cant be empty !");
             latitude.requestFocus();
             isValid = false;
-        }
-        else
-        {
+        } else {
             double lat = Double.parseDouble(latitude.getText().toString());
 
-            if(lat >90 || lat <- 90)
-            {
+            if (lat > 90 || lat < -90) {
                 latitude.setError("Invalid Latitude !");
-                isValid  = false;
+                isValid = false;
             }
         }
 
 
-        if(longitude.getText().toString().length()==0)
-        {
+        if (longitude.getText().toString().length() == 0) {
             longitude.setError("Longitude cant be empty !");
             longitude.requestFocus();
-            isValid= false;
-        }
-        else
-        {
+            isValid = false;
+        } else {
             double lon = Double.parseDouble(longitude.getText().toString());
 
-            if(lon >180 || lon < -180)
-            {
+            if (lon > 180 || lon < -180) {
                 longitude.setError("Invalid Longitude !");
                 isValid = false;
             }
 
         }
 
-        if(rangeOfDelivery.getText().toString().length()==0)
-        {
+        if (rangeOfDelivery.getText().toString().length() == 0) {
             rangeOfDelivery.setError("Range of Delivery cant be empty !");
             rangeOfDelivery.requestFocus();
             isValid = false;
         }
 
-        if(shopDescriptionShort.getText().toString().length()>100)
-        {
+        if (shopDescriptionShort.getText().toString().length() > 100) {
             shopDescriptionShort.setError("Should not be more than 100 characters !");
             shopDescriptionShort.requestFocus();
             isValid = false;
         }
 
 
-
         return isValid;
     }
 
 
-
-
-
-    private void addAccount()
-    {
-        if(isImageChanged)
-        {
-            if(!isImageRemoved)
-            {
+    private void addAccount() {
+        if (isImageChanged) {
+            if (!isImageRemoved) {
                 // upload image with add
                 uploadPickedImage(false);
             }
@@ -501,9 +428,7 @@ public class EditShopFragment extends Fragment {
             isImageChanged = false;
             isImageRemoved = false;
 
-        }
-        else
-        {
+        } else {
             // post request
             retrofitPOSTRequest();
         }
@@ -511,14 +436,9 @@ public class EditShopFragment extends Fragment {
     }
 
 
+    private void update() {
 
-
-
-    private void update()
-    {
-
-        if(isImageChanged)
-        {
+        if (isImageChanged) {
 
 
             // delete previous Image from the Server
@@ -531,14 +451,12 @@ public class EditShopFragment extends Fragment {
                     );*/
 
 
-            if(isImageRemoved)
-            {
+            if (isImageRemoved) {
 
                 shop.setLogoImagePath(null);
                 retrofitPUTRequest();
 
-            }else
-            {
+            } else {
 
                 uploadPickedImage(true);
             }
@@ -548,7 +466,7 @@ public class EditShopFragment extends Fragment {
             isImageChanged = false;
             isImageRemoved = false;
 
-        }else {
+        } else {
 
             retrofitPUTRequest();
         }
@@ -557,11 +475,16 @@ public class EditShopFragment extends Fragment {
 
 
 
-    private void bindShopData()
-    {
-        if(shop==null) {
+
+    private void bindShopData() {
+
+        if (shop == null) {
             return;
         }
+
+
+        bindAdminOptions();
+
 
 
         shopOpen.setChecked(shop.isOpen());
@@ -586,11 +509,12 @@ public class EditShopFragment extends Fragment {
 
         pickFromShopAvailable.setChecked(shop.getPickFromShopAvailable());
         homeDeliveryAvailable.setChecked(shop.getHomeDeliveryAvailable());
+    }
 
 
 
-
-
+    private void bindAdminOptions()
+    {
         User shopAdminProfile = shop.getShopAdminProfile();
 
 
@@ -612,9 +536,10 @@ public class EditShopFragment extends Fragment {
 
         extendedCreditLimit.setText(String.valueOf(shop.getExtendedCreditLimit()));
         accountBalance.setText("Account Balance : " + String.format(" %.2f",shop.getAccountBalance()));
-
-
     }
+
+
+
 
 
 
@@ -681,8 +606,7 @@ public class EditShopFragment extends Fragment {
 
 
 
-
-
+        // get data from admin fields
         shop.setShopEnabled(aSwitch.isChecked());
         shop.setShopWaitlisted(switchWaitlist.isChecked());
 
@@ -797,7 +721,7 @@ public class EditShopFragment extends Fragment {
                     showToastMessage("Add successful !");
 
                     current_mode = MODE_UPDATE;
-                    updateIDFieldVisibility();
+                    updateFieldVisibility();
                     shop = response.body();
                     bindShopData();
 
@@ -834,15 +758,11 @@ public class EditShopFragment extends Fragment {
 
 
 
-
     /*
         Utility Methods
      */
 
-
-
-
-    void showToastMessage(String message)
+    private void showToastMessage(String message)
     {
         Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
     }
@@ -869,7 +789,9 @@ public class EditShopFragment extends Fragment {
 
 
 
-    public static void clearCache(Context context)
+
+
+    private static void clearCache(Context context)
     {
         File file = new File(context.getCacheDir().getPath() + "/" + "SampleCropImage.jpeg");
         file.delete();
@@ -1184,7 +1106,10 @@ public class EditShopFragment extends Fragment {
 
 
 
-    void deleteImage(String filename)
+
+
+
+    private void deleteImage(String filename)
     {
 
         Call<ResponseBody> call = shopService.deleteImage(

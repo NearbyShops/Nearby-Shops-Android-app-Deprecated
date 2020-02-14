@@ -90,8 +90,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             ((ViewHolderShopTypeTwo) holder).setItem((Shop) dataset.get(position));
         }
-
-        if(holder instanceof ViewHolderShopTypeOne)
+        else if(holder instanceof ViewHolderShopTypeOne)
         {
             ((ViewHolderShopTypeOne) holder).setItem((Shop) dataset.get(position));
         }

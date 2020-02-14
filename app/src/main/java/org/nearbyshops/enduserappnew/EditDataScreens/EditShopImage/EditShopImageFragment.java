@@ -69,9 +69,10 @@ public class EditShopImageFragment extends Fragment {
     ShopImageService itemImageService;
 
 
+
     // flag for knowing whether the image is changed or not
-    boolean isImageChanged = false;
-    boolean isImageRemoved = false;
+    private boolean isImageChanged = false;
+    private boolean isImageRemoved = false;
 
 
     // bind views
@@ -93,13 +94,12 @@ public class EditShopImageFragment extends Fragment {
     public static final int MODE_UPDATE = 52;
     public static final int MODE_ADD = 51;
 
-    int current_mode = MODE_ADD;
+    private int current_mode = MODE_ADD;
+    private boolean isDestroyed = false;
 
-    boolean isDestroyed = false;
 
 
-//    Item item = new Item();
-    ShopImage itemImage = new ShopImage();
+    private ShopImage itemImage = new ShopImage();
 
 
 
@@ -184,7 +184,10 @@ public class EditShopImageFragment extends Fragment {
 
 
 
-    void updateIDFieldVisibility()
+
+
+
+    private void updateIDFieldVisibility()
     {
 
         if(current_mode==MODE_ADD)
@@ -208,9 +211,11 @@ public class EditShopImageFragment extends Fragment {
 
 
 
+
+
     public static final String TAG_LOG = "TAG_LOG";
 
-    void showLogMessage(String message)
+    private void showLogMessage(String message)
     {
         Log.i(TAG_LOG,message);
         System.out.println(message);
@@ -219,7 +224,7 @@ public class EditShopImageFragment extends Fragment {
 
 
 
-    void loadImage(String filename) {
+    private void loadImage(String filename) {
 
 //        String iamgepath = UtilityGeneral.getServiceURL(getContext()) + "/api/v1/ItemImage/five_hundred_" + imagePath + ".jpg";
 
@@ -263,7 +268,7 @@ public class EditShopImageFragment extends Fragment {
 
 
 
-    boolean validateData()
+    private boolean validateData()
     {
         boolean isValid = true;
 
@@ -282,7 +287,7 @@ public class EditShopImageFragment extends Fragment {
 
 
 
-    void addAccount()
+    private void addAccount()
     {
         if(isImageChanged)
         {
@@ -307,7 +312,7 @@ public class EditShopImageFragment extends Fragment {
     }
 
 
-    void update()
+    private void update()
     {
 
         if(isImageChanged)
@@ -349,7 +354,12 @@ public class EditShopImageFragment extends Fragment {
 
 
 
-    void bindDataToViews()
+
+
+
+
+
+    private void bindDataToViews()
     {
         if(itemImage !=null) {
 
@@ -366,7 +376,7 @@ public class EditShopImageFragment extends Fragment {
 
 
 
-    void getDataFromViews()
+    private void getDataFromViews()
     {
         if(itemImage ==null)
         {
@@ -410,7 +420,13 @@ public class EditShopImageFragment extends Fragment {
         isDestroyed = true;
     }
 
-    public void retrofitPUTRequest()
+
+
+
+
+
+
+    private void retrofitPUTRequest()
     {
 
         getDataFromViews();
@@ -480,7 +496,8 @@ public class EditShopImageFragment extends Fragment {
 
 
 
-    void retrofitPOSTRequest()
+
+    private void retrofitPOSTRequest()
     {
         getDataFromViews();
         itemImage.setShopID(getActivity().getIntent().getIntExtra(SHOP_ID_INTENT_KEY,0));
@@ -568,7 +585,9 @@ public class EditShopImageFragment extends Fragment {
 
 
 
-    void showToastMessage(String message)
+
+
+    private void showToastMessage(String message)
     {
         Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
     }

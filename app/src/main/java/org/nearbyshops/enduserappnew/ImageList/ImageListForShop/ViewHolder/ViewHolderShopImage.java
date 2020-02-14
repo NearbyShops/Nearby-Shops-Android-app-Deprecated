@@ -3,9 +3,11 @@ package org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ViewHolder;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -31,10 +33,13 @@ public class ViewHolderShopImage extends RecyclerView.ViewHolder{
     @BindView(R.id.title) TextView imageTitle;
     @BindView(R.id.description) TextView imageDescription;
     @BindView(R.id.copyright_info) TextView copyrights;
-    @BindView(R.id.taxi_image) ImageView shopImageView;
+    @BindView(R.id.image) ImageView shopImageView;
     @BindView(R.id.list_item) ConstraintLayout listItem;
     @BindView(R.id.check_icon) ImageView checkIcon;
 
+
+
+    @BindView(R.id.popup_menu) ImageView popupMenu;
 
 
     private Context context;
@@ -67,7 +72,7 @@ public class ViewHolderShopImage extends RecyclerView.ViewHolder{
 
 
 
-    public void setItem(ShopImage shopImage)
+    public void setItem(ShopImage shopImage, boolean isAdminMode)
     {
 
         this.shopImage = shopImage;
@@ -91,6 +96,18 @@ public class ViewHolderShopImage extends RecyclerView.ViewHolder{
                 .load(imagePathMedium)
                 .placeholder(drawable)
                 .into(shopImageView);
+
+
+
+
+        if(isAdminMode)
+        {
+            popupMenu.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            popupMenu.setVisibility(View.GONE);
+        }
 
 
 
@@ -129,15 +146,63 @@ public class ViewHolderShopImage extends RecyclerView.ViewHolder{
 
 
 
-    public interface ListItemClick
+
+    @OnClick(R.id.popup_menu)
+    void popupClick(View v)
     {
-        void listItemClick(ShopImage shopImage, int position);
-        boolean listItemLongClick(View view, ShopImage shopImage, int position);
+        PopupMenu menu = new PopupMenu(context,v);
+
+        menu.getMenuInflater().inflate(R.menu.menu_shop_images_list_item,menu.getMenu());
+
+        menu.show();
+        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                switch (item.getItemId())
+                {
+                    case R.id.delete :
+
+                        if(fragment instanceof ListItemClick)
+                        {
+                            ((ListItemClick) fragment).deleteClick(shopImage,getAdapterPosition());
+                        }
+
+
+
+                        break;
+
+
+                    case R.id.edit :
+
+
+
+                        if(fragment instanceof ListItemClick)
+                        {
+                            ((ListItemClick) fragment).editClick(shopImage,getAdapterPosition());
+                        }
+
+
+                        break;
+                }
+
+
+                return false;
+            }
+        });
+
     }
 
 
 
 
+    public interface ListItemClick
+    {
+        void listItemClick(ShopImage shopImage, int position);
+        boolean listItemLongClick(View view, ShopImage shopImage, int position);
+        void deleteClick(ShopImage shopImage, int position);
+        void editClick(ShopImage shopImage, int position);
+    }
 
 }
 

@@ -30,6 +30,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private Fragment fragment;
 
+    private boolean isAdminMode = false;
+
+
+
     public static final int VIEW_TYPE_ITEM_IMAGE = 1;
 
 
@@ -44,11 +48,12 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
-    public Adapter(List<Object> dataset, Context context, Fragment fragment) {
+    public Adapter(List<Object> dataset, Context context, Fragment fragment, boolean isAdminMode) {
 
         this.dataset = dataset;
         this.context = context;
         this.fragment = fragment;
+        this.isAdminMode= isAdminMode;
     }
 
 
@@ -94,7 +99,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (holder instanceof ViewHolderShopImage) {
 
 
-            ((ViewHolderShopImage) holder).setItem((ShopImage) dataset.get(position));
+            ((ViewHolderShopImage) holder).setItem((ShopImage) dataset.get(position),isAdminMode);
 
         }
         else if (holder instanceof ViewHolderHeader) {

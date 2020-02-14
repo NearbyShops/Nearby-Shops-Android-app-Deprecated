@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.ImageList.ImageListForShop;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -9,26 +10,37 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import org.nearbyshops.enduserappnew.API.ShopImageService;
 import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShopImage.EditShopImage;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShopImage.EditShopImageFragment;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShopImage.UtilityShopImage;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ViewHolder.ViewHolderShopImage;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ImageSlider.ImageSliderForShop.ImageSliderShop;
 import org.nearbyshops.enduserappnew.Interfaces.OnFilterChanged;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+
+import butterknife.OnClick;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,20 +82,25 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
     // flags
-    boolean clearDataset = false;
+    private boolean clearDataset = false;
 
 //    boolean getRowCountVehicle = false;
 //    boolean resetOffsetVehicle = false;
 
 
     private int limit = 30;
-    int offset = 0;
+    private int offset = 0;
     public int item_count = 0;
 
 
 
 
     @BindView(R.id.empty_screen) LinearLayout emptyScreen;
+
+
+    private boolean isAdminMode = false;
+
+    @BindView(R.id.fab) FloatingActionButton fab;
 
 
 
@@ -119,6 +136,7 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 //        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
 
+        checkAdminMode();
 
         setupSwipeContainer();
         setupRecyclerView();
@@ -133,6 +151,28 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
         return rootView;
     }
+
+
+
+
+
+    private void checkAdminMode()
+    {
+
+        isAdminMode = getActivity().getIntent().getBooleanExtra("is_admin_mode",false);
+
+        if(isAdminMode)
+        {
+            fab.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            fab.setVisibility(View.GONE);
+        }
+    }
+
+
+
 
 
 
@@ -160,7 +200,8 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
     private void setupRecyclerView()
     {
 
-        listAdapter = new Adapter(dataset,getActivity(),this);
+
+        listAdapter = new Adapter(dataset,getActivity(),this, isAdminMode);
         recyclerView.setAdapter(listAdapter);
 
         layoutManager = new GridLayoutManager(getActivity(),1, RecyclerView.VERTICAL,false);
@@ -250,17 +291,6 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
         getShopImages();
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -422,5 +452,131 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
         return true;
     }
 
+
+
+
+    private void deleteClickMain(final ShopImage shopImage, final int position)
+    {
+
+
+        String filename = " ";
+        if(shopImage.getImageFilename()!=null)
+        {
+            filename = shopImage.getImageFilename();
+        }
+
+
+
+        Call<ResponseBody> call = service.deleteShopImage(
+                PrefLogin.getAuthorizationHeaders(getActivity()),
+                shopImage.getShopImageID()
+        );
+
+
+
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
+                if (response.code()==200)
+                {
+                    showToastMessage("Deleted !");
+                    listAdapter.notifyItemRemoved(position);
+                    dataset.remove(shopImage);
+
+                }
+                else
+                {
+                    showToastMessage("Failed code : " + String.valueOf(response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+
+                showToastMessage("Delete Failed !");
+
+            }
+        });
+
+
+    }
+
+
+    @Override
+    public void deleteClick(ShopImage shopImage, int position) {
+
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+
+        dialog.setTitle("Confirm Delete Image !")
+                .setMessage("Are you sure you want to delete this Image !")
+                .setPositiveButton("Yes",new DialogInterface.OnClickListener(){
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        deleteClickMain(shopImage,position);
+
+                    }
+                })
+                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        showToastMessage("Cancelled !");
+                    }
+                })
+                .show();
+    }
+
+
+
+
+
+    @Override
+    public void editClick(ShopImage shopImage, int position) {
+
+
+//        int itemID = getActivity().getIntent().getIntExtra("item_id",0);
+        int shopId = getActivity().getIntent().getIntExtra("shop_id",0);
+
+        Intent intent = new Intent(getActivity(), EditShopImage.class);
+        intent.putExtra(EditShopImageFragment.EDIT_MODE_INTENT_KEY, EditShopImageFragment.MODE_UPDATE);
+        intent.putExtra(EditShopImageFragment.SHOP_ID_INTENT_KEY,shopId);
+
+        UtilityShopImage.saveItemImage(shopImage,getActivity());
+        startActivity(intent);
+    }
+
+
+
+
+
+    @OnClick(R.id.fab)
+    void fabClick()
+    {
+
+        int shopId = getActivity().getIntent().getIntExtra("shop_id",0);
+
+        Intent intent = new Intent(getActivity(), EditShopImage.class);
+        intent.putExtra(EditShopImageFragment.EDIT_MODE_INTENT_KEY, EditShopImageFragment.MODE_ADD);
+        intent.putExtra(EditShopImageFragment.SHOP_ID_INTENT_KEY,shopId);
+        startActivity(intent);
+    }
 
 }
