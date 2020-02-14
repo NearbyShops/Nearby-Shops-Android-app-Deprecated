@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.EditDataScreens.EditAddress;
+package org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress;
 
 import android.content.Intent;
 import android.net.Uri;

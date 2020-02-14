@@ -114,7 +114,7 @@ public interface ShopService {
 
 
 
-    @GET("/api/v1/Shop/GetForShopAdmin")
+    @GET("/api/v1/Shop/GetShopForShopAdmin")
     Call<Shop> getShopForShopAdmin(@Header("Authorization") String headers);
 
 

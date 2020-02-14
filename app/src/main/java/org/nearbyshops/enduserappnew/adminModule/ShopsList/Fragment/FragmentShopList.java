@@ -30,6 +30,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopType2;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.SlidingLayerSort.PrefSortShops;
 
 import java.util.ArrayList;
@@ -42,7 +43,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnRefreshListener, Adapter.NotifyByShopAdapter , NotifySearch, NotifySort, NotifyLocation {
+public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnRefreshListener , NotifySearch, NotifySort, NotifyLocation ,
+        ViewHolderShopType2.ListItemClick {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -54,7 +56,7 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
     RecyclerView recyclerView;
     Adapter adapter;
 
-    public List<Shop> dataset = new ArrayList<>();
+    public List<Object> dataset = new ArrayList<>();
 
     GridLayoutManager layoutManager;
     SwipeRefreshLayout swipeContainer;
@@ -113,7 +115,10 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
     }
 
 
-    void setupSwipeContainer()
+
+
+
+    private void setupSwipeContainer()
     {
         if(swipeContainer!=null) {
 
@@ -127,10 +132,12 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
     }
 
 
-    void setupRecyclerView()
+
+
+    private void setupRecyclerView()
     {
 
-        adapter = new Adapter(dataset,this,getContext(),this);
+        adapter = new Adapter(dataset,getActivity(),this);
 
         recyclerView.setAdapter(adapter);
 
@@ -143,9 +150,7 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
 //        layoutManager.setSpanCount(metrics.widthPixels/400);
 
 
-//        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST));
-
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+//        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
 
         int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
@@ -191,7 +196,10 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
         makeNetworkCall(true,true);
     }
 
-    void makeRefreshNetworkCall()
+
+
+
+    private void makeRefreshNetworkCall()
     {
 
         swipeContainer.post(new Runnable() {
@@ -208,7 +216,10 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-    void makeNetworkCall(final boolean clearDataset, final boolean resetOffset)
+
+
+
+    private void makeNetworkCall(final boolean clearDataset, final boolean resetOffset)
     {
         if(resetOffset)
         {
@@ -372,7 +383,9 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-    void showToastMessage(String message)
+
+
+    private void showToastMessage(String message)
     {
         if(getActivity()!=null)
         {
@@ -389,7 +402,9 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
     }
 
 
-    void notifyTitleChanged()
+
+
+    private void notifyTitleChanged()
     {
 
         if(getActivity() instanceof NotifyTitleChanged)
@@ -439,24 +454,11 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-    @Override
-    public void notifyEditClick(Shop shop) {
 
 
-        PrefShopForAdmin.saveShop(shop,getActivity());
-        Intent intent = new Intent(getActivity(), EditShopForAdmin.class);
-        intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopForAdminFragment.MODE_UPDATE);
-        startActivity(intent);
-
-    }
-
-    @Override
-    public void notifyListItemClick(Shop shop) {
-
-    }
 
 
-    String searchQuery = null;
+    private String searchQuery = null;
 
     @Override
     public void search(String searchString) {
@@ -483,4 +485,23 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
 //        this.location = location;
         makeRefreshNetworkCall();
     }
+
+
+
+
+
+
+
+    @Override
+    public void listItemClick(Shop shop, int position) {
+
+
+        PrefShopForAdmin.saveShop(shop,getActivity());
+        Intent intent = new Intent(getActivity(), EditShopForAdmin.class);
+        intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopForAdminFragment.MODE_UPDATE);
+        startActivity(intent);
+    }
+
+
+
 }

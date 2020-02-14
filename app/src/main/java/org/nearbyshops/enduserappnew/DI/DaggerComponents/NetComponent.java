@@ -27,7 +27,7 @@ import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListActivity;
 import org.nearbyshops.enduserappnew.Lists.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Checkout.PlaceOrderActivity;
 import org.nearbyshops.enduserappnew.Lists.DeliveryAddress.DeliveryAddressActivity;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditAddress.EditAddressFragment;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress.EditAddressFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItem.EditItemFragmentNew;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemImage.EditItemImageFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.ChangeEmail.FragmentChangeEmail;

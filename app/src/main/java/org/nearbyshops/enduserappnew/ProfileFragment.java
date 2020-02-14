@@ -30,6 +30,8 @@ import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
@@ -119,10 +121,12 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-        viewModelShop = ViewModelProviders.of(this).get(ViewModelShop.class);
+//        viewModelShop = ViewModelProviders.of(this).get(ViewModelShop.class);
+
+        viewModelShop = new ViewModelShop(MyApplication.application);
 
 
-        viewModelShop.getEvent().observe(this, new Observer<Integer>() {
+        viewModelShop.getEvent().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
 
@@ -143,7 +147,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-        viewModelShop.getMessage().observe(this, new Observer<String>() {
+
+        viewModelShop.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 showToastMessage(s);
@@ -274,11 +279,18 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {
 
-            viewModelShop.becomeASeller();
+//            viewModelShop.becomeASeller();
+//
+//            progressDialog = new ProgressDialog(getActivity());
+//            progressDialog.setMessage("Please wait ... converting you to a seller !");
+//            progressDialog.show();
 
-            progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage("Please wait ... converting you to a seller !");
-            progressDialog.show();
+
+
+            //     open edit shop in edit mode
+            Intent intent = new Intent(getActivity(), EditShop.class);
+            intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_ADD);
+            startActivity(intent);
 
         }
 

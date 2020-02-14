@@ -1,82 +1,81 @@
 package org.nearbyshops.enduserappnew.adminModule.ShopsList.Fragment;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
-
-import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopType1;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopType2;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 /**
- * Created by sumeet on 13/6/16.
+ * Created by sumeet on 25/5/16.
  */
-class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Shop> dataset = null;
-    private NotifyByShopAdapter notifyByShopAdapter;
+
+
+    private List<Object> dataset = null;
     private Context context;
-
-
-    public static final int VIEW_TYPE_SHOP_APPROVAL = 1;
-    public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 2;
     private Fragment fragment;
 
-    Adapter(List<Shop> dataset, NotifyByShopAdapter notifyByShopAdapter, Context context, Fragment fragment) {
+
+    public static final int VIEW_TYPE_SHOP = 1;
+
+    public static final int VIEW_TYPE_HEADER = 4;
+    public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 5;
+    public static final int VIEW_TYPE_EMPTY_SCREEN = 6;
+
+
+
+    private boolean loadMore;
+
+
+
+
+    public Adapter(List<Object> dataset, Context context, Fragment fragment) {
         this.dataset = dataset;
-        this.notifyByShopAdapter = notifyByShopAdapter;
         this.context = context;
         this.fragment = fragment;
     }
 
+
+
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-//        View view = LayoutInflater.from(parent.getContext())
-//                .inflate(R.layout.list_item_shop_approvals,parent,false);
+        View view;
 
-        View view = null;
 
-//        View view = LayoutInflater.from(parent.getContext())
-//                .inflate(R.layout.list_item_shop,parent,false);
-
-        if(viewType== VIEW_TYPE_SHOP_APPROVAL)
+        if(viewType == VIEW_TYPE_SHOP)
         {
-            view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_shop,parent,false);
-
-            return new ViewHolderShopApproval(view);
+            return ViewHolderShopType2.create(parent,context,fragment,this);
         }
-        else if(viewType==VIEW_TYPE_SCROLL_PROGRESS_BAR)
+        else if(viewType == VIEW_TYPE_HEADER)
         {
-
-            view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_progress_bar,parent,false);
-
-            return new LoadingViewHolder(view);
+            return ViewHolderHeader.create(parent,context);
+        }
+        else if(viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR)
+        {
+            return LoadingViewHolder.create(parent,context);
+        }
+        else if(viewType==VIEW_TYPE_EMPTY_SCREEN)
+        {
+            return ViewHolderEmptyScreenFullScreen.create(parent,context);
         }
 
 
-//        return new ViewHolder(view);
 
         return null;
     }
@@ -84,203 +83,36 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 
-
-
     @Override
-    public int getItemViewType(int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        super.getItemViewType(position);
 
-        if(position == dataset.size())
+        if(holder instanceof ViewHolderShopType2)
         {
-            return VIEW_TYPE_SCROLL_PROGRESS_BAR;
-        }
-        else
-        {
-            return VIEW_TYPE_SHOP_APPROVAL;
+            ((ViewHolderShopType2) holder).setItem((Shop) dataset.get(position));
         }
 
-//        return -1;
-    }
+        if(holder instanceof ViewHolderShopType1)
+        {
+            ((ViewHolderShopType1) holder).setItem((Shop) dataset.get(position));
+        }
+        else if (holder instanceof ViewHolderHeader) {
 
+            if (dataset.get(position) instanceof HeaderTitle) {
 
-
-
-
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holderVH, int position) {
-
-
-
-        if(holderVH instanceof ViewHolderShopApproval) {
-            ViewHolderShopApproval holder = (ViewHolderShopApproval) holderVH;
-
-            Shop shop = dataset.get(position);
-
-
-
-//        holder.shopID.setText("Shop ID : " + String.valueOf(shop.getShopID()));
-//        holder.address.setText(shop.getShopAddress() + "\n" + shop.getCity() + " - " + shop.getPincode());
-//        holder.shopName.setText(shop.getShopName());
-
-
-            if(shop!=null)
-            {
-
-                holder.shopName.setText(shop.getShopName());
-
-
-                if(shop.getPickFromShopAvailable())
-                {
-                    holder.pickFromShopIndicator.setVisibility(View.VISIBLE);
-                }
-                else
-                {
-                    holder.pickFromShopIndicator.setVisibility(View.GONE);
-                }
-
-
-
-                if(shop.getHomeDeliveryAvailable())
-                {
-                    holder.homeDeliveryIndicator.setVisibility(View.VISIBLE);
-                }
-                else
-                {
-                    holder.homeDeliveryIndicator.setVisibility(View.GONE);
-                }
-
-
-
-                if(shop.getShopAddress()!=null)
-                {
-                    holder.shopAddress.setText(shop.getShopAddress() + ", " + shop.getCity()  + " - " + String.valueOf(shop.getPincode()));
-                }
-
-//                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-//                        + shop.getLogoImagePath();
-
-                String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
-                        + shop.getLogoImagePath() + ".jpg";
-
-                Drawable placeholder = VectorDrawableCompat
-                        .create(context.getResources(),
-                                R.drawable.ic_nature_people_white_48px, context.getTheme());
-
-                Picasso.get()
-                        .load(imagePath)
-                        .placeholder(placeholder)
-                        .into(holder.shopLogo);
-
-
-                String currency = "";
-                currency = PrefGeneral.getCurrencySymbol(context);
-
-                holder.delivery.setText("Delivery : " + currency + ". " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
-                holder.distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
-
-
-                if(shop.getRt_rating_count()==0)
-                {
-                    holder.rating.setText("N/A");
-                    holder.rating_count.setText("( Not Yet Rated )");
-
-                }
-                else
-                {
-                    holder.rating.setText(String.format("%.2f",shop.getRt_rating_avg()));
-                    holder.rating_count.setText("( " + String.format( "%.0f", shop.getRt_rating_count()) + " Ratings )");
-                }
-
-
-                if(shop.getShortDescription()!=null)
-                {
-                    holder.description.setText(shop.getShortDescription());
-                }
-
-
-//                holder.shopName.setText(shop.getShopName());
-//
-//                if(shop.getShopAddress()!=null)
-//                {
-//                    holder.shopAddress.setText(shop.getShopAddress() + "\n" + String.valueOf(shop.getPincode()));
-//                }
-//
-////                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplication.getAppContext())
-////                        + shop.getLogoImagePath();
-//
-//                String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
-//                        + shop.getLogoImagePath() + ".jpg";
-//
-//                Drawable placeholder = VectorDrawableCompat
-//                        .create(context.getResources(),
-//                                R.drawable.ic_nature_people_white_48px, context.getTheme());
-//
-//                Picasso.with(context)
-//                        .load(imagePath)
-//                        .placeholder(placeholder)
-//                        .into(holder.shopLogo);
-//
-//                holder.delivery.setText("Delivery : Rs " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
-//                holder.distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
-//
-//
-//                if(shop.getRt_rating_count()==0)
-//                {
-//                    holder.rating.setText("N/A");
-//                    holder.rating_count.setText("( Not Yet Rated )");
-//
-//                }
-//                else
-//                {
-//                    holder.rating.setText(String.valueOf(shop.getRt_rating_avg()));
-//                    holder.rating_count.setText("( " + String.format( "%.0f", shop.getRt_rating_count()) + " Ratings )");
-//                }
-//
-//
-//                if(shop.getShortDescription()!=null)
-//                {
-//                    holder.description.setText(shop.getShortDescription());
-//                }
-
+                ((ViewHolderHeader) holder).setItem((HeaderTitle) dataset.get(position));
             }
 
-            Drawable drawable = ContextCompat.getDrawable(context,R.drawable.ic_nature_people_white_48px);
-            String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/" + "three_hundred_"+ shop.getLogoImagePath() + ".jpg";
-
-            System.out.println(imagePath);
-
-
-            Picasso.get()
-                    .load(imagePath)
-                    .placeholder(drawable)
-                    .into(holder.shopLogo);
         }
-        else if(holderVH instanceof LoadingViewHolder)
+        else if (holder instanceof LoadingViewHolder) {
+
+            ((LoadingViewHolder) holder).setLoading(loadMore);
+
+        }
+        else if(holder instanceof ViewHolderEmptyScreenFullScreen)
         {
-
-
-            LoadingViewHolder viewHolder = (LoadingViewHolder) holderVH;
-
-            if(fragment instanceof FragmentShopList)
-            {
-                int items_count = ((FragmentShopList) fragment).item_count;
-
-                if(dataset.size() == items_count)
-                {
-                    viewHolder.progressBar.setVisibility(View.GONE);
-                }
-                else
-                {
-                    viewHolder.progressBar.setVisibility(View.VISIBLE);
-                    viewHolder.progressBar.setIndeterminate(true);
-
-                }
-            }
+            ((ViewHolderEmptyScreenFullScreen) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
         }
-
-
 
     }
 
@@ -290,64 +122,46 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public int getItemCount() {
+
         return (dataset.size()+1);
     }
 
 
-    public class LoadingViewHolder extends  RecyclerView.ViewHolder{
+    @Override
+    public int getItemViewType(int position) {
+        super.getItemViewType(position);
 
-        @BindView(R.id.progress_bar)
-        ProgressBar progressBar;
-
-        public LoadingViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this,itemView);
-        }
-    }
-
-
-
-    public class ViewHolderShopApproval extends RecyclerView.ViewHolder{
-
-
-
-
-        @BindView(R.id.shop_name) TextView shopName;
-        @BindView(R.id.shop_address) TextView shopAddress;
-        @BindView(R.id.shop_logo) ImageView shopLogo;
-        @BindView(R.id.delivery) TextView delivery;
-        @BindView(R.id.distance) TextView distance;
-        @BindView(R.id.rating) TextView rating;
-        @BindView(R.id.rating_count) TextView rating_count;
-        @BindView(R.id.description) TextView description;
-        @BindView(R.id.list_item_shop) ConstraintLayout list_item;
-
-        @BindView(R.id.indicator_pick_from_shop) TextView pickFromShopIndicator;
-        @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
-
-
-
-        public ViewHolderShopApproval(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this,itemView);
-        }
-
-
-
-        @OnClick({R.id.list_item_shop})
-        void editClick()
+        if(position == dataset.size())
         {
-            notifyByShopAdapter.notifyEditClick(dataset.get(getLayoutPosition()));
+            return VIEW_TYPE_SCROLL_PROGRESS_BAR;
+        }
+        else if(dataset.get(position) instanceof Shop)
+        {
+            return VIEW_TYPE_SHOP;
+        }
+        else if(dataset.get(position) instanceof HeaderTitle)
+        {
+            return VIEW_TYPE_HEADER;
+        }
+        else if(dataset.get(position) instanceof EmptyScreenDataFullScreen)
+        {
+            return VIEW_TYPE_EMPTY_SCREEN;
         }
 
+        return -1;
     }
 
 
 
 
-    interface NotifyByShopAdapter {
-        void notifyEditClick(Shop shop);
-        void notifyListItemClick(Shop shop);
+
+
+    public void setLoadMore(boolean loadMore)
+    {
+        this.loadMore = loadMore;
     }
+
+
+
 
 }

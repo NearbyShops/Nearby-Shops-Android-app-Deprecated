@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.EditDataScreens.EditAddress;
+package org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
