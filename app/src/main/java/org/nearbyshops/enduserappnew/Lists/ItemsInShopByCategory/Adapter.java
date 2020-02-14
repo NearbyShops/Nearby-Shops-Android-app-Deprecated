@@ -17,7 +17,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemTypeTwo;
 
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopType1;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeOne;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
@@ -112,7 +112,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(viewType == VIEW_TYPE_SHOP)
         {
-            return ViewHolderShopType1.create(parent,context,fragment,this);
+            return ViewHolderShopTypeOne.create(parent,context,fragment,this);
         }
         else if(viewType == VIEW_TYPE_HEADER)
         {
@@ -137,9 +137,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
 
-        if(holder instanceof ViewHolderShopType1)
+        if(holder instanceof ViewHolderShopTypeOne)
         {
-            ((ViewHolderShopType1) holder).setItem((Shop) dataset.get(position));
+            ((ViewHolderShopTypeOne) holder).setItem((Shop) dataset.get(position));
         }
         else if(holder instanceof ViewHolderItemCategory)
         {

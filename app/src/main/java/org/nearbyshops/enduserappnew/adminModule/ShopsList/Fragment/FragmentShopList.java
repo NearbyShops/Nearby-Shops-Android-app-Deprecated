@@ -30,7 +30,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopType2;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeTwo;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.SlidingLayerSort.PrefSortShops;
 
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ import retrofit2.Response;
 
 
 public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnRefreshListener , NotifySearch, NotifySort, NotifyLocation ,
-        ViewHolderShopType2.ListItemClick {
+        ViewHolderShopTypeTwo.ListItemClick {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
