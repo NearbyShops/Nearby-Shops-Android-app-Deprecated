@@ -17,7 +17,7 @@ width="140">
 
 How it works ? 
 -----------------
-Nearby Shops is a first of its kind decentralized, non-commercial, Open-Source and International Nonprofit E-commerce platform.
+Nearby Shops is a first of its kind decentralized, non-commercial, Open-Source and International Nonprofit E-commerce platform for local vendors.
 
 This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance (Server) and create their local market. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
