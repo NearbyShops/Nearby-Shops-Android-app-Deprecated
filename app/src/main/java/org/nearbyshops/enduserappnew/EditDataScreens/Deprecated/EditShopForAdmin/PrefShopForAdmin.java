@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.EditDataScreens.EditShopForAdmin;
+package org.nearbyshops.enduserappnew.EditDataScreens.Deprecated.EditShopForAdmin;
 
 import android.content.Context;
 import android.content.SharedPreferences;

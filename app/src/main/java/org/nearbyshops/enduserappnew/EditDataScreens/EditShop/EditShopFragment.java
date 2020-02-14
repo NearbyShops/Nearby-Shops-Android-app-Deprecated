@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.EditDataScreens.EditShop;
 
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,7 +15,9 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,7 @@ import com.yalantis.ucrop.UCropActivity;
 
 import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.Model.Image;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
@@ -41,6 +45,8 @@ import org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ShopImageList;
 import org.nearbyshops.enduserappnew.LocationPicker.LocationPickerWithRadius.PickDeliveryRange;
 import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+import org.nearbyshops.enduserappnew.adminModule.AddCredit.AddCredit;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -59,6 +65,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
+import static android.view.View.VISIBLE;
 
 
 public class EditShopFragment extends Fragment {
@@ -86,6 +93,17 @@ public class EditShopFragment extends Fragment {
     // bind views
     @BindView(R.id.uploadImage)
     ImageView resultView;
+
+
+    // fields for admin options
+    @BindView(R.id.shop_admin_name) TextView shopAdminName;
+    @BindView(R.id.shop_admin_phone) TextView shopAdminPhone;
+    @BindView(R.id.time_created) TextView timeOfRegistration;
+    @BindView(R.id.extended_credit_limit) EditText extendedCreditLimit;
+    @BindView(R.id.switch_enable) Switch aSwitch;
+    @BindView(R.id.switch_waitlist) Switch switchWaitlist;
+    @BindView(R.id.account_balance) TextView accountBalance;
+
 
 
     @BindView(R.id.shop_open) CheckBox shopOpen;
@@ -120,31 +138,27 @@ public class EditShopFragment extends Fragment {
     @BindView(R.id.error_delivery_option_top) TextView errorDeliveryOptionTop;
 
 
-//    @Bind(R.id.item_id) EditText item_id;
-//    @Bind(R.id.name) EditText name;
-//    @Bind(R.id.username) EditText username;
-//    @Bind(R.id.password) EditText password;
-//    @Bind(R.id.about) EditText about;
 
-//    @Bind(R.id.phone_number) EditText phone;
-//    @Bind(R.id.designation) EditText designation;
-//    @Bind(R.id.switch_enable) Switch aSwitch;
-
-    @BindView(R.id.saveButton) TextView buttonUpdateItem;
+    @BindView(R.id.saveButton) TextView saveButton;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
+
+
+    @BindView(R.id.admin_options_block) LinearLayout adminOptionsBlock;
+
+
 
 
     public static final String SHOP_INTENT_KEY = "shop_intent_key";
     public static final String EDIT_MODE_INTENT_KEY = "edit_mode";
 
+    public static final int MODE_UPDATE_BY_ADMIN = 55;
     public static final int MODE_UPDATE = 52;
     public static final int MODE_ADD = 51;
 
-    int current_mode = MODE_ADD;
+    private int current_mode = MODE_ADD;
 
-//    DeliveryGuySelf deliveryGuySelf = new DeliveryGuySelf();
-//    ShopAdmin shopAdmin = new ShopAdmin();
-        Shop shop = new Shop();
+
+    private Shop shop = new Shop();
 
     public EditShopFragment() {
 
@@ -182,8 +196,17 @@ public class EditShopFragment extends Fragment {
                 shop = PrefShopHome.getShop(getContext());
 
                 if(shop!=null) {
-                    bindDataToViews();
+                    bindShopData();
                 }
+            }
+            else if(current_mode==MODE_UPDATE_BY_ADMIN)
+            {
+
+                String jsonString = getActivity().getIntent().getStringExtra("shop_profile");
+                shop = UtilityFunctions.provideGson().fromJson(jsonString, Shop.class);
+                bindShopData();
+
+                getShopDetails();
             }
 
 //            showLogMessage("Inside OnCreateView - Saved Instance State !");
@@ -211,25 +234,103 @@ public class EditShopFragment extends Fragment {
         return rootView;
     }
 
-    void updateIDFieldVisibility()
+
+
+
+
+    private void getShopDetails()
+    {
+
+        final ProgressDialog pd = new ProgressDialog(getActivity());
+        pd.setMessage("Please with ... Getting user details !");
+        pd.show();
+
+        Call<Shop> call = shopService.getShopDetails(
+                shop.getShopID(),0d,0d
+        );
+
+
+        call.enqueue(new Callback<Shop>() {
+            @Override
+            public void onResponse(Call<Shop> call, Response<Shop> response) {
+
+                if(!isVisible())
+                {
+                    return;
+                }
+
+                pd.dismiss();
+
+
+
+                if(response.code()==200)
+                {
+                    shop = response.body();
+
+                    bindShopData();
+                }
+                else
+                {
+                    showToastMessage("Failed to get Shop Details : Code : " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Shop> call, Throwable t) {
+
+
+                if(!isVisible())
+                {
+                    return;
+                }
+
+                showToastMessage("Failed !");
+
+            }
+        });
+
+
+
+
+    }
+
+
+
+
+
+    private void updateIDFieldVisibility()
     {
 
         if(current_mode==MODE_ADD)
         {
-            buttonUpdateItem.setText("Add Shop");
+            saveButton.setText("Add Shop");
             shopIDEnter.setVisibility(View.GONE);
+            adminOptionsBlock.setVisibility(View.GONE);
+
         }
         else if(current_mode== MODE_UPDATE)
         {
             shopIDEnter.setVisibility(View.VISIBLE);
-            buttonUpdateItem.setText("Save");
+            saveButton.setText("Save");
+            adminOptionsBlock.setVisibility(View.GONE);
+
+        }
+        else if(current_mode==MODE_UPDATE_BY_ADMIN)
+        {
+            shopIDEnter.setVisibility(View.VISIBLE);
+            saveButton.setText("Save");
+            adminOptionsBlock.setVisibility(VISIBLE);
         }
     }
 
 
+
+
+
+
     public static final String TAG_LOG = "TAG_LOG";
 
-    void showLogMessage(String message)
+    private void showLogMessage(String message)
     {
         Log.i(TAG_LOG,message);
         System.out.println(message);
@@ -237,7 +338,9 @@ public class EditShopFragment extends Fragment {
 
 
 
-    void loadImage(String imagePath) {
+
+
+    private void loadImage(String imagePath) {
 
         String iamgepath = PrefGeneral.getServiceURL(getContext()) + "/api/v1/Shop/Image/five_hundred_" + imagePath + ".jpg";
 
@@ -274,19 +377,22 @@ public class EditShopFragment extends Fragment {
             return;
         }
 
+
         if(current_mode == MODE_ADD)
         {
-            shop = new Shop();
             addAccount();
         }
-        else if(current_mode == MODE_UPDATE)
+        else if(current_mode == MODE_UPDATE || current_mode==MODE_UPDATE_BY_ADMIN)
         {
             update();
         }
     }
 
 
-    boolean validateData()
+
+
+
+    private boolean validateData()
     {
         boolean isValid = true;
 
@@ -379,7 +485,8 @@ public class EditShopFragment extends Fragment {
 
 
 
-    void addAccount()
+
+    private void addAccount()
     {
         if(isImageChanged)
         {
@@ -404,7 +511,10 @@ public class EditShopFragment extends Fragment {
     }
 
 
-    void update()
+
+
+
+    private void update()
     {
 
         if(isImageChanged)
@@ -446,41 +556,69 @@ public class EditShopFragment extends Fragment {
 
 
 
-    void bindDataToViews()
+
+    private void bindShopData()
     {
-        if(shop!=null) {
-
-            shopOpen.setChecked(shop.isOpen());
-            shopIDEnter.setText(String.valueOf(shop.getShopID()));
-            shopName.setText(shop.getShopName());
-            shopAddress.setText(shop.getShopAddress());
-
-            city.setText(shop.getCity());
-            pincode.setText(String.valueOf(shop.getPincode()));
-            landmark.setText(shop.getLandmark());
-            customerHelplineNumber.setText(shop.getCustomerHelplineNumber());
-
-            deliveryHelplineNumber.setText(shop.getDeliveryHelplineNumber());
-            shopDescriptionShort.setText(shop.getShortDescription());
-            shopDescriptionLong.setText(shop.getLongDescription());
-            latitude.setText(String.valueOf(shop.getLatCenter()));
-
-            longitude.setText(String.valueOf(shop.getLonCenter()));
-            rangeOfDelivery.setText(String.valueOf(shop.getDeliveryRange()));
-            deliveryCharge.setText(String.valueOf(shop.getDeliveryCharges()));
-            billAmountForFreeDelivery.setText(String.valueOf(shop.getBillAmountForFreeDelivery()));
-
-            pickFromShopAvailable.setChecked(shop.getPickFromShopAvailable());
-            homeDeliveryAvailable.setChecked(shop.getHomeDeliveryAvailable());
-
+        if(shop==null) {
+            return;
         }
+
+
+        shopOpen.setChecked(shop.isOpen());
+        shopIDEnter.setText(String.valueOf(shop.getShopID()));
+        shopName.setText(shop.getShopName());
+        shopAddress.setText(shop.getShopAddress());
+
+        city.setText(shop.getCity());
+        pincode.setText(String.valueOf(shop.getPincode()));
+        landmark.setText(shop.getLandmark());
+        customerHelplineNumber.setText(shop.getCustomerHelplineNumber());
+
+        deliveryHelplineNumber.setText(shop.getDeliveryHelplineNumber());
+        shopDescriptionShort.setText(shop.getShortDescription());
+        shopDescriptionLong.setText(shop.getLongDescription());
+        latitude.setText(String.valueOf(shop.getLatCenter()));
+
+        longitude.setText(String.valueOf(shop.getLonCenter()));
+        rangeOfDelivery.setText(String.valueOf(shop.getDeliveryRange()));
+        deliveryCharge.setText(String.valueOf(shop.getDeliveryCharges()));
+        billAmountForFreeDelivery.setText(String.valueOf(shop.getBillAmountForFreeDelivery()));
+
+        pickFromShopAvailable.setChecked(shop.getPickFromShopAvailable());
+        homeDeliveryAvailable.setChecked(shop.getHomeDeliveryAvailable());
+
+
+
+
+
+        User shopAdminProfile = shop.getShopAdminProfile();
+
+
+        if(shopAdminProfile!=null)
+        {
+            shopAdminName.setText("Name : " + shopAdminProfile.getName());
+            shopAdminPhone.setText("Phone : " + shopAdminProfile.getPhone());
+        }
+
+
+        if(shop.getTimestampCreated()!=null)
+        {
+            timeOfRegistration.setText("Registered at : " + shop.getTimestampCreated().toLocaleString());
+        }
+
+
+        aSwitch.setChecked(shop.getShopEnabled());
+        switchWaitlist.setChecked(shop.getShopWaitlisted());
+
+        extendedCreditLimit.setText(String.valueOf(shop.getExtendedCreditLimit()));
+        accountBalance.setText("Account Balance : " + String.format(" %.2f",shop.getAccountBalance()));
+
+
     }
 
 
 
-
-
-    void getDataFromViews()
+    private void getDataFromViews()
     {
         if(shop==null)
         {
@@ -494,10 +632,8 @@ public class EditShopFragment extends Fragment {
             }
         }
 
-//        if(current_mode == MODE_ADD)
-//        {
-//            deliveryGuySelf.setShopID(UtilityShopHome.getShop(getContext()).getShopID());
-//        }
+
+
 
         shop.setOpen(shopOpen.isChecked());
         shop.setShopName(shopName.getText().toString());
@@ -543,25 +679,66 @@ public class EditShopFragment extends Fragment {
         shop.setPickFromShopAvailable(pickFromShopAvailable.isChecked());
         shop.setHomeDeliveryAvailable(homeDeliveryAvailable.isChecked());
 
+
+
+
+
+        shop.setShopEnabled(aSwitch.isChecked());
+        shop.setShopWaitlisted(switchWaitlist.isChecked());
+
+        if(extendedCreditLimit.getText().toString().length()>0)
+        {
+            shop.setExtendedCreditLimit(Double.parseDouble(extendedCreditLimit.getText().toString()));
+        }
+
     }
 
 
 
-    public void retrofitPUTRequest()
+
+
+    private void retrofitPUTRequest()
     {
 
         getDataFromViews();
 
 
-        buttonUpdateItem.setVisibility(View.INVISIBLE);
+        saveButton.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
+        Call<ResponseBody> call = null;
 
 
-        Call<ResponseBody> call = shopService.updateBySelf(
-                PrefLogin.getAuthorizationHeaders(getContext()),
-                shop
-        );
+
+        if(current_mode==MODE_UPDATE)
+        {
+            call = shopService.updateBySelf(
+                    PrefLogin.getAuthorizationHeaders(getContext()),
+                    shop
+            );
+
+
+        }
+        else if(current_mode==MODE_UPDATE_BY_ADMIN)
+        {
+            // update Item Call
+            call = shopService.updateShopByAdmin(
+                    PrefLogin.getAuthorizationHeaders(getActivity()),
+                    shop, shop.getShopID()
+            );
+
+        }
+        else
+        {
+
+
+            showToastMessage("Current Mode : " + current_mode);
+            saveButton.setVisibility(VISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
+            return;
+        }
+
+
 
 
         call.enqueue(new Callback<ResponseBody>() {
@@ -580,7 +757,7 @@ public class EditShopFragment extends Fragment {
 
 
 
-                buttonUpdateItem.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
             }
 
@@ -589,7 +766,7 @@ public class EditShopFragment extends Fragment {
 
 
 
-                buttonUpdateItem.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });
@@ -604,11 +781,11 @@ public class EditShopFragment extends Fragment {
     {
         getDataFromViews();
 
-        Call<Shop> call = shopService.postShop(PrefLogin.getAuthorizationHeaders(getContext()),shop);
+        Call<Shop> call = shopService.createShop(PrefLogin.getAuthorizationHeaders(getContext()),shop);
 
 
 
-        buttonUpdateItem.setVisibility(View.INVISIBLE);
+        saveButton.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
         call.enqueue(new Callback<Shop>() {
@@ -622,7 +799,7 @@ public class EditShopFragment extends Fragment {
                     current_mode = MODE_UPDATE;
                     updateIDFieldVisibility();
                     shop = response.body();
-                    bindDataToViews();
+                    bindShopData();
 
                     PrefShopHome.saveShop(shop,getContext());
 
@@ -634,7 +811,7 @@ public class EditShopFragment extends Fragment {
 
 
 
-                buttonUpdateItem.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
 
             }
@@ -645,7 +822,7 @@ public class EditShopFragment extends Fragment {
 
 
 
-                buttonUpdateItem.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });
@@ -926,7 +1103,7 @@ public class EditShopFragment extends Fragment {
 
 
 
-        buttonUpdateItem.setVisibility(View.INVISIBLE);
+        saveButton.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
 
@@ -971,7 +1148,7 @@ public class EditShopFragment extends Fragment {
 
 
 
-                buttonUpdateItem.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
 
 
@@ -995,7 +1172,7 @@ public class EditShopFragment extends Fragment {
 
 
 
-                buttonUpdateItem.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });
@@ -1063,6 +1240,20 @@ public class EditShopFragment extends Fragment {
         intent.putExtra("lon_dest",Double.parseDouble(longitude.getText().toString()));
         intent.putExtra("radius",Double.parseDouble(rangeOfDelivery.getText().toString()));
         startActivityForResult(intent,3);
+    }
+
+
+
+
+
+
+    @OnClick(R.id.add_credit)
+    void addCredit()
+    {
+//        showToastMessage("Add Credit !");
+        Intent intent = new Intent(getActivity(), AddCredit.class);
+        intent.putExtra("tag_user_id",shop.getShopAdminID());
+        startActivity(intent);
     }
 
 

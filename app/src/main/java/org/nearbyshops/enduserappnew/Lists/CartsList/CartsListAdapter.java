@@ -93,7 +93,7 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
 
 
 //            imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())
-//                    + dataset.get(position).getShop().getLogoImagePath();
+//                    + dataset.get(position).getShopDetails().getLogoImagePath();
 
 //            imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
 //                    + shop.getLogoImagePath() + ".jpg";
@@ -179,7 +179,7 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
 
                     Intent intent = new Intent(context, CartItemListActivity.class);
 
-//                    intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,dataset.get(getLayoutPosition()).getShop());
+//                    intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,dataset.get(getLayoutPosition()).getShopDetails());
 //                    intent.putExtra(CartItemListActivity.CART_STATS_INTENT_KEY,dataset.get(getLayoutPosition()));
 
 

@@ -260,7 +260,7 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
     {
 
 
-//            Shop currentShop = UtilityShopHome.getShop(getContext());
+//            Shop currentShop = UtilityShopHome.getShopDetails(getContext());
 
         String current_sort = "";
         current_sort = PrefSortOrders.getSort(getContext()) + " " + PrefSortOrders.getAscending(getContext());

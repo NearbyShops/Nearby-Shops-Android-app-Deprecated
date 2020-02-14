@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.EditDataScreens.EditShopForAdmin;
+package org.nearbyshops.enduserappnew.EditDataScreens.Deprecated.EditShopForAdmin;
 
 
 import android.Manifest;
@@ -545,7 +545,7 @@ public class EditShopForAdminFragment extends Fragment {
 
 //        if(current_mode == MODE_ADD)
 //        {
-//            deliveryGuySelf.setShopID(UtilityShopHome.getShop(getContext()).getShopID());
+//            deliveryGuySelf.setShopID(UtilityShopHome.getShopDetails(getContext()).getShopID());
 //        }
 
         shop.setOpen(shopOpen.isChecked());
@@ -594,7 +594,7 @@ public class EditShopForAdminFragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
 
 
-        Call<ResponseBody> call = shopService.updateShop(
+        Call<ResponseBody> call = shopService.updateShopByAdmin(
                 PrefLogin.getAuthorizationHeaders(getContext()),
                 shop,shop.getShopID()
         );
@@ -647,7 +647,7 @@ public class EditShopForAdminFragment extends Fragment {
         buttonUpdateItem.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
-        Call<Shop> call = shopService.postShop(PrefLogin.getAuthorizationHeaders(getContext()),shop);
+        Call<Shop> call = shopService.createShop(PrefLogin.getAuthorizationHeaders(getContext()),shop);
 
         call.enqueue(new Callback<Shop>() {
             @Override

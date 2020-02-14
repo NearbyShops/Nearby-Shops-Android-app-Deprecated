@@ -306,7 +306,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     private void makeNetworkCall(final boolean clearDataset)
     {
 
-//        Shop currentShop = PrefShopHome.getShop(getContext());
+//        Shop currentShop = PrefShopHome.getShopDetails(getContext());
 
         Call<OrderItemEndPoint> call = orderItemService.getOrderItem(
                 PrefLogin.getAuthorizationHeaders(getActivity()),
@@ -382,7 +382,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
     private void makeNetworkCallShop()
     {
-        Call<Shop> call = shopService.getShop(
+        Call<Shop> call = shopService.getShopDetails(
           order.getShopID(),
                 PrefLocation.getLatitude(getActivity()),
                 PrefLocation.getLongitude(getActivity())

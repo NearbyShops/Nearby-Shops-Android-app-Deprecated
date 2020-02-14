@@ -510,7 +510,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
                         // show current shop profile at the top of the list
-//                        dataset.add(PrefShopHome.getShop(getActivity()));
+//                        dataset.add(PrefShopHome.getShopDetails(getActivity()));
 
 
 
@@ -818,7 +818,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
         if(save)
         {
-//            Shop shop = PrefShopHome.getShop(getActivity());
+//            Shop shop = PrefShopHome.getShopDetails(getActivity());
 //
 //            CartStats cartStats = listAdapter.cartStatsMap.get(shop.getShopID());
 //            cartStats.setCart_Total(cartTotalValue);
@@ -878,7 +878,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         if(save)
         {
 
-//            Shop shop = PrefShopHome.getShop(getActivity());
+//            Shop shop = PrefShopHome.getShopDetails(getActivity());
 
 //            CartStats cartStats = listAdapter.cartStatsMap.get(shop.getShopID());
 //            cartStats.setItemsInCart(itemsInCartValue);

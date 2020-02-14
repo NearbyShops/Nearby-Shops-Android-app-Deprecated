@@ -22,12 +22,47 @@ import retrofit2.http.Query;
 public interface ShopService {
 
 
+    @POST("/api/v1/Shop")
+    Call<Shop> createShop(@Header("Authorization") String headers,
+                          @Body Shop shop);
+
+
+
+
+
+    @PUT("/api/v1/Shop/UpdateBySelf")
+    Call<ResponseBody> updateBySelf(@Header("Authorization") String headers,
+                                    @Body Shop shop);
+
+
+
+
 
 
     @PUT("/api/v1/Shop/UpdateByAdmin/{ShopID}")
-    Call<ResponseBody> updateShop(@Header("Authorization") String headers,
-                                  @Body Shop shop,
-                                  @Path("ShopID")int ShopID);
+    Call<ResponseBody> updateShopByAdmin(
+            @Header("Authorization") String headers,
+            @Body Shop shop,
+            @Path("ShopID")int ShopID
+    );
+
+
+
+
+
+
+
+    @GET("/api/v1/Shop/GetShopDetails/{id}")
+    Call<Shop> getShopDetails(
+            @Path("id") int id,
+            @Query("latCenter") Double latCenter, @Query("lonCenter") Double lonCenter
+    );
+
+
+
+    @GET("/api/v1/Shop/GetShopForShopAdmin")
+    Call<Shop> getShopForShopAdmin(@Header("Authorization") String headers);
+
 
 
 
@@ -38,6 +73,8 @@ public interface ShopService {
             @Path("ShopAdminID") int shopAdminID,
             @Path("AmountToAdd") double amountToAdd
     );
+
+
 
 
 
@@ -108,17 +145,6 @@ public interface ShopService {
 
 
 
-    @GET("/api/v1/Shop/{id}")
-    Call<Shop> getShop(@Path("id") int id,
-                       @Query("latCenter") Double latCenter, @Query("lonCenter") Double lonCenter);
-
-
-
-    @GET("/api/v1/Shop/GetShopForShopAdmin")
-    Call<Shop> getShopForShopAdmin(@Header("Authorization") String headers);
-
-
-
     @PUT("/api/v1/Shop/BecomeASeller")
     Call<ResponseBody> becomeASeller(@Header("Authorization") String headers);
 
@@ -136,20 +162,6 @@ public interface ShopService {
     @PUT ("/api/v1/Shop/SetShopClosed")
     Call<ResponseBody> updateShopClosed(@Header("Authorization") String headers);
 
-
-
-
-    @POST("/api/v1/Shop")
-    Call<Shop> postShop(@Header("Authorization") String headers,
-                        @Body Shop shop);
-
-
-
-
-
-    @PUT("/api/v1/Shop/UpdateBySelf")
-    Call<ResponseBody> updateBySelf(@Header("Authorization") String headers,
-                                    @Body Shop shop);
 
 
 

@@ -157,6 +157,163 @@
 
 
 
+
+        <LinearLayout
+            android:id="@+id/admin_options_block"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                android:text="Shop Admin Profile"
+                android:background="@color/buttonColorDark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="Name : - "
+                android:id="@+id/shop_admin_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="Phone : - "
+                android:id="@+id/shop_admin_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="Time Registered : - "
+                android:id="@+id/time_created"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <TextView
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/account_balance"
+                android:text=" - "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+            <TextView
+                android:padding="5dp"
+                android:textSize="17sp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/add_credit"
+                android:text="[ Press here to Add Credit ]"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:id="@+id/extended_credit_limit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Extended Credit Limit"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:paddingStart="5dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/gplus_color_2"
+                android:text="Administrative Options"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+            <Switch
+                android:layout_marginTop="10dp"
+                android:background="@color/light_grey"
+                android:text="Enable / Disable Account"
+                android:id="@+id/switch_enable"
+                android:textOff="Enable Account"
+                android:textOn="Disable Account"
+                android:paddingStart="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:textSize="17sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+            <Switch
+                android:layout_marginTop="10dp"
+                android:background="@color/light_grey"
+                android:text="Transfer to waitlist"
+                android:id="@+id/switch_waitlist"
+                android:textOff="Transfer to waitlist"
+                android:textOn="Remove From Waitlist"
+                android:paddingStart="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:textSize="17sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+            <TextView
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="Shop Profile"
+                android:background="@color/buttonColorDark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+
+
         <CheckBox
             android:id="@+id/shop_open"
             android:layout_marginTop="10dp"

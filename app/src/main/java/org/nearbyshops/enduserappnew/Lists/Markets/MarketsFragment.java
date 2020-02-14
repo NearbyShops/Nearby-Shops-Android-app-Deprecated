@@ -363,7 +363,7 @@ public class MarketsFragment extends Fragment implements ViewHolderMarket.ListIt
     void makeNetworkCall(final boolean clearDataset)
     {
 
-//            Shop currentShop = UtilityShopHome.getShop(getContext());
+//            Shop currentShop = UtilityShopHome.getShopDetails(getContext());
 //
 //        String current_sort = "";
 //        current_sort = UtilitySortServices.getSort(getContext()) + " " + UtilitySortServices.getAscending(getContext());

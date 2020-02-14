@@ -360,7 +360,7 @@
 
 
         <activity
-            android:name=".EditDataScreens.EditShopForAdmin.EditShopForAdmin"
+            android:name=".EditDataScreens.Deprecated.EditShopForAdmin.EditShopForAdmin"
             android:label="Edit Shop"
             android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
             <meta-data

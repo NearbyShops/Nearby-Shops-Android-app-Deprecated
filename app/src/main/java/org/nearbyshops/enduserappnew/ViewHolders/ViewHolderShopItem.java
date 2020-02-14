@@ -750,7 +750,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
         double cartTotalValue = 0;
 
 
-//        Shop shop = PrefShopHome.getShop(context);
+//        Shop shop = PrefShopHome.getShopDetails(context);
 //        CartStats cartStats = this.cartStats;
 
         if(cartStats!=null)
@@ -771,7 +771,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
     @OnClick(R.id.reduceQuantity)
     void reduceQuantityClick(View view)
     {
-//        Shop shop = PrefShopHome.getShop(context);
+//        Shop shop = PrefShopHome.getShopDetails(context);
 
 
         cartItem = cartItemMap.get(shopItem.getItemID());

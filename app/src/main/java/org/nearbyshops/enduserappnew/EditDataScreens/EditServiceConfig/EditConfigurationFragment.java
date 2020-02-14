@@ -500,7 +500,7 @@ public class EditConfigurationFragment extends Fragment {
 
 //        if(current_mode == MODE_ADD)
 //        {
-//            deliveryGuySelf.setShopID(UtilityShopHome.getShop(getContext()).getShopID());
+//            deliveryGuySelf.setShopID(UtilityShopHome.getShopDetails(getContext()).getShopID());
 //        }
 
 

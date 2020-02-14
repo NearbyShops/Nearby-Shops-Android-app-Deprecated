@@ -621,7 +621,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 //        if(current_mode == MODE_ADD)
 //        {
-//            deliveryGuySelf.setShopID(UtilityShopHome.getShop(getContext()).getShopID());
+//            deliveryGuySelf.setShopID(UtilityShopHome.getShopDetails(getContext()).getShopID());
 //        }
 
 

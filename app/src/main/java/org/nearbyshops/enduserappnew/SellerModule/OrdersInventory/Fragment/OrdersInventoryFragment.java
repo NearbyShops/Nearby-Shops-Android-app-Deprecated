@@ -259,7 +259,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
     private void makeNetworkCall(final boolean clearDataset)
     {
 
-//            Shop currentShop = UtilityShopHome.getShop(getContext());
+//            Shop currentShop = UtilityShopHome.getShopDetails(getContext());
 
 
         String current_sort = "";

@@ -420,7 +420,7 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
     private void makeNetworkCall(final boolean clearDataset)
     {
 
-//            Shop currentShop = UtilityShopHome.getShop(getContext());
+//            Shop currentShop = UtilityShopHome.getShopDetails(getContext());
 
             User endUser = null;
 

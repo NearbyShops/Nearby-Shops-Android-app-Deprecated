@@ -10,26 +10,26 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
+import com.google.gson.Gson;
+
 import org.nearbyshops.enduserappnew.API.ShopService;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditShopForAdmin.EditShopForAdmin;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditShopForAdmin.EditShopForAdminFragment;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditShopForAdmin.PrefShopForAdmin;
 import org.nearbyshops.enduserappnew.Interfaces.GetLocation;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyLocation;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopType2;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.SlidingLayerSort.PrefSortShops;
 
@@ -496,10 +496,21 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
     public void listItemClick(Shop shop, int position) {
 
 
-        PrefShopForAdmin.saveShop(shop,getActivity());
-        Intent intent = new Intent(getActivity(), EditShopForAdmin.class);
-        intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopForAdminFragment.MODE_UPDATE);
+//        PrefShopForAdmin.saveShop(shop,getActivity());
+//        Intent intent = new Intent(getActivity(), EditShopForAdmin.class);
+//        intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopForAdminFragment.MODE_UPDATE);
+//        startActivity(intent);
+
+
+
+        Gson gson = UtilityFunctions.provideGson();
+        String jsonString = gson.toJson(shop);
+
+        Intent intent = new Intent(getActivity(), EditShop.class);
+        intent.putExtra("shop_profile",jsonString);
+        intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_UPDATE_BY_ADMIN);
         startActivity(intent);
+
     }
 
 
