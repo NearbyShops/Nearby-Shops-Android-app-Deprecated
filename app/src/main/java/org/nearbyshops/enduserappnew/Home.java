@@ -308,6 +308,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
+
     void checkPermissions() {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

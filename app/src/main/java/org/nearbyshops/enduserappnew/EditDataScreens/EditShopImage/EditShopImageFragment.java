@@ -143,24 +143,6 @@ public class EditShopImageFragment extends Fragment {
                 }
 
             }
-            else if (current_mode == MODE_ADD)
-            {
-
-//                if(getActivity().getActionBar()!=null)
-//                {
-//                    getActivity().getActionBar().setTitle("Add Item Image");
-//                }
-
-
-                if(((AppCompatActivity)getActivity()).getSupportActionBar()!=null)
-                {
-                    ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add Item Image");
-                }
-
-//                item.setItemCategoryID(itemCategory.getItemCategoryID());
-//                System.out.println("Item Category ID : " + item.getItemCategoryID());
-            }
-
 
 
             showLogMessage("Inside OnCreateView - Saved Instance State !");
@@ -169,7 +151,7 @@ public class EditShopImageFragment extends Fragment {
 
 
 
-        updateIDFieldVisibility();
+        updateFieldVisibility();
 
 
         if(itemImage !=null) {
@@ -187,13 +169,19 @@ public class EditShopImageFragment extends Fragment {
 
 
 
-    private void updateIDFieldVisibility()
+    private void updateFieldVisibility()
     {
 
         if(current_mode==MODE_ADD)
         {
             buttonUpdateItem.setText("Add");
             imageID.setVisibility(View.GONE);
+
+            if(((AppCompatActivity)getActivity()).getSupportActionBar()!=null)
+            {
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add Item Image");
+            }
+
         }
         else if(current_mode== MODE_UPDATE)
         {
@@ -529,7 +517,7 @@ public class EditShopImageFragment extends Fragment {
                     showToastMessage("Add successful !");
 
                     current_mode = MODE_UPDATE;
-                    updateIDFieldVisibility();
+                    updateFieldVisibility();
                     itemImage = response.body();
                     bindDataToViews();
 

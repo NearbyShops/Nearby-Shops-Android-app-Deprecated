@@ -194,18 +194,21 @@ public class EditShopFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+
         if (savedInstanceState == null) {
-//            shopAdmin = getActivity().getIntent().getParcelableExtra(SHOP_ADMIN_INTENT_KEY);
 
             current_mode = getActivity().getIntent().getIntExtra(EDIT_MODE_INTENT_KEY, MODE_ADD);
 
             if (current_mode == MODE_UPDATE) {
+
                 shop = PrefShopHome.getShop(getContext());
 
                 if (shop != null) {
                     bindShopData();
                 }
-            } else if (current_mode == MODE_UPDATE_BY_ADMIN) {
+
+            }
+            else if (current_mode == MODE_UPDATE_BY_ADMIN) {
 
                 String jsonString = getActivity().getIntent().getStringExtra("shop_profile");
                 shop = UtilityFunctions.provideGson().fromJson(jsonString, Shop.class);
@@ -281,15 +284,36 @@ public class EditShopFragment extends Fragment {
             shopIDEnter.setVisibility(View.GONE);
             adminOptionsBlock.setVisibility(View.GONE);
 
-        } else if (current_mode == MODE_UPDATE) {
+
+            if(((AppCompatActivity)getActivity()).getSupportActionBar()!=null)
+            {
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add Shop");
+            }
+
+
+        }
+        else if (current_mode == MODE_UPDATE) {
+
             shopIDEnter.setVisibility(View.VISIBLE);
             saveButton.setText("Save");
             adminOptionsBlock.setVisibility(View.GONE);
 
-        } else if (current_mode == MODE_UPDATE_BY_ADMIN) {
+            if(((AppCompatActivity)getActivity()).getSupportActionBar()!=null)
+            {
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Edit Shop");
+            }
+
+        }
+        else if (current_mode == MODE_UPDATE_BY_ADMIN) {
+
             shopIDEnter.setVisibility(View.VISIBLE);
             saveButton.setText("Save");
             adminOptionsBlock.setVisibility(VISIBLE);
+
+            if(((AppCompatActivity)getActivity()).getSupportActionBar()!=null)
+            {
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Edit Shop");
+            }
         }
     }
 

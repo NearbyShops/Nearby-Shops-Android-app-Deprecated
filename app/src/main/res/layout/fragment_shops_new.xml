@@ -19,15 +19,17 @@
         <androidx.appcompat.widget.Toolbar
             app:layout_scrollFlags = "scroll|enterAlways"
             android:id="@+id/toolbar"
+            android:background="@color/white"
+            android:theme="@style/ToolBarStyle"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary">
+            android:layout_height="wrap_content">
 
 
-
+<!--            android:paddingBottom="3dp"-->
+<!--            android:paddingTop="0dp"-->
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:paddingBottom="3dp"
-                android:paddingTop="0dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -37,7 +39,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="21sp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/mapbox_blue"
                     android:text="@string/app_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -47,9 +49,9 @@
                     android:id="@+id/service_name"
                     app:layout_constraintStart_toStartOf="@id/app_name"
                     app:layout_constraintTop_toBottomOf="@id/app_name"
-                    android:paddingTop="0dp"
+                    android:paddingTop="5dp"
                     android:paddingBottom="0dp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/mapbox_blue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -62,12 +64,14 @@
 
 
 
+
         <LinearLayout
+            android:visibility="gone"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:background="@color/phonographyBlue"
+            android:background="@color/light_grey"
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
             android:orientation="horizontal"
@@ -80,7 +84,7 @@
 
             <TextView
                 android:text="0 out of 0 Shops"
-                android:textColor="@color/white"
+                android:textColor="@color/gplus_color_1"
                 android:id="@+id/shop_count_indicator"
                 android:paddingTop="0dp"
                 android:paddingBottom="10dp"
@@ -154,7 +158,7 @@
                 android:layout_height="match_parent" />
 
             <TextView
-                android:textColor="@color/white"
+                android:textColor="@color/gplus_color_1"
                 android:id="@+id/text_sort"
                 android:padding="5dp"
                 android:text="Filter / Sort"

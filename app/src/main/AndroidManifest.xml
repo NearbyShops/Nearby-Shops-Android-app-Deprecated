@@ -109,25 +109,28 @@
         <activity android:name=".EditDataScreens.EditStaffPermissions.EditStaffPermissions" />
 
 
+
         <activity android:name=".Lists.UsersList.UsersList" />
         <activity android:name=".Lists.DeliveryAddress.DeliveryAddressActivity" />
         <activity android:name=".EditDataScreens.EditDeliveryAddress.EditDeliveryAddress" />
         <activity android:name=".LocationPicker.PickLocation" />
         <activity android:name=".Lists.CartItemList.CartItemListActivity" />
         <activity android:name=".Checkout.PlaceOrderActivity" />
-<!--        <activity android:name=".OrderHistoryPaging.OrderHistoryPaging" />-->
         <activity android:name=".DetailScreens.DetailMarket.MarketDetail" />
         <activity android:name=".DetailScreens.DetailOrder.OrderDetail" />
         <activity android:name=".Lists.ItemsInShopByCategory.ItemsInShopByCat" />
         <activity android:name=".ShopReview.ShopReviews" />
         <activity android:name=".Lists.CartsList.CartsList" />
-
-
-<!--        <activity android:name=".aSellerModule.ItemsDatabase.ItemsDatabase" />-->
         <activity android:name=".EditDataScreens.EditItem.EditItem" />
         <activity android:name=".EditDataScreens.EditItemImage.EditItemImage" />
-        <activity android:name=".EditDataScreens.EditShop.EditShop" />
-        <activity android:name=".EditDataScreens.EditShopImage.EditShopImage" />
+
+
+
+
+        <activity android:name=".EditDataScreens.EditShop.EditShop" android:label="Edit Shop"/>
+        <activity android:name=".EditDataScreens.EditShopImage.EditShopImage" android:label="Edit Shop Image"/>
+
+
 <!--        <activity android:name=".aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat" />-->
 <!--        <activity android:name=".aSellerModule.ItemsInShopSeller.ItemsInShop" />-->
         <activity android:name=".LocationPicker.LocationPickerWithRadius.PickDeliveryRange" />

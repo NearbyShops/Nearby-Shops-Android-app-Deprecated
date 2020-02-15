@@ -212,7 +212,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 //            validator.setValidationListener(this);
 //        }
 
-        updateIDFieldVisibility();
+        updateFieldVisibility();
 
 
         if(item !=null) {
@@ -422,18 +422,31 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
-    void updateIDFieldVisibility()
+
+
+    private void updateFieldVisibility()
     {
 
         if(current_mode==MODE_ADD)
         {
             buttonUpdateItem.setText("Add Item");
             itemID.setVisibility(View.GONE);
+
+            if(((AppCompatActivity)getActivity()).getSupportActionBar()!=null)
+            {
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add Item");
+            }
         }
         else if(current_mode== MODE_UPDATE)
         {
             itemID.setVisibility(View.VISIBLE);
             buttonUpdateItem.setText("Save");
+
+
+            if(((AppCompatActivity)getActivity()).getSupportActionBar()!=null)
+            {
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Edit Item");
+            }
         }
     }
 
@@ -724,7 +737,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
                     showToastMessage("Add successful !");
 
                     current_mode = MODE_UPDATE;
-                    updateIDFieldVisibility();
+                    updateFieldVisibility();
                     item = response.body();
                     bindDataToViews();
 

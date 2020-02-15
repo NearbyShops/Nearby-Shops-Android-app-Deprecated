@@ -87,6 +87,16 @@
                 android:textColor="@color/cyan900"
                 android:textSize="17dp" />
 
+
+
+
+            <TextView
+                android:text="Please select delivery type."
+                android:layout_marginTop="10dp"
+                android:id="@+id/delivery_instructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
         </RadioGroup>
 
 

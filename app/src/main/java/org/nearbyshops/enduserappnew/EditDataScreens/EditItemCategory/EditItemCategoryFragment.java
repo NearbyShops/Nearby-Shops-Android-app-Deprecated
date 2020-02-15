@@ -113,7 +113,7 @@ public class EditItemCategoryFragment extends Fragment {
 
 
 
-    @BindView(R.id.saveButton) TextView buttonUpdateItem;
+    @BindView(R.id.saveButton) TextView saveButton;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
@@ -212,20 +212,29 @@ public class EditItemCategoryFragment extends Fragment {
         return rootView;
     }
 
-    void updateIDFieldVisibility()
+    private void updateIDFieldVisibility()
     {
 
         if(current_mode==MODE_ADD)
         {
-            buttonUpdateItem.setText("Add");
-//            saveButtonNew.setText("Add");
+            saveButton.setText("Add");
             itemCategoryID.setVisibility(View.GONE);
+
+            if(((AppCompatActivity)getActivity()).getSupportActionBar()!=null)
+            {
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add Item Category");
+            }
         }
         else if(current_mode== MODE_UPDATE)
         {
             itemCategoryID.setVisibility(View.VISIBLE);
-            buttonUpdateItem.setText("Save");
-//            saveButtonNew.setText("Save");
+            saveButton.setText("Save");
+
+
+            if(((AppCompatActivity)getActivity()).getSupportActionBar()!=null)
+            {
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Edit Item Category");
+            }
         }
     }
 
@@ -422,14 +431,17 @@ public class EditItemCategoryFragment extends Fragment {
 
 
 
-    public void retrofitPUTRequest()
+
+
+
+    private void retrofitPUTRequest()
     {
 
         getDataFromViews();
 
 
 
-        buttonUpdateItem.setVisibility(View.INVISIBLE);
+        saveButton.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
 //        saveButtonNew.setVisibility(View.INVISIBLE);
@@ -468,7 +480,7 @@ public class EditItemCategoryFragment extends Fragment {
                 }
 
 
-                buttonUpdateItem.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
 
 //                saveButtonNew.setVisibility(View.VISIBLE);
@@ -485,7 +497,7 @@ public class EditItemCategoryFragment extends Fragment {
                 }
 
 
-                buttonUpdateItem.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
 
 //                saveButtonNew.setVisibility(View.VISIBLE);
@@ -498,7 +510,10 @@ public class EditItemCategoryFragment extends Fragment {
     }
 
 
-    void retrofitPOSTRequest()
+
+
+
+    private void retrofitPOSTRequest()
     {
         getDataFromViews();
         itemCategory.setParentCategoryID(parent.getItemCategoryID());
@@ -506,7 +521,7 @@ public class EditItemCategoryFragment extends Fragment {
 //        System.out.println("Item Category ID (POST) : " + item.getItemCategoryID());
 
 
-        buttonUpdateItem.setVisibility(View.INVISIBLE);
+        saveButton.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
 //        saveButtonNew.setVisibility(View.INVISIBLE);
@@ -545,7 +560,7 @@ public class EditItemCategoryFragment extends Fragment {
 
 
 
-                buttonUpdateItem.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
 
 //                saveButtonNew.setVisibility(View.VISIBLE);
@@ -564,7 +579,7 @@ public class EditItemCategoryFragment extends Fragment {
                 showToastMessage("Add failed !");
 
 
-                buttonUpdateItem.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
 
 
@@ -839,7 +854,7 @@ public class EditItemCategoryFragment extends Fragment {
 //        progressBarNew.setVisibility(View.VISIBLE);
 //        saveButtonNew.setVisibility(View.INVISIBLE);
 
-        buttonUpdateItem.setVisibility(View.INVISIBLE);
+        saveButton.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
 
@@ -865,7 +880,7 @@ public class EditItemCategoryFragment extends Fragment {
 //                progressBarNew.setVisibility(View.INVISIBLE);
 //                saveButtonNew.setVisibility(View.VISIBLE);
 
-                buttonUpdateItem.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
 
 
@@ -936,7 +951,7 @@ public class EditItemCategoryFragment extends Fragment {
 
 
 
-                buttonUpdateItem.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
 
 
@@ -961,7 +976,7 @@ public class EditItemCategoryFragment extends Fragment {
 
 
 
-//        buttonUpdateItem.setVisibility(View.INVISIBLE);
+//        saveButton.setVisibility(View.INVISIBLE);
 //        progressBar.setVisibility(View.VISIBLE);
 
 //        saveButtonNew.setVisibility(View.INVISIBLE);
@@ -989,7 +1004,7 @@ public class EditItemCategoryFragment extends Fragment {
 
 
 
-//                buttonUpdateItem.setVisibility(View.VISIBLE);
+//                saveButton.setVisibility(View.VISIBLE);
 //                progressBar.setVisibility(View.INVISIBLE);
 
 //                saveButtonNew.setVisibility(View.VISIBLE);
@@ -1011,7 +1026,7 @@ public class EditItemCategoryFragment extends Fragment {
 //                showToastMessage("Image Delete failed");
 
 
-//                buttonUpdateItem.setVisibility(View.VISIBLE);
+//                saveButton.setVisibility(View.VISIBLE);
 //                progressBar.setVisibility(View.INVISIBLE);
 
 //                saveButtonNew.setVisibility(View.VISIBLE);

@@ -39,14 +39,13 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
 
     Order order = new Order();
-//    OrderPFS orderPFS = new OrderPFS();
 
     @Inject
     CartStatsService cartStatsService;
 
     @Inject
     OrderService orderService;
-//    @Inject OrderServicePFS orderServicePFS;
+
 
 
     CartStats cartStats;
@@ -69,6 +68,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     @BindView(R.id.radioHomeDelivery) RadioButton homeDelieryCheck;
     @BindView(R.id.placeOrder) TextView placeOrder;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
+    @BindView(R.id.delivery_instructions) TextView deliveryInstructions;
 
 
     // address views
@@ -217,24 +217,6 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
 
 
-//        @Override
-//        protected void onSaveInstanceState(Bundle outState) {
-//            super.onSaveInstanceState(outState);
-//
-//            if(selectedAddress!=null)
-//            {
-//                outState.putParcelable("selectedAddress",selectedAddress);
-//            }
-//        }
-//
-//        @Override
-//        protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//            super.onRestoreInstanceState(savedInstanceState);
-//
-//            selectedAddress = savedInstanceState.getParcelable("selectedAddress");
-//        }
-
-
 
     void makeNetworkCall() {
 
@@ -352,13 +334,16 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     {
         setTotal();
 
+
         if(pickFromShopCheck.isChecked())
         {
             addPickAddress.setText("Select Address");
+            deliveryInstructions.setText("You need to pick the order from the shop. ");
         }
         else
         {
             addPickAddress.setText("Select Delivery Address");
+            deliveryInstructions.setText("Your order will be delivered to your home at your given address.");
         }
     }
 
@@ -371,7 +356,8 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     void placeOrderClick()
     {
 
-        if(pickFromShopCheck.isChecked()==false && homeDelieryCheck.isChecked()== false)
+
+        if(!pickFromShopCheck.isChecked() && !homeDelieryCheck.isChecked())
         {
             showToastMessage("Please select delivery type !");
             return;
@@ -416,46 +402,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
     }
 
-//    void placeOrderPFS()
-//    {
-//        Call<ResponseBody> call = orderServicePFS.postOrder(orderPFS,cartStatsFromNetworkCall.getCartID());
-//
-//        call.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//
-//
-//                if(response!=null)
-//                {
-//                    if(response.code() == 201)
-//                    {
-//                        showToastMessage("Successful !");
-//
-//
-//                        Intent i = new Intent(PlaceOrderActivity.this,HomeNew.class);
-//
-//                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//
-//                        startActivity(i);
-//
-//                    }else
-//                    {
-//                        showToastMessage("failed Code : !" + String.valueOf(response.code()));
-//                    }
-//
-//                }else
-//                {
-//                    showToastMessage("failed !");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//                showToastMessage("Network connection Failed !");
-//            }
-//        });
-//    }
+
 
 
 
@@ -477,27 +424,20 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                 progressBar.setVisibility(View.INVISIBLE);
 
 
-                if(response!=null)
+                if(response.code() == 201)
                 {
-                    if(response.code() == 201)
-                    {
-                        showToastMessage("Successful !");
+                    showToastMessage("Successful !");
 
 
-                        Intent i = new Intent(PlaceOrderActivity.this, Home.class);
+                    Intent i = new Intent(PlaceOrderActivity.this, Home.class);
 
-                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                        startActivity(i);
-
-                    }else
-                    {
-                        showToastMessage("failed Code : !" + String.valueOf(response.code()));
-                    }
+                    startActivity(i);
 
                 }else
                 {
-                    showToastMessage("failed !");
+                    showToastMessage("failed Code : !" + String.valueOf(response.code()));
                 }
 
             }
@@ -522,8 +462,6 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
 
 
-
-
     void showToastMessage(String message)
     {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
@@ -531,11 +469,5 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
 
 
-//
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//
-////        ButterKnife.unBindView(this);
-//    }
+
 }
