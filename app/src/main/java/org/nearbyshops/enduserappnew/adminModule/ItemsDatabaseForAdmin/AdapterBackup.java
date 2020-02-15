@@ -25,17 +25,16 @@ import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.squareup.picasso.Picasso;
 
-
-import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.Model.ItemCategory;
-import org.nearbyshops.enduserappnew.Model.ModelStats.ItemStats;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItem.EditItem;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItem.EditItemFragmentNew;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItem.PrefItem;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategory;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategoryFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.PrefItemCategory;
+import org.nearbyshops.enduserappnew.Model.Item;
+import org.nearbyshops.enduserappnew.Model.ItemCategory;
+import org.nearbyshops.enduserappnew.Model.ModelStats.ItemStats;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 
@@ -53,7 +52,7 @@ import butterknife.OnLongClick;
  */
 
 
-public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class AdapterBackup extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     Map<Integer, ItemCategory> selectedItemCategories = new HashMap<>();
     Map<Integer, Item> selectedItems = new HashMap<>();
@@ -73,7 +72,7 @@ public class AdapterSimple extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 
 
-    public AdapterSimple(List<Object> dataset, Context context, NotificationsFromAdapter notificationReceiver, Fragment fragment) {
+    public AdapterBackup(List<Object> dataset, Context context, NotificationsFromAdapter notificationReceiver, Fragment fragment) {
 
 //        DaggerComponentBuilder.getInstance()
 //                .getNetComponent().Inject(this);

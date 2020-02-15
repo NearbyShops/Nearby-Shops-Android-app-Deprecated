@@ -94,7 +94,8 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
 //    ItemService itemService;
 
 
-    ItemCategory currentCategory = null;
+
+    private ItemCategory currentCategory = null;
 
 
     public ItemsInShopByCatSellerFragment() {

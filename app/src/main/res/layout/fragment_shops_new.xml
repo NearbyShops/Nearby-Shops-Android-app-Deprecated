@@ -19,7 +19,7 @@
         <androidx.appcompat.widget.Toolbar
             app:layout_scrollFlags = "scroll|enterAlways"
             android:id="@+id/toolbar"
-            android:background="@color/white"
+            android:background="@color/mapbox_blue"
             android:theme="@style/ToolBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -39,7 +39,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="21sp"
-                    android:textColor="@color/mapbox_blue"
+                    android:textColor="@color/white"
                     android:text="@string/app_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -51,7 +51,7 @@
                     app:layout_constraintTop_toBottomOf="@id/app_name"
                     android:paddingTop="5dp"
                     android:paddingBottom="0dp"
-                    android:textColor="@color/mapbox_blue"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

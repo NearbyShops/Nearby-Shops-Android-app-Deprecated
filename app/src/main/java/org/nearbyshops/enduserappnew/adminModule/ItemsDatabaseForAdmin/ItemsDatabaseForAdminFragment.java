@@ -47,6 +47,8 @@ import org.nearbyshops.enduserappnew.Interfaces.ToggleFab;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItem;
+import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemCategoryAdmin;
 import org.nearbyshops.enduserappnew.adminModule.Preferences.PrefSortItemsByCategory;
 import org.nearbyshops.enduserappnew.adminModule.SelectParent.ItemCategoriesParent;
 
@@ -67,7 +69,9 @@ import retrofit2.Response;
  * Created by sumeet on 2/12/16.
  */
 
-public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterSimple.NotificationsFromAdapter , NotifyBackPressed, NotifySort, NotifyFABClickAdmin {
+public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
+        ViewHolderItemCategoryAdmin.ListItemClick, ViewHolderItem.ListItemClick,
+        NotifyBackPressed, NotifySort, NotifyFABClickAdmin {
 
     boolean isDestroyed = false;
     boolean show = true;
@@ -95,7 +99,7 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
     GridLayoutManager layoutManager;
 
-    AdapterSimple listAdapter;
+    Adapter listAdapter;
 
     ItemCategory changeParentRequestedItemCat;
     Item changeParentRequestedItem;
@@ -169,10 +173,12 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-    void setupRecyclerView()
+
+
+    private void setupRecyclerView()
     {
 
-        listAdapter = new AdapterSimple(dataset,getActivity(),this,this);
+        listAdapter = new Adapter(dataset,getActivity(),this);
         itemCategoriesList.setAdapter(listAdapter);
 
         layoutManager = new GridLayoutManager(getActivity(),6, LinearLayoutManager.VERTICAL,false);
@@ -427,7 +433,10 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-    void makeRequestItemCategory()
+
+
+
+    private void makeRequestItemCategory()
     {
 
         Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesQuerySimple(
@@ -517,7 +526,10 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-    void refreshAdapter()
+
+
+
+    private void refreshAdapter()
     {
         dataset.clear();
 
@@ -542,7 +554,11 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-    void makeRequestItem(final boolean clearDataset, boolean resetOffset)
+
+
+
+
+    private void makeRequestItem(final boolean clearDataset, boolean resetOffset)
     {
 
         if(resetOffset)
@@ -955,7 +971,12 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
     }
 
 
-    void detachedSelectedDialog()
+
+
+
+
+
+    private void detachedSelectedDialog()
     {
 
         if(listAdapter.selectedItems.size()==0&& listAdapter.selectedItemCategories.size()==0)
@@ -986,7 +1007,12 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
                 .show();
     }
 
-    void detachSelected()
+
+
+
+
+
+    private void detachSelected()
     {
 
         /*if(listAdapter.selectedItems.size()==0)
@@ -1356,7 +1382,12 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
     }
 
 
-    void clearSelectedItemCat()
+
+
+
+
+
+    private void clearSelectedItemCat()
     {
         // clear the selected items
         listAdapter.selectedItemCategories.clear();
@@ -1366,7 +1397,11 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-    void makeUpdateRequestItem(Item item)
+
+
+
+
+    private void makeUpdateRequestItem(Item item)
     {
 
 //        Call<ResponseBody> call2 = itemCategoryService.updateItemCategory(itemCategory,itemCategory.getItemCategoryID());
@@ -1414,7 +1449,9 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-    void makeUpdateRequestItemsBulk(final List<Item> list)
+
+
+    private void makeUpdateRequestItemsBulk(final List<Item> list)
     {
 //        Call<ResponseBody> call = itemService.updateItemCategoryBulk(list);
 
@@ -1504,7 +1541,7 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-    void clearSelectedItems()
+    private void clearSelectedItems()
     {
         // clear the selected items
         listAdapter.selectedItems.clear();
@@ -1520,7 +1557,9 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-    ActionMode mActionMode;
+
+
+    private ActionMode mActionMode;
 
 
 
@@ -1652,9 +1691,12 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
+
+
+
     // activate action mode
 
-    void activateActionMode()
+    private void activateActionMode()
     {
         if(mActionMode!=null) {
 
