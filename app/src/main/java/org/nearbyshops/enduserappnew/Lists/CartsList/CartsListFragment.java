@@ -45,7 +45,7 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
     CartStatsService cartStatsService;
 
     private RecyclerView recyclerView;
-    private CartsListAdapter adapter;
+    private Adapter adapter;
     private GridLayoutManager layoutManager;
     private SwipeRefreshLayout swipeContainer;
 
@@ -83,7 +83,7 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
         super.onCreateView(inflater, container, savedInstanceState);
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.activity_carts_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_carts_list, container, false);
         ButterKnife.bind(this, rootView);
 
 
@@ -163,7 +163,7 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
     {
 
 
-        adapter = new CartsListAdapter(dataset,getActivity());
+        adapter = new Adapter(dataset,getActivity());
 
         recyclerView.setAdapter(adapter);
 

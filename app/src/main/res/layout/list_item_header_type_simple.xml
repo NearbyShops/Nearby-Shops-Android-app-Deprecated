@@ -18,15 +18,21 @@
     <!--android:layout_marginRight="5dp"-->
 
     <TextView
-
+        android:visibility="gone"
         android:layout_marginTop="0dp"
         android:id="@+id/border_one"
-        android:background="@color/grey800"
+        android:background="@color/blueGrey800"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
 
     <!--android:background="@color/blueGrey800"-->
     <!--android:textColor="@color/white"-->
+
+
+
+<!--    android:background="#44000000"-->
+
+
 
 
     <TextView
@@ -42,6 +48,7 @@
 
 
     <TextView
+        android:visibility="gone"
         android:background="@color/grey800"
         android:layout_below="@id/header"
         android:id="@+id/border_two"

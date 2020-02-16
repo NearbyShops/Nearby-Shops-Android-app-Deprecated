@@ -15,11 +15,12 @@
         android:layout_height="wrap_content">
 
 
+
         <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
         <androidx.appcompat.widget.Toolbar
             app:layout_scrollFlags = "scroll|enterAlways"
             android:id="@+id/toolbar"
-            android:background="@color/mapbox_blue"
+            android:background="@color/colorPrimary"
             android:theme="@style/ToolBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

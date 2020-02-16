@@ -114,7 +114,7 @@
         <activity android:name=".Lists.DeliveryAddress.DeliveryAddressActivity" />
         <activity android:name=".EditDataScreens.EditDeliveryAddress.EditDeliveryAddress" />
         <activity android:name=".LocationPicker.PickLocation" />
-        <activity android:name=".Lists.CartItemList.CartItemListActivity" />
+        <activity android:name=".Lists.CartItemList.CartItemList" />
         <activity android:name=".Checkout.PlaceOrderActivity" />
         <activity android:name=".DetailScreens.DetailMarket.MarketDetail" />
         <activity android:name=".DetailScreens.DetailOrder.OrderDetail" />

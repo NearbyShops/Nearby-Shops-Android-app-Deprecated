@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.CartItemList;
+package org.nearbyshops.enduserappnew.Lists.CartItemList.Backups;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,34 +8,41 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+
 import com.squareup.picasso.Picasso;
-import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.CartItemService;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
+import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
-import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import javax.inject.Inject;
-import java.util.List;
-
 /**
  * Created by sumeet on 6/6/16.
  */
-public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHolder>{
+public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder>{
 
 
     private List<CartItem> dataset = null;
@@ -60,7 +67,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
 
 
-    public CartItemAdapter(List<CartItem> dataset, Context context, NotifyCartItem notifyCartItem) {
+    public AdapterBackup(List<CartItem> dataset, Context context, NotifyCartItem notifyCartItem) {
 
         this.dataset = dataset;
         this.context = context;
@@ -556,6 +563,9 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
 
 
+
+
+
     public interface NotifyCartItem{
         void notifyUpdate(CartItem cartItem);
         void notifyRemove(CartItem cartItem);
@@ -566,7 +576,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
 
 
-    void showToastMessage(String message)
+    private void showToastMessage(String message)
     {
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
     }

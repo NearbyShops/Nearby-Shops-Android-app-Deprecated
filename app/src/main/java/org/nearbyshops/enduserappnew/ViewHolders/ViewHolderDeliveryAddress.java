@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -14,7 +15,7 @@ import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.R;
 
 
-public class ViewHolderDeliveryAdddress extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class ViewHolderDeliveryAddress extends RecyclerView.ViewHolder implements View.OnClickListener{
 
 
 
@@ -26,43 +27,39 @@ public class ViewHolderDeliveryAdddress extends RecyclerView.ViewHolder implemen
     @BindView(R.id.phoneNumber) TextView phoneNumber;
     @BindView(R.id.editButton) TextView editButton;
     @BindView(R.id.removeButton) TextView removeButton;
-    @BindView(R.id.list_item_delivery_address)
-    ConstraintLayout listItemDeliveryAddress;
 
+    @BindView(R.id.list_item_delivery_address) ConstraintLayout listItemDeliveryAddress;
 
 
 
 
     private Context context;
-
-    private NotifyDeliveryAddress notifyDeliveryAddress;
-
-
+    private ViewHolderDeliveryAddress.ListItemClick fragment;
     private DeliveryAddress item;
 
 
 
 
-    public static ViewHolderDeliveryAdddress create(ViewGroup parent, Context context, NotifyDeliveryAddress fragment)
+    public static ViewHolderDeliveryAddress create(ViewGroup parent, Context context, ViewHolderDeliveryAddress.ListItemClick fragment)
     {
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_address_item_new,parent,false);
 
-        return new ViewHolderDeliveryAdddress(view,context,fragment);
+        return new ViewHolderDeliveryAddress(view,context,fragment);
     }
 
 
 
 
 
-    public ViewHolderDeliveryAdddress(View itemView, Context context,NotifyDeliveryAddress fragment) {
+    public ViewHolderDeliveryAddress(View itemView, Context context, ViewHolderDeliveryAddress.ListItemClick fragment) {
         super(itemView);
 
         ButterKnife.bind(this,itemView);
 
         this.context = context;
-        this.notifyDeliveryAddress = fragment;
+        this.fragment = fragment;
 
 
 
@@ -85,6 +82,30 @@ public class ViewHolderDeliveryAdddress extends RecyclerView.ViewHolder implemen
         listItemDeliveryAddress.setOnClickListener(this);
 
     }
+
+
+
+
+    public void setItem(DeliveryAddress address)
+    {
+
+        this.item = address;
+
+        name.setText(address.getName());
+        deliveryAddress.setText(address.getDeliveryAddress());
+        city.setText(address.getCity());
+        pincode.setText(" - " + String.valueOf(address.getPincode()));
+        landmark.setText(address.getLandmark());
+        phoneNumber.setText(String.valueOf(address.getPhoneNumber()));
+    }
+
+
+
+
+
+
+
+
 
     @Override
     public void onClick(View v) {
@@ -125,7 +146,10 @@ public class ViewHolderDeliveryAdddress extends RecyclerView.ViewHolder implemen
 
     public void buttonSelectClick()
     {
-        notifyDeliveryAddress.selectButtonClick(item,getLayoutPosition());
+        if(fragment instanceof ListItemClick)
+        {
+            ((ListItemClick) fragment).selectButtonClick(item,getLayoutPosition());
+        }
     }
 
 
@@ -134,57 +158,51 @@ public class ViewHolderDeliveryAdddress extends RecyclerView.ViewHolder implemen
 
     public void listItemClick()
     {
-        notifyDeliveryAddress.notifyListItemClick(item);
+        if(fragment instanceof ListItemClick)
+        {
+            ((ListItemClick) fragment).notifyListItemClick(item);
+        }
     }
 
 
 
-    public void removeClick()
+    private void removeClick()
     {
-
-        notifyDeliveryAddress.notifyRemove(item, getLayoutPosition());
-
+        if(fragment instanceof ListItemClick)
+        {
+            ((ListItemClick) fragment).notifyRemove(item,getLayoutPosition());
+        }
     }
 
-    public void editClick()
+
+
+
+
+    private void editClick()
     {
-
-        notifyDeliveryAddress.notifyEdit(item);
+        if(fragment instanceof ListItemClick)
+        {
+            ((ListItemClick) fragment).notifyEdit(item);
+        }
     }
 
 
 
 
-    public interface NotifyDeliveryAddress{
+
+
+
+
+
+
+
+    public interface ListItemClick {
 
         void notifyEdit(DeliveryAddress deliveryAddress);
         void notifyRemove(DeliveryAddress deliveryAddress, int position);
         void notifyListItemClick(DeliveryAddress deliveryAddress);
         void selectButtonClick(DeliveryAddress deliveryAddress, int position);
     }
-
-
-
-
-
-
-    public void setItem(DeliveryAddress address)
-    {
-//        if(address != null)
-//        {
-//
-//        }
-
-        this.item = address;
-
-        name.setText(address.getName());
-        deliveryAddress.setText(address.getDeliveryAddress());
-        city.setText(address.getCity());
-        pincode.setText(" - " + String.valueOf(address.getPincode()));
-        landmark.setText(address.getLandmark());
-        phoneNumber.setText(String.valueOf(address.getPhoneNumber()));
-    }
-
 
 }
 

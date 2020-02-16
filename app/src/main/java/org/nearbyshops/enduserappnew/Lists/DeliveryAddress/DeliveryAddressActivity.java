@@ -22,7 +22,7 @@ import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress.EditAddressFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress.EditDeliveryAddress;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeliveryAdddress;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeliveryAddress;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -38,7 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DeliveryAddressActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ViewHolderDeliveryAdddress.NotifyDeliveryAddress, View.OnClickListener {
+public class DeliveryAddressActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ViewHolderDeliveryAddress.ListItemClick, View.OnClickListener {
 
 
 

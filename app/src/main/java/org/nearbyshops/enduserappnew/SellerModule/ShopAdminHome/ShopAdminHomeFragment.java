@@ -57,14 +57,13 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
     @BindView(R.id.low_balance_message) TextView lowBalanceMessage;
 
 
-    @BindView(R.id.swipe_container)
-    SwipeRefreshLayout swipeContainer;
 
-
+    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
 
 
 
     public ShopAdminHomeFragment() {
+
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
                 .Inject(this);

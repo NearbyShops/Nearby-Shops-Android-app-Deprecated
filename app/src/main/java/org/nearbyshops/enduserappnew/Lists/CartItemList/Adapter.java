@@ -1,14 +1,16 @@
-package org.nearbyshops.enduserappnew.Lists.ShopsList;
+package org.nearbyshops.enduserappnew.Lists.CartItemList;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeOne;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeTwo;
+import org.nearbyshops.enduserappnew.Lists.CartItemList.ViewHolders.ViewHolderCartItem;
+import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
+import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
@@ -17,12 +19,12 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHea
 
 import java.util.List;
 
+
+
 /**
- * Created by sumeet on 25/5/16.
+ * Created by sumeet on 6/6/16.
  */
-public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-
+public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     private List<Object> dataset = null;
@@ -30,12 +32,13 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Fragment fragment;
 
 
-    public static final int VIEW_TYPE_SHOP = 1;
+
+
+    public static final int VIEW_TYPE_CART_ITEM = 1;
 
     public static final int VIEW_TYPE_HEADER = 4;
     public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 5;
     public static final int VIEW_TYPE_EMPTY_SCREEN = 6;
-
 
 
     private boolean loadMore;
@@ -44,6 +47,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     public Adapter(List<Object> dataset, Context context, Fragment fragment) {
+
         this.dataset = dataset;
         this.context = context;
         this.fragment = fragment;
@@ -58,9 +62,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         View view;
 
 
-        if(viewType == VIEW_TYPE_SHOP)
+        if(viewType == VIEW_TYPE_CART_ITEM)
         {
-            return ViewHolderShopTypeTwo.create(parent,context,fragment,this);
+            return ViewHolderCartItem.create(parent,context,this,dataset,fragment);
         }
         else if(viewType == VIEW_TYPE_HEADER)
         {
@@ -76,9 +80,22 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
 
-
         return null;
     }
+
+
+
+
+
+
+
+
+//    void setCartStats(CartStats cartStats)
+//    {
+//        this.cartStats = cartStats;
+//        cartTotal = cartStats.getCart_Total();
+//    }
+//
 
 
 
@@ -87,13 +104,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
 
-        if(holder instanceof ViewHolderShopTypeTwo)
+
+        if(holder instanceof ViewHolderCartItem)
         {
-            ((ViewHolderShopTypeTwo) holder).setItem((Shop) dataset.get(position));
-        }
-        else if(holder instanceof ViewHolderShopTypeOne)
-        {
-            ((ViewHolderShopTypeOne) holder).setItem((Shop) dataset.get(position));
+            ((ViewHolderCartItem) holder).setItem((CartItem)dataset.get(position));
         }
         else if (holder instanceof ViewHolderHeader) {
 
@@ -101,7 +115,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
                 ((ViewHolderHeader) holder).setItem((HeaderTitle) dataset.get(position));
             }
-
         }
         else if (holder instanceof LoadingViewHolder) {
 
@@ -118,15 +131,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
-
     @Override
     public int getItemCount() {
 
-        return (dataset.size()+1);
+        return (dataset.size() + 1);
     }
-
-
-
 
 
     @Override
@@ -137,9 +146,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             return VIEW_TYPE_SCROLL_PROGRESS_BAR;
         }
-        else if(dataset.get(position) instanceof Shop)
+        else if(dataset.get(position) instanceof CartItem)
         {
-            return VIEW_TYPE_SHOP;
+            return VIEW_TYPE_CART_ITEM;
         }
         else if(dataset.get(position) instanceof HeaderTitle)
         {
@@ -156,9 +165,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
+
     public void setLoadMore(boolean loadMore)
     {
         this.loadMore = loadMore;
     }
+
 
 }

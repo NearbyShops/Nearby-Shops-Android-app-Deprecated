@@ -29,6 +29,8 @@ import org.nearbyshops.enduserappnew.API.CartItemService;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.API.ItemCategoryService;
 import org.nearbyshops.enduserappnew.API.ShopItemService;
+import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemList;
+import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListFragment;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
@@ -37,7 +39,6 @@ import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
-import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListActivity;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
@@ -949,14 +950,15 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 //                Intent intent = new Intent(getActivity(), CartsList.class);
 //        startActivity(intent);
 
-        Intent intent = new Intent(getActivity(), CartItemListActivity.class);
+
+        Intent intent = new Intent(getActivity(), CartItemList.class);
 
 
         String shopJson = UtilityFunctions.provideGson().toJson(PrefShopHome.getShop(getActivity()));
-        intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,shopJson);
+        intent.putExtra(CartItemListFragment.SHOP_INTENT_KEY,shopJson);
 
         String cartStatsJson = UtilityFunctions.provideGson().toJson(listAdapter.cartStats);
-        intent.putExtra(CartItemListActivity.CART_STATS_INTENT_KEY,cartStatsJson);
+        intent.putExtra(CartItemListFragment.CART_STATS_INTENT_KEY,cartStatsJson);
 
         startActivity(intent);
     }

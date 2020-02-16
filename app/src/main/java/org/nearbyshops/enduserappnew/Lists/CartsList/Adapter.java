@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import com.squareup.picasso.Picasso;
 
+import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemList;
+import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListFragment;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListActivity;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
@@ -25,14 +26,14 @@ import java.util.List;
 /**
  * Created by sumeet on 5/6/16.
  */
-public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.ViewHolder> {
+public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
 
     private List<CartStats> dataset = null;
     private Context context;
 
 
-    public CartsListAdapter(List<CartStats> dataset, Context context) {
+    public Adapter(List<CartStats> dataset, Context context) {
         this.dataset = dataset;
         this.context = context;
     }
@@ -177,17 +178,17 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.View
 
                 case R.id.carts_list_item:
 
-                    Intent intent = new Intent(context, CartItemListActivity.class);
+                    Intent intent = new Intent(context, CartItemList.class);
 
-//                    intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,dataset.get(getLayoutPosition()).getShopDetails());
-//                    intent.putExtra(CartItemListActivity.CART_STATS_INTENT_KEY,dataset.get(getLayoutPosition()));
+//                    intent.putExtra(CartItemListFragment.SHOP_INTENT_KEY,dataset.get(getLayoutPosition()).getShopDetails());
+//                    intent.putExtra(CartItemListFragment.CART_STATS_INTENT_KEY,dataset.get(getLayoutPosition()));
 
 
                     String shopJson = UtilityFunctions.provideGson().toJson(dataset.get(getLayoutPosition()).getShop());
-                    intent.putExtra(CartItemListActivity.SHOP_INTENT_KEY,shopJson);
+                    intent.putExtra(CartItemListFragment.SHOP_INTENT_KEY,shopJson);
 
                     String cartStatsJson = UtilityFunctions.provideGson().toJson(dataset.get(getLayoutPosition()));
-                    intent.putExtra(CartItemListActivity.CART_STATS_INTENT_KEY,cartStatsJson);
+                    intent.putExtra(CartItemListFragment.CART_STATS_INTENT_KEY,cartStatsJson);
 
 
                     context.startActivity(intent);

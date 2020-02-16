@@ -2,15 +2,20 @@ package org.nearbyshops.enduserappnew.Lists.CartItemList;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
@@ -19,6 +24,7 @@ import butterknife.OnClick;
 
 import org.nearbyshops.enduserappnew.API.CartItemService;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
+import org.nearbyshops.enduserappnew.Lists.CartItemList.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
@@ -38,8 +44,8 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartItemListActivity extends AppCompatActivity
-        implements SwipeRefreshLayout.OnRefreshListener, CartItemAdapter.NotifyCartItem {
+public class CartItemListFragment extends Fragment
+        implements SwipeRefreshLayout.OnRefreshListener, ViewHolderCartItem.ListItemClick {
 
 
 //    TextView confirmItems;
@@ -50,27 +56,24 @@ public class CartItemListActivity extends AppCompatActivity
     @Inject
     CartStatsService cartStatsService;
 
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private Adapter adapter;
+    private SwipeRefreshLayout swipeContainer;
 
-    CartItemAdapter adapter;
 
-    GridLayoutManager layoutManager;
+    private List<Object> dataset = new ArrayList<>();
+    private Shop shop = null;
+    private CartStats cartStats = null;
 
-    SwipeRefreshLayout swipeContainer;
-
-    List<CartItem> dataset = new ArrayList<>();
-
-    Shop shop = null;
-
-    CartStats cartStats = null;
 
     public final static String SHOP_INTENT_KEY = "shop_cart_item";
     public final static String CART_STATS_INTENT_KEY = "cart_stats";
 
-    TextView totalValue;
-    TextView estimatedTotal;
 
-    double cartTotal = 0;
+    private TextView totalValue;
+    private TextView estimatedTotal;
+    private double cartTotal = 0;
+
 
 
     @BindView(R.id.empty_screen) LinearLayout emptyScreen;
@@ -88,27 +91,47 @@ public class CartItemListActivity extends AppCompatActivity
 //    LinearLayout cartsListItem;
 
 
-    public CartItemListActivity() {
+    public CartItemListFragment() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
     }
 
+
+
+
+
+
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        setContentView(R.layout.activity_cart_item_list);
-        ButterKnife.bind(this);
+        super.onCreateView(inflater, container, savedInstanceState);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setRetainInstance(true);
+        View rootView = inflater.inflate(R.layout.activity_cart_item_list, container, false);
+        ButterKnife.bind(this, rootView);
+
+
+        String shopJson = getActivity().getIntent().getStringExtra(SHOP_INTENT_KEY);
+        shop = UtilityFunctions.provideGson().fromJson(shopJson, Shop.class);
+
+
+
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+//        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+
+        toolbar.setTitle("Items in Cart");
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+//
+
 
         // findViewByID's
-        swipeContainer = (SwipeRefreshLayout)findViewById(R.id.swipeContainer);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        totalValue = (TextView) findViewById(R.id.totalValue);
-        estimatedTotal = (TextView) findViewById(R.id.estimatedTotal);
+        swipeContainer = rootView.findViewById(R.id.swipeContainer);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
+        totalValue = (TextView) rootView.findViewById(R.id.totalValue);
+        estimatedTotal = (TextView) rootView.findViewById(R.id.estimatedTotal);
 //        confirmItems = (TextView) findViewById(R.id.confirm);
 
 
@@ -130,11 +153,8 @@ public class CartItemListActivity extends AppCompatActivity
 //        cartStats = getIntent().getParcelableExtra(CART_STATS_INTENT_KEY);
 
 
-        String shopJson = getIntent().getStringExtra(SHOP_INTENT_KEY);
-        shop = UtilityFunctions.provideGson().fromJson(shopJson, Shop.class);
 
-
-        String cartStatsJson = getIntent().getStringExtra(CART_STATS_INTENT_KEY);
+        String cartStatsJson = getActivity().getIntent().getStringExtra(CART_STATS_INTENT_KEY);
         cartStats = UtilityFunctions.provideGson().fromJson(cartStatsJson, CartStats.class);
 
 
@@ -154,10 +174,12 @@ public class CartItemListActivity extends AppCompatActivity
         setupSwipeContainer();
         setupRecyclerView();
 
-        if(getSupportActionBar()!=null)
+
+        if(((AppCompatActivity) getActivity()).getSupportActionBar()!=null)
         {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
 
 
         if(savedInstanceState==null)
@@ -167,6 +189,11 @@ public class CartItemListActivity extends AppCompatActivity
 
 
         displayCartStats();
+
+
+
+
+        return rootView;
     }
 
 
@@ -176,15 +203,14 @@ public class CartItemListActivity extends AppCompatActivity
 
 
 
-
-    void fetchCartStats()
+    private void fetchCartStats()
     {
 
-        User endUser = PrefLogin.getUser(this);
+        User endUser = PrefLogin.getUser(getActivity());
 
         if(endUser==null || shop==null)
         {
-//            showLoginDialog();
+//            showLogin();
             return;
         }
 
@@ -220,17 +246,24 @@ public class CartItemListActivity extends AppCompatActivity
 
 
 
-    void displayCartStats()
+
+
+
+
+
+    private void displayCartStats()
     {
 
         if(cartStats!=null)
         {
             cartTotal = cartStats.getCart_Total();
-            totalValue.setText("Total : " + PrefGeneral.getCurrencySymbol(this) + " " + String.format("%.2f", cartTotal));
+            totalValue.setText("Total : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.format("%.2f", cartTotal));
 
-            adapter.setCartStats(cartStats);
+//            adapter.setCartStats(cartStats);
         }
     }
+
+
 
 
 
@@ -239,7 +272,7 @@ public class CartItemListActivity extends AppCompatActivity
     @OnClick(R.id.confirm)
     void confirmItemsClick()
     {
-        Intent intent = new Intent(this,PlaceOrderActivity.class);
+        Intent intent = new Intent(getActivity(),PlaceOrderActivity.class);
         //        intent.putExtra(PlaceOrderActivity.CART_STATS_INTENT_KEY,cartStats);
 
         String cartStatsJson = UtilityFunctions.provideGson().toJson(cartStats);
@@ -283,7 +316,10 @@ public class CartItemListActivity extends AppCompatActivity
     }
 */
 
-    void setupSwipeContainer()
+
+
+
+    private void setupSwipeContainer()
     {
 
         if(swipeContainer!=null) {
@@ -298,45 +334,22 @@ public class CartItemListActivity extends AppCompatActivity
     }
 
 
-    void setupRecyclerView()
+    private void setupRecyclerView()
     {
-
-
-        adapter = new CartItemAdapter(dataset,this,this);
-
+        adapter = new Adapter(dataset,getActivity(),this);
         recyclerView.setAdapter(adapter);
 
-        layoutManager = new GridLayoutManager(this,1);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-
-        //recyclerView.addItemDecoration(
-        //        new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST)
-        //);
-
-        //recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL_LIST));
-
-        //itemCategoriesList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-
-        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
-
-        if(spanCount==0){
-            spanCount = 1;
-        }
-
-        layoutManager.setSpanCount(spanCount);
-
-
-
     }
 
 
-    void showToastMessage(String message)
+
+
+
+    private void showToastMessage(String message)
     {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -347,14 +360,18 @@ public class CartItemListActivity extends AppCompatActivity
 
 
 
-    void makeNetworkCall()
+
+
+
+
+    private void makeNetworkCall()
     {
 
-        User endUser = PrefLogin.getUser(this);
+        User endUser = PrefLogin.getUser(getActivity());
 
         if(endUser==null)
         {
-            showLoginDialog();
+            showLogin();
             swipeContainer.setRefreshing(false);
             return;
         }
@@ -375,6 +392,7 @@ public class CartItemListActivity extends AppCompatActivity
 
         Call<List<CartItem>> call = cartItemService.getCartItem(null,null,
                 endUser.getUserID(),shop.getShopID(),true);
+
 
         call.enqueue(new Callback<List<CartItem>>() {
             @Override
@@ -441,13 +459,20 @@ public class CartItemListActivity extends AppCompatActivity
 
 
 
+
+
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
     }
 
 
-    void swipeRefresh()
+
+
+
+
+
+    private void swipeRefresh()
     {
 
         swipeContainer.post(new Runnable() {
@@ -492,7 +517,7 @@ public class CartItemListActivity extends AppCompatActivity
 
 
         showToastMessage("Item Updated !");
-        totalValue.setText("Total : "  + PrefGeneral.getCurrencySymbol(this) + " " + String.format("%.2f", cartTotal));
+        totalValue.setText("Total : "  + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.format("%.2f", cartTotal));
         cartStats.setCart_Total(cartTotal);
 
 
@@ -534,21 +559,19 @@ public class CartItemListActivity extends AppCompatActivity
     public void notifyTotal(double total) {
 
         cartTotal = total;
-        estimatedTotal.setText("Estimated Total (Before Update) : "  + PrefGeneral.getCurrencySymbol(this) + " " + String.format("%.2f", cartTotal));
+        estimatedTotal.setText("Estimated Total (Before Update) : "  + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.format("%.2f", cartTotal));
     }
 
 
 
 
 
-    private void showLoginDialog()
+
+
+
+    private void showLogin()
     {
-//        FragmentManager fm = getSupportFragmentManager();
-//        LoginDialog loginDialog = new LoginDialog();
-//        loginDialog.show(fm,"serviceUrl");
-
-
-        Intent intent = new Intent(this, Login.class);
+        Intent intent = new Intent(getActivity(), Login.class);
         startActivity(intent);
     }
 

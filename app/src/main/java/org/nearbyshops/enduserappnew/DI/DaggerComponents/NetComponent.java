@@ -6,6 +6,7 @@ import dagger.Component;
 import org.nearbyshops.enduserappnew.DI.DaggerModules.AppModule;
 import org.nearbyshops.enduserappnew.DI.DaggerModules.NetModule;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategoryFragment;
+import org.nearbyshops.enduserappnew.Lists.CartItemList.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersDataSource;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersListPagingFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToStaffDialog;
@@ -22,8 +23,8 @@ import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.FragmentAddCredit;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboardFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditServiceConfig.EditConfigurationFragment;
-import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemAdapter;
-import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListActivity;
+import org.nearbyshops.enduserappnew.Lists.CartItemList.Adapter;
+import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListFragment;
 import org.nearbyshops.enduserappnew.Lists.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Checkout.PlaceOrderActivity;
 import org.nearbyshops.enduserappnew.Lists.DeliveryAddress.DeliveryAddressActivity;
@@ -74,7 +75,6 @@ import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.RateReviewDialog;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.ShopDetailFragment;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ShopImageListFragment;
-import org.nearbyshops.enduserappnew.Lists.ShopsAvailableForItem.Adapter;
 import org.nearbyshops.enduserappnew.Lists.ShopsAvailableForItem.AdapterBackup;
 import org.nearbyshops.enduserappnew.Lists.ShopsAvailableForItem.ShopItemFragment;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewAdapter;
@@ -107,7 +107,7 @@ public interface NetComponent {
 
     void Inject(UpdateOneSignalID updateOneSignalID);
 
-    void Inject(Adapter adapter);
+    void Inject(org.nearbyshops.enduserappnew.Lists.ShopsAvailableForItem.Adapter adapter);
 
     void Inject(ShopItemFragment shopItemFragment);
 
@@ -137,9 +137,9 @@ public interface NetComponent {
 
     void Inject(RateReviewDialog rateReviewDialog);
 
-    void Inject(CartItemAdapter cartItemAdapter);
+    void Inject(Adapter adapter);
 
-    void Inject(CartItemListActivity cartItemListActivity);
+    void Inject(CartItemListFragment cartItemListFragment);
 
     void Inject(CartsListFragment cartsListFragment);
 
@@ -283,4 +283,8 @@ public interface NetComponent {
     void Inject(ViewHolderShopItem viewHolderShopItem);
 
     void Inject(ViewModelUser viewModelUser);
+
+    void Inject(org.nearbyshops.enduserappnew.Lists.CartItemList.Backups.AdapterBackup adapterBackup);
+
+    void Inject(ViewHolderCartItem viewHolderCartItem);
 }

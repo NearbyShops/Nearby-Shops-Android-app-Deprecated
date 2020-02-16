@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeliveryAdddress;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeliveryAddress;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
@@ -20,7 +20,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private List<Object> dataset = null;
     private Context context;
-    private ViewHolderDeliveryAdddress.NotifyDeliveryAddress notifyDeliveryAddress;
+    private ViewHolderDeliveryAddress.ListItemClick listItemClick;
 
 
 
@@ -29,11 +29,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 
-    public Adapter(List<Object> dataset, Context context, ViewHolderDeliveryAdddress.NotifyDeliveryAddress notifyDeliveryAddress) {
+    public Adapter(List<Object> dataset, Context context, ViewHolderDeliveryAddress.ListItemClick listItemClick) {
 
         this.dataset = dataset;
         this.context = context;
-        this.notifyDeliveryAddress = notifyDeliveryAddress;
+        this.listItemClick = listItemClick;
     }
 
 
@@ -46,7 +46,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         if(viewType==VIEW_TYPE_DELIVERY_ADDRESS)
         {
-            return ViewHolderDeliveryAdddress.create(parent,context,notifyDeliveryAddress);
+            return ViewHolderDeliveryAddress.create(parent,context, listItemClick);
         }
         else if(viewType == VIEW_TYPE_EMPTY_SCREEN)
         {
@@ -64,9 +64,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
 
-        if(holder instanceof ViewHolderDeliveryAdddress)
+        if(holder instanceof ViewHolderDeliveryAddress)
         {
-            ((ViewHolderDeliveryAdddress) holder).setItem((DeliveryAddress) dataset.get(position));
+            ((ViewHolderDeliveryAddress) holder).setItem((DeliveryAddress) dataset.get(position));
         }
         else if(holder instanceof ViewHolderEmptyScreenFullScreen)
         {

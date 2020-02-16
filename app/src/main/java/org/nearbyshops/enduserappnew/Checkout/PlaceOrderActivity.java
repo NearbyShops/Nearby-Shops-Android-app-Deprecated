@@ -62,8 +62,8 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     TextView deliveryCharges;
     TextView total;
 
-    @BindView(R.id.free_delivery_info) TextView freeDeliveryInfo;
 
+    @BindView(R.id.free_delivery_info) TextView freeDeliveryInfo;
     @BindView(R.id.radioPickFromShop) RadioButton pickFromShopCheck;
     @BindView(R.id.radioHomeDelivery) RadioButton homeDelieryCheck;
     @BindView(R.id.placeOrder) TextView placeOrder;
@@ -81,6 +81,8 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     RelativeLayout addressContainer;
 
     // address views ends
+
+
 
     public final static String CART_STATS_INTENT_KEY = "cart_stats_intent_key";
 
