@@ -56,20 +56,19 @@ import retrofit2.Response;
 public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextWatcher, View.OnClickListener {
 
 
-    ImageView shopImage;
-    TextView rating;
-    TextView itemName;
-    TextView itemsAvailable;
-    TextView itemPrice;
-    TextView itemTotal;
-    ImageView increaseQuantity;
-    ImageView reduceQuantity;
-    EditText itemQuantity;
-    TextView updateButton;
-    TextView removeButton;
-    ProgressBar progressBarRemove;
-    ProgressBar progressBarUpdate;
-
+    private ImageView shopImage;
+    private TextView rating;
+    private TextView itemName;
+    private TextView itemsAvailable;
+    private TextView itemPrice;
+    private TextView itemTotal;
+    private ImageView increaseQuantity;
+    private ImageView reduceQuantity;
+    private EditText itemQuantity;
+    private TextView updateButton;
+    private TextView removeButton;
+    private ProgressBar progressBarRemove;
+    private ProgressBar progressBarUpdate;
 
 
 
@@ -163,10 +162,11 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
         increaseQuantity.setOnClickListener(this);
         updateButton.setOnClickListener(this);
         removeButton.setOnClickListener(this);
-
-
-
     }
+
+
+
+
 
 
 
@@ -600,13 +600,10 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
 
 
 
-
     public interface ListItemClick{
-
-        public void notifyUpdate(CartItem cartItem);
-        public void notifyRemove(CartItem cartItem);
-        public void notifyTotal(double total);
-
+        void notifyUpdate(CartItem cartItem);
+        void notifyRemove(CartItem cartItem);
+        void notifyTotal(double total);
     }
 
 

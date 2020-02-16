@@ -59,10 +59,11 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="21sp"
+                    android:text="Markets"
                     android:textColor="@color/white"
-                    android:text="@string/app_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+<!--                android:text="@string/app_name"-->
 
                 <TextView
                     android:visibility="gone"

@@ -41,8 +41,8 @@ public class ShopItemByItem extends AppCompatActivity implements NotifySort {
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
-//        toolbar.setTitle("");
+//        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
+        toolbar.setTitle("Available in Shops");
         setSupportActionBar(toolbar);
 
 

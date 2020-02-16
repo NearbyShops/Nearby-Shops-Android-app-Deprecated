@@ -2,7 +2,6 @@ package org.nearbyshops.enduserappnew.Lists.CartsList;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
@@ -38,7 +37,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartsListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, Callback<List<CartStats>> {
+public class CartsListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
 
     @Inject
@@ -46,12 +45,11 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
     private RecyclerView recyclerView;
     private Adapter adapter;
-    private GridLayoutManager layoutManager;
     private SwipeRefreshLayout swipeContainer;
 
 
 
-    private List<CartStats> dataset = new ArrayList<>();
+    private List<Object> dataset = new ArrayList<>();
     private boolean isDestroyed = false;
 
 
@@ -65,15 +63,11 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
                 .Inject(this);
-
     }
 
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_carts_list);
-//    }
+
+
 
 
     @Nullable
@@ -89,10 +83,15 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-//        toolbar.setTitle("Nearby Shops");
+        toolbar.setTitle("Carts");
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 //
 
+
+
+        // findViewByID's
+        swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
 
 
 
@@ -109,31 +108,15 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
+        if(savedInstanceState==null)
+        {
+            makeRefreshNetworkCall();
+        }
 
 
-
-//        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-//        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-////        toolbar.setTitle("TripLogic");
-//        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
-
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-
-        // findViewByID's
-        swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
 
         setupSwipeContainer();
         setupRecyclerView();
-
-
-//        ((AppCompatActivity)getActivity())
-//                .getSupportActionBar()
-//                .setDisplayHomeAsUpEnabled(true);
-
 
         return rootView;
     }
@@ -159,40 +142,14 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
+
     private void setupRecyclerView()
     {
-
-
-        adapter = new Adapter(dataset,getActivity());
-
+        adapter = new Adapter(dataset,getActivity(),this);
         recyclerView.setAdapter(adapter);
 
-        layoutManager = new GridLayoutManager(getActivity(),1);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-
-        //recyclerView.addItemDecoration(
-        //        new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST)
-        //);
-
-        //recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL_LIST));
-
-        //itemCategoriesList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-//        layoutManager.setSpanCount(metrics.widthPixels/350);
-
-        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
-
-        if(spanCount==0){
-            spanCount = 1;
-        }
-
-        layoutManager.setSpanCount(spanCount);
-
-
-
-
     }
 
 
@@ -221,9 +178,10 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
         User endUser = PrefLogin.getUser(getActivity());
+
         if(endUser==null)
         {
-            showLoginDialog();
+            showLoginScreen();
 
             swipeContainer.setRefreshing(false);
             return;
@@ -237,108 +195,69 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
                 PrefLocation.getLongitude(getActivity())
         );
 
-//        ,
-//        (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LAT_CENTER_KEY),
-//                (double) PrefGeneral.getFromSharedPrefFloat(PrefGeneral.LON_CENTER_KEY)
-
-        /*
-
-        UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY)
-
-
-        */
 
         emptyScreen.setVisibility(View.GONE);
 
 
-        call.enqueue(this);
-
-/*
-
-        Log.d("applog",String.valueOf(endUser.getEndUserID()) + " "
-        + UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY) + " "
-        + UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY));
-*/
+        call.enqueue(new Callback<List<CartStats>>() {
+            @Override
+            public void onResponse(Call<List<CartStats>> call, Response<List<CartStats>> response) {
 
 
-        /*
-        if(UtilityGeneral.isNetworkAvailable(this))
-        {
+                if(isDestroyed)
+                {
+                    return;
+                }
 
 
-        }
-        else
-        {
+                if(response.body()!=null)
+                {
+                    dataset.clear();
+                    dataset.addAll(response.body());
+                    adapter.notifyDataSetChanged();
 
-            showToastMessage("No network. Application is Offline !");
-            swipeContainer.setRefreshing(false);
-
-        }
-
-        */
-
-    }
+                    if(response.body().size()==0)
+                    {
+                        emptyScreen.setVisibility(View.VISIBLE);
+                    }
 
 
+                }
+                else
+                {
+                    dataset.clear();
+                    adapter.notifyDataSetChanged();
+
+                    emptyScreen.setVisibility(View.VISIBLE);
+                }
 
 
-    @Override
-    public void onResponse(Call<List<CartStats>> call, Response<List<CartStats>> response) {
-
-        if(isDestroyed)
-        {
-            return;
-        }
 
 
-        if(response.body()!=null)
-        {
-            dataset.clear();
-            dataset.addAll(response.body());
-            adapter.notifyDataSetChanged();
+                swipeContainer.setRefreshing(false);
 
-            if(response.body().size()==0)
-            {
-                emptyScreen.setVisibility(View.VISIBLE);
             }
 
-
-        }
-        else
-        {
-            dataset.clear();
-            adapter.notifyDataSetChanged();
-
-            emptyScreen.setVisibility(View.VISIBLE);
-        }
+            @Override
+            public void onFailure(Call<List<CartStats>> call, Throwable t) {
 
 
+                if(isDestroyed)
+                {
+                    return;
+                }
 
 
-        swipeContainer.setRefreshing(false);
+                emptyScreen.setVisibility(View.VISIBLE);
 
-    }
-
-
-
-
-    @Override
-    public void onFailure(Call<List<CartStats>> call, Throwable t) {
-
-
-        if(isDestroyed)
-        {
-            return;
-        }
-
-
-        emptyScreen.setVisibility(View.VISIBLE);
-
-        showToastMessage("Network Request failed !");
-        swipeContainer.setRefreshing(false);
+                showToastMessage("Network Request failed !");
+                swipeContainer.setRefreshing(false);
+            }
+        });
 
     }
+
+
 
 
 
@@ -347,8 +266,29 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
     @OnClick(R.id.button_try_again)
     void tryAgainClick()
     {
-        onRefresh();
+        makeRefreshNetworkCall();
     }
+
+
+
+
+
+
+
+
+    private void makeRefreshNetworkCall()
+    {
+        swipeContainer.post(new Runnable() {
+            @Override
+            public void run() {
+
+                swipeContainer.setRefreshing(true);
+                makeNetworkCall();
+            }
+        });
+    }
+
+
 
 
 
@@ -358,31 +298,11 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
     @Override
     public void onResume() {
         super.onResume();
-
-
-        swipeContainer.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeContainer.setRefreshing(true);
-
-                try {
-
-                    makeNetworkCall();
-
-                } catch (IllegalArgumentException ex)
-                {
-                    ex.printStackTrace();
-
-                }
-
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-
         isDestroyed=false;
-
     }
+
+
+
 
 
     @Override
@@ -393,14 +313,8 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-
-    private void showLoginDialog()
+    private void showLoginScreen()
     {
-//        FragmentManager fm = getActivity().getSupportFragmentManager();
-//        LoginDialog loginDialog = new LoginDialog();
-//        loginDialog.show(fm,"serviceUrl");
-
-
         Intent intent = new Intent(getActivity(), Login.class);
         startActivity(intent);
     }
