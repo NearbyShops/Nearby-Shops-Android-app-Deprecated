@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrderHistoryPaging;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditServiceConfig.EditConfiguration;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
@@ -28,6 +30,7 @@ import org.nearbyshops.enduserappnew.R;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -43,6 +46,13 @@ public class AdminDashboardFragment extends Fragment {
 
     @Inject
     ServiceConfigurationService configurationService;
+
+
+
+    @BindView(R.id.service_name)
+    TextView serviceName;
+
+
 
 
 
@@ -64,6 +74,13 @@ public class AdminDashboardFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_admin_dashboard, container, false);
 
         ButterKnife.bind(this,rootView);
+
+
+        if(PrefServiceConfig.getServiceName(getActivity())!=null)
+        {
+            serviceName.setVisibility(View.VISIBLE);
+            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+        }
 
 
         return rootView;

@@ -212,8 +212,8 @@ public class ViewHolderItemAdmin extends RecyclerView.ViewHolder  implements Pop
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-                builder.setTitle("Confirm Delete Item Category !")
-                        .setMessage("Do you want to delete this Item Category ?")
+                builder.setTitle("Confirm Delete Item !")
+                        .setMessage("Do you want to delete this Item ?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
