@@ -995,12 +995,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
 
 
+
     private void showLoginDialog()
     {
-//        FragmentManager fm = activity.getSupportFragmentManager();
-//        LoginDialog loginDialog = new LoginDialog();
-//        loginDialog.show(fm,"serviceUrl");
-
         notifyFilledCart.showLoginScreen();
     }
 

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin;
+package org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.Backups;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -37,6 +37,7 @@ import org.nearbyshops.enduserappnew.Model.ModelStats.ItemStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsDatabaseForAdminFragment;
 
 import java.util.HashMap;
 import java.util.List;
@@ -163,19 +164,19 @@ public class AdapterBackup extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             if(fragment instanceof ItemsDatabaseForAdminFragment)
             {
-                int fetched_count  = ((ItemsDatabaseForAdminFragment) fragment).fetched_items_count;
-                int items_count = ((ItemsDatabaseForAdminFragment) fragment).item_count_item;
+//                int fetched_count  = ((ItemsDatabaseForAdminFragment) fragment).fetched_items_count;
+//                int items_count = ((ItemsDatabaseForAdminFragment) fragment).item_count_item;
 
-                if(fetched_count == items_count)
-                {
-                    viewHolder.progressBar.setVisibility(View.GONE);
-                }
-                else
-                {
-                    viewHolder.progressBar.setVisibility(View.VISIBLE);
-                    viewHolder.progressBar.setIndeterminate(true);
-
-                }
+//                if(fetched_count == items_count)
+//                {
+//                    viewHolder.progressBar.setVisibility(View.GONE);
+//                }
+//                else
+//                {
+//                    viewHolder.progressBar.setVisibility(View.VISIBLE);
+//                    viewHolder.progressBar.setIndeterminate(true);
+//
+//                }
             }
 
         }

@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
@@ -75,11 +76,12 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
     @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
 
-    private Adapter adapter;
-    private GridLayoutManager layoutManager;
 
+    private Adapter adapter;
 
     private boolean isDestroyed;
+
+
 
 
     // bindings for item
@@ -97,9 +99,8 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-
-
     private boolean clearDataset = true;
+
     private int limit = 10;
     private int offset = 0;
     private int item_count = 0;
@@ -193,40 +194,16 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-    void setupRecyclerView()
+
+
+    private void setupRecyclerView()
     {
         adapter = new Adapter(dataset,getActivity(),item,this);
 
         recyclerView.setAdapter(adapter);
 
-        layoutManager = new GridLayoutManager(getActivity(),1);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-
-        //recyclerView.addItemDecoration(
-        //        new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST)
-        //);
-
-        //recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL_LIST));
-
-        //itemCategoriesList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-//        layoutManager.setSpanCount(metrics.widthPixels/350);
-
-
-//        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
-//
-//        if(spanCount==0){
-//            spanCount = 1;
-//        }
-
-
-
-
-        layoutManager.setSpanCount(1);
-
 
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -305,9 +282,6 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
     {
         // fetch shop items from shops with carts not filled
 
-
-
-
         User endUser = PrefLogin.getUser(getActivity());
 
 
@@ -355,8 +329,11 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
                 false,
                 null,null,null,null,
                 null,true,current_sort,
-                limit,offset,null,true
+                limit,offset,
+                clearDataset,false
         );
+
+
 
         call.enqueue(new Callback<ShopItemEndPoint>() {
             @Override
@@ -378,12 +355,12 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
                         {
                             dataset.clear();
                             clearDataset = false;
+
+                            item_count = response.body().getItemCount();
                         }
 
 
                         dataset.addAll(response.body().getResults());
-                        item_count = response.body().getItemCount();
-
                     }
                 }
                 else
@@ -431,7 +408,9 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-    void fetchFilledCartItems()
+
+
+    private void fetchFilledCartItems()
     {
             // fetch shop items from shops with filled carts
 
@@ -472,9 +451,10 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
                     null,null,null,null,
                     null,
                     true, current_sort,
-                    null,null,null,
-                    true
+                    100,0,
+                false,false
             );
+
 
 
             callEndpoint.enqueue(new Callback<ShopItemEndPoint>() {
@@ -587,14 +567,6 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
     }
 
 
-
-
-
-//    @Override
-//    public void notifyNewCartsChanged() {
-////        swipeRefresh();
-//        makeNetworkCall(false);
-//    }
 
 
     @Override

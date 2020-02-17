@@ -54,7 +54,6 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
     @BindView(R.id.empty_screen) LinearLayout emptyScreen;
-
     @BindView(R.id.service_name) TextView serviceName;
 
 
@@ -299,6 +298,8 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
     public void onResume() {
         super.onResume();
         isDestroyed=false;
+
+        makeRefreshNetworkCall();
     }
 
 

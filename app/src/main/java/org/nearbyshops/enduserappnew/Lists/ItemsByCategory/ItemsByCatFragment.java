@@ -208,7 +208,10 @@ public class ItemsByCatFragment extends Fragment implements
 
 
 
-    void setupSlidingLayer()
+
+
+
+    private void setupSlidingLayer()
     {
 
         ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
@@ -246,12 +249,6 @@ public class ItemsByCatFragment extends Fragment implements
     }
 
 
-
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-    }
 
 
 
@@ -747,6 +744,9 @@ public class ItemsByCatFragment extends Fragment implements
         });
 
     }
+
+
+
 
 
 

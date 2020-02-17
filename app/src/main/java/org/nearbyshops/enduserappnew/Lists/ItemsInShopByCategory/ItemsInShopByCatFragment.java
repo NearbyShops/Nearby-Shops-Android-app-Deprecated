@@ -89,14 +89,9 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
     @BindView(R.id.shop_profile_photo) ImageView itemImage;
-//    @BindView(R.id.image_count) TextView imagesCount;
-
     @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
-//    @BindView(R.id.fab) FloatingActionButton fab;
 
 
-
-//    Map<Integer,ShopItemParcelable> shopItemMapTemp = new HashMap<>();
 
     private boolean isDestroyed = false;
     boolean show = true;
@@ -117,9 +112,6 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
     private ArrayList<Object> dataset = new ArrayList<>();
-//    private ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
-//    private ArrayList<ShopItem> datasetShopItems = new ArrayList<>();
-
 
 
     @BindView(R.id.itemsInCart) public TextView itemsInCart;
@@ -138,9 +130,6 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
     @Inject
     ShopItemService shopItemService;
-
-//    @Inject
-//    ItemService itemService;
 
 
 
@@ -317,8 +306,13 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         });
 
 
+
+
         final DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+
+
 
 
         itemCategoriesList.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -466,8 +460,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                     null,null,
                     null,null,null,
                     null,true,current_sort,
-                    limit_item,offset_item,false,
-                    true);
+                    limit_item,offset_item,clearDataset,
+                    false);
 
         }
         else
@@ -482,8 +476,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                     null,null,null,
                     searchQuery,
                     true,current_sort,
-                    limit_item,offset_item,false,
-                    true);
+                    limit_item,offset_item,clearDataset,
+                    false);
         }
 
 
@@ -506,22 +500,14 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                     if(clearDataset)
                     {
                         dataset.clear();
-//                            dataset.addAll(response.body().getResults());
-
-
-
-                        // show current shop profile at the top of the list
-//                        dataset.add(PrefShopHome.getShopDetails(getActivity()));
 
 
 
                         if(response.body()!=null)
                         {
 
-
                             item_count_item = response.body().getItemCount();
                             fetched_items_count = dataset.size();
-
 
 
                             if(response.body().getSubcategories()!=null && response.body().getSubcategories().size()>0)
@@ -605,10 +591,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-
                     dataset.addAll(response.body().getResults());
                     fetched_items_count = fetched_items_count + response.body().getResults().size();
-
 
                 }
                 else

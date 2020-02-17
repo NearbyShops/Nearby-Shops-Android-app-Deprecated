@@ -73,36 +73,36 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
         ViewHolderItemCategoryAdmin.ListItemClick, ViewHolderItem.ListItemClick,
         NotifyBackPressed, NotifySort, NotifyFABClickAdmin {
 
-    boolean isDestroyed = false;
-    boolean show = true;
+    private boolean isDestroyed = false;
+    private boolean show = true;
 
-    boolean isFirstChangeParent = true;
-    boolean isFirst = true;
+    private boolean isFirstChangeParent = true;
+    private boolean isFirst = true;
 
-    int item_count_item_category = 0;
+    private int item_count_item_category = 0;
 
     private int limit_item = 10;
-    int offset_item = 0;
-    int item_count_item;
-    int fetched_items_count = 0;
-
-    @BindView(R.id.swipe_container)
-    SwipeRefreshLayout swipeContainer;
-    @BindView(R.id.recycler_view)
-    RecyclerView itemCategoriesList;
-
-    ArrayList<Object> dataset = new ArrayList<>();
-    ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
-    ArrayList<Item> datasetItems = new ArrayList<>();
+    private int offset_item = 0;
+    private int item_count_item;
+    private int fetched_items_count = 0;
 
 
 
-    GridLayoutManager layoutManager;
 
-    Adapter listAdapter;
+    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.recycler_view) RecyclerView itemCategoriesList;
 
-    ItemCategory changeParentRequestedItemCat;
-    Item changeParentRequestedItem;
+    private ArrayList<Object> dataset = new ArrayList<>();
+    private ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
+    private ArrayList<Item> datasetItems = new ArrayList<>();
+
+
+
+    private GridLayoutManager layoutManager;
+    private Adapter listAdapter;
+
+    private ItemCategory changeParentRequestedItemCat;
+    private Item changeParentRequestedItem;
 
     @Inject
     ItemCategoryService itemCategoryService;
@@ -112,7 +112,7 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
     ItemService itemService;
 
 
-    ItemCategory currentCategory = null;
+    private ItemCategory currentCategory = null;
 
 
     public ItemsDatabaseForAdminFragment() {
@@ -153,7 +153,8 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-    void setupSwipeContainer()
+
+    private void setupSwipeContainer()
     {
 
         if(swipeContainer!=null) {
@@ -369,16 +370,20 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
+
+
     @Override
     public void onRefresh() {
 
-        System.out.println("OnRefresh:ItemsByCat Simple : Fired !");
         makeRequestItemCategory();
         makeRequestItem(true,true);
     }
 
 
-    void makeRefreshNetworkCall()
+
+
+
+    private void makeRefreshNetworkCall()
     {
         swipeContainer.post(new Runnable() {
             @Override
@@ -948,7 +953,9 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-    void notifyItemHeaderChanged()
+
+
+    private void notifyItemHeaderChanged()
     {
         if(getActivity() instanceof NotifyHeaderChanged)
         {
@@ -1296,7 +1303,9 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-    void makeRequestUpdateItemCatBulk(final List<ItemCategory> list)
+
+
+    private void makeRequestUpdateItemCatBulk(final List<ItemCategory> list)
     {
         Call<ResponseBody> call = itemCategoryService.changeParentBulk(PrefLogin.getAuthorizationHeaders(getActivity()),
                 list);

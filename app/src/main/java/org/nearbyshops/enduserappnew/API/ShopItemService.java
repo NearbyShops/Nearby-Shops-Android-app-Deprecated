@@ -53,9 +53,9 @@ public interface ShopItemService {
             @Query("SearchString") String searchString,
             @Query("ShopEnabled") Boolean shopEnabled,
             @Query("SortBy") String sortBy,
-            @Query("Limit") Integer limit, @Query("Offset") Integer offset,
-            @Query("metadata_only") Boolean metaonly,
-            @Query("GetExtras") Boolean getExtras
+            @Query("Limit") int limit, @Query("Offset") int offset,
+            @Query("GetRowCount")boolean getRowCount,
+            @Query("MetadataOnly")boolean getOnlyMetaData
     );
 
 
@@ -77,9 +77,9 @@ public interface ShopItemService {
             @Query("SearchString") String searchString,
             @Query("ShopEnabled") Boolean shopEnabled,
             @Query("SortBy") String sortBy,
-            @Query("Limit") Integer limit, @Query("Offset") Integer offset,
-            @Query("metadata_only") Boolean metaonly,
-            @Query("GetExtras") Boolean getExtras
+            @Query("Limit") int limit, @Query("Offset") int offset,
+            @Query("GetRowCount")boolean getRowCount,
+            @Query("MetadataOnly")boolean getOnlyMetaData
     );
 
 
