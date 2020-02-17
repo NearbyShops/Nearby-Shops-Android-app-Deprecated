@@ -40,14 +40,14 @@ public interface ItemService
 
 
 
-
-    @GET("/api/v1/Item/OuterJoin")
-    Call<ItemEndPoint> getItemsOuterJoin(
-            @Query("ItemCategoryID")Integer itemCategoryID,
-            @Query("SortBy") String sortBy,
-            @Query("Limit")Integer limit, @Query("Offset")Integer offset,
-            @Query("metadata_only")Boolean metaonly
-    );
+//
+//    @GET("/api/v1/Item/OuterJoin")
+//    Call<ItemEndPoint> getItemsOuterJoin(
+//            @Query("ItemCategoryID")Integer itemCategoryID,
+//            @Query("SortBy") String sortBy,
+//            @Query("Limit")Integer limit, @Query("Offset")Integer offset,
+//            @Query("metadata_only")Boolean metaonly
+//    );
 
 
 
@@ -60,8 +60,11 @@ public interface ItemService
             @Query("SearchString") String searchString,
             @Query("SortBy") String sortBy,
             @Query("Limit") Integer limit, @Query("Offset") Integer offset,
-            @Query("metadata_only") Boolean metaonly
+            @Query("GetRowCount")boolean getRowCount,
+            @Query("MetadataOnly")boolean getOnlyMetaData
     );
+
+
 
 
 

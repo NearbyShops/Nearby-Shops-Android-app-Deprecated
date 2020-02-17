@@ -288,7 +288,7 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
                     {
                         offset_item = offset_item + limit_item;
 
-                        makeRequestItem(false,false);
+                        makeRequestItem(false);
                     }
 
                 }
@@ -315,7 +315,8 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
     public void onRefresh() {
 
 
-        makeRequestItem(true,true);
+
+        makeRequestItem(true);
         makeNetworkCallShopItem();
     }
 
@@ -398,10 +399,10 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    private void makeRequestItem(final boolean clearDataset, boolean resetOffset)
+    private void makeRequestItem(final boolean clearDataset)
     {
 
-        if(resetOffset)
+        if(clearDataset)
         {
             offset_item = 0;
         }
@@ -428,7 +429,7 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
                     currentCategory.getItemCategoryID(),
                     clearDataset,null,
                     current_sort,
-                    limit_item,offset_item, null);
+                    limit_item,offset_item, clearDataset,false);
         }
         else
         {
@@ -436,7 +437,7 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
                     null,
                     clearDataset, searchQuery,
                     current_sort,
-                    limit_item,offset_item, null);
+                    limit_item,offset_item, clearDataset,false);
         }
 
 

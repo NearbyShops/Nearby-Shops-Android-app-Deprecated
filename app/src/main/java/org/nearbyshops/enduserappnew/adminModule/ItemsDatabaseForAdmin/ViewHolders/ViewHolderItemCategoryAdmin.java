@@ -64,7 +64,7 @@ public class ViewHolderItemCategoryAdmin extends RecyclerView.ViewHolder impleme
 
 
     private Map<Integer, ItemCategory> selectedItemCategories;
-    private Map<Integer, Item> selectedItems = new HashMap<>();
+    private Map<Integer, Item> selectedItems;
 
 
 
@@ -82,6 +82,25 @@ public class ViewHolderItemCategoryAdmin extends RecyclerView.ViewHolder impleme
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category,parent,false);
         return new ViewHolderItemCategoryAdmin(view,context,fragment,adapter,selectedItems,selectedItemCategories);
     }
+
+
+
+
+
+    public static ViewHolderItemCategoryAdmin createSmall(ViewGroup parent, Context context, Fragment fragment,
+                                                     RecyclerView.Adapter adapter,
+                                                     Map<Integer, Item> selectedItems,
+                                                     Map<Integer, ItemCategory> selectedItemCategories
+
+    )
+    {
+
+
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category_small,parent,false);
+        return new ViewHolderItemCategoryAdmin(view,context,fragment,adapter,selectedItems,selectedItemCategories);
+    }
+
+
 
 
 

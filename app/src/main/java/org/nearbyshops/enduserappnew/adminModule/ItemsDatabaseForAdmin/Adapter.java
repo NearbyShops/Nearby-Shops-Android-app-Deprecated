@@ -10,10 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
+import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
-import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHorizontalList;
+import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemAdmin;
 import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemCategoryAdmin;
 
 import java.util.HashMap;
@@ -39,9 +43,13 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     public static final int VIEW_TYPE_ITEM_CATEGORY = 1;
-    public static final int VIEW_TYPE_ITEM = 2;
-    public static final int VIEW_TYPE_HEADER = 3;
-    public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 4;
+    public static final int VIEW_TYPE_ITEM_CATEGORY_LIST = 2;
+    public static final int VIEW_TYPE_ITEM = 3;
+
+
+    public static final int VIEW_TYPE_HEADER = 5;
+    public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 6;
+    public static final int VIEW_TYPE_EMPTY_SCREEN = 7;
 
 
 
@@ -73,9 +81,13 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return ViewHolderItemCategoryAdmin.create(parent,context,fragment,this,selectedItems,selectedItemCategories);
         }
+        else if(viewType == VIEW_TYPE_ITEM_CATEGORY_LIST)
+        {
+            return ViewHolderHorizontalList.create(parent,context,fragment);
+        }
         else if(viewType == VIEW_TYPE_ITEM)
         {
-            return ViewHolderItem.create(parent,context,fragment,this,selectedItems);
+            return ViewHolderItemAdmin.create(parent,context,fragment,this,selectedItems);
 
         }
         else if(viewType == VIEW_TYPE_HEADER)
@@ -86,6 +98,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return LoadingViewHolder.create(parent,context);
         }
+        else if(viewType==VIEW_TYPE_EMPTY_SCREEN)
+        {
+            return ViewHolderEmptyScreenFullScreen.create(parent,context);
+        }
+
 
 
 
@@ -105,10 +122,18 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             ((ViewHolderItemCategoryAdmin) holder).setItem((ItemCategory) dataset.get(position));
         }
-        else if(holder instanceof ViewHolderItem)
+        else if(holder instanceof ViewHolderHorizontalList)
         {
 
-            ((ViewHolderItem) holder).setItem((Item) dataset.get(position));
+            List<ItemCategory> list = ((ItemCategoriesList)dataset.get(position)).getItemCategories();
+
+            ((ViewHolderHorizontalList) holder).setItem(new AdapterItemCatHorizontalListAdmin(list,context,fragment,selectedItems,selectedItemCategories),null);
+
+        }
+        else if(holder instanceof ViewHolderItemAdmin)
+        {
+
+            ((ViewHolderItemAdmin) holder).setItem((Item) dataset.get(position));
         }
         else if(holder instanceof ViewHolderHeader)
         {
@@ -122,6 +147,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(holder instanceof LoadingViewHolder)
         {
             ((LoadingViewHolder) holder).setLoading(loadMore);
+        }
+        else if(holder instanceof ViewHolderEmptyScreenFullScreen)
+        {
+            ((ViewHolderEmptyScreenFullScreen) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
         }
 
 
@@ -142,6 +171,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return VIEW_TYPE_ITEM_CATEGORY;
         }
+        else if(dataset.get(position) instanceof ItemCategoriesList)
+        {
+            return VIEW_TYPE_ITEM_CATEGORY_LIST;
+        }
         else if (dataset.get(position) instanceof Item)
         {
             return VIEW_TYPE_ITEM;
@@ -149,6 +182,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(dataset.get(position) instanceof HeaderTitle)
         {
             return VIEW_TYPE_HEADER;
+        }
+        else if(dataset.get(position) instanceof EmptyScreenDataFullScreen)
+        {
+            return VIEW_TYPE_EMPTY_SCREEN;
         }
 
 

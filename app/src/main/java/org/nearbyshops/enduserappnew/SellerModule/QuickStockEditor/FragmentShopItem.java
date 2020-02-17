@@ -49,7 +49,7 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
     @Inject
     ShopItemService shopItemService;
     private RecyclerView recyclerView;
-    private AdapterShopItem adapter;
+    private Adapter adapter;
 
 
     public ArrayList<Object> dataset = new ArrayList<>();
@@ -155,7 +155,7 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
     private void setupRecyclerView()
     {
 
-        adapter = new AdapterShopItem(dataset,getActivity(),this);
+        adapter = new Adapter(dataset,getActivity(),this);
 
         recyclerView.setAdapter(adapter);
 

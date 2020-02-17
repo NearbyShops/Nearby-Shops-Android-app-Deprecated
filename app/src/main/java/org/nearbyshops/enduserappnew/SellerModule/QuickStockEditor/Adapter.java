@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by sumeet on 13/6/16.
  */
-public class AdapterShopItem extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     private List<Object> dataset = null;
@@ -35,7 +35,7 @@ public class AdapterShopItem extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static final int VIEW_TYPE_EMPTY_SCREEN = 3;
 
 
-    public AdapterShopItem(List<Object> dataset, Context context, Fragment fragment) {
+    public Adapter(List<Object> dataset, Context context, Fragment fragment) {
         this.dataset = dataset;
         this.context = context;
         this.fragment = fragment;

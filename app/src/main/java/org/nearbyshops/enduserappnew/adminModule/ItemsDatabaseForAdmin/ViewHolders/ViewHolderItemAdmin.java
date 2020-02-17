@@ -40,7 +40,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class ViewHolderItem extends RecyclerView.ViewHolder  implements PopupMenu.OnMenuItemClickListener{
+public class ViewHolderItemAdmin extends RecyclerView.ViewHolder  implements PopupMenu.OnMenuItemClickListener{
 
 
 
@@ -73,15 +73,15 @@ public class ViewHolderItem extends RecyclerView.ViewHolder  implements PopupMen
 
 
 
-    public static ViewHolderItem create(ViewGroup parent, Context context, Fragment fragment,
-                                              RecyclerView.Adapter adapter,
-                                              Map<Integer, Item> selectedItems
+    public static ViewHolderItemAdmin create(ViewGroup parent, Context context, Fragment fragment,
+                                             RecyclerView.Adapter adapter,
+                                             Map<Integer, Item> selectedItems
 
     )
     {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_for_admin,parent,false);
-        return new ViewHolderItem(view,context,fragment,adapter,selectedItems);
+        return new ViewHolderItemAdmin(view,context,fragment,adapter,selectedItems);
     }
 
 
@@ -91,8 +91,8 @@ public class ViewHolderItem extends RecyclerView.ViewHolder  implements PopupMen
 
 
 
-    public ViewHolderItem(@NonNull View itemView, Context context, Fragment fragment, RecyclerView.Adapter adapter,
-                          Map<Integer, Item> selectedItems) {
+    public ViewHolderItemAdmin(@NonNull View itemView, Context context, Fragment fragment, RecyclerView.Adapter adapter,
+                               Map<Integer, Item> selectedItems) {
         super(itemView);
 
         ButterKnife.bind(this,itemView);

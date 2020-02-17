@@ -41,9 +41,10 @@ import javax.inject.Inject;
 
 public class LoginUsingOTPFragment extends Fragment {
 
-    public static final String TAG_SERVICE_INDICATOR = "service_indicator";
 
-    boolean isDestroyed = false;
+
+    public static final String TAG_SERVICE_INDICATOR = "service_indicator";
+    private boolean isDestroyed = false;
 
 
 

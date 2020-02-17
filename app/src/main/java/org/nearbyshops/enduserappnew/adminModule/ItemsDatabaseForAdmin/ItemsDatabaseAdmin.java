@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,8 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifyFABClickAdmin;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyHeaderChanged;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.ToggleFab;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.adminModule.Preferences.SlidingLayerSortItems;
 
@@ -49,6 +52,12 @@ public class ItemsDatabaseAdmin extends AppCompatActivity implements NotifyHeade
     SlidingLayer slidingLayer;
 
 
+
+
+    @BindView(R.id.service_name) TextView serviceName;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +75,10 @@ public class ItemsDatabaseAdmin extends AppCompatActivity implements NotifyHeade
                         .setAction("Action", null).show();
             }
         });
-     */   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+     */
+
+//     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -76,6 +88,23 @@ public class ItemsDatabaseAdmin extends AppCompatActivity implements NotifyHeade
                     .beginTransaction()
                     .add(R.id.fragment_container,new ItemsDatabaseForAdminFragment(),TAG_FRAGMENT)
                     .commit();
+        }
+
+
+
+
+
+
+
+
+        if(PrefGeneral.getMultiMarketMode(this) && PrefServiceConfig.getServiceName(this)!=null)
+        {
+            serviceName.setVisibility(View.VISIBLE);
+            serviceName.setText(PrefServiceConfig.getServiceName(this));
+        }
+        else
+        {
+            serviceName.setVisibility(View.GONE);
         }
 
 

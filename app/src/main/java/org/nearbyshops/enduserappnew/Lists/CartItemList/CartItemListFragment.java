@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -79,6 +78,8 @@ public class CartItemListFragment extends Fragment
     @BindView(R.id.empty_screen) LinearLayout emptyScreen;
     @BindView(R.id.bottom_bar) ConstraintLayout bottomBar;
 
+    @BindView(R.id.shop_name) TextView shopName;
+
 
     // header views
 //    ImageView shopImage;
@@ -110,7 +111,7 @@ public class CartItemListFragment extends Fragment
         super.onCreateView(inflater, container, savedInstanceState);
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.activity_cart_item_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_cart_item_list, container, false);
         ButterKnife.bind(this, rootView);
 
 
@@ -118,11 +119,13 @@ public class CartItemListFragment extends Fragment
         shop = UtilityFunctions.provideGson().fromJson(shopJson, Shop.class);
 
 
+        shopName.setText(shop.getShopName());
+
+
 
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-
-        toolbar.setTitle("Items in Cart");
+//        toolbar.setTitle("Items in Cart");
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 //
 
@@ -175,10 +178,11 @@ public class CartItemListFragment extends Fragment
         setupRecyclerView();
 
 
-        if(((AppCompatActivity) getActivity()).getSupportActionBar()!=null)
-        {
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+
+//        if(((AppCompatActivity) getActivity()).getSupportActionBar()!=null)
+//        {
+//            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        }
 
 
 
