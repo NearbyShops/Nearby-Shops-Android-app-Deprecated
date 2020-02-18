@@ -193,7 +193,7 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
                     if((offset+limit)<=item_count)
                     {
                         offset = offset + limit;
-                        makeNetworkCall(false,false);
+                        makeNetworkCall(false);
                     }
 
                 }
@@ -206,7 +206,7 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onRefresh() {
-        makeNetworkCall(true,true);
+        makeNetworkCall(true);
     }
 
 
@@ -229,9 +229,9 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-    private void makeNetworkCall(final boolean clearDataset, boolean resetOffset) {
+    private void makeNetworkCall(final boolean clearDataset) {
 
-        if(resetOffset) {
+        if(clearDataset) {
             offset = 0;
         }
 
@@ -240,6 +240,7 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
 
 
         int mode = getArguments().getInt(ARG_MODE_KEY);
+
 
         Shop currentShop = PrefShopHome.getShop(getContext());
 
@@ -254,10 +255,12 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
 
             call = shopItemService.getShopItemEndpoint(null,
                     currentShop.getShopID(),null,null,null,
-                    null,null,null,null,null,true,null,null,null,null,"LAST_UPDATE_DATE_TIME",
-                    limit,offset,false,
-                    true
+                    null,null,null,null,null,true,null,null,null,null,
+                    "LAST_UPDATE_DATE_TIME",
+                    limit,offset,clearDataset,
+                    false
             );
+
 
 
         } else if (mode == MODE_LOW_STOCK)
@@ -268,8 +271,8 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
             call = shopItemService.getShopItemEndpoint(null,
                     currentShop.getShopID(),null,null,null,null,null,null,null,null,null,
                     null,null,null,null,"available_item_quantity",
-                    limit,offset,false,
-                    true
+                    limit,offset,
+                    clearDataset, false
             );
 
         }
@@ -282,8 +285,8 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
                     currentShop.getShopID(),null,null,null,null,null,null,null,null,null,
                     null,null,null,
                     null,"date_time_added desc",
-                    limit,offset,false,
-                    true
+                    limit,offset,
+                    clearDataset, false
             );
 
 
@@ -295,7 +298,8 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
                     currentShop.getShopID(),null,null,null,null,null,null,null,null,null,
                     null,null,null,
                     null,"last_update_date_time desc",
-                    limit,offset,false,true
+                    limit,offset,
+                    clearDataset,false
             );
         }
         else if (mode == MODE_PRICE_NOT_SET)
@@ -304,8 +308,8 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
                     currentShop.getShopID(),null,null,null,
                     null,null,null,null,null,null,true,null,null,
                     null,"LAST_UPDATE_DATE_TIME",
-                    limit,offset,false,
-                    true
+                    limit,offset,
+                    clearDataset, false
             );
         }
 
@@ -332,18 +336,20 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
                     {
                         dataset.clear();
                         item_count = response.body().getItemCount();
+
+                        if(item_count==0)
+                        {
+                            dataset.add(EmptyScreenDataFullScreen.emptyScreenQuickStockEditor());
+                        }
+
                     }
+
 
 
 
                     dataset.addAll(response.body().getResults());
 
 
-
-                    if(item_count==0)
-                    {
-                        dataset.add(EmptyScreenDataFullScreen.emptyScreenQuickStockEditor());
-                    }
 
 
 

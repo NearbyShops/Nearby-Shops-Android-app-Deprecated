@@ -78,7 +78,8 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
     private boolean isFirstChangeParent = true;
-//    private boolean isFirst = true;
+
+
 
 
     private int limit_item = 10;
@@ -586,26 +587,6 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-
-
-
-//
-//                if(clearDataset)
-//                {
-//                    item_count_item = response.body().getItemCount();
-//
-//                }
-//                else
-//                {
-//
-//
-//                    fetched_items_count = fetched_items_count + response.body().getResults().size();
-//                    dataset.addAll(response.body().getResults());
-//                    item_count_item = response.body().getItemCount();
-//                    listAdapter.notifyDataSetChanged();
-//
-//                }
-
             }
 
             @Override
@@ -671,6 +652,9 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
     }
+
+
+
 
 
     @Override
@@ -911,10 +895,11 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
     }
 
 
+
+
+
     @Override
     public void detachSelectedClick() {
-
-//        showToastMessage("Detach");
         detachedSelectedDialog();
     }
 
@@ -1491,6 +1476,9 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
+
+
+
     private void clearSelectedItems()
     {
         // clear the selected items
@@ -1501,19 +1489,7 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-
-
-
-
-
-
-
-
     private ActionMode mActionMode;
-
-
-
-
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
 
         // Called when the action mode is created; startActionMode() was called
@@ -1640,12 +1616,7 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
 
 
-
-
-
-
     // activate action mode
-
     private void activateActionMode()
     {
         if(mActionMode!=null) {
@@ -1680,9 +1651,6 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
         }
 
     }
-
-
-
 
 
 

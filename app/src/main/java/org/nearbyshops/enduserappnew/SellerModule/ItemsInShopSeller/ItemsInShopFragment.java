@@ -54,29 +54,24 @@ public class ItemsInShopFragment extends Fragment implements
 
 //    Map<Integer,ShopItem> shopItemMapTemp = new HashMap<>();
 
-    boolean isDestroyed = false;
-//    @State
-    boolean show = true;
+    private boolean isDestroyed = false;
 
-//    int item_count_item_category = 0;
+
 
     private int limit_item = 25;
-    int offset_item = 0;
-    int item_count_item;
+    private int offset_item = 0;
+    private int item_count_item;
     public int fetched_items_count = 0;
 
-    @BindView(R.id.swipe_container)
-    SwipeRefreshLayout swipeContainer;
-    @BindView(R.id.recycler_view)
-    RecyclerView itemCategoriesList;
 
-    ArrayList<Object> dataset = new ArrayList<>();
-//    ArrayList<ShopItem> datasetShopItems = new ArrayList<>();
+    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.recycler_view) RecyclerView itemCategoriesList;
 
-//    @Inject
-//    ItemCategoryService itemCategoryService;
-    GridLayoutManager layoutManager;
-    Adapter listAdapter;
+    private ArrayList<Object> dataset = new ArrayList<>();
+
+
+    private GridLayoutManager layoutManager;
+    private Adapter listAdapter;
 
     @Inject
     ShopItemService shopItemService;
@@ -240,7 +235,7 @@ public class ItemsInShopFragment extends Fragment implements
                     {
                         offset_item = offset_item + limit_item;
 
-                        makeRequestShopItem(false,false);
+                        makeRequestShopItem(false);
                     }
                 }
             }
@@ -258,7 +253,7 @@ public class ItemsInShopFragment extends Fragment implements
 
     @Override
     public void onRefresh() {
-        makeRequestShopItem(true,true);
+        makeRequestShopItem(true);
     }
 
 
@@ -355,13 +350,15 @@ public class ItemsInShopFragment extends Fragment implements
 
 
 
-    private void makeRequestShopItem(final boolean clearDataset, boolean resetOffset)
+    private void makeRequestShopItem(final boolean clearDataset)
     {
 
-        if(resetOffset)
+        if(clearDataset)
         {
             offset_item = 0;
         }
+
+
 
         String current_sort = "";
         current_sort = PrefSortItemsInShop.getSort(getContext()) + " " + PrefSortItemsInShop.getAscending(getContext());
@@ -381,8 +378,8 @@ public class ItemsInShopFragment extends Fragment implements
                     null,null,
                     null,null,null,
                     null,current_sort,
-                    limit_item,offset_item,false,
-                    true);
+                    limit_item,offset_item,
+                    clearDataset, false);
 
         }
         else
@@ -395,9 +392,11 @@ public class ItemsInShopFragment extends Fragment implements
                     null,null,null,null,null,null,null,null,null,
                     null,null,null,
                     searchQuery,current_sort,
-                    limit_item,offset_item,false,
-                    true);
+                    limit_item,offset_item,
+                    clearDataset, false);
         }
+
+
 
 
         endPointCall.enqueue(new Callback<ShopItemEndPoint>() {
@@ -430,10 +429,14 @@ public class ItemsInShopFragment extends Fragment implements
 
                         fetched_items_count = 0;
                         dataset.add(headerItem);
+
+                        item_count_item = response.body().getItemCount();
                     }
+
+
+
                     dataset.addAll(response.body().getResults());
                     fetched_items_count = fetched_items_count + response.body().getResults().size();
-                    item_count_item = response.body().getItemCount();
                     listAdapter.notifyDataSetChanged();
                 }
 

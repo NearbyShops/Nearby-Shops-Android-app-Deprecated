@@ -75,7 +75,7 @@ import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.RateReviewDialog;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.ShopDetailFragment;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ShopImageListFragment;
-import org.nearbyshops.enduserappnew.Lists.ShopsAvailableForItem.AdapterBackup;
+import org.nearbyshops.enduserappnew.Lists.ShopsAvailableForItem.Backup.AdapterBackup;
 import org.nearbyshops.enduserappnew.Lists.ShopsAvailableForItem.ShopItemFragment;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewAdapter;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviewStats;

@@ -24,6 +24,8 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyFABClick;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyIndicatorChanged;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortItems;
 
@@ -51,6 +53,10 @@ public class ItemsDatabase extends AppCompatActivity implements NotifyIndicatorC
 
 
 
+    @BindView(R.id.service_name) TextView serviceName;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +75,10 @@ public class ItemsDatabase extends AppCompatActivity implements NotifyIndicatorC
                         .setAction("Action", null).show();
             }
         });
-     */   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+     */
+
+
+//     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -82,9 +91,16 @@ public class ItemsDatabase extends AppCompatActivity implements NotifyIndicatorC
         }
 
 
+
+
+
+        setMarketName();
         setupSlidingLayer();
 //        setFabBackground();
     }
+
+
+
 
 
 
@@ -124,6 +140,18 @@ public class ItemsDatabase extends AppCompatActivity implements NotifyIndicatorC
 
     }
 
+
+
+
+
+    void setMarketName()
+    {
+
+        if(PrefServiceConfig.getServiceName(this)!=null)
+        {
+            serviceName.setText(PrefServiceConfig.getServiceName(this));
+        }
+    }
 
 
 

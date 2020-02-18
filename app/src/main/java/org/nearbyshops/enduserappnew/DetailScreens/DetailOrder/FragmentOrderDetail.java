@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -26,8 +27,12 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -67,6 +72,12 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     private boolean isDestroyed;
 
 
+    @BindView(R.id.service_name)
+    TextView serviceName;
+
+
+
+
 
     public FragmentOrderDetail() {
         DaggerComponentBuilder.getInstance()
@@ -84,6 +95,8 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         View rootView = inflater.inflate(R.layout.fragment_order_detail_screen, container, false);
 
 
+        ButterKnife.bind(this,rootView);
+
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
@@ -97,6 +110,11 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
             makeRefreshNetworkCall();
         }
 
+
+
+
+        serviceName.setVisibility(View.VISIBLE);
+        serviceName.setText("Order ID : " + order.getOrderID());
 
 
 

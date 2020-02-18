@@ -58,6 +58,9 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
 
 
+    @BindView(R.id.shop_name) TextView shopName;
+
+
     @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
 
 
@@ -360,14 +363,23 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
 
 
+
+
     private void bindAllFields()
     {
+        bindToolbarHeader();
         bindBalance();
         bindShopOpenStatus();
         bindNotice();
     }
 
 
+
+    private void bindToolbarHeader()
+    {
+        Shop shop = PrefShopHome.getShop(getActivity());
+        shopName.setText(shop.getShopName());
+    }
 
 
 

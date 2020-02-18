@@ -25,7 +25,7 @@
 
 
             <LinearLayout
-                android:background="@color/phonographyBlue"
+                android:background="@color/buttonColor"
                 android:paddingBottom="7dp"
                 android:paddingTop="7dp"
                 android:orientation="horizontal"

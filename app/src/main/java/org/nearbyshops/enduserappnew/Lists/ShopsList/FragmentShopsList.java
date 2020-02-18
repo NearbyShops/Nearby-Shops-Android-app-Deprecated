@@ -240,7 +240,9 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-        void setupSwipeContainer()
+
+
+        private void setupSwipeContainer()
         {
             if(swipeContainer!=null) {
 

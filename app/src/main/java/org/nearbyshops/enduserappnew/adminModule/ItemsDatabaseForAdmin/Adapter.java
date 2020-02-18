@@ -77,6 +77,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         View view = null;
 
 
+
         if(viewType == VIEW_TYPE_ITEM_CATEGORY)
         {
             return ViewHolderItemCategoryAdmin.create(parent,context,fragment,this,selectedItems,selectedItemCategories);
@@ -102,9 +103,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return ViewHolderEmptyScreenFullScreen.create(parent,context);
         }
-
-
-
 
 
         return null;

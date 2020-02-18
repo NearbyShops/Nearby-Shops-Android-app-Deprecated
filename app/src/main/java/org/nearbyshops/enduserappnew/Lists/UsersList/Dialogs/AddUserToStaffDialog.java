@@ -195,12 +195,10 @@ public class AddUserToStaffDialog extends DialogFragment {
 
 
 
+
+
+
     @BindView(R.id.progress_bar_add_member) ProgressBar progressAddMember;
-
-
-
-
-
 
 
 

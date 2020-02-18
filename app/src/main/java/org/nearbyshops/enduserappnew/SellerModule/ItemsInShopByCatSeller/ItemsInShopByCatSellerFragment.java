@@ -54,29 +54,25 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
         ViewHolderShopItemSeller.ShopItemUpdates, ViewHolderItemCategory.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch {
 
 
-//    Map<Integer,ShopItem> shopItemMapTemp = new HashMap<>();
+
 
     private boolean isDestroyed = false;
-//    @State
-    boolean show = true;
 
 
-    private int item_count_item_category = 0;
 
     private int limit_item = 10;
     private int offset_item = 0;
     private int item_count_item;
     private int fetched_items_count = 0;
 
-    @BindView(R.id.swipe_container)
-    SwipeRefreshLayout swipeContainer;
-    @BindView(R.id.recycler_view)
-    RecyclerView itemCategoriesList;
+    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.recycler_view) RecyclerView itemCategoriesList;
+
+
 
     private ArrayList<Object> dataset = new ArrayList<>();
     private ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
     private ArrayList<ShopItem> datasetShopItems = new ArrayList<>();
-
 
 
 
@@ -89,9 +85,6 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
 
     @Inject
     ShopItemService shopItemService;
-
-//    @Inject
-//    ItemService itemService;
 
 
 
@@ -132,11 +125,6 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
         if(savedInstanceState ==null)
         {
             makeRefreshNetworkCall();
-        }
-        else
-        {
-            // add this at every rotation
-//            listAdapter.shopItemMap.putAll(shopItemMapTemp);
         }
 
 
@@ -241,7 +229,7 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
                     if((offset_item+limit_item)<=item_count_item)
                     {
                         offset_item = offset_item + limit_item;
-                        makeRequestShopItem(false,false);
+                        makeRequestShopItem(false);
                     }
 
                 }
@@ -260,7 +248,7 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
     public void onRefresh() {
 
         makeRequestItemCategory();
-        makeRequestShopItem(true,true);
+        makeRequestShopItem(true);
     }
 
 
@@ -381,12 +369,9 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
                 {
 
                     ItemCategoryEndPoint endPoint = response.body();
-                    item_count_item_category = endPoint.getItemCount();
-
+//                    item_count_item_category = endPoint.getItemCount();
                     datasetCategory.clear();
                     datasetCategory.addAll(endPoint.getResults());
-
-
                 }
 
 
@@ -505,17 +490,17 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
 
 
 
-    private void makeRequestShopItem(final boolean clearDataset, boolean resetOffset)
+    private void makeRequestShopItem(final boolean clearDataset)
     {
 
-        if(resetOffset)
+        if(clearDataset)
         {
             offset_item = 0;
         }
 
 
-        String current_sort = "";
 
+        String current_sort = "";
         current_sort = PrefSortItemsInShop.getSort(getContext()) + " " + PrefSortItemsInShop.getAscending(getContext());
 
 
@@ -537,8 +522,9 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
                     null,null,
                     null,null,null,
                     null,current_sort,
-                    limit_item,offset_item,false,
-                    true);
+                    limit_item,offset_item,
+                    clearDataset, false
+            );
 
         }
         else
@@ -551,9 +537,12 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
                     null,null,null,null,null,null,null,null,null,
                     null,null,null,
                     searchQuery,current_sort,
-                    limit_item,offset_item,false,
-                    true);
+                    limit_item,offset_item,
+                    clearDataset, false
+            );
         }
+
+
 
 
         endPointCall.enqueue(new Callback<ShopItemEndPoint>() {
@@ -604,7 +593,7 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
 
                         dataset.addAll(response.body().getResults());
                         fetched_items_count = fetched_items_count + response.body().getResults().size();
-                        item_count_item = response.body().getItemCount();
+//                        item_count_item = response.body().getItemCount();
                         listAdapter.notifyDataSetChanged();
                     }
 

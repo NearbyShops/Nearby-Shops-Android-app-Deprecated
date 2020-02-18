@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.ShopsAvailableForItem;
+package org.nearbyshops.enduserappnew.Lists.ShopsAvailableForItem.Backup;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

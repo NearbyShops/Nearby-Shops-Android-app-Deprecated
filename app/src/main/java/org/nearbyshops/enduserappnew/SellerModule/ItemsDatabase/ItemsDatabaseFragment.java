@@ -73,12 +73,13 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    Map<Integer, ShopItem> shopItemMapTemp = new HashMap<>();
+
+
+    private Map<Integer, ShopItem> shopItemMapTemp = new HashMap<>();
 
     private boolean isDestroyed = false;
-    private boolean show = true;
+    private  boolean show;
 
-    private int item_count_item_category = 0;
 
     private int limit_item = 10;
     private int offset_item = 0;
@@ -87,15 +88,10 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-
-    @BindView(R.id.swipe_container)
-    SwipeRefreshLayout swipeContainer;
-    @BindView(R.id.recycler_view)
-    RecyclerView itemCategoriesList;
+    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.recycler_view) RecyclerView itemCategoriesList;
 
     private ArrayList<Object> dataset = new ArrayList<>();
-//    ArrayList<ItemCategory> datasetCategory = new ArrayList<>();
-//    ArrayList<Item> datasetItems = new ArrayList<>();
 
 
     private GridLayoutManager layoutManager;

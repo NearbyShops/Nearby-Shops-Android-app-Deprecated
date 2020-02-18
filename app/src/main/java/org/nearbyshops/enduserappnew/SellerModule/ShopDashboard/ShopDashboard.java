@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,12 +24,18 @@ import org.nearbyshops.enduserappnew.SellerModule.QuickStockEditor.QuickStockEdi
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ShopDashboard extends AppCompatActivity {
 
+
+
+
     public static final String SHOP_ID_INTENT_KEY = "shop_id_key";
+    @BindView(R.id.shop_name) TextView shopName;
+
 
 
     @Override
@@ -37,13 +44,22 @@ public class ShopDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_shop_home);
         ButterKnife.bind(this);
 
-
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setupNotifications();
+
+
+        bindToolbarHeader();
+    }
+
+
+
+    private void bindToolbarHeader()
+    {
+        Shop shop = PrefShopHome.getShop(this);
+        shopName.setText(shop.getShopName());
     }
 
 
