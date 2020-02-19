@@ -33,13 +33,18 @@ public class PrefSortItemsInShop {
     }
 
 
+
+
+
+
     public static String getSort(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String sort_by = sharedPref.getString("sort_shop_items_by_shop", SlidingLayerSortItemsInShop.SORT_BY_SHOP_COUNT);
-
-        return sort_by;
+        return sharedPref.getString("sort_shop_items_by_shop", SlidingLayerSortItemsInShop.SORT_BY_SHOP_COUNT);
     }
+
+
+
 
 
 
@@ -69,10 +74,10 @@ public class PrefSortItemsInShop {
             context = MyApplication.getAppContext();
         }
 
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        String descending = sharedPref.getString("sort_descending_shop_items_by_shop", SlidingLayerSortItemsInShop.SORT_ASCENDING);
 
-        return descending;
+
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        return sharedPref.getString("sort_descending_shop_items_by_shop", SlidingLayerSortItemsInShop.SORT_ASCENDING);
     }
 
 }

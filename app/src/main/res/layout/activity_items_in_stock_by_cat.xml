@@ -31,7 +31,7 @@
         <LinearLayout
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
-            android:background="@color/cyan900"
+            android:background="@color/colorPrimary"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

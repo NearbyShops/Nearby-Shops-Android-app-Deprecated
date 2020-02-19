@@ -112,16 +112,13 @@ public interface ShopService {
     @GET("/api/v1/Shop/QuerySimple")
     Call<ShopEndPoint> getShopListSimple(
             @Query("UnderReview")Boolean underReview,
-            @Query("Enabled")Boolean enabled,
-            @Query("Waitlisted") Boolean waitlisted,
-            @Query("FilterByVisibility") Boolean filterByVisibility,
+            @Query("Enabled")Boolean enabled, @Query("Waitlisted") Boolean waitlisted,
             @Query("latCenter")Double latCenter, @Query("lonCenter")Double lonCenter,
-            @Query("deliveryRangeMax")Double deliveryRangeMax,
-            @Query("deliveryRangeMin")Double deliveryRangeMin,
-            @Query("proximity")Double proximity,
             @Query("SearchString") String searchString,
             @Query("SortBy") String sortBy,
-            @Query("Limit") Integer limit, @Query("Offset") int offset
+            @Query("Limit") int limit, @Query("Offset") int offset,
+            @Query("GetRowCount")boolean getRowCount,
+            @Query("MetadataOnly")boolean getOnlyMetaData
     );
 
 

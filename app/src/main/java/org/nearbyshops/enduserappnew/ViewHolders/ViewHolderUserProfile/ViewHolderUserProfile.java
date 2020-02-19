@@ -141,7 +141,7 @@ public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
 
 
 
-    void logout()
+    private void logout()
     {
         // log out
         PrefLogin.saveUserProfile(null,context);
@@ -162,7 +162,7 @@ public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
 
 
 
-    void showToastMessage(String message)
+    private void showToastMessage(String message)
     {
         Toast.makeText(context,message, Toast.LENGTH_SHORT).show();
     }

@@ -200,7 +200,7 @@ public class ItemsByCatFragment extends Fragment implements
 
         if(getActivity() instanceof ShowFragment)
         {
-            ((ShowFragment) getActivity()).showProfileFragment();
+            ((ShowFragment) getActivity()).showProfileFragment(false);
         }
     }
 

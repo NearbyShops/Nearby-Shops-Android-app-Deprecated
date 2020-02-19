@@ -378,7 +378,11 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
     private void bindToolbarHeader()
     {
         Shop shop = PrefShopHome.getShop(getActivity());
-        shopName.setText(shop.getShopName());
+
+        if(shop!=null)
+        {
+            shopName.setText(shop.getShopName());
+        }
     }
 
 

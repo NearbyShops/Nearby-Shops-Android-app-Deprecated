@@ -155,7 +155,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 }
                 else if(menuItem.getItemId()== R.id.bottom_tab_profile)
                 {
-                    showProfileFragment();
+                    showProfileFragment(false);
                 }
 
 
@@ -282,7 +282,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
     @Override
     public void loggedOut() {
-        showProfileFragment();
+        showProfileFragment(true);
     }
 
 
@@ -380,25 +380,30 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
     @Override
-    public void showProfileFragment() {
+    public void showProfileFragment(boolean refreshFragment) {
 
         if (PrefGeneral.getMultiMarketMode(this)) {
             // no market selected therefore show available markets in users area
 
-//            if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
-//
-//
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-//                        .commit();
-//            }
 
+            if(refreshFragment)
+            {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
+                        .commit();
+            }
+            else
+            {
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                    .commit();
+                if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
+
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
+                            .commit();
+                }
+            }
 
 
         } else {

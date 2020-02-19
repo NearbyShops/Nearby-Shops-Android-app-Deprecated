@@ -48,25 +48,27 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    Location location;
+
+    private Location location;
 
     @Inject
     ShopService shopService;
 
-    RecyclerView recyclerView;
-    Adapter adapter;
+    private RecyclerView recyclerView;
+    private Adapter adapter;
 
     public List<Object> dataset = new ArrayList<>();
 
-    GridLayoutManager layoutManager;
-    SwipeRefreshLayout swipeContainer;
+    private GridLayoutManager layoutManager;
+    private SwipeRefreshLayout swipeContainer;
 
 
     final private int limit = 5;
-    int offset = 0;
-    int item_count = 0;
+    private int offset = 0;
+    private int item_count = 0;
 
-    boolean isDestroyed;
+
+    private boolean isDestroyed;
 
     public static final int MODE_ENABLED = 1;
     public static final int MODE_DISABLED = 2;
@@ -181,7 +183,7 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
                     if((offset+limit)<=item_count)
                     {
                         offset = offset + limit;
-                        makeNetworkCall(false,false);
+                        makeNetworkCall(false);
                     }
                 }
 
@@ -193,7 +195,7 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onRefresh() {
-        makeNetworkCall(true,true);
+        makeNetworkCall(true);
     }
 
 
@@ -219,9 +221,9 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-    private void makeNetworkCall(final boolean clearDataset, final boolean resetOffset)
+    private void makeNetworkCall(final boolean clearDataset)
     {
-        if(resetOffset)
+        if(clearDataset)
         {
             offset = 0;
         }
@@ -263,10 +265,9 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
             call = shopService.getShopListSimple(
                     true,
                     null,null,
-                    null,
                     latitude,longitude,
-                    null,null, null,
-                    searchQuery,current_sort,limit,offset);
+                    searchQuery,current_sort,limit,offset,
+                    clearDataset,false);
         }
         else if(getArguments().getInt(ARG_SECTION_NUMBER)==MODE_ENABLED)
         {
@@ -274,10 +275,12 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
             call = shopService.getShopListSimple(
                     null,
                     true,null,
-                    null,
                     latitude,longitude,
-                    null,null, null,
-                    searchQuery,current_sort,limit,offset);
+                    searchQuery,current_sort,
+                    limit,offset,
+                    clearDataset,false
+            );
+
 
         }
         else if(getArguments().getInt(ARG_SECTION_NUMBER) == MODE_DISABLED)
@@ -286,10 +289,11 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
             call = shopService.getShopListSimple(
                     null,
                     false,false,
-                    null,
                     latitude,longitude,
-                    null,null,null,
-                    searchQuery,current_sort,limit,offset);
+                    searchQuery,current_sort,
+                    limit,offset,
+                    clearDataset,false
+            );
         }
         else if (getArguments().getInt(ARG_SECTION_NUMBER) == MODE_WAITLISTED)
         {
@@ -297,10 +301,12 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
             call = shopService.getShopListSimple(
                     null,
                     false,true,
-                    null,
                     latitude,longitude,
-                    null,null,null,
-                    searchQuery,current_sort,limit,offset);
+                    searchQuery,current_sort,
+                    limit,offset,
+                    clearDataset,false
+            );
+
         }
 
 
@@ -329,12 +335,15 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
 
                     if(response.code()==200)
                     {
-                        item_count = response.body().getItemCount();
+
 
                         if(clearDataset)
                         {
                             dataset.clear();
+                            item_count = response.body().getItemCount();
                         }
+
+
 
                         if(response.body().getResults()!=null)
                         {
@@ -352,6 +361,21 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
 
 //                showToastMessage("Status Code : " + String.valueOf(response.code())
 //                + "\nDataset Size : " + dataset.size() + " Item Count : " + response.body().getItemCount());
+
+
+
+
+
+
+                if(offset + limit >= item_count)
+                {
+                    adapter.setLoadMore(false);
+                }
+                else
+                {
+                    adapter.setLoadMore(true);
+                }
+
 
                 swipeContainer.setRefreshing(false);
             }

@@ -55,7 +55,7 @@
 
 
         <LinearLayout
-            android:background="@color/colorAccent"
+            android:background="@color/colorPrimary"
             android:paddingBottom="7dp"
             android:paddingTop="7dp"
             android:orientation="horizontal"

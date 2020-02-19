@@ -29,6 +29,7 @@ import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortIt
 import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SellerModule.ViewHolders.ViewHolderShopItemSeller;
+import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortItemsInShopSeller;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 
 import java.util.ArrayList;
@@ -361,7 +362,7 @@ public class ItemsInShopFragment extends Fragment implements
 
 
         String current_sort = "";
-        current_sort = PrefSortItemsInShop.getSort(getContext()) + " " + PrefSortItemsInShop.getAscending(getContext());
+        current_sort = PrefSortItemsInShopSeller.getSort(getContext()) + " " + PrefSortItemsInShopSeller.getAscending(getContext());
 
         Call<ShopItemEndPoint> endPointCall = null;
         Shop currentShop = PrefShopHome.getShop(getContext());
@@ -389,12 +390,17 @@ public class ItemsInShopFragment extends Fragment implements
             endPointCall = shopItemService.getShopItemEndpoint(
                     null,
                     currentShop.getShopID(),
-                    null,null,null,null,null,null,null,null,null,
+                    null,
+                    null,null,
+                    null,null,
+                    null,null,
+                    null,null,
                     null,null,null,
                     searchQuery,current_sort,
                     limit_item,offset_item,
                     clearDataset, false);
         }
+
 
 
 

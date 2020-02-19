@@ -44,11 +44,16 @@ public class SlidingLayerSortItemsInShopSeller extends Fragment {
     @BindView(R.id.sort_descending)
     TextView sort_descending;
 
-    String currentSort = SORT_BY_ITEM_AVAILABLE;
-    String currentAscending = SORT_DESCENDING;
 
-    int colorSelected = R.color.blueGrey800;
-    int colorSelectedAscending = R.color.gplus_color_2;
+
+    private String currentSort = SORT_BY_ITEM_AVAILABLE;
+    private String currentAscending = SORT_DESCENDING;
+
+
+    private int colorSelected = R.color.blueGrey800;
+    private int colorSelectedAscending = R.color.gplus_color_2;
+
+
 
 
     public static String SORT_BY_ITEM_AVAILABLE = ShopItem.AVAILABLE_ITEM_QUANTITY;
@@ -74,7 +79,7 @@ public class SlidingLayerSortItemsInShopSeller extends Fragment {
 
 
 
-    void loadDefaultSort() {
+    private void loadDefaultSort() {
 //        String[] sort_options = PrefSortShops.getSort(getActivity());
 
         currentSort = PrefSortItemsInShopSeller.getSort(getActivity());
@@ -231,7 +236,7 @@ public class SlidingLayerSortItemsInShopSeller extends Fragment {
 
 
 
-    void clearSelectionSort()
+    private void clearSelectionSort()
     {
         sort_by_available.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
         sort_by_price.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
@@ -247,7 +252,7 @@ public class SlidingLayerSortItemsInShopSeller extends Fragment {
 
 
 
-    void clearSelectionAscending()
+    private void clearSelectionAscending()
     {
         sort_ascending.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
         sort_descending.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
