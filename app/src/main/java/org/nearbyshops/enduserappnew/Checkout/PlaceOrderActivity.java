@@ -26,6 +26,7 @@ import org.nearbyshops.enduserappnew.Lists.DeliveryAddress.DeliveryAddressActivi
 import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
@@ -86,6 +87,9 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
     public final static String CART_STATS_INTENT_KEY = "cart_stats_intent_key";
 
+    @BindView(R.id.service_name) TextView serviceName;
+
+
 
     public PlaceOrderActivity() {
 
@@ -104,7 +108,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // findViewByID'// STOPSHIP: 11/6/16
 
@@ -156,6 +160,16 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
             addressContainer.setVisibility(View.GONE);
 
         }
+
+
+
+
+        if(PrefServiceConfig.getServiceName(this)!=null) {
+            serviceName.setVisibility(View.VISIBLE);
+            serviceName.setText(PrefServiceConfig.getServiceName(this));
+        }
+
+
 
         if(cartStatsFromNetworkCall==null)
         {

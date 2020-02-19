@@ -28,9 +28,11 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifyLocation;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChanged;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeTwo;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.SlidingLayerSort.PrefSortShops;
 
 import java.util.ArrayList;
@@ -239,25 +241,10 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
         Double longitude = null;
 
 
-        if(getActivity() instanceof GetLocation)
-        {
-            this.location = ((GetLocation)getActivity()).getLocation();
-        }
+        latitude = PrefLocation.getLatitude(getActivity());
+        longitude = PrefLocation.getLongitude(getActivity());
 
 
-
-        if(location!=null)
-        {
-            showToastMessage("Location" + String.valueOf(this.location.getLongitude()) + " : " + String.valueOf(this.location.getLatitude()));
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
-        }
-
-
-//        latitude = UtilityLocationServices.getLatitude(getActivity());
-//        longitude = UtilityLocationServices.getLongitude(getActivity());
-
-//        showToastMessage("Latitude : " + UtilityLocationServices.getLatitude(getActivity()) + " : Longitude " + UtilityLocationServices.getLongitude(getActivity()));
 
 
         if(getArguments().getInt(ARG_SECTION_NUMBER)==MODE_NEW)
@@ -329,42 +316,42 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
                     return;
                 }
 
-//                if(response.body()!= null)
-//                {
+
+                if(response.code()==200)
+                {
 
 
-                    if(response.code()==200)
+                    if(clearDataset)
                     {
-
-
-                        if(clearDataset)
-                        {
-                            dataset.clear();
-                            item_count = response.body().getItemCount();
-                        }
-
-
-
-                        if(response.body().getResults()!=null)
-                        {
-                            dataset.addAll(response.body().getResults());
-                            adapter.notifyDataSetChanged();
-                            notifyTitleChanged();
-                        }
-
-
-                    }
-                    else
-                    {
-                        showToastMessage("Failed code : " + String.valueOf(response.code()));
+                        dataset.clear();
+                        item_count = response.body().getItemCount();
                     }
 
-//                showToastMessage("Status Code : " + String.valueOf(response.code())
-//                + "\nDataset Size : " + dataset.size() + " Item Count : " + response.body().getItemCount());
+
+
+                    if(response.body().getResults()!=null)
+                    {
+                        dataset.addAll(response.body().getResults());
+                        adapter.notifyDataSetChanged();
+                        notifyTitleChanged();
+                    }
+
+
+                }
+                else
+                {
+                    showToastMessage("Failed code : " + String.valueOf(response.code()));
+                }
+
+
+                if(item_count==0)
+                {
+                    dataset.add(EmptyScreenDataFullScreen.emptyScreenShopsListForAdmin());
+                }
 
 
 
-
+                adapter.notifyDataSetChanged();
 
 
                 if(offset + limit >= item_count)
@@ -388,8 +375,15 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
                     return;
                 }
 
-                showToastMessage("Network Request failed !");
+
+
+//                showToastMessage("Network Request failed !");
                 swipeContainer.setRefreshing(false);
+
+
+                dataset.clear();
+                dataset.add(EmptyScreenDataFullScreen.getOffline());
+                adapter.notifyDataSetChanged();
 
             }
         });

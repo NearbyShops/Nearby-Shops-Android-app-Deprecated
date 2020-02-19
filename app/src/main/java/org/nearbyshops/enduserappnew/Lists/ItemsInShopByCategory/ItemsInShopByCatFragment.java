@@ -57,7 +57,7 @@ import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.ShopDetail;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.ShopDetailFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeOne;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;

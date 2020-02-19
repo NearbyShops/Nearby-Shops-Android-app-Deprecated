@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.DetailScreens.DetailShop;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
@@ -14,6 +15,7 @@ import android.widget.*;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
 import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -41,12 +43,15 @@ import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
 import org.nearbyshops.enduserappnew.Login.Login;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ShopImageList;
 import org.nearbyshops.enduserappnew.ShopReview.ShopReviews;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -73,7 +78,7 @@ public class ShopDetailFragment extends Fragment
     public static final String TAG_JSON_STRING = "shop_json_string";
 
 
-//    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
 
 
     @Inject
@@ -148,6 +153,9 @@ public class ShopDetailFragment extends Fragment
 
     private ShopReview reviewForUpdate;
 
+    private ViewModelShop viewModelShop;
+    private ProgressDialog progressDialog;
+
 
 
 
@@ -204,55 +212,108 @@ public class ShopDetailFragment extends Fragment
         // Inflate the layout for this fragment
 
 
-        setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_shop_detail, container, false);
-        ButterKnife.bind(this,rootView);
+            setRetainInstance(true);
+            View rootView = inflater.inflate(R.layout.fragment_shop_detail, container, false);
+            ButterKnife.bind(this,rootView);
 
 
-        ratingBar_rate.setOnRatingBarChangeListener(this);
+            ratingBar_rate.setOnRatingBarChangeListener(this);
 
-//        setupSwipeContainer();
-
-
-        String shopJson = getActivity().getIntent().getStringExtra(TAG_JSON_STRING);
-        shop = UtilityFunctions.provideGson().fromJson(shopJson, Shop.class);
+            setupSwipeContainer();
 
 
-
-        toolbar.setTitle(shop.getShopName());
-
-
-//        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-//
-//        if(actionBar!=null)
-//        {
-//            actionBar.setTitle(shop.getShopName());
-//        }
+            String shopJson = getActivity().getIntent().getStringExtra(TAG_JSON_STRING);
+            shop = UtilityFunctions.provideGson().fromJson(shopJson, Shop.class);
 
 
 
+            toolbar.setTitle(shop.getShopName());
 
-        bindViews();
 
-
-        getShopImageCount();
+    //        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+    //
+    //        if(actionBar!=null)
+    //        {
+    //            actionBar.setTitle(shop.getShopName());
+    //        }
 
 
 
 
-        if (shop != null) {
-            checkUserReview();
-        }
+            bindViews();
+
+
+            getShopImageCount();
 
 
 
 
-        checkFavourite();
+            if (shop != null) {
+                checkUserReview();
+            }
 
+
+
+
+            checkFavourite();
+
+
+
+            viewModelShop = new ViewModelShop(MyApplication.application);
+
+
+            viewModelShop.getEvent().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+                @Override
+                public void onChanged(Integer integer) {
+
+                    if(integer == ViewModelShop.EVENT_SHOP_DETAILS_FETCHED)
+                    {
+                        if(progressDialog!=null)
+                        {
+                            progressDialog.dismiss();
+                        }
+
+                        swipeContainer.setRefreshing(false);
+                    }
+
+                }
+            });
+
+
+
+            viewModelShop.getShopLive().observe(getViewLifecycleOwner(), new Observer<Shop>() {
+                @Override
+                public void onChanged(Shop shop) {
+
+
+                    ShopDetailFragment.this.shop = shop;
+                    bindViews();
+                }
+            });
+
+
+
+        viewModelShop.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                showToastMessage(s);
+            }
+        });
+
+
+
+
+
+        makeRefreshNetworkCall();
 
 
         return rootView;
     }
+
+
+
+
+
 
 
 
@@ -276,24 +337,61 @@ public class ShopDetailFragment extends Fragment
 
 
 
-//    void setupSwipeContainer()
-//    {
-//        if(swipeContainer!=null) {
-//
-//            swipeContainer.setOnRefreshListener(this);
-//            swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-//                    android.R.color.holo_green_light,
-//                    android.R.color.holo_orange_light,
-//                    android.R.color.holo_red_light);
-//        }
-//
-//    }
+    private void setupSwipeContainer()
+    {
+        if(swipeContainer!=null) {
+
+            swipeContainer.setOnRefreshListener(this);
+            swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                    android.R.color.holo_green_light,
+                    android.R.color.holo_orange_light,
+                    android.R.color.holo_red_light);
+        }
+
+    }
+
+
+
+
 
 
     @Override
     public void onRefresh() {
 //        swipeContainer.setRefreshing(false);
+
+
+        viewModelShop.makeNetworkCallShop(shop.getShopID());
+
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Please wait ... getting Shop Details !");
+        progressDialog.show();
+
+
     }
+
+
+
+
+
+    private void makeRefreshNetworkCall()
+    {
+        swipeContainer.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeContainer.setRefreshing(true);
+
+                if(!isVisible())
+                {
+                    swipeContainer.setRefreshing(false);
+                    return;
+                }
+
+                onRefresh();
+            }
+        });
+    }
+
+
 
 
 

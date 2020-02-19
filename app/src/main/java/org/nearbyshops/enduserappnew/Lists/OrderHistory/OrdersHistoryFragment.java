@@ -146,7 +146,7 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
+        if(PrefServiceConfig.getServiceName(getActivity())!=null)
         {
             serviceName.setVisibility(View.VISIBLE);
             serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));

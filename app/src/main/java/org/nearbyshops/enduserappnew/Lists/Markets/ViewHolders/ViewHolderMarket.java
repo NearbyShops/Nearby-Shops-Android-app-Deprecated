@@ -41,10 +41,10 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
     @BindView(R.id.address) TextView serviceAddress;
 //    @BindView(R.id.indicator_category) TextView indicatorCategory;
 //    @BindView(R.id.indicator_verified) TextView indicatorVerified;
-    @BindView(R.id.distance) TextView distance;
+//    @BindView(R.id.distance) TextView distance;
     @BindView(R.id.rating) TextView rating;
     @BindView(R.id.rating_count) TextView ratingCount;
-    @BindView(R.id.description) TextView description;
+//    @BindView(R.id.description) TextView description;
     @BindView(R.id.logo) ImageView serviceLogo;
 
     @BindView(R.id.progress_bar_select) ProgressBar progressBarSelect;
@@ -68,7 +68,7 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
     {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_market, parent, false);
+                .inflate(R.layout.list_item_market_new, parent, false);
 
         return new ViewHolderMarket(view,parent,context,subscriber);
     }
@@ -188,10 +188,8 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 
 
 
-        distance.setText("Distance : " + String.format("%.2f",configurationGlobal.getRt_distance()));
-//                holder.rating.setText(String.format("%.2f",));
-
-        description.setText(configurationGlobal.getDescriptionShort());
+//        distance.setText("Distance : " + String.format("%.2f",configurationGlobal.getRt_distance()));
+//        description.setText(configurationGlobal.getDescriptionShort());
 
 
         if(configurationGlobal.getRt_rating_count()==0)

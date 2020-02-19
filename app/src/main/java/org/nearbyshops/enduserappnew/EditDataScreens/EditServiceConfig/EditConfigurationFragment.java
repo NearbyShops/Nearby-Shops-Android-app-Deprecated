@@ -218,7 +218,7 @@ public class EditConfigurationFragment extends Fragment {
 
 
 
-    void setupSpinners()
+    private void setupSpinners()
     {
         // setup spinners
 
@@ -294,9 +294,12 @@ public class EditConfigurationFragment extends Fragment {
 
 
 
-    void loadImage(String imagePath) {
 
-        String iamgepath = PrefGeneral.getServiceURL(getContext()) + "/api/serviceconfiguration/Image/" + imagePath;
+
+
+    private void loadImage(String imagePath) {
+
+        String iamgepath = PrefGeneral.getServiceURL(getContext()) + "/api/ServiceConfiguration/Image/" + imagePath;
 
         Picasso.get()
                 .load(iamgepath)
@@ -414,7 +417,8 @@ public class EditConfigurationFragment extends Fragment {
 
 
 
-    void update()
+
+    private void update()
     {
 
         if(isImageChanged)
@@ -453,7 +457,10 @@ public class EditConfigurationFragment extends Fragment {
 
 
 
-    void bindDataToViews()
+
+
+
+    private void bindDataToViews()
     {
         if(serviceConfiguration!=null) {
 
@@ -484,7 +491,10 @@ public class EditConfigurationFragment extends Fragment {
     }
 
 
-    void getDataFromViews()
+
+
+
+    private void getDataFromViews()
     {
         if(serviceConfiguration==null)
         {
@@ -795,8 +805,10 @@ public class EditConfigurationFragment extends Fragment {
 
 
 
+
+
     // upload image after being picked up
-    void startCropActivity(Uri sourceUri, Context context) {
+    private void startCropActivity(Uri sourceUri, Context context) {
 
 
 

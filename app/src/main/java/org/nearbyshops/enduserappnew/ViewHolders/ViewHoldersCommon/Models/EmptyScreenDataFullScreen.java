@@ -56,6 +56,18 @@ public class EmptyScreenDataFullScreen {
 
 
 
+    public static EmptyScreenDataFullScreen emptyScreenShopsListForAdmin()
+    {
+        EmptyScreenDataFullScreen data = new EmptyScreenDataFullScreen();
+        data.setTitle("No Shops Here !");
+        data.setShowDesignedByFreepik(false);
+        data.setMessage("Swipe right or left to see more shops !");
+        data.setDrawableResource(R.drawable.ic_home_black_24dp);
+
+        return data;
+    }
+
+
 
     public static EmptyScreenDataFullScreen emptyScreenDeliveryAddress()
     {

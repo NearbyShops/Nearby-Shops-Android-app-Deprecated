@@ -12,6 +12,8 @@ import com.google.gson.Gson;
 import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 
 import java.util.ArrayList;
@@ -28,13 +30,21 @@ public class ViewModelShop extends AndroidViewModel {
 
     private MutableLiveData<List<Object>> datasetLive;
     private List<Object> dataset;
+
+
+    private MutableLiveData<Shop> shopLive;
+    private Shop shop;
+
     private MutableLiveData<Integer> event;
     private MutableLiveData<String> message;
 
 
+
+
     public static int EVENT_BECOME_A_SELLER_SUCCESSFUL = 1;
-    public static int EVENT_ = 2;
-    public static int EVENT_NETWORK_FAILED = 3;
+    public static int EVENT_SHOP_DETAILS_FETCHED = 2;
+    public static int EVENT_ = 20;
+    public static int EVENT_NETWORK_FAILED = 21;
 
 
 
@@ -60,6 +70,9 @@ public class ViewModelShop extends AndroidViewModel {
         message = new MutableLiveData<>();
         datasetLive = new MutableLiveData<>();
         dataset = new ArrayList<>();
+
+        shopLive = new MutableLiveData<>();
+        shop = new Shop();
 
 
         DaggerComponentBuilder.getInstance()
@@ -95,6 +108,12 @@ public class ViewModelShop extends AndroidViewModel {
 
         return message;
     }
+
+
+    public MutableLiveData<Shop> getShopLive() {
+        return shopLive;
+    }
+
 
 
 
@@ -134,6 +153,49 @@ public class ViewModelShop extends AndroidViewModel {
         });
 
     }
+
+
+
+
+
+    public void makeNetworkCallShop(int shopID)
+    {
+        Call<Shop> call = shopService.getShopDetails(
+                shopID,
+                PrefLocation.getLatitude(getApplication()),
+                PrefLocation.getLongitude(getApplication())
+        );
+
+
+        call.enqueue(new Callback<Shop>() {
+            @Override
+            public void onResponse(Call<Shop> call, Response<Shop> response) {
+
+                if(response.code()==200 && response.body()!=null)
+                {
+//                    order.setShop(response.body());
+//                    adapter.notifyItemChanged(0);
+
+
+                    shopLive.postValue(response.body());
+                    event.postValue(ViewModelShop.EVENT_SHOP_DETAILS_FETCHED);
+
+                }
+                else
+                {
+                    message.postValue("Failed Code : " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Shop> call, Throwable t) {
+
+                event.postValue(ViewModelShop.EVENT_NETWORK_FAILED);
+            }
+        });
+    }
+
+
 
 
 }

@@ -285,7 +285,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
         offset = 0;
         makeNetworkCall(true);
-        makeNetworkCallShop();
+//        makeNetworkCallShop();
 
 
         System.out.println("Dataset Size onRefresh() : " + String.valueOf(dataset.size()));
@@ -317,9 +317,6 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
 
 
-
-    @Inject
-    ShopService shopService;
 
     private void makeNetworkCall(final boolean clearDataset)
     {
@@ -395,35 +392,6 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     }
 
 
-
-
-
-    private void makeNetworkCallShop()
-    {
-        Call<Shop> call = shopService.getShopDetails(
-          order.getShopID(),
-                PrefLocation.getLatitude(getActivity()),
-                PrefLocation.getLongitude(getActivity())
-        );
-
-
-        call.enqueue(new Callback<Shop>() {
-            @Override
-            public void onResponse(Call<Shop> call, Response<Shop> response) {
-
-                if(response.code()==200 && response.body()!=null)
-                {
-                    order.setShop(response.body());
-                    adapter.notifyItemChanged(0);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Shop> call, Throwable t) {
-
-            }
-        });
-    }
 
 
 

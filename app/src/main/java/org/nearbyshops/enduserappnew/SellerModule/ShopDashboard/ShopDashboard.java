@@ -8,7 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -19,7 +18,7 @@ import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrderHistory;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.SellerModule.OrdersInventory.HomeDeliveryInventory.HomeDelivery;
 import org.nearbyshops.enduserappnew.SellerModule.OrdersInventory.PickFromShopInventory.PickFromShopInventory;
-import org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.SellerModule.QuickStockEditor.QuickStockEditor;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;

@@ -85,15 +85,11 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-    @BindView(R.id.profile_photo)
-    ImageView shopProfilePhoto;
-    @BindView(R.id.image_count)
-    TextView imagesCount;
+    @BindView(R.id.profile_photo) ImageView shopProfilePhoto;
+    @BindView(R.id.image_count) TextView imagesCount;
 
-    @BindView(R.id.collapsing_toolbar)
-    CollapsingToolbarLayout collapsingToolbarLayout;
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
+    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
+    @BindView(R.id.fab) FloatingActionButton fab;
 
 
     @BindView(R.id.market_name) TextView shopName;
@@ -115,19 +111,17 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
+
 //    @BindView(R.id.delivery_block) LinearLayout deliveryBlock;
 //    @BindView(R.id.phone_delivery) TextView phoneDelivery;
 //    @BindView(R.id.delivery_charge_text) TextView deliveryChargeText;
 //    @BindView(R.id.free_delivery_info) TextView freeDeliveryInfo;
-
-    @BindView(R.id.shop_reviews)
-    RecyclerView shopReviews;
+    @BindView(R.id.shop_reviews) RecyclerView shopReviews;
 
 
 
 
-    @BindView(R.id.user_rating_review)
-    LinearLayout user_review_ratings_block;
+    @BindView(R.id.user_rating_review) LinearLayout user_review_ratings_block;
     @BindView(R.id.edit_review_text) TextView edit_review_text;
     @BindView(R.id.ratingBar_rate) RatingBar ratingBar_rate;
 
@@ -143,10 +137,9 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-    ServiceConfigurationGlobal market;
 
-
-    MarketReview reviewForUpdate;
+    private ServiceConfigurationGlobal market;
+    private MarketReview reviewForUpdate;
 
 
 
@@ -299,7 +292,9 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-    void bindViews()
+
+
+    private void bindViews()
     {
         shopName.setText(market.getServiceName());
 
@@ -378,7 +373,7 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-    boolean isDestroyed = false;
+    private boolean isDestroyed = false;
 
 
 
@@ -399,9 +394,15 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-    void showToastMessage(String message) {
+
+
+    private void showToastMessage(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
+
+
+
+
 
 
     @Override
@@ -578,7 +579,8 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-    boolean isFavourite = false;
+
+    private boolean isFavourite = false;
 
 
 
@@ -614,7 +616,9 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-    void setFavouriteIcon(boolean isFavourite) {
+
+
+    private void setFavouriteIcon(boolean isFavourite) {
 
         if (fab == null) {
             return;
@@ -646,7 +650,9 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-    void checkFavourite() {
+
+
+    private void checkFavourite() {
 
         // make a network call to check the favourite
 
@@ -713,7 +719,9 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-    void insertFavourite() {
+
+
+    private void insertFavourite() {
 
 
         if (market != null && PrefLoginGlobal.getUser(getActivity()) != null) {
@@ -767,7 +775,9 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-    void deleteFavourite() {
+
+
+    private void deleteFavourite() {
 
         if (market != null && PrefLoginGlobal.getUser(getActivity()) != null) {
 
@@ -922,8 +932,10 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 //    ShopReview reviewForUpdate;
 
 
+
+
     // method to check whether the user has written the review or not if the user is currently logged in.
-    void checkUserReview() {
+    private void checkUserReview() {
 
 
 
