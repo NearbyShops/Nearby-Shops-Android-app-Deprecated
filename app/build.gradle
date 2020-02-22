@@ -34,8 +34,8 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         multiDexEnabled = true
-        versionCode 14
-        versionName "1.13"
+        versionCode 16
+        versionName "1.15"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //        buildConfigField "String", "Mapbox_Style_URL", localProperties['mapbox_style_url']
@@ -56,6 +56,9 @@ android {
     }
     buildToolsVersion = '29.0.2'
 }
+
+
+
 
 
 dependencies {
@@ -88,9 +91,9 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
 
     implementation 'com.hbb20:ccp:2.2.7'
-    implementation 'com.googlecode.libphonenumber:libphonenumber:8.11.1'
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.11.4'
     implementation 'com.github.sujithkanna:smileyrating:1.6.8'
-    implementation 'com.alexvasilkov:gesture-views:2.5.2'
+    implementation 'com.alexvasilkov:gesture-views:2.6.0'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:6.5.0'
     implementation 'com.github.stfalcon:smsverifycatcher:0.3.2'
 
@@ -99,8 +102,8 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'com.google.android.material:material:1.2.0-alpha04'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation 'androidx.preference:preference:1.1.0'
@@ -111,25 +114,21 @@ dependencies {
 
 
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.7.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.4.0'
 
 
-    implementation 'com.google.dagger:dagger:2.25.4'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.25.4'
+    implementation 'com.google.dagger:dagger:2.26'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.26'
 
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
 
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-
-//    implementation project(path: ':nbscorenew')
-
 }
 
 apply plugin: 'com.google.gms.google-services'

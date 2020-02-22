@@ -15,21 +15,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.nearbyshops.enduserappnew.API.OrderItemService;
-import org.nearbyshops.enduserappnew.API.ShopService;
-import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.ViewHolders.ViewHolderOrderItem;
-import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.ViewHolders.ViewHolderOrderWithBill;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrderDetails.ViewHolderOrderItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrderDetails.ViewHolderOrderWithBillDeprecated;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetail;
+import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.ShopDetail;
+import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.ShopDetailFragment;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.OrderItemEndPoint;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetailFragment;
-import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeTwo;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,7 +47,7 @@ import java.util.List;
  */
 
 public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        ViewHolderOrderWithBill.ListItemClick, ViewHolderOrderItem.ListItemClick
+        ViewHolderOrderWithBillDeprecated.ListItemClick, ViewHolderOrderItem.ListItemClick, ViewHolderShopTypeTwo.ListItemClick
         {
 
     private Order order;
@@ -325,7 +326,14 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
         Call<OrderItemEndPoint> call = orderItemService.getOrderItem(
                 PrefLogin.getAuthorizationHeaders(getActivity()),
-                order.getOrderID(),null,null,null,null,null,null);
+                order.getOrderID(),
+                null,
+                order.getShopID()
+                ,null,null,
+                null,null,
+                null);
+
+
 
 
         call.enqueue(new Callback<OrderItemEndPoint>() {
@@ -349,7 +357,15 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
                         {
                             dataset.clear();
                             dataset.add(0,order);
+
+//                            order.setShop(response.body().getShopDetails());
+
+                            dataset.add(response.body().getShopDetails());
+                            dataset.add(new HeaderTitle("Items in this Order"));
                         }
+
+
+
 
                         dataset.addAll(response.body().getResults());
                         adapter.notifyDataSetChanged();
@@ -446,11 +462,24 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         String itemJson = UtilityFunctions.provideGson().toJson(item);
         intent.putExtra(ItemDetailFragment.TAG_JSON_STRING,itemJson);
 
-        getActivity().startActivity(intent);
+        startActivity(intent);
     }
 
 
 
+
+
+
+    @Override
+    public void listItemClick(Shop shop, int position) {
+
+        Intent intent = new Intent(getActivity(), ShopDetail.class);
+
+        String shopJson = UtilityFunctions.provideGson().toJson(shop);
+        intent.putExtra(ShopDetailFragment.TAG_JSON_STRING,shopJson);
+
+        startActivity(intent);
+    }
 
 
 

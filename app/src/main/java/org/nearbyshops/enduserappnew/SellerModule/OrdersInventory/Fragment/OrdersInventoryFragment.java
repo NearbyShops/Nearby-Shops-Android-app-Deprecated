@@ -38,10 +38,10 @@ import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortOr
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SellerModule.SelectDeliveryGuy.SelectDeliveryGuy;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersForOrders.ViewHolderOrder;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersForOrders.ViewHolderOrderButtonSingle;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersForOrders.ViewHolderOrderSelectable;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersForOrders.ViewHolderOrderWithDeliveryProfile;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderButtonSingle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderSelectable;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderWithDeliveryProfile;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 
 import java.util.ArrayList;

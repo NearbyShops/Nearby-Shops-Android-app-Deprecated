@@ -34,9 +34,9 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChangedNew;
 import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortOrders;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersForOrders.ViewHolderOrder;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersForOrders.ViewHolderOrderButtonDouble;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersForOrders.ViewHolderOrderButtonSingle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderButtonDouble;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderButtonSingle;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 
 import java.util.ArrayList;

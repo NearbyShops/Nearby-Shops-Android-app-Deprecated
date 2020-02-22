@@ -503,6 +503,9 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
 
 
 
+
+
+
     @OnClick(R.id.removeButton)
     void removeClick(View view)
     {
@@ -646,7 +649,8 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
 
 
 
-    public void bindShopItem(ShopItem shopItem)
+
+    public void setShopItem(ShopItem shopItem)
     {
 
             this.shopItem = shopItem;

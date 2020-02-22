@@ -2,7 +2,6 @@ package org.nearbyshops.enduserappnew.adminModule.SelectParent;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +16,9 @@ import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.API.ItemCategoryService;
+import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
 
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ import butterknife.OnLongClick;
 
 
 
-public class ItemCategoriesParentAdapter extends RecyclerView.Adapter<ItemCategoriesParentAdapter.ViewHolder>{
+public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
 
 
@@ -56,8 +55,8 @@ public class ItemCategoriesParentAdapter extends RecyclerView.Adapter<ItemCatego
 
     final String IMAGE_ENDPOINT_URL = "/api/Images";
 
-    public ItemCategoriesParentAdapter(List<ItemCategory> dataset, Context context, ItemCategoriesParent activity
-                            ,NotificationReceiver notificationReceiver) {
+    public Adapter(List<ItemCategory> dataset, Context context, ItemCategoriesParent activity
+                            , NotificationReceiver notificationReceiver) {
 
 
         DaggerComponentBuilder.getInstance()
@@ -79,7 +78,7 @@ public class ItemCategoriesParentAdapter extends RecyclerView.Adapter<ItemCatego
 
 
     @Override
-    public ItemCategoriesParentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category,parent,false);
 
@@ -91,7 +90,7 @@ public class ItemCategoriesParentAdapter extends RecyclerView.Adapter<ItemCatego
 
 
     @Override
-    public void onBindViewHolder(ItemCategoriesParentAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(Adapter.ViewHolder holder, final int position) {
 
         holder.categoryName.setText(dataset.get(position).getCategoryName());
 //        holder.categoryDescription.setText(dataset.get(position).getCategoryDescription());
@@ -137,7 +136,7 @@ public class ItemCategoriesParentAdapter extends RecyclerView.Adapter<ItemCatego
                 .into(holder.categoryImage);
 
 
-        Log.d("applog",imagePath);
+
 
     }
 
@@ -240,8 +239,6 @@ public class ItemCategoriesParentAdapter extends RecyclerView.Adapter<ItemCatego
 
             selectedPosition = null;
             itemCategoriesParent.notifyRequestSubCategory(dataset.get(getLayoutPosition()));
-
-
         }
 
 

@@ -39,7 +39,7 @@ import retrofit2.Response;
 
 
 public class ItemCategoriesParent extends AppCompatActivity
-        implements  ItemCategoriesParentAdapter.requestSubCategory, ItemCategoriesParentAdapter.NotificationReceiver {
+        implements  Adapter.requestSubCategory, Adapter.NotificationReceiver {
 
 
     // data
@@ -68,7 +68,7 @@ public class ItemCategoriesParent extends AppCompatActivity
 
     // views
     RecyclerView itemCategoriesList;
-    ItemCategoriesParentAdapter listAdapter;
+    Adapter listAdapter;
     GridLayoutManager layoutManager;
 
     @BindView(R.id.show_hide_instructions)
@@ -158,7 +158,7 @@ public class ItemCategoriesParent extends AppCompatActivity
 
     void setupRecyclerView()
     {
-        listAdapter = new ItemCategoriesParentAdapter(dataset,this,this,this);
+        listAdapter = new Adapter(dataset,this,this,this);
 
         itemCategoriesList.setAdapter(listAdapter);
 

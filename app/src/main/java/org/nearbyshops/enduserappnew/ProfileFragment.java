@@ -38,6 +38,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.SellerModule.DeliveryGuyHome.DeliveryHome;
@@ -90,6 +91,12 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
     private ProgressDialog progressDialog;
+
+
+
+    @BindView(R.id.service_name) TextView serviceName;
+
+
 
 
 
@@ -154,6 +161,14 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
             }
         });
 
+
+
+
+        if(PrefServiceConfig.getServiceName(getActivity())!=null) {
+
+            serviceName.setVisibility(View.VISIBLE);
+            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+        }
 
 
 

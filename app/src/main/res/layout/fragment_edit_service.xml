@@ -372,6 +372,7 @@
 
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:layout_marginTop="10dp"
                             app:counterEnabled="true"
                             app:counterMaxLength="200"
                             android:layout_width="match_parent"
@@ -522,8 +523,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
+
                             <EditText
-                                android:inputType="number"
+                                android:inputType="numberDecimal"
                                 android:id="@+id/service_coverage"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

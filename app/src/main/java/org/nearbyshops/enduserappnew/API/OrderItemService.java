@@ -19,6 +19,7 @@ public interface OrderItemService {
     Call<OrderItemEndPoint> getOrderItem(@Header("Authorization") String headers,
                                          @Query("OrderID") Integer orderID,
                                          @Query("ItemID") Integer itemID,
+                                         @Query("ShopID")Integer shopID,
                                          @Query("SearchString") String searchString,
                                          @Query("SortBy") String sortBy,
                                          @Query("Limit") Integer limit, @Query("Offset") Integer offset,

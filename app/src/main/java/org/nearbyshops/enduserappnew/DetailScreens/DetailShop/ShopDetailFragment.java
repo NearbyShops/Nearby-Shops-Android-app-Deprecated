@@ -262,11 +262,23 @@ public class ShopDetailFragment extends Fragment
             viewModelShop = new ViewModelShop(MyApplication.application);
 
 
+            viewModelShop.getShopLive().observe(getViewLifecycleOwner(), new Observer<Shop>() {
+                @Override
+                public void onChanged(Shop shop) {
+
+
+                    ShopDetailFragment.this.shop = shop;
+                    bindViews();
+                }
+            });
+
+
             viewModelShop.getEvent().observe(getViewLifecycleOwner(), new Observer<Integer>() {
                 @Override
                 public void onChanged(Integer integer) {
 
-                    if(integer == ViewModelShop.EVENT_SHOP_DETAILS_FETCHED)
+
+                    if(integer == ViewModelShop.EVENT_SHOP_DETAILS_FETCHED || integer == ViewModelShop.EVENT_NETWORK_FAILED)
                     {
                         if(progressDialog!=null)
                         {
@@ -281,24 +293,13 @@ public class ShopDetailFragment extends Fragment
 
 
 
-            viewModelShop.getShopLive().observe(getViewLifecycleOwner(), new Observer<Shop>() {
+
+            viewModelShop.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
                 @Override
-                public void onChanged(Shop shop) {
-
-
-                    ShopDetailFragment.this.shop = shop;
-                    bindViews();
+                public void onChanged(String s) {
+                    showToastMessage(s);
                 }
             });
-
-
-
-        viewModelShop.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                showToastMessage(s);
-            }
-        });
 
 
 
@@ -357,16 +358,12 @@ public class ShopDetailFragment extends Fragment
 
     @Override
     public void onRefresh() {
-//        swipeContainer.setRefreshing(false);
-
 
         viewModelShop.makeNetworkCallShop(shop.getShopID());
 
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Please wait ... getting Shop Details !");
         progressDialog.show();
-
-
     }
 
 
@@ -504,6 +501,12 @@ public class ShopDetailFragment extends Fragment
                     return;
                 }
 
+
+                if(!isVisible())
+                {
+                    return;
+                }
+
                 if(response.body()!=null)
                 {
                     int count = response.body().getItemCount();
@@ -526,6 +529,12 @@ public class ShopDetailFragment extends Fragment
 
 
                 if(isDestroyed)
+                {
+                    return;
+                }
+
+
+                if(!isVisible())
                 {
                     return;
                 }
@@ -562,7 +571,9 @@ public class ShopDetailFragment extends Fragment
 
 
 
-    void showToastMessage(String message) {
+
+
+    private void showToastMessage(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
@@ -684,7 +695,7 @@ public class ShopDetailFragment extends Fragment
 
 
 
-    void getDirections(double lat,double lon)
+    private void getDirections(double lat, double lon)
     {
         Uri gmmIntentUri = Uri.parse("google.navigation:q=" + String.valueOf(lat) + "," + String.valueOf(lon));
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
@@ -694,7 +705,7 @@ public class ShopDetailFragment extends Fragment
 
 
 
-    void seeOnMap(double lat,double lon,String label)
+    private void seeOnMap(double lat, double lon, String label)
     {
         Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + String.valueOf(lat) + "," + String.valueOf(lon) + "(" + label + ")");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
@@ -815,7 +826,9 @@ public class ShopDetailFragment extends Fragment
 
 
 
-    void setFavouriteIcon(boolean isFavourite) {
+
+
+    private void setFavouriteIcon(boolean isFavourite) {
 
         if (fab == null) {
             return;
@@ -847,7 +860,7 @@ public class ShopDetailFragment extends Fragment
 
 
 
-    void checkFavourite() {
+    private void checkFavourite() {
 
         // make a network call to check the favourite
 
@@ -860,6 +873,11 @@ public class ShopDetailFragment extends Fragment
             call.enqueue(new Callback<FavouriteShopEndpoint>() {
                 @Override
                 public void onResponse(Call<FavouriteShopEndpoint> call, Response<FavouriteShopEndpoint> response) {
+
+                    if(!isVisible())
+                    {
+                        return;
+                    }
 
 
                     if (response.body() != null) {
@@ -880,6 +898,12 @@ public class ShopDetailFragment extends Fragment
                 @Override
                 public void onFailure(Call<FavouriteShopEndpoint> call, Throwable t) {
 
+
+                    if(!isVisible())
+                    {
+                        return;
+                    }
+
                     showToastMessage("Network Request failed. Check Network Connection !");
                 }
             });
@@ -891,7 +915,7 @@ public class ShopDetailFragment extends Fragment
 
 
 
-    void insertFavourite() {
+    private void insertFavourite() {
 
 
         if (shop != null && PrefLogin.getUser(getActivity()) != null) {
@@ -906,6 +930,12 @@ public class ShopDetailFragment extends Fragment
                 @Override
                 public void onResponse(Call<FavouriteShop> call, Response<FavouriteShop> response) {
 
+
+                    if(!isVisible())
+                    {
+                        return;
+                    }
+
                     if (response.code() == 201) {
                         // created successfully
 
@@ -916,6 +946,11 @@ public class ShopDetailFragment extends Fragment
 
                 @Override
                 public void onFailure(Call<FavouriteShop> call, Throwable t) {
+
+                    if(!isVisible())
+                    {
+                        return;
+                    }
 
                     showToastMessage("Network Request failed !");
 
@@ -930,7 +965,7 @@ public class ShopDetailFragment extends Fragment
 
 
 
-    void deleteFavourite() {
+    private void deleteFavourite() {
 
         if (shop != null && PrefLogin.getUser(getActivity()) != null) {
             Call<ResponseBody> call = favouriteShopService.deleteFavouriteShop(shop.getShopID(),
@@ -941,6 +976,12 @@ public class ShopDetailFragment extends Fragment
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+
+                    if(!isVisible())
+                    {
+                        return;
+                    }
+
                     if (response.code() == 200) {
                         setFavouriteIcon(false);
 //                        isFavourite = false;
@@ -950,6 +991,12 @@ public class ShopDetailFragment extends Fragment
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                    if(!isVisible())
+                    {
+                        return;
+                    }
 
                     showToastMessage("Network Request Failed !");
                 }
@@ -1112,6 +1159,12 @@ public class ShopDetailFragment extends Fragment
                     public void onResponse(Call<ShopReviewEndPoint> call, Response<ShopReviewEndPoint> response) {
 
 
+                        if(!isVisible())
+                        {
+                            return;
+                        }
+
+
                         if (response.body() != null) {
                             if (response.body().getItemCount() > 0) {
 
@@ -1177,6 +1230,12 @@ public class ShopDetailFragment extends Fragment
 
                     @Override
                     public void onFailure(Call<ShopReviewEndPoint> call, Throwable t) {
+
+
+                        if(!isVisible())
+                        {
+                            return;
+                        }
 
 
 //                        showToastMessage("Network Request Failed. Check your internet connection !");

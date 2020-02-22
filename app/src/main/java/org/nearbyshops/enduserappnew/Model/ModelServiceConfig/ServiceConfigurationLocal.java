@@ -84,8 +84,7 @@ public class ServiceConfigurationLocal {
     private double latCenter;
     private double lonCenter;
 
-    private Integer serviceRange;
-//    private Integer shopDeliveryRangeMax;
+    private double serviceRange;
 
     private Timestamp created;
     private Timestamp updated;
@@ -106,6 +105,14 @@ public class ServiceConfigurationLocal {
 
     // getter and setter
 
+
+    public double getServiceRange() {
+        return serviceRange;
+    }
+
+    public void setServiceRange(double serviceRange) {
+        this.serviceRange = serviceRange;
+    }
 
     public String getRt_market_id_for_fcm() {
         return rt_market_id_for_fcm;
@@ -275,13 +282,6 @@ public class ServiceConfigurationLocal {
         this.lonCenter = lonCenter;
     }
 
-    public Integer getServiceRange() {
-        return serviceRange;
-    }
-
-    public void setServiceRange(Integer serviceRange) {
-        this.serviceRange = serviceRange;
-    }
 
     public Timestamp getCreated() {
         return created;

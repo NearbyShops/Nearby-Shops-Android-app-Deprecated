@@ -7,6 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -34,6 +35,7 @@ import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.MarketDetail;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSignIn;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -72,6 +74,8 @@ public class MarketsFragmentNew extends Fragment implements
 
     boolean isDestroyed;
 
+
+    @BindView(R.id.service_name) TextView serviceName;
 
 
     private MarketViewModel viewModel;
@@ -206,6 +210,13 @@ public class MarketsFragmentNew extends Fragment implements
                 });
 
 
+
+
+        if(PrefServiceConfig.getServiceName(getActivity())!=null) {
+
+            serviceName.setVisibility(View.VISIBLE);
+            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+        }
 
 
 

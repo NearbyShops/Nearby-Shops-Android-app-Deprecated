@@ -7,10 +7,14 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.ViewHolders.ViewHolderOrderItem;
-import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.ViewHolders.ViewHolderOrderWithBill;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrderDetails.ViewHolderOrderItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrderDetails.ViewHolderOrderWithBill;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.OrderItem;
+import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeTwo;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 
 import java.util.List;
 
@@ -25,7 +29,12 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     public static final int TAG_VIEW_HOLDER_ORDER = 1;
-    public static final int TAG_VIEW_HOLDER_ORDER_ITEM = 2;
+    public static final int TAG_VIEW_HOLDER_SHOP = 2;
+    public static final int TAG_VIEW_HOLDER_ORDER_ITEM = 3;
+
+
+    public static final int VIEW_TYPE_HEADER = 4;
+
 
 
 
@@ -44,17 +53,23 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         View view = null;
 
+
         if(viewType==TAG_VIEW_HOLDER_ORDER)
         {
-
             return ViewHolderOrderWithBill.create(parent,context,fragment);
         }
         else if(viewType==TAG_VIEW_HOLDER_ORDER_ITEM)
         {
-
             return ViewHolderOrderItem.create(parent,context,fragment);
         }
-
+        else if(viewType == TAG_VIEW_HOLDER_SHOP)
+        {
+            return ViewHolderShopTypeTwo.create(parent,context,fragment,this);
+        }
+        else if(viewType == VIEW_TYPE_HEADER)
+        {
+            return ViewHolderHeader.createBoldAndBig(parent,context);
+        }
 
 
         return null;
@@ -75,7 +90,20 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             ((ViewHolderOrderItem) holder).setItem((OrderItem) dataset.get(position));
         }
+        else if(holder instanceof ViewHolderShopTypeTwo)
+        {
+            ((ViewHolderShopTypeTwo) holder).setItem((Shop) dataset.get(position));
+        }
+        else if (holder instanceof ViewHolderHeader) {
+
+            if (dataset.get(position) instanceof HeaderTitle) {
+
+                ((ViewHolderHeader) holder).setItem((HeaderTitle) dataset.get(position));
+            }
+        }
+
     }
+
 
 
 
@@ -92,6 +120,14 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(dataset.get(position) instanceof OrderItem)
         {
             return TAG_VIEW_HOLDER_ORDER_ITEM;
+        }
+        else if(dataset.get(position) instanceof Shop)
+        {
+            return TAG_VIEW_HOLDER_SHOP;
+        }
+        else if(dataset.get(position) instanceof HeaderTitle)
+        {
+            return VIEW_TYPE_HEADER;
         }
 
         return -1;

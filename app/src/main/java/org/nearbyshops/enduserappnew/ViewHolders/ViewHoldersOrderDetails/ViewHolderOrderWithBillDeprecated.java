@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.ViewHolders;
+package org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrderDetails;
 
 import android.content.Context;
 import android.content.Intent;
@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class ViewHolderOrderWithBill extends RecyclerView.ViewHolder{
+public class ViewHolderOrderWithBillDeprecated extends RecyclerView.ViewHolder{
 
 
 
@@ -80,18 +80,18 @@ public class ViewHolderOrderWithBill extends RecyclerView.ViewHolder{
 
 
 
-    public static ViewHolderOrderWithBill create(ViewGroup parent, Context context, Fragment fragment)
+    public static ViewHolderOrderWithBillDeprecated create(ViewGroup parent, Context context, Fragment fragment)
     {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_order_order_detail,parent,false);
-        return new ViewHolderOrderWithBill(view,context,fragment);
+        return new ViewHolderOrderWithBillDeprecated(view,context,fragment);
     }
 
 
 
 
 
-    public ViewHolderOrderWithBill(View itemView, Context context, Fragment fragment) {
+    public ViewHolderOrderWithBillDeprecated(View itemView, Context context, Fragment fragment) {
         super(itemView);
 
         ButterKnife.bind(this,itemView);

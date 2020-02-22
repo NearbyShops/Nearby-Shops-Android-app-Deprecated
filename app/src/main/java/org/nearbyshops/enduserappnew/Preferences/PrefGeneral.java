@@ -20,7 +20,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class PrefGeneral {
 
 
-    public static final String SERVICE_URL_LOCAL_HOTSPOT = "http://192.168.43.73:5121";
+    public static final String SERVICE_URL_LOCAL_HOTSPOT = "http://192.168.43.233:5121";
     public static final String SERVICE_URL_NEARBYSHOPS = "http://api.nearbyshops.org";
     public static final String SERVICE_URL_NEARBYSHOPS_DEMO = "http://api-demo.nearbyshops.org";
     public static final String SERVICE_URL_LOCAL = "http://192.168.0.5:5120";

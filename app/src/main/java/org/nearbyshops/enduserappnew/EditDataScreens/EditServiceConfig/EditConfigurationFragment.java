@@ -28,15 +28,20 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.Fragment;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
 
+import org.nearbyshops.enduserappnew.API.API_SDS.ServiceConfigService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.LocationPicker.LocationPickerWithRadius.PickDeliveryRange;
+import org.nearbyshops.enduserappnew.LocationPicker.PickLocation;
 import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
@@ -55,11 +60,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -154,12 +162,6 @@ public class EditConfigurationFragment extends Fragment {
 
         ButterKnife.bind(this,rootView);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-//
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -547,7 +549,7 @@ public class EditConfigurationFragment extends Fragment {
 
         if(!serviceCoverage.getText().toString().equals(""))
         {
-            serviceConfiguration.setServiceRange(Integer.parseInt(serviceCoverage.getText().toString()));
+            serviceConfiguration.setServiceRange(Double.parseDouble(serviceCoverage.getText().toString()));
         }
 
 
@@ -593,6 +595,8 @@ public class EditConfigurationFragment extends Fragment {
                     showToastMessage("Update Successful !");
 
                     PrefServiceConfig.saveServiceConfigLocal(serviceConfiguration,getContext());
+
+                    updateMarketEntry();
                 }
 //                else if(response.code()==401 || response.code()==403)
 //                {
@@ -620,6 +624,72 @@ public class EditConfigurationFragment extends Fragment {
             }
         });
     }
+
+
+
+
+
+
+
+
+    @Inject
+    Gson gson;
+
+
+
+    private void updateMarketEntry()
+    {
+
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                .client(new OkHttpClient().newBuilder().build())
+                .build();
+
+
+        Call<ResponseBody> call = retrofit.create(ServiceConfigService.class).saveService(PrefGeneral.getServiceURL(getActivity()));
+
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if(!isVisible())
+                {
+                    return;
+                }
+
+                if(response.code()==200)
+                {
+                    showToastMessage("SDS Entry Updated Successfully !");
+                }
+                else if(response.code()==201)
+                {
+                    showToastMessage("SDS Entry Added Successfully !");
+                }
+                else
+                {
+                    showToastMessage("SDS Update Failed ... Error Code : " + String.valueOf(response.code()));
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                if(!isVisible())
+                {
+                    return;
+                }
+
+                showToastMessage("SDS Update Failed !");
+            }
+        });
+    }
+
+
 
 
 //    void retrofitPOSTRequest()
@@ -672,14 +742,13 @@ public class EditConfigurationFragment extends Fragment {
 
 
 
+
+
     /*
         Utility Methods
      */
 
-
-
-
-    void showToastMessage(String message)
+    private void showToastMessage(String message)
     {
         Toast.makeText(getContext(),message, Toast.LENGTH_SHORT).show();
     }
@@ -767,10 +836,13 @@ public class EditConfigurationFragment extends Fragment {
             longitude.setText(String.valueOf(result.getDoubleExtra("longitude",0)));
             serviceCoverage.setText(String.valueOf((int)result.getDoubleExtra("delivery_range_kms",0)));
         }
-
-
-
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+        else if(requestCode==3 && resultCode==3)
+        {
+            latitude.setText(String.valueOf(result.getDoubleExtra("lat_dest",0.0)));
+            longitude.setText(String.valueOf(result.getDoubleExtra("lon_dest",0.0)));
+            serviceCoverage.setText(String.valueOf(result.getDoubleExtra("radius",0.0)));
+        }
+        else if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && result != null
                 && result.getData() != null) {
 
@@ -785,9 +857,7 @@ public class EditConfigurationFragment extends Fragment {
             }
 
         }
-
-
-        if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+        else if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
 
             resultView.setImageURI(null);
             resultView.setImageURI(UCrop.getOutput(result));
@@ -796,11 +866,15 @@ public class EditConfigurationFragment extends Fragment {
             isImageRemoved = false;
 
 
-        } else if (resultCode == UCrop.RESULT_ERROR) {
+        }
+        else if (resultCode == UCrop.RESULT_ERROR) {
 
             final Throwable cropError = UCrop.getError(result);
 
         }
+
+
+
     }
 
 
@@ -830,6 +904,7 @@ public class EditConfigurationFragment extends Fragment {
         // this function takes the file from the source URI and saves in into the destination URI location.
         UCrop.of(sourceUri, destinationUri)
                 .withOptions(options)
+                .withMaxResultSize(1200, 1200)
                 .start(context,this);
 
         //.withMaxResultSize(400,300)
@@ -1072,26 +1147,13 @@ public class EditConfigurationFragment extends Fragment {
     void pickLocationClick()
     {
 
-        showToastMessage("Feature not available !");
+        Intent intent = new Intent(getActivity(), PickDeliveryRange.class);
+        intent.putExtra("lat_dest",Double.parseDouble(latitude.getText().toString()));
+        intent.putExtra("lon_dest",Double.parseDouble(longitude.getText().toString()));
+        intent.putExtra("radius",Double.parseDouble(serviceCoverage.getText().toString()));
+        startActivityForResult(intent,3);
 
-//        Intent intent = new Intent(getActivity(),PickLocationActivity.class);
-//
-//        if(!longitude.getText().toString().equals("")&&!latitude.getText().toString().equals(""))
-//        {
-//            intent.putExtra(PickLocationActivity.INTENT_KEY_CURRENT_LON,Double.parseDouble(longitude.getText().toString()));
-//            intent.putExtra(PickLocationActivity.INTENT_KEY_CURRENT_LAT,Double.parseDouble(latitude.getText().toString()));
-//
-//            if(!serviceCoverage.getText().toString().equals(""))
-//            {
-//                intent.putExtra(
-//                        PickLocationActivity.INTENT_KEY_DELIVERY_RANGE,
-//                        Double.parseDouble(serviceCoverage.getText().toString())
-//                );
-//            }
-//        }
-//
-//
-//        startActivityForResult(intent,REQUEST_CODE_PICK_LAT_LON);
+
     }
 
 

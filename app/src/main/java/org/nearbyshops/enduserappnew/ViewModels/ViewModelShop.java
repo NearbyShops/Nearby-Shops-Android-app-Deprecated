@@ -183,6 +183,7 @@ public class ViewModelShop extends AndroidViewModel {
                 }
                 else
                 {
+                    event.postValue(ViewModelShop.EVENT_NETWORK_FAILED);
                     message.postValue("Failed Code : " + response.code());
                 }
             }

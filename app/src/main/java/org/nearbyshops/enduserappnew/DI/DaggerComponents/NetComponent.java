@@ -23,7 +23,6 @@ import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.FragmentAddCredit;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboardFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditServiceConfig.EditConfigurationFragment;
-import org.nearbyshops.enduserappnew.Lists.CartItemList.Adapter;
 import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListFragment;
 import org.nearbyshops.enduserappnew.Lists.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Checkout.PlaceOrderActivity;
@@ -89,8 +88,8 @@ import org.nearbyshops.enduserappnew.Login.SignUp.FragmentEnterPassword;
 import org.nearbyshops.enduserappnew.Login.SignUp.FragmentVerify;
 import org.nearbyshops.enduserappnew.EditDataScreens.Deprecated.EditShopForAdmin.EditShopForAdminFragment;
 import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsDatabaseForAdminFragment;
+import org.nearbyshops.enduserappnew.adminModule.SelectParent.Adapter;
 import org.nearbyshops.enduserappnew.adminModule.SelectParent.ItemCategoriesParent;
-import org.nearbyshops.enduserappnew.adminModule.SelectParent.ItemCategoriesParentAdapter;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.Fragment.FragmentShopList;
 
 
@@ -137,7 +136,7 @@ public interface NetComponent {
 
     void Inject(RateReviewDialog rateReviewDialog);
 
-    void Inject(Adapter adapter);
+    void Inject(org.nearbyshops.enduserappnew.Lists.CartItemList.Adapter adapter);
 
     void Inject(CartItemListFragment cartItemListFragment);
 
@@ -255,7 +254,7 @@ public interface NetComponent {
 
     void Inject(EditItemCategoryFragment editItemCategoryFragment);
 
-    void Inject(ItemCategoriesParentAdapter itemCategoriesParentAdapter);
+    void Inject(Adapter adapter);
 
     void Inject(ItemCategoriesParent itemCategoriesParent);
 

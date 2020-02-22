@@ -109,7 +109,7 @@ public class UpdateServiceConfiguration extends IntentService {
                 }
                 else
                 {
-                    PrefServiceConfig.saveServiceConfigLocal(null,getApplicationContext());
+//                    PrefServiceConfig.saveServiceConfigLocal(null,getApplicationContext());
                 }
             }
 
@@ -118,7 +118,7 @@ public class UpdateServiceConfiguration extends IntentService {
             @Override
             public void onFailure(Call<ServiceConfigurationLocal> call, Throwable t) {
 
-                PrefServiceConfig.saveServiceConfigLocal(null,getApplicationContext());
+//                PrefServiceConfig.saveServiceConfigLocal(null,getApplicationContext());
             }
         });
 
