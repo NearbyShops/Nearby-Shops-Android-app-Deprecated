@@ -14,6 +14,9 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyS
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHorizontalList;
+import org.nearbyshops.enduserappnew.zHighlightSlider.AdapterHighlights;
+import org.nearbyshops.enduserappnew.zHighlightSlider.Model.Highlights;
 
 import java.util.List;
 
@@ -31,6 +34,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     public static final int VIEW_TYPE_SHOP = 1;
+
+    public static final int VIEW_TYPE_HIGHLIGHTS = 3;
 
     public static final int VIEW_TYPE_HEADER = 4;
     public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 5;
@@ -61,6 +66,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if(viewType == VIEW_TYPE_SHOP)
         {
             return ViewHolderShopTypeTwo.create(parent,context,fragment,this);
+        }
+        else if(viewType == VIEW_TYPE_HIGHLIGHTS)
+        {
+            return ViewHolderHorizontalList.create(parent,context,fragment);
         }
         else if(viewType == VIEW_TYPE_HEADER)
         {
@@ -94,6 +103,17 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         else if(holder instanceof ViewHolderShopTypeOne)
         {
             ((ViewHolderShopTypeOne) holder).setItem((Shop) dataset.get(position));
+        }
+        else if(holder instanceof ViewHolderHorizontalList) {
+
+
+            Highlights highlights = ((Highlights)dataset.get(position));
+
+            List<Object> list = highlights.getHighlightList();
+            AdapterHighlights adapterHighlights = new AdapterHighlights(list,context,fragment);
+            ((ViewHolderHorizontalList) holder).setItem(adapterHighlights, highlights.getListTitle());
+
+
         }
         else if (holder instanceof ViewHolderHeader) {
 
@@ -149,6 +169,13 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             return VIEW_TYPE_EMPTY_SCREEN;
         }
+        else if(dataset.get(position) instanceof Highlights)
+        {
+            return VIEW_TYPE_HIGHLIGHTS;
+        }
+
+
+
 
         return -1;
     }

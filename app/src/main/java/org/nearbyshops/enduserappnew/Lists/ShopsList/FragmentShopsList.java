@@ -37,6 +37,7 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortShopsByCategory;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortShops;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeTwo;
+import org.nearbyshops.enduserappnew.zHighlightSlider.Model.Highlights;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -507,11 +508,21 @@ public class FragmentShopsList extends Fragment implements
 
                     if(response.body()!=null)
                     {
+
+
                         if(clearDataset)
                         {
                             dataset.clear();
+
+//                            dataset.add(0,Highlights.getHighlightsCabRental());
                         }
+
+
                         dataset.addAll(response.body().getResults());
+
+
+
+
                         adapter.notifyDataSetChanged();
 
                         if(response.body().getItemCount()!=null)

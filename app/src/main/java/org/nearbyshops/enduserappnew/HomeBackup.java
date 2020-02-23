@@ -10,12 +10,12 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -24,31 +24,32 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
 
+import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
+import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.Interfaces.NotifyBackPressed;
+import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
+import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
 import org.nearbyshops.enduserappnew.Lists.CartsList.CartsListFragment;
-import org.nearbyshops.enduserappnew.Interfaces.*;
 import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.ItemsByCatFragment;
-import org.nearbyshops.enduserappnew.Login.LoginPlaceholder.FragmentSignInMessage;
 import org.nearbyshops.enduserappnew.Lists.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Lists.Markets.MarketsFragmentNew;
+import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
+import org.nearbyshops.enduserappnew.Lists.ShopsList.FragmentShopsList;
+import org.nearbyshops.enduserappnew.Login.LoginPlaceholder.FragmentSignInMessage;
 import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
 import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
-import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
-import org.nearbyshops.enduserappnew.Lists.ShopsList.FragmentShopsList;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 
-public class Home extends AppCompatActivity implements ShowFragment, NotifyAboutLogin, MarketSelected {
+public class HomeBackup extends AppCompatActivity implements ShowFragment, NotifyAboutLogin, MarketSelected {
 
 
 
@@ -75,7 +76,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
-    public Home() {
+    public HomeBackup() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -104,6 +105,16 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
         FirebaseApp.initializeApp(getApplicationContext());
         UtilityFunctions.updateFirebaseSubscriptions();
+
+
+
+
+
+//        TelephonyManager tm = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+//        String countryCodeValue = tm.getNetworkCountryIso();
+//        Currency currency = Currency.getInstance(new Locale("",countryCodeValue));
+//        PrefGeneral.saveCurrencySymbol(currency.getSymbol(),this);
+//
 
 
 
@@ -172,8 +183,6 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 //        startSettingsCheck();
-
-
 
         checkPermissions();
         fetchLocation();
@@ -915,117 +924,56 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
-    private com.google.android.gms.location.LocationRequest mLocationRequestTwo;
-    private com.google.android.gms.location.LocationCallback locationCallback;
-
-
-
     void fetchLocation() {
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+        // Acquire a reference to the system Location Manager
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-            showToastMessage("We cannot access Location ... Please grant permission for Location access !");
-
-            return;
-        }
-
-
-
-
-        mLocationRequestTwo = com.google.android.gms.location.LocationRequest.create();
-        mLocationRequestTwo.setInterval(1000);
-        mLocationRequestTwo.setSmallestDisplacement(10);
-        mLocationRequestTwo.setFastestInterval(1000);
-        mLocationRequestTwo.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-
-
-//        locationCallback = new MyLocationCallback();
-
-        locationCallback = new com.google.android.gms.location.LocationCallback(){
-            @Override
-            public void onLocationResult(com.google.android.gms.location.LocationResult locationResult) {
-                super.onLocationResult(locationResult);
-
-                if(Home.this.isDestroyed())
-                {
-                    return;
-                }
-
-                double lat = 0;
-                double lon = 0;
-
-                Location location = locationResult.getLocations().get(locationResult.getLocations().size()-1);
-
-                lat = location.getLatitude();
-                lon = location.getLongitude();
-
-
-
-                PrefLocation.saveLatLonCurrent(lat,lon,Home.this);
+        // Define a listener that responds to location updates
+        locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                // Called when a new location is found by the network location provider.
 
                 saveLocation(location);
-
-
                 stopLocationUpdates();
-
-//                showToastMessage("Location Updated !");
-
-
             }
 
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+            }
 
-            @Override
-            public void onLocationAvailability(com.google.android.gms.location.LocationAvailability locationAvailability) {
-                super.onLocationAvailability(locationAvailability);
+            public void onProviderEnabled(String provider) {
+            }
+
+            public void onProviderDisabled(String provider) {
             }
         };
 
 
+            // Register the listener with the Location Manager to receive location updates
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+
+
+            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
 
 
-
-        com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(this)
-                .getLastLocation()
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-
-                        com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(Home.this)
-                                .requestLocationUpdates(mLocationRequestTwo,locationCallback, null);
-
-
-                    }
-                })
-                .addOnSuccessListener(new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-
-
-                        if(location==null)
-                        {
-
-                            com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(Home.this)
-                                    .requestLocationUpdates(mLocationRequestTwo,locationCallback, null);
-
-                            return;
-                        }
-
-                        saveLocation(location);
-                    }
-                });
-
-
+            if(location==null)
+            {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 100, locationListener);
+            }
+            else
+            {
+                saveLocation(location);
+            }
 
     }
 
@@ -1045,8 +993,8 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
         {
             // save location only if there is a significant change in location
 
-            PrefLocation.saveLatitude((float) location.getLatitude(), Home.this);
-            PrefLocation.saveLongitude((float) location.getLongitude(), Home.this);
+            PrefLocation.saveLatitude((float) location.getLatitude(), HomeBackup.this);
+            PrefLocation.saveLongitude((float) location.getLongitude(), HomeBackup.this);
 
 
 //        showToast("Home : Location Updated");
@@ -1064,14 +1012,16 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
-
     protected void stopLocationUpdates() {
 
-        if(locationCallback!=null)
+//        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        if(locationManager!=null && locationListener!=null)
         {
-            com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(Home.this)
-                    .removeLocationUpdates(locationCallback);
+            locationManager.removeUpdates(locationListener);
         }
+
+//        stopSelf();
     }
 
 

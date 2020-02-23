@@ -6,6 +6,7 @@ import dagger.Component;
 import org.nearbyshops.enduserappnew.DI.DaggerModules.AppModule;
 import org.nearbyshops.enduserappnew.DI.DaggerModules.NetModule;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategoryFragment;
+import org.nearbyshops.enduserappnew.HomeBackup;
 import org.nearbyshops.enduserappnew.Lists.CartItemList.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersDataSource;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersListPagingFragment;
@@ -286,4 +287,6 @@ public interface NetComponent {
     void Inject(org.nearbyshops.enduserappnew.Lists.CartItemList.Backups.AdapterBackup adapterBackup);
 
     void Inject(ViewHolderCartItem viewHolderCartItem);
+
+    void Inject(HomeBackup homeBackup);
 }
