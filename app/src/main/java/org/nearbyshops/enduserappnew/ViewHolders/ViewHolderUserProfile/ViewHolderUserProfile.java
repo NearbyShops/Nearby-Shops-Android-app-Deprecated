@@ -30,6 +30,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 
 public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
@@ -144,11 +145,16 @@ public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
     private void logout()
     {
         // log out
-        PrefLogin.saveUserProfile(null,context);
-        PrefLogin.saveCredentials(context,null,null);
+//        PrefLogin.saveUserProfile(null,context);
+//        PrefLogin.saveCredentials(context,null,null);
+//
+//        PrefLoginGlobal.saveUserProfile(null,context);
+//        PrefLoginGlobal.saveCredentials(context,null,null);
 
-        PrefLoginGlobal.saveUserProfile(null,context);
-        PrefLoginGlobal.saveCredentials(context,null,null);
+
+
+
+        UtilityFunctions.logout(context);
 
 
         if(context instanceof NotifyAboutLogin)

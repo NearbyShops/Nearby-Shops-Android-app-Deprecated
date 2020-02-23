@@ -35,7 +35,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.ToggleFab;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortItems;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -748,7 +748,7 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
     private void makeNetworkCallShopItem()
     {
 
-        int currentShopID = PrefShopHome.getShop(getContext()).getShopID();
+        int currentShopID = PrefShopAdminHome.getShop(getContext()).getShopID();
 
 //        Toast.makeText(getActivity(),"Shop ID : "  + String.valueOf(currentShopID),Toast.LENGTH_SHORT).show();
 
@@ -876,7 +876,7 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
 
             ShopItem shopItem = new ShopItem();
-            shopItem.setShopID(PrefShopHome.getShop(getContext()).getShopID());
+            shopItem.setShopID(PrefShopAdminHome.getShop(getContext()).getShopID());
             shopItem.setItemID(entry.getValue().getItemID());
 
             tempShopItemList.add(shopItem);
@@ -974,7 +974,7 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
 
             ShopItem shopItem = new ShopItem();
-            shopItem.setShopID(PrefShopHome.getShop(getContext()).getShopID());
+            shopItem.setShopID(PrefShopAdminHome.getShop(getContext()).getShopID());
             shopItem.setItemID(entry.getValue().getItemID());
 
             tempShopItemList.add(shopItem);

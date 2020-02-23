@@ -154,6 +154,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     @BindView(R.id.shop_address) TextView shopAddress;
 
 
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

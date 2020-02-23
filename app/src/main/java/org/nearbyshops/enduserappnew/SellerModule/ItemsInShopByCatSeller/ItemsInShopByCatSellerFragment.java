@@ -28,7 +28,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortItemsInShop;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
@@ -314,7 +314,7 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
 
         Call<ItemCategoryEndPoint> endPointCall = null;
 
-        Shop currentShop = PrefShopHome.getShop(getContext());
+        Shop currentShop = PrefShopAdminHome.getShop(getContext());
 
         if(searchQuery == null)
         {
@@ -506,7 +506,7 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
 
         Call<ShopItemEndPoint> endPointCall = null;
 
-        Shop currentShop = PrefShopHome.getShop(getContext());
+        Shop currentShop = PrefShopAdminHome.getShop(getContext());
 
 
 

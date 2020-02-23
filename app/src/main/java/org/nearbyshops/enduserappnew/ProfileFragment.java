@@ -39,7 +39,9 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.SellerModule.DeliveryGuyHome.DeliveryHome;
 import org.nearbyshops.enduserappnew.SellerModule.ShopAdminHome.ShopAdminHome;
@@ -430,29 +432,9 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     private void logout()
     {
-        // log out
-        PrefLogin.saveUserProfile(null,getActivity());
-        PrefLogin.saveCredentials(getActivity(),null,null);
-
-        PrefLoginGlobal.saveUserProfile(null,getActivity());
-        PrefLoginGlobal.saveCredentials(getActivity(),null,null);
-
-        PrefShopHome.saveShop(null,getActivity());
 
 
-
-//        FirebaseApp.getInstance().delete();
-
-
-
-        // stop location update service
-//        stopService();
-
-//
-//        if(getActivity() instanceof ShowFragment)
-//        {
-//            ((ShowFragment) getActivity()).showLoginFragment();
-//        }
+        UtilityFunctions.logout(getActivity());
 
         if(getActivity() instanceof NotifyAboutLogin)
         {

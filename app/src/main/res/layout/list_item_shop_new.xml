@@ -5,12 +5,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="1dp"
     android:layout_margin="5dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:focusable="true">
+<!--    android:foreground="?android:attr/selectableItemBackground"-->
 
 
     <LinearLayout

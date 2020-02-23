@@ -25,7 +25,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyIndicatorChanged;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SellerModule.ViewHolders.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortItemsInShopSeller;
@@ -364,7 +364,7 @@ public class ItemsInShopFragment extends Fragment implements
         current_sort = PrefSortItemsInShopSeller.getSort(getContext()) + " " + PrefSortItemsInShopSeller.getAscending(getContext());
 
         Call<ShopItemEndPoint> endPointCall = null;
-        Shop currentShop = PrefShopHome.getShop(getContext());
+        Shop currentShop = PrefShopAdminHome.getShop(getContext());
 
         if(searchQuery==null)
         {

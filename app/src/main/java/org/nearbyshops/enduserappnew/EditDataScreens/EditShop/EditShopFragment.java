@@ -43,7 +43,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ShopImageList;
 import org.nearbyshops.enduserappnew.LocationPicker.LocationPickerWithRadius.PickDeliveryRange;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.AddCredit;
@@ -201,7 +201,7 @@ public class EditShopFragment extends Fragment {
 
             if (current_mode == MODE_UPDATE) {
 
-                shop = PrefShopHome.getShop(getContext());
+                shop = PrefShopAdminHome.getShop(getContext());
 
                 if (shop != null) {
                     bindShopData();
@@ -696,7 +696,7 @@ public class EditShopFragment extends Fragment {
                 if(response.code()==200)
                 {
                     showToastMessage("Update Successful !");
-                    PrefShopHome.saveShop(shop,getContext());
+                    PrefShopAdminHome.saveShop(shop,getContext());
                 }
                 else
                 {
@@ -749,7 +749,7 @@ public class EditShopFragment extends Fragment {
                     shop = response.body();
                     bindShopData();
 
-                    PrefShopHome.saveShop(shop,getContext());
+                    PrefShopAdminHome.saveShop(shop,getContext());
 
                 }
                 else

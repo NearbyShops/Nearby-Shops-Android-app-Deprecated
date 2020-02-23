@@ -14,8 +14,10 @@ import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 
 import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
@@ -111,7 +113,8 @@ public class UtilityFunctions {
 //        FirebaseApp.initializeApp(getApplicationContext());
 
 
-        Shop shop = PrefShopHome.getShop(getApplicationContext());
+
+        Shop shop = PrefShopAdminHome.getShop(getApplicationContext());
         ServiceConfigurationLocal localConfig = PrefServiceConfig.getServiceConfigLocal(getApplicationContext());
 
 
@@ -165,12 +168,17 @@ public class UtilityFunctions {
 
 
 
-    private void logout(Context context)
+    public static void logout(Context context)
     {
         // log out
         PrefLogin.saveUserProfile(null,context);
         PrefLogin.saveCredentials(context,null,null);
+
+        PrefLoginGlobal.saveUserProfile(null,context);
+        PrefLoginGlobal.saveCredentials(context,null,null);
+
         PrefShopHome.saveShop(null,context);
+        PrefShopAdminHome.saveShop(null,context);
 
         FirebaseApp.getInstance().delete();
     }

@@ -20,7 +20,7 @@ import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChanged;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SellerModule.ViewHolders.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
@@ -242,7 +242,7 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
         int mode = getArguments().getInt(ARG_MODE_KEY);
 
 
-        Shop currentShop = PrefShopHome.getShop(getContext());
+        Shop currentShop = PrefShopAdminHome.getShop(getContext());
 
         Log.d("shop_items","Shop ID : " + String.valueOf(currentShop.getShopID()));
 

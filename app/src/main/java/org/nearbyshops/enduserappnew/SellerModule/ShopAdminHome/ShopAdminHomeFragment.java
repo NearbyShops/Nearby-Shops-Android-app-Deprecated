@@ -21,6 +21,7 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SellerModule.ShopDashboard.ShopDashboard;
@@ -187,7 +188,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
     @OnClick(R.id.image_edit_shop)
     void editSHopClick()
     {
-        if(PrefShopHome.getShop(getActivity())==null)
+        if(PrefShopAdminHome.getShop(getActivity())==null)
         {
             // check online for shop exist or not
             // if shop exist save it in shop home and open it in edit mode
@@ -227,7 +228,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
                     if(response.code()==200)
                     {
-                        PrefShopHome.saveShop(response.body(),getActivity());
+                        PrefShopAdminHome.saveShop(response.body(),getActivity());
 
 
                         // Open Edit fragment in edit mode
@@ -290,7 +291,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
     @OnClick(R.id.image_shop_dashboard)
     void shopDashboardClick()
     {
-        if(PrefShopHome.getShop(getActivity())==null)
+        if(PrefShopAdminHome.getShop(getActivity())==null)
         {
             Call<Shop> call = shopService.getShopForShopAdmin(
                     PrefLogin.getAuthorizationHeaders(getActivity())
@@ -305,7 +306,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
                     if(response.code()==200)
                     {
-                        PrefShopHome.saveShop(response.body(),getActivity());
+                        PrefShopAdminHome.saveShop(response.body(),getActivity());
 
 //                        Toast.makeText(ShopAdminHome.this,"Shop ID : "  + String.valueOf(response.body().getShopID()),Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(), ShopDashboard.class);
@@ -377,7 +378,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
     private void bindToolbarHeader()
     {
-        Shop shop = PrefShopHome.getShop(getActivity());
+        Shop shop = PrefShopAdminHome.getShop(getActivity());
 
         if(shop!=null)
         {
@@ -390,7 +391,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
     private void bindNotice()
     {
 
-        Shop shop = PrefShopHome.getShop(getActivity());
+        Shop shop = PrefShopAdminHome.getShop(getActivity());
 
         if(shop==null)
         {
@@ -427,7 +428,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
     private void bindShopOpenStatus()
     {
 
-        Shop shop = PrefShopHome.getShop(getActivity());
+        Shop shop = PrefShopAdminHome.getShop(getActivity());
 
 
         if(shop==null)
@@ -483,7 +484,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
     private void bindBalance()
     {
-        Shop shop = PrefShopHome.getShop(getActivity());
+        Shop shop = PrefShopAdminHome.getShop(getActivity());
 
 
         if(shop==null)
@@ -527,7 +528,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
                 if(response.code()==200)
                 {
-                    PrefShopHome.saveShop(response.body(),getActivity());
+                    PrefShopAdminHome.saveShop(response.body(),getActivity());
 
 
                     bindAllFields();
@@ -614,9 +615,9 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
                 {
 //                    showToastMessage("Shop Open !");
 
-                    Shop shop = PrefShopHome.getShop(getActivity());
+                    Shop shop = PrefShopAdminHome.getShop(getActivity());
                     shop.setOpen(true);
-                    PrefShopHome.saveShop(shop,getActivity());
+                    PrefShopAdminHome.saveShop(shop,getActivity());
 
                     bindShopOpenStatus();
                 }
@@ -677,9 +678,9 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 //                    showToastMessage("Shop Closed !");
 
 
-                    Shop shop = PrefShopHome.getShop(getActivity());
+                    Shop shop = PrefShopAdminHome.getShop(getActivity());
                     shop.setOpen(false);
-                    PrefShopHome.saveShop(shop,getActivity());
+                    PrefShopAdminHome.saveShop(shop,getActivity());
 
                     bindShopOpenStatus();
                 }

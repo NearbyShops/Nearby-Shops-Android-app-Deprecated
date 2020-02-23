@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.SellerModule.ItemsDatabase.ItemsDatabase;
 import org.nearbyshops.enduserappnew.SellerModule.ItemsInShopByCatSeller.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.SellerModule.ItemsInShopSeller.ItemsInShop;
@@ -18,7 +19,6 @@ import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrderHistory;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.SellerModule.OrdersInventory.HomeDeliveryInventory.HomeDelivery;
 import org.nearbyshops.enduserappnew.SellerModule.OrdersInventory.PickFromShopInventory.PickFromShopInventory;
-import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.SellerModule.QuickStockEditor.QuickStockEditor;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
@@ -55,9 +55,10 @@ public class ShopDashboard extends AppCompatActivity {
 
 
 
+
     private void bindToolbarHeader()
     {
-        Shop shop = PrefShopHome.getShop(this);
+        Shop shop = PrefShopAdminHome.getShop(this);
         shopName.setText(shop.getShopName());
     }
 
@@ -184,7 +185,7 @@ public class ShopDashboard extends AppCompatActivity {
 
     void setupNotifications()
     {
-        Shop shop = PrefShopHome.getShop(this);
+        Shop shop = PrefShopAdminHome.getShop(this);
 
         if(shop!=null)
         {

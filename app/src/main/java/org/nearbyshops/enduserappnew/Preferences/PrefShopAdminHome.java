@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.Preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -17,7 +18,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 
-public class PrefShopHome {
+public class PrefShopAdminHome {
 
 
 
@@ -51,11 +52,10 @@ public class PrefShopHome {
 
         Gson gson = UtilityFunctions.provideGson();
         String json = gson.toJson(shop);
-        prefsEditor.putString("shop", json);
+        prefsEditor.putString("shop_profile_for_shop_admin", json);
 
         prefsEditor.apply();
     }
-
 
 
 
@@ -67,7 +67,7 @@ public class PrefShopHome {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 
         Gson gson = UtilityFunctions.provideGson();
-        String json = sharedPref.getString("shop", null);
+        String json = sharedPref.getString("shop_profile_for_shop_admin", null);
 
 
 //        if(json.equals("null"))
