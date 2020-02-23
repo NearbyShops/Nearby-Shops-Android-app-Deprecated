@@ -82,6 +82,8 @@ public class UtilityFunctions {
 
         if(user==null || localConfig==null || localConfig.getRt_market_id_for_fcm()==null)
         {
+
+            System.out.println("Subscription Failed ... Returned ! ");
             return;
         }
 

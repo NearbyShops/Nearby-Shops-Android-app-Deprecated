@@ -101,8 +101,8 @@
         If i add item \"Milk\" directly under Groceries that will not make sense, but if i add \"Milk\" under Dairy that will make more sense.
         There are certain Item Categories which doesn\'t need to contain Items placed directly under them and you will want to make it abstract.
         Making the Item Categories as Abstract will protect / prevent someone from placing items directly under it.</string>
-
-
+    <string name="channel_name">nbs_app</string>
+    <string name="channel_description">notifications for nearby shops app</string>
 
 
 </resources>

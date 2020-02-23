@@ -75,6 +75,9 @@ dependencies {
     testImplementation "androidx.paging:paging-common:$paging_version" // For Kotlin use paging-common-ktx
 
 
+    implementation "com.android.support:support-compat:28.0.0"
+
+
 
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
