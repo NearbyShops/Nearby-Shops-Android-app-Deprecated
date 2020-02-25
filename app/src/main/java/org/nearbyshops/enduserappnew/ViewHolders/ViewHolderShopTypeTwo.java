@@ -286,8 +286,8 @@ public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder implements Po
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-                builder.setTitle("Confirm Delete Item Category !")
-                        .setMessage("Do you want to delete this Item Category ?")
+                builder.setTitle("Confirm Delete Shop !")
+                        .setMessage("Are you sure you want to delete this Shop ?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

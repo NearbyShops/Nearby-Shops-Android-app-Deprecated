@@ -517,11 +517,12 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
                     {
                         if(response.body()!= null)
                         {
-                            item_count = response.body().getItemCount();
+
 
                             if(clearDataset)
                             {
                                 dataset.clear();
+                                item_count = response.body().getItemCount();
                             }
 
                             if(response.body().getResults()!=null)
