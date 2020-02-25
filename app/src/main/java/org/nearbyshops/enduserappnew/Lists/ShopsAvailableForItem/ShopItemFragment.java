@@ -253,6 +253,8 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
+
+
     private void swipeRefresh()
     {
 

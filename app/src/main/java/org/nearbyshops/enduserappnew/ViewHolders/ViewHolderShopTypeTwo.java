@@ -1,30 +1,45 @@
 package org.nearbyshops.enduserappnew.ViewHolders;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.squareup.picasso.Picasso;
 
+import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.ShopDetailFragment;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategory;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategoryFragment;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.PrefItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
+import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemCategoryAdmin;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder{
+public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder implements PopupMenu.OnMenuItemClickListener {
 
 
     @BindView(R.id.shop_name) TextView shopName;
@@ -37,9 +52,18 @@ public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder{
     @BindView(R.id.indicator_home_delivery) TextView homeDeliveryIndicator;
 
 
+    @BindView(R.id.more_options) ImageView moreOptions;
+
+
     private Shop shop;
     private Context context;
     private Fragment fragment;
+
+    private RecyclerView.Adapter adapter;
+
+
+    private ViewModelShop viewModelShop;
+
 
 
 
@@ -50,7 +74,7 @@ public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder{
     {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_new,parent,false);
-        return new ViewHolderShopTypeTwo(view,context,fragment);
+        return new ViewHolderShopTypeTwo(view,context,fragment, adapter);
     }
 
 
@@ -58,12 +82,40 @@ public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder{
 
 
 
-    public ViewHolderShopTypeTwo(@NonNull View itemView, Context context, Fragment fragment) {
+    public ViewHolderShopTypeTwo(@NonNull View itemView, Context context, Fragment fragment, RecyclerView.Adapter adapter) {
         super(itemView);
         ButterKnife.bind(this,itemView);
 
         this.context = context;
         this.fragment = fragment;
+        this.adapter = adapter;
+
+        viewModelShop = new ViewModelShop(MyApplication.application);
+
+
+
+        viewModelShop.getEvent().observe(fragment.getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+
+
+                if(integer == ViewModelShop.EVENT_SHOP_DELETED)
+                {
+                    ViewHolderShopTypeTwo.this.adapter.notifyItemRemoved(getLayoutPosition());
+                }
+
+            }
+        });
+
+
+
+
+        viewModelShop.getMessage().observe(fragment. getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                showToastMessage(s);
+            }
+        });
 
 
     }
@@ -89,10 +141,17 @@ public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder{
 
 
 
-    public void setItem(Shop shop)
+    public void setItem(Shop shop, boolean moreOptionsEnabled)
     {
 
         this.shop = shop;
+
+
+        if(moreOptionsEnabled)
+        {
+            moreOptions.setVisibility(View.VISIBLE);
+        }
+
 
 
         if(shop!=null)
@@ -203,6 +262,70 @@ public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder{
 
 
 
+    @OnClick(R.id.more_options)
+    void optionsOverflowClick(View v)
+    {
+        PopupMenu popup = new PopupMenu(context, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.list_item_shop_admin_options, popup.getMenu());
+        popup.setOnMenuItemClickListener(this);
+        popup.show();
+    }
+
+
+
+
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+
+
+        switch (item.getItemId())
+        {
+            case R.id.action_remove:
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                builder.setTitle("Confirm Delete Item Category !")
+                        .setMessage("Do you want to delete this Item Category ?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+
+                                viewModelShop.deleteShop(shop.getShopID());
+
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                showToastMessage("Cancelled !");
+
+                            }
+                        })
+                        .show();
+                break;
+
+
+
+            default:
+
+                break;
+
+        }
+
+
+
+        return false;
+
+    }
+
+
+
+
+
 
 
     //        @OnClick(R.id.shop_logo)
@@ -211,6 +334,14 @@ public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder{
 //            Intent intent = new Intent(context, MarketDetail.class);
 //            intent.putExtra(MarketDetail.SHOP_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
 //            context.startActivity(intent);
+    }
+
+
+
+
+    private void showToastMessage(String message)
+    {
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
     }
 
 

@@ -111,12 +111,9 @@
                 android:layout_height="wrap_content" />
 
 
-
-
-
             <TextView
                 android:id="@+id/select_market"
-                android:padding="3dp"
+                android:padding="5dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="Select Market"

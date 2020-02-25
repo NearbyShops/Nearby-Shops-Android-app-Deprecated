@@ -29,6 +29,13 @@ public interface ShopService {
 
 
 
+    @DELETE ("/api/v1/Shop/{ShopID}")
+    Call<ResponseBody> deleteShop(@Header("Authorization") String headers,
+                                  @Path("ShopID")int shopID
+    );
+
+
+
 
     @PUT("/api/v1/Shop/UpdateBySelf")
     Call<ResponseBody> updateBySelf(@Header("Authorization") String headers,

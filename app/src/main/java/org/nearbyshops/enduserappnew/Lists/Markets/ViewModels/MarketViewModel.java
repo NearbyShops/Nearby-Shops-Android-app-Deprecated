@@ -119,6 +119,8 @@ public class MarketViewModel extends AndroidViewModel {
     public void loadData(final boolean clearDataset)
     {
 
+            String sortBy = " distance ";
+
 
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))
@@ -140,7 +142,8 @@ public class MarketViewModel extends AndroidViewModel {
                         PrefLocation.getLatitude(getApplication()), PrefLocation.getLongitude(getApplication()),
                         null,
                         null,
-                        null,limit,offset);
+                        sortBy,
+                        limit,offset);
 
             }
             else
@@ -151,7 +154,8 @@ public class MarketViewModel extends AndroidViewModel {
                         PrefLocation.getLatitude(getApplication()), PrefLocation.getLongitude(getApplication()),
                         null,
                         null,
-                        null,limit,offset);
+                        sortBy,
+                        limit,offset);
             }
 
 
@@ -209,7 +213,6 @@ public class MarketViewModel extends AndroidViewModel {
                                 if(userLocal!=null)
                                 {
                                     dataset.add(new RoleDashboardMarker());
-                                    dataset.add(userGlobal);
                                 }
 
 
@@ -217,6 +220,11 @@ public class MarketViewModel extends AndroidViewModel {
                                 {
                                     dataset.add(new SignInMarker());
                                 }
+                                else
+                                {
+                                    dataset.add(userGlobal);
+                                }
+
                             }
 
 
@@ -276,6 +284,10 @@ public class MarketViewModel extends AndroidViewModel {
                                 if(userGlobal==null)
                                 {
                                     dataset.add(new SignInMarker());
+                                }
+                                else
+                                {
+                                    dataset.add(userGlobal);
                                 }
                             }
 

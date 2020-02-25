@@ -179,7 +179,7 @@ public class EditShopImageFragment extends Fragment {
 
             if(((AppCompatActivity)getActivity()).getSupportActionBar()!=null)
             {
-                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add Item Image");
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add Shop Image");
             }
 
         }

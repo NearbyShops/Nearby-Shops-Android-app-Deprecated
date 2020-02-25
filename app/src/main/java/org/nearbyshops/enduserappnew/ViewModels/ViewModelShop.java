@@ -43,6 +43,7 @@ public class ViewModelShop extends AndroidViewModel {
 
     public static int EVENT_BECOME_A_SELLER_SUCCESSFUL = 1;
     public static int EVENT_SHOP_DETAILS_FETCHED = 2;
+    public static int EVENT_SHOP_DELETED = 3;
     public static int EVENT_ = 20;
     public static int EVENT_NETWORK_FAILED = 21;
 
@@ -197,6 +198,49 @@ public class ViewModelShop extends AndroidViewModel {
     }
 
 
+
+
+
+
+
+    public void deleteShop(int shopID)
+    {
+
+        Call<ResponseBody> call = shopService.deleteShop(
+                PrefLogin.getAuthorizationHeaders(getApplication()),
+                shopID
+        );
+
+
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if(response.code()==200)
+                {
+                    event.postValue(ViewModelShop.EVENT_SHOP_DELETED);
+                    message.postValue("Successful !");
+                }
+                else
+                {
+                    event.postValue(ViewModelShop.EVENT_NETWORK_FAILED);
+                    message.postValue("Failed Code : " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                event.postValue(ViewModelShop.EVENT_NETWORK_FAILED);
+                message.postValue("Network Failed ! ");
+
+            }
+        });
+
+
+    }
 
 
 }

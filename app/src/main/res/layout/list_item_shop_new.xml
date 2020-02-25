@@ -149,6 +149,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"/>
+
+
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/more_options"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_more_vert_black_48px"/>
+
             </LinearLayout>
 
 

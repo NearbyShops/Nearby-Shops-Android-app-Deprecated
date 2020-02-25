@@ -158,6 +158,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/admin_options_block"
             android:orientation="vertical"
             android:layout_width="match_parent"
