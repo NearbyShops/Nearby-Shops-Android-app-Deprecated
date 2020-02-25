@@ -363,7 +363,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
                 }
                 else
                 {
-                    showToastMessage("Response Code : " + String.valueOf(response.code()));
+                    showToastMessage("Response Code : " + response.code());
                 }
 
 
@@ -487,7 +487,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
                     }
                     else
                     {
-                        showToastMessage("Failed code : " + String.valueOf(response.code()));
+                        showToastMessage("Failed code : " + response.code());
                     }
 
 
@@ -621,7 +621,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
         itemRating.setText(String.format("%.2f",item.getRt_rating_avg()));
-        ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " Ratings )");
+        ratingCount.setText("( " + item.getRt_rating_count() + " Ratings )");
 
 
 
@@ -635,7 +635,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
         else
         {
 
-            ratingCount.setText("( " + String.valueOf(item.getRt_rating_count()) + " Ratings )");
+            ratingCount.setText("( " + item.getRt_rating_count() + " Ratings )");
             itemRating.setText(String.format(" %.2f ",item.getRt_rating_avg()));
             itemRating.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.gplus_color_2));
             ratingCount.setVisibility(View.VISIBLE);

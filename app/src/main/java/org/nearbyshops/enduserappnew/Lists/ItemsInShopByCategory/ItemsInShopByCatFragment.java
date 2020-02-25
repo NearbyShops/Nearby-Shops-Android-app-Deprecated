@@ -168,7 +168,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
 
@@ -599,7 +599,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                 }
                 else
                 {
-                    showToastMessage("Failed : code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed : code : " + response.code());
                 }
 
 
@@ -720,7 +720,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-        itemHeader.setText(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items");
+        itemHeader.setText(fetched_items_count + " out of " + item_count_item + " " + currentCategory.getCategoryName() + " Items");
     }
 
 
@@ -851,7 +851,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 //        itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items in Cart");
-        itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items");
+        itemsInCart.setText(itemsInCartValue + " " + "Items");
 
 
 

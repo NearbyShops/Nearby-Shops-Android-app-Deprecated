@@ -59,7 +59,7 @@ public class PickLocation extends AppCompatActivity {
 
 
 //        Mapbox.getInstance(this, "pk.eyJ1Ijoic3VtZWV0");
-        mapView = (MapView) findViewById(R.id.mapview);
+        mapView = findViewById(R.id.mapview);
         mapView.onCreate(savedInstanceState);
 
 

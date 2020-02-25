@@ -121,7 +121,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         ButterKnife.bind(this,rootView);
 
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(),R.color.white));
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
@@ -511,7 +511,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
                 }
                 else
                 {
-                    showToastMessage("Server error code : " + String.valueOf(response.code()));
+                    showToastMessage("Server error code : " + response.code());
                 }
 
 
@@ -563,7 +563,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-        userID.setText("User ID : " + String.valueOf(user.getUserID()));
+        userID.setText("User ID : " + user.getUserID());
 
         profileBlock.setVisibility(View.VISIBLE);
         profileImage.setVisibility(View.VISIBLE);

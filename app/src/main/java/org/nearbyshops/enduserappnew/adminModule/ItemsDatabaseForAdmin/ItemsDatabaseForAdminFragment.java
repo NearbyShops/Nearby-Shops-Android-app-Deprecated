@@ -884,7 +884,7 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
     {
         if(getActivity() instanceof NotifyHeaderChanged)
         {
-            ((NotifyHeaderChanged) getActivity()).notifyItemHeaderChanged(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items");
+            ((NotifyHeaderChanged) getActivity()).notifyItemHeaderChanged(fetched_items_count + " out of " + item_count_item + " " + currentCategory.getCategoryName() + " Items");
         }
     }
 
@@ -1199,7 +1199,7 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
 
                 }else
                 {
-                    showToastMessage("Failed Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed Code : " + response.code());
                 }
 
 //                listAdapter.setRequestedChangeParent(null);

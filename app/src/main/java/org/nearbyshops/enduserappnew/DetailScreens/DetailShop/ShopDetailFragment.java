@@ -418,7 +418,7 @@ public class ShopDetailFragment extends Fragment
 
 
         deliveryChargeText.setText("Delivery Charge : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + shop.getDeliveryCharges() + " Per Delivery");
-        freeDeliveryInfo.setText("Free Delivery for orders above " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(shop.getBillAmountForFreeDelivery()));
+        freeDeliveryInfo.setText("Free Delivery for orders above " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + shop.getBillAmountForFreeDelivery());
 
 
 
@@ -518,7 +518,7 @@ public class ShopDetailFragment extends Fragment
                     }
                     else
                     {
-                        imagesCount.setText(String.valueOf(count)  + " Photos");
+                        imagesCount.setText(count + " Photos");
                     }
 
                 }
@@ -697,7 +697,7 @@ public class ShopDetailFragment extends Fragment
 
     private void getDirections(double lat, double lon)
     {
-        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + String.valueOf(lat) + "," + String.valueOf(lon));
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + lat + "," + lon);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
@@ -707,7 +707,7 @@ public class ShopDetailFragment extends Fragment
 
     private void seeOnMap(double lat, double lon, String label)
     {
-        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + String.valueOf(lat) + "," + String.valueOf(lon) + "(" + label + ")");
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + lat + "," + lon + "(" + label + ")");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);

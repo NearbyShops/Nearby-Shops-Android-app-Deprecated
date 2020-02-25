@@ -40,7 +40,7 @@ public class ShopItemByItem extends AppCompatActivity implements NotifySort {
 //        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
         toolbar.setTitle("Available in Shops");
         setSupportActionBar(toolbar);

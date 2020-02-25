@@ -98,7 +98,7 @@ public class ViewHolderShopStaff extends RecyclerView.ViewHolder{
 
 //            ShopStaffPermissions permissions = user.getRt_shop_staff_permissions();
 
-            staffUserID.setText("Staff User ID : " + String.valueOf(user.getUserID()));
+            staffUserID.setText("Staff User ID : " + user.getUserID());
             staffName.setText(user.getName());
 //            designation.setText(permissions.getDesignation());
 //            distance.setText("Distance : " + String.format("%.2f Km",permissions.getRt_distance()));

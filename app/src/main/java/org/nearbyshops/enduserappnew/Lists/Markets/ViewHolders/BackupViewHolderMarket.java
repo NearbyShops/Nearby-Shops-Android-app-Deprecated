@@ -162,7 +162,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
         else
         {
             rating.setText(String.format("%.2f",configurationGlobal.getRt_rating_avg()));
-            ratingCount.setText("( " + String.valueOf((int)configurationGlobal.getRt_rating_count()) + " Ratings )");
+            ratingCount.setText("( " + (int) configurationGlobal.getRt_rating_count() + " Ratings )");
 
             rating.setBackgroundColor(ContextCompat.getColor(context, R.color.gplus_color_2));
             ratingCount.setVisibility(View.VISIBLE);
@@ -321,7 +321,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
                     if(subscriber instanceof  ListItemClick)
                     {
-                        ((ListItemClick) subscriber).showMessage("Failed Code : " + String.valueOf(response.code()));
+                        ((ListItemClick) subscriber).showMessage("Failed Code : " + response.code());
                     }
                 }
 
@@ -490,7 +490,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
                     }
 
 
-                    System.out.println("Login Failed : Code " + String.valueOf(response.code()));
+                    System.out.println("Login Failed : Code " + response.code());
                 }
 
             }

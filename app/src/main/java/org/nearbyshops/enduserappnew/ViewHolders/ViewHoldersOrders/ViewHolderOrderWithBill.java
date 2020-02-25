@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrderDetails;
+package org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -479,7 +479,7 @@ public class AdapterBackup extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         holder.priceAverage.setText("Price Average :\nRs." + String.format("%.2f",itemStats.getAvg_price()) + " per " + item.getQuantityUnit());
         holder.shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
         holder.itemRating.setText(String.format("%.2f",itemStats.getRating_avg()));
-        holder.ratingCount.setText("( " + String.valueOf(itemStats.getRatingCount()) + " Ratings )");
+        holder.ratingCount.setText("( " + itemStats.getRatingCount() + " Ratings )");
 
 
         if(selectedItems.containsKey(item.getItemID()))

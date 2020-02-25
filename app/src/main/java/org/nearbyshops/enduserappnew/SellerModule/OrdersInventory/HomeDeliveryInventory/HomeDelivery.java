@@ -51,7 +51,7 @@ public class HomeDelivery extends AppCompatActivity implements NotifyTitleChange
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_delivery);
         ButterKnife.bind(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
@@ -59,7 +59,7 @@ public class HomeDelivery extends AppCompatActivity implements NotifyTitleChange
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
 
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setAdapter(mPagerAdapter);

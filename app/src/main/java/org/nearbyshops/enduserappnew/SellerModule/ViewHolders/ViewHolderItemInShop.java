@@ -128,7 +128,7 @@ public class ViewHolderItemInShop extends RecyclerView.ViewHolder implements Pop
             itemRating.setText(String.format(" %.2f ",itemStats.getRating_avg()));
             itemRating.setBackgroundColor(ContextCompat.getColor(context, R.color.gplus_color_2));
             ratingCount.setVisibility(View.VISIBLE);
-            ratingCount.setText("( " + String.valueOf(itemStats.getRatingCount()) + " Ratings )");
+            ratingCount.setText("( " + itemStats.getRatingCount() + " Ratings )");
         }
 
 

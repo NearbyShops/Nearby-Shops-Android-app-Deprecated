@@ -238,11 +238,11 @@ public class ShopReviewStats extends Fragment {
         double value_bar_ten = (((double)statListNormalized[9].getReviews_count()/reviews_count_total) * 150);
 
 
-        Log.d("ShopStats", "Value for Bar eight : " + String.valueOf(statListNormalized[7].getReviews_count()));
-        Log.d("ShopStats", "Reviews Count Total : " + String.valueOf(reviews_count_total));
+        Log.d("ShopStats", "Value for Bar eight : " + statListNormalized[7].getReviews_count());
+        Log.d("ShopStats", "Reviews Count Total : " + reviews_count_total);
 
-        Log.d("ShopStats", "Division : " + String.valueOf((double)statListNormalized[7].getReviews_count()/reviews_count_total));
-        Log.d("ShopStats", "Division Bar Eight: " + String.valueOf(value_bar_eight));
+        Log.d("ShopStats", "Division : " + (double) statListNormalized[7].getReviews_count() / reviews_count_total);
+        Log.d("ShopStats", "Division Bar Eight: " + value_bar_eight);
 
 //        bar_one_star.getLayoutParams().width = value_bar_one;
 

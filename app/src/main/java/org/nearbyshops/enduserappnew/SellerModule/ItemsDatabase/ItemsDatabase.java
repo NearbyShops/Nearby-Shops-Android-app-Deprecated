@@ -64,7 +64,7 @@ public class ItemsDatabase extends AppCompatActivity implements NotifyIndicatorC
         setContentView(R.layout.activity_items_by_category_simple);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
      /*   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

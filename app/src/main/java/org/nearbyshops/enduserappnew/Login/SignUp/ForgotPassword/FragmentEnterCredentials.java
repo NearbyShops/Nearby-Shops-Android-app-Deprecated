@@ -665,7 +665,7 @@ TextInputEditText phone;
                 }
                 else
                 {
-                    showToastMessage("Failed with code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed with code : " + response.code());
                 }
             }
 

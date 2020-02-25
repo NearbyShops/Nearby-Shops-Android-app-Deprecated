@@ -458,12 +458,8 @@ public class FragmentEmailOrPhone extends Fragment {
     private boolean isValidMobile(String phone) {
         boolean check=false;
         if(!Pattern.matches("[a-zA-Z]+", phone)) {
-            if(phone.length() < 6 || phone.length() > 13) {
-                // if(phone.length() != 10) {
-                check = false;
-            } else {
-                check = true;
-            }
+            // if(phone.length() != 10) {
+            check = phone.length() >= 6 && phone.length() <= 13;
         } else {
             check=false;
         }

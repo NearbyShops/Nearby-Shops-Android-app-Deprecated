@@ -6,5 +6,5 @@ package org.nearbyshops.enduserappnew.Interfaces;
 
 public interface NotifyTitleChangedNew {
 
-    public void NotifyTitleChanged(String title);
+    void NotifyTitleChanged(String title);
 }

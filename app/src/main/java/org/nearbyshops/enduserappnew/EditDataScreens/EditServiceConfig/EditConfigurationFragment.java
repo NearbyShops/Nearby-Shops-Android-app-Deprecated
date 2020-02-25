@@ -38,7 +38,6 @@ import org.nearbyshops.enduserappnew.API.API_SDS.ServiceConfigService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.LocationPicker.LocationPickerWithRadius.PickDeliveryRange;
-import org.nearbyshops.enduserappnew.LocationPicker.PickLocation;
 import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;
@@ -162,7 +161,7 @@ public class EditConfigurationFragment extends Fragment {
 
         ButterKnife.bind(this,rootView);
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -607,7 +606,7 @@ public class EditConfigurationFragment extends Fragment {
 //                }
                 else
                 {
-                    showToastMessage("Update Failed Code : " + String.valueOf(response.code()));
+                    showToastMessage("Update Failed Code : " + response.code());
                 }
 
             }
@@ -671,7 +670,7 @@ public class EditConfigurationFragment extends Fragment {
                 }
                 else
                 {
-                    showToastMessage("SDS Update Failed ... Error Code : " + String.valueOf(response.code()));
+                    showToastMessage("SDS Update Failed ... Error Code : " + response.code());
                 }
 
             }
@@ -1152,8 +1151,6 @@ public class EditConfigurationFragment extends Fragment {
         intent.putExtra("lon_dest",Double.parseDouble(longitude.getText().toString()));
         intent.putExtra("radius",Double.parseDouble(serviceCoverage.getText().toString()));
         startActivityForResult(intent,3);
-
-
     }
 
 

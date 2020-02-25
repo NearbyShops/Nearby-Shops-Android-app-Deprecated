@@ -6,5 +6,5 @@ package org.nearbyshops.enduserappnew.Interfaces;
 
 public interface NotifyTitleChanged {
 
-    public void NotifyTitleChanged(String title, int tabPosition);
+    void NotifyTitleChanged(String title, int tabPosition);
 }

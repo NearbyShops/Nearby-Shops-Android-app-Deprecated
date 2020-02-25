@@ -99,7 +99,7 @@ public class SelectDeliveryFragment extends Fragment implements SwipeRefreshLayo
         ButterKnife.bind(this,rootView);
 
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(),R.color.white));
         toolbar.setTitle("Select Delivery");
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);

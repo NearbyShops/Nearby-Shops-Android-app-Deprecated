@@ -372,7 +372,7 @@ public class FragmentVerify extends Fragment {
                 else
                 {
                     textAvailable.setVisibility(View.VISIBLE);
-                    textAvailable.setText("Failed code : " + String.valueOf(response.code()));
+                    textAvailable.setText("Failed code : " + response.code());
                 }
 
 
@@ -689,7 +689,7 @@ public class FragmentVerify extends Fragment {
                     }
                     else
                     {
-                        showToastMessage("Failed code : " + String.valueOf(response.code()));
+                        showToastMessage("Failed code : " + response.code());
                     }
 
 

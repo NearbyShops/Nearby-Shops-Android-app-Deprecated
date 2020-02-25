@@ -400,7 +400,7 @@ public class LoginFragment extends Fragment {
                 else
                 {
                     showToastMessage("Login Failed : Username or password is incorrect !");
-                    System.out.println("Login Failed : Code " + String.valueOf(response.code()));
+                    System.out.println("Login Failed : Code " + response.code());
                 }
 
             }

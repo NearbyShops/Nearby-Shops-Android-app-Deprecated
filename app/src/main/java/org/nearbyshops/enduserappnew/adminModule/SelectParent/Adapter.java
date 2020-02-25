@@ -254,7 +254,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     public interface requestSubCategory
     {
         // method for notifying the list object to request sub category
-        public void notifyRequestSubCategory(ItemCategory itemCategory);
+        void notifyRequestSubCategory(ItemCategory itemCategory);
     }
 
 

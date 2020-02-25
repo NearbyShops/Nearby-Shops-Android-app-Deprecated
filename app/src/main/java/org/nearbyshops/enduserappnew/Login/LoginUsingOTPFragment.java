@@ -522,7 +522,7 @@ public class LoginUsingOTPFragment extends Fragment {
                 }
                 else
                 {
-                    showToastMessage("Failed to send OTP ... failed Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed to send OTP ... failed Code : " + response.code());
                 }
 
 

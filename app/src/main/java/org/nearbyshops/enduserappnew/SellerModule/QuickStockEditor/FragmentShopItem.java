@@ -115,8 +115,8 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
         View rootView = inflater.inflate(R.layout.fragment_quick_stock_editor, container, false);
         setRetainInstance(true);
 
-        swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        swipeContainer = rootView.findViewById(R.id.swipeContainer);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
 
         if(savedInstanceState == null)
         {
@@ -244,7 +244,7 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
 
         Shop currentShop = PrefShopAdminHome.getShop(getContext());
 
-        Log.d("shop_items","Shop ID : " + String.valueOf(currentShop.getShopID()));
+        Log.d("shop_items","Shop ID : " + currentShop.getShopID());
 
         Call<ShopItemEndPoint> call = null;
 
@@ -636,8 +636,8 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
 
                 ((NotifyTitleChanged)getActivity())
                         .NotifyTitleChanged(
-                                "Out of Stock (" + String.valueOf(dataset.size())
-                                        + "/" + String.valueOf(item_count) + ")",1);
+                                "Out of Stock (" + dataset.size()
+                                        + "/" + item_count + ")",1);
 
 
 
@@ -646,8 +646,8 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
             {
                 ((NotifyTitleChanged)getActivity())
                         .NotifyTitleChanged(
-                                "Low Stock (" + String.valueOf(dataset.size())
-                                        + "/" + String.valueOf(item_count) + ")",0);
+                                "Low Stock (" + dataset.size()
+                                        + "/" + item_count + ")",0);
 
 
             }
@@ -655,8 +655,8 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
             {
                 ((NotifyTitleChanged)getActivity())
                         .NotifyTitleChanged(
-                                "Recently Added (" + String.valueOf(dataset.size())
-                                        + "/" + String.valueOf(item_count) + ")",3);
+                                "Recently Added (" + dataset.size()
+                                        + "/" + item_count + ")",3);
 
 
 
@@ -666,16 +666,16 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
 
                 ((NotifyTitleChanged)getActivity())
                         .NotifyTitleChanged(
-                                "Recently Updated (" + String.valueOf(dataset.size())
-                                        + "/" + String.valueOf(item_count) + ")",4);
+                                "Recently Updated (" + dataset.size()
+                                        + "/" + item_count + ")",4);
 
             }
             else if (mode == MODE_PRICE_NOT_SET)
             {
                 ((NotifyTitleChanged)getActivity())
                         .NotifyTitleChanged(
-                                "Price not Set (" + String.valueOf(dataset.size())
-                                        + "/" + String.valueOf(item_count) + ")",2);
+                                "Price not Set (" + dataset.size()
+                                        + "/" + item_count + ")",2);
 
             }
 

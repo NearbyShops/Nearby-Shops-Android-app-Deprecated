@@ -177,7 +177,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 //            DeliveryGuyData permissions = tripRequest.getRt_delivery_guy_data();
 
-            holder.staffUserID.setText("Staff User ID : " + String.valueOf(tripRequest.getUserID()));
+            holder.staffUserID.setText("Staff User ID : " + tripRequest.getUserID());
             holder.staffName.setText(tripRequest.getName());
 //            holder.designation.setText("Delivery Guy Self");
 //            holder.distance.setText("Distance : " + String.format("%.2f Km",permissions.getRt_distance()));

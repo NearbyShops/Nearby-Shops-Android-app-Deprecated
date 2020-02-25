@@ -159,7 +159,7 @@ public class FragmentEditProfile extends Fragment {
         ButterKnife.bind(this,rootView);
 
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -846,7 +846,7 @@ public class FragmentEditProfile extends Fragment {
                 }
                 else
                 {
-                    showToastMessage("Update failed code : " + String.valueOf(response.code()));
+                    showToastMessage("Update failed code : " + response.code());
                 }
 
 
@@ -1063,8 +1063,8 @@ public class FragmentEditProfile extends Fragment {
         super.onActivityResult(requestCode, resultCode, result);
 
         showLogMessage("FragmentEditProfile : onActivityResult()"
-        + "\nRequest Code : " + String.valueOf(requestCode)
-        + "\nResponse Code : " + String.valueOf(resultCode)
+        + "\nRequest Code : " + requestCode
+        + "\nResponse Code : " + resultCode
         );
 
         if(requestCode==10 && resultCode == 10)
@@ -1324,7 +1324,7 @@ public class FragmentEditProfile extends Fragment {
                 }
                 else
                 {
-                    showToastMessage("Image Upload failed Code : " + String.valueOf(response.code()));
+                    showToastMessage("Image Upload failed Code : " + response.code());
                     user.setProfileImagePath(null);
 
                 }

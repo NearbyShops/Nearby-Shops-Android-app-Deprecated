@@ -421,7 +421,7 @@ public class LoginGlobalFragment extends Fragment {
                 else
                 {
                     showToastMessage("Login Failed : Username or password is incorrect !");
-                    System.out.println("Login Failed : Code " + String.valueOf(response.code()));
+                    System.out.println("Login Failed : Code " + response.code());
                 }
 
             }
@@ -645,7 +645,7 @@ public class LoginGlobalFragment extends Fragment {
                 else
                 {
                     showToastMessage("Login Failed : Username or password is incorrect !");
-                    System.out.println("Login Failed : Code " + String.valueOf(response.code()));
+                    System.out.println("Login Failed : Code " + response.code());
                 }
 
             }

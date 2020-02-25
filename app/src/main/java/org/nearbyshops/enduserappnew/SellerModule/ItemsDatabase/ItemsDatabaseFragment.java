@@ -565,7 +565,7 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
                 }
                 else
                 {
-                    showToastMessage("Failed Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed Code : " + response.code());
                 }
 
 
@@ -723,7 +723,7 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
     {
         if(getActivity() instanceof NotifyIndicatorChanged)
         {
-            ((NotifyIndicatorChanged) getActivity()).notifyItemIndicatorChanged(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items");
+            ((NotifyIndicatorChanged) getActivity()).notifyItemIndicatorChanged(fetched_items_count + " out of " + item_count_item + " " + currentCategory.getCategoryName() + " Items");
         }
     }
 
@@ -832,7 +832,7 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
                 }
                 else
                 {
-                    showToastMessage("Failed : " + String.valueOf(response.code()));
+                    showToastMessage("Failed : " + response.code());
                 }
 
             }

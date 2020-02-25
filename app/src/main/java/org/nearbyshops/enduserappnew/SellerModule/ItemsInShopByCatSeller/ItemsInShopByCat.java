@@ -53,7 +53,7 @@ public class ItemsInShopByCat extends AppCompatActivity implements NotifyIndicat
         setContentView(R.layout.activity_items_in_stock_by_cat);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
      /*   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

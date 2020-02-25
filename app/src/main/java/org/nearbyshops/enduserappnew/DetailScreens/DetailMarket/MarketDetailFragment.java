@@ -311,7 +311,7 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
         else
         {
             shopRatingNumeric.setText(String.format("%.2f",market.getRt_rating_avg()));
-            ratingCount.setText("( " + String.valueOf((int)market.getRt_rating_count()) + " Ratings )");
+            ratingCount.setText("( " + (int) market.getRt_rating_count() + " Ratings )");
 
             ratingBar.setVisibility(View.VISIBLE);
             ratingBar.setRating(market.getRt_rating_avg());
@@ -522,7 +522,7 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
     void getDirections(double lat,double lon)
     {
-        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + String.valueOf(lat) + "," + String.valueOf(lon));
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + lat + "," + lon);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
@@ -532,7 +532,7 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
     void seeOnMap(double lat,double lon,String label)
     {
-        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + String.valueOf(lat) + "," + String.valueOf(lon) + "(" + label + ")");
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + lat + "," + lon + "(" + label + ")");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
@@ -686,7 +686,7 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
                     if (response.body() != null) {
 
 
-                        Log.d("app_log","Item Count Favourite : " + String.valueOf(response.body().getItemCount()));
+                        Log.d("app_log","Item Count Favourite : " + response.body().getItemCount());
 
                         if (response.body().getItemCount() >= 1) {
 

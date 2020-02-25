@@ -679,7 +679,7 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
             //holder.priceText.setText("Price : " + shopItem.getItemPrice());
 
             itemPrice.setText(String.valueOf((int)shopItem.getItemPrice()));
-            itemQuantity.setText(String.valueOf((int)shopItem.getAvailableItemQuantity()));
+            itemQuantity.setText(String.valueOf(shopItem.getAvailableItemQuantity()));
 
             //holder.itemPrice.setText(String.format( "%.0f", shopItem.getItemPrice()));
             //holder.itemQuantity.setText(String.format( "%.0f", shopItem.getAvailableItemQuantity()));

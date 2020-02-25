@@ -195,7 +195,7 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
             itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " "
                     + String.format("%.2f", cartItem.getRt_itemPrice() * cartItem.getItemQuantity()));
 
-            itemsAvailable.setText("Available : " + String.valueOf(cartItem.getRt_availableItemQuantity()) + " " + item.getQuantityUnit());
+            itemsAvailable.setText("Available : " + cartItem.getRt_availableItemQuantity() + " " + item.getQuantityUnit());
 
 
 //            imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())

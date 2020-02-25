@@ -887,7 +887,7 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
     {
         if(getActivity() instanceof NotifyIndicatorChanged)
         {
-            ((NotifyIndicatorChanged) getActivity()).notifyItemIndicatorChanged(String.valueOf(fetched_items_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items");
+            ((NotifyIndicatorChanged) getActivity()).notifyItemIndicatorChanged(fetched_items_count + " out of " + item_count_item + " " + currentCategory.getCategoryName() + " Items");
         }
     }
 

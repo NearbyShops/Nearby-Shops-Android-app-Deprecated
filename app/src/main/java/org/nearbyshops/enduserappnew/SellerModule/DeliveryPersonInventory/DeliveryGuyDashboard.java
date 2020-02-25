@@ -80,7 +80,7 @@ public class DeliveryGuyDashboard extends AppCompatActivity implements NotifyTit
         setContentView(R.layout.activity_vehicle_driver_dashboard);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
@@ -90,7 +90,7 @@ public class DeliveryGuyDashboard extends AppCompatActivity implements NotifyTit
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), deliveryGuySelf);
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
 
@@ -325,7 +325,7 @@ public class DeliveryGuyDashboard extends AppCompatActivity implements NotifyTit
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case 2: {
                 // If request is cancelled, the result arrays are empty.

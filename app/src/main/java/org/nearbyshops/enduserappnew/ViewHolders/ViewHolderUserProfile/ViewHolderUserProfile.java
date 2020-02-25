@@ -74,7 +74,7 @@ public class ViewHolderUserProfile extends RecyclerView.ViewHolder {
     public void setItem(User user)
     {
 
-        userID.setText("User ID : " + String.valueOf(user.getUserID()));
+        userID.setText("User ID : " + user.getUserID());
 
 
         Drawable placeholder = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);

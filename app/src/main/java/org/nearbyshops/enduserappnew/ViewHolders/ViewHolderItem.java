@@ -133,7 +133,7 @@ public class ViewHolderItem extends RecyclerView.ViewHolder {
 
 
             itemRating.setText(String.format("%.2f",item.getRt_rating_avg()));
-            ratingCount.setText("( " + String.valueOf((int)item.getRt_rating_count()) + " Ratings )");
+            ratingCount.setText("( " + (int) item.getRt_rating_count() + " Ratings )");
 
             itemRating.setBackgroundColor(ContextCompat.getColor(context, R.color.gplus_color_2));
             ratingCount.setVisibility(View.VISIBLE);

@@ -171,7 +171,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
         ButterKnife.bind(this,rootView);
 
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -323,7 +323,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
                 }
                 else
                 {
-                    showToastMessage("Failed to load specs : code " + String.valueOf(response.code()));
+                    showToastMessage("Failed to load specs : code " + response.code());
                 }
 
             }
@@ -1271,7 +1271,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
                 }
                 else
                 {
-                    showToastMessage("Failed Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed Code : " + response.code());
                 }
 
 

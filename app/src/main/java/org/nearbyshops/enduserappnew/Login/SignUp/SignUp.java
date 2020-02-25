@@ -45,7 +45,7 @@ public class SignUp extends AppCompatActivity implements ShowFragmentSignUp {
 //        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
         setContentView(R.layout.activity_sign_up);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
         toolbar.setTitle("Sign Up");
         setSupportActionBar(toolbar);

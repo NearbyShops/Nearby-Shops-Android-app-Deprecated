@@ -111,33 +111,33 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // findViewByID'// STOPSHIP: 11/6/16
 
-        addPickAddress = (TextView) findViewById(R.id.pickFromSavedAddresses);
+        addPickAddress = findViewById(R.id.pickFromSavedAddresses);
         addPickAddress.setOnClickListener(this);
 
 
-        name = (TextView) findViewById(R.id.name);
-        deliveryAddressView = (TextView)findViewById(R.id.deliveryAddress);
-        city = (TextView)findViewById(R.id.city);
-        pincode = (TextView)findViewById(R.id.pincode);
-        landmark = (TextView)findViewById(R.id.landmark);
-        phoneNumber = (TextView)findViewById(R.id.phoneNumber);
-        addressContainer = (RelativeLayout) findViewById(R.id.selectedDeliveryAddress);
+        name = findViewById(R.id.name);
+        deliveryAddressView = findViewById(R.id.deliveryAddress);
+        city = findViewById(R.id.city);
+        pincode = findViewById(R.id.pincode);
+        landmark = findViewById(R.id.landmark);
+        phoneNumber = findViewById(R.id.phoneNumber);
+        addressContainer = findViewById(R.id.selectedDeliveryAddress);
 
         // Total Fields
 
 
-        subTotal = (TextView) findViewById(R.id.subTotal);
-        deliveryCharges = (TextView) findViewById(R.id.deliveryCharges);
-        total = (TextView) findViewById(R.id.total);
+        subTotal = findViewById(R.id.subTotal);
+        deliveryCharges = findViewById(R.id.deliveryCharges);
+        total = findViewById(R.id.total);
 
-        pickFromShopCheck = (RadioButton) findViewById(R.id.radioPickFromShop);
-        homeDelieryCheck = (RadioButton) findViewById(R.id.radioHomeDelivery);
+        pickFromShopCheck = findViewById(R.id.radioPickFromShop);
+        homeDelieryCheck = findViewById(R.id.radioHomeDelivery);
 
 
 
@@ -307,7 +307,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
         if(cartStatsFromNetworkCall!=null)
         {
 
-            freeDeliveryInfo.setText("Free delivery is offered above the order of " + String.valueOf(PrefGeneral.getCurrencySymbol(this)) + " " + String.valueOf(cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery()));
+            freeDeliveryInfo.setText("Free delivery is offered above the order of " + PrefGeneral.getCurrencySymbol(this) + " " + cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery());
 
 
             subTotal.setText("Subtotal: " + PrefGeneral.getCurrencySymbol(this) + " " + cartStats.getCart_Total());
@@ -336,7 +336,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                 else
                 {
 
-                    deliveryCharges.setText("Delivery Charges : Zero " + "(Delivery is free above the order of : " + PrefGeneral.getCurrencySymbol(this) + " " + String.valueOf(cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery()) + " )");
+                    deliveryCharges.setText("Delivery Charges : Zero " + "(Delivery is free above the order of : " + PrefGeneral.getCurrencySymbol(this) + " " + cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery() + " )");
                     total.setText("Total : " + PrefGeneral.getCurrencySymbol(this) + " " + String.format( "%.2f", cartStats.getCart_Total()));
                 }
 
@@ -458,7 +458,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
                 }else
                 {
-                    showToastMessage("failed Code : !" + String.valueOf(response.code()));
+                    showToastMessage("failed Code : !" + response.code());
                 }
 
             }

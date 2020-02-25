@@ -132,8 +132,8 @@ public class MarketsFragment extends Fragment implements ViewHolderMarket.ListIt
 
 
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-        swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
+        swipeContainer = rootView.findViewById(R.id.swipeContainer);
 
 
 
@@ -527,7 +527,7 @@ public class MarketsFragment extends Fragment implements ViewHolderMarket.ListIt
                     }
                     else
                     {
-                        showToastMessage("Failed : code : " + String.valueOf(response.code()));
+                        showToastMessage("Failed : code : " + response.code());
                     }
 
 

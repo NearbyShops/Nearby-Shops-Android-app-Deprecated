@@ -247,7 +247,7 @@ public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
 //                        PrefGeneral.saveServiceURL(null,getApplicationContext());
 
 
-                    showToastMessage("Failed Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed Code : " + response.code());
                 }
 
 

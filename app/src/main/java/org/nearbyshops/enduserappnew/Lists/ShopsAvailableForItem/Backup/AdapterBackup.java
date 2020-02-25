@@ -246,8 +246,8 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
 
             if(cartStats!=null)
             {
-                holder.itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
-                holder.cartTotal.setText("Cart Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartStats.getCart_Total()));
+                holder.itemsInCart.setText(cartStats.getItemsInCart() + " " + "Items in Cart");
+                holder.cartTotal.setText("Cart Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + cartStats.getCart_Total());
             }
         //}
 
@@ -336,7 +336,7 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
 
         if(shopItem !=null)
         {
-            holder.itemsAvailable.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()) + " " + item.getQuantityUnit());
+            holder.itemsAvailable.setText("Available : " + shopItem.getAvailableItemQuantity() + " " + item.getQuantityUnit());
             holder.itemPrice.setText( PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
 
             if(shopItem.getAvailableItemQuantity()==0)
@@ -502,11 +502,11 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
                                 if(cartItem==null)
                                 {
 
-                                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                                    itemsInCart.setText(cartStats.getItemsInCart() + " " + "Items in Cart");
 
                                 }else
                                 {
-                                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
+                                    itemsInCart.setText((cartStats.getItemsInCart() - 1) + " " + "Items in Cart");
 
                                     addToCartText.setText("Remove Item");
 
@@ -518,13 +518,13 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
                                 {
                                     // no shop exist
 
-                                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+                                    itemsInCart.setText((cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
 
                                 }else
                                 {
                                     // shop Exist
 
-                                    itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                                    itemsInCart.setText(cartStats.getItemsInCart() + " " + "Items in Cart");
 
                                     addToCartText.setText("Update Cart");
                                 }
@@ -540,7 +540,7 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
 
 
                     itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
-                    cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " "+ String.valueOf(cartTotalNeutral() + total));
+                    cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " "+ (cartTotalNeutral() + total));
 
                 }
 
@@ -847,10 +847,10 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
 
                             if (cartItem == null) {
 
-                                itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                                itemsInCart.setText(cartStats.getItemsInCart() + " " + "Items in Cart");
 
                             } else {
-                                itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() - 1) + " " + "Items in Cart");
+                                itemsInCart.setText((cartStats.getItemsInCart() - 1) + " " + "Items in Cart");
 
                             }
 
@@ -869,7 +869,7 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
 
                 }
 
-                cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartTotalNeutral() + total));
+                cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + (cartTotalNeutral() + total));
                 itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
 
             }else
@@ -905,12 +905,12 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
 
                         if (cartItem == null) {
                             if (Integer.parseInt(itemQuantity.getText().toString()) > 0) {
-                                itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
+                                itemsInCart.setText((cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
                             }
 
                         } else {
 
-                            itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
+                            itemsInCart.setText(cartStats.getItemsInCart() + " " + "Items in Cart");
                         }
 
 
@@ -939,7 +939,7 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
 
                 itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f", total));
 
-                cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(cartTotalNeutral() + total));
+                cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + (cartTotalNeutral() + total));
 
 
             }

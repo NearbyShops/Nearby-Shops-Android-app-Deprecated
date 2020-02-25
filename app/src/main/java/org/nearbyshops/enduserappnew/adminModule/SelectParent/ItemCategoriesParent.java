@@ -119,12 +119,12 @@ public class ItemCategoriesParent extends AppCompatActivity
 
         ButterKnife.bind(this);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        itemCategoriesList = (RecyclerView) findViewById(R.id.recyclerViewItemCategories);
+        itemCategoriesList = findViewById(R.id.recyclerViewItemCategories);
         setupRecyclerView();
 
 

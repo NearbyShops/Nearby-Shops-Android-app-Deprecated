@@ -102,8 +102,8 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
         View rootView = inflater.inflate(R.layout.fragment_shop_approvals, container, false);
 
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-        swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
+        swipeContainer = rootView.findViewById(R.id.swipeContainer);
 
 
         if(savedInstanceState==null)
@@ -340,7 +340,7 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
                 }
                 else
                 {
-                    showToastMessage("Failed code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed code : " + response.code());
                 }
 
 
@@ -432,30 +432,30 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
             {
                 ((NotifyTitleChanged)getActivity())
                         .NotifyTitleChanged(
-                                "New (" + String.valueOf(dataset.size())
-                                        + "/" + String.valueOf(item_count) + ")",0);
+                                "New (" + dataset.size()
+                                        + "/" + item_count + ")",0);
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)==MODE_ENABLED)
             {
                 ((NotifyTitleChanged)getActivity())
                         .NotifyTitleChanged(
-                                "Enabled (" + String.valueOf(dataset.size())
-                                        + "/" + String.valueOf(item_count) + ")",1);
+                                "Enabled (" + dataset.size()
+                                        + "/" + item_count + ")",1);
 
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)==MODE_DISABLED)
             {
                 ((NotifyTitleChanged)getActivity())
                         .NotifyTitleChanged(
-                                "Disabled (" + String.valueOf(dataset.size())
-                                        + "/" + String.valueOf(item_count) + ")",2);
+                                "Disabled (" + dataset.size()
+                                        + "/" + item_count + ")",2);
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)==MODE_WAITLISTED)
             {
                 ((NotifyTitleChanged)getActivity())
                         .NotifyTitleChanged(
-                                "Waitlisted (" + String.valueOf(dataset.size())
-                                        + "/" + String.valueOf(item_count) + ")",3);
+                                "Waitlisted (" + dataset.size()
+                                        + "/" + item_count + ")",3);
 
             }
 

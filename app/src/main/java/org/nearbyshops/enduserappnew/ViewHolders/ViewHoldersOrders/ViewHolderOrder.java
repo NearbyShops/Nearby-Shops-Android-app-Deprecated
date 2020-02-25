@@ -140,7 +140,7 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
 
 
 
-        if(order.getDeliveryAddressID()==0)
+        if(order.getDeliveryAddress().getName()==null)
         {
             deliveryAddressName.setText("Delivery Address Deleted\nor Not provided");
             deliveryAddress.setText(" - ");

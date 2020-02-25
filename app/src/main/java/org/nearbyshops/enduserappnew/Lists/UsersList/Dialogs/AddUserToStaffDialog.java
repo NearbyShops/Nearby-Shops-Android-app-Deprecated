@@ -255,7 +255,7 @@ public class AddUserToStaffDialog extends DialogFragment {
                 }
                 else
                 {
-                    showToastMessage("Failed Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed Code : " + response.code());
                 }
 
             }

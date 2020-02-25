@@ -125,7 +125,7 @@ public class ViewHolderShopTypeOne extends RecyclerView.ViewHolder{
 
             if(shop.getShopAddress()!=null)
             {
-                shopAddress.setText(shop.getShopAddress() + ", " + shop.getCity()  + " - " + String.valueOf(shop.getPincode()));
+                shopAddress.setText(shop.getShopAddress() + ", " + shop.getCity()  + " - " + shop.getPincode());
             }
 
 //                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())

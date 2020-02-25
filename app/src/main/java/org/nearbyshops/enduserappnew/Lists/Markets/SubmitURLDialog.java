@@ -251,7 +251,7 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
                 }
                 else
                 {
-                    showToastMessage("Failed ... Error Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed ... Error Code : " + response.code());
                 }
 
                 progressBar.setVisibility(View.INVISIBLE);

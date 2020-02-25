@@ -103,7 +103,7 @@ public class ViewHolderCart extends RecyclerView.ViewHolder implements View.OnCl
         if (shop != null) {
 
 
-            deliveryCharge.setText("Delivery " + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(shop.getDeliveryCharges()) + " Per Order");
+            deliveryCharge.setText("Delivery " + PrefGeneral.getCurrencySymbol(context) + " " + shop.getDeliveryCharges() + " Per Order");
             distance.setText(String.format("%.2f", shop.getRt_distance()) + " Km");
 
             shopName.setText(shop.getShopName());

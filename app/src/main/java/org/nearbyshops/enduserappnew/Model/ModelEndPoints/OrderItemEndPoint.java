@@ -1,6 +1,7 @@
 package org.nearbyshops.enduserappnew.Model.ModelEndPoints;
 
 
+import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.OrderItem;
 import org.nearbyshops.enduserappnew.Model.Shop;
 
@@ -17,7 +18,16 @@ public class OrderItemEndPoint {
     Integer max_limit;
     List<OrderItem> results;
     private Shop shopDetails;
+    private Order orderDetails;
 
+
+    public Order getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(Order orderDetails) {
+        this.orderDetails = orderDetails;
+    }
 
     public Shop getShopDetails() {
         return shopDetails;

@@ -14,7 +14,7 @@
     <string name="notice_low_balance">Attention : Your services are paused due to low balance in your account please add balance to resume your services !</string>
 
 
-    <string name="phone_registration_message">Currently registration through phone is available only for Indian Phone Numbers. We are making efforts to extend the phone service for all the countries !.</string>
+    <string name="phone_registration_message">Currently registration through phone is available only in India. This will be available in other countries very Soon.</string>
 
     <string name="rupee_symbol">\u20B9</string>
     <string name="fake_key">pk.fakekey</string>

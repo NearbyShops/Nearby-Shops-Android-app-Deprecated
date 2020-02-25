@@ -123,7 +123,7 @@ public class CartItemListFragment extends Fragment
 
 
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 //        toolbar.setTitle("Items in Cart");
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
@@ -133,8 +133,8 @@ public class CartItemListFragment extends Fragment
         // findViewByID's
         swipeContainer = rootView.findViewById(R.id.swipeContainer);
         recyclerView = rootView.findViewById(R.id.recyclerView);
-        totalValue = (TextView) rootView.findViewById(R.id.totalValue);
-        estimatedTotal = (TextView) rootView.findViewById(R.id.estimatedTotal);
+        totalValue = rootView.findViewById(R.id.totalValue);
+        estimatedTotal = rootView.findViewById(R.id.estimatedTotal);
 //        confirmItems = (TextView) findViewById(R.id.confirm);
 
 

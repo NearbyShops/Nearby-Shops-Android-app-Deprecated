@@ -114,7 +114,7 @@ public class ShopReviews extends AppCompatActivity implements SwipeRefreshLayout
 
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 

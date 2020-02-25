@@ -351,7 +351,7 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           String[] permissions, int[] grantResults) {
         //
 //        if(requestCode==2)
 //        {

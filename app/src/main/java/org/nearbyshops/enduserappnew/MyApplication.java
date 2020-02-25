@@ -8,9 +8,8 @@ import android.os.Build;
 import androidx.core.content.ContextCompat;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
+
 import com.mapbox.mapboxsdk.Mapbox;
-
-
 
 
 //import com.onesignal.OSNotification;
@@ -71,6 +70,8 @@ public class MyApplication extends MultiDexApplication {
         //LeakCanary.install(this);
 
         ApplicationState.getInstance().setMyApplication(this);
+
+        Mapbox.getInstance(this,getString(R.string.fake_key));
 
 
 
@@ -184,8 +185,6 @@ public class MyApplication extends MultiDexApplication {
 //                .init();
 
 
-
-        Mapbox.getInstance(this,getString(R.string.fake_key));
 
 
 //        OneSignal.idsAvailable(new OneSignal.IdsAvailableHandler() {

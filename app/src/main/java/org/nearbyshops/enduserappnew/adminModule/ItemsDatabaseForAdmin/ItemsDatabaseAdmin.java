@@ -64,7 +64,7 @@ public class ItemsDatabaseAdmin extends AppCompatActivity implements NotifyHeade
         setContentView(R.layout.activity_item_categories_simple);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
      /*   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

@@ -80,7 +80,7 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
         ButterKnife.bind(this, rootView);
 
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         toolbar.setTitle("Carts");
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
@@ -89,8 +89,8 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
         // findViewByID's
-        swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        swipeContainer = rootView.findViewById(R.id.swipeContainer);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
 
 
 

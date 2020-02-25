@@ -166,7 +166,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             Transaction transaction = (Transaction) dataset.get(position);
 
 
-            holder.transactionID.setText("ID : " + String.valueOf(transaction.getTransactionID()));
+            holder.transactionID.setText("ID : " + transaction.getTransactionID());
             holder.transactionTimestamp.setText(transaction.getTimestampOccurred().toLocaleString());
             holder.transactionTitle.setText(transaction.getTitle());
             holder.description.setText(transaction.getDescription());

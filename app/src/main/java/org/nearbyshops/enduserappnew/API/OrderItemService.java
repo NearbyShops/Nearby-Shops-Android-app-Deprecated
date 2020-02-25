@@ -20,10 +20,10 @@ public interface OrderItemService {
                                          @Query("OrderID") Integer orderID,
                                          @Query("ItemID") Integer itemID,
                                          @Query("ShopID")Integer shopID,
+                                         @Query("latCenter")double latCenter, @Query("lonCenter")double lonCenter,
                                          @Query("SearchString") String searchString,
                                          @Query("SortBy") String sortBy,
-                                         @Query("Limit") Integer limit, @Query("Offset") Integer offset,
-                                         @Query("metadata_only") Boolean metaonly);
+                                         @Query("Limit") Integer limit, @Query("Offset") Integer offset);
 
 
 //    @DELETE("/api/OrderItem")

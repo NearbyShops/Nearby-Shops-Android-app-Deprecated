@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrderDetails.ViewHolderOrderItem;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrderDetails.ViewHolderOrderWithBill;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderWithBill;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.OrderItem;
 import org.nearbyshops.enduserappnew.Model.Shop;

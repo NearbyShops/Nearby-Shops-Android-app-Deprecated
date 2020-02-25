@@ -117,8 +117,8 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
         View rootView = inflater.inflate(R.layout.fragment_pfs_inventory, container, false);
 
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-        swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
+        swipeContainer = rootView.findViewById(R.id.swipeContainer);
 
 
         if(savedInstanceState==null)
@@ -450,8 +450,8 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
         {
             ((NotifyTitleChangedNew)getActivity())
                     .NotifyTitleChanged(
-                            "(" + String.valueOf(dataset.size())
-                                    + "/" + String.valueOf(item_count) + ")");
+                            "(" + dataset.size()
+                                    + "/" + item_count + ")");
 
         }
     }
@@ -551,7 +551,7 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
                 }
                 else
                 {
-                    showToastMessage("Failed with Error Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed with Error Code : " + response.code());
                 }
 
 
@@ -638,7 +638,7 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
                 }
                 else
                 {
-                    showToastMessage("Failed with Error Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed with Error Code : " + response.code());
                 }
 
 
@@ -722,7 +722,7 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
                 }
                 else
                 {
-                    showToastMessage("Failed with Error Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed with Error Code : " + response.code());
                 }
 
 
@@ -806,7 +806,7 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
                 }
                 else
                 {
-                    showToastMessage("Failed with Error Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed with Error Code : " + response.code());
                 }
 
 

@@ -4,7 +4,7 @@
 
 
 
-        <color name="colorPrimary">@color/mapbox_blue</color>
+        <color name="colorPrimary">#1e8cab</color>
         <color name="colorPrimaryDark">#2E7D32</color>
         <color name="colorAccent">@color/gplus_color_2</color>
 
@@ -93,4 +93,5 @@
     <color name="gplus_color_2">#f4b400</color>
     <color name="gplus_color_3">#427fed</color>
     <color name="gplus_color_4">#b23424</color>
+    <color name="mapbox_blue">#1e8cab</color>
 </resources>

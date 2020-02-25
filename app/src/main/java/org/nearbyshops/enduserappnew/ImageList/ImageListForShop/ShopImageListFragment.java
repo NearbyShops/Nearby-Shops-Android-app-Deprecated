@@ -494,7 +494,7 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
                 }
                 else
                 {
-                    showToastMessage("Failed code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed code : " + response.code());
                 }
             }
 

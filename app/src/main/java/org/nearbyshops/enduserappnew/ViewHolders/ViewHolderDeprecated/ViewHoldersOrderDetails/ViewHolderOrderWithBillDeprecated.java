@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrderDetails;
+package org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeprecated.ViewHoldersOrderDetails;
 
 import android.content.Context;
 import android.content.Intent;
@@ -138,7 +138,7 @@ public class ViewHolderOrderWithBillDeprecated extends RecyclerView.ViewHolder{
         deliveryAddressPhone.setText("Phone : " + deliveryAddressLocal.getPhoneNumber());
 
         numberOfItems.setText(order.getItemCount() + " Items");
-        orderTotal.setText("| Total : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.format("%.2f",order.getNetPayable()));
+        orderTotal.setText("| Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f",order.getNetPayable()));
 
 
         String status = "";
@@ -191,7 +191,7 @@ public class ViewHolderOrderWithBillDeprecated extends RecyclerView.ViewHolder{
 
             if(shop.getShopAddress()!=null)
             {
-                shopAddress.setText(shop.getShopAddress() + ", " +  shop.getCity() +" - " + String.valueOf(shop.getPincode()));
+                shopAddress.setText(shop.getShopAddress() + ", " +  shop.getCity() +" - " + shop.getPincode());
             }
 
 //                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())

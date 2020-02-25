@@ -78,7 +78,7 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
         holder.review_title.setText(dataset.get(position).getReviewTitle());
         holder.review_text.setText(dataset.get(position).getReviewText());
 
-        holder.thanksCount.setText("(" + String.valueOf(dataset.get(position).getRt_thanks_count()) + ")");
+        holder.thanksCount.setText("(" + dataset.get(position).getRt_thanks_count() + ")");
 
         if(thanksMap!=null)
         {

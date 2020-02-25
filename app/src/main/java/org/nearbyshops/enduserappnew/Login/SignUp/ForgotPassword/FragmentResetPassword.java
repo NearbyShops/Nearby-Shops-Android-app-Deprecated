@@ -228,7 +228,7 @@ public class FragmentResetPassword extends Fragment {
                     }
                     else
                     {
-                        showToastMessage("Failed code : " + String.valueOf(response.code()));
+                        showToastMessage("Failed code : " + response.code());
                     }
 
 

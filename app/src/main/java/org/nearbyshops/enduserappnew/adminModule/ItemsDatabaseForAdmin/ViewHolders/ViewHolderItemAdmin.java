@@ -125,7 +125,7 @@ public class ViewHolderItemAdmin extends RecyclerView.ViewHolder  implements Pop
         priceAverage.setText("Price Average :\nRs." + String.format("%.2f",itemStats.getAvg_price()) + " per " + item.getQuantityUnit());
         shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
         itemRating.setText(String.format("%.2f",itemStats.getRating_avg()));
-        ratingCount.setText("( " + String.valueOf(itemStats.getRatingCount()) + " Ratings )");
+        ratingCount.setText("( " + itemStats.getRatingCount() + " Ratings )");
 
 
         if(selectedItems.containsKey(item.getItemID()))

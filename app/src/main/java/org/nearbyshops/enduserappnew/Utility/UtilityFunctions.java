@@ -10,6 +10,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.nearbyshops.enduserappnew.ApplicationState;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -20,7 +21,7 @@ import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 
-import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
+
 
 /**
  * Created by sumeet on 10/7/17.
@@ -116,8 +117,8 @@ public class UtilityFunctions {
 
 
 
-        Shop shop = PrefShopAdminHome.getShop(getApplicationContext());
-        ServiceConfigurationLocal localConfig = PrefServiceConfig.getServiceConfigLocal(getApplicationContext());
+        Shop shop = PrefShopAdminHome.getShop(MyApplication.getAppContext());
+        ServiceConfigurationLocal localConfig = PrefServiceConfig.getServiceConfigLocal(MyApplication.getAppContext());
 
 
         if(shop==null || localConfig==null || localConfig.getRt_market_id_for_fcm()==null)

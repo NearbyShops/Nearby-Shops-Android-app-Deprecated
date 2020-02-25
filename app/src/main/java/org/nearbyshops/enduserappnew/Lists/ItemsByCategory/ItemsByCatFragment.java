@@ -141,7 +141,7 @@ public class ItemsByCatFragment extends Fragment implements
 //        setSupportActionBar(toolbar);
 
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
 
@@ -846,17 +846,17 @@ public class ItemsByCatFragment extends Fragment implements
 
         if(getActivity() instanceof NotifyHeaderChanged)
         {
-            ((NotifyHeaderChanged) getActivity()).notifyItemHeaderChanged(String.valueOf(fetched_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName() + " Items");
+            ((NotifyHeaderChanged) getActivity()).notifyItemHeaderChanged(fetched_count + " out of " + item_count_item + " " + currentCategory.getCategoryName() + " Items");
         }
 
 
         if(currentCategory.getItemCategoryID()==1)
         {
-            itemHeader.setText(String.valueOf(fetched_count) + " out of " + String.valueOf(item_count_item) + " Items");
+            itemHeader.setText(fetched_count + " out of " + item_count_item + " Items");
         }
         else
         {
-            itemHeader.setText(String.valueOf(fetched_count) + " out of " + String.valueOf(item_count_item) + " " + currentCategory.getCategoryName());
+            itemHeader.setText(fetched_count + " out of " + item_count_item + " " + currentCategory.getCategoryName());
         }
 //        + " Items"
 

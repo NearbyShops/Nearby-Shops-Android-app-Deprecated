@@ -24,6 +24,7 @@ import org.nearbyshops.enduserappnew.Model.ModelReviewShop.ShopReview;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
@@ -34,7 +35,7 @@ import retrofit2.Response;
 import javax.inject.Inject;
 import java.text.SimpleDateFormat;
 
-import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
+
 
 /**
  * Created by sumeet on 12/8/16.
@@ -133,14 +134,14 @@ public class RateReviewDialog extends DialogFragment {
 //            smileRating.setSelectedSmile(review_for_edit.getRating());
             memberRatingIndicator.setRating(review_for_edit.getRating());
             smileRating.setSelectedSmile(review_for_edit.getRating()-1);
-            itemRatingText.setText(String.valueOf((float)review_for_edit.getRating()) + " Star");
+            itemRatingText.setText((float) review_for_edit.getRating() + " Star");
 
 //            String imagePath = PrefGeneral.getImageEndpointURL(getActivity())
 //                    + review_for_edit.getRt_end_user_profile().getProfileImagePath();
 
 
 
-            String imagepath = PrefGeneral.getServiceURL(getApplicationContext()) + "/api/v1/User/Image/five_hundred_"
+            String imagepath = PrefGeneral.getServiceURL(MyApplication.getAppContext()) + "/api/v1/User/Image/five_hundred_"
                     + review_for_edit.getRt_end_user_profile().getProfileImagePath() + ".jpg";
 
 
@@ -159,7 +160,7 @@ public class RateReviewDialog extends DialogFragment {
             ratingBar.setRating(3);
 //            smileRating.setSelectedSmile(review_for_edit.getRating());
             smileRating.setSelectedSmile(3-1);
-            itemRatingText.setText(String.valueOf((float)3) + " Star");
+            itemRatingText.setText((float) 3 + " Star");
             memberRatingIndicator.setRating(3);
 
 
@@ -190,7 +191,7 @@ public class RateReviewDialog extends DialogFragment {
             @Override
             public void onSmileySelected(int smiley, boolean reselected) {
 
-                itemRatingText.setText(String.valueOf(smiley + 1 ) + " Star");
+                itemRatingText.setText((smiley + 1) + " Star");
                 memberRatingIndicator.setRating(smiley + 1);
             }
         });
@@ -288,7 +289,7 @@ public class RateReviewDialog extends DialogFragment {
 
 
 
-            String imagepath = PrefGeneral.getServiceURL(getApplicationContext()) + "/api/v1/User/Image/five_hundred_"
+            String imagepath = PrefGeneral.getServiceURL(MyApplication.getAppContext()) + "/api/v1/User/Image/five_hundred_"
                     + endUser.getProfileImagePath() + ".jpg";
 
 
@@ -380,7 +381,7 @@ public class RateReviewDialog extends DialogFragment {
     {
         ShopReview bookReview = new ShopReview();
 //        bookReview.setReviewDate(new java.sql.Date(System.currentTimeMillis()));
-        bookReview.setRating((int) smileRating.getRating());
+        bookReview.setRating(smileRating.getRating());
         bookReview.setReviewTitle(review_title.getText().toString());
         bookReview.setReviewText(review_text.getText().toString());
         bookReview.setShopID(book_id);

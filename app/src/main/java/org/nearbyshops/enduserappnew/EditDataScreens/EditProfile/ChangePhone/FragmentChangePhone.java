@@ -418,7 +418,7 @@ public class FragmentChangePhone extends Fragment {
                     crossIcon.setVisibility(View.VISIBLE);
 
                     textAvailable.setVisibility(View.VISIBLE);
-                    textAvailable.setText("Failed Code : " + String.valueOf(response.code()));
+                    textAvailable.setText("Failed Code : " + response.code());
 
                     emailIsAvailable = false;
                 }

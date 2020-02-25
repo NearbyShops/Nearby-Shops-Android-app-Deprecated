@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrderDetails;
+package org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -73,11 +73,11 @@ public class ViewHolderOrderItem extends RecyclerView.ViewHolder{
 
         Item item = orderItem.getItem();
 
-        itemID.setText("Item ID : " + String.valueOf(orderItem.getItemID()));
+        itemID.setText("Item ID : " + orderItem.getItemID());
         itemName.setText(item.getItemName());
-        quantity.setText("Item Quantity : " + String.valueOf(orderItem.getItemQuantity()) + " "  + item.getQuantityUnit());
-        itemPrice.setText("Item Price : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.valueOf(orderItem.getItemPriceAtOrder())+ " per "  + item.getQuantityUnit());
-        itemTotal.setText("Item Total : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.valueOf(orderItem.getItemPriceAtOrder()*orderItem.getItemQuantity()));
+        quantity.setText("Item Quantity : " + orderItem.getItemQuantity() + " "  + item.getQuantityUnit());
+        itemPrice.setText("Item Price : " + PrefGeneral.getCurrencySymbol(context) + " " + orderItem.getItemPriceAtOrder() + " per "  + item.getQuantityUnit());
+        itemTotal.setText("Item Total : " + PrefGeneral.getCurrencySymbol(context) + " " + orderItem.getItemPriceAtOrder() * orderItem.getItemQuantity());
 
 
 

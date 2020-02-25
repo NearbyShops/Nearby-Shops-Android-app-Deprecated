@@ -200,17 +200,23 @@ public class MarketViewModel extends AndroidViewModel {
 
 
 
-                            User user = PrefLoginGlobal.getUser(getApplication());
+                            if(PrefGeneral.getServiceURL(getApplication())!=null)
+                            {
+                                User userGlobal = PrefLoginGlobal.getUser(getApplication());
+                                User userLocal = PrefLogin.getUser(getApplication());
 
 
-                            if(user!=null)
-                            {
-                                dataset.add(new RoleDashboardMarker());
-                                dataset.add(user);
-                            }
-                            else
-                            {
-                                dataset.add(new SignInMarker());
+                                if(userLocal!=null)
+                                {
+                                    dataset.add(new RoleDashboardMarker());
+                                    dataset.add(userGlobal);
+                                }
+
+
+                                if(userGlobal==null)
+                                {
+                                    dataset.add(new SignInMarker());
+                                }
                             }
 
 
@@ -231,7 +237,17 @@ public class MarketViewModel extends AndroidViewModel {
 
                                 if(response.body().getResults().size()>0)
                                 {
-                                    dataset.add(new HeaderTitle("Please Select a Market"));
+
+                                    if(PrefGeneral.getServiceURL(getApplication())==null)
+                                    {
+                                        dataset.add(new HeaderTitle("Please Select a Market"));
+                                    }
+                                    else
+                                    {
+                                        dataset.add(new HeaderTitle("Markets in your Area"));
+                                    }
+
+
                                     dataset.addAll(response.body().getResults());
                                     dataset.add(EmptyScreenDataListItem.getCreateMarketData());
                                 }
@@ -247,6 +263,25 @@ public class MarketViewModel extends AndroidViewModel {
 
 //                                dataset.add(new MarketsList("Markets in your Area",response.body().getResults()));
                             }
+
+
+
+
+
+                            if(PrefGeneral.getServiceURL(getApplication())==null)
+                            {
+                                User userGlobal = PrefLoginGlobal.getUser(getApplication());
+
+
+                                if(userGlobal==null)
+                                {
+                                    dataset.add(new SignInMarker());
+                                }
+                            }
+
+
+
+
 
 
 
@@ -294,7 +329,7 @@ public class MarketViewModel extends AndroidViewModel {
                     }
                     else
                     {
-                        message.setValue("Failed : code : " + String.valueOf(response.code()));
+                        message.setValue("Failed : code : " + response.code());
 
                     }
 
@@ -391,7 +426,7 @@ public class MarketViewModel extends AndroidViewModel {
                 {
 
 
-                    message.postValue("Failed Code : " + String.valueOf(response.code()));
+                    message.postValue("Failed Code : " + response.code());
 //                    message.postValue("Service URL : " + configurationGlobal.getServiceURL());
 
 

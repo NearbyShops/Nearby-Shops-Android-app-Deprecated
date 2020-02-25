@@ -159,13 +159,15 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 
 
 
+
+
+
     public void setItem(ServiceConfigurationGlobal configurationGlobal)
     {
         this.configurationGlobal = configurationGlobal;
 
-
         serviceName.setText(configurationGlobal.getServiceName());
-        serviceAddress.setText(configurationGlobal.getCity());
+        serviceAddress.setText(String.format("%.2f Km",configurationGlobal.getRt_distance())+ " | " + configurationGlobal.getCity());
 
 //                service.getAddress() + ", " +
 
@@ -201,7 +203,7 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
         else
         {
             rating.setText(String.format("%.2f",configurationGlobal.getRt_rating_avg()));
-            ratingCount.setText("( " + String.valueOf((int)configurationGlobal.getRt_rating_count()) + " Ratings )");
+            ratingCount.setText("( " + (int) configurationGlobal.getRt_rating_count() + " Ratings )");
 
             rating.setBackgroundColor(ContextCompat.getColor(context, R.color.gplus_color_2));
             ratingCount.setVisibility(View.VISIBLE);

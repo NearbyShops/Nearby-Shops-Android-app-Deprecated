@@ -69,7 +69,7 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
 
         if(shop!=null)
         {
-            holder.deliveryCharge.setText("Delivery " + PrefGeneral.getCurrencySymbol(context) + " " + String.valueOf(shop.getDeliveryCharges()) + " Per Order");
+            holder.deliveryCharge.setText("Delivery " + PrefGeneral.getCurrencySymbol(context) + " " + shop.getDeliveryCharges() + " Per Order");
             holder.distance.setText(String.format( "%.2f", shop.getRt_distance()) + " Km");
 
             holder.shopName.setText(shop.getShopName());
@@ -154,19 +154,19 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
         public ViewHolder(View itemView) {
             super(itemView);
 
-            shopImage = (ImageView) itemView.findViewById(R.id.shopImage);
-            shopName = (TextView) itemView.findViewById(R.id.shopName);
-            rating = (TextView) itemView.findViewById(R.id.rating);
-            distance = (TextView) itemView.findViewById(R.id.distance);
-            deliveryCharge = (TextView) itemView.findViewById(R.id.deliveryCharge);
-            itemsInCart = (TextView) itemView.findViewById(R.id.itemsInCart);
-            cartTotal = (TextView) itemView.findViewById(R.id.cartTotal);
+            shopImage = itemView.findViewById(R.id.shopImage);
+            shopName = itemView.findViewById(R.id.shopName);
+            rating = itemView.findViewById(R.id.rating);
+            distance = itemView.findViewById(R.id.distance);
+            deliveryCharge = itemView.findViewById(R.id.deliveryCharge);
+            itemsInCart = itemView.findViewById(R.id.itemsInCart);
+            cartTotal = itemView.findViewById(R.id.cartTotal);
 
             pickFromShopIndicator = itemView.findViewById(R.id.indicator_pick_from_shop);
             homeDeliveryIndicator = itemView.findViewById(R.id.indicator_home_delivery);
 
 
-            cartsListItem = (LinearLayout) itemView.findViewById(R.id.carts_list_item);
+            cartsListItem = itemView.findViewById(R.id.carts_list_item);
 
             cartsListItem.setOnClickListener(this);
         }

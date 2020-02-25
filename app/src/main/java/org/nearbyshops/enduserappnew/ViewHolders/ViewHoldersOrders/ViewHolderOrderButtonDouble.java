@@ -192,7 +192,7 @@ public class ViewHolderOrderButtonDouble extends ViewHolderOrder {
 
     private void getDirections(double lat, double lon)
     {
-        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + String.valueOf(lat) + "," + String.valueOf(lon));
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + lat + "," + lon);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         fragment.startActivity(mapIntent);
@@ -206,7 +206,7 @@ public class ViewHolderOrderButtonDouble extends ViewHolderOrder {
 
     void seeOnMap(double lat,double lon,String label)
     {
-        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + String.valueOf(lat) + "," + String.valueOf(lon) + "(" + label + ")");
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + lat + "," + lon + "(" + label + ")");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         fragment.startActivity(mapIntent);

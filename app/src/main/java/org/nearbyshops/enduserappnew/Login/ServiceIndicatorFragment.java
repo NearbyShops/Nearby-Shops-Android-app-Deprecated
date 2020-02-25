@@ -238,7 +238,7 @@ public class ServiceIndicatorFragment extends Fragment {
 
 
 
-                    showToastMessage("Failed Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed Code : " + response.code());
 
 
 

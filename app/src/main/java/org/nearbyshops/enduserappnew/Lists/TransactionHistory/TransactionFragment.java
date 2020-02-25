@@ -310,7 +310,7 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
                 }
                 else
                 {
-                    showToastMessage("Failed Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed Code : " + response.code());
                 }
 
 

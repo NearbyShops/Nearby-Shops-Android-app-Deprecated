@@ -102,8 +102,8 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
-        FirebaseApp.initializeApp(getApplicationContext());
-        UtilityFunctions.updateFirebaseSubscriptions();
+//        FirebaseApp.initializeApp(getApplicationContext());
+//        UtilityFunctions.updateFirebaseSubscriptions();
 
 
 
@@ -342,7 +342,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           String[] permissions, int[] grantResults) {
         //
 //        if(requestCode==2)
 //        {
@@ -481,7 +481,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, OrdersHistoryFragment.newInstance(true,false,false), TAG_ORDERS_FRAGMENT)
-                        .commit();
+                        .commitNow();
 
             }
         }
@@ -501,7 +501,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                        .commit();
+                        .commitNow();
 
             }
 
@@ -528,7 +528,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new CartsListFragment(), TAG_CARTS_FRAGMENT)
-                        .commit();
+                        .commitNow();
 
             }
 
@@ -562,10 +562,11 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
             if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
+
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                        .commit();
+                        .commitNow();
 
             }
 
@@ -623,7 +624,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, FragmentShopsList.newInstance(false), TAG_SHOPS_FRAGMENT)
-                        .commit();
+                        .commitNow();
             }
 
 //
@@ -658,7 +659,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                        .commit();
+                        .commitNow();
 
             }
 
@@ -678,7 +679,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new ItemsByCatFragment(), TAG_ITEMS_FRAGMENT)
-                        .commit();
+                        .commitNow();
             }
 
 //            else {
@@ -702,6 +703,8 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
+
+
     void initialFragmentSetup()
     {
         if (PrefGeneral.getMultiMarketMode(this) && PrefGeneral.getServiceURL(this) == null) {
@@ -712,7 +715,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                    .commit();
+                    .commitNow();
 
 
         }
@@ -724,7 +727,8 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, FragmentShopsList.newInstance(false), TAG_SHOPS_FRAGMENT)
-                    .commit();
+                    .commitNow();
+
 
         }
     }

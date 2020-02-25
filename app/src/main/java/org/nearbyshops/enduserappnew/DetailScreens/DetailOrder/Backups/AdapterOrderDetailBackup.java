@@ -258,7 +258,7 @@ class AdapterOrderDetailBackup extends RecyclerView.Adapter<RecyclerView.ViewHol
 //            holder.numberOfItems.setText(orderStats.getItemCount() + " Items");
             holder.numberOfItems.setText(order.getItemCount() + " Items");
 //            holder.orderTotal.setText("| Total : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.valueOf(orderStats.getItemTotal() + order.getDeliveryCharges()));
-            holder.orderTotal.setText("| Total : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.format("%.2f",order.getNetPayable()));
+            holder.orderTotal.setText("| Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f",order.getNetPayable()));
 
 
             String status = "";
@@ -324,7 +324,7 @@ class AdapterOrderDetailBackup extends RecyclerView.Adapter<RecyclerView.ViewHol
 
                 if(shop.getShopAddress()!=null)
                 {
-                    holder.shopAddress.setText(shop.getShopAddress() + ", " +  shop.getCity() +" - " + String.valueOf(shop.getPincode()));
+                    holder.shopAddress.setText(shop.getShopAddress() + ", " +  shop.getCity() +" - " + shop.getPincode());
                 }
 
 //                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())
@@ -453,13 +453,13 @@ class AdapterOrderDetailBackup extends RecyclerView.Adapter<RecyclerView.ViewHol
         OrderItem orderItem = (OrderItem) dataset.get(position);
         Item item = orderItem.getItem();
 
-        holder.itemID.setText("Item ID : " + String.valueOf(orderItem.getItemID()));
+        holder.itemID.setText("Item ID : " + orderItem.getItemID());
 
         holder.itemName.setText(item.getItemName());
-        holder.quantity.setText("Item Quantity : " + String.valueOf(orderItem.getItemQuantity()) + " "  + item.getQuantityUnit());
-        holder.itemPrice.setText("Item Price : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.valueOf(orderItem.getItemPriceAtOrder())+ " per "  + item.getQuantityUnit());
+        holder.quantity.setText("Item Quantity : " + orderItem.getItemQuantity() + " "  + item.getQuantityUnit());
+        holder.itemPrice.setText("Item Price : " + PrefGeneral.getCurrencySymbol(context) + " " + orderItem.getItemPriceAtOrder() + " per "  + item.getQuantityUnit());
 
-        holder.itemTotal.setText("Item Total : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.valueOf(orderItem.getItemPriceAtOrder()*orderItem.getItemQuantity()));
+        holder.itemTotal.setText("Item Total : " + PrefGeneral.getCurrencySymbol(context) + " " + orderItem.getItemPriceAtOrder() * orderItem.getItemQuantity());
 
 
 

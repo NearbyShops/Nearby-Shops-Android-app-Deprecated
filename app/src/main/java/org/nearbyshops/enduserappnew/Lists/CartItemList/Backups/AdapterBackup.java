@@ -128,7 +128,7 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
             holder.itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " "
                     + String.format( "%.2f", cartItem.getRt_itemPrice()*cartItem.getItemQuantity()));
 
-            holder.itemsAvailable.setText("Available : " + String.valueOf(cartItem.getRt_availableItemQuantity()) + " " + item.getQuantityUnit());
+            holder.itemsAvailable.setText("Available : " + cartItem.getRt_availableItemQuantity() + " " + item.getQuantityUnit());
 
 
 
@@ -179,18 +179,18 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
         public ViewHolder(View itemView) {
             super(itemView);
 
-            updateButton = (TextView) itemView.findViewById(R.id.textUpdate);
-            removeButton = (TextView) itemView.findViewById(R.id.textRemove);
-            reduceQuantity = (ImageView) itemView.findViewById(R.id.reduceQuantity);
-            increaseQuantity = (ImageView) itemView.findViewById(R.id.increaseQuantity);
-            itemTotal = (TextView) itemView.findViewById(R.id.itemTotal);
-            itemPrice = (TextView) itemView.findViewById(R.id.itemPrice);
-            itemsAvailable = (TextView) itemView.findViewById(R.id.itemsAvailable);
-            rating = (TextView) itemView.findViewById(R.id.rating);
-            itemName = (TextView) itemView.findViewById(R.id.itemName);
-            shopImage = (ImageView) itemView.findViewById(R.id.itemImage);
+            updateButton = itemView.findViewById(R.id.textUpdate);
+            removeButton = itemView.findViewById(R.id.textRemove);
+            reduceQuantity = itemView.findViewById(R.id.reduceQuantity);
+            increaseQuantity = itemView.findViewById(R.id.increaseQuantity);
+            itemTotal = itemView.findViewById(R.id.itemTotal);
+            itemPrice = itemView.findViewById(R.id.itemPrice);
+            itemsAvailable = itemView.findViewById(R.id.itemsAvailable);
+            rating = itemView.findViewById(R.id.rating);
+            itemName = itemView.findViewById(R.id.itemName);
+            shopImage = itemView.findViewById(R.id.itemImage);
 
-            itemQuantity = (EditText) itemView.findViewById(R.id.itemQuantity);
+            itemQuantity = itemView.findViewById(R.id.itemQuantity);
 
             itemQuantity.addTextChangedListener(this);
             reduceQuantity.setOnClickListener(this);
@@ -198,8 +198,8 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
             updateButton.setOnClickListener(this);
             removeButton.setOnClickListener(this);
 
-            progressBarRemove = (ProgressBar) itemView.findViewById(R.id.progress_bar_remove);
-            progressBarUpdate = (ProgressBar) itemView.findViewById(R.id.progress_bar_update);
+            progressBarRemove = itemView.findViewById(R.id.progress_bar_remove);
+            progressBarUpdate = itemView.findViewById(R.id.progress_bar_update);
 
         }
 

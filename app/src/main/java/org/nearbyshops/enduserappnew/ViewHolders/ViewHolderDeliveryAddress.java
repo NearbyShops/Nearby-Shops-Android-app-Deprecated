@@ -94,7 +94,7 @@ public class ViewHolderDeliveryAddress extends RecyclerView.ViewHolder implement
         name.setText(address.getName());
         deliveryAddress.setText(address.getDeliveryAddress());
         city.setText(address.getCity());
-        pincode.setText(" - " + String.valueOf(address.getPincode()));
+        pincode.setText(" - " + address.getPincode());
         landmark.setText(address.getLandmark());
         phoneNumber.setText(String.valueOf(address.getPhoneNumber()));
     }
@@ -148,7 +148,7 @@ public class ViewHolderDeliveryAddress extends RecyclerView.ViewHolder implement
     {
         if(fragment instanceof ListItemClick)
         {
-            ((ListItemClick) fragment).selectButtonClick(item,getLayoutPosition());
+            fragment.selectButtonClick(item,getLayoutPosition());
         }
     }
 
@@ -160,7 +160,7 @@ public class ViewHolderDeliveryAddress extends RecyclerView.ViewHolder implement
     {
         if(fragment instanceof ListItemClick)
         {
-            ((ListItemClick) fragment).notifyListItemClick(item);
+            fragment.notifyListItemClick(item);
         }
     }
 
@@ -170,7 +170,7 @@ public class ViewHolderDeliveryAddress extends RecyclerView.ViewHolder implement
     {
         if(fragment instanceof ListItemClick)
         {
-            ((ListItemClick) fragment).notifyRemove(item,getLayoutPosition());
+            fragment.notifyRemove(item,getLayoutPosition());
         }
     }
 
@@ -182,7 +182,7 @@ public class ViewHolderDeliveryAddress extends RecyclerView.ViewHolder implement
     {
         if(fragment instanceof ListItemClick)
         {
-            ((ListItemClick) fragment).notifyEdit(item);
+            fragment.notifyEdit(item);
         }
     }
 

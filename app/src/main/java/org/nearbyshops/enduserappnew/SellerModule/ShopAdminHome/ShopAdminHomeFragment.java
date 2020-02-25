@@ -90,7 +90,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
         setupSwipeContainer();
 
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_name));
         toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 //        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
@@ -325,7 +325,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
                     }
                     else
                     {
-                        showToastMessage("Failed Code : " + String.valueOf(response.code()));
+                        showToastMessage("Failed Code : " + response.code());
                     }
 
                 }
@@ -623,7 +623,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
                 }
                 else
                 {
-                    showToastMessage("Failed Code : "  + String.valueOf(response.code()));
+                    showToastMessage("Failed Code : "  + response.code());
                     shopOpenSwitch.setChecked(!shopOpenSwitch.isChecked());
                 }
 
@@ -686,7 +686,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
                 }
                 else
                 {
-                    showToastMessage("Failed Code : "  + String.valueOf(response.code()));
+                    showToastMessage("Failed Code : "  + response.code());
                     shopOpenSwitch.setChecked(!shopOpenSwitch.isChecked());
                 }
 

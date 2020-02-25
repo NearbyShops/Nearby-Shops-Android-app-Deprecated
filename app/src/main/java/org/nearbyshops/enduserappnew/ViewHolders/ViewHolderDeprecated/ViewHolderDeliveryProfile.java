@@ -125,7 +125,7 @@ public class ViewHolderDeliveryProfile extends RecyclerView.ViewHolder{
 
 //        DeliveryGuyData permissions = user.getRt_delivery_guy_data();
 
-        staffUserID.setText("Staff User ID : " + String.valueOf(user.getUserID()));
+        staffUserID.setText("Staff User ID : " + user.getUserID());
         staffName.setText(user.getName());
         designation.setText("Delivery Guy Self");
 //        distance.setText("Distance : " + String.format("%.2f Km",permissions.getRt_distance()));

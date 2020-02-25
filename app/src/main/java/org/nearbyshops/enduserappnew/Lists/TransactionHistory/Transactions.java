@@ -27,7 +27,7 @@ public class Transactions extends AppCompatActivity {
 //        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
         setContentView(R.layout._activity_transaction);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
 //        toolbar.setTitle("Forgot Password");
         setSupportActionBar(toolbar);

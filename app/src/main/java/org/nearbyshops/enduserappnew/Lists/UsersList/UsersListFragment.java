@@ -108,7 +108,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
         ButterKnife.bind(this,rootView);
 
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(),R.color.white));
         toolbar.setTitle("Users List");
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);

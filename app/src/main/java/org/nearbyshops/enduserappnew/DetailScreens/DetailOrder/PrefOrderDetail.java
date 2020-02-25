@@ -31,20 +31,6 @@ public class PrefOrderDetail {
 
         SharedPreferences.Editor prefsEditor = sharedPref.edit();
 
-
-//        if(order == null)
-//        {
-//            prefsEditor.putString(TAG_ORDER_DETAIL, "null");
-//
-//        }
-//        else
-//        {
-//            Gson gson = new Gson();
-//            String json = gson.toJson(order);
-//            prefsEditor.putString(TAG_ORDER_DETAIL, json);
-//        }
-
-
         Gson gson = getGson();
         String json = gson.toJson(order);
         prefsEditor.putString(TAG_ORDER_DETAIL, json);
@@ -60,19 +46,6 @@ public class PrefOrderDetail {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 
         Gson gson = getGson();
-
-//        String json = sharedPref.getString(TAG_ORDER_DETAIL, "null");
-
-//        if(json.equals("null"))
-//        {
-//
-//            return null;
-//
-//        }else
-//        {
-//            return gson.fromJson(json, Order.class);
-//        }
-
 
         String json = sharedPref.getString(TAG_ORDER_DETAIL, null);
 

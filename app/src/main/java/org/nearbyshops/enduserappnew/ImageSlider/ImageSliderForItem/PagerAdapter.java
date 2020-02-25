@@ -45,7 +45,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
 
 
-        showLogMessage("List Size : " + String.valueOf(imagesList.size()));
+        showLogMessage("List Size : " + imagesList.size());
 
         return fragment;
     }

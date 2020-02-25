@@ -355,7 +355,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
-        available.setText("Available : " + String.valueOf(shopItem.getAvailableItemQuantity()) + " " + item.getQuantityUnit());
+        available.setText("Available : " + shopItem.getAvailableItemQuantity() + " " + item.getQuantityUnit());
 
 
 
@@ -378,7 +378,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
             else
             {
                 rating.setText(String.format("%.1f",item.getRt_rating_avg()));
-                ratinCount.setText("( " +  String.valueOf((int)item.getRt_rating_count()) +  " Ratings )");
+                ratinCount.setText("( " + (int) item.getRt_rating_count() +  " Ratings )");
             }
 
 

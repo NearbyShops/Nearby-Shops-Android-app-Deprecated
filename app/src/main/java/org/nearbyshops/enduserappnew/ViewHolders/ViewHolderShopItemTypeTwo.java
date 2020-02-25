@@ -434,7 +434,7 @@ public class ViewHolderShopItemTypeTwo extends RecyclerView.ViewHolder{
                 else
                 {
                     rating.setText(String.format("%.1f",item.getRt_rating_avg()));
-                    ratinCount.setText("( " +  String.valueOf((int)item.getRt_rating_count()) +  " Ratings )");
+                    ratinCount.setText("( " + (int) item.getRt_rating_count() +  " Ratings )");
                 }
 
 

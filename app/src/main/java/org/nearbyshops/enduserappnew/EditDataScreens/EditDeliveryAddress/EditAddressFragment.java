@@ -21,9 +21,10 @@ import butterknife.OnClick;
 import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
+import org.nearbyshops.enduserappnew.LocationPicker.PickLocation;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.LocationPicker.PickLocation;
+//import org.nearbyshops.enduserappnew.LocationPicker.PickLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
@@ -438,7 +439,7 @@ public class EditAddressFragment extends Fragment {
 //        startActivityForResult(intent,REQUEST_CODE_PICK_LAT_LON);
 
 
-        Intent intent = new Intent(getActivity(),PickLocation.class);
+        Intent intent = new Intent(getActivity(), PickLocation.class);
         intent.putExtra("lat_dest",Double.parseDouble(latitude.getText().toString()));
         intent.putExtra("lon_dest",Double.parseDouble(longitude.getText().toString()));
         startActivityForResult(intent,3);

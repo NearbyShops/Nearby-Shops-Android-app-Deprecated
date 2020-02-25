@@ -169,12 +169,12 @@ public class FragmentShopsList extends Fragment implements
             ButterKnife.bind(this,rootView);
 
 
-            recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-            swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
+            recyclerView = rootView.findViewById(R.id.recyclerView);
+            swipeContainer = rootView.findViewById(R.id.swipeContainer);
             switchMade = getArguments().getBoolean("switch");
 
 
-            Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+            Toolbar toolbar = rootView.findViewById(R.id.toolbar);
             ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
 
@@ -537,7 +537,7 @@ public class FragmentShopsList extends Fragment implements
                         }
 
 
-                        shopCountIndicator.setText(String.valueOf(dataset.size()) + " out of " + String.valueOf(item_count) + " Shops");
+                        shopCountIndicator.setText(dataset.size() + " out of " + item_count + " Shops");
 
                     }
 

@@ -186,7 +186,7 @@ public class ItemDetailFragment extends Fragment implements Target {
             itemRatingNumeric.setText(String.format("%.2f",item.getRt_rating_avg()));
             itemRatingNumeric.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.gplus_color_2));
 
-            ratingCount.setText("( " + String.valueOf((int)item.getRt_rating_count()) + " Ratings )");
+            ratingCount.setText("( " + (int) item.getRt_rating_count() + " Ratings )");
 
             ratingCount.setVisibility(View.VISIBLE);
             itemRating.setVisibility(View.VISIBLE);
@@ -420,7 +420,7 @@ public class ItemDetailFragment extends Fragment implements Target {
                 }
                 else
                 {
-                    showToastMessage("Failed to load specs : code " + String.valueOf(response.code()));
+                    showToastMessage("Failed to load specs : code " + response.code());
                 }
 
             }
@@ -634,7 +634,7 @@ public class ItemDetailFragment extends Fragment implements Target {
         {
 
 
-            Log.d("After Favourite", "Item ID : EndUser ID" + String.valueOf(item.getItemID()) + " : " + String.valueOf(PrefLogin.getUser(getActivity()).getUserID()));
+            Log.d("After Favourite", "Item ID : EndUser ID" + item.getItemID() + " : " + PrefLogin.getUser(getActivity()).getUserID());
 
             Call<FavouriteItemEndpoint> call = favouriteItemService.getFavouriteBooks(item.getItemID(),
                     PrefLogin.getUser(getActivity()).getUserID()
@@ -649,7 +649,7 @@ public class ItemDetailFragment extends Fragment implements Target {
                     if(response.body()!=null)
                     {
 
-                        Log.d("After Favourite", "Item Count : " + String.valueOf(response.body().getItemCount()));
+                        Log.d("After Favourite", "Item Count : " + response.body().getItemCount());
 
 
                         if(response.body().getItemCount()>=1)
@@ -713,7 +713,7 @@ public class ItemDetailFragment extends Fragment implements Target {
                     }
                     else
                     {
-                        imagesCount.setText(String.valueOf(count) + " Photos");
+                        imagesCount.setText(count + " Photos");
                     }
 
                 }

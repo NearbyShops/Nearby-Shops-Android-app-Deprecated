@@ -542,7 +542,7 @@ public class ItemsInShopFragment extends Fragment implements
                 }
                 else
                 {
-                    showToastMessage("Failed : Code : " + String.valueOf(response.code()));
+                    showToastMessage("Failed : Code : " + response.code());
                 }
 
             }
@@ -712,9 +712,9 @@ public class ItemsInShopFragment extends Fragment implements
         {
             ((NotifyIndicatorChanged) getActivity())
                     .notifyItemIndicatorChanged(
-                            String.valueOf(fetched_items_count)
+                            fetched_items_count
                                     + " out of "
-                                    + String.valueOf(item_count_item)
+                                    + item_count_item
                                     + " Items"
                     );
         }

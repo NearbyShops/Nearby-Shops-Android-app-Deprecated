@@ -122,8 +122,8 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
         ButterKnife.bind(this,rootView);
 
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-        swipeContainer = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeContainer);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
+        swipeContainer = rootView.findViewById(R.id.swipeContainer);
 
 
         if(savedInstanceState==null)
@@ -132,7 +132,7 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
         }
 
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 //        toolbar.setTitle(getString(R.string.app_name));
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
@@ -540,14 +540,14 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
 
 
-                            orderCountIndicator.setText(String.valueOf(dataset.size()) + " out of " + String.valueOf(item_count) + " Orders");
+                            orderCountIndicator.setText(dataset.size() + " out of " + item_count + " Orders");
                         }
 
                     }
                     else
                     {
 
-                        showToastMessage("Failed Code : " + String.valueOf(response.code()));
+                        showToastMessage("Failed Code : " + response.code());
 
                     }
 
