@@ -379,7 +379,6 @@
                             android:layout_height="wrap_content">
 
                             <EditText
-                                android:inputType="text"
                                 android:id="@+id/description_short"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -394,7 +393,6 @@
                             android:layout_height="wrap_content">
 
                             <EditText
-                                android:inputType="text"
                                 android:id="@+id/description_long"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

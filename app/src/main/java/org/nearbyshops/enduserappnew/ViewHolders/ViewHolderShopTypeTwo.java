@@ -309,6 +309,17 @@ public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder implements Po
                 break;
 
 
+            case R.id.action_edit:
+
+
+                if(fragment instanceof ListItemClick)
+                {
+                    ((ListItemClick) fragment).editClick(shop,getAdapterPosition());
+                }
+
+                break;
+
+
 
             default:
 
@@ -328,15 +339,6 @@ public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder implements Po
 
 
 
-    //        @OnClick(R.id.shop_logo)
-    void shopLogoClick()
-    {
-//            Intent intent = new Intent(context, MarketDetail.class);
-//            intent.putExtra(MarketDetail.SHOP_DETAIL_INTENT_KEY,dataset.get(getLayoutPosition()));
-//            context.startActivity(intent);
-    }
-
-
 
 
     private void showToastMessage(String message)
@@ -350,6 +352,7 @@ public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder implements Po
     public interface ListItemClick
     {
         void listItemClick(Shop shop, int position);
+        void editClick(Shop shop, int position);
     }
 
 }

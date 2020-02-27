@@ -500,7 +500,6 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void fetchedLocation(Location location) {
-//        this.location = location;
         makeRefreshNetworkCall();
     }
 
@@ -513,14 +512,21 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public void listItemClick(Shop shop, int position) {
 
+        openEditShopScreen(shop);
+    }
 
-//        PrefShopForAdmin.saveShop(shop,getActivity());
-//        Intent intent = new Intent(getActivity(), EditShopForAdmin.class);
-//        intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopForAdminFragment.MODE_UPDATE);
-//        startActivity(intent);
+    @Override
+    public void editClick(Shop shop, int position) {
+
+        openEditShopScreen(shop);
+    }
 
 
 
+
+
+    private void openEditShopScreen(Shop shop)
+    {
         Gson gson = UtilityFunctions.provideGson();
         String jsonString = gson.toJson(shop);
 
@@ -528,9 +534,7 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
         intent.putExtra("shop_profile",jsonString);
         intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_UPDATE_BY_ADMIN);
         startActivity(intent);
-
     }
-
 
 
 }

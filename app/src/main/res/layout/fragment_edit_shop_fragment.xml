@@ -158,7 +158,6 @@
 
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/admin_options_block"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -167,9 +166,10 @@
 
 
             <TextView
+                android:id="@+id/shop_admin_profile"
                 android:textColor="@color/white"
                 android:textSize="17sp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:padding="10dp"
                 android:text="Shop Admin Profile"
                 android:background="@color/buttonColorDark"
@@ -178,6 +178,7 @@
 
 
             <TextView
+                android:visibility="gone"
                 android:layout_marginTop="5dp"
                 android:text="Name : - "
                 android:id="@+id/shop_admin_name"
@@ -187,6 +188,7 @@
 
 
             <TextView
+                android:visibility="gone"
                 android:layout_marginTop="5dp"
                 android:text="Phone : - "
                 android:id="@+id/shop_admin_phone"
@@ -219,7 +221,7 @@
                 android:textSize="17sp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/add_credit"
-                android:text="[ Press here to Add Credit ]"
+                android:text="[ Add Credit ]"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

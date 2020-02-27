@@ -135,9 +135,10 @@ public class EditConfigurationFragment extends Fragment {
     public static final int MODE_UPDATE = 52;
     public static final int MODE_ADD = 51;
 
-    int current_mode = MODE_UPDATE;
+    private int current_mode = MODE_UPDATE;
 
-    ServiceConfigurationLocal serviceConfiguration = null;
+
+    private ServiceConfigurationLocal serviceConfiguration = null;
 
 
     public EditConfigurationFragment() {

@@ -332,15 +332,22 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
 
 
-    @Override
-    public void listItemClick(Shop shop, int position) {
+        @Override
+        public void listItemClick(Shop shop, int position) {
 
-        Intent intent = new Intent(getActivity(), ShopDetail.class);
-        String shopJson = UtilityFunctions.provideGson().toJson(shop);
-        intent.putExtra(ShopDetailFragment.TAG_JSON_STRING,shopJson);
-        startActivity(intent);
-    }
+            Intent intent = new Intent(getActivity(), ShopDetail.class);
+            String shopJson = UtilityFunctions.provideGson().toJson(shop);
+            intent.putExtra(ShopDetailFragment.TAG_JSON_STRING,shopJson);
+            startActivity(intent);
+        }
 
+
+
+        @Override
+        public void editClick(Shop shop, int position) {
+
+            // ignore because its not required here
+        }
 
 
 }

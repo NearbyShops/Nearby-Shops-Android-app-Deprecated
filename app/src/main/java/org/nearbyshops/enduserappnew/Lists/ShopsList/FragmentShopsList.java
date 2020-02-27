@@ -688,6 +688,11 @@ public class FragmentShopsList extends Fragment implements
 
 
 
+    @Override
+    public void editClick(Shop shop, int position) {
+
+    }
+
 
 //    @Override
 //    public void onPause() {

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<RelativeLayout
-    android:animateLayoutChanges="true"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="5dp"
     android:background="#22000000"
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
 
 
@@ -55,12 +53,60 @@
 
 
 
+
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/swipe_container"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="45dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_marginLeft="5dp"-->
+<!--        android:layout_marginRight="5dp"-->
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewItemCategories"
+            android:paddingBottom="65dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+    <TextView
+        android:layout_gravity="bottom"
+        android:padding="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:id="@+id/assign_parent"
+        android:textColor="#ffffff"
+        android:background="@color/blueGrey800"
+        android:text="Assign Selected Category as Parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
         <TextView
             android:textColor="@color/white"
             android:background="@color/buttonColor"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
             android:padding="5dp"
             android:id="@+id/show_hide_instructions"
             android:layout_below="@id/appbar"
@@ -73,34 +119,13 @@
             android:textColor="#ffffff"
             android:background="@color/orangeDark"
             android:padding="5dp"
-            android:layout_margin="5dp"
             android:text="Long Click to select Category. \nClick to Enter Subcategory."
             android:layout_below="@id/show_hide_instructions"
             android:id="@+id/usage_instructions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-    <TextView
-        android:padding="15dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:id="@+id/assign_parent"
-        android:textColor="#ffffff"
-        android:background="@color/blueGrey800"
-        android:text="Assign Selected Category as Parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
+    </LinearLayout>
 
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@id/usage_instructions"
-        android:id="@+id/recyclerViewItemCategories"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/assign_parent"/>
-
-
-
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

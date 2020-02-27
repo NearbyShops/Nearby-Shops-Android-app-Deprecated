@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
@@ -39,7 +40,7 @@ import retrofit2.Response;
 
 
 public class ItemCategoriesParent extends AppCompatActivity
-        implements  Adapter.requestSubCategory, Adapter.NotificationReceiver {
+        implements  SwipeRefreshLayout.OnRefreshListener, Adapter.requestSubCategory, Adapter.NotificationReceiver {
 
 
     // data
@@ -87,11 +88,8 @@ public class ItemCategoriesParent extends AppCompatActivity
     TabLayout tabLayout;
 
 
+    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
 
-    // for scrolling
-    private int limit = 10;
-    int offset = 0;
-    int item_count = 0;
 
 
     public ItemCategoriesParent() {
@@ -126,15 +124,32 @@ public class ItemCategoriesParent extends AppCompatActivity
 
         itemCategoriesList = findViewById(R.id.recyclerViewItemCategories);
         setupRecyclerView();
+        setupSwipeContainer();
 
 
         if(savedInstanceState==null)
         {
-            makeRequestRetrofit();
+            makeRefreshNetworkCall();
         }
+
+
     }
 
 
+
+
+    private void setupSwipeContainer()
+    {
+        if(swipeContainer!=null) {
+
+            swipeContainer.setOnRefreshListener(this);
+            swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                    android.R.color.holo_green_light,
+                    android.R.color.holo_orange_light,
+                    android.R.color.holo_red_light);
+        }
+
+    }
 
 
     @OnClick(R.id.show_hide_instructions)
@@ -168,127 +183,44 @@ public class ItemCategoriesParent extends AppCompatActivity
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-//        layoutManager.setSpanCount(metrics.widthPixels/350);
-
-
-
-//        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
-//
-//        if(spanCount==0){
-//            spanCount = 1;
-//        }
-//
         layoutManager.setSpanCount(2);
+    }
 
 
 
-//        // Code for Staggered Grid Layout
-//        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//
-//
-//            @Override
-//            public int getSpanSize(int position) {
-//
-//                if(dataset.get(position) != null)
-//                {
-//
-//                    final DisplayMetrics metrics = new DisplayMetrics();
-//                    getWindowManager().getDefaultDisplay().getMetrics(metrics);
-//
-//                    int spanCount = (int) (metrics.widthPixels/(180 * metrics.density));
-//
-//                    if(spanCount==0){
-//                        spanCount = 1;
-//                    }
-//
-//                    return (6/spanCount);
-//
-//                }
-//
-//
-//                return 3;
-//            }
-//        });
 
 
 
-//        itemCategoriesList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//
-//
-//            @Override
-//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//
-//                if(layoutManager.findLastVisibleItemPosition()==dataset.size()-1)
-//                {
-//                    // trigger fetch next page
-//
-//                    if((offset+limit)<=item_count)
-//                    {
-//                        offset = offset + limit;
-//                        makeRequestRetrofit();
-//                    }
-//
-//                }
-//            }
-//
-//
-//
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
-//            {
-//                super.onScrolled(recyclerView, dx, dy);
-//
-//                if(dy < -20)
-//                {
-//
-//                    boolean previous = menuVisible;
-//
-//                    menuVisible = true;
-//
-//                    if(menuVisible !=previous)
-//                    {
-//                        // changed
-////                        options.setVisibility(View.INVISIBLE);
-//                        Log.d("scrolllog","show");
-////                        options.animate().translationX(metrics.widthPixels-10);
-//
-//                        appBarLayout.setVisibility(View.VISIBLE);
-//                        assignParent.setVisibility(View.VISIBLE);
-//
-//
-//
-//                    }
-//
-//                }else if(dy > 20)
-//                {
-//
-//                    boolean previous = menuVisible;
-//
-//                    menuVisible = false;
-//
-//
-//
-//                    if(menuVisible !=previous)
-//                    {
-//                        // changed
-////                        options.setVisibility(View.VISIBLE);
-////                        options.animate().translationX(0);
-//                        Log.d("scrolllog","hide");
-//
-//
-//                        appBarLayout.setVisibility(View.GONE);
-//                        assignParent.setVisibility(View.GONE);
-//                    }
-//                }
-//
-//            }
-//        });
+    private void makeRefreshNetworkCall() {
+
+        swipeContainer.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeContainer.setRefreshing(true);
+
+                try {
+
+
+                    onRefresh();
+
+                } catch (IllegalArgumentException ex)
+                {
+                    ex.printStackTrace();
+
+                }
+            }
+        });
 
     }
 
 
+
+
+    @Override
+    public void onRefresh() {
+
+        makeRequestRetrofit();
+    }
 
 
 
@@ -297,32 +229,37 @@ public class ItemCategoriesParent extends AppCompatActivity
     public void makeRequestRetrofit()
     {
 
-//        Call<List<ItemCategory>> itemCategoryCall = itemCategoryService
-//                .getItemCategories(currentCategory.getItemCategoryID());
-
-
-//        Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategories(
-//                null,currentCategory.getItemCategoryID(),
-//                null,null,null,null,null,null,"id",limit,offset,null);
-
 
         Call<ItemCategoryEndPoint> endPointCall = itemCategoryService.getItemCategoriesQuerySimple(
-                currentCategory.getItemCategoryID(),null,"id",limit,offset
+                currentCategory.getItemCategoryID(),null,ItemCategory.CATEGORY_ORDER,
+                null,null
         );
+
+
 
         endPointCall.enqueue(new Callback<ItemCategoryEndPoint>() {
             @Override
             public void onResponse(Call<ItemCategoryEndPoint> call, Response<ItemCategoryEndPoint> response) {
 
-                if(response.body()!=null)
+                if(isDestroyed())
                 {
-                    if(currentCategory.getItemCategoryID()==1 && offset == 0)
+                    return;
+                }
+
+                swipeContainer.setRefreshing(false);
+
+                if(response.code()==200 && response.body()!=null)
+                {
+                    dataset.clear();
+
+                    if(currentCategory.getItemCategoryID()==1)
                     {
                         dataset.add(0,currentCategory);
                     }
 
 
-                    item_count = response.body().getItemCount();
+
+//                    item_count = response.body().getItemCount();
 
                     // the entities in the exclude list should not be added into the dataset
                     for(ItemCategory itemCategory : response.body().getResults())
@@ -334,15 +271,29 @@ public class ItemCategoriesParent extends AppCompatActivity
                         }
                     }
 
-                }
 
-                listAdapter.notifyDataSetChanged();
+
+                    listAdapter.notifyDataSetChanged();
+
+
+                }
+                else
+                {
+                    showToastMessage("Failed Code : " + String.valueOf(response.code()));
+                }
 
 
             }
 
             @Override
             public void onFailure(Call<ItemCategoryEndPoint> call, Throwable t) {
+
+                if(isDestroyed())
+                {
+                    return;
+                }
+
+                swipeContainer.setRefreshing(false);
 
                 showToastMessage("Network request failed. Please check your connection !");
             }
@@ -422,9 +373,9 @@ public class ItemCategoriesParent extends AppCompatActivity
 //            boolean isFirst = true;
 //        }
 
-        offset = 0; // reset the offset
-        dataset.clear();
-        makeRequestRetrofit();
+//        offset = 0; // reset the offset
+//        dataset.clear();
+        makeRefreshNetworkCall();
 
 
         appBarLayout.setVisibility(View.VISIBLE);
@@ -465,9 +416,7 @@ public class ItemCategoriesParent extends AppCompatActivity
             {
 
 
-                dataset.clear();
-                offset = 0; // reset the offset
-                makeRequestRetrofit();
+                makeRefreshNetworkCall();
 
 
 
@@ -496,9 +445,7 @@ public class ItemCategoriesParent extends AppCompatActivity
     @Override
     public void notifyItemDeleted() {
 
-        offset = 0; // reset the offset
-        dataset.clear();
-        makeRequestRetrofit();
+        makeRefreshNetworkCall();
     }
 
 
@@ -535,33 +482,6 @@ public class ItemCategoriesParent extends AppCompatActivity
         ItemCategoriesParent.excludeList.clear();
     }
 
-
-
-
-
-//    @Override
-//    protected void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//
-//        outState.putParcelableArrayList("dataset",dataset);
-//    }
-//
-//
-//    @Override
-//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//
-//
-//        if (savedInstanceState != null) {
-//
-//            ArrayList<ItemCategory> tempList = savedInstanceState.getParcelableArrayList("dataset");
-//
-//            dataset.clear();
-//            dataset.addAll(tempList);
-//
-//            listAdapter.notifyDataSetChanged();
-//        }
-//    }
 
 
 

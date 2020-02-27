@@ -116,8 +116,12 @@ public class FragmentEditProfile extends Fragment {
 
 
 
-    @BindViews({R.id.label_change_password, R.id.label_add_or_change_email})
-    List<TextView> label_instructions;
+//    @BindViews({R.id.label_change_password, R.id.label_add_or_change_email})
+//    List<TextView> label_instructions;
+
+    @BindView(R.id.label_change_password) TextView labelChangePassword;
+    @BindView(R.id.label_add_or_change_email) TextView labelChangeEmail;
+    @BindView(R.id.label_add_or_change_phone) TextView labelChangePhone;
 
 
     public static final String EDIT_MODE_INTENT_KEY = "edit_mode";
@@ -346,25 +350,42 @@ public class FragmentEditProfile extends Fragment {
     private void updateFieldVisibility()
     {
 
-        if(current_mode==MODE_ADD)
+
+        if(current_mode==MODE_UPDATE_BY_ADMIN)
         {
-            saveButton.setText("Sign Up");
-            localUserID.setVisibility(GONE);
 
-            password.setEnabled(true);
-            password.setText("");
-            email.setEnabled(true);
-
-
+            labelChangePhone.setVisibility(GONE);
+            labelChangeEmail.setVisibility(GONE);
+            labelChangePassword.setVisibility(GONE);
         }
-        else if(current_mode== MODE_UPDATE)
+        else
         {
-            localUserID.setVisibility(VISIBLE);
-            saveButton.setText("Save");
 
-            password.setEnabled(false);
-            password.setText("Password");
-            email.setEnabled(false);
+            labelChangePhone.setVisibility(VISIBLE);
+            labelChangeEmail.setVisibility(VISIBLE);
+            labelChangePassword.setVisibility(VISIBLE);
+
+
+            if(current_mode==MODE_ADD)
+            {
+                saveButton.setText("Sign Up");
+                localUserID.setVisibility(GONE);
+
+                password.setEnabled(true);
+                password.setText("");
+                email.setEnabled(true);
+
+
+            }
+            else if(current_mode== MODE_UPDATE)
+            {
+                localUserID.setVisibility(VISIBLE);
+                saveButton.setText("Save");
+
+                password.setEnabled(false);
+                password.setText("Password");
+                email.setEnabled(false);
+            }
         }
 
 

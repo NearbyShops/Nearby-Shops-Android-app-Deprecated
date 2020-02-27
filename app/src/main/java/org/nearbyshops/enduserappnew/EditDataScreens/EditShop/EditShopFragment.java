@@ -29,12 +29,15 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.Fragment;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
 
 import org.nearbyshops.enduserappnew.API.ShopService;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.LocationPicker.LocationPickerWithRadius.PickDeliveryRange;
 import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
@@ -551,7 +554,7 @@ public class EditShopFragment extends Fragment {
 
         if(shop.getTimestampCreated()!=null)
         {
-            timeOfRegistration.setText("Registered at : " + shop.getTimestampCreated().toLocaleString());
+            timeOfRegistration.setText("Created at : " + shop.getTimestampCreated().toLocaleString());
         }
 
 
@@ -559,7 +562,7 @@ public class EditShopFragment extends Fragment {
         switchWaitlist.setChecked(shop.getShopWaitlisted());
 
         extendedCreditLimit.setText(String.valueOf(shop.getExtendedCreditLimit()));
-        accountBalance.setText("Account Balance : " + String.format(" %.2f",shop.getAccountBalance()));
+        accountBalance.setText("Balance : " + PrefGeneral.getCurrencySymbol(getActivity()) +  String.format(" %.2f",shop.getAccountBalance()));
     }
 
 
@@ -1204,6 +1207,27 @@ public class EditShopFragment extends Fragment {
         intent.putExtra("tag_user_id",shop.getShopAdminID());
         startActivity(intent);
     }
+
+
+
+
+
+    @OnClick(R.id.shop_admin_profile)
+    void shopAdminProfileClick()
+    {
+        User shopAdminProfile = shop.getShopAdminProfile();
+
+
+        Gson gson = UtilityFunctions.provideGson();
+        String jsonString = gson.toJson(shopAdminProfile);
+
+        Intent intent = new Intent(getActivity(), EditProfile.class);
+        intent.putExtra("user_profile",jsonString);
+        intent.putExtra(FragmentEditProfile.EDIT_MODE_INTENT_KEY, FragmentEditProfile.MODE_UPDATE_BY_ADMIN);
+        startActivity(intent);
+    }
+
+
 
 
 }
