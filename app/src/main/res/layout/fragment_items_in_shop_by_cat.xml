@@ -253,7 +253,7 @@
     <LinearLayout
         android:layout_gravity="bottom"
         android:gravity="center"
-        android:background="@color/mapbox_blue"
+        android:background="@color/colorPrimary"
         android:padding="10dp"
         android:id="@+id/cart_stats"
         app:layout_constraintStart_toStartOf="parent"

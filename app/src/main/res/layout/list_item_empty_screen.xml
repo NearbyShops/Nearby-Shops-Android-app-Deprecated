@@ -44,7 +44,7 @@
         android:paddingEnd="10dp"
         android:paddingStart="10dp"
         android:textColor="@color/white"
-        android:background="@color/phonographyBlue"
+        android:background="@color/colorPrimary"
         android:text="button"
         android:id="@+id/button"
         app:layout_constraintBottom_toBottomOf="parent"
