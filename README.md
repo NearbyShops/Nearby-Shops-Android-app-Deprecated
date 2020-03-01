@@ -22,6 +22,28 @@ Nearby Shops is a first of its kind decentralized, non-commercial, Open-Source a
 This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance (Server) and create their local market. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
 
+## Hiring Remote Workers for a Nonprofit Tech Startup
+
+Nearby Shops is the worlds first Non-VC funded Nonprofit Tech Startup. We are now hiring !
+
+Benefit from the flexible working hours and work from anywhere in the world. 
+We are raising funds for this project and you may be compensated for your contributions at an hourly rate of 10-50 $ per hour. 
+
+We are looking for Contributors who can help us in the following areas
+
+1. Raise funds for the Project - Example : Create Kickstarter campaign and raise donations
+2. Content Creators 
+   - Create Images and Video for publicity purposes
+   - Write articles to create publicity
+
+3. Distribution Experts / Digital Marketing Experts / Social Media Experts
+4. Developers - Android, Web, PostgreSQL, Java
+5. Any other way you want to help – Suggestions and Ideas are Welcome !
+
+To understand how our compensation scheme work please read the https://github.com/NearbyShops/Nearby-Shops-API/wiki
+
+
+
 Volunteer and help the project
 --------------------------------
 
