@@ -50,7 +50,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.Header
 import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemAdmin;
 import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemCategoryAdmin;
 import org.nearbyshops.enduserappnew.adminModule.Preferences.PrefSortItemsByCategory;
-import org.nearbyshops.enduserappnew.adminModule.SelectParent.ItemCategoriesParent;
+import org.nearbyshops.enduserappnew.adminModule.ChangeParent.ItemCategoriesParent;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -514,7 +514,7 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
     public static String getSortOrder(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        return sharedPref.getString("sort_order_for_user_list", MyApplication.SORT_ASCENDING);
+        return sharedPref.getString("sort_order_for_user_list", MyApplication.SORT_DESCENDING);
     }
 
 

@@ -76,7 +76,7 @@ public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
     {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_market_type_two,parent,false);
+                .inflate(R.layout.list_item_market_type_small,parent,false);
 
         return new BackupViewHolderMarketSmall(view,context,subscriber);
     }

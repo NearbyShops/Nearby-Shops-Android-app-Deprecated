@@ -165,17 +165,6 @@
 
 
 
-            <TextView
-                android:id="@+id/shop_admin_profile"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                android:layout_marginTop="15dp"
-                android:padding="10dp"
-                android:text="Shop Admin Profile"
-                android:background="@color/buttonColorDark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
 
             <TextView
                 android:visibility="gone"
@@ -240,6 +229,32 @@
                     android:hint="Extended Credit Limit"/>
 
             </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <TextView
+                android:id="@+id/shop_dashboard"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:layout_marginTop="15dp"
+                android:padding="10dp"
+                android:text="Shop Dashboard"
+                android:background="@color/darkGreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/shop_admin_profile"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="Shop Admin Profile"
+                android:background="@color/buttonColorDark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
 
 
 

@@ -19,6 +19,8 @@ import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
+
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -34,7 +36,7 @@ import javax.inject.Inject;
 
 
 
-public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class ViewHolderMarket extends RecyclerView.ViewHolder{
 
 
     @BindView(R.id.service_name) TextView serviceName;
@@ -47,8 +49,10 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 //    @BindView(R.id.description) TextView description;
     @BindView(R.id.logo) ImageView serviceLogo;
 
+    @BindView(R.id.distance) TextView distance;
+
     @BindView(R.id.progress_bar_select) ProgressBar progressBarSelect;
-    @BindView(R.id.select_market) TextView selectMarket;
+//    @BindView(R.id.select_market) TextView selectMarket;
 
 
     private ServiceConfigurationGlobal configurationGlobal;
@@ -108,7 +112,8 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
                 if(integer==MarketViewModel.EVENT_LOCAL_CONFIG_FETCHED || integer==MarketViewModel.EVENT_LOGGED_IN_TO_LOCAL_SUCCESS)
                 {
 
-                    selectMarket.setVisibility(View.VISIBLE);
+//                    selectMarket.setVisibility(View.VISIBLE);
+                    serviceLogo.setVisibility(View.VISIBLE);
                     progressBarSelect.setVisibility(View.INVISIBLE);
 
 
@@ -120,7 +125,8 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
                 }
                 else if(integer==MarketViewModel.EVENT_NETWORK_FAILED)
                 {
-                    selectMarket.setVisibility(View.VISIBLE);
+//                    selectMarket.setVisibility(View.VISIBLE);
+                    serviceLogo.setVisibility(View.VISIBLE);
                     progressBarSelect.setVisibility(View.INVISIBLE);
                 }
 
@@ -146,7 +152,7 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 
 
 
-        itemView.setOnClickListener(this);
+//        itemView.setOnClickListener(this);
 
 
 
@@ -167,7 +173,10 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
         this.configurationGlobal = configurationGlobal;
 
         serviceName.setText(configurationGlobal.getServiceName());
-        serviceAddress.setText(String.format("%.2f Km",configurationGlobal.getRt_distance())+ " | " + configurationGlobal.getCity());
+        serviceAddress.setText(configurationGlobal.getCity());
+
+
+        distance.setText(String.format("%.2f Km", configurationGlobal.getRt_distance()));
 
 //                service.getAddress() + ", " +
 
@@ -249,19 +258,15 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
 
 
 
-    @OnClick(R.id.select_market)
+    @OnClick(R.id.list_item_market)
     void selectMarket()
     {
 
-
         ServiceConfigurationGlobal configurationGlobal = this.configurationGlobal;
 
-
-        selectMarket.setVisibility(View.INVISIBLE);
+//        selectMarket.setVisibility(View.INVISIBLE);
+        serviceLogo.setVisibility(View.INVISIBLE);
         progressBarSelect.setVisibility(View.VISIBLE);
-
-
-
 
         if(PrefLoginGlobal.getUser(context)==null)
         {
@@ -273,20 +278,21 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder implements View.On
             viewModel.loginToLocalEndpoint(configurationGlobal);
         }
 
-
-
     }
 
 
 
-    @Override
-    public void onClick(View v) {
 
+
+    @OnLongClick(R.id.list_item_market)
+    void showDetailsClick()
+    {
         if(fragment instanceof ListItemClick)
         {
             ((ListItemClick) fragment).listItemClick(configurationGlobal,getLayoutPosition());
         }
     }
+
 
 
 

@@ -9,34 +9,32 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnLongClick;
 
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-
+import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 
-
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
-public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
+public class BackupViewHolderMarketSmall1Mar20 extends RecyclerView.ViewHolder {
 
 
     @BindView(R.id.market_photo) ImageView marketPhoto;
@@ -44,7 +42,7 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
     @BindView(R.id.market_city) TextView marketCity;
 
     @BindView(R.id.progress_bar_select) ProgressBar progressBarSelect;
-//    @BindView(R.id.select_market) TextView selectMarket;
+    @BindView(R.id.select_market) TextView selectMarket;
 
 
 
@@ -62,19 +60,20 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-    public static ViewHolderMarketSmall create(ViewGroup parent, Context context, Fragment subscriber)
+    public static BackupViewHolderMarketSmall1Mar20 create(ViewGroup parent, Context context, Fragment subscriber)
     {
+
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_market_type_small,parent,false);
 
-        return new ViewHolderMarketSmall(view,context,subscriber);
+        return new BackupViewHolderMarketSmall1Mar20(view,context,subscriber);
     }
 
 
 
 
-    public ViewHolderMarketSmall(@NonNull View itemView, Context context, Fragment fragment) {
+    public BackupViewHolderMarketSmall1Mar20(@NonNull View itemView, Context context, Fragment fragment) {
         super(itemView);
         ButterKnife.bind(this,itemView);
 
@@ -94,8 +93,7 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
                 if(integer==MarketViewModel.EVENT_LOCAL_CONFIG_FETCHED || integer==MarketViewModel.EVENT_LOGGED_IN_TO_LOCAL_SUCCESS)
                 {
 
-//                    selectMarket.setVisibility(View.VISIBLE);
-                    marketPhoto.setVisibility(View.VISIBLE);
+                    selectMarket.setVisibility(View.VISIBLE);
                     progressBarSelect.setVisibility(View.INVISIBLE);
 
 
@@ -107,8 +105,7 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
                 }
                 else if(integer==MarketViewModel.EVENT_NETWORK_FAILED)
                 {
-//                    selectMarket.setVisibility(View.VISIBLE);
-                    marketPhoto.setVisibility(View.VISIBLE);
+                    selectMarket.setVisibility(View.VISIBLE);
                     progressBarSelect.setVisibility(View.INVISIBLE);
                 }
 
@@ -171,7 +168,7 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-    @OnLongClick(R.id.list_item)
+    @OnClick(R.id.list_item)
     void listItemClick()
     {
 
@@ -188,14 +185,13 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-    @OnClick(R.id.list_item)
+    @OnClick(R.id.select_market)
     void selectMarket()
     {
         ServiceConfigurationGlobal configurationGlobal = this.configurationGlobal;
 
 
-//        selectMarket.setVisibility(View.INVISIBLE);
-        marketPhoto.setVisibility(View.INVISIBLE);
+        selectMarket.setVisibility(View.INVISIBLE);
         progressBarSelect.setVisibility(View.VISIBLE);
 
 
@@ -210,8 +206,6 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
             viewModel.loginToLocalEndpoint(configurationGlobal);
         }
     }
-
-
 
 
 

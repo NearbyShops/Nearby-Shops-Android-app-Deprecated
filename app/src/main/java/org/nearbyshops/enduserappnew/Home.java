@@ -102,8 +102,8 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
-//        FirebaseApp.initializeApp(getApplicationContext());
-//        UtilityFunctions.updateFirebaseSubscriptions();
+        FirebaseApp.initializeApp(getApplicationContext());
+        UtilityFunctions.updateFirebaseSubscriptions();
 
 
 

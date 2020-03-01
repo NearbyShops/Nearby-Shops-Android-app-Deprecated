@@ -8,6 +8,7 @@ import org.nearbyshops.enduserappnew.DI.DaggerModules.NetModule;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategoryFragment;
 import org.nearbyshops.enduserappnew.HomeBackup;
 import org.nearbyshops.enduserappnew.Lists.CartItemList.ViewHolders.ViewHolderCartItem;
+import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarketSmall1Mar20;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersDataSource;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersListPagingFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToStaffDialog;
@@ -89,8 +90,8 @@ import org.nearbyshops.enduserappnew.Login.SignUp.FragmentEnterPassword;
 import org.nearbyshops.enduserappnew.Login.SignUp.FragmentVerify;
 import org.nearbyshops.enduserappnew.EditDataScreens.Deprecated.EditShopForAdmin.EditShopForAdminFragment;
 import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsDatabaseForAdminFragment;
-import org.nearbyshops.enduserappnew.adminModule.SelectParent.Adapter;
-import org.nearbyshops.enduserappnew.adminModule.SelectParent.ItemCategoriesParent;
+import org.nearbyshops.enduserappnew.adminModule.ChangeParent.Adapter;
+import org.nearbyshops.enduserappnew.adminModule.ChangeParent.ItemCategoriesParent;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.Fragment.FragmentShopList;
 
 
@@ -289,4 +290,6 @@ public interface NetComponent {
     void Inject(ViewHolderCartItem viewHolderCartItem);
 
     void Inject(HomeBackup homeBackup);
+
+    void Inject(BackupViewHolderMarketSmall1Mar20 backupViewHolderMarketSmall1Mar20);
 }

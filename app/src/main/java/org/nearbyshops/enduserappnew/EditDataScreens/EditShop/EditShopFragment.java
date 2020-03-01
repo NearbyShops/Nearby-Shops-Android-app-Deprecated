@@ -48,6 +48,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ShopImageList;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.SellerModule.ShopDashboard.ShopDashboard;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.AddCredit;
 
@@ -1227,6 +1228,18 @@ public class EditShopFragment extends Fragment {
         startActivity(intent);
     }
 
+
+
+
+
+
+    @OnClick(R.id.shop_dashboard)
+    void shopDashboardClick()
+    {
+        PrefShopAdminHome.saveShop(shop,getActivity());
+        Intent intent = new Intent(getActivity(), ShopDashboard.class);
+        startActivity(intent);
+    }
 
 
 

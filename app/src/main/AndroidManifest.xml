@@ -391,7 +391,7 @@
 
 
         <activity
-            android:name=".adminModule.SelectParent.ItemCategoriesParent"
+            android:name=".adminModule.ChangeParent.ItemCategoriesParent"
             android:label="Select Parent Category"
             android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
 

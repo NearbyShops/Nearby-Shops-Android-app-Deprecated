@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.adminModule.SelectParent;
+package org.nearbyshops.enduserappnew.adminModule.ChangeParent;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -106,7 +106,10 @@ public class FragmentAddCredit extends Fragment {
 
 
 
-    void addCredit()
+
+
+
+    private void addCredit()
     {
 
         if(amount.getText().toString().length()==0)
@@ -136,6 +139,11 @@ public class FragmentAddCredit extends Fragment {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
 
+                if(!isVisible())
+                {
+                    return;
+                }
+
                 if(response.code()==200)
                 {
 
@@ -161,6 +169,11 @@ public class FragmentAddCredit extends Fragment {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                if(!isVisible())
+                {
+                    return;
+                }
+
 
 
                 addCreditButton.setVisibility(View.VISIBLE);
@@ -174,11 +187,7 @@ public class FragmentAddCredit extends Fragment {
 
 
 
-
-
-
-
-    void showToast(String message)
+    private void showToast(String message)
     {
         Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
     }
@@ -198,6 +207,6 @@ public class FragmentAddCredit extends Fragment {
 
 
 
-    boolean isDestroyed = false;
+    private boolean isDestroyed = false;
 
 }

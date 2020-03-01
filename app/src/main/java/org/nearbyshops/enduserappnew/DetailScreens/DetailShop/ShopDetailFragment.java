@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
@@ -399,15 +400,25 @@ public class ShopDetailFragment extends Fragment
     private void bindViews()
     {
         shopName.setText(shop.getShopName());
-        shopRatingNumeric.setText(String.format("%.2f",shop.getRt_rating_avg()));
-        ratingBar.setRating(shop.getRt_rating_avg());
-        ratingCount.setText("(" + shop.getRt_rating_count() + " ratings )");
+
+
+
+        if(shop.getRt_rating_count()==0)
+        {
+            shopRatingNumeric.setText(" New ");
+            shopRatingNumeric.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.buttonColor));
+            ratingBar.setVisibility(View.GONE);
+            ratingCount.setVisibility(View.GONE);
+        }
+        else
+        {
+            shopRatingNumeric.setText(String.format("%.2f",shop.getRt_rating_avg()));
+            ratingBar.setRating(shop.getRt_rating_avg());
+            ratingCount.setText("(" + shop.getRt_rating_count() + " ratings )");
+        }
 
         shopPhone.setText(shop.getCustomerHelplineNumber());
         shopDescription.setText(shop.getLongDescription());
-
-
-
 
 
         String shop_address = shop.getShopAddress()  + ", " + shop.getCity() + " - " + shop.getPincode() + "\n" + shop.getLandmark();
@@ -754,7 +765,9 @@ public class ShopDetailFragment extends Fragment
 
 
 
-    boolean isFavourite = false;
+
+
+    private boolean isFavourite = false;
 
 
 

@@ -183,7 +183,8 @@ public class UtilityFunctions {
         PrefShopHome.saveShop(null,context);
         PrefShopAdminHome.saveShop(null,context);
 
-        FirebaseApp.getInstance().delete();
+
+//        FirebaseApp.getInstance().delete();
     }
 
 

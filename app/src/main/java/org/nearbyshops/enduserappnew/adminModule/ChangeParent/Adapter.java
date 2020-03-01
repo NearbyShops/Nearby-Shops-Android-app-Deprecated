@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.adminModule.SelectParent;
+package org.nearbyshops.enduserappnew.adminModule.ChangeParent;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
