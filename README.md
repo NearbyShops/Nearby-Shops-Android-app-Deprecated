@@ -134,14 +134,12 @@ Android-Jetpack, Retrofit, Ok-Http, Event-Bus, Picasso, butterknife, dagger2, U-
 Third Party Integrations
 -------------------------
 SMS-OTP using MSG91 (More Integrations coming soon ...)
-
 E-mail using Simple-Java-Mail E-mail Library
-
 Push Notifications using Firebase and One-Signal
-
 Maps using Mapbox Android SDK and Google Maps
-
 Payment Gateway (Coming Soon ...)
+
+For more information please see our developer guide !
 
 
 Connect With us - Need Help ? 
@@ -199,32 +197,10 @@ Ability to pay for contributions depend on availibilty of funds ... we recommend
 Development Instructions
 -------------------------
 
-If you're a developer looking to work on the source code follow these instructions to start developing !
+Use the latest stable version of android studio. 
 
-```js
-git clone https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app.git
-```
+If you are running your own server and do not want multiple markets. Please set multi-market mode to false and set your server URL in the PrefGeneral.java file. 
 
-You should now open the project with the latest version of Android Studio.
-
-
-
-Volunteer and Help us
--------------------------------------------------
-
-Our goal is to provide an e-commerce platform which is technologically advanced, free of cost, open, democratic and Non-Commercial. 
-
-If you like this Idea and this project Please volunteer and Help us ! 
-You can help us in various ways even if you do not know how to write code !
-
-1. Host an instance of Local market where other sellers could register. You will work as the administrator of your local market.
-2. Help us to Promote this project in your local community !
-
-
-This is an International Platform with support for multiple curriencies. Please help us making e-commerce truly free of cost for everyone. 
-
-To participate please contact us on support@nearbyshops.org or simply post your thoughts on our forum 
-https://forum.nearbyshops.org
 
 
 
