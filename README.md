@@ -21,33 +21,28 @@ Nearby Shops is a first of its kind decentralized, non-commercial, Open-Source a
 This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance (Server) and create their local market. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
 
-## Hiring Remote Workers !
+## Volunteer and Help Us !
 
-Benefit from the flexible working hours and work from anywhere in the world. We are looking for Contributors who can help us in the following areas
+Benefit from the flexible working hours and work from anywhere in the world. We are looking for Volunteers who can help us in the following areas
 
-1. Raise funds for the Project - Example : Create Kickstarter campaign and raise donations
+1. Raise funds for the Project - Example : Create Kickstarter campaign and seek donations
 2. Content Creators 
    - Create Images and Video for publicity purposes
    - Write articles to create publicity
+3. Growth Hackerrs - help us grow the platform 
+4. Distribution Experts / Digital Marketing Experts / Social Media Experts
+5. Developers - Android, Web, PostgreSQL, Java
+6. Any other way you want to help – Suggestions and Ideas are Welcome !
 
-3. Distribution Experts / Digital Marketing Experts / Social Media Experts
-4. Developers - Android, Web, PostgreSQL, Java
-5. Any other way you want to help – Suggestions and Ideas are Welcome !
-
-We are raising funds for this project and you may be compensated for your contributions at an hourly rate of 10-50 $ per hour. To understand how our compensation scheme work please read the https://github.com/NearbyShops/Nearby-Shops-API/wiki
-
+If you're interested please get in touch with us on https://forum.nearbyshops.org
 
 
 Volunteer and help the project
 --------------------------------
 
 Do you feel that we need a better e-commerce platform that values and treats people in a more humane manner ? 
-
 Please Help us improve the e-commerce and do your bit to make this world a better place !
-
 We are looking for volunteers to help the platform. You can contribute as a developer, a content creator, digital marketer, Service Provider or in any other way you want to contribute !
-
-Those Interested please contact us on https://forum.nearbyshops.org
 
 
 About Nearby Shops
