@@ -4,8 +4,9 @@
 
 
 
-        <color name="colorPrimary">@color/buttonColor</color>
-        <color name="colorPrimaryDark">#2E7D32</color>
+
+        <color name="colorPrimary">@color/mapboxBlue</color>
+        <color name="colorPrimaryDark">@color/buttonColorDark</color>
         <color name="colorAccent">@color/gplus_color_2</color>
 
 

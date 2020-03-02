@@ -49,6 +49,16 @@ public class ViewHolderHeader extends RecyclerView.ViewHolder{
     }
 
 
+    public static ViewHolderHeader createGreyBG(ViewGroup parent, Context context)
+    {
+
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_item_header_grey_back, parent, false);
+
+
+        return new ViewHolderHeader(view,context);
+    }
+
 
 
 

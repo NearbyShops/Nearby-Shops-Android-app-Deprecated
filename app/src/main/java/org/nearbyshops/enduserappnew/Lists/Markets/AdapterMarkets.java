@@ -94,7 +94,7 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
         else if(viewType == view_type_markets_header)
         {
-            return ViewHolderHeader.create(parent,fragment.getActivity());
+            return ViewHolderHeader.createGreyBG(parent,fragment.getActivity());
         }
         else if(viewType == view_type_sign_in)
         {

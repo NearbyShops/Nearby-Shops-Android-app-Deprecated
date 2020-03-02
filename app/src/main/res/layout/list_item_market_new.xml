@@ -18,12 +18,13 @@
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vertical_guide"
-        app:layout_constraintGuide_percent="0.4"
+        app:layout_constraintGuide_percent="0.45"
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="0dp" />
+
 
 
 
@@ -39,7 +40,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="0dp"
-        android:layout_height="110dp" />
+        android:layout_height="100dp" />
+
 
 
 
@@ -84,6 +86,8 @@
 
 
 
+
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_marginTop="5dp"
@@ -92,20 +96,20 @@
 
 
             <TextView
-                android:layout_marginTop="3dp"
                 android:id="@+id/rating"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:text="4.1"
                 android:textColor="@color/white"
-                android:paddingStart="3dp"
-                android:paddingEnd="3dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:textStyle="bold"
                 android:background="@color/gplus_color_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:layout_gravity="center"
                 android:layout_marginStart="5dp"
                 android:id="@+id/rating_count"
                 app:layout_constraintLeft_toRightOf="@+id/rating"

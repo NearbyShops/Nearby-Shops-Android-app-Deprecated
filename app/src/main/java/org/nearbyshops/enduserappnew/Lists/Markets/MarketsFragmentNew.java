@@ -257,19 +257,10 @@ public class MarketsFragmentNew extends Fragment implements
 
 
 
-        recyclerView.addItemDecoration(
-                new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL)
-        );
-
-
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-
     }
 
 

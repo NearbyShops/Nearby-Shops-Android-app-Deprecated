@@ -346,7 +346,7 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 //                + market.getLogoImagePath() + ".jpg";
 
         String imagePath = PrefServiceConfig.getServiceURL_SDS(getActivity())
-                + "/api/v1/ServiceConfiguration/Image/three_hundred_" + market.getLogoImagePath() + ".jpg";
+                + "/api/v1/ServiceConfiguration/Image/five_hundred_" + market.getLogoImagePath() + ".jpg";
 
 
         Drawable placeholder = VectorDrawableCompat
