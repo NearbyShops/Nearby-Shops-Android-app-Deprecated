@@ -23,10 +23,7 @@ This project is conceptually similar to [Mastodon project](https://github.com/to
 
 ## Hiring Remote Workers !
 
-Benefit from the flexible working hours and work from anywhere in the world. 
-We are raising funds for this project and you may be compensated for your contributions at an hourly rate of 10-50 $ per hour. 
-
-We are looking for Contributors who can help us in the following areas
+Benefit from the flexible working hours and work from anywhere in the world. We are looking for Contributors who can help us in the following areas
 
 1. Raise funds for the Project - Example : Create Kickstarter campaign and raise donations
 2. Content Creators 
@@ -36,6 +33,8 @@ We are looking for Contributors who can help us in the following areas
 3. Distribution Experts / Digital Marketing Experts / Social Media Experts
 4. Developers - Android, Web, PostgreSQL, Java
 5. Any other way you want to help – Suggestions and Ideas are Welcome !
+
+We are raising funds for this project and you may be compensated for your contributions at an hourly rate of 10-50 $ per hour. 
 
 To understand how our compensation scheme work please read the https://github.com/NearbyShops/Nearby-Shops-API/wiki
 
