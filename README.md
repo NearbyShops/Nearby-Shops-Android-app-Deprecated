@@ -37,12 +37,7 @@ Benefit from the flexible working hours and work from anywhere in the world. We 
 If you're interested please get in touch with us on https://forum.nearbyshops.org
 
 
-Volunteer and help the project
---------------------------------
 
-Do you feel that we need a better e-commerce platform that values and treats people in a more humane manner ? 
-Please Help us improve the e-commerce and do your bit to make this world a better place !
-We are looking for volunteers to help the platform. You can contribute as a developer, a content creator, digital marketer, Service Provider or in any other way you want to contribute !
 
 
 About Nearby Shops
@@ -71,7 +66,6 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Third Party Integrations](#third-party-integrations)
 - [Connect with Us](#community---need-help-)
 - [Contributions Required](#contributions-welcome)
-- [Contributor Compensation Program](#contributor-compensation-program)
 - [Development Instructions](#development-instructions)
 - [License](#license)
 
@@ -189,22 +183,6 @@ Code Review and Architecture
 
 
 
-Contributor Compensation Program
-------------------------------------
-
-We believe developer's must be compensated for the work they do. 
-
-How many times you have made a contribution to a project you love but havent received any compensation for that. Unfortunately unpaid working hours is the sad reality for many open-source developers ...
-
-We want to change this ...Therefore we have launched contributor compensation scheme !
-When you make a contribution to this project you will be paid at the rate of 10-15 $ per hour we can make it upto 50 $ per hour for contributors from countries where cost of living is high. 
-
-Please note that we reserve the right to accept or reject your contribution. You will be paid only if your contribution is accepted. 
-
-Ability to pay for contributions depend on availibilty of funds ... we recommend you to [contact us and talk with us](https://forum.nearbyshops.org/t/contributor-compensation-program/93) before you plan to make any contribution to this project.
-
-
-
 Development Instructions
 -------------------------
 
@@ -213,13 +191,6 @@ Use the latest stable version of android studio.
 If you are running your own server and do not want multiple markets. Please set multi-market mode to false and set your server URL in the PrefGeneral.java file. 
 
 
-
-
-### Commercial Use Requires Permission		
-
-We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. This project is free for non-commercial use, experimentation, testing and trial purpose but commercial use requires Permission. For more information please visit https://nearbyshops.co	
-
-App Customization Permitted - You can whitelabel or customize the android app with your own branding using this customization guide. https://developer.nearbyshops.org/installation/customize-apps.html
 
 
 License
