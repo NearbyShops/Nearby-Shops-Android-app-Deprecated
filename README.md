@@ -34,10 +34,7 @@ Benefit from the flexible working hours and work from anywhere in the world. We 
 4. Developers - Android, Web, PostgreSQL, Java
 5. Any other way you want to help – Suggestions and Ideas are Welcome !
 
-We are raising funds for this project and you may be compensated for your contributions at an hourly rate of 10-50 $ per hour. 
-
-To understand how our compensation scheme work please read the https://github.com/NearbyShops/Nearby-Shops-API/wiki
-
+We are raising funds for this project and you may be compensated for your contributions at an hourly rate of 10-50 $ per hour. To understand how our compensation scheme work please read the https://github.com/NearbyShops/Nearby-Shops-API/wiki
 
 
 
