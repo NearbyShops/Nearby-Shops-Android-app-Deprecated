@@ -16,7 +16,7 @@ width="140">
 
 How it works ? 
 -----------------
-Nearby Shops is a Nonprofit FOSS alternative to Instacart, Grubhub and Zomato. 
+Nearby Shops is a Free Nonprofit FOSS alternative to Instacart, Grubhub and Zomato. 
 Its Decentralized, non-commercial, Open-Source and International.
 
 Please visit https://nearbyshops.org to learn more.
