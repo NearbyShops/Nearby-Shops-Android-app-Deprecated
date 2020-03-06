@@ -44,7 +44,6 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     @Inject
     CartStatsService cartStatsService;
 
-
     
     @Inject
     OrderService orderService;
