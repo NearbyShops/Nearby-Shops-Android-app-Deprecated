@@ -16,38 +16,31 @@ width="140">
 
 How it works ? 
 -----------------
-Nearby Shops is a first of its kind decentralized, non-commercial, Open-Source and International Nonprofit E-commerce platform for local vendors.
+Nearby Shops is a Free Nonprofit FOSS alternative to Instacart, Grubhub and Zomato. 
+Its Decentralized, non-commercial, Open-Source and International.
+
+Please visit https://nearbyshops.org to learn more.
 
 This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance (Server) and create their local market. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
 
-## Hiring Remote Workers !
+## Volunteer and Help Us !
 
-Benefit from the flexible working hours and work from anywhere in the world. We are looking for Contributors who can help us in the following areas
+Benefit from the flexible working hours and work from anywhere in the world. We are looking for Volunteers who can help us in the following areas
 
-1. Raise funds for the Project - Example : Create Kickstarter campaign and raise donations
+1. Raise funds for the Project - Example : Create Kickstarter campaign and seek donations
 2. Content Creators 
    - Create Images and Video for publicity purposes
    - Write articles to create publicity
+3. Growth Hackerrs - help us grow the platform 
+4. Distribution Experts / Digital Marketing Experts / Social Media Experts
+5. Developers - Android, Web, PostgreSQL, Java
+6. Any other way you want to help – Suggestions and Ideas are Welcome !
 
-3. Distribution Experts / Digital Marketing Experts / Social Media Experts
-4. Developers - Android, Web, PostgreSQL, Java
-5. Any other way you want to help – Suggestions and Ideas are Welcome !
-
-We are raising funds for this project and you may be compensated for your contributions at an hourly rate of 10-50 $ per hour. To understand how our compensation scheme work please read the https://github.com/NearbyShops/Nearby-Shops-API/wiki
+If you're interested please get in touch with us on https://forum.nearbyshops.org
 
 
 
-Volunteer and help the project
---------------------------------
-
-Do you feel that we need a better e-commerce platform that values and treats people in a more humane manner ? 
-
-Please Help us improve the e-commerce and do your bit to make this world a better place !
-
-We are looking for volunteers to help the platform. You can contribute as a developer, a content creator, digital marketer, Service Provider or in any other way you want to contribute !
-
-Those Interested please contact us on https://forum.nearbyshops.org
 
 
 About Nearby Shops
@@ -76,7 +69,6 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Third Party Integrations](#third-party-integrations)
 - [Connect with Us](#community---need-help-)
 - [Contributions Required](#contributions-welcome)
-- [Contributor Compensation Program](#contributor-compensation-program)
 - [Development Instructions](#development-instructions)
 - [License](#license)
 
@@ -194,22 +186,6 @@ Code Review and Architecture
 
 
 
-Contributor Compensation Program
-------------------------------------
-
-We believe developer's must be compensated for the work they do. 
-
-How many times you have made a contribution to a project you love but havent received any compensation for that. Unfortunately unpaid working hours is the sad reality for many open-source developers ...
-
-We want to change this ...Therefore we have launched contributor compensation scheme !
-When you make a contribution to this project you will be paid at the rate of 10-15 $ per hour we can make it upto 50 $ per hour for contributors from countries where cost of living is high. 
-
-Please note that we reserve the right to accept or reject your contribution. You will be paid only if your contribution is accepted. 
-
-Ability to pay for contributions depend on availibilty of funds ... we recommend you to [contact us and talk with us](https://forum.nearbyshops.org/t/contributor-compensation-program/93) before you plan to make any contribution to this project.
-
-
-
 Development Instructions
 -------------------------
 
@@ -220,22 +196,28 @@ If you are running your own server and do not want multiple markets. Please set 
 
 
 
-### Commercial Use Requires Permission		
-
-We [pay the developers](#contributor-compensation-program) who contribute to this open-source project. This project is free for non-commercial use, experimentation, testing and trial purpose but commercial use requires Permission. For more information please visit https://nearbyshops.co	
-
-App Customization Permitted - You can whitelabel or customize the android app with your own branding using this customization guide. https://developer.nearbyshops.org/installation/customize-apps.html
-
-
 License
 =======
 
-Nearby Shops Open-Source License
-Copyright 2017-19 Bluetree Software LLP, Inc. | http://nearbyshops.org
+MIT License
 
-Commercial Use of Nearby Shops open-source project must comply with our ethical guidlines. This is done to ensure that people dont use this software for unfair and unethical use. The kind of usage that promotes monopoly and destroys local business and fair competition in the economy. 
+Copyright (c) 2020 Nearby Shops
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
