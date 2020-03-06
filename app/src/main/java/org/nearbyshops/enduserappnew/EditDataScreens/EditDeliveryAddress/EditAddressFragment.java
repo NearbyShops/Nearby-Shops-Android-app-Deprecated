@@ -47,7 +47,7 @@ public class EditAddressFragment extends Fragment {
     public static final String DELIVERY_ADDRESS_INTENT_KEY = "edit_delivery_address_intent_key";
 
 
-    
+
     @Inject
     DeliveryAddressService deliveryAddressService;
 
