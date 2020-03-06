@@ -720,8 +720,9 @@ public class EditItemCategoryFragment extends Fragment {
 
 
 
+
     // upload image after being picked up
-    void startCropActivity(Uri sourceUri, Context context) {
+    private void startCropActivity(Uri sourceUri, Context context) {
 
 
 
@@ -743,6 +744,7 @@ public class EditItemCategoryFragment extends Fragment {
         // this function takes the file from the source URI and saves in into the destination URI location.
         UCrop.of(sourceUri, destinationUri)
                 .withOptions(options)
+                .withMaxResultSize(500, 500)
                 .start(context,this);
 
         //.withMaxResultSize(400,300)
