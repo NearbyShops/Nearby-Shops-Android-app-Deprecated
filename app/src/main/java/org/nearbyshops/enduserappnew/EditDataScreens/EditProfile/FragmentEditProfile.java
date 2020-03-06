@@ -1167,7 +1167,6 @@ public class FragmentEditProfile extends Fragment {
         // this function takes the file from the source URI and saves in into the destination URI location.
         UCrop.of(sourceUri, destinationUri)
                 .withOptions(options)
-                .withMaxResultSize(400, 400)
                 .start(context,this);
 
         //.withMaxResultSize(400,300)

@@ -513,12 +513,12 @@ public class FragmentShopsList extends Fragment implements
                         if(clearDataset)
                         {
                             dataset.clear();
-//                            dataset.add(1,Highlights.getHighlightsCabRental());
+
+//                            dataset.add(0,Highlights.getHighlightsCabRental());
                         }
 
 
                         dataset.addAll(response.body().getResults());
-
 
 
 
@@ -529,8 +529,6 @@ public class FragmentShopsList extends Fragment implements
                         {
                             item_count = response.body().getItemCount();
                         }
-
-
 
 
                         if(response.body().getResults().size()==0)

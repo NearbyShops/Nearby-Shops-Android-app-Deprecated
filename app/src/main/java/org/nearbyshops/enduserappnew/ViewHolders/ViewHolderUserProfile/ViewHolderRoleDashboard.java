@@ -38,6 +38,10 @@ import butterknife.OnClick;
 public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
 
 
+
+
+
+
     @BindView(R.id.dashboard_name) TextView dashboardName;
     @BindView(R.id.market_name) TextView marketName;
     @BindView(R.id.dashboard_description) TextView dashboardDescription;
@@ -215,7 +219,7 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
         }
 
 
-        String marketNameString = globalConfig.getServiceName() + ", " + globalConfig.getCity();
+        String marketNameString = globalConfig.getServiceName() + " | " + globalConfig.getCity();
 
         if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
         {
@@ -240,8 +244,8 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {
             marketName.setText(marketNameString);
-            dashboardName.setText("Become a Seller for " + marketNameString);
-            dashboardDescription.setText(" ... Press here to create your shop !");
+            dashboardName.setText("Become a Seller");
+            dashboardDescription.setText("Press here to create a shop and become a seller on currently selected market !");
         }
 
     }

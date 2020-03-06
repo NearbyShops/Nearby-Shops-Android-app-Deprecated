@@ -934,7 +934,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
     // upload image after being picked up
-    private void startCropActivity(Uri sourceUri, Context context) {
+    void startCropActivity(Uri sourceUri, Context context) {
 
 
 

@@ -693,7 +693,7 @@ public class EditShopImageFragment extends Fragment {
 
 
     // upload image after being picked up
-    private void startCropActivity(Uri sourceUri, Context context) {
+    void startCropActivity(Uri sourceUri, Context context) {
 
 
 
