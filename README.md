@@ -25,7 +25,7 @@ Please visit https://nearbyshops.org to learn more.
 This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance (Server) and create their local market. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
 
-## Important - Please Donate or Buy our License
+## Important - Please Donate - Keep Open Source alive
 
 We appreciate open-source and sharing and collaberation but sad reality is that we dont make any money from 
 our open source contribution. We need funds to pay our developers and build better software. Without these funds we cannot maintain this project. We will be forced to stop developing this project. This project will Die. 
