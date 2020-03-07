@@ -14,21 +14,6 @@ width="140">
 </a>
 
 
-## Important - Please Donate or Buy our License
-
-We appreciate open-source and sharing and collaberation but sad reality is that we dont make any money from 
-our open source contribution. Zero Earnings. 
-
-If we dont receive any funds we will be forced to stop developing this project. This project will Die. 
-We need funds to pay our developers and build better software. Without these funds we cannot maintain this project. 
-
-If you like this project. If you use this software of benefit from it in anyway. 
-As a freelancer to build an app for clients, as a entreprenur to build your own app please then please buy a license or
-make a donation. 
-
-Your contribution will help us keep this project alive. 
-
-
 
 How it works ? 
 -----------------
@@ -40,7 +25,24 @@ Please visit https://nearbyshops.org to learn more.
 This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance (Server) and create their local market. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
 
-## Volunteer and Help Us !
+## Important - Please Donate or Buy our License
+
+We appreciate open-source and sharing and collaberation but sad reality is that we dont make any money from 
+our open source contribution. Zero Earnings till now. 
+
+We need funds to pay our developers and build better software. Without these funds we cannot maintain this project. We will be forced to stop developing this project. This project will Die. 
+
+If you like this project. If you use this software of benefit from it in anyway. 
+As a freelance developer, as an entreprenur then please buy a license or
+make a donation. 
+
+Your contribution will help keep this project alive. You will help open source win over corporate greed and closed source walled gardens. 
+
+Donate !
+
+
+
+## Hiring Remote Workers !
 
 Benefit from the flexible working hours and work from anywhere in the world. We are looking for Volunteers who can help us in the following areas
 
