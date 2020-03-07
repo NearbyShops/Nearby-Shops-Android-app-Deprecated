@@ -14,7 +14,7 @@ width="140">
 </a>
 
 
-### Important - Be a Responsible Citizen - Please Donate or Buy our License
+## Important - Please Donate or Buy our License
 
 We appreciate open-source and sharing and collaberation but sad reality is that we dont make any money from 
 our open source contribution. Zero Earnings. 
