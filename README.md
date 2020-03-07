@@ -28,17 +28,15 @@ This project is conceptually similar to [Mastodon project](https://github.com/to
 ## Important - Please Donate or Buy our License
 
 We appreciate open-source and sharing and collaberation but sad reality is that we dont make any money from 
-our open source contribution. Zero Earnings till now. 
+our open source contribution. We need funds to pay our developers and build better software. Without these funds we cannot maintain this project. We will be forced to stop developing this project. This project will Die. 
 
-We need funds to pay our developers and build better software. Without these funds we cannot maintain this project. We will be forced to stop developing this project. This project will Die. 
-
-If you like this project. If you use this software of benefit from it in anyway. 
-As a freelance developer, as an entreprenur then please buy a license or
-make a donation. 
+If you like this project. If you use this software to benefit from it in anyway. 
+As a freelance developer, as an entreprenur then please buy a license or make a donation. 
 
 Your contribution will help keep this project alive. You will help open source win over corporate greed and closed source walled gardens. 
 
-Donate !
+
+[Donate Now](https://rzp.io/l/DUJOERw)
 
 
 
