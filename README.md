@@ -14,6 +14,22 @@ width="140">
 </a>
 
 
+### Important - Be a Responsible Citizen - Please Donate or Buy our License
+
+We appreciate open-source and sharing and collaberation but sad reality is that we dont make any money from 
+our open source contribution. Zero Earnings. 
+
+If we dont receive any funds we will be forced to stop developing this project. This project will Die. 
+We need funds to pay our developers and build better software. Without these funds we cannot maintain this project. 
+
+If you like this project. If you use this software of benefit from it in anyway. 
+As a freelancer to build an app for clients, as a entreprenur to build your own app please then please buy a license or
+make a donation. 
+
+Your contribution will help us keep this project alive. 
+
+
+
 How it works ? 
 -----------------
 Nearby Shops is a Free Nonprofit FOSS alternative to Instacart, Grubhub and Zomato. 
