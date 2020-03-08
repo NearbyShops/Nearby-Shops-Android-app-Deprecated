@@ -57,7 +57,7 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
             {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container,new LoginGlobalFragment(),TAG_STEP_ONE)
+                        .replace(R.id.fragment_container,new LoginUsingOTPGlobalFragment(),TAG_STEP_ONE)
                         .commitNow();
             }
 

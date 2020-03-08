@@ -119,7 +119,7 @@ public class ItemCategoriesParent extends AppCompatActivity
 
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         itemCategoriesList = findViewById(R.id.recyclerViewItemCategories);

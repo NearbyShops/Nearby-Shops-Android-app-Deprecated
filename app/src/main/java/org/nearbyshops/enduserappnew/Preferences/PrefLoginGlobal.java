@@ -94,6 +94,7 @@ public class PrefLoginGlobal {
     {
         context = MyApplication.getAppContext();
 
+
         return PrefLoginGlobal.baseEncoding(
                 PrefLoginGlobal.getUsername(context),
                 PrefLoginGlobal.getPassword(context));

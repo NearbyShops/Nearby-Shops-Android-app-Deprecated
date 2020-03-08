@@ -16,6 +16,7 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.Ed
 import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarket;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarketSmall;
+import org.nearbyshops.enduserappnew.Login.LoginUsingOTPGlobalFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemTypeTwo;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemTypeTwoBackup;
@@ -292,4 +293,6 @@ public interface NetComponent {
     void Inject(HomeBackup homeBackup);
 
     void Inject(BackupViewHolderMarketSmall1Mar20 backupViewHolderMarketSmall1Mar20);
+
+    void Inject(LoginUsingOTPGlobalFragment loginUsingOTPGlobalFragment);
 }

@@ -219,7 +219,7 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
         }
 
 
-        String marketNameString = globalConfig.getServiceName() + " | " + globalConfig.getCity();
+        String marketNameString = globalConfig.getServiceName() + ", " + globalConfig.getCity();
 
         if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
         {
@@ -244,8 +244,9 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {
             marketName.setText(marketNameString);
-            dashboardName.setText("Become a Seller");
-            dashboardDescription.setText("Press here to create a shop and become a seller on currently selected market !");
+
+            dashboardName.setText("Become a Seller for " + marketNameString);
+            dashboardDescription.setText(" ... Press here to create your shop !");
         }
 
     }
