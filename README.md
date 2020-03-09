@@ -30,11 +30,11 @@ This project is conceptually similar to [Mastodon project](https://github.com/to
 
 Benefit from the flexible working hours and work from anywhere in the world. We are looking for Volunteers who can help us in the following areas
 
-1. Raise funds for the Project - Example : Create Kickstarter campaign and seek donations
+1. Raise funds for the Project - Example : Create Kickstarter campaign and raise donations
 2. Content Creators 
    - Create Images and Video for publicity purposes
    - Write articles to create publicity
-3. Growth Hackerrs - help us grow the platform 
+3. Growth Hackers - help us grow the platform 
 4. Distribution Experts / Digital Marketing Experts / Social Media Experts
 5. Developers - Android, Web, PostgreSQL, Java
 6. Any other way you want to help – Suggestions and Ideas are Welcome !
