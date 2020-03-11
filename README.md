@@ -30,7 +30,9 @@ This project is conceptually similar to [Mastodon project](https://github.com/to
 
 If you're a freelance developer who use the source code to build projects for clients or you are a commercial business who use this software to run a commercial business. You require a paid License. 
 
-Please visit https://nearbyshops.org for more information. 
+In case of freelance developer developing for clients. The client needs to pay Single Market License fee which is 30 $ per month. In case of Commercial Business the business needs to pay 30 $ per month for Single Market License. 
+
+Please visit https://nearbyshops.org/pricing.html for more information. 
 
 
 
