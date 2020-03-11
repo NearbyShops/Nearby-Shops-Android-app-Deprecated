@@ -15,6 +15,14 @@ width="140">
 
 
 
+## Commercial Use requires Paid License !
+
+If you're a freelance developer who use the source code to build projects for clients or you are a commercial business who use this software to run a commercial business. You require a paid License. 
+
+Please visit https://nearbyshops.org for more information. 
+
+
+
 How it works ? 
 -----------------
 
@@ -202,11 +210,6 @@ If you are running your own server and do not want multiple markets. Please set 
 
 
 
-## Commercial Use requires Paid License !
-
-If you're a freelance developer who use the source code to build projects for clients or you are a commercial business who use this software to run a commercial business. You should use it only with paid License. 
-
-Please visit https://nearbyshops.org for more information. 
 
 
 License
