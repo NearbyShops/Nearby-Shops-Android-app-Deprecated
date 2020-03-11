@@ -14,27 +14,23 @@ width="140">
 </a>
 
 
-
-## Commercial Use requires Paid License !
-
-If you're a freelance developer who use the source code to build projects for clients or you are a commercial business who use this software to run a commercial business. You require a paid License. 
-
-Please visit https://nearbyshops.org for more information. 
-
-
-
 How it works ? 
 -----------------
 
-Nearby Shops is a Nonprofit International Food Delivery and Local Shopping Platform. 
-
-You can also call it Free Nonprofit alternative to Instacart, Grubhub and Zomato. 
+Nearby Shops is a Food Delivery and Local Shopping Platform. 
 Its Decentralized, non-commercial, Open-Source and International.
 
 Please visit https://nearbyshops.org to learn more.
 
 This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance (Server) and create their local market. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
+
+
+## Commercial Use requires Paid License !
+
+If you're a freelance developer who use the source code to build projects for clients or you are a commercial business who use this software to run a commercial business. You require a paid License. 
+
+Please visit https://nearbyshops.org for more information. 
 
 
 
