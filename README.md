@@ -18,9 +18,9 @@ width="140">
 How it works ? 
 -----------------
 
-Nearby Shops is a Free Nonprofit International Food Delivery and Local Shopping Platform. 
+Nearby Shops is a Nonprofit International Food Delivery and Local Shopping Platform. 
 
-You can also call it Free Nonprofit FOSS alternative to Instacart, Grubhub and Zomato. 
+You can also call it Free Nonprofit alternative to Instacart, Grubhub and Zomato. 
 Its Decentralized, non-commercial, Open-Source and International.
 
 Please visit https://nearbyshops.org to learn more.
