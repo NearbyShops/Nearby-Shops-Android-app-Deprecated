@@ -28,8 +28,15 @@ Please visit https://nearbyshops.org to learn more.
 This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance (Server) and create their local market. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
 
+## Commercial Use without License Not Permitted !
 
-## Volunteer and Be the part of Our International Community !
+If you're a freelance developer who use the source code to build projects for clients or you are a commercial business who use this software to run a commercial business. You should use it only with paid License. 
+
+Please visit https://nearbyshops.org for more information. 
+
+
+
+## Hiring Remote Workers - Be the part of Our International Community !
 
 Benefit from the flexible working hours and work from anywhere in the world. We are looking for Volunteers who can help us in the following areas
 
@@ -197,20 +204,6 @@ Development Instructions
 Use the latest stable version of android studio. 
 
 If you are running your own server and do not want multiple markets. Please set multi-market mode to false and set your server URL in the PrefGeneral.java file. 
-
-
-## Please Donate - Help Open Source thrive
-
-We need funds to pay our developers and build better software. Without these funds we cannot maintain this project. 
-
-If you like this project. If you use this software to benefit from it in anyway. 
-As a freelance developer, as an entreprenur then please make a donation. 
-
-Your contribution will help keep this project alive and thriving. 
-
-[Donate Now](https://rzp.io/l/DUJOERw)
-
-
 
 
 License
