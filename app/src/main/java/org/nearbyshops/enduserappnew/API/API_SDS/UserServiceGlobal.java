@@ -122,6 +122,18 @@ public interface UserServiceGlobal {
 
 
 
+
+
+    @GET ("/api/v1/User/LoginGlobal/VerifyCredentialsUsingOTP")
+    Call<User> verifyCredentialsUsingOTP(
+            @Header("Authorization")String headerParam,
+            @Query("RegistrationMode")int registrationMode // 1 for email and 2 for phone
+    );
+
+
+
+
+
     // Image Calls
 
     @POST("/api/v1/User/Image")

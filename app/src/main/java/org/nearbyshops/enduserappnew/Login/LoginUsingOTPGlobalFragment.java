@@ -285,6 +285,8 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
 
 
 
+
+
     @OnClick(R.id.login)
     void loginButtonClick()
     {
@@ -317,6 +319,7 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
 
     private void loginToGlobalEndpoint()
     {
+
         if(!validateData())
         {
             // validation failed return
@@ -325,8 +328,23 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
 
 
 
-        final String phoneWithCode = username.getText().toString();
-//        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
+
+//        final String phoneWithCode = username.getText().toString();
+
+        String phoneWithCode = "";
+
+        if(registrationMode==User.REGISTRATION_MODE_PHONE)
+        {
+            phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
+        }
+        else if(registrationMode==User.REGISTRATION_MODE_EMAIL)
+        {
+            phoneWithCode = username.getText().toString();
+        }
+
+
+
+
 
         progressBar.setVisibility(View.VISIBLE);
         loginButton.setVisibility(View.INVISIBLE);
@@ -339,14 +357,13 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
                 .build();
 
 
-        Call<User> call = retrofit.create(UserServiceGlobal.class).getProfile(
-                PrefLogin.baseEncoding(phoneWithCode,password.getText().toString())
+        Call<User> call = retrofit.create(UserServiceGlobal.class).verifyCredentialsUsingOTP(
+                PrefLogin.baseEncoding(phoneWithCode, password.getText().toString()),
+                registrationMode
         );
 
 
-
-
-
+        String finalPhoneWithCode = phoneWithCode;
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -365,53 +382,27 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
 
 
 
-//                    if(response.body().getRole()!=User.ROLE_END_USER_CODE)
-//                    {
-//                        showToastMessage("Only an End-User is allowed to login");
-//                        return;
-//                    }
+                    User user = response.body();
 
 
 
-                    PrefLoginGlobal.saveCredentials(
-                            getActivity(),
-                            phoneWithCode,
-                            password.getText().toString()
-
-                    );
-
-
-
-
-
-                    // save token and token expiry timestamp
-//                    PrefLogin.saveToken(
-//                            getActivity(),
-//                            response.body().getToken(),
-//                            response.body().getTimestampTokenExpires()
-//                    );
-
-
-                    // save user profile information
-                    PrefLoginGlobal.saveUserProfile(
-                            response.body(),
-                            getActivity()
-                    );
+                    if(user!=null)
+                    {
+                        PrefLoginGlobal.saveCredentials(
+                                getActivity(),
+                                finalPhoneWithCode,
+                                user.getPassword()
+                        );
 
 
 
+                        // save user profile information
+                        PrefLoginGlobal.saveUserProfile(
+                                user,
+                                getActivity()
+                        );
 
-
-//                    PrefOneSignal.saveToken(getActivity(),PrefOneSignal.getLastToken(getActivity()));
-//
-//                    if(PrefOneSignal.getToken(getActivity())!=null)
-//                    {
-//                        // update one signal id if its not updated
-//                        getActivity().startService(new Intent(getActivity(), UpdateOneSignalID.class));
-//                    }
-
-
-
+                    }
 
 
 
@@ -421,20 +412,8 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
 
                     if(getActivity() instanceof NotifyAboutLogin)
                     {
-//                        showToastMessage("Notify about login !");
                         ((NotifyAboutLogin) getActivity()).loginSuccess();
-
-
-
-
                     }
-
-
-
-//                        getActivity().finish();
-
-
-//                    showToastMessage("LoginUsingOTP success : code : " + String.valueOf(response.code()));
 
 
 
@@ -466,8 +445,6 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
 
 
     }
-
-
 
 
 
@@ -540,77 +517,58 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
                     // save username and password
 
 
-
-//                    if(response.body().getRole()!=User.ROLE_END_USER_CODE)
-//                    {
-//                        showToastMessage("Only an End-User is allowed to login");
-//                        return;
-//                    }
-
-
-
-
-                    PrefLoginGlobal.saveCredentials(
-                            getActivity(),
-                            finalPhoneWithCode,
-                            response.body().getUserProfileGlobal().getPassword()
-
-                    );
-
-
-
-
                     User user = response.body();
+
+
+                    if (user != null) {
+
+                        PrefLoginGlobal.saveCredentials(
+                                getActivity(),
+                                finalPhoneWithCode,
+                                user.getUserProfileGlobal().getPassword()
+
+                        );
+                    }
+
+
+
 
 
                     String username = "";
 
-                    if(user.getPhone()!=null)
-                    {
-                        username = user.getPhone();
-                    }
-                    else if(user.getEmail()!=null)
-                    {
-                        username = user.getEmail();
-                    }
-                    else if(user.getUsername()!=null)
-                    {
-                        username = user.getUsername();
-                    }
-                    else if(user.getUserID()!=0)
-                    {
-                        username = String.valueOf(user.getUserID());
+                    if (user != null) {
+
+
+                        if(user.getPhone()!=null)
+                        {
+                            username = user.getPhone();
+                        }
+                        else if(user.getEmail()!=null)
+                        {
+                            username = user.getEmail();
+                        }
+                        else if(user.getUsername()!=null)
+                        {
+                            username = user.getUsername();
+                        }
+                        else if(user.getUserID()!=0)
+                        {
+                            username = String.valueOf(user.getUserID());
+                        }
                     }
 
 
                     // local username can be different from the supplied username
 
-                    PrefLogin.saveCredentials(
-                            getActivity(),
-                            username,
-                            user.getPassword()
-                    );
+                    if (user != null) {
 
 
-
-
-//                    PrefLogin.saveCredentials(
-//                            getActivity(),
-//                            username,
-//                            password.getText().toString()
-//                    );
-
-
-
-
-
-
-                    // save token and token expiry timestamp
-//                    PrefLogin.saveToken(
-//                            getActivity(),
-//                            response.body().getToken(),
-//                            response.body().getTimestampTokenExpires()
-//                    );
+                        PrefLogin.saveCredentials(
+                                getActivity(),
+                                username,
+                                user.getPassword()
+                        );
+                    }
 
 
                     // save user profile information
@@ -630,28 +588,16 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
                     if(PrefLoginGlobal.getUser(getActivity())==null)
                     {
 
-                        PrefLoginGlobal.saveUserProfile(
-                                response.body().getUserProfileGlobal(),
-                                getActivity()
-                        );
+                        if (response.body() != null) {
+
+
+                            PrefLoginGlobal.saveUserProfile(
+                                    response.body().getUserProfileGlobal(),
+                                    getActivity()
+                            );
+
+                        }
                     }
-
-
-
-
-
-
-
-//                    PrefOneSignal.saveToken(getActivity(),PrefOneSignal.getLastToken(getActivity()));
-//
-//                    if(PrefOneSignal.getToken(getActivity())!=null)
-//                    {
-//                        // update one signal id if its not updated
-//                        getActivity().startService(new Intent(getActivity(), UpdateOneSignalID.class));
-//                    }
-
-
-
 
 
 
@@ -661,17 +607,8 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
 
                     if(getActivity() instanceof NotifyAboutLogin)
                     {
-//                        showToastMessage("Notify about login !");
                         ((NotifyAboutLogin) getActivity()).loginSuccess();
                     }
-
-
-
-//                        getActivity().finish();
-
-
-//                    showToastMessage("LoginUsingOTP success : code : " + String.valueOf(response.code()));
-
 
 
                 }
@@ -841,9 +778,6 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
 
 
     }
-
-
-
 
 
 

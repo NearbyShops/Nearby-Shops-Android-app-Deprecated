@@ -198,10 +198,14 @@ public class LoginGlobalFragment extends Fragment {
 
 
 
-    boolean validateData()
+
+
+
+    private boolean validateData()
     {
         boolean isValid = true;
-//        boolean phoneValidity = false;
+
+        //        boolean phoneValidity = false;
 //        boolean emailValidity = false;
 //
 //
@@ -239,6 +243,9 @@ public class LoginGlobalFragment extends Fragment {
 
         return isValid;
     }
+
+
+
 
 
 
