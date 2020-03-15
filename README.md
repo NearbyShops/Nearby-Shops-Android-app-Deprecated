@@ -14,46 +14,31 @@ width="140">
 </a>
 
 
-
 How it works ? 
 -----------------
-Nearby Shops is a Free Nonprofit FOSS alternative to Instacart, Grubhub and Zomato. 
-Its Decentralized, non-commercial, Open-Source and International.
+
+Nearby Shops is a free and open source platform that helps you start and run your food delivery and hyperlocal business.  
 
 Please visit https://nearbyshops.org to learn more.
 
 This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance (Server) and create their local market. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
 
 
-## Important - Please Donate - Help Open Source thrive
 
-We appreciate open-source and sharing and collaberation but sad reality is that we dont make any money from 
-our open source contribution. We need funds to pay our developers and build better software. Without these funds we cannot maintain this project. We will be forced to stop developing this project. This project will Die. 
-
-If you like this project. If you use this software to benefit from it in anyway. 
-As a freelance developer, as an entreprenur then please make a donation. 
-
-Your contribution will help keep this project alive. You will help open source win over corporate greed and closed source walled gardens. 
-
-[Donate Now](https://rzp.io/l/DUJOERw)
-
-
-
-## Hiring Remote Workers !
+## Hiring Remote Workers - Be the part of Our International Community !
 
 Benefit from the flexible working hours and work from anywhere in the world. We are looking for Volunteers who can help us in the following areas
 
-1. Raise funds for the Project - Example : Create Kickstarter campaign and seek donations
+1. Raise funds for the Project - Example : Create Kickstarter campaign and raise donations
 2. Content Creators 
    - Create Images and Video for publicity purposes
    - Write articles to create publicity
-3. Growth Hackerrs - help us grow the platform 
+3. Growth Hackers - help us grow the platform 
 4. Distribution Experts / Digital Marketing Experts / Social Media Experts
 5. Developers - Android, Web, PostgreSQL, Java
 6. Any other way you want to help – Suggestions and Ideas are Welcome !
 
 If you're interested please get in touch with us on https://forum.nearbyshops.org
-
 
 
 
@@ -208,6 +193,11 @@ Use the latest stable version of android studio.
 
 If you are running your own server and do not want multiple markets. Please set multi-market mode to false and set your server URL in the PrefGeneral.java file. 
 
+
+
+## Commercial Use Permitted !
+
+We allow commercial use of this software. You can use to build and start your commercial business. Starting your business on an open-source software is risk free and saves your monetary investment. Therefore we support the commercial use of this software. 
 
 
 
