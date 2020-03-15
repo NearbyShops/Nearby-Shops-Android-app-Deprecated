@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 
 import butterknife.BindView;
@@ -131,12 +132,17 @@ public class ViewHolderUserProfileItem extends RecyclerView.ViewHolder{
 
         Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);
 
+
         String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/User/Image/" + "five_hundred_"+ user.getProfileImagePath() + ".jpg";
         String image_url = PrefGeneral.getServiceURL(context) + "/api/v1/User/Image/" + user.getProfileImagePath();
 
+        String imagePathSDS = PrefServiceConfig.getServiceURL_SDS(context) + "/api/v1/User/Image/" + "five_hundred_"+ user.getProfileImagePath() + ".jpg";
+
+
+
 
         Picasso.get()
-                .load(imagePath)
+                .load(imagePathSDS)
                 .placeholder(drawable)
                 .into(profileImage);
     }
