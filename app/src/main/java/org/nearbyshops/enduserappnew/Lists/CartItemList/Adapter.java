@@ -8,9 +8,8 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.enduserappnew.Lists.CartItemList.ViewHolders.ViewHolderCartItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
-import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;

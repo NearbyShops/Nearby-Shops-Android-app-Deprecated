@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.CartsList.ViewHolders;
+package org.nearbyshops.enduserappnew.ViewHolders;
 
 
 import android.content.Context;

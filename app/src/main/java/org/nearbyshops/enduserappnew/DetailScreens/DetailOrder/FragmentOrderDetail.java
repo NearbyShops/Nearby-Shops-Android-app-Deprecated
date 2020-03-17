@@ -30,7 +30,7 @@ import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetailFragment
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeTwo;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 
 import butterknife.BindView;
@@ -48,7 +48,7 @@ import java.util.List;
  */
 
 public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        ViewHolderOrderWithBillDeprecated.ListItemClick, ViewHolderOrderItem.ListItemClick, ViewHolderShopTypeTwo.ListItemClick
+        ViewHolderOrderWithBillDeprecated.ListItemClick, ViewHolderOrderItem.ListItemClick, ViewHolderShopSmall.ListItemClick
         {
 
     private Order order;

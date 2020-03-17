@@ -23,7 +23,7 @@ import butterknife.OnClick;
 
 import org.nearbyshops.enduserappnew.API.CartItemService;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
-import org.nearbyshops.enduserappnew.Lists.CartItemList.ViewHolders.ViewHolderCartItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;

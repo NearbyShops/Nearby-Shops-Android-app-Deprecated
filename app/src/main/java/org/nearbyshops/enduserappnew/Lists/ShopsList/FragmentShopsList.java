@@ -36,8 +36,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortShopsByCategory;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortShops;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeTwo;
-import org.nearbyshops.enduserappnew.zHighlightSlider.Model.Highlights;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,7 +55,7 @@ import java.util.ArrayList;
  */
 public class FragmentShopsList extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch ,
-        ViewHolderShopTypeTwo.ListItemClick {
+        ViewHolderShopSmall.ListItemClick {
 
 
     private static final String TAG_SLIDING = "tag_sliding_layer_sort_shops";

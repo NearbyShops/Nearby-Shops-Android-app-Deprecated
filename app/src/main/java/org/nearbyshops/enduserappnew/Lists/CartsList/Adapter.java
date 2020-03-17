@@ -1,34 +1,14 @@
 package org.nearbyshops.enduserappnew.Lists.CartsList;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
-import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemList;
-import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListFragment;
-import org.nearbyshops.enduserappnew.Lists.CartsList.ViewHolders.ViewHolderCart;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCart;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
-import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.UserFilters;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterUsers;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderUserProfileItem;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;

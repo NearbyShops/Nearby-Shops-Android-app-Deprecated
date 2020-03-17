@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderWithBill;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.OrderItem;
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeTwo;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 
@@ -64,7 +64,7 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(viewType == TAG_VIEW_HOLDER_SHOP)
         {
-            return ViewHolderShopTypeTwo.create(parent,context,fragment,this);
+            return ViewHolderShopSmall.create(parent,context,fragment,this);
         }
         else if(viewType == VIEW_TYPE_HEADER)
         {
@@ -90,9 +90,9 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             ((ViewHolderOrderItem) holder).setItem((OrderItem) dataset.get(position));
         }
-        else if(holder instanceof ViewHolderShopTypeTwo)
+        else if(holder instanceof ViewHolderShopSmall)
         {
-            ((ViewHolderShopTypeTwo) holder).setItem((Shop) dataset.get(position),false);
+            ((ViewHolderShopSmall) holder).setItem((Shop) dataset.get(position),false);
         }
         else if (holder instanceof ViewHolderHeader) {
 

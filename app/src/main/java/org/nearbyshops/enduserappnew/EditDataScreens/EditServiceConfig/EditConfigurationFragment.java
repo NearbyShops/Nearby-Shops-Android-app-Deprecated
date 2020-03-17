@@ -271,7 +271,7 @@ public class EditConfigurationFragment extends Fragment {
 
 
 
-    void updateIDFieldVisibility()
+    private void updateIDFieldVisibility()
     {
         if(current_mode==MODE_ADD)
         {
@@ -286,9 +286,13 @@ public class EditConfigurationFragment extends Fragment {
     }
 
 
+
+
+
     public static final String TAG_LOG = "TAG_LOG";
 
-    void showLogMessage(String message)
+
+    private void showLogMessage(String message)
     {
         Log.i(TAG_LOG,message);
         System.out.println(message);
@@ -459,9 +463,6 @@ public class EditConfigurationFragment extends Fragment {
 
 
 
-
-
-
     private void bindDataToViews()
     {
         if(serviceConfiguration!=null) {
@@ -491,8 +492,6 @@ public class EditConfigurationFragment extends Fragment {
             descriptionLong.setText(serviceConfiguration.getDescriptionLong());
         }
     }
-
-
 
 
 
@@ -595,16 +594,9 @@ public class EditConfigurationFragment extends Fragment {
                     showToastMessage("Update Successful !");
 
                     PrefServiceConfig.saveServiceConfigLocal(serviceConfiguration,getContext());
+//                    updateMarketEntry();
 
-                    updateMarketEntry();
                 }
-//                else if(response.code()==401 || response.code()==403)
-//                {
-//
-//                    // token may have expired so attempt token renewal
-////                    token_renewal_request_code = REQUEST_CODE_SAVE_CONFIG;
-////                    renewToken();
-//                }
                 else
                 {
                     showToastMessage("Update Failed Code : " + response.code());
@@ -957,7 +949,9 @@ public class EditConfigurationFragment extends Fragment {
 
 
 
-    public void uploadPickedImage(final boolean isModeEdit)
+
+
+    private void uploadPickedImage(final boolean isModeEdit)
     {
 
         Log.d("applog", "onClickUploadImage");
@@ -1090,7 +1084,7 @@ public class EditConfigurationFragment extends Fragment {
 
 
 
-    void deleteImage(String filename)
+    private void deleteImage(String filename)
     {
 
 //        buttonUpdateItem.setVisibility(View.INVISIBLE);

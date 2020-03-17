@@ -55,7 +55,7 @@ import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.ShopDetail;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.ShopDetailFragment;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeOne;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopMedium;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -81,7 +81,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         ViewHolderItemCategorySmall.ListItemClick, ViewHolderShopItem.ListItemClick,
         ViewHolderItemCategory.ListItemClick, ViewHolderShopItemTypeTwo.ListItemClick,
         NotifyBackPressed, NotifySort, NotifySearch,
-        ViewHolderShopTypeOne.ListItemClick {
+        ViewHolderShopMedium.ListItemClick {
 
 
 

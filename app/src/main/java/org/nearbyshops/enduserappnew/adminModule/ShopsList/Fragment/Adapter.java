@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeOne;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeTwo;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopMedium;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
@@ -60,7 +60,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if(viewType == VIEW_TYPE_SHOP)
         {
-            return ViewHolderShopTypeTwo.create(parent,context,fragment,this);
+            return ViewHolderShopSmall.create(parent,context,fragment,this);
         }
         else if(viewType == VIEW_TYPE_HEADER)
         {
@@ -87,14 +87,14 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
 
-        if(holder instanceof ViewHolderShopTypeTwo)
+        if(holder instanceof ViewHolderShopSmall)
         {
-            ((ViewHolderShopTypeTwo) holder).setItem((Shop) dataset.get(position),true);
+            ((ViewHolderShopSmall) holder).setItem((Shop) dataset.get(position),true);
         }
 
-        if(holder instanceof ViewHolderShopTypeOne)
+        if(holder instanceof ViewHolderShopMedium)
         {
-            ((ViewHolderShopTypeOne) holder).setItem((Shop) dataset.get(position));
+            ((ViewHolderShopMedium) holder).setItem((Shop) dataset.get(position));
         }
         else if (holder instanceof ViewHolderHeader) {
 

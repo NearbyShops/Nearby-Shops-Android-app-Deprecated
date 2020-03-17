@@ -23,7 +23,6 @@ import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
-import org.nearbyshops.enduserappnew.Interfaces.GetLocation;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyLocation;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
@@ -31,7 +30,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopTypeTwo;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.SlidingLayerSort.PrefSortShops;
 
@@ -46,7 +45,7 @@ import retrofit2.Response;
 
 
 public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnRefreshListener , NotifySearch, NotifySort, NotifyLocation ,
-        ViewHolderShopTypeTwo.ListItemClick {
+        ViewHolderShopSmall.ListItemClick {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 

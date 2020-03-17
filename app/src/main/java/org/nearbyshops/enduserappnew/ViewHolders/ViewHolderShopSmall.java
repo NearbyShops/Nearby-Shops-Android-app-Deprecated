@@ -2,7 +2,6 @@ package org.nearbyshops.enduserappnew.ViewHolders;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -24,22 +23,17 @@ import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.ShopDetailFragment;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategory;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategoryFragment;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.PrefItemCategory;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
-import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemCategoryAdmin;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder implements PopupMenu.OnMenuItemClickListener {
+public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements PopupMenu.OnMenuItemClickListener {
 
 
     @BindView(R.id.shop_name) TextView shopName;
@@ -69,12 +63,12 @@ public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder implements Po
 
 
 
-    public static ViewHolderShopTypeTwo create(ViewGroup parent, Context context, Fragment fragment,
-                                               RecyclerView.Adapter adapter)
+    public static ViewHolderShopSmall create(ViewGroup parent, Context context, Fragment fragment,
+                                             RecyclerView.Adapter adapter)
     {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_new,parent,false);
-        return new ViewHolderShopTypeTwo(view,context,fragment, adapter);
+        return new ViewHolderShopSmall(view,context,fragment, adapter);
     }
 
 
@@ -82,7 +76,7 @@ public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder implements Po
 
 
 
-    public ViewHolderShopTypeTwo(@NonNull View itemView, Context context, Fragment fragment, RecyclerView.Adapter adapter) {
+    public ViewHolderShopSmall(@NonNull View itemView, Context context, Fragment fragment, RecyclerView.Adapter adapter) {
         super(itemView);
         ButterKnife.bind(this,itemView);
 
@@ -101,7 +95,7 @@ public class ViewHolderShopTypeTwo extends RecyclerView.ViewHolder implements Po
 
                 if(integer == ViewModelShop.EVENT_SHOP_DELETED)
                 {
-                    ViewHolderShopTypeTwo.this.adapter.notifyItemRemoved(getLayoutPosition());
+                    ViewHolderShopSmall.this.adapter.notifyItemRemoved(getLayoutPosition());
                 }
 
             }

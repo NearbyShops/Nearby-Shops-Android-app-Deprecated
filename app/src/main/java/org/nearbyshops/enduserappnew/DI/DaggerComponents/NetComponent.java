@@ -7,7 +7,7 @@ import org.nearbyshops.enduserappnew.DI.DaggerModules.AppModule;
 import org.nearbyshops.enduserappnew.DI.DaggerModules.NetModule;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategoryFragment;
 import org.nearbyshops.enduserappnew.HomeBackup;
-import org.nearbyshops.enduserappnew.Lists.CartItemList.ViewHolders.ViewHolderCartItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarketSmall1Mar20;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersDataSource;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersListPagingFragment;

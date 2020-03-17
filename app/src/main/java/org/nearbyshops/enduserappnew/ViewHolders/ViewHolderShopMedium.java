@@ -21,7 +21,7 @@ import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 
-public class ViewHolderShopTypeOne extends RecyclerView.ViewHolder{
+public class ViewHolderShopMedium extends RecyclerView.ViewHolder{
 
 
 
@@ -45,12 +45,12 @@ public class ViewHolderShopTypeOne extends RecyclerView.ViewHolder{
 
 
 
-    public static ViewHolderShopTypeOne create(ViewGroup parent, Context context, Fragment fragment,
-                                               RecyclerView.Adapter adapter)
+    public static ViewHolderShopMedium create(ViewGroup parent, Context context, Fragment fragment,
+                                              RecyclerView.Adapter adapter)
     {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop,parent,false);
-        return new ViewHolderShopTypeOne(view,context,fragment);
+        return new ViewHolderShopMedium(view,context,fragment);
     }
 
 
@@ -58,7 +58,7 @@ public class ViewHolderShopTypeOne extends RecyclerView.ViewHolder{
 
 
 
-    public ViewHolderShopTypeOne(@NonNull View itemView, Context context, Fragment fragment) {
+    public ViewHolderShopMedium(@NonNull View itemView, Context context, Fragment fragment) {
         super(itemView);
         ButterKnife.bind(this,itemView);
 
