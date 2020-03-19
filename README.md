@@ -20,13 +20,15 @@ Nearby Shops is a **free & Open Source**  Local Market Server. Anyone can self-h
 
 Save your marketing expenses.  Submit your market to nearby shops and get free access to existing customers of nearby shops app. 
 
-### Democratizing E-commerce : 
+### Install with Docker 
 
-Stop paying high commission to food delivery & grocery apps. Create a free marketplace for your Local Community. School, Institute or Office. 
 
-### Commercial use permitted !
+    cd ~
 
-Lost your Job ... need an extra income ? Start your Food Delivery or Hyperlocal business in a very low investment. Earn Income from your local marketplace . 
+    wget https://raw.githubusercontent.com/NearbyShops/Nearby-Shops-API/master/docker-compose.yml
+
+    docker-compose up
+
 
 
 
