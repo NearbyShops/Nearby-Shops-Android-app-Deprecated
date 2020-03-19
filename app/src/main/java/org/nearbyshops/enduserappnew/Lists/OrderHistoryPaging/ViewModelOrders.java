@@ -28,6 +28,7 @@ public class ViewModelOrders extends AndroidViewModel {
 
 
     private void init() {
+
         executor = Executors.newFixedThreadPool(5);
 
         OrdersDataFactory feedDataFactory = new OrdersDataFactory();
@@ -45,6 +46,9 @@ public class ViewModelOrders extends AndroidViewModel {
                 .build();
 
     }
+
+
+
 
 
     public void refresh()

@@ -127,18 +127,46 @@
             app:layout_constraintTop_toBottomOf="@+id/notice" />
 
 
+        <ImageView
+            android:id="@+id/image_edit_profile"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/buttonColorDark"
+            android:paddingTop="10dp"
+            android:paddingBottom="40dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/border_one"
+            app:srcCompat="@drawable/ic_face_black_24px" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Edit Profile"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/image_edit_profile"
+            app:layout_constraintLeft_toLeftOf="@+id/image_edit_profile"
+            app:layout_constraintRight_toRightOf="@+id/image_edit_profile" />
+
 
         <ImageView
             android:id="@+id/image_edit_shop"
             android:layout_width="0dp"
             android:layout_height="150dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
             android:background="@color/gplus_color_2"
             android:paddingTop="10dp"
             android:paddingBottom="40dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/border_one"
             app:srcCompat="@drawable/ic_home_white_24px" />
 
@@ -157,16 +185,16 @@
 
 
         <ImageView
-            android:layout_marginStart="5dp"
             android:id="@+id/image_shop_dashboard"
             android:layout_width="0dp"
             android:layout_height="150dp"
+            android:layout_marginTop="10dp"
             android:background="@color/blueGrey800"
             android:paddingTop="10dp"
-            android:paddingBottom="50dp"
-            app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/image_edit_shop"
+            android:paddingBottom="40dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_edit_profile"
             app:srcCompat="@drawable/ic_dashboard_white_24px" />
 
 
@@ -301,7 +329,6 @@
 
 
             <TextView
-                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

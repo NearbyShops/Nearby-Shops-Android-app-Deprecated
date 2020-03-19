@@ -32,41 +32,12 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
 
 
 
-        <LinearLayout
-            android:visibility="gone"
-            android:id="@+id/header_strip"
-            android:padding="10dp"
-            android:background="@color/light_grey"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
-
-
-            <TextView
-                android:id="@+id/header"
-                android:textSize="20sp"
-                android:text="Admin Dashboard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"/>
-
-
-        </LinearLayout>
-
-
 
         <TextView
             android:layout_marginTop="10dp"
             android:id="@+id/border_top"
-            android:background="#88000000"
-            app:layout_constraintTop_toBottomOf="@id/header_strip"
+            android:background="#44000000"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="0dp"
@@ -79,7 +50,7 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
             app:layout_constraintRight_toRightOf="parent"
             android:padding="5dp"
             android:id="@+id/header_items"
-            android:text="Items Database"
+            android:text="Shops and Items"
             android:textSize="17sp"
             android:background="@color/light_grey"
             android:layout_width="0dp"
@@ -98,16 +69,47 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
 
 
 
+
         <ImageView
+            android:layout_marginEnd="5dp"
             android:paddingBottom="40dp"
             android:paddingTop="10dp"
-            app:srcCompat="@drawable/ic_dns_black_24px"
+            android:background="@color/buttonColorDark"
+            android:id="@+id/shops_database"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/ic_shop_approvals"
+            app:layout_constraintTop_toBottomOf="@+id/header_items"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/vertical_guide"
+            android:layout_width="0dp"
+            android:layout_height="150dp" />
+
+
+        <TextView
+            app:layout_constraintLeft_toLeftOf="@+id/shops_database"
+            app:layout_constraintRight_toRightOf="@+id/shops_database"
+            app:layout_constraintBottom_toBottomOf="@+id/shops_database"
+            android:padding="10dp"
+            android:id="@+id/text_shop_approvals"
+            android:textSize="@dimen/menu_item_text_size"
+            android:textColor="#ffffff"
+            android:text="Shops Database"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+        <ImageView
+            android:layout_marginStart="5dp"
+            android:paddingBottom="40dp"
+            android:paddingTop="10dp"
+            app:srcCompat="@drawable/ic_items_24px"
             android:layout_marginTop="10dp"
             android:background="@color/buttonColor"
             android:id="@+id/items_database"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/header_items"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/vertical_guide"
             android:layout_width="0dp"
             android:layout_height="150dp" />
 
@@ -125,59 +127,6 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
             android:layout_height="wrap_content" />
 
 
-
-        <TextView
-            android:id="@+id/border_specs"
-            android:layout_marginTop="10dp"
-            android:background="#88000000"
-            app:layout_constraintTop_toBottomOf="@+id/items_database"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_width="0dp"
-            android:layout_height="1dp" />
-
-        <TextView
-            app:layout_constraintTop_toBottomOf="@+id/border_specs"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:padding="5dp"
-            android:id="@+id/header_item_specs"
-            android:text="Item Specifications"
-            android:textSize="17sp"
-            android:background="@color/light_grey"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
-
-
-
-        <ImageView
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="60dp"
-            android:background="@color/blueGrey800"
-            android:id="@+id/item_specifications"
-            android:layout_marginTop="10dp"
-            app:layout_constraintRight_toLeftOf="@+id/vertical_guide"
-            app:layout_constraintTop_toBottomOf="@+id/header_item_specs"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:srcCompat="@drawable/ic_low_priority_black_24px"
-            android:layout_width="0dp"
-            android:layout_height="150dp" />
-
-
-        <TextView
-            app:layout_constraintLeft_toLeftOf="@+id/item_specifications"
-            app:layout_constraintRight_toRightOf="@+id/item_specifications"
-            app:layout_constraintBottom_toBottomOf="@+id/item_specifications"
-            android:padding="10dp"
-            android:id="@+id/text_item_specs"
-            android:textSize="@dimen/menu_item_text_size"
-            android:textColor="#ffffff"
-            android:text="Item Specifications"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
 
 
 
@@ -369,32 +318,36 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
 
 
 
-        <ImageView
-            android:layout_marginStart="5dp"
-            android:paddingBottom="40dp"
-            android:paddingTop="10dp"
-            android:background="@color/cyan900"
-            android:id="@+id/shop_approvals"
+        <LinearLayout
             android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/ic_shop_approvals"
-            app:layout_constraintTop_toBottomOf="@+id/header_item_specs"
-            app:layout_constraintStart_toStartOf="@id/vertical_guide"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="0dp"
-            android:layout_height="150dp" />
-
-
-        <TextView
-            app:layout_constraintLeft_toLeftOf="@+id/shop_approvals"
-            app:layout_constraintRight_toRightOf="@+id/shop_approvals"
-            app:layout_constraintBottom_toBottomOf="@+id/shop_approvals"
+            android:id="@+id/header_tutorials"
             android:padding="10dp"
-            android:id="@+id/text_shop_approvals"
-            android:textSize="@dimen/menu_item_text_size"
-            android:textColor="#ffffff"
-            android:text="Shops Database"
+            android:background="@color/gplus_color_2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shops_database"
+            android:orientation="horizontal"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:id="@+id/header"
+                android:textSize="20sp"
+                android:textColor="@color/blueGrey800"
+                android:text="Tutorials and Guides"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+
+        </LinearLayout>
+
 
 
 
@@ -402,8 +355,8 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
         <TextView
             android:id="@+id/border_orders"
             android:layout_marginTop="10dp"
-            android:background="#88000000"
-            app:layout_constraintTop_toBottomOf="@+id/shop_approvals"
+            android:background="#44000000"
+            app:layout_constraintTop_toBottomOf="@+id/header_tutorials"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="0dp"
@@ -481,7 +434,7 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
             android:id="@+id/text_service_config"
             android:textSize="@dimen/menu_item_text_size"
             android:textColor="#ffffff"
-            android:text="Service Configuration"
+            android:text="Market Configuration"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -524,7 +477,7 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
         <TextView
             android:id="@+id/border_accounts"
             android:layout_marginTop="10dp"
-            android:background="#88000000"
+            android:background="#44000000"
             app:layout_constraintTop_toBottomOf="@+id/orders_database"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -548,36 +501,8 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
 
 
 
-        <ImageView
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:paddingBottom="40dp"
-            android:background="@color/gplus_color_2"
-            android:id="@+id/staff_accounts"
-            android:layout_marginTop="10dp"
-            app:layout_constraintRight_toLeftOf="@+id/vertical_guide"
-            app:layout_constraintTop_toBottomOf="@+id/header_accounts"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:srcCompat="@drawable/ic_supervisor_account_black_24px"
-            android:layout_width="0dp"
-            android:layout_height="150dp" />
 
-
-        <TextView
-            app:layout_constraintLeft_toLeftOf="@+id/staff_accounts"
-            app:layout_constraintRight_toRightOf="@+id/staff_accounts"
-            app:layout_constraintBottom_toBottomOf="@+id/staff_accounts"
-            android:padding="10dp"
-            android:id="@+id/text_staff_accounts"
-            android:textSize="@dimen/menu_item_text_size"
-            android:textColor="#ffffff"
-            android:text="User Accounts"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
-
-
-
+<!--
         <ImageView
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
@@ -604,7 +529,71 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
             android:textColor="#ffffff"
             android:text="Edit Profile"
             android:layout_width="0dp"
+            android:layout_height="wrap_content" />-->
+
+
+
+
+        <ImageView
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="40dp"
+            android:background="@color/orange"
+            android:id="@+id/user_accounts"
+            android:layout_marginTop="10dp"
+            app:layout_constraintRight_toLeftOf="@+id/vertical_guide"
+            app:layout_constraintTop_toBottomOf="@+id/header_accounts"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:srcCompat="@drawable/ic_supervisor_account_black_24px"
+            android:layout_width="0dp"
+            android:layout_height="150dp" />
+
+
+
+        <TextView
+            app:layout_constraintLeft_toLeftOf="@+id/user_accounts"
+            app:layout_constraintRight_toRightOf="@+id/user_accounts"
+            app:layout_constraintBottom_toBottomOf="@+id/user_accounts"
+            android:padding="10dp"
+            android:id="@+id/text_item_specs"
+            android:textSize="@dimen/menu_item_text_size"
+            android:textColor="#ffffff"
+            android:text="User Accounts"
+            android:layout_width="0dp"
             android:layout_height="wrap_content" />
+
+
+
+
+        <ImageView
+            android:layout_marginStart="5dp"
+            android:paddingBottom="40dp"
+            android:background="@color/gplus_color_2"
+            android:id="@+id/staff_accounts"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/header_accounts"
+            app:layout_constraintStart_toStartOf="@id/vertical_guide"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_supervisor_account_black_24px"
+            android:layout_width="0dp"
+            android:layout_height="150dp" />
+
+
+        <TextView
+            app:layout_constraintLeft_toLeftOf="@+id/staff_accounts"
+            app:layout_constraintRight_toRightOf="@+id/staff_accounts"
+            app:layout_constraintBottom_toBottomOf="@+id/staff_accounts"
+            android:padding="10dp"
+            android:id="@+id/text_staff_accounts"
+            android:textSize="@dimen/menu_item_text_size"
+            android:textColor="#ffffff"
+            android:text="Staff Accounts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
 
         <TextView
             android:id="@+id/border_bottom"

@@ -475,6 +475,10 @@ public class MarketsFragmentNew extends Fragment implements
         {
             makeRefreshNetworkCall();
         }
+        else if(resultCode==405)
+        {
+            makeRefreshNetworkCall();
+        }
     }
 
 

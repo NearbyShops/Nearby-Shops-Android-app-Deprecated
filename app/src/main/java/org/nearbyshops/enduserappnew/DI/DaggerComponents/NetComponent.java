@@ -21,7 +21,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemTypeTwo;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemTypeTwoBackup;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
-import org.nearbyshops.enduserappnew.SellerModule.DeliveryPersonInventory.Fragment.DeliveryInventoryFragment;
+import org.nearbyshops.enduserappnew.aSellerModule.DeliveryPersonInventory.Fragment.DeliveryInventoryFragment;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.FragmentAddCredit;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboardFragment;
@@ -45,16 +45,16 @@ import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForItem.ItemImageListFragment;
 import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.ItemsByCatFragment;
-import org.nearbyshops.enduserappnew.SellerModule.ItemsDatabase.ItemsDatabaseFragment;
-import org.nearbyshops.enduserappnew.SellerModule.ItemsInShopByCatSeller.ItemsInShopByCatSellerFragment;
-import org.nearbyshops.enduserappnew.SellerModule.ItemsInShopSeller.ItemsInShopFragment;
-import org.nearbyshops.enduserappnew.SellerModule.OrdersInventory.Fragment.OrdersInventoryFragment;
-import org.nearbyshops.enduserappnew.SellerModule.QuickStockEditor.FragmentShopItem;
-import org.nearbyshops.enduserappnew.SellerModule.SelectDeliveryGuy.SelectDeliveryFragment;
-import org.nearbyshops.enduserappnew.SellerModule.ShopAdminHome.ShopAdminHomeFragment;
+import org.nearbyshops.enduserappnew.aSellerModule.ItemsDatabase.ItemsDatabaseFragment;
+import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCatSellerFragment;
+import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopSeller.ItemsInShopFragment;
+import org.nearbyshops.enduserappnew.aSellerModule.OrdersInventory.Fragment.OrdersInventoryFragment;
+import org.nearbyshops.enduserappnew.aSellerModule.QuickStockEditor.FragmentShopItem;
+import org.nearbyshops.enduserappnew.aSellerModule.SelectDeliveryGuy.SelectDeliveryFragment;
+import org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome.ShopAdminHomeFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Lists.TransactionHistory.TransactionFragment;
-import org.nearbyshops.enduserappnew.SellerModule.ViewHolders.ViewHolderShopItemSeller;
+import org.nearbyshops.enduserappnew.aSellerModule.ViewHolders.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCatFragment;
 import org.nearbyshops.enduserappnew.Login.LoginFragment;
 import org.nearbyshops.enduserappnew.Login.LoginGlobalFragment;
@@ -217,7 +217,7 @@ public interface NetComponent {
 
     void Inject(ViewHolderShopItemSeller viewHolderShopItemSeller);
 
-    void Inject(org.nearbyshops.enduserappnew.SellerModule.ItemsInShopByCatSeller.Adapter adapter);
+    void Inject(org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.Adapter adapter);
 
     void Inject(ItemsInShopFragment itemsInShopFragment);
 

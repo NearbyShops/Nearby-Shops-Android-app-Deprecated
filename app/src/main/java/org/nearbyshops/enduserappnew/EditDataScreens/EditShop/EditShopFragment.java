@@ -48,7 +48,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ShopImageList;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SellerModule.ShopDashboard.ShopDashboard;
+import org.nearbyshops.enduserappnew.aSellerModule.ShopDashboard.ShopDashboard;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.AddCredit;
 
@@ -754,6 +754,14 @@ public class EditShopFragment extends Fragment {
                     bindShopData();
 
                     PrefShopAdminHome.saveShop(shop,getContext());
+
+
+                    // save user profile
+                    User user  = PrefLogin.getUser(getActivity());
+                    user.setRole(User.ROLE_SHOP_ADMIN_CODE);
+                    PrefLogin.saveUserProfile(user,getActivity());
+
+                    getActivity().setResult(405);
 
                 }
                 else

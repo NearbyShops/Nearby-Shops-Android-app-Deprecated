@@ -286,7 +286,8 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
         layoutManager.setSpanCount(spanCount);
 
 
-        viewModelOrders.getArticleLiveData().observe(this, new Observer<PagedList<Object>>() {
+
+        viewModelOrders.getArticleLiveData().observe(getViewLifecycleOwner(), new Observer<PagedList<Object>>() {
             @Override
             public void onChanged(PagedList<Object> objects) {
 

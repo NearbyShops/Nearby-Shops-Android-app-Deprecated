@@ -2,6 +2,8 @@ package org.nearbyshops.enduserappnew.Utility;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -185,6 +187,17 @@ public class UtilityFunctions {
 
 
 //        FirebaseApp.getInstance().delete();
+    }
+
+
+
+
+
+    public static void openURL(String url, Context activity)
+    {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        activity.startActivity(i);
     }
 
 

@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.adminModule.AdminDashboard;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditServiceConfig.EditConfiguration;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsDatabaseAdmin;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.ShopsDatabase;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -174,8 +176,8 @@ public class AdminDashboardFragment extends Fragment {
 
 
 
-    @OnClick(R.id.item_specifications)
-    void itemSpecNameClick()
+//    @OnClick(R.id.item_specifications)
+//    void itemSpecNameClick()
     {
 //        Intent intent = new Intent(getActivity(), ItemSpecName.class);
 //        startActivity(intent);
@@ -197,7 +199,7 @@ public class AdminDashboardFragment extends Fragment {
 
 
 
-    @OnClick(R.id.shop_approvals)
+    @OnClick(R.id.shops_database)
     void optionAdminClick(View view)
     {
         Intent intent = new Intent(getActivity(), ShopsDatabase.class);
@@ -208,7 +210,7 @@ public class AdminDashboardFragment extends Fragment {
 
 
 
-    @OnClick(R.id.staff_accounts)
+    @OnClick(R.id.user_accounts)
     void optionStaffClick(View view)
     {
         startActivity(new Intent(getActivity(), UsersList.class));
@@ -218,7 +220,7 @@ public class AdminDashboardFragment extends Fragment {
 
 
 
-    @OnClick(R.id.edit_profile)
+//    @OnClick(R.id.edit_profile)
     void editProfileClick()
     {
         Intent intent = new Intent(getActivity(), EditProfile.class);
@@ -241,6 +243,11 @@ public class AdminDashboardFragment extends Fragment {
 
 
 
+    @OnClick(R.id.header_tutorials)
+    void headerTutorialsClick()
+    {
+        UtilityFunctions.openURL("https://blog.nearbyshops.org/tag/tutorials/",getActivity());
+    }
     
 
 

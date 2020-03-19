@@ -13,8 +13,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviderKt;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
@@ -26,8 +24,8 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
-import org.nearbyshops.enduserappnew.SellerModule.DeliveryGuyHome.DeliveryHome;
-import org.nearbyshops.enduserappnew.SellerModule.ShopAdminHome.ShopAdminHome;
+import org.nearbyshops.enduserappnew.aSellerModule.DeliveryGuyHome.DeliveryHome;
+import org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome.ShopAdminHome;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboard;
 
 import butterknife.BindView;
