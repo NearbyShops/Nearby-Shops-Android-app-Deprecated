@@ -16,13 +16,17 @@ width="140">
 
 How it works ? 
 -----------------
+Nearby Shops is a **free & Open Source**  Local Market Server. Anyone can self-host their local market Instance (server) & and create a free marketplace similar to Instacart, Zomato or Grubhub in just 10 Minutes Installation. 
 
-Nearby Shops is a free and open source platform that helps you start and run your food delivery and hyperlocal business.  
+Save your marketing expenses.  Submit your market to nearby shops and get free access to existing customers of nearby shops app. 
 
-Please visit https://nearbyshops.org to learn more.
+### Democratizing E-commerce : 
 
-This project is conceptually similar to [Mastodon project](https://github.com/tootsuite/mastodon). Anyone can self-host their Local Market Instance (Server) and create their local market. The technology is fully open-source and funded by Donations. We dont charge any fee or commission in order to use the platform.
+Stop paying high commission to food delivery & grocery apps. Create a free marketplace for your Local Community. School, Institute or Office. 
 
+### Commercial use permitted !
+
+Lost your Job ... need an extra income ? Start your Food Delivery or Hyperlocal business in a very low investment. Earn Income from your local marketplace . 
 
 
 
