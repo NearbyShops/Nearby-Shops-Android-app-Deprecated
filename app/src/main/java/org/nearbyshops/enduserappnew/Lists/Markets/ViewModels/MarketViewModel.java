@@ -29,6 +29,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -245,6 +246,7 @@ public class MarketViewModel extends AndroidViewModel {
 
                                 if(response.body().getResults().size()>0)
                                 {
+                                    dataset.add(new SetLocationManually());
 
                                     if(PrefGeneral.getServiceURL(getApplication())==null)
                                     {

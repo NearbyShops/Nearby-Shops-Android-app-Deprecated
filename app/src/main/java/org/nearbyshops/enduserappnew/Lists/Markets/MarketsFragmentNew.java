@@ -25,6 +25,7 @@ import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.Lists.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.ViewHolderMarket;
+import org.nearbyshops.enduserappnew.LocationPicker.PickLocation;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
@@ -34,8 +35,10 @@ import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.MarketDetail;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSignIn;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -54,7 +57,7 @@ import java.util.List;
 public class MarketsFragmentNew extends Fragment implements
         ViewHolderMarket.ListItemClick, SwipeRefreshLayout.OnRefreshListener,
         NotifySort, NotifySearch, LocationUpdated, ViewHolderSignIn.VHSignIn,
-        ViewHolderEmptyScreenListItem.VHEmptyScreen {
+        ViewHolderEmptyScreenListItem.VHEmptyScreen , ViewHolderSetLocationManually.ListItemClick {
 
 
 
@@ -479,6 +482,18 @@ public class MarketsFragmentNew extends Fragment implements
         {
             makeRefreshNetworkCall();
         }
+        else if(requestCode==3)
+        {
+            if(data!=null)
+            {
+                PrefLocation.saveLatLonCurrent(data.getDoubleExtra("lat_dest",0.0),data.getDoubleExtra("lon_dest",0.0),
+                        getActivity());
+
+                PrefLocation.setLocationSetByUser(true,getActivity());
+                makeRefreshNetworkCall();
+            }
+
+        }
     }
 
 
@@ -491,6 +506,14 @@ public class MarketsFragmentNew extends Fragment implements
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
+    }
+
+    @Override
+    public void changeLocationClick() {
+        Intent intent = new Intent(getActivity(), PickLocation.class);
+        intent.putExtra("lat_dest", PrefLocation.getLatitude(getActivity()));
+        intent.putExtra("lon_dest",PrefLocation.getLongitude(getActivity()));
+        startActivityForResult(intent,3);
     }
 }
 

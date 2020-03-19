@@ -912,6 +912,8 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
     protected void onDestroy() {
         super.onDestroy();
         stopLocationUpdates();
+
+        PrefLocation.setLocationSetByUser(false,this);
     }
 
 

@@ -21,6 +21,7 @@ public class PrefLocation {
 
     public static String KEY_LAT_CENTER = "key_lat_center";
     public static String KEY_LON_CENTER = "key_lon_center";
+    public static String KEY_LOCATION_SET_BY_USER = "key_location_set_by_user";
 
 
     public static Location getLocation(Context context)
@@ -122,5 +123,36 @@ public class PrefLocation {
 
 
 
+
+
+
+
+
+
+
+    public static void setLocationSetByUser(boolean isLocationSetByUser, Context context)
+    {
+        context = MyApplication.getAppContext();
+
+        //Creating a shared preference
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = sharedPref.edit();
+
+
+        prefsEditor.putBoolean(KEY_LOCATION_SET_BY_USER,isLocationSetByUser);
+        prefsEditor.apply();
+    }
+
+
+
+
+
+    public static boolean isLocationSetByUser(Context context)
+    {
+        context = MyApplication.getAppContext();
+
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        return sharedPref.getBoolean(KEY_LOCATION_SET_BY_USER, false);
+    }
 
 }

@@ -12,9 +12,11 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopMedium;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHorizontalList;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
 import org.nearbyshops.enduserappnew.zHighlightSlider.AdapterHighlights;
 import org.nearbyshops.enduserappnew.zHighlightSlider.Model.Highlights;
 
@@ -40,6 +42,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final int VIEW_TYPE_HEADER = 4;
     public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 5;
     public static final int VIEW_TYPE_EMPTY_SCREEN = 6;
+    public static final int VIEW_TYPE_SET_LOCATION_MANUALLY = 7;
 
 
 
@@ -82,6 +85,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         else if(viewType==VIEW_TYPE_EMPTY_SCREEN)
         {
             return ViewHolderEmptyScreenFullScreen.create(parent,context);
+        }
+        else if(viewType==VIEW_TYPE_SET_LOCATION_MANUALLY)
+        {
+            return ViewHolderSetLocationManually.create(parent,context,fragment);
         }
 
 
@@ -172,6 +179,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         else if(dataset.get(position) instanceof Highlights)
         {
             return VIEW_TYPE_HIGHLIGHTS;
+        }
+        else if(dataset.get(position) instanceof SetLocationManually)
+        {
+            return VIEW_TYPE_SET_LOCATION_MANUALLY;
         }
 
 

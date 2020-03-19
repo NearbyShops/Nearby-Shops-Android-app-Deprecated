@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -23,6 +25,7 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCat;
+import org.nearbyshops.enduserappnew.LocationPicker.PickLocation;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -37,6 +40,8 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortShopsByCategory;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortShops;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,7 +60,7 @@ import java.util.ArrayList;
  */
 public class FragmentShopsList extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch ,
-        ViewHolderShopSmall.ListItemClick {
+        ViewHolderShopSmall.ListItemClick , ViewHolderSetLocationManually.ListItemClick {
 
 
     private static final String TAG_SLIDING = "tag_sliding_layer_sort_shops";
@@ -534,6 +539,13 @@ public class FragmentShopsList extends Fragment implements
                         {
                             emptyScreen.setVisibility(View.VISIBLE);
                         }
+                        else
+                        {
+                            if(dataset.size()>=1)
+                            {
+                                dataset.add(1, new SetLocationManually());
+                            }
+                        }
 
 
                         shopCountIndicator.setText(dataset.size() + " out of " + item_count + " Shops");
@@ -692,8 +704,37 @@ public class FragmentShopsList extends Fragment implements
 
     }
 
+    @Override
+    public void changeLocationClick() {
+        Intent intent = new Intent(getActivity(), PickLocation.class);
+        intent.putExtra("lat_dest",PrefLocation.getLatitude(getActivity()));
+        intent.putExtra("lon_dest",PrefLocation.getLongitude(getActivity()));
+        startActivityForResult(intent,3);
+    }
 
-//    @Override
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+
+        if(requestCode==3)
+        {
+            if(data!=null)
+            {
+                PrefLocation.saveLatLonCurrent(data.getDoubleExtra("lat_dest",0.0),data.getDoubleExtra("lon_dest",0.0),
+                        getActivity());
+
+                PrefLocation.setLocationSetByUser(true,getActivity());
+
+                makeRefreshNetworkCall();
+            }
+
+        }
+    }
+
+
+    //    @Override
 //    public void onPause() {
 //        super.onPause();
 //

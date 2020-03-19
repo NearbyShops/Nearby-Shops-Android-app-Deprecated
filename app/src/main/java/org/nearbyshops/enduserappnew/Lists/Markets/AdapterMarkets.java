@@ -21,9 +21,11 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolde
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHorizontalList;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSignIn;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderUserProfile;
 
@@ -50,6 +52,7 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 7;
     private static final int VIEW_TYPE_create_market = 8;
     private static final int view_type_role_dashboard = 9;
+    public static final int VIEW_TYPE_SET_LOCATION_MANUALLY = 10;
 
 
     @Inject Gson gson;
@@ -118,6 +121,11 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
             return ViewHolderRoleDashboard.create(parent,fragment.getActivity(),fragment);
         }
+        else if(viewType==VIEW_TYPE_SET_LOCATION_MANUALLY)
+        {
+            return ViewHolderSetLocationManually.create(parent,fragment.getActivity(),fragment);
+        }
+
 
 
 
@@ -172,6 +180,11 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
             return view_type_role_dashboard;
         }
+        else if(dataset.get(position) instanceof SetLocationManually)
+        {
+            return VIEW_TYPE_SET_LOCATION_MANUALLY;
+        }
+
 
 
         return -1;
