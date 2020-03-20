@@ -95,52 +95,6 @@ public class PrefServiceConfig {
 
 
 
-
-//    public static void saveConfigurationLocal(ServiceConfigurationLocal configuration, Context context)
-//    {
-//        if(context==null)
-//        {
-//            return;
-//        }
-//
-//
-//        //Creating a shared preference
-//        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-//        SharedPreferences.Editor prefsEditor = sharedPref.edit();
-//
-//        Gson gson = UtilityFunctions.provideGson();
-//        String json = gson.toJson(configuration);
-//        prefsEditor.putString(TAG_PREF_CONFIG, json);
-//
-//        prefsEditor.apply();
-//    }
-//
-//
-//
-//
-//
-//
-//    public static ServiceConfigurationLocal getConfigurationLocal(Context context)
-//    {
-//
-//        if(context==null)
-//        {
-//            return null;
-//        }
-//
-//        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-//
-//
-//        String json = sharedPref.getString(TAG_PREF_CONFIG, null);
-//        Gson gson = UtilityFunctions.provideGson();
-//
-//        return gson.fromJson(json, ServiceConfigurationLocal.class);
-//
-//    }
-
-
-
-
     public static String getServiceName(Context context)
     {
         context = MyApplication.getAppContext();

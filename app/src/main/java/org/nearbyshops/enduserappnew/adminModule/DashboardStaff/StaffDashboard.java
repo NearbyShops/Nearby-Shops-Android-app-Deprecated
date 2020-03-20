@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.adminModule.StaffDashboard;
+package org.nearbyshops.enduserappnew.adminModule.DashboardStaff;
 
 import android.os.Bundle;
 

@@ -26,7 +26,7 @@ import org.nearbyshops.enduserappnew.aSellerModule.FilterDeliveryGuy.FilterDeliv
 import org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryPerson.Fragment.DeliveryInventoryFragment;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.FragmentAddCredit;
-import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboardFragment;
+import org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboardFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditServiceConfig.EditConfigurationFragment;
 import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListFragment;
 import org.nearbyshops.enduserappnew.Lists.CartsList.CartsListFragment;
@@ -95,7 +95,7 @@ import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsData
 import org.nearbyshops.enduserappnew.adminModule.ChangeParent.Adapter;
 import org.nearbyshops.enduserappnew.adminModule.ChangeParent.ItemCategoriesParent;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.Fragment.FragmentShopList;
-import org.nearbyshops.enduserappnew.adminModule.StaffDashboard.StaffDashboardFragment;
+import org.nearbyshops.enduserappnew.adminModule.DashboardStaff.StaffDashboardFragment;
 
 
 import javax.inject.Singleton;

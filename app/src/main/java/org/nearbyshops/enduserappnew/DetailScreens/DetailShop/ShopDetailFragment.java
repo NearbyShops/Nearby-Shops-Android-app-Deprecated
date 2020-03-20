@@ -511,12 +511,12 @@ public class ShopDetailFragment extends Fragment
                 {
                     return;
                 }
-
-
-                if(!isVisible())
-                {
-                    return;
-                }
+//
+//
+//                if(!isVisible())
+//                {
+//                    return;
+//                }
 
                 if(response.body()!=null)
                 {

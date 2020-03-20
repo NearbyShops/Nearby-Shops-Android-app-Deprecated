@@ -93,8 +93,8 @@
 
         <activity android:name=".aSellerModule.DashboardDeliveryGuy.DeliveryHome"/>
 
-        <activity android:name=".adminModule.AdminDashboard.AdminDashboard"/>
-        <activity android:name=".adminModule.StaffDashboard.StaffDashboard"/>
+        <activity android:name=".adminModule.DashboardAdmin.AdminDashboard"/>
+        <activity android:name=".adminModule.DashboardStaff.StaffDashboard"/>
         <activity android:name=".aSellerModule.DashboardShopStaff.ShopDashboardForStaff"/>
 
         <activity android:name=".aSellerModule.DashboardShopAdmin.ShopAdminHome"/>
@@ -338,11 +338,11 @@
             android:name=".adminModule.ShopsList.ShopsDatabase"
             android:label="Shops"
             android:launchMode="singleTop"
-            android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
+            android:parentActivityName=".adminModule.DashboardAdmin.AdminDashboard">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".adminModule.AdminDashboard.AdminDashboard" />
+                android:value=".adminModule.DashboardAdmin.AdminDashboard" />
 
             <meta-data
                 android:name="android.app.searchable"
@@ -357,11 +357,11 @@
         <activity
             android:name=".EditDataScreens.EditItemCategory.EditItemCategory"
             android:label="Edit Item Category"
-            android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
+            android:parentActivityName=".adminModule.DashboardAdmin.AdminDashboard">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".adminModule.AdminDashboard.AdminDashboard" />
+                android:value=".adminModule.DashboardAdmin.AdminDashboard" />
         </activity>
 
 
@@ -369,10 +369,10 @@
         <activity
             android:name=".adminModule.ItemsDatabaseForAdmin.ItemsDatabaseAdmin"
             android:label="Items by Category"
-            android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
+            android:parentActivityName=".adminModule.DashboardAdmin.AdminDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".adminModule.AdminDashboard.AdminDashboard" />
+                android:value=".adminModule.DashboardAdmin.AdminDashboard" />
 
         </activity>
 
@@ -380,10 +380,10 @@
         <activity
             android:name=".EditDataScreens.Deprecated.EditShopForAdmin.EditShopForAdmin"
             android:label="Edit Shop"
-            android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
+            android:parentActivityName=".adminModule.DashboardAdmin.AdminDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".adminModule.AdminDashboard.AdminDashboard" />
+                android:value=".adminModule.DashboardAdmin.AdminDashboard" />
         </activity>
 
 
@@ -396,11 +396,11 @@
         <activity
             android:name=".adminModule.ChangeParent.ItemCategoriesParent"
             android:label="Select Parent Category"
-            android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
+            android:parentActivityName=".adminModule.DashboardAdmin.AdminDashboard">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".adminModule.AdminDashboard.AdminDashboard" />
+                android:value=".adminModule.DashboardAdmin.AdminDashboard" />
 
         </activity>
 
@@ -414,10 +414,10 @@
         <activity
             android:name=".EditDataScreens.EditServiceConfig.EditConfiguration"
             android:label="Edit Configuration"
-            android:parentActivityName=".adminModule.AdminDashboard.AdminDashboard">
+            android:parentActivityName=".adminModule.DashboardAdmin.AdminDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".adminModule.AdminDashboard.AdminDashboard" />
+                android:value=".adminModule.DashboardAdmin.AdminDashboard" />
         </activity>
 
 

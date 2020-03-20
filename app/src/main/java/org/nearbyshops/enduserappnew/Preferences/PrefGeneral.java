@@ -87,18 +87,12 @@ public class PrefGeneral {
 //        Context context = MyApplicationCoreNew.getAppContext();
         // get a handle to shared Preference
         SharedPreferences sharedPref;
+        sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 
-        sharedPref = context.getSharedPreferences(
-                context.getString(R.string.preference_file_name),
-                MODE_PRIVATE);
 
         // write to the shared preference
         SharedPreferences.Editor editor = sharedPref.edit();
-
-        editor.putString(
-                TAG_SERVICE_URL,
-                service_url);
-
+        editor.putString(TAG_SERVICE_URL, service_url);
         editor.apply();
 
 

@@ -45,12 +45,11 @@ import retrofit2.Response;
 
 public class FilterDeliveryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, Adapter.NotificationsFromAdapter{
 
-    boolean isDestroyed = false;
+    private boolean isDestroyed = false;
 
-    @BindView(R.id.swipe_container)
-    SwipeRefreshLayout swipeContainer;
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
+
+    @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
 
     @Inject
@@ -59,22 +58,23 @@ public class FilterDeliveryFragment extends Fragment implements SwipeRefreshLayo
     @Inject
     OrderServiceShopStaff service;
 
-    GridLayoutManager layoutManager;
-    Adapter listAdapter;
+    private GridLayoutManager layoutManager;
+    private Adapter listAdapter;
 
-    ArrayList<Object> dataset = new ArrayList<>();
+    private ArrayList<Object> dataset = new ArrayList<>();
 
 
     // flags
-    boolean clearDataset = false;
+    private boolean clearDataset = false;
 
-    boolean getRowCountVehicle = false;
-    boolean resetOffsetVehicle = false;
+    private boolean getRowCountVehicle = false;
+    private boolean resetOffsetVehicle = false;
 
 
     private int limit_vehicle = 10;
-    int offset_vehicle = 0;
-    public int item_count_vehicle = 0;
+    private int offset_vehicle = 0;
+    int item_count_vehicle = 0;
+
 
 
 //    @BindView(R.id.drivers_count) TextView driversCount;

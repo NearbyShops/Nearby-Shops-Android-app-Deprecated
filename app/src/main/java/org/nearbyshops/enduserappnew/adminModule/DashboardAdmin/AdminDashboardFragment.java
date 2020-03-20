@@ -1,8 +1,7 @@
-package org.nearbyshops.enduserappnew.adminModule.AdminDashboard;
+package org.nearbyshops.enduserappnew.adminModule.DashboardAdmin;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +14,8 @@ import androidx.fragment.app.Fragment;
 
 
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
-import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrderHistoryPaging;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditServiceConfig.EditConfiguration;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;

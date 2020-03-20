@@ -21,7 +21,6 @@ import static android.content.Context.MODE_PRIVATE;
 public class PrefShopAdminHome {
 
 
-
     public static void saveShop(Shop shop, Context context)
     {
         context = MyApplication.getAppContext();
@@ -35,20 +34,6 @@ public class PrefShopAdminHome {
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = sharedPref.edit();
-
-//        if(shop == null)
-//        {
-//            prefsEditor.putString("admin", "null");
-//
-//        }
-//        else
-//        {
-//            Gson gson = new Gson();
-//            String json = gson.toJson(shop);
-//            prefsEditor.putString("shop", json);
-//        }
-
-
 
         Gson gson = UtilityFunctions.provideGson();
         String json = gson.toJson(shop);
@@ -68,18 +53,6 @@ public class PrefShopAdminHome {
 
         Gson gson = UtilityFunctions.provideGson();
         String json = sharedPref.getString("shop_profile_for_shop_admin", null);
-
-
-//        if(json.equals("null"))
-//        {
-//
-//            return null;
-//
-//        }else
-//        {
-//            return gson.fromJson(json, Shop.class);
-//        }
-
 
         return gson.fromJson(json, Shop.class);
 
