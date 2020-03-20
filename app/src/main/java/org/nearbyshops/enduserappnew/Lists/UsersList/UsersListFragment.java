@@ -454,26 +454,31 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
     private EmptyScreenDataFullScreen getEmptyScreen()
     {
-        User user = PrefLogin.getUser(getActivity());
 
-        if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+        if(current_mode==MODE_ADMIN_USER_LIST)
         {
-            int defaultRole = getActivity().getIntent().getIntExtra("default_role",User.ROLE_SHOP_STAFF_CODE);
-
-            if(defaultRole==User.ROLE_SHOP_STAFF_CODE)
-            {
-                return EmptyScreenDataFullScreen.emptyScreenStaffList();
-            }
-            else if(defaultRole==User.ROLE_DELIVERY_GUY_SELF_CODE)
-            {
-                return EmptyScreenDataFullScreen.emptyScreenDeliveryStaff();
-            }
-
-
+            return EmptyScreenDataFullScreen.emptyUsersList();
+        }
+        else if (current_mode==MODE_ADMIN_STAFF_LIST)
+        {
+            return EmptyScreenDataFullScreen.emptyScreenStaffList();
+        }
+        else if(current_mode==MODE_SHOP_ADMIN_SHOP_STAFF_LIST)
+        {
+            return EmptyScreenDataFullScreen.emptyScreenShopStaffList();
+        }
+        else if(current_mode==MODE_SHOP_ADMIN_DELIVERY_STAFF_LIST)
+        {
+            return EmptyScreenDataFullScreen.emptyScreenDeliveryStaff();
+        }
+        else if(current_mode==MODE_SELECT_DELIVERY_PERSON)
+        {
+            return EmptyScreenDataFullScreen.emptyScreenDeliveryStaff();
         }
 
 
-        return EmptyScreenDataFullScreen.emptyScreenStaffList();
+
+        return EmptyScreenDataFullScreen.emptyUsersList();
     }
 
 

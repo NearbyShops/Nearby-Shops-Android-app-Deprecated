@@ -165,10 +165,21 @@ public class EmptyScreenDataFullScreen {
 
 
 
+    public static EmptyScreenDataFullScreen emptyUsersList()
+    {
+        EmptyScreenDataFullScreen data = new EmptyScreenDataFullScreen();
+        data.setTitle("No Users Found !");
+        data.setShowDesignedByFreepik(false);
+        data.setMessage("No Users found ... if you have set any filters try to clear filters and try again !");
+        data.setDrawableResource(R.drawable.ic_account_box_black_24px);
+
+        return data;
+    }
 
 
 
-    public static EmptyScreenDataFullScreen emptyScreenStaffList()
+
+    public static EmptyScreenDataFullScreen emptyScreenShopStaffList()
     {
         EmptyScreenDataFullScreen data = new EmptyScreenDataFullScreen();
         data.setTitle("You have not added any Staff Members !");
@@ -178,6 +189,21 @@ public class EmptyScreenDataFullScreen {
 
         return data;
     }
+
+
+
+
+    public static EmptyScreenDataFullScreen emptyScreenStaffList()
+    {
+        EmptyScreenDataFullScreen data = new EmptyScreenDataFullScreen();
+        data.setTitle("You have not added any Staff Members !");
+        data.setShowDesignedByFreepik(false);
+        data.setMessage("To add staff members to your Market press the Plus Button ( + ) given below !");
+        data.setDrawableResource(R.drawable.ic_account_box_black_24px);
+
+        return data;
+    }
+
 
 
 

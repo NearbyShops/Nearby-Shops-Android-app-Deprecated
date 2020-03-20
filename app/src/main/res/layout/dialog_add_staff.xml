@@ -49,6 +49,7 @@
 
 
             <TextView
+                android:textStyle="bold"
                 android:textSize="15sp"
                 android:layout_marginTop="15dp"
                 android:text="Step 1 : Enter Email or Phone"
@@ -69,6 +70,7 @@
 
 
             <TextView
+                android:textStyle="bold"
                 android:textSize="15sp"
                 android:layout_marginTop="15dp"
                 android:text="Step 2 : Enter Secret Code"
