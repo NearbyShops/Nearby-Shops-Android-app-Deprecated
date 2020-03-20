@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.API;
 
 
 import org.nearbyshops.enduserappnew.Model.ModelRoles.ShopStaffPermissions;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.StaffPermissions;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -16,11 +17,12 @@ import retrofit2.http.Path;
  */
 
 
-public interface ShopStaffService {
+public interface StaffService {
 
 
 
-    @PUT("/api/v1/User/ShopStaffLogin/UpdateStaffLocation")
+
+    @PUT("/api/v1/User/StaffLogin/UpdateStaffLocation")
     Call<ResponseBody> updateStaffLocation(
             @Header("Authorization") String headers,
             @Body ShopStaffPermissions permissions
@@ -28,29 +30,29 @@ public interface ShopStaffService {
 
 
 
-
-    @PUT ("/api/v1/User/ShopStaffLogin/UpgradeUser/{emailorphone}/{Role}/{SecretCode}")
-    Call<ResponseBody> upgradeUserToShopStaff(
+    @PUT ("/api/v1/User/StaffLogin/UpgradeUser/{emailorphone}/{SecretCode}")
+    Call<ResponseBody> upgradeUserToStaff(
             @Header("Authorization") String headers,
-            @Path("emailorphone")String emailorphone,
-            @Path("Role")int role,
-            @Path("SecretCode")int secretCode
+            @Path("emailorphone") String emailorphone,
+            @Path("SecretCode") int secretCode
     );
 
 
 
-    @PUT ("/api/v1/User/ShopStaffLogin/UpdateStaffPermissions")
+
+    @PUT ("/api/v1/User/StaffLogin/UpdateStaffPermissions")
     Call<ResponseBody> updateStaffPermissions(
             @Header("Authorization") String headers,
-            @Body ShopStaffPermissions permissions
+            @Body StaffPermissions permissions
     );
 
 
 
-    @GET("/api/v1/User/ShopStaffLogin/GetStaffPermissions/{UserID}")
-    Call<ShopStaffPermissions> getUserDetails(
+
+    @GET("/api/v1/User/StaffLogin/GetStaffPermissions/{UserID}")
+    Call<StaffPermissions> getPermissionDetails(
             @Header("Authorization") String headers,
-            @Path("UserID")int userID
+            @Path("UserID") int userID
     );
 
 

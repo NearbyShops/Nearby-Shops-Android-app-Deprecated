@@ -19,10 +19,9 @@ import androidx.fragment.app.DialogFragment;
 import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.API.ShopStaffService;
-import org.nearbyshops.enduserappnew.API.StaffService;
-import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
 
 import javax.inject.Inject;
@@ -37,10 +36,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class AddUserToStaffDialog extends DialogFragment {
+public class AddUserToShopStaffDialog extends DialogFragment {
 
 
 
+    @BindView(R.id.role_shop_staff) TextView roleShopStaff;
+    @BindView(R.id.role_delivery) TextView roleDelivery;
 
     @BindView(R.id.input_user_id) EditText inputUserID;
     @BindView(R.id.input_secret_code) EditText secretCode;
@@ -53,18 +54,17 @@ public class AddUserToStaffDialog extends DialogFragment {
 
 
 
-
+    private int selectedRole = User.ROLE_SHOP_STAFF_CODE;
     private String userID;
     private int secretCodeInteger;
 
 
 
-
     @Inject
-    StaffService staffService;
+    ShopStaffService shopStaffService;
 
 
-    public AddUserToStaffDialog() {
+    public AddUserToShopStaffDialog() {
         super();
 
         DaggerComponentBuilder.getInstance()
@@ -85,9 +85,10 @@ public class AddUserToStaffDialog extends DialogFragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
 
-        View view = inflater.inflate(R.layout.dialog_add_staff, container);
+        View view = inflater.inflate(R.layout.dialog_add_shop_staff, container);
         ButterKnife.bind(this,view);
 
+        bindRole();
         return view;
     }
 
@@ -108,6 +109,13 @@ public class AddUserToStaffDialog extends DialogFragment {
 
 
 
+    public void setSelectedRole(int role)
+    {
+        selectedRole = role;
+    }
+
+
+
 
 
 
@@ -119,6 +127,48 @@ public class AddUserToStaffDialog extends DialogFragment {
 
 
 
+
+
+
+    @OnClick(R.id.role_shop_staff)
+    void shopStaffClick()
+    {
+        selectedRole = User.ROLE_SHOP_STAFF_CODE;
+        bindRole();
+    }
+
+    @OnClick(R.id.role_delivery)
+    void roleDeliveryClick()
+    {
+        selectedRole = User.ROLE_DELIVERY_GUY_SELF_CODE;
+        bindRole();
+    }
+
+
+
+
+
+    private void bindRole()
+    {
+
+        if(selectedRole==User.ROLE_SHOP_STAFF_CODE)
+        {
+            roleShopStaff.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+            roleShopStaff.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.buttonColor));
+
+            roleDelivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+            roleDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        }
+        else if(selectedRole==User.ROLE_DELIVERY_GUY_SELF_CODE)
+        {
+            roleDelivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+            roleDelivery.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.buttonColor));
+
+            roleShopStaff.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+            roleShopStaff.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        }
+
+    }
 
 
 
@@ -174,12 +224,11 @@ public class AddUserToStaffDialog extends DialogFragment {
 
 
 
-        Call<ResponseBody> call = staffService.upgradeUserToStaff(
+        Call<ResponseBody> call = shopStaffService.upgradeUserToShopStaff(
                 PrefLogin.getAuthorizationHeaders(getActivity()),
-                userID,
+                userID,selectedRole,
                 secretCodeInteger
         );
-
 
 
 

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.UsersList;
+package org.nearbyshops.enduserappnew.Lists.UsersList.Backups;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,22 +20,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.API.UserService;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissions;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissionsFragment;
-import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToShopStaffDialog;
-import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToStaffDialog;
-import org.nearbyshops.enduserappnew.Model.ModelEndPoints.UserEndpoint;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.EditShopStaffPermissions;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.EditShopStaffPermissionsFragment;
+import org.nearbyshops.enduserappnew.Lists.UsersList.Adapter;
+import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToShopStaffDialog;
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.UserEndpoint;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.UserFilters;
@@ -59,22 +56,9 @@ import retrofit2.Response;
  * Created by sumeet on 14/6/17.
  */
 
-public class UsersListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
+public class UsersListFragment20Mar20 extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
         ViewHolderUserProfileItem.ListItemClick, ViewHolderFilterUsers.ListItemClick
 {
-
-
-
-    public static final String USER_MODE_INTENT_KEY = "user_mode_key";
-
-
-    public static final int MODE_ADMIN_USER_LIST = 51;
-    public static final int MODE_ADMIN_STAFF_LIST = 52;
-    public static final int MODE_SHOP_ADMIN_SHOP_STAFF_LIST = 53;
-    public static final int MODE_SHOP_ADMIN_DELIVERY_STAFF_LIST = 54;
-    public static final int MODE_SELECT_DELIVERY_PERSON = 55;
-
-    private int current_mode;
 
 
 
@@ -87,9 +71,6 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
     @Inject
     UserService userService;
-
-
-    @BindView(R.id.fab) FloatingActionButton fab;
 
 
 
@@ -110,10 +91,10 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-    public UsersListFragment() {
+    public UsersListFragment20Mar20() {
 
-        DaggerComponentBuilder.getInstance()
-                .getNetComponent().Inject(this);
+//        DaggerComponentBuilder.getInstance()
+//                .getNetComponent().Inject(this);
     }
 
 
@@ -135,36 +116,24 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-        current_mode = getActivity().getIntent().getIntExtra(USER_MODE_INTENT_KEY,MODE_ADMIN_USER_LIST);
+
+        User user = PrefLogin.getUser(getActivity());
+
+        if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+        {
+            int defaultRole = getActivity().getIntent().getIntExtra("default_role",User.ROLE_SHOP_STAFF_CODE);
+            ViewHolderFilterUsers.saveFilterByRole(getActivity(),defaultRole);
+        }
 
 
+        boolean selectDeliveryGuy = getActivity().getIntent().getBooleanExtra("select_delivery_guy",false);
 
-        if(current_mode==MODE_SELECT_DELIVERY_PERSON)
+        if(selectDeliveryGuy)
         {
             ViewHolderFilterUsers.saveFilterByRole(getActivity(),User.ROLE_DELIVERY_GUY_SELF_CODE);
         }
-        else if(current_mode==MODE_SHOP_ADMIN_SHOP_STAFF_LIST)
-        {
-            ViewHolderFilterUsers.saveFilterByRole(getActivity(),User.ROLE_SHOP_STAFF_CODE);
-        }
-        else if(current_mode==MODE_SHOP_ADMIN_DELIVERY_STAFF_LIST)
-        {
-            ViewHolderFilterUsers.saveFilterByRole(getActivity(),User.ROLE_DELIVERY_GUY_SELF_CODE);
-        }
-        else if(current_mode==MODE_ADMIN_STAFF_LIST)
-        {
-            ViewHolderFilterUsers.saveFilterByRole(getActivity(),User.ROLE_STAFF_CODE);
 
-        }
-        else if(current_mode==MODE_ADMIN_USER_LIST)
-        {
-            ViewHolderFilterUsers.saveFilterByRole(getActivity(),0);
-            fab.setVisibility(View.GONE);
-        }
-
-
-
-
+        
 
         setupSwipeContainer();
         setupRecyclerView();
@@ -378,7 +347,8 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-                        if(current_mode==MODE_ADMIN_USER_LIST)
+
+                        if(user.getRole()==User.ROLE_ADMIN_CODE || user.getRole()==User.ROLE_STAFF_CODE)
                         {
                             dataset.add(new UserFilters());
                         }
@@ -490,15 +460,11 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-
-
-
     @Override
     public void listItemClick(User user, int position) {
 
 
-
-        if(current_mode==MODE_SELECT_DELIVERY_PERSON)
+        if(getActivity().getIntent().getBooleanExtra("select_delivery_guy",false))
         {
             Intent data = new Intent();
             data.putExtra("delivery_guy_id",user.getUserID());
@@ -506,40 +472,49 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
             getActivity().finish();
         }
-        else if(current_mode==MODE_ADMIN_USER_LIST)
+        else
         {
-
             Gson gson = UtilityFunctions.provideGson();
             String jsonString = gson.toJson(user);
 
 
-            Intent intent = new Intent(getActivity(), EditProfile.class);
-            intent.putExtra("user_profile",jsonString);
-            intent.putExtra(FragmentEditProfile.EDIT_MODE_INTENT_KEY, FragmentEditProfile.MODE_UPDATE_BY_ADMIN);
-            startActivity(intent);
-        }
-        else if(current_mode==MODE_ADMIN_STAFF_LIST)
-        {
-            if(user.getRole()==User.ROLE_STAFF_CODE)
+
+//            Intent intent = new Intent(getActivity(), EditProfileDelivery.class);
+//            intent.putExtra("staff_profile",jsonString);
+//            intent.putExtra(FragmentEditProfileDelivery.EDIT_MODE_INTENT_KEY, FragmentEditProfileDelivery.MODE_UPDATE);
+//            startActivity(intent);
+
+
+            User loggedInUser = PrefLogin.getUser(getActivity());
+
+            if(loggedInUser.getRole()==User.ROLE_ADMIN_CODE)
             {
-                Intent intent = new Intent(getActivity(), EditStaffPermissions.class);
-                intent.putExtra(EditStaffPermissionsFragment.EDIT_MODE_INTENT_KEY, EditStaffPermissionsFragment.MODE_UPDATE);
-                intent.putExtra(EditStaffPermissionsFragment.STAFF_ID_INTENT_KEY,user.getUserID());
+                Intent intent = new Intent(getActivity(), EditProfile.class);
+                intent.putExtra("user_profile",jsonString);
+                intent.putExtra(FragmentEditProfile.EDIT_MODE_INTENT_KEY, FragmentEditProfile.MODE_UPDATE_BY_ADMIN);
                 startActivity(intent);
+
+            }
+            else if(loggedInUser.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+            {
+
+                if(user.getRole()==User.ROLE_SHOP_STAFF_CODE)
+                {
+                    Intent intent = new Intent(getActivity(), EditShopStaffPermissions.class);
+                    intent.putExtra(EditShopStaffPermissionsFragment.EDIT_MODE_INTENT_KEY, EditShopStaffPermissionsFragment.MODE_UPDATE);
+                    intent.putExtra(EditShopStaffPermissionsFragment.STAFF_ID_INTENT_KEY,user.getUserID());
+                    startActivity(intent);
+                }
+
             }
 
-        }
-        else if(current_mode==MODE_SHOP_ADMIN_SHOP_STAFF_LIST)
-        {
 
-            if(user.getRole()==User.ROLE_SHOP_STAFF_CODE)
-            {
-                Intent intent = new Intent(getActivity(), EditShopStaffPermissions.class);
-                intent.putExtra(EditShopStaffPermissionsFragment.EDIT_MODE_INTENT_KEY, EditShopStaffPermissionsFragment.MODE_UPDATE);
-                intent.putExtra(EditShopStaffPermissionsFragment.STAFF_ID_INTENT_KEY,user.getUserID());
-                startActivity(intent);
-            }
+
+
+//            showToastMessage("User Clicked : " + user.getUserID());
+
         }
+
 
     }
 
@@ -554,30 +529,36 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
     void fabClick()
     {
 
-        if(current_mode==MODE_SHOP_ADMIN_SHOP_STAFF_LIST)
+        User loggedInUser = PrefLogin.getUser(getActivity());
+
+
+        if(loggedInUser.getRole()==User.ROLE_ADMIN_CODE)
         {
+
+            showToastMessage("Add User Clicked !");
+
+        }
+        else if(loggedInUser.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+        {
+
             FragmentManager fm = getChildFragmentManager();
             AddUserToShopStaffDialog dialog = new AddUserToShopStaffDialog();
 
-            dialog.setSelectedRole(User.ROLE_SHOP_STAFF_CODE);
+
+            int defaultRole = getActivity().getIntent().getIntExtra("default_role",User.ROLE_SHOP_STAFF_CODE);
+            dialog.setSelectedRole(defaultRole);
+
+
             dialog.show(fm, "add_user_to_shop_staff");
-        }
-        else if(current_mode==MODE_SHOP_ADMIN_DELIVERY_STAFF_LIST)
-        {
 
-            FragmentManager fm = getChildFragmentManager();
-            AddUserToShopStaffDialog dialog = new AddUserToShopStaffDialog();
-
-            dialog.setSelectedRole(User.ROLE_DELIVERY_GUY_SELF_CODE);
-            dialog.show(fm, "add_user_to_shop_staff");
         }
-        else if(current_mode==MODE_ADMIN_STAFF_LIST)
-        {
-            FragmentManager fm = getChildFragmentManager();
-            AddUserToStaffDialog dialog = new AddUserToStaffDialog();
 
-            dialog.show(fm, "add_user_to_staff");
-        }
+
+
+//        PrefrenceSignUp.saveUser(null,getActivity());
+//        Intent intent = new Intent(getActivity(), SignUp.class);
+//        intent.putExtra("user_role", User.ROLE_DELIVERY_GUY_SELF_CODE);
+//        startActivity(intent);
     }
 
 

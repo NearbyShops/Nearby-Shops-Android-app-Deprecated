@@ -1,11 +1,13 @@
 package org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,6 +20,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
+import org.nearbyshops.enduserappnew.API.ShopStaffService;
+import org.nearbyshops.enduserappnew.API.StaffService;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.ShopStaffPermissions;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.StaffPermissions;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -41,24 +47,31 @@ public class EditStaffPermissionsFragment extends Fragment {
 
 
 
-    private DeliveryAddress deliveryAddress;
 
-    public static final String DELIVERY_ADDRESS_INTENT_KEY = "edit_delivery_address_intent_key";
+    public static final String STAFF_ID_INTENT_KEY = "staff_id_intent_key";
+
 
     @Inject
-    DeliveryAddressService deliveryAddressService;
+    StaffService staffService;
+
+
 
     @BindView(R.id.saveButton) TextView updateDeliveryAddress;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
+
+
     // address Fields
-    @BindView(R.id.receiversName) EditText receiversName;
-    @BindView(R.id.receiversPhoneNumber) EditText receiversPhoneNumber;
-    @BindView(R.id.deliveryAddress) EditText deliveryAddressView;
-    @BindView(R.id.addressCity) EditText city;
-    @BindView(R.id.pincode) EditText pincode;
-    @BindView(R.id.landmark) EditText landMark;
-    @BindView(R.id.latitude) EditText latitude;
-    @BindView(R.id.longitude) EditText longitude;
+    @BindView(R.id.designation) EditText designation;
+
+    @BindView(R.id.permit_create_update_item_cat) CheckBox permitCreateUpdateItemCat;
+    @BindView(R.id.permit_create_update_items) CheckBox permitCreateUpdateItems;
+    @BindView(R.id.permit_enable_shops) CheckBox permitEnableShops;
+
+
+
+    private int staffID;
+    private StaffPermissions permissions;
+
 
 
 
@@ -108,10 +121,9 @@ public class EditStaffPermissionsFragment extends Fragment {
 
         if(current_mode ==MODE_UPDATE)
         {
-            String jsonString = getActivity().getIntent().getStringExtra(DELIVERY_ADDRESS_INTENT_KEY);
-            deliveryAddress = UtilityFunctions.provideGson().fromJson(jsonString,DeliveryAddress.class);
 
-            bindDataToViews();
+            staffID = getActivity().getIntent().getIntExtra(STAFF_ID_INTENT_KEY,0);
+            getPermissions();
         }
 
 
@@ -166,22 +178,77 @@ public class EditStaffPermissionsFragment extends Fragment {
 
 
 
+    private void getPermissions()
+    {
+
+        final ProgressDialog pd = new ProgressDialog(getActivity());
+        pd.setMessage("Please with ... Getting user details !");
+        pd.show();
+
+
+        Call<StaffPermissions> call = staffService.getPermissionDetails(
+                PrefLogin.getAuthorizationHeaders(getActivity()),
+                staffID
+        );
+
+
+        call.enqueue(new Callback<StaffPermissions>() {
+            @Override
+            public void onResponse(Call<StaffPermissions> call, Response<StaffPermissions> response) {
+                if(!isVisible())
+                {
+                    return;
+                }
+
+                pd.dismiss();
+
+
+
+                if(response.code()==200)
+                {
+                    permissions = response.body();
+
+                    bindDataToViews();
+                }
+                else
+                {
+                    showToastMessage("Failed to get User Details : Code : " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StaffPermissions> call, Throwable t) {
+                if(!isVisible())
+                {
+                    return;
+                }
+
+                showToastMessage("Failed !");
+            }
+        });
+
+
+
+    }
+
+
+
+
+
+
 
     private void getDataFromViews()
     {
-        if(deliveryAddress!=null)
+        if(permissions ==null)
         {
-            deliveryAddress.setName(receiversName.getText().toString());
-            deliveryAddress.setDeliveryAddress(deliveryAddressView.getText().toString());
-            deliveryAddress.setCity(city.getText().toString());
-            deliveryAddress.setPincode(Long.parseLong(pincode.getText().toString()));
-            deliveryAddress.setLandmark(landMark.getText().toString());
-            deliveryAddress.setPhoneNumber(Long.parseLong(receiversPhoneNumber.getText().toString()));
-
-
-            deliveryAddress.setLatitude(Double.parseDouble(latitude.getText().toString()));
-            deliveryAddress.setLongitude(Double.parseDouble(longitude.getText().toString()));
+            permissions = new StaffPermissions();
         }
+
+
+        permissions.setDesignation(designation.getText().toString());
+        permissions.setPermitCreateUpdateItemCat(permitCreateUpdateItemCat.isChecked());
+        permissions.setPermitCreateUpdateItems(permitCreateUpdateItems.isChecked());
+        permissions.setPermitApproveShops(permitEnableShops.isChecked());
     }
 
 
@@ -190,18 +257,13 @@ public class EditStaffPermissionsFragment extends Fragment {
 
     private void bindDataToViews()
     {
-        if(deliveryAddress!=null)
+        if(permissions!=null)
         {
-            receiversName.setText(deliveryAddress.getName());
-            deliveryAddressView.setText(deliveryAddress.getDeliveryAddress());
-            city.setText(deliveryAddress.getCity());
-            pincode.setText(String.valueOf(deliveryAddress.getPincode()));
-            landMark.setText(deliveryAddress.getLandmark());
-            receiversPhoneNumber.setText(String.valueOf(deliveryAddress.getPhoneNumber()));
+            designation.setText(permissions.getDesignation());
 
-            latitude.setText(String.valueOf(deliveryAddress.getLatitude()));
-            longitude.setText(String.valueOf(deliveryAddress.getLongitude()));
-
+            permitCreateUpdateItemCat.setChecked(permissions.isPermitCreateUpdateItemCat());
+            permitCreateUpdateItems.setChecked(permissions.isPermitCreateUpdateItems());
+            permitEnableShops.setChecked(permissions.isPermitApproveShops());
         }
     }
 
@@ -226,7 +288,7 @@ public class EditStaffPermissionsFragment extends Fragment {
         }
         else if(current_mode == MODE_UPDATE)
         {
-            updateAddress();
+            updatePermissions();
         }
 
     }
@@ -241,60 +303,6 @@ public class EditStaffPermissionsFragment extends Fragment {
     {
         boolean isValid = true;
 
-
-
-        if(longitude.getText().toString().length()==0)
-        {
-            longitude.setError("Longitude cant be empty !");
-            longitude.requestFocus();
-            isValid= false;
-        }
-        else
-        {
-            double lon = Double.parseDouble(longitude.getText().toString());
-
-            if(lon >180 || lon < -180)
-            {
-                longitude.setError("Invalid Longitude !");
-                isValid = false;
-            }
-
-        }
-
-
-        if(latitude.getText().toString().length()==0)
-        {
-            latitude.setError("Latitude cant be empty !");
-            latitude.requestFocus();
-            isValid = false;
-        }
-        else
-        {
-            double lat = Double.parseDouble(latitude.getText().toString());
-
-            if(lat >90 || lat <- 90)
-            {
-                latitude.setError("Invalid Latitude !");
-                isValid  = false;
-            }
-        }
-
-
-
-
-        if(pincode.getText().toString().length()==0)
-        {
-            pincode.setError("Pincode cannot be empty !");
-            pincode.requestFocus();
-            isValid = false;
-        }
-
-        if(receiversPhoneNumber.getText().toString().length()==0)
-        {
-            receiversPhoneNumber.setError("Phone number cannot be empty !");
-            receiversPhoneNumber.requestFocus();
-            isValid = false;
-        }
 
 
         return isValid;
@@ -315,57 +323,10 @@ public class EditStaffPermissionsFragment extends Fragment {
             return;
         }
 
-
-        if(deliveryAddress==null)
-        {
-            deliveryAddress = new DeliveryAddress();
-        }
-
         getDataFromViews();
-        deliveryAddress.setEndUserID(PrefLogin.getUser(getActivity()).getUserID());
 
         progressBar.setVisibility(View.VISIBLE);
         updateDeliveryAddress.setVisibility(View.INVISIBLE);
-
-
-
-        Call<DeliveryAddress> call = deliveryAddressService.postAddress(deliveryAddress);
-        call.enqueue(new Callback<DeliveryAddress>() {
-            @Override
-            public void onResponse(Call<DeliveryAddress> call, Response<DeliveryAddress> response) {
-
-                if (response != null && response.code() == 201) {
-
-                    showToastMessage("Added Successfully !");
-
-                    current_mode = MODE_UPDATE;
-//                    updateIDFieldVisibility();
-                    deliveryAddress = response.body();
-//                    bindDataToViews();
-
-                    setActionBarTitle();
-                }
-                else
-                {
-                    showToastMessage("Unsuccessful !");
-                }
-
-
-
-                progressBar.setVisibility(View.INVISIBLE);
-                updateDeliveryAddress.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onFailure(Call<DeliveryAddress> call, Throwable t) {
-
-                showToastMessage("Network Connection Failed !");
-
-
-                progressBar.setVisibility(View.INVISIBLE);
-                updateDeliveryAddress.setVisibility(View.VISIBLE);
-            }
-        });
     }
 
 
@@ -374,19 +335,34 @@ public class EditStaffPermissionsFragment extends Fragment {
 
 
 
-    private void updateAddress()
+    private void updatePermissions()
     {
         getDataFromViews();
 
-        Call<ResponseBody> call = deliveryAddressService.putAddress(deliveryAddress,deliveryAddress.getId());
+
+        permissions.setStaffUserID(staffID);
+
+
+        Call<ResponseBody> call = staffService.updateStaffPermissions(
+                PrefLogin.getAuthorizationHeaders(getActivity()),
+                permissions
+        );
+
 
 
         progressBar.setVisibility(View.VISIBLE);
         updateDeliveryAddress.setVisibility(View.INVISIBLE);
 
+
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if(!isVisible())
+                {
+                    return;
+                }
+
 
                 if(response.code()==200)
                 {
@@ -394,7 +370,7 @@ public class EditStaffPermissionsFragment extends Fragment {
                 }
                 else
                 {
-                    showToastMessage("failed to update !");
+                    showToastMessage("failed Code : " + response.code());
                 }
 
 
@@ -405,6 +381,12 @@ public class EditStaffPermissionsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                if(!isVisible())
+                {
+                    return;
+                }
 
                 showToastMessage("Network connection failed !");
 
@@ -421,66 +403,6 @@ public class EditStaffPermissionsFragment extends Fragment {
     {
         Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
     }
-
-
-
-
-
-
-
-    private int REQUEST_CODE_PICK_LAT_LON = 23;
-
-
-    @OnClick(R.id.pick_location_button)
-    void pickLocationClick()
-    {
-//        Intent intent = new Intent(getActivity(),PickLocationActivity.class);
-//        startActivityForResult(intent,REQUEST_CODE_PICK_LAT_LON);
-
-
-//        Intent intent = new Intent(getActivity(),PickLocation.class);
-//        intent.putExtra("lat_dest",Double.parseDouble(latitude.getText().toString()));
-//        intent.putExtra("lon_dest",Double.parseDouble(longitude.getText().toString()));
-//        startActivityForResult(intent,3);
-    }
-
-
-
-
-    @OnClick(R.id.navigate_button)
-    void navigateButton()
-    {
-        String str_latitude = latitude.getText().toString();
-        String str_longitude = longitude.getText().toString();
-
-        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + str_latitude +  "," + str_longitude);
-        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-        mapIntent.setPackage("com.google.android.apps.maps");
-        startActivity(mapIntent);
-    }
-
-
-
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-
-        if(resultCode == RESULT_OK && requestCode == REQUEST_CODE_PICK_LAT_LON)
-        {
-            latitude.setText(String.valueOf(data.getDoubleExtra("latitude",0)));
-            longitude.setText(String.valueOf(data.getDoubleExtra("longitude",0)));
-        }
-        else if(requestCode==3 && resultCode==3)
-        {
-            latitude.setText(String.valueOf(data.getDoubleExtra("lat_dest",0.0)));
-            longitude.setText(String.valueOf(data.getDoubleExtra("lon_dest",0.0)));
-        }
-
-    }
-
 
 
 

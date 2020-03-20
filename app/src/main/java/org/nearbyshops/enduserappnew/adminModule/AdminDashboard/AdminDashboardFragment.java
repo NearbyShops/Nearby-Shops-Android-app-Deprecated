@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrderHistoryPaging;
+import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
@@ -211,16 +212,28 @@ public class AdminDashboardFragment extends Fragment {
 
 
     @OnClick(R.id.user_accounts)
+    void optionUsersClick(View view)
+    {
+        Intent intent = new Intent(getActivity(), UsersList.class);
+        intent.putExtra(UsersListFragment.USER_MODE_INTENT_KEY,UsersListFragment.MODE_ADMIN_USER_LIST);
+        startActivity(intent);
+    }
+
+
+
+    @OnClick(R.id.staff_accounts)
     void optionStaffClick(View view)
     {
-        startActivity(new Intent(getActivity(), UsersList.class));
+        Intent intent = new Intent(getActivity(), UsersList.class);
+        intent.putExtra(UsersListFragment.USER_MODE_INTENT_KEY,UsersListFragment.MODE_ADMIN_STAFF_LIST);
+        startActivity(intent);
     }
 
 
 
 
 
-//    @OnClick(R.id.edit_profile)
+    //    @OnClick(R.id.edit_profile)
     void editProfileClick()
     {
         Intent intent = new Intent(getActivity(), EditProfile.class);

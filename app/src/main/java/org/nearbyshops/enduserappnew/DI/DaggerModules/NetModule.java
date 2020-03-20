@@ -33,6 +33,7 @@ import org.nearbyshops.enduserappnew.API.ShopReviewService;
 import org.nearbyshops.enduserappnew.API.ShopReviewThanksService;
 import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.API.ShopStaffService;
+import org.nearbyshops.enduserappnew.API.StaffService;
 import org.nearbyshops.enduserappnew.API.TransactionService;
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.MyApplication;
@@ -355,6 +356,16 @@ public class NetModule {
     {
         return retrofit.create(ShopStaffService.class);
     }
+
+
+
+
+    @Provides
+    StaffService getStaffService(Retrofit retrofit)
+    {
+        return retrofit.create(StaffService.class);
+    }
+
 
 
 

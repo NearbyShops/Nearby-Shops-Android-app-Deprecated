@@ -7,11 +7,12 @@ import org.nearbyshops.enduserappnew.DI.DaggerModules.AppModule;
 import org.nearbyshops.enduserappnew.DI.DaggerModules.NetModule;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategoryFragment;
 import org.nearbyshops.enduserappnew.HomeBackup;
+import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToStaffDialog;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarketSmall1Mar20;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersDataSource;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersListPagingFragment;
-import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToStaffDialog;
+import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToShopStaffDialog;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.EditShopStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarket;
@@ -268,7 +269,7 @@ public interface NetComponent {
 
     void Inject(EditShopStaffPermissionsFragment editShopStaffPermissionsFragment);
 
-    void Inject(AddUserToStaffDialog addUserToStaffDialog);
+    void Inject(AddUserToShopStaffDialog addUserToShopStaffDialog);
 
     void Inject(DeliveryInventoryFragment deliveryInventoryFragment);
 
@@ -295,4 +296,6 @@ public interface NetComponent {
     void Inject(BackupViewHolderMarketSmall1Mar20 backupViewHolderMarketSmall1Mar20);
 
     void Inject(LoginUsingOTPGlobalFragment loginUsingOTPGlobalFragment);
+
+    void Inject(AddUserToStaffDialog addUserToStaffDialog);
 }

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
@@ -162,9 +163,10 @@ public class ShopDashboard extends AppCompatActivity {
     @OnClick(R.id.option_staff_accounts)
     void optionStaffAccounts()
     {
-        Intent intent = new Intent(this, UsersList.class);
-        intent.putExtra("default_role", User.ROLE_SHOP_STAFF_CODE);
 
+        Intent intent = new Intent(this, UsersList.class);
+//        intent.putExtra("default_role", User.ROLE_SHOP_STAFF_CODE);
+        intent.putExtra(UsersListFragment.USER_MODE_INTENT_KEY,UsersListFragment.MODE_SHOP_ADMIN_SHOP_STAFF_LIST);
         startActivity(intent);
     }
 
@@ -175,8 +177,8 @@ public class ShopDashboard extends AppCompatActivity {
     void optionDeliveryAccounts()
     {
         Intent intent = new Intent(this, UsersList.class);
-        intent.putExtra("default_role", User.ROLE_DELIVERY_GUY_SELF_CODE);
-
+//        intent.putExtra("default_role", User.ROLE_DELIVERY_GUY_SELF_CODE);
+        intent.putExtra(UsersListFragment.USER_MODE_INTENT_KEY,UsersListFragment.MODE_SHOP_ADMIN_DELIVERY_STAFF_LIST);
         startActivity(intent);
     }
 
