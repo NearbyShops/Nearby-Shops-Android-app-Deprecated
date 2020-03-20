@@ -22,7 +22,8 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemTypeTwo;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemTypeTwoBackup;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
-import org.nearbyshops.enduserappnew.aSellerModule.DeliveryPersonInventory.Fragment.DeliveryInventoryFragment;
+import org.nearbyshops.enduserappnew.aSellerModule.FilterDeliveryGuy.FilterDeliveryFragment;
+import org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryPerson.Fragment.DeliveryInventoryFragment;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.FragmentAddCredit;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboardFragment;
@@ -49,9 +50,8 @@ import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.ItemsByCatFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsDatabase.ItemsDatabaseFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCatSellerFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopSeller.ItemsInShopFragment;
-import org.nearbyshops.enduserappnew.aSellerModule.OrdersInventory.Fragment.OrdersInventoryFragment;
+import org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.Fragment.OrdersInventoryFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.QuickStockEditor.FragmentShopItem;
-import org.nearbyshops.enduserappnew.aSellerModule.SelectDeliveryGuy.SelectDeliveryFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopAdminHomeFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Lists.TransactionHistory.TransactionFragment;
@@ -231,7 +231,7 @@ public interface NetComponent {
 
     void Inject(UsersListFragment usersListFragment);
 
-    void Inject(SelectDeliveryFragment selectDeliveryFragment);
+    void Inject(FilterDeliveryFragment filterDeliveryFragment);
 
     void Inject(FragmentShopItem fragmentShopItem);
 

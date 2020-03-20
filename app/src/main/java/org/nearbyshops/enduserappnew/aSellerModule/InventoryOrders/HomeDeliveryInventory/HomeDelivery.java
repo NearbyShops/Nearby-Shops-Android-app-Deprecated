@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSellerModule.OrdersInventory.HomeDeliveryInventory;
+package org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.HomeDeliveryInventory;
 
 import android.app.SearchManager;
 import android.content.Intent;

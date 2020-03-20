@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSellerModule.SelectDeliveryGuy;
+package org.nearbyshops.enduserappnew.aSellerModule.FilterDeliveryGuy;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,7 +43,7 @@ import retrofit2.Response;
  * Created by sumeet on 14/6/17.
  */
 
-public class SelectDeliveryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, Adapter.NotificationsFromAdapter{
+public class FilterDeliveryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, Adapter.NotificationsFromAdapter{
 
     boolean isDestroyed = false;
 
@@ -81,7 +81,7 @@ public class SelectDeliveryFragment extends Fragment implements SwipeRefreshLayo
 //    int i = 1;
 
 
-    public SelectDeliveryFragment() {
+    public FilterDeliveryFragment() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);

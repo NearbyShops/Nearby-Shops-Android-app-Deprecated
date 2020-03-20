@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSellerModule.DeliveryGuyHome;
+package org.nearbyshops.enduserappnew.aSellerModule.DashboardDeliveryGuy;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.aSellerModule.DeliveryPersonInventory.DeliveryGuyDashboard;
+import org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryPerson.DeliveryGuyDashboard;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

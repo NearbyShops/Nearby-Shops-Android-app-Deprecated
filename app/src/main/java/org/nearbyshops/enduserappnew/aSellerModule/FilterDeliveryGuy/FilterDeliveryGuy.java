@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSellerModule.SelectDeliveryGuy;
+package org.nearbyshops.enduserappnew.aSellerModule.FilterDeliveryGuy;
 
 import android.os.Bundle;
 
@@ -10,7 +10,7 @@ import org.nearbyshops.enduserappnew.R;
 import butterknife.ButterKnife;
 
 
-public class SelectDeliveryGuy extends AppCompatActivity {
+public class FilterDeliveryGuy extends AppCompatActivity {
 
 
     public static final String TAG_STEP_ONE = "tag_step_one";
@@ -37,7 +37,7 @@ public class SelectDeliveryGuy extends AppCompatActivity {
         {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container,new SelectDeliveryFragment(),TAG_STEP_ONE)
+                    .replace(R.id.fragment_container,new FilterDeliveryFragment(),TAG_STEP_ONE)
                     .commitNow();
         }
 

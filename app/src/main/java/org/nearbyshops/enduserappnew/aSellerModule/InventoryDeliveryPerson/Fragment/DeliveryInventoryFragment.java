@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSellerModule.DeliveryPersonInventory.Fragment;
+package org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryPerson.Fragment;
 
 import android.content.Intent;
 import android.location.Location;

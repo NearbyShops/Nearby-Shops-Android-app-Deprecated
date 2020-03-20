@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSellerModule.OrdersInventory.Fragment;
+package org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.Fragment;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,10 +33,10 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChangedNew;
 import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
-import org.nearbyshops.enduserappnew.aSellerModule.OrdersInventory.HomeDeliveryInventory.HomeDelivery;
+import org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.HomeDeliveryInventory.HomeDelivery;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortOrders;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.aSellerModule.SelectDeliveryGuy.SelectDeliveryGuy;
+import org.nearbyshops.enduserappnew.aSellerModule.FilterDeliveryGuy.FilterDeliveryGuy;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderButtonSingle;
@@ -293,9 +293,8 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
                     null,null,
                     null,
                     searchQuery, current_sort,
-                limit,offset,clearDataset, false);
-
-
+                limit,offset,clearDataset, false
+        );
 
 
 
@@ -1639,7 +1638,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
         int orderStatus = getArguments().getInt("order_status");
 
 
-        Intent intent = new Intent(getActivity(), SelectDeliveryGuy.class);
+        Intent intent = new Intent(getActivity(), FilterDeliveryGuy.class);
         intent.putExtra("order_status",orderStatus);
         startActivityForResult(intent,562);
     }

@@ -1,11 +1,11 @@
-package org.nearbyshops.enduserappnew.aSellerModule.OrdersInventory.HomeDeliveryInventory;
+package org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.HomeDeliveryInventory;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDelivery;
-import org.nearbyshops.enduserappnew.aSellerModule.OrdersInventory.Fragment.OrdersInventoryFragment;
+import org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.Fragment.OrdersInventoryFragment;
 
 
 /**

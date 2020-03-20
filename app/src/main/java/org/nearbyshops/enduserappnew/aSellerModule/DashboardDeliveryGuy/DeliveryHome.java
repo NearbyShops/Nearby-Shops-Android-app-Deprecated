@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSellerModule.DeliveryGuyHome;
+package org.nearbyshops.enduserappnew.aSellerModule.DashboardDeliveryGuy;
 
 import android.os.Bundle;
 

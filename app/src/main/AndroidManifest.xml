@@ -91,7 +91,7 @@
 
 
 
-        <activity android:name=".aSellerModule.DeliveryGuyHome.DeliveryHome"/>
+        <activity android:name=".aSellerModule.DashboardDeliveryGuy.DeliveryHome"/>
 
         <activity android:name=".adminModule.AdminDashboard.AdminDashboard"/>
         <activity android:name=".adminModule.StaffDashboard.StaffDashboard"/>
@@ -152,7 +152,7 @@
 <!--        <activity android:name=".aSellerModule.OrdersInventory.HomeDeliveryInventory.HomeDelivery" />-->
 <!--        <activity android:name=".aSellerModule.OrdersInventory.PickFromShopInventory.PickFromShopInventory" />-->
 <!--        <activity android:name=".aSellerModule.QuickStockEditor.QuickStockEditor" />-->
-        <activity android:name=".aSellerModule.SelectDeliveryGuy.SelectDeliveryGuy" />
+        <activity android:name=".aSellerModule.FilterDeliveryGuy.FilterDeliveryGuy" />
 
         <activity android:name=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard" />
         <activity android:name=".Lists.TransactionHistory.Transactions" />
@@ -208,7 +208,7 @@
 
         <activity
             android:launchMode="singleTop"
-            android:name=".aSellerModule.OrdersInventory.PickFromShopInventory.PickFromShopInventory"
+            android:name=".aSellerModule.InventoryOrders.PickFromShopInventory.PickFromShopInventory"
             android:label="Pick From Shop Inventory"
             android:parentActivityName=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard">
             <meta-data
@@ -229,7 +229,7 @@
 
         <activity
             android:launchMode="singleTop"
-            android:name=".aSellerModule.OrdersInventory.HomeDeliveryInventory.HomeDelivery"
+            android:name=".aSellerModule.InventoryOrders.HomeDeliveryInventory.HomeDelivery"
             android:label="Home Delivery Inventory"
             android:parentActivityName=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard">
             <meta-data
@@ -426,7 +426,7 @@
 
         <activity
             android:launchMode="singleTop"
-            android:name=".aSellerModule.DeliveryPersonInventory.DeliveryGuyDashboard"
+            android:name=".aSellerModule.InventoryDeliveryPerson.DeliveryGuyDashboard"
             android:label="Delivery Inventory"
             android:parentActivityName=".Home">
             <meta-data

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSellerModule.SelectDeliveryGuy;
+package org.nearbyshops.enduserappnew.aSellerModule.FilterDeliveryGuy;
 
 import android.content.Context;
 import android.content.Intent;
@@ -120,8 +120,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             int itemCount = 0;
 
 
-            if (fragment instanceof SelectDeliveryFragment) {
-                itemCount = (((SelectDeliveryFragment) fragment).item_count_vehicle + 1 );
+            if (fragment instanceof FilterDeliveryFragment) {
+                itemCount = (((FilterDeliveryFragment) fragment).item_count_vehicle + 1 );
             }
 
 

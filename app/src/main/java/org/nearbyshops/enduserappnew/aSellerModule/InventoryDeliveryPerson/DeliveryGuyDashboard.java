@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSellerModule.DeliveryPersonInventory;
+package org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryPerson;
 
 import android.Manifest;
 import android.app.SearchManager;
