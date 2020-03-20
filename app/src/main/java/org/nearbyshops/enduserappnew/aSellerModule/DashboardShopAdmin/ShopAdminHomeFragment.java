@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome;
+package org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.aSellerModule.ShopDashboard.ShopDashboard;
+import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard;
 import org.nearbyshops.enduserappnew.Lists.TransactionHistory.Transactions;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 

@@ -73,6 +73,12 @@ public interface ShopService {
 
 
 
+    @GET ("/api/v1/Shop/GetShopForShopStaff")
+    Call<Shop> getShopForShopStaff(@Header("Authorization") String headers);
+
+
+
+
 
     @PUT ("/api/v1/Shop/AddBalance/{ShopAdminID}/{AmountToAdd}")
     Call<ResponseBody> addBalance(

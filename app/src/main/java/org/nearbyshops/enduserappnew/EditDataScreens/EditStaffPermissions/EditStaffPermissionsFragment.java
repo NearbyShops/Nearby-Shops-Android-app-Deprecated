@@ -152,11 +152,11 @@ public class EditStaffPermissionsFragment extends Fragment {
             {
                 if(current_mode == MODE_ADD)
                 {
-                    actionBar.setTitle("Add Delivery Address");
+                    actionBar.setTitle("Add Staff Permissions");
                 }
                 else if(current_mode==MODE_UPDATE)
                 {
-                    actionBar.setTitle("Edit Delivery Address");
+                    actionBar.setTitle("Edit Staff Permissions");
                 }
 
             }

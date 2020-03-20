@@ -158,6 +158,44 @@ public class ViewModelShop extends AndroidViewModel {
 
 
 
+    public void getShopForShopStaff()
+    {
+        Call<Shop> call = shopService.getShopForShopStaff(
+                PrefLogin.getAuthorizationHeaders(getApplication())
+        );
+
+
+
+
+        call.enqueue(new Callback<Shop>() {
+            @Override
+            public void onResponse(Call<Shop> call, Response<Shop> response) {
+
+                if(response.code()==200 && response.body()!=null)
+                {
+                    shopLive.postValue(response.body());
+                    event.postValue(ViewModelShop.EVENT_SHOP_DETAILS_FETCHED);
+
+                }
+                else
+                {
+                    event.postValue(ViewModelShop.EVENT_NETWORK_FAILED);
+                    message.postValue("Failed Code : " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Shop> call, Throwable t) {
+
+                event.postValue(ViewModelShop.EVENT_NETWORK_FAILED);
+            }
+        });
+    }
+
+
+
+
+
 
     public void makeNetworkCallShop(int shopID)
     {

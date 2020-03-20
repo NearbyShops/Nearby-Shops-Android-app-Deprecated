@@ -48,7 +48,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ShopImageList;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.aSellerModule.ShopDashboard.ShopDashboard;
+import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.AddCredit;
 
@@ -701,6 +701,10 @@ public class EditShopFragment extends Fragment {
                 {
                     showToastMessage("Update Successful !");
                     PrefShopAdminHome.saveShop(shop,getContext());
+                }
+                else if(response.code()== 403 || response.code() ==401)
+                {
+                    showToastMessage("Not Permitted !");
                 }
                 else
                 {

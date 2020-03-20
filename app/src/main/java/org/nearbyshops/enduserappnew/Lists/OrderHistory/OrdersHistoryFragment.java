@@ -57,10 +57,7 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
 
 
-
-
-//    @Inject
-//    OrderServicePFS orderService;
+    
 
     public static final String TAG_SLIDING_LAYER = "sliding_layer_orders";
     public static final String IS_FILTER_BY_SHOP = "IS_FILTER_BY_SHOP";
@@ -86,8 +83,8 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
     private boolean isDestroyed;
 
 
-    @BindView(R.id.slidingLayer)
-    SlidingLayer slidingLayer;
+
+    @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
     @BindView(R.id.shop_count_indicator) TextView orderCountIndicator;
 
 

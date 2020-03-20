@@ -537,6 +537,7 @@ public class FragmentShopsList extends Fragment implements
 
                         if(response.body().getResults().size()==0)
                         {
+                            dataset.add(0, new SetLocationManually());
                             emptyScreen.setVisibility(View.VISIBLE);
                         }
                         else

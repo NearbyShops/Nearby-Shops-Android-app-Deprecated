@@ -82,15 +82,10 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
     private static final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 56;
 
 
-    ItemCategory itemCategory;
+    private ItemCategory itemCategory;
 
     public static final String ITEM_CATEGORY_INTENT_KEY = "item_cat";
 
-//    Validator validator;
-
-
-//    @Inject
-//    DeliveryGuySelfService deliveryService;
 
     @Inject
     ItemService itemService;
@@ -102,9 +97,10 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
     ItemSpecNameService itemSpecNameService;
 
 
+
     // flag for knowing whether the image is changed or not
-    boolean isImageChanged = false;
-    boolean isImageRemoved = false;
+    private boolean isImageChanged = false;
+    private boolean isImageRemoved = false;
 
 
 

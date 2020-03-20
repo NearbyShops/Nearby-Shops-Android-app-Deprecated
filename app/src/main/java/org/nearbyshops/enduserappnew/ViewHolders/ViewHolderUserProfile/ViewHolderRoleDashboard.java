@@ -19,14 +19,18 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
+import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopStaff.ShopDashboardForStaff;
 import org.nearbyshops.enduserappnew.aSellerModule.DeliveryGuyHome.DeliveryHome;
-import org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome.ShopAdminHome;
+import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopAdminHome;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboard;
+import org.nearbyshops.enduserappnew.adminModule.StaffDashboard.StaffDashboard;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,6 +89,18 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
 //        viewModelShop = ViewModelProviders.of(fragment).get(ViewModelShop.class);
 
         viewModelShop = new ViewModelShop(MyApplication.application);
+
+
+        viewModelShop.getShopLive().observe(fragment, new Observer<Shop>() {
+            @Override
+            public void onChanged(Shop shop) {
+
+                PrefShopAdminHome.saveShop(shop,context);
+
+                Intent intent = new Intent(context, ShopDashboardForStaff.class);
+                context.startActivity(intent);
+            }
+        });
 
 
 
@@ -147,9 +163,23 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
             Intent intent = new Intent(context, ShopAdminHome.class);
             context.startActivity(intent);
         }
+        else if(user.getRole()==User.ROLE_SHOP_STAFF_CODE)
+        {
+
+            viewModelShop.getShopForShopStaff();
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setMessage("Please wait ... getting shop details !");
+            progressDialog.show();
+
+        }
         else if(user.getRole()==User.ROLE_ADMIN_CODE)
         {
             Intent intent = new Intent(context, AdminDashboard.class);
+            context.startActivity(intent);
+        }
+        else if(user.getRole()==User.ROLE_STAFF_CODE)
+        {
+            Intent intent = new Intent(context, StaffDashboard.class);
             context.startActivity(intent);
         }
         else if(user.getRole()==User.ROLE_DELIVERY_GUY_SELF_CODE)
@@ -201,10 +231,6 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
 
 
 
-
-
-
-
     private void bindDashboard()
     {
         User user = PrefLogin.getUser(context);
@@ -221,10 +247,15 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
 
         if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
         {
-
             marketName.setText(marketNameString);
             dashboardName.setText("Shop Dashboard");
             dashboardDescription.setText("Press here to access the shop dashboard !");
+        }
+        else if(user.getRole()==User.ROLE_SHOP_STAFF_CODE)
+        {
+            marketName.setText(marketNameString);
+            dashboardName.setText("Shop Staff Dashboard");
+            dashboardDescription.setText("Press here to access shop dashboard !");
         }
         else if(user.getRole()==User.ROLE_DELIVERY_GUY_SELF_CODE)
         {
@@ -237,7 +268,12 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
             marketName.setText(marketNameString);
             dashboardName.setText("Admin Dashboard");
             dashboardDescription.setText("Press here to access the admin dashboard !");
-
+        }
+        else if(user.getRole()==User.ROLE_STAFF_CODE)
+        {
+            marketName.setText(marketNameString);
+            dashboardName.setText("Staff Dashboard");
+            dashboardDescription.setText("Press here to access the staff dashboard !");
         }
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {

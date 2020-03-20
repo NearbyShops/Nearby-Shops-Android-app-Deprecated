@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSellerModule.ShopDashboard;
+package org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopDashboard;
 
 import android.content.Intent;
 import android.os.Build;
@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsDatabase.ItemsDatabase;

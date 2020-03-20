@@ -52,7 +52,7 @@ import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopSeller.ItemsInShop
 import org.nearbyshops.enduserappnew.aSellerModule.OrdersInventory.Fragment.OrdersInventoryFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.QuickStockEditor.FragmentShopItem;
 import org.nearbyshops.enduserappnew.aSellerModule.SelectDeliveryGuy.SelectDeliveryFragment;
-import org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome.ShopAdminHomeFragment;
+import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopAdminHomeFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Lists.TransactionHistory.TransactionFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.ViewHolders.ViewHolderShopItemSeller;
@@ -95,6 +95,7 @@ import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsData
 import org.nearbyshops.enduserappnew.adminModule.ChangeParent.Adapter;
 import org.nearbyshops.enduserappnew.adminModule.ChangeParent.ItemCategoriesParent;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.Fragment.FragmentShopList;
+import org.nearbyshops.enduserappnew.adminModule.StaffDashboard.StaffDashboardFragment;
 
 
 import javax.inject.Singleton;
@@ -298,4 +299,6 @@ public interface NetComponent {
     void Inject(LoginUsingOTPGlobalFragment loginUsingOTPGlobalFragment);
 
     void Inject(AddUserToStaffDialog addUserToStaffDialog);
+
+    void Inject(StaffDashboardFragment staffDashboardFragment);
 }

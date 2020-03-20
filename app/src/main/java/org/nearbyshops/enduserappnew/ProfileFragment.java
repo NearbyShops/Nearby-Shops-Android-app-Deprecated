@@ -41,7 +41,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.aSellerModule.DeliveryGuyHome.DeliveryHome;
-import org.nearbyshops.enduserappnew.aSellerModule.ShopAdminHome.ShopAdminHome;
+import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopAdminHome;
 import org.nearbyshops.enduserappnew.adminModule.AdminDashboard.AdminDashboard;
 
 import retrofit2.Call;

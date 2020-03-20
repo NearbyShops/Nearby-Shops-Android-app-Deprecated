@@ -71,11 +71,6 @@ public class EditItemCategoryFragment extends Fragment {
 
     public static final String ITEM_CATEGORY_INTENT_KEY = "item_cat";
 
-//    Validator validator;
-
-
-//    @Inject
-//    DeliveryGuySelfService deliveryService;
 
     @Inject
     ItemCategoryService itemCategoryService;
@@ -472,7 +467,7 @@ public class EditItemCategoryFragment extends Fragment {
                 }
                 else if(response.code()== 403 || response.code() ==401)
                 {
-                    showToastMessage("Failed ! Reason : Not Permitted !");
+                    showToastMessage("Not Permitted !");
                 }
                 else
                 {
@@ -551,6 +546,10 @@ public class EditItemCategoryFragment extends Fragment {
 
                     PrefItemCategory.saveItemCategory(itemCategory,getContext());
 
+                }
+                else if(response.code()== 403 || response.code() ==401)
+                {
+                    showToastMessage("Not Permitted !");
                 }
                 else
                 {
