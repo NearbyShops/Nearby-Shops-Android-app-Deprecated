@@ -3,7 +3,6 @@ package org.nearbyshops.enduserappnew;
 
 import android.Manifest;
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -36,8 +35,8 @@ import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.ItemsByCatFragment;
 import org.nearbyshops.enduserappnew.Login.LoginPlaceholder.FragmentSignInMessage;
 import org.nearbyshops.enduserappnew.Lists.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Lists.Markets.MarketsFragmentNew;
-import org.nearbyshops.enduserappnew.OneSignal.PrefOneSignal;
-import org.nearbyshops.enduserappnew.OneSignal.UpdateOneSignalID;
+import org.nearbyshops.enduserappnew.PushOneSignal.PrefOneSignal;
+import org.nearbyshops.enduserappnew.PushOneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;

@@ -378,7 +378,7 @@ public class ShopDetailFragment extends Fragment
             public void run() {
                 swipeContainer.setRefreshing(true);
 
-                if(!isVisible())
+                if(isDestroyed)
                 {
                     swipeContainer.setRefreshing(false);
                     return;
@@ -887,7 +887,7 @@ public class ShopDetailFragment extends Fragment
                 @Override
                 public void onResponse(Call<FavouriteShopEndpoint> call, Response<FavouriteShopEndpoint> response) {
 
-                    if(!isVisible())
+                    if(isDestroyed)
                     {
                         return;
                     }
@@ -944,7 +944,7 @@ public class ShopDetailFragment extends Fragment
                 public void onResponse(Call<FavouriteShop> call, Response<FavouriteShop> response) {
 
 
-                    if(!isVisible())
+                    if(!isDestroyed)
                     {
                         return;
                     }
@@ -1172,7 +1172,7 @@ public class ShopDetailFragment extends Fragment
                     public void onResponse(Call<ShopReviewEndPoint> call, Response<ShopReviewEndPoint> response) {
 
 
-                        if(!isVisible())
+                        if(isDestroyed)
                         {
                             return;
                         }

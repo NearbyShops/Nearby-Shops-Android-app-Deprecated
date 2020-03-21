@@ -98,8 +98,8 @@ public class DeliveryGuyDashboard extends AppCompatActivity implements NotifyTit
         setupSlidingLayer();
 
 
-        requestLocationUpdates();
-        startSettingsCheck();
+//        requestLocationUpdates();
+//        startSettingsCheck();
 
     }
 

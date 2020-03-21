@@ -99,6 +99,8 @@ public class PrefLogin {
         return sharedPref.getString("username", "");
     }
 
+
+
     public static String getPassword(Context context)
     {
         context = MyApplication.getAppContext();
@@ -106,10 +108,6 @@ public class PrefLogin {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
         return sharedPref.getString("password", "");
     }
-
-
-
-
 
 
 
@@ -146,11 +144,6 @@ public class PrefLogin {
 
 
 
-
-
-
-
-
     public static void saveUserProfile(User user, Context context)
     {
         context = MyApplication.getAppContext();
@@ -166,9 +159,6 @@ public class PrefLogin {
 
         prefsEditor.apply();
     }
-
-
-
 
 
 

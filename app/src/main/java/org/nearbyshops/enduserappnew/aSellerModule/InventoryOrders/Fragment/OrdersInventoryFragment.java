@@ -20,10 +20,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.nearbyshops.enduserappnew.API.OrderService;
 import org.nearbyshops.enduserappnew.API.OrderServiceShopStaff;
+import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.OrderEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDelivery;
 import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusPickFromShop;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.ApplicationState;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -115,7 +117,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
 
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_pfs_inventory, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_inventory_orders, container, false);
 
 
         recyclerView = rootView.findViewById(R.id.recyclerView);
@@ -269,6 +271,8 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
         int orderStatus = getArguments().getInt("order_status");
         boolean isPickFromShop = getArguments().getBoolean("is_pick_from_shop");
 
+        boolean getDeliveryProfile = false;
+
 
         Integer orderStatusHD = null;
         Integer orderStatusPFS = null;
@@ -280,6 +284,11 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
         else
         {
             orderStatusHD = orderStatus;
+
+            if(orderStatusHD>OrderStatusHomeDelivery.ORDER_PACKED)
+            {
+                getDeliveryProfile = true;
+            }
         }
 
 
@@ -288,13 +297,15 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
         Call<OrderEndPoint> call = orderService.getOrders(
                     PrefLogin.getAuthorizationHeaders(getActivity()),
                 true, false,
+                getDeliveryProfile,
                     deliveryGuyID,
                     isPickFromShop, orderStatusHD, orderStatusPFS,
-                    null,null,
+                PrefLocation.getLatitude(getActivity()),PrefLocation.getLongitude(getActivity()),
                     null,
                     searchQuery, current_sort,
                 limit,offset,clearDataset, false
         );
+
 
 
 
@@ -310,10 +321,11 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
 
                 if(response.body()!= null)
                 {
-                    item_count = response.body().getItemCount();
+
 
                     if(clearDataset)
                     {
+                        item_count = response.body().getItemCount();
                         dataset.clear();
                     }
 
@@ -1513,11 +1525,11 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
 
 
 
+
         Intent intent = new Intent(getActivity(), UsersList.class);
-        intent.putExtra("select_delivery_guy",true);
-
+//        intent.putExtra("select_delivery_guy",true);
+        intent.putExtra(UsersListFragment.USER_MODE_INTENT_KEY, UsersListFragment.MODE_SELECT_DELIVERY_PERSON);
         startActivityForResult(intent,123);
-
     }
 
 

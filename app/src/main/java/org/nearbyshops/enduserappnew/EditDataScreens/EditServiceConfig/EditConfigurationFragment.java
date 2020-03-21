@@ -37,7 +37,7 @@ import com.yalantis.ucrop.UCropActivity;
 import org.nearbyshops.enduserappnew.API.API_SDS.ServiceConfigService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.UserService;
-import org.nearbyshops.enduserappnew.LocationPicker.LocationPickerWithRadius.PickDeliveryRange;
+import org.nearbyshops.enduserappnew.PlacePickerMapbox.PlacePickerWithRadius.PickDeliveryRange;
 import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;

@@ -21,7 +21,7 @@ import butterknife.OnClick;
 import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
-import org.nearbyshops.enduserappnew.LocationPicker.PickLocation;
+import org.nearbyshops.enduserappnew.PlacePickerMapbox.PickLocation;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 //import org.nearbyshops.enduserappnew.LocationPicker.PickLocation;

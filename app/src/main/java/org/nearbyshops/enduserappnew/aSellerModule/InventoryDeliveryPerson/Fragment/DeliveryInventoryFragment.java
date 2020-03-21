@@ -21,6 +21,7 @@ import org.nearbyshops.enduserappnew.API.OrderService;
 import org.nearbyshops.enduserappnew.API.OrderServiceDeliveryPersonSelf;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.OrderEndPoint;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDelivery;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
@@ -55,12 +56,6 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
         ViewHolderOrderButtonDouble.ListItemClick,
         NotifySort, NotifySearch, RefreshFragment, NotifyLocation {
 
-
-//    @Inject
-//    OrderService orderService;
-//
-//    @Inject
-//    OrderServiceShopStaff orderServiceShopStaff;
 
     @Inject
     OrderService orderService;
@@ -114,7 +109,7 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
 
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_pfs_inventory, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_inventory_delivery_guy, container, false);
 
 
         recyclerView = rootView.findViewById(R.id.recyclerView);
@@ -252,15 +247,11 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
 
 
 
-
-
-
-
     private void makeNetworkCall(final boolean clearDataset)
     {
+        User user = PrefLogin.getUser(getActivity());
 
 
-//            Shop currentShop = UtilityShopHome.getShopDetails(getContext());
 
         String current_sort = "";
         current_sort = PrefSortOrders.getSort(getContext()) + " " + PrefSortOrders.getAscending(getContext());
@@ -289,21 +280,9 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
 
 
         Integer deliveryGuyID = null;
+//        deliveryGuyID = getActivity().getIntent().getIntExtra("delivery_guy_id",0);
 
-        deliveryGuyID = getActivity().getIntent().getIntExtra("delivery_guy_id",0);
-
-
-//        Call<OrderEndPoint> call = orderServiceDelivery
-//                .getOrders(PrefLogin.getAuthorizationHeaders(getActivity()),
-//                        deliveryGuyID,
-//                        null,null,
-//                        false,OrderStatusHomeDelivery.HANDOVER_REQUESTED,
-//                        null,
-//                        null,null,
-//                        null,null,
-//                        null,
-//                        searchQuery,current_sort,limit,offset,null);
-//
+        deliveryGuyID = user.getUserID();
 
 
 
@@ -323,12 +302,14 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
         Call<OrderEndPoint> call = orderService.getOrders(
                     PrefLogin.getAuthorizationHeaders(getActivity()),
                     false,false,
+                true,
                     deliveryGuyID,
                     isPickFromShop,
                     orderStatusHD, orderStatusPFS,
                     PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
                 null,
-                    searchQuery, current_sort,limit,offset,clearDataset,false
+                    searchQuery, current_sort,limit,offset,
+                clearDataset,false
         );
 
 
@@ -346,10 +327,11 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
 
                 if(response.body()!= null)
                 {
-                    item_count = response.body().getItemCount();
+
 
                     if(clearDataset)
                     {
+                        item_count = response.body().getItemCount();
                         dataset.clear();
                     }
 

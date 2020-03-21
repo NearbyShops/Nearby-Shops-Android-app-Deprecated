@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.LocationPicker;
+package org.nearbyshops.enduserappnew.PlacePickerMapbox;
 
 import android.Manifest;
 import android.content.Intent;

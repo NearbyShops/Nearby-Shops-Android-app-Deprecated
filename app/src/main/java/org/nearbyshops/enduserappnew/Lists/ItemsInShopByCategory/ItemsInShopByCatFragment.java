@@ -50,7 +50,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategorySmall;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortItemsInShop;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemTypeTwo;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemButton;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.ShopDetail;
@@ -78,8 +78,8 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        ViewHolderItemCategorySmall.ListItemClick, ViewHolderShopItem.ListItemClick,
-        ViewHolderItemCategory.ListItemClick, ViewHolderShopItemTypeTwo.ListItemClick,
+        ViewHolderItemCategorySmall.ListItemClick, ViewHolderShopItemButton.ListItemClick,
+        ViewHolderItemCategory.ListItemClick, ViewHolderShopItem.ListItemClick,
         NotifyBackPressed, NotifySort, NotifySearch,
         ViewHolderShopMedium.ListItemClick {
 

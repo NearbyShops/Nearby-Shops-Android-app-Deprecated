@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.OneSignal;
+package org.nearbyshops.enduserappnew.PushOneSignal;
 
 import android.app.IntentService;
 import android.content.Intent;

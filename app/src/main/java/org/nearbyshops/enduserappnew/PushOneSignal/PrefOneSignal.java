@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.OneSignal;
+package org.nearbyshops.enduserappnew.PushOneSignal;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -142,6 +142,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
         if(current_mode==MODE_SELECT_DELIVERY_PERSON)
         {
             ViewHolderFilterUsers.saveFilterByRole(getActivity(),User.ROLE_DELIVERY_GUY_SELF_CODE);
+            fab.setVisibility(View.GONE);
         }
         else if(current_mode==MODE_SHOP_ADMIN_SHOP_STAFF_LIST)
         {
@@ -340,6 +341,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
         if(user ==null)
         {
             swipeContainer.setRefreshing(false);
+            showToastMessage("User null !");
             return;
         }
 
@@ -400,13 +402,6 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-//                    showToastMessage("Item Count : " + item_count);
-
-                    if(item_count==0)
-                    {
-                        dataset.add(getEmptyScreen());
-                    }
-
 
 
                     if(offset + limit >= item_count)
@@ -417,6 +412,19 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
                     {
                         listAdapter.setLoadMore(true);
                     }
+                }
+                else
+                {
+                    showToastMessage("Failed Code : " + response.code());
+                }
+
+
+
+//                showToastMessage("Item Count : " + item_count);
+
+                if(item_count==0)
+                {
+                    dataset.add(getEmptyScreen());
                 }
 
 

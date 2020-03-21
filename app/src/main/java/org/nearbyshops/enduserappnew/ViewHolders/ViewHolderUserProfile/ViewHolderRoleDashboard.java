@@ -29,6 +29,7 @@ import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopStaff.ShopDashboardForStaff;
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardDeliveryGuy.DeliveryHome;
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopAdminHome;
+import org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryPerson.DeliveryGuyDashboard;
 import org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard;
 import org.nearbyshops.enduserappnew.adminModule.DashboardStaff.StaffDashboard;
 
@@ -184,8 +185,12 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
         }
         else if(user.getRole()==User.ROLE_DELIVERY_GUY_SELF_CODE)
         {
-            Intent intent = new Intent(context, DeliveryHome.class);
-            context.startActivity(intent);
+//            Intent intent = new Intent(context, DeliveryHome.class);
+//            context.startActivity(intent);
+
+
+            Intent deliveryGuyDashboard = new Intent(context, DeliveryGuyDashboard.class);
+            context.startActivity(deliveryGuyDashboard);
         }
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {

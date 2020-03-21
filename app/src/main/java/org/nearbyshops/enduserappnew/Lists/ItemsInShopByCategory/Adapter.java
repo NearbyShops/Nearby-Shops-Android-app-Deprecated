@@ -15,7 +15,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.AdapterItemCatHorizontalList;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemTypeTwo;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemButton;
 
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopMedium;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
@@ -107,7 +107,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
 
 //            viewHolderShopItem = ;
-            return ViewHolderShopItemTypeTwo.create(parent,context,fragment,this,cartItemMap,cartStats);
+            return ViewHolderShopItem.create(parent,context,fragment,this,cartItemMap,cartStats);
 
         }
         else if(viewType == VIEW_TYPE_SHOP)
@@ -153,13 +153,13 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ((ViewHolderHorizontalList) holder).setItem(new AdapterItemCatHorizontalList(list,context,fragment),null);
 
         }
-        else if(holder instanceof ViewHolderShopItemTypeTwo)
-        {
-            ((ViewHolderShopItemTypeTwo) holder).bindShopItems((ShopItem) dataset.get(position));
-        }
         else if(holder instanceof ViewHolderShopItem)
         {
             ((ViewHolderShopItem) holder).bindShopItems((ShopItem) dataset.get(position));
+        }
+        else if(holder instanceof ViewHolderShopItemButton)
+        {
+            ((ViewHolderShopItemButton) holder).bindShopItems((ShopItem) dataset.get(position));
         }
         else if (holder instanceof ViewHolderHeader) {
 

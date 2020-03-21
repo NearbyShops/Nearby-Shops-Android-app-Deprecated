@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Firebase;
+package org.nearbyshops.enduserappnew.PushFirebase;
 
 import android.media.MediaPlayer;
 
