@@ -27,11 +27,13 @@ Save your marketing expenses.  Submit your market to nearby shops and get free a
 Full installation guide available at https://developer.nearbyshops.org
 
 
-## Commercial Use Permitted under Single Market License
 
-We allow commercial use of this software with certain restrictions. You are permitted to use this software to build a small business that favors local economy. You cannot use this software to build business that abuse small business and local economy. 
+### Commercial Use Permitted under Single Market License
 
-Please read more about about restriction and permission here https://blog.nearbyshops.org/single-market-license/
+We allow commercial use of this software with certain restrictions. You are permitted to use this software to build a small business that favors local economy. 
+
+Please read more about about restriction and permissions here https://blog.nearbyshops.org/single-market-license/
+
 
 
 About Nearby Shops
