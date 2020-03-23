@@ -25,6 +25,7 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCat;
+import org.nearbyshops.enduserappnew.PlacePickerGoogleMaps.GooglePlacePicker;
 import org.nearbyshops.enduserappnew.PlacePickerMapbox.PickLocation;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -705,13 +706,22 @@ public class FragmentShopsList extends Fragment implements
 
     }
 
+
+
+
     @Override
     public void changeLocationClick() {
-        Intent intent = new Intent(getActivity(), PickLocation.class);
+
+//        Intent intent = new Intent(getActivity(), PickLocation.class);
+        Intent intent = new Intent(getActivity(), GooglePlacePicker.class);
         intent.putExtra("lat_dest",PrefLocation.getLatitude(getActivity()));
         intent.putExtra("lon_dest",PrefLocation.getLongitude(getActivity()));
         startActivityForResult(intent,3);
     }
+
+
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -719,7 +729,7 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-        if(requestCode==3)
+        if(requestCode==3 && resultCode==6)
         {
             if(data!=null)
             {

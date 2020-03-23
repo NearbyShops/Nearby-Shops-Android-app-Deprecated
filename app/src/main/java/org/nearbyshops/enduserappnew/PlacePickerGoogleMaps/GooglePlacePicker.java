@@ -1,11 +1,10 @@
-package org.nearbyshops.enduserappnew.PlacePickerGoogle;
+package org.nearbyshops.enduserappnew.PlacePickerGoogleMaps;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import org.nearbyshops.enduserappnew.PlacePickerGoogleMaps.PlacePickerWithMapFragment;
 import org.nearbyshops.enduserappnew.R;
 
 

@@ -91,6 +91,8 @@
 
 
 
+        <activity android:name=".PlacePickerGoogleMaps.GooglePlacePicker"/>
+
         <activity android:name=".aSellerModule.DashboardDeliveryGuy.DeliveryHome"/>
 
         <activity android:name=".adminModule.DashboardAdmin.AdminDashboard"/>
@@ -443,6 +445,10 @@
         </activity>
 
 
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAHjmh3U3OVYngo6huNoEpYhscFqcV9CFA" />
 
 
 

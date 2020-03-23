@@ -146,11 +146,6 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
             return view_type_current_market;
         }
-//        else if(dataset.get(position) instanceof List<?>)
-//        {
-//            return view_type_saved_markets_list;
-//        }
-
         else if(dataset.get(position) instanceof MarketsList)
         {
             return view_type_saved_markets_list;
@@ -203,25 +198,15 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holderCurrentMarket.setItem((ServiceConfigurationLocal) dataset.get(position));
 
         }
-//        else if(holderVH instanceof ViewHolderSavedMarketList)
-//        {
-//
-//            ((ViewHolderSavedMarketList) holderVH).setItem((List<ServiceConfigurationGlobal>) dataset.get(position));
-//
-//        }
-//        else if(holderVH instanceof ViewHolderSavedMarketList)
-//        {
-//
-//            ((ViewHolderSavedMarketList) holderVH).setItem((MarketsList) dataset.get(position));
-//
-//        }
+        else if(holderVH instanceof ViewHolderRoleDashboard)
+        {
+            ((ViewHolderRoleDashboard) holderVH).bindDashboard();
+        }
         else if(holderVH instanceof ViewHolderHorizontalList)
         {
-
             MarketsList marketsList = (MarketsList) dataset.get(position);
             AdapterSavedMarkets adapter = new AdapterSavedMarkets(marketsList.getDataset(),fragment.getActivity(),fragment);
             ((ViewHolderHorizontalList) holderVH).setItem(adapter,"Favourite Markets");
-
 
         }
         else if(holderVH instanceof ViewHolderUserProfile)
@@ -251,6 +236,21 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             ((LoadingViewHolder) holderVH).setLoading(loadMore);
         }
+
+
+        //        else if(holderVH instanceof ViewHolderSavedMarketList)
+//        {
+//
+//            ((ViewHolderSavedMarketList) holderVH).setItem((List<ServiceConfigurationGlobal>) dataset.get(position));
+//
+//        }
+//        else if(holderVH instanceof ViewHolderSavedMarketList)
+//        {
+//
+//            ((ViewHolderSavedMarketList) holderVH).setItem((MarketsList) dataset.get(position));
+//
+//        }
+
     }
 
 

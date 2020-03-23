@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.Lists.Markets.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.ViewHolderMarket;
+import org.nearbyshops.enduserappnew.PlacePickerGoogleMaps.GooglePlacePicker;
 import org.nearbyshops.enduserappnew.PlacePickerMapbox.PickLocation;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -478,7 +479,7 @@ public class MarketsFragmentNew extends Fragment implements
         {
             makeRefreshNetworkCall();
         }
-        else if(requestCode==3)
+        else if(requestCode==3 && resultCode==6)
         {
             if(data!=null)
             {
@@ -489,6 +490,10 @@ public class MarketsFragmentNew extends Fragment implements
                 makeRefreshNetworkCall();
             }
 
+        }
+        else if(requestCode==890)
+        {
+            makeRefreshNetworkCall();
         }
     }
 
@@ -502,11 +507,16 @@ public class MarketsFragmentNew extends Fragment implements
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
+
+
     }
+
+
 
     @Override
     public void changeLocationClick() {
-        Intent intent = new Intent(getActivity(), PickLocation.class);
+//        Intent intent = new Intent(getActivity(), PickLocation.class);
+        Intent intent = new Intent(getActivity(), GooglePlacePicker.class);
         intent.putExtra("lat_dest", PrefLocation.getLatitude(getActivity()));
         intent.putExtra("lon_dest",PrefLocation.getLongitude(getActivity()));
         startActivityForResult(intent,3);

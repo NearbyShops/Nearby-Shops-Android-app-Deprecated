@@ -213,7 +213,8 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
                             //     open edit shop in edit mode
                             Intent intent = new Intent(context, EditShop.class);
                             intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_ADD);
-                            context.startActivity(intent);
+//                            context.startActivity(intent);
+                            fragment.startActivityForResult(intent,890);
 
 
                         }
@@ -236,7 +237,7 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
 
 
 
-    private void bindDashboard()
+    public void bindDashboard()
     {
         User user = PrefLogin.getUser(context);
 

@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
+import com.google.android.libraries.places.api.Places;
 import com.mapbox.mapboxsdk.Mapbox;
 
 
@@ -64,6 +65,10 @@ public class MyApplication extends MultiDexApplication {
         MyApplication.application = this;
 
 //        MyApplicationCoreNew.context = getApplicationContext();
+
+
+//         Initialize Places.
+        Places.initialize(getApplicationContext(), "AIzaSyAHjmh3U3OVYngo6huNoEpYhscFqcV9CFA");
 
 
 

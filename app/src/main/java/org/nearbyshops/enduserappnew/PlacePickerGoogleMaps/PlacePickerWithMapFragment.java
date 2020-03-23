@@ -152,8 +152,8 @@ public class PlacePickerWithMapFragment extends Fragment {
                     double lon = 0;
 
 
-                    lat = getActivity().getIntent().getDoubleExtra("latitude",0);
-                    lon = getActivity().getIntent().getDoubleExtra("longitude",0);
+                    lat = getActivity().getIntent().getDoubleExtra("lat_dest",0);
+                    lon = getActivity().getIntent().getDoubleExtra("lon_dest",0);
 
 
 
@@ -254,8 +254,8 @@ public class PlacePickerWithMapFragment extends Fragment {
 
 
         Intent intentData = new Intent();
-        intentData.putExtra("latSelected",selectedLocation.getLatitude());
-        intentData.putExtra("lonSelected",selectedLocation.getLongitude());
+        intentData.putExtra("lat_dest",selectedLocation.getLatitude());
+        intentData.putExtra("lon_dest",selectedLocation.getLongitude());
         intentData.putExtra("locationName",selectedLocation.getLocationName());
         intentData.putExtra("address",selectedLocation.getLocationAddress());
 
@@ -438,38 +438,6 @@ public class PlacePickerWithMapFragment extends Fragment {
 
 
 
-//
-//
-//    @OnClick(R.id.clear_search_text)
-//    void clearSearchText()
-//    {
-//        searchBox.setText("");
-//    }
-//
-
-
-
-//    @OnTextChanged(R.id.search_text)
-//    void searchBoxChange(CharSequence newText)
-//    {
-//
-//        int PLACE_PICKER_REQUEST = 57;
-//
-//        try {
-//            Intent intent =
-//                    new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
-//                            .build(getActivity());
-//
-//            startActivityForResult(intent, PLACE_PICKER_REQUEST);
-//        } catch (GooglePlayServicesRepairableException e) {
-
-//        } catch (GooglePlayServicesNotAvailableException e) {
-//        }
-//    }
-
-
-
-
 
 
     private int AUTOCOMPLETE_REQUEST_CODE = 1;
@@ -487,20 +455,19 @@ public class PlacePickerWithMapFragment extends Fragment {
 // Start the autocomplete intent.
         Intent intent = new Autocomplete.IntentBuilder(
                 AutocompleteActivityMode.OVERLAY, fields)
-                .setCountry("IN")
-                .setLocationBias(RectangularBounds.newInstance(
-                        new com.google.android.gms.maps.model.LatLng(PrefLocation.getLatitude(getActivity()),PrefLocation.getLongitude(getActivity())),
-                        new com.google.android.gms.maps.model.LatLng(PrefLocation.getLatitude(getActivity()),PrefLocation.getLongitude(getActivity()))
-                ))
                 .build(getActivity());
-
-
-
-
 
 
         startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
 
+
+
+
+//        .setCountry("IN")
+//            .setLocationBias(RectangularBounds.newInstance(
+//                    new com.google.android.gms.maps.model.LatLng(PrefLocation.getLatitude(getActivity()),PrefLocation.getLongitude(getActivity())),
+//                    new com.google.android.gms.maps.model.LatLng(PrefLocation.getLatitude(getActivity()),PrefLocation.getLongitude(getActivity()))
+//            ))
 
 
 
