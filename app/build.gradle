@@ -34,8 +34,8 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         multiDexEnabled = true
-        versionCode 23
-        versionName "1.22"
+        versionCode 25
+        versionName "1.24"
 //        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //        buildConfigField "String", "Mapbox_Style_URL", localProperties['mapbox_style_url']
@@ -97,7 +97,7 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
 
     implementation 'com.hbb20:ccp:2.2.7'
-    implementation 'com.googlecode.libphonenumber:libphonenumber:8.11.4'
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.0'
     implementation 'com.github.sujithkanna:smileyrating:1.6.8'
     implementation 'com.alexvasilkov:gesture-views:2.6.0'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:6.5.0'
@@ -120,13 +120,13 @@ dependencies {
 
 
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
-    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
-    implementation 'com.squareup.okhttp3:okhttp:4.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.4.1'
 
 
-    implementation 'com.google.dagger:dagger:2.26'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.26'
+    implementation 'com.google.dagger:dagger:2.27'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.27'
 
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'

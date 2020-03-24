@@ -8,6 +8,7 @@ import org.nearbyshops.enduserappnew.DI.DaggerModules.NetModule;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategoryFragment;
 import org.nearbyshops.enduserappnew.HomeBackup;
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToStaffDialog;
+import org.nearbyshops.enduserappnew.Login.LoginGlobalUsingPasswordFragment;
 import org.nearbyshops.enduserappnew.PlacePickerGoogleMaps.PlacePickerWithMapFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarketSmall1Mar20;
@@ -18,7 +19,7 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.Ed
 import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarket;
 import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarketSmall;
-import org.nearbyshops.enduserappnew.Login.LoginUsingOTPGlobalFragment;
+import org.nearbyshops.enduserappnew.Login.LoginGlobalUsingOTPFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemBackup;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemButton;
@@ -58,9 +59,8 @@ import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Lists.TransactionHistory.TransactionFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.ViewHolders.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCatFragment;
-import org.nearbyshops.enduserappnew.Login.LoginFragment;
-import org.nearbyshops.enduserappnew.Login.LoginGlobalFragment;
-import org.nearbyshops.enduserappnew.Login.LoginUsingOTPFragment;
+import org.nearbyshops.enduserappnew.Login.LoginLocalUsingPasswordFragment;
+import org.nearbyshops.enduserappnew.Login.LoginLocalUsingOTPFragment;
 import org.nearbyshops.enduserappnew.Login.ServiceIndicatorFragment;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.RateReviewDialogMarket;
@@ -124,13 +124,13 @@ public interface NetComponent {
 
     void Inject(ItemImageListFragment itemImageListFragment);
 
-    void Inject(LoginGlobalFragment loginGlobalFragment);
+    void Inject(LoginGlobalUsingPasswordFragment loginGlobalUsingPasswordFragment);
 
-    void Inject(LoginUsingOTPFragment loginUsingOTPFragment);
+    void Inject(LoginLocalUsingOTPFragment loginLocalUsingOTPFragment);
 
     void Inject(ServiceIndicatorFragment serviceIndicatorFragment);
 
-    void Inject(LoginFragment loginFragment);
+    void Inject(LoginLocalUsingPasswordFragment loginLocalUsingPasswordFragment);
 
     void Inject(OrdersHistoryFragment ordersHistoryFragment);
 
@@ -297,7 +297,7 @@ public interface NetComponent {
 
     void Inject(BackupViewHolderMarketSmall1Mar20 backupViewHolderMarketSmall1Mar20);
 
-    void Inject(LoginUsingOTPGlobalFragment loginUsingOTPGlobalFragment);
+    void Inject(LoginGlobalUsingOTPFragment loginGlobalUsingOTPFragment);
 
     void Inject(AddUserToStaffDialog addUserToStaffDialog);
 

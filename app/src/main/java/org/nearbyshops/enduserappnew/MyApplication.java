@@ -67,10 +67,6 @@ public class MyApplication extends MultiDexApplication {
 //        MyApplicationCoreNew.context = getApplicationContext();
 
 
-//         Initialize Places.
-        Places.initialize(getApplicationContext(), "AIzaSyAHjmh3U3OVYngo6huNoEpYhscFqcV9CFA");
-
-
 
         //LeakCanary.install(this);
 

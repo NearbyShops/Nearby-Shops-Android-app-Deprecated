@@ -51,7 +51,7 @@ import javax.inject.Inject;
 
 
 
-public class LoginGlobalFragment extends Fragment {
+public class LoginGlobalUsingPasswordFragment extends Fragment {
 
     public static final String TAG_SERVICE_INDICATOR = "service_indicator";
 
@@ -68,7 +68,7 @@ public class LoginGlobalFragment extends Fragment {
 //    @BindView(R.id.select_service) TextView selectAutomatic;
 
 
-    public LoginGlobalFragment() {
+    public LoginGlobalUsingPasswordFragment() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -325,10 +325,15 @@ public class LoginGlobalFragment extends Fragment {
                 .build();
 
 
-        Call<User> call = retrofit.create(UserServiceGlobal.class).getProfile(
-                PrefLogin.baseEncoding(phoneWithCode,password.getText().toString())
-        );
+//        Call<User> call = retrofit.create(UserServiceGlobal.class).getProfile(
+//                PrefLogin.baseEncoding(phoneWithCode,password.getText().toString())
+//        );
 
+
+        Call<User> call = retrofit.create(UserServiceGlobal.class).verifyCredentials(
+                PrefLogin.baseEncoding(phoneWithCode,password.getText().toString()),
+                true
+        );
 
 
 
@@ -351,31 +356,23 @@ public class LoginGlobalFragment extends Fragment {
 
 
 
-//                    if(response.body().getRole()!=User.ROLE_END_USER_CODE)
-//                    {
-//                        showToastMessage("Only an End-User is allowed to login");
-//                        return;
-//                    }
+//                    PrefLoginGlobal.saveCredentialsPassword(
+//                            getActivity(),
+//                            phoneWithCode,
+//                            password.getText().toString()
+//
+//                    );
 
 
 
-                    PrefLoginGlobal.saveCredentials(
+                    PrefLoginGlobal.saveToken(
                             getActivity(),
                             phoneWithCode,
-                            password.getText().toString()
-
+                            response.body().getToken()
                     );
 
 
 
-
-
-                    // save token and token expiry timestamp
-//                    PrefLogin.saveToken(
-//                            getActivity(),
-//                            response.body().getToken(),
-//                            response.body().getTimestampTokenExpires()
-//                    );
 
 
                     // save user profile information
@@ -402,26 +399,10 @@ public class LoginGlobalFragment extends Fragment {
 
 
 
-
-
-
                     if(getActivity() instanceof NotifyAboutLogin)
                     {
-//                        showToastMessage("Notify about login !");
                         ((NotifyAboutLogin) getActivity()).loginSuccess();
-
-
-
-
                     }
-
-
-
-//                        getActivity().finish();
-
-
-//                    showToastMessage("LoginUsingOTP success : code : " + String.valueOf(response.code()));
-
 
 
                 }
@@ -491,11 +472,10 @@ public class LoginGlobalFragment extends Fragment {
                 PrefLogin.baseEncoding(phoneWithCode,password.getText().toString()),
                 PrefServiceConfig.getServiceURL_SDS(getActivity()),
                 123,
-                false,0
+                false,true,
+                0
                 ,false,true
         );
-
-
 
 
 
@@ -526,12 +506,15 @@ public class LoginGlobalFragment extends Fragment {
 
 
 
-                    PrefLoginGlobal.saveCredentials(
-                            getActivity(),
-                            phoneWithCode,
-                            password.getText().toString()
 
-                    );
+
+
+//                    PrefLoginGlobal.saveCredentialsPassword(
+//                            getActivity(),
+//                            phoneWithCode,
+//                            password.getText().toString()
+//
+//                    );
 
 
 
@@ -561,10 +544,19 @@ public class LoginGlobalFragment extends Fragment {
 
                     // local username can be different from the supplied username
 
-                    PrefLogin.saveCredentials(
+
+                    PrefLogin.saveToken(
                             getActivity(),
                             username,
-                            user.getPassword()
+                            user.getToken()
+                    );
+
+
+
+                    PrefLoginGlobal.saveToken(
+                            getActivity(),
+                            phoneWithCode,
+                            user.getUserProfileGlobal().getToken()
                     );
 
 
@@ -679,6 +671,17 @@ public class LoginGlobalFragment extends Fragment {
 
 
 
+
+
+    @OnClick(R.id.login_using_otp)
+    void loginUsingOTPClick()
+    {
+
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,new LoginGlobalUsingOTPFragment())
+                .commitNow();
+    }
 
 
 

@@ -30,7 +30,14 @@ public class PrefLogin {
     public static final Integer ROLE_STAFF = 2;
 
 
-    public static void saveCredentials(Context context, String username, String password)
+    private static final String TAG_USERNAME_LOCAL = "username_local";
+    private static final String TAG_PASSWORD_LOCAL = "password_local";
+    private static final String TAG_TOKEN_LOCAL = "token_local";
+    private static final String TAG_ROLE_LOCAL = "role_local";
+    private static final String TAG_USER_PROFILE_LOCAL = "user_profile_local";
+
+
+    public static void saveCredentialsPassword(Context context, String username, String password)
     {
         context = MyApplication.getAppContext();
 
@@ -43,8 +50,28 @@ public class PrefLogin {
 
         // write to the shared preference
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("username", username);
-        editor.putString("password",password);
+        editor.putString(TAG_USERNAME_LOCAL, username);
+        editor.putString(TAG_PASSWORD_LOCAL,password);
+        editor.apply();
+    }
+
+
+
+    public static void saveToken(Context context, String username, String token)
+    {
+        context = MyApplication.getAppContext();
+
+        // get a handle to shared Preference
+        SharedPreferences sharedPref;
+
+        sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preference_file_name),
+                MODE_PRIVATE);
+
+        // write to the shared preference
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(TAG_USERNAME_LOCAL, username);
+        editor.putString(TAG_TOKEN_LOCAL,token);
         editor.apply();
     }
 
@@ -63,7 +90,7 @@ public class PrefLogin {
 
         // write to the shared preference
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("username", username);
+        editor.putString(TAG_USERNAME_LOCAL, username);
 //        editor.putString("password",password);
         editor.apply();
     }
@@ -83,7 +110,7 @@ public class PrefLogin {
         // write to the shared preference
         SharedPreferences.Editor editor = sharedPref.edit();
 //        editor.putString("username", username);
-        editor.putString("password",password);
+        editor.putString(TAG_PASSWORD_LOCAL,password);
         editor.apply();
     }
 
@@ -96,7 +123,7 @@ public class PrefLogin {
         context = MyApplication.getAppContext();
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        return sharedPref.getString("username", "");
+        return sharedPref.getString(TAG_USERNAME_LOCAL, "");
     }
 
 
@@ -106,9 +133,17 @@ public class PrefLogin {
         context = MyApplication.getAppContext();
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        return sharedPref.getString("password", "");
+        return sharedPref.getString(TAG_PASSWORD_LOCAL, "");
     }
 
+
+    public static String getToken(Context context)
+    {
+        context = MyApplication.getAppContext();
+
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        return sharedPref.getString(TAG_TOKEN_LOCAL, "");
+    }
 
 
 
@@ -138,9 +173,27 @@ public class PrefLogin {
 
         return PrefLogin.baseEncoding(
                 PrefLogin.getUsername(context),
-                PrefLogin.getPassword(context));
+                PrefLogin.getToken(context));
     }
 
+
+
+
+    public static String getAuthHeaderPassword(Context context)
+    {
+        context = MyApplication.getAppContext();
+
+        if(context==null)
+        {
+            return null;
+        }
+
+
+
+        return PrefLogin.baseEncoding(
+                PrefLogin.getUsername(context),
+                PrefLogin.getPassword(context));
+    }
 
 
 
@@ -155,7 +208,7 @@ public class PrefLogin {
 
         Gson gson = UtilityFunctions.provideGson();
         String json = gson.toJson(user);
-        prefsEditor.putString("user_profile", json);
+        prefsEditor.putString(TAG_USER_PROFILE_LOCAL, json);
 
         prefsEditor.apply();
     }
@@ -168,7 +221,7 @@ public class PrefLogin {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
 
         Gson gson = UtilityFunctions.provideGson();
-        String json = sharedPref.getString("user_profile", null);
+        String json = sharedPref.getString(TAG_USER_PROFILE_LOCAL, null);
 
         return gson.fromJson(json, User.class);
     }

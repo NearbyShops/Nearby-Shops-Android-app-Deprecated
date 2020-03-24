@@ -13,7 +13,7 @@ import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusPickFromS
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderButtonSingle;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderSelectable;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderWithDeliveryProfile;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderWithDeliveryStaff;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
@@ -73,7 +73,7 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(viewType == VIEW_TYPE_ORDER_DELIVERY_PROFILE)
         {
-            return ViewHolderOrderWithDeliveryProfile.create(parent,parent.getContext(),fragment);
+            return ViewHolderOrderWithDeliveryStaff.create(parent,parent.getContext(),fragment);
         }
         else if (viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR) {
 
@@ -190,9 +190,9 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             ((ViewHolderOrderSelectable)holder).setItem((Order) dataset.get(position));
         }
-        else if(holder instanceof ViewHolderOrderWithDeliveryProfile)
+        else if(holder instanceof ViewHolderOrderWithDeliveryStaff)
         {
-            ((ViewHolderOrderWithDeliveryProfile)holder).setItem((Order) dataset.get(position));
+            ((ViewHolderOrderWithDeliveryStaff)holder).setItem((Order) dataset.get(position));
         }
         else if (holder instanceof LoadingViewHolder) {
 

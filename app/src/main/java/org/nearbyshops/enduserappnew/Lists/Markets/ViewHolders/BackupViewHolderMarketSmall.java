@@ -347,7 +347,7 @@ public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
                     // local username can be different from the supplied username
 
 
-                    PrefLogin.saveCredentials(
+                    PrefLogin.saveCredentialsPassword(
                             context,
                             username,
                             user.getPassword()

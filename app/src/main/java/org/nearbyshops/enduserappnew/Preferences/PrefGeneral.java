@@ -30,8 +30,8 @@ public class PrefGeneral {
 
     // for multi-market mode set default service url to null and multi market mode to true
     // for single-market mode set multi-market mode false and set default service url to your api server url
-    public static final String DEFAULT_SERVICE_URL = null;
-    public static final boolean MULTI_MARKET_MODE_ENABLED = true;
+    public static final String DEFAULT_SERVICE_URL = SERVICE_URL_LOCAL_HOTSPOT;
+    public static final boolean MULTI_MARKET_MODE_ENABLED = false;
 
 
 
@@ -98,7 +98,7 @@ public class PrefGeneral {
 
         // log out the user
         PrefLogin.saveUserProfile(null,context);
-        PrefLogin.saveCredentials(context,null,null);
+        PrefLogin.saveCredentialsPassword(context,null,null);
     }
 
 

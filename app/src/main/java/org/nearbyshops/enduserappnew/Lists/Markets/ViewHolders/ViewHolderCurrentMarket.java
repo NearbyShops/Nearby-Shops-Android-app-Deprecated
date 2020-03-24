@@ -145,10 +145,10 @@ public class ViewHolderCurrentMarket extends RecyclerView.ViewHolder {
     {
         // log out
         PrefLogin.saveUserProfile(null,context);
-        PrefLogin.saveCredentials(context,null,null);
+        PrefLogin.saveCredentialsPassword(context,null,null);
 
         PrefLoginGlobal.saveUserProfile(null,context);
-        PrefLoginGlobal.saveCredentials(context,null,null);
+        PrefLoginGlobal.saveCredentialsPassword(context,null,null);
 
 
         if(context instanceof NotifyAboutLogin)

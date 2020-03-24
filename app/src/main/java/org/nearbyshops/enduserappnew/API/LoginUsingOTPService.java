@@ -52,6 +52,7 @@ public interface LoginUsingOTPService {
             @Query("ServiceURLSDS") String serviceURLForSDS,
             @Query("MarketID") int marketID,
             @Query("IsPasswordAnOTP")boolean isPasswordAnOTP,
+            @Query("VerifyUsingPassword")boolean verifyUsingPassword, // used when user is signing in using password
             @Query("RegistrationMode")int registrationMode, // 1 for email and 2 for phone
             @Query("GetServiceConfiguration") boolean getServiceConfig,
             @Query("GetUserProfileGlobal") boolean getUserProfileGlobal

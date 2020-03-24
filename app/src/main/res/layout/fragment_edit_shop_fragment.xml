@@ -233,6 +233,7 @@
 
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/shop_dashboard"
                 android:textColor="@color/white"
                 android:textSize="17sp"

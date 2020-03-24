@@ -499,16 +499,15 @@ public class MarketViewModel extends AndroidViewModel {
         Call<User> call = retrofit.create(LoginUsingOTPService.class).loginWithGlobalCredentials(
                 PrefLoginGlobal.getAuthorizationHeaders(getApplication()),
                 PrefServiceConfig.getServiceURL_SDS(getApplication()),
-                123,false,0,true,false
+                123,
+                false,false,
+                0,true,false
         );
 
 
 
 
-        System.out.println(PrefLoginGlobal.getPassword(getApplication()));
-
-
-
+        System.out.println(PrefLoginGlobal.getToken(getApplication()));
 
 
 
@@ -566,10 +565,10 @@ public class MarketViewModel extends AndroidViewModel {
 
                     // local username can be different from the supplied username
 
-                    PrefLogin.saveCredentials(
+                    PrefLogin.saveToken(
                             getApplication(),
                             username,
-                            user.getPassword()
+                            user.getToken()
                     );
 
 

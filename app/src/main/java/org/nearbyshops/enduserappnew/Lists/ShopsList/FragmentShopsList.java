@@ -191,19 +191,18 @@ public class FragmentShopsList extends Fragment implements
 
     //
 
+            serviceName.setVisibility(View.VISIBLE);
+            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
 
 
             if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
             {
-                serviceName.setVisibility(View.VISIBLE);
-                serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
 
                 buttonTryAgain.setText("Change Market");
                 emptyScreenMessage.setText("Uh .. oh .. no shops available at your location .. change your market ... and explore other markets !");
             }
             else
             {
-                serviceName.setVisibility(View.GONE);
 
                 emptyScreenMessage.setText("Uh .. oh .. no shops available at your location .. change your location ... and try again");
                 buttonTryAgain.setText("Try Again");

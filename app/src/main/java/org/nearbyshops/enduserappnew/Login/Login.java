@@ -57,7 +57,7 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
             {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container,new LoginUsingOTPGlobalFragment(),TAG_STEP_ONE)
+                        .replace(R.id.fragment_container,new LoginGlobalUsingOTPFragment(),TAG_STEP_ONE)
                         .commitNow();
             }
 
@@ -73,7 +73,7 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
                     {
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.fragment_container,new LoginUsingOTPFragment(),TAG_STEP_ONE)
+                                .replace(R.id.fragment_container,new LoginLocalUsingOTPFragment(),TAG_STEP_ONE)
                                 .commitNow();
                     }
 
@@ -84,7 +84,7 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
                     {
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.fragment_container,new LoginFragment(),TAG_STEP_ONE)
+                                .replace(R.id.fragment_container,new LoginLocalUsingPasswordFragment(),TAG_STEP_ONE)
                                 .commitNow();
                     }
                 }
@@ -97,7 +97,7 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
                 {
                     getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_container,new LoginFragment(),TAG_STEP_ONE)
+                            .replace(R.id.fragment_container,new LoginLocalUsingPasswordFragment(),TAG_STEP_ONE)
                             .commitNow();
                 }
 //                showToastMessage(" ... try again later !");

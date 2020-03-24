@@ -1,15 +1,12 @@
 package org.nearbyshops.enduserappnew.Login;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.text.InputType;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,7 +50,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by sumeet on 19/4/17.
  */
 
-public class LoginUsingOTPGlobalFragment extends Fragment {
+public class LoginGlobalUsingOTPFragment extends Fragment {
 
 
 
@@ -80,7 +77,7 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
 
 
 
-    public LoginUsingOTPGlobalFragment() {
+    public LoginGlobalUsingOTPFragment() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -388,10 +385,10 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
 
                     if(user!=null)
                     {
-                        PrefLoginGlobal.saveCredentials(
+                        PrefLoginGlobal.saveToken(
                                 getActivity(),
                                 finalPhoneWithCode,
-                                user.getPassword()
+                                user.getToken()
                         );
 
 
@@ -494,9 +491,12 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
                 PrefLogin.baseEncoding(phoneWithCode,password.getText().toString()),
                 PrefServiceConfig.getServiceURL_SDS(getActivity()),
                 123,
-                true,registrationMode,
+                true,false,
+                registrationMode,
                 false,true
         );
+
+
 
 
         String finalPhoneWithCode = phoneWithCode;
@@ -522,10 +522,10 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
 
                     if (user != null) {
 
-                        PrefLoginGlobal.saveCredentials(
+                        PrefLoginGlobal.saveToken(
                                 getActivity(),
                                 finalPhoneWithCode,
-                                user.getUserProfileGlobal().getPassword()
+                                user.getUserProfileGlobal().getToken()
 
                         );
                     }
@@ -563,10 +563,10 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
                     if (user != null) {
 
 
-                        PrefLogin.saveCredentials(
+                        PrefLogin.saveToken(
                                 getActivity(),
                                 username,
-                                user.getPassword()
+                                user.getToken()
                         );
                     }
 
@@ -843,5 +843,17 @@ public class LoginUsingOTPGlobalFragment extends Fragment {
 
     }
 
+
+
+
+
+    @OnClick(R.id.login_using_password)
+    void loginUsingPasswordClick()
+    {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,new LoginGlobalUsingPasswordFragment())
+                .commitNow();
+    }
 
 }

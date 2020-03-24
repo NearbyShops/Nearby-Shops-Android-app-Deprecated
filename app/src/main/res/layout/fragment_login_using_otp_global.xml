@@ -285,6 +285,8 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
         </LinearLayout>
 
 
@@ -292,12 +294,11 @@
 
 
         <TextView
-            android:visibility="gone"
-            android:id="@+id/resend_otp"
-            android:layout_marginTop="10dp"
+            android:id="@+id/login_using_password"
+            android:layout_marginTop="25dp"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@+id/login_buttons"
-            android:text="Resend OTP !"
+            android:text="Login using Password !"
             app:layout_constraintRight_toRightOf="@id/login_buttons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

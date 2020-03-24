@@ -13,12 +13,13 @@ import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnTextChanged;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 
-import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.API.LoginUsingOTPService;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
@@ -26,10 +27,6 @@ import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.Login.SignUp.ForgotPassword.ForgotPassword;
-import org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp.PrefrenceForgotPassword;
-import org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp.PrefrenceSignUp;
-import org.nearbyshops.enduserappnew.Login.SignUp.SignUp;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,11 +39,14 @@ import javax.inject.Inject;
  * Created by sumeet on 19/4/17.
  */
 
-public class LoginFragment extends Fragment {
+public class LoginLocalUsingOTPFragment extends Fragment {
+
+
 
     public static final String TAG_SERVICE_INDICATOR = "service_indicator";
+    private boolean isDestroyed = false;
 
-    boolean isDestroyed = false;
+
 
 
     @Inject Gson gson;
@@ -55,11 +55,16 @@ public class LoginFragment extends Fragment {
     @BindView(R.id.password) TextInputEditText password;
     @BindView(R.id.progress_bar_login) ProgressBar progressBar;
 
-//    @BindView(R.id.clear)TextView clear;
+//    @BindView(R.id.clear) TextView clear;
 //    @BindView(R.id.select_service) TextView selectAutomatic;
 
 
-    public LoginFragment() {
+    @BindView(R.id.login) Button loginButton;
+    @BindView(R.id.text_input_password) TextInputLayout textInputPassword;
+
+
+
+    public LoginLocalUsingOTPFragment() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -75,7 +80,7 @@ public class LoginFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_login, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_login_using_otp, container, false);
         ButterKnife.bind(this,rootView);
 
 
@@ -154,48 +159,6 @@ public class LoginFragment extends Fragment {
 
 
 
-    @OnClick(R.id.sign_up)
-    void signUp()
-    {
-
-        PrefrenceSignUp.saveUser(null,getActivity());
-        Intent intent = new Intent(getActivity(), SignUp.class);
-        startActivity(intent);
-    }
-
-
-
-
-
-
-    @OnClick(R.id.forgot_password)
-    void forgotPasswordClick()
-    {
-        PrefrenceForgotPassword.saveUser(null,getActivity());
-        Intent intent = new Intent(getActivity(), ForgotPassword.class);
-        startActivity(intent);
-    }
-
-
-
-
-
-    @OnTextChanged(R.id.username)
-    void usernameChanged()
-    {
-//        UtilityLogin.saveUsername(getActivity(),username.getText().toString());
-    }
-
-
-
-    @OnTextChanged(R.id.password)
-    void passwordChanged()
-    {
-//        UtilityLogin.savePassword(getActivity(),password.getText().toString());
-    }
-
-
-
 
 
 
@@ -214,25 +177,85 @@ public class LoginFragment extends Fragment {
         if(password.getText().toString().isEmpty())
         {
             password.requestFocus();
-            password.setError("Password cannot be empty !");
+            password.setError("Please Enter OTP !");
             isValid = false;
         }
 
 
-//        if(!emailValidity && !phoneValidity)
+
+//        if(!phoneValidity)
 //        {
-//            username.setError("Not a valid email or phone !");
+//            username.setError("Not a valid phone !");
+//            username.requestFocus();
+//
+//            isValid = false;
+//        }
+//
+//        if(username.getText().toString().isEmpty())
+//        {
+//            password.requestFocus();
+//            username.setError("Please enter phone !");
+//            username.requestFocus();
+//
+//            isValid = false;
+//        }
+//        else if(username.getText().toString().length()!=10)
+//        {
+//            username.setError("Enter a valid phone number !");
 //            username.requestFocus();
 //
 //            isValid = false;
 //        }
 
+
+
+
+
+        // phone and password both needs to be valid
+        isValid = validatePhone() && isValid;
+
+
+
+
+        return isValid;
+    }
+
+
+
+
+
+
+    private boolean validatePhone()
+    {
+        boolean isValid = true;
+        boolean phoneValidity = false;
+//        boolean emailValidity = false;
+//
+//
+//        emailValidity = EmailValidator.getInstance().isValid(username.getText().toString());
+        phoneValidity = android.util.Patterns.PHONE.matcher(username.getText().toString()).matches();
+
+
         if(username.getText().toString().isEmpty())
         {
-            password.requestFocus();
-            username.setError("username cannot be empty !");
+//            password.requestFocus();
+            username.setError("Please enter phone !");
             username.requestFocus();
 
+            isValid = false;
+        }
+        else if(username.getText().toString().length()!=10)
+        {
+            username.setError("Enter a valid phone number !");
+            username.requestFocus();
+
+            isValid = false;
+        }
+
+
+        if(!phoneValidity)
+        {
+            username.setError("Invalid phone number !");
             isValid = false;
         }
 
@@ -240,6 +263,9 @@ public class LoginFragment extends Fragment {
 
         return isValid;
     }
+
+
+
 
 
 
@@ -261,16 +287,26 @@ public class LoginFragment extends Fragment {
 
 
 
-
-    @BindView(R.id.login)
-    Button loginButton;
-
-
-
-
-
     @OnClick(R.id.login)
-    void makeRequestLogin()
+    void loginButtonClick()
+    {
+        if(textInputPassword.getVisibility()==View.GONE)
+        {
+            sendOTP();
+        }
+        else if (textInputPassword.getVisibility()==View.VISIBLE)
+        {
+            makeRequestLogin();
+        }
+
+    }
+
+
+
+
+
+
+    private void makeRequestLogin()
     {
 
         if(!validateData())
@@ -278,8 +314,6 @@ public class LoginFragment extends Fragment {
             // validation failed return
             return;
         }
-
-
 
 
 
@@ -298,11 +332,9 @@ public class LoginFragment extends Fragment {
 
 
 
-        Call<User> call = retrofit.create(UserService.class).getProfile(
+        Call<User> call = retrofit.create(LoginUsingOTPService.class).getProfileWithLogin(
                 PrefLogin.baseEncoding(phoneWithCode,password.getText().toString())
         );
-
-
 
 
 
@@ -330,12 +362,14 @@ public class LoginFragment extends Fragment {
 //                        return;
 //                    }
 
+                    User user = response.body();
 
-                    PrefLogin.saveCredentials(
+
+
+                    PrefLogin.saveCredentialsPassword(
                             getActivity(),
-                            phoneWithCode,
-                            password.getText().toString()
-
+                            user.getPhone(),
+                            user.getPassword()
                     );
 
 
@@ -399,8 +433,8 @@ public class LoginFragment extends Fragment {
                 }
                 else
                 {
-                    showToastMessage("Login Failed : Username or password is incorrect !");
-                    System.out.println("Login Failed : Code " + response.code());
+                    showToastMessage("Login Failed : Phone or OTP is incorrect !");
+//                    System.out.println("Login Failed : Code " + String.valueOf(response.code()));
                 }
 
             }
@@ -425,6 +459,98 @@ public class LoginFragment extends Fragment {
 
 
 
+
+
+
+    private void sendOTP()
+    {
+
+        if(!validatePhone())
+        {
+            // validation failed return
+            return;
+        }
+
+
+
+        final String phoneWithCode = username.getText().toString();
+//        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
+
+        progressBar.setVisibility(View.VISIBLE);
+        loginButton.setVisibility(View.INVISIBLE);
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
+                .client(new OkHttpClient().newBuilder().build())
+                .build();
+
+
+
+        Call<ResponseBody> call = retrofit.create(LoginUsingOTPService.class).sendPhoneVerificationCode(
+                username.getText().toString()
+        );
+
+
+
+        textInputPassword.setVisibility(View.VISIBLE);
+        loginButton.setText("Login");
+
+
+
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+                progressBar.setVisibility(View.GONE);
+                loginButton.setVisibility(View.VISIBLE);
+
+
+
+                if(response.code()==200) {
+                    // save username and password
+
+//                    showToastMessage("OTP Sent !");
+                }
+                else
+                {
+                    showToastMessage("Failed to send OTP ... failed Code : " + response.code());
+                }
+
+
+                }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                if(isDestroyed)
+                {
+                    return;
+                }
+
+                showToastMessage("Failed ... Please check your network !");
+
+                progressBar.setVisibility(View.GONE);
+                loginButton.setVisibility(View.VISIBLE);
+
+
+
+            }
+        });
+
+
+
+
+    }
 
 
 

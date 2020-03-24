@@ -12,7 +12,6 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.nearbyshops.enduserappnew.ApplicationState;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -177,10 +176,10 @@ public class UtilityFunctions {
     {
         // log out
         PrefLogin.saveUserProfile(null,context);
-        PrefLogin.saveCredentials(context,null,null);
+        PrefLogin.saveCredentialsPassword(context,null,null);
 
         PrefLoginGlobal.saveUserProfile(null,context);
-        PrefLoginGlobal.saveCredentials(context,null,null);
+        PrefLoginGlobal.saveCredentialsPassword(context,null,null);
 
         PrefShopHome.saveShop(null,context);
         PrefShopAdminHome.saveShop(null,context);

@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class ViewHolderOrderWithDeliveryProfile extends ViewHolderOrder {
+public class ViewHolderOrderWithDeliveryStaff extends ViewHolderOrder {
 
 
     @BindView(R.id.button_single) TextView buttonSingle;
@@ -45,13 +45,13 @@ public class ViewHolderOrderWithDeliveryProfile extends ViewHolderOrder {
 
 
 
-    public static ViewHolderOrderWithDeliveryProfile create(ViewGroup parent, Context context, Fragment fragment)
+    public static ViewHolderOrderWithDeliveryStaff create(ViewGroup parent, Context context, Fragment fragment)
     {
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_order_delivery_profile,parent,false);
 
-        return new ViewHolderOrderWithDeliveryProfile(view,context,fragment);
+        return new ViewHolderOrderWithDeliveryStaff(view,context,fragment);
     }
 
 
@@ -60,7 +60,7 @@ public class ViewHolderOrderWithDeliveryProfile extends ViewHolderOrder {
 
 
 
-    public ViewHolderOrderWithDeliveryProfile(View itemView, Context context, Fragment fragment) {
+    public ViewHolderOrderWithDeliveryStaff(View itemView, Context context, Fragment fragment) {
         super(itemView,context,fragment);
 
         ButterKnife.bind(this, itemView);

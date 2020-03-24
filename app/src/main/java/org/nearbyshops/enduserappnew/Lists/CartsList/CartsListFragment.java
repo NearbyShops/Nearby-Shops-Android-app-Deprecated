@@ -94,16 +94,19 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
+        serviceName.setVisibility(View.VISIBLE);
+        serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
-        {
-            serviceName.setVisibility(View.VISIBLE);
-            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
-        }
-        else
-        {
-            serviceName.setVisibility(View.GONE);
-        }
+
+//        if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
+//        {
+//            serviceName.setVisibility(View.VISIBLE);
+//            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+//        }
+//        else
+//        {
+//            serviceName.setVisibility(View.VISIBLE);
+//        }
 
 
 

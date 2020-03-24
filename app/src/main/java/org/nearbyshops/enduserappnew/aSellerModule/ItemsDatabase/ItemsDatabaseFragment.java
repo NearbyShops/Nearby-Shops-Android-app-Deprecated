@@ -926,9 +926,14 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
                     showToastMessage("No item updated !");
 
-                }else
+                }
+                else if(response.code()==401 || response.code()==403)
                 {
-                    showToastMessage("Unknown server error or response !");
+                    showToastMessage("Not Permitted !!");
+                }
+                else
+                {
+                    showToastMessage("Failed Code - " + response.code());
                 }
 
                 makeNetworkCallShopItem();
@@ -1019,9 +1024,14 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
                     showToastMessage("No item updated !");
 
-                }else
+                }
+                else if(response.code()==401 || response.code()==403)
                 {
-                    showToastMessage("Unknown server error or response !");
+                    showToastMessage("Not Permitted !");
+                }
+                else
+                {
+                    showToastMessage("Failed Code : " + response.code());
                 }
 
                 makeNetworkCallShopItem();

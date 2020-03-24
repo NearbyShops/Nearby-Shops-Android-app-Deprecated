@@ -35,14 +35,19 @@ import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardDeliveryGuy.DeliveryHome;
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopAdminHome;
+import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopStaff.ShopDashboardForStaff;
+import org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryPerson.DeliveryGuyDashboard;
 import org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard;
+import org.nearbyshops.enduserappnew.adminModule.DashboardStaff.StaffDashboard;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -129,6 +134,28 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 //        viewModelShop = ViewModelProviders.of(this).get(ViewModelShop.class);
 
         viewModelShop = new ViewModelShop(MyApplication.application);
+
+
+        viewModelShop.getShopLive().observe(getViewLifecycleOwner(), new Observer<Shop>() {
+            @Override
+            public void onChanged(Shop shop) {
+
+                if(progressDialog!=null)
+                {
+                    progressDialog.dismiss();
+                }
+
+
+
+                PrefShopAdminHome.saveShop(shop,getActivity());
+
+                Intent intent = new Intent(getActivity(), ShopDashboardForStaff.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
 
         viewModelShop.getEvent().observe(getViewLifecycleOwner(), new Observer<Integer>() {
@@ -233,22 +260,31 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     {
         User user = PrefLogin.getUser(getActivity());
 
-        if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+
+        if(user.getRole()==User.ROLE_ADMIN_CODE)
+        {
+            dashboardName.setText("Admin Dashboard");
+            dashboardDescription.setText("Press here to access the admin dashboard !");
+        }
+        else if(user.getRole()==User.ROLE_STAFF_CODE)
+        {
+            dashboardName.setText("Staff Dashboard");
+            dashboardDescription.setText("Press here to access the staff dashboard !");
+        }
+        else if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
         {
             dashboardName.setText("Shop Dashboard");
             dashboardDescription.setText("Press here to access the shop dashboard !");
         }
+        else if(user.getRole()==User.ROLE_SHOP_STAFF_CODE)
+        {
+            dashboardName.setText("Shop Staff Dashboard");
+            dashboardDescription.setText("Press here to access the staff dashboard !");
+        }
         else if(user.getRole()==User.ROLE_DELIVERY_GUY_SELF_CODE)
         {
-
             dashboardName.setText("Delivery Dashboard");
             dashboardDescription.setText("Press here to access the Delivery dashboard !");
-        }
-        else if(user.getRole()==User.ROLE_ADMIN_CODE)
-        {
-            dashboardName.setText("Admin Dashboard");
-            dashboardDescription.setText("Press here to access the admin dashboard !");
-
         }
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {
@@ -273,21 +309,35 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     {
         User user = PrefLogin.getUser(getActivity());
 
-        if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
-        {
-
-            Intent intent = new Intent(getActivity(), ShopAdminHome.class);
-            startActivity(intent);
-        }
-        else if(user.getRole()==User.ROLE_ADMIN_CODE)
+        if(user.getRole()==User.ROLE_ADMIN_CODE)
         {
             Intent intent = new Intent(getActivity(), AdminDashboard.class);
             startActivity(intent);
         }
+        else if(user.getRole()==User.ROLE_STAFF_CODE)
+        {
+            Intent intent = new Intent(getActivity(), StaffDashboard.class);
+            startActivity(intent);
+        }
+        else if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+        {
+            Intent intent = new Intent(getActivity(), ShopAdminHome.class);
+            startActivity(intent);
+        }
+        else if(user.getRole()==User.ROLE_SHOP_STAFF_CODE)
+        {
+
+            viewModelShop.getShopForShopStaff();
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage("Please wait ... getting shop details !");
+            progressDialog.show();
+
+        }
         else if(user.getRole()==User.ROLE_DELIVERY_GUY_SELF_CODE)
         {
-            Intent intent = new Intent(getActivity(), DeliveryHome.class);
+            Intent intent = new Intent(getActivity(), DeliveryGuyDashboard.class);
             startActivity(intent);
+
         }
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {

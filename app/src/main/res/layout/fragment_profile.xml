@@ -14,17 +14,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+<!--        android:layout_height="?attr/actionBarSize"-->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:paddingBottom="3dp"
-                android:paddingTop="0dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -830,7 +831,10 @@
                     </LinearLayout>
 
 
+
+
                     <LinearLayout
+                        android:visibility="gone"
                         android:id="@+id/staff_block"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

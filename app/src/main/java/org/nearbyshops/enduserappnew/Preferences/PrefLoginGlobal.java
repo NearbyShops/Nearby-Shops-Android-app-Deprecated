@@ -31,11 +31,12 @@ public class PrefLoginGlobal {
 
     private static final String TAG_USERNAME_GLOBAL = "username_global";
     private static final String TAG_PASSWORD_GLOBAL = "password_global";
+    private static final String TAG_TOKEN_GLOBAL = "token_global";
     private static final String TAG_ROLE_GLOBAL = "role_global";
     private static final String TAG_USER_PROFILE_GLOBAL = "user_profile_global";
 
 
-    public static void saveCredentials(Context context, String username, String password)
+    public static void saveCredentialsPassword(Context context, String username, String password)
     {
         context = MyApplication.getAppContext();
 
@@ -53,6 +54,25 @@ public class PrefLoginGlobal {
         editor.apply();
     }
 
+
+
+    public static void saveToken(Context context, String username, String token)
+    {
+        context = MyApplication.getAppContext();
+
+        // get a handle to shared Preference
+        SharedPreferences sharedPref;
+
+        sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preference_file_name),
+                MODE_PRIVATE);
+
+        // write to the shared preference
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(TAG_USERNAME_GLOBAL, username);
+        editor.putString(TAG_TOKEN_GLOBAL,token);
+        editor.apply();
+    }
 
 
 
@@ -76,6 +96,15 @@ public class PrefLoginGlobal {
 
 
 
+    public static String getToken(Context context)
+    {
+        context = MyApplication.getAppContext();
+
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
+        return sharedPref.getString(TAG_TOKEN_GLOBAL, "");
+    }
+
+
 
 
     public static String baseEncoding(String username,String password)
@@ -91,6 +120,20 @@ public class PrefLoginGlobal {
 
 
     public static String getAuthorizationHeaders(Context context)
+    {
+        context = MyApplication.getAppContext();
+
+
+        return PrefLoginGlobal.baseEncoding(
+                PrefLoginGlobal.getUsername(context),
+                PrefLoginGlobal.getToken(context));
+
+    }
+
+
+
+
+    public static String getAuthHeaderPassword(Context context)
     {
         context = MyApplication.getAppContext();
 

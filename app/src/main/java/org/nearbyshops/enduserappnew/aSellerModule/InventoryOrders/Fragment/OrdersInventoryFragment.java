@@ -43,7 +43,7 @@ import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderButtonSingle;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderSelectable;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderWithDeliveryProfile;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderWithDeliveryStaff;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 
 import java.util.ArrayList;
@@ -60,7 +60,7 @@ import retrofit2.Response;
 
 public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
         ViewHolderOrderButtonSingle.ListItemClick, ViewHolderOrder.ListItemClick,
-        ViewHolderOrderWithDeliveryProfile.ListItemClick,
+        ViewHolderOrderWithDeliveryStaff.ListItemClick,
         NotifySort, NotifySearch, RefreshFragment,
         ViewHolderOrderSelectable.ListItemClick,
         HomeDelivery.HandoverClicked {

@@ -108,11 +108,6 @@ public class ViewHolderItemAdmin extends RecyclerView.ViewHolder  implements Pop
 
 
 
-
-
-
-
-
     public void setItem(Item item) {
 
         this.item = item;
@@ -121,8 +116,8 @@ public class ViewHolderItemAdmin extends RecyclerView.ViewHolder  implements Pop
 
         ItemStats itemStats = item.getItemStats();
 
-        priceRange.setText("Price Range :\nRs." + String.format("%.2f",itemStats.getMin_price()) + " - " + String.format("%.2f",itemStats.getMax_price()) + " per " + item.getQuantityUnit());
-        priceAverage.setText("Price Average :\nRs." + String.format("%.2f",itemStats.getAvg_price()) + " per " + item.getQuantityUnit());
+        priceRange.setText("Price Range :\n " + PrefGeneral.getCurrencySymbol(context) + String.format(" %.2f",itemStats.getMin_price()) + " - " + String.format("%.2f",itemStats.getMax_price()) + " per " + item.getQuantityUnit());
+        priceAverage.setText("Price Average :\n " + PrefGeneral.getCurrencySymbol(context) + String.format(" %.2f",itemStats.getAvg_price()) + " per " + item.getQuantityUnit());
         shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
         itemRating.setText(String.format("%.2f",itemStats.getRating_avg()));
         ratingCount.setText("( " + itemStats.getRatingCount() + " Ratings )");
@@ -153,7 +148,6 @@ public class ViewHolderItemAdmin extends RecyclerView.ViewHolder  implements Pop
                 .load(imagePath)
                 .placeholder(drawable)
                 .into(categoryImage);
-
     }
 
 

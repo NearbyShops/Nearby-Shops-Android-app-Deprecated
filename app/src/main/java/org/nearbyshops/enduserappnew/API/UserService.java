@@ -115,12 +115,12 @@ public interface UserService {
 
 
     @GET("/api/v1/User/GetToken")
-    Call<User> getLogin(@Header("Authorization") String headers);
+    Call<User> getToken(@Header("Authorization") String headers);
 
 
 
 
-    @GET("/api/v1/User/GetProfileWithLogin")
+    @GET("/api/v1/User/GetProfile")
     Call<User> getProfile(@Header("Authorization") String headers);
 
 
