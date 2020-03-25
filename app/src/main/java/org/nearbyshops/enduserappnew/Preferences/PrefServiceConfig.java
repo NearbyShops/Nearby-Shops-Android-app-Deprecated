@@ -17,10 +17,6 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 
-
-
-
-
 public class PrefServiceConfig {
 
     // simple or advanced at service selection screen
@@ -37,7 +33,7 @@ public class PrefServiceConfig {
 
 
 
-    public static final String SERVICE_URL_SDS = SDS_URL_LOCAL_HOTSPOT;
+    public static final String SERVICE_URL_SDS = SDS_URL_NEARBY_SHOPS;
 
 
 
