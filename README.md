@@ -25,7 +25,7 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
     docker-compose up
 
 
-Full installation guide available at https://developer.nearbyshops.org
+Full installation guide available at https://developer.nearbyshops.org/installation/installation-guide-quick-docker.html
 
 
 
