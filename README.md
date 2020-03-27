@@ -210,19 +210,12 @@ If you're interested please get in touch with us on https://forum.nearbyshops.or
 License
 =======
 
-MIT License
+Nearby Shops Single Market License
+
+Good news for you ... !! Now you can run your own commercial business with our free open - source software. 
+Please read more about about our Single Market License here https://blog.nearbyshops.org/single-market-license/
 
 Copyright (c) 2020 Nearby Shops
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
