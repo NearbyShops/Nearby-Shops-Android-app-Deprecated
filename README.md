@@ -8,38 +8,12 @@ width="120">
 </a>
 
 
-How it works ? 
------------------
-Nearby Shops is a **free & Open Source**  Local Market Server. Anyone can self-host their local market Instance (server) & and create a free marketplace for food delivery and hyperlocal business in just 10 Minutes Installation. 
-
-Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
-
-
-### Install with Docker 
-
-
-    cd ~
-
-    wget https://raw.githubusercontent.com/NearbyShops/Nearby-Shops-API/master/docker-compose.yml
-
-    docker-compose up
-
-
-Full installation guide available at https://developer.nearbyshops.org/installation/installation-guide-quick-docker.html
-
-
-
-### Commercial Use Permitted under Single Market License
-
-Good news for you ... !! Now you can run your own commercial business with our free open - source software. 
-Please read more about about our Single Market License here https://blog.nearbyshops.org/single-market-license/
-
 
 
 About Nearby Shops
 --------------------
 
-Nearby Shops is a Free Open-Source food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running in just 5 minutes.
+Nearby Shops is a Free & Open-Source food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running in just 5 $ per month.
 
 
 Nearby Shops implements Alibaba's Grocery Online-to-Offline Concept. Customers can place and order from the app and pick it up in the store. Home Delivery is also available !
@@ -203,6 +177,14 @@ Benefit from the flexible working hours and work from anywhere in the world. We 
 6. Any other way you want to help – Suggestions and Ideas are Welcome !
 
 If you're interested please get in touch with us on https://forum.nearbyshops.org
+
+
+
+
+### Commercial Use Permitted under Single Market License
+
+Good news for you ... !! Now you can run your own commercial business with our free open - source software. 
+Please read more about about our Single Market License here https://blog.nearbyshops.org/single-market-license/
 
 
 
