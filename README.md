@@ -50,7 +50,7 @@ Conventional e-commerce has issues ... the delivery takes a long time and it's m
 
 Nearby Shops can also be used as a food Delivery platform where restaurants can use it to deliver food. 
 
-Nearby Shops implements Alibaba's New Offline-to-Online Concept, where customers discover products online and then pick those products up from physical stores. 
+Nearby Shops implements Alibaba's New Online-to-Offline Concept, where customers discover products online and then pick those products up from physical stores. 
 
 ![Online to Offline](https://www.innovationiseverywhere.com/wp-content/uploads/2015/05/what-is-o2o-online-to-offline-digital-ecommerce-retail-china-gmic-1-2.jpg)
 
