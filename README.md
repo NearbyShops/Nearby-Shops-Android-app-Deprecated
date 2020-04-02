@@ -153,16 +153,6 @@ Code Review and Architecture
 
 
 
-Development Instructions
--------------------------
-
-Use the latest stable version of android studio. 
-
-If you are running your own server and do not want multiple markets. Please set multi-market mode to false and set your server URL in the PrefGeneral.java file. 
-
-
-
-
 ## Hiring Remote Workers - Be the part of Our International Community !
 
 Benefit from the flexible working hours and work from anywhere in the world. We are looking for Volunteers who can help us in the following areas
