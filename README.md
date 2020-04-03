@@ -69,8 +69,6 @@ User-Interface is made using the modular View-Holder Pattern which makes the UI 
 
 The app uses Single Activity Architecture, where most of the screens are implemented as fragments and there are only 2-3 activities in the entire project.
 
-The project has 3 Android apps. One app each for the end-user, shop-owner and adminstrator. There is also a JSON-based REST API on the backend. The source-code for the REST API is provided. 
-
 
 
 Features and Highlights
@@ -101,8 +99,7 @@ Nearby Shops Multi-Market Mode - you can add your local market to nearby shops m
 
 Delivery Logic
 ----------------------------
-Delivery by Vendor Staff and Delivery by Market both are supported. Vendors can provide delivery themselves using their own delivery staff. Delivery can also be provided by Delivery People Employed by Market Administrator.
-
+Delivery by Vendors and Delivery by Market both are supported. Vendors can provide delivery using their own delivery staff. Delivery can also be provided by Delivery Staff Employed by Market Administrator.
 
 
 Libraries Used
@@ -113,13 +110,18 @@ Android-Jetpack, Retrofit, Ok-Http, Event-Bus, Picasso, butterknife, dagger2, U-
 
 Third Party Integrations
 -------------------------
-SMS-OTP using MSG91 (More Integrations coming soon ...)
-E-mail using Simple-Java-Mail E-mail Library
-Push Notifications using Firebase and One-Signal
-Maps using Mapbox Android SDK and Google Maps
-Payment Gateway (Coming Soon ...)
 
-For more information please see our developer guide !
+SMS-OTP using MSG91
+
+E-mail using Simple-Java-Mail E-mail Library
+
+Push Notifications using Firebase FCM
+
+Maps using Mapbox Android SDK and Google Maps
+
+Payment Gateway - Razorpay
+
+For more information please see https://developer.nearbyshops.org/integrations/e-mail-integration.html
 
 
 Connect With us - Need Help ? 
