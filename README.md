@@ -101,7 +101,7 @@ Nearby Shops Multi-Market Mode - you can add your local market to nearby shops m
 
 Delivery Logic
 ----------------------------
-Delivery buy Vendor Staff and Delivery by Market both are supported. Vendors can provide delivery themselves using their own delivery staff. Delivery can also be provided by Delivery People Employed by Market Administrator.
+Delivery by Vendor Staff and Delivery by Market both are supported. Vendors can provide delivery themselves using their own delivery staff. Delivery can also be provided by Delivery People Employed by Market Administrator.
 
 
 
