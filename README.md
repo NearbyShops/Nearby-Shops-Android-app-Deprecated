@@ -99,6 +99,11 @@ Billing and payments are supported. Shop-owners are billed according to the numb
 Nearby Shops Multi-Market Mode - you can add your local market to nearby shops market discovery service and your market becomes visible and accessible to Global audience of Nearby Shops app. Read more about Nearby Shops multi-market mode !
 
 
+Delivery Logic
+----------------------------
+Delivery buy Vendor Staff and Delivery by Market both are supported. Vendors can provide delivery themselves using their own delivery staff. Delivery can also be provided by Delivery People Employed by Market Administrator.
+
+
 
 Libraries Used
 ---------------
