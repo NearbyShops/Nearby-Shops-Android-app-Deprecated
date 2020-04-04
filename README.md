@@ -8,38 +8,12 @@ width="120">
 </a>
 
 
-How it works ? 
------------------
-Nearby Shops is a **free & Open Source**  Local Market Server. Anyone can self-host their local market Instance (server) & and create a free marketplace similar to Instacart, Zomato or Grubhub in just 10 Minutes Installation. 
-
-Save your marketing expenses.  Submit your market to nearby shops and get free access to existing customers of nearby shops app. 
-
-### Install with Docker 
-
-
-    cd ~
-
-    wget https://raw.githubusercontent.com/NearbyShops/Nearby-Shops-API/master/docker-compose.yml
-
-    docker-compose up
-
-
-Full installation guide available at https://developer.nearbyshops.org
-
-
-
-### Commercial Use Permitted under Single Market License
-
-We allow commercial use of this software with certain restrictions. You are permitted to use this software to build a small business that favors local economy. 
-
-Please read more about about restriction and permissions here https://blog.nearbyshops.org/single-market-license/
-
 
 
 About Nearby Shops
 --------------------
 
-Nearby Shops is a Free Open-Source food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running in just 5 minutes.
+Nearby Shops is an Open-Source food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running in just 5 $ per month in hosting fees.
 
 
 Nearby Shops implements Alibaba's Grocery Online-to-Offline Concept. Customers can place and order from the app and pick it up in the store. Home Delivery is also available !
@@ -50,7 +24,7 @@ The installation guide and app customization guide is provided at http://develop
 Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
-<img src="https://nearbyshops.org/images/screenshots_usa/shops_list_san_francisco.png" width="208">   <img src="https://nearbyshops.org/images/screenshots_usa/order_detail_john_doe.png" width="208">   <img src="https://nearbyshops.org/images/items-in-shop-new.png" width="208"> 
+<img src="https://nearbyshops.org/images/screenshots_usa/shops_list_new.png" width="208">   <img src="https://nearbyshops.org/images/multi-categories-3.png" width="208">   <img src="https://nearbyshops.org/images/screenshots_usa/order_detail_john_doe_.png" width="208"> 
 
 
 
@@ -95,8 +69,6 @@ User-Interface is made using the modular View-Holder Pattern which makes the UI 
 
 The app uses Single Activity Architecture, where most of the screens are implemented as fragments and there are only 2-3 activities in the entire project.
 
-The project has 3 Android apps. One app each for the end-user, shop-owner and adminstrator. There is also a JSON-based REST API on the backend. The source-code for the REST API is provided. 
-
 
 
 Features and Highlights
@@ -125,6 +97,10 @@ Billing and payments are supported. Shop-owners are billed according to the numb
 Nearby Shops Multi-Market Mode - you can add your local market to nearby shops market discovery service and your market becomes visible and accessible to Global audience of Nearby Shops app. Read more about Nearby Shops multi-market mode !
 
 
+Delivery Logic
+----------------------------
+Delivery by Vendors and Delivery by Market both are supported. Vendors can provide delivery using their own delivery staff. Delivery can also be provided by Delivery Staff Employed by Market Administrator.
+
 
 Libraries Used
 ---------------
@@ -134,13 +110,18 @@ Android-Jetpack, Retrofit, Ok-Http, Event-Bus, Picasso, butterknife, dagger2, U-
 
 Third Party Integrations
 -------------------------
-SMS-OTP using MSG91 (More Integrations coming soon ...)
-E-mail using Simple-Java-Mail E-mail Library
-Push Notifications using Firebase and One-Signal
-Maps using Mapbox Android SDK and Google Maps
-Payment Gateway (Coming Soon ...)
 
-For more information please see our developer guide !
+SMS-OTP using MSG91
+
+E-mail using Simple-Java-Mail E-mail Library
+
+Push Notifications using Firebase FCM
+
+Maps using Mapbox Android SDK and Google Maps
+
+Payment Gateway - Razorpay
+
+For more information please see https://developer.nearbyshops.org/integrations/e-mail-integration.html
 
 
 Connect With us - Need Help ? 
@@ -179,16 +160,6 @@ Code Review and Architecture
 
 
 
-Development Instructions
--------------------------
-
-Use the latest stable version of android studio. 
-
-If you are running your own server and do not want multiple markets. Please set multi-market mode to false and set your server URL in the PrefGeneral.java file. 
-
-
-
-
 ## Hiring Remote Workers - Be the part of Our International Community !
 
 Benefit from the flexible working hours and work from anywhere in the world. We are looking for Volunteers who can help us in the following areas
@@ -206,23 +177,19 @@ If you're interested please get in touch with us on https://forum.nearbyshops.or
 
 
 
-
 License
 =======
 
-MIT License
+GNU GENERAL PUBLIC LICENSE
+                       Version 2, June 1991
+
+ Copyright (C) 1989, 1991 Free Software Foundation, Inc.,
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+ 
 
 Copyright (c) 2020 Nearby Shops
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -231,4 +198,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
