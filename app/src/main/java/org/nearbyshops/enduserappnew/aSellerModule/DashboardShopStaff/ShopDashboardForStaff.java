@@ -14,6 +14,7 @@ import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsDatabase.ItemsDatabase;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopSeller.ItemsInShop;
@@ -170,5 +171,18 @@ public class ShopDashboardForStaff extends AppCompatActivity {
     {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
+
+
+
+
+
+
+
+    @OnClick(R.id.header_tutorials)
+    void headerTutorialsClick()
+    {
+        UtilityFunctions.openURL("https://blog.nearbyshops.org/tag/tutorials-for-shop-owners/",this);
+    }
+
 
 }

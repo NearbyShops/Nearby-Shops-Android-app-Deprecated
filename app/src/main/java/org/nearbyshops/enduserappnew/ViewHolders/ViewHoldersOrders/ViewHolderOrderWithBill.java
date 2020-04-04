@@ -21,7 +21,6 @@ import butterknife.OnClick;
 public class ViewHolderOrderWithBill extends ViewHolderOrder {
 
 
-
     @BindView(R.id.delivery_type) TextView deliveryTypeDescription;
 
     @BindView(R.id.item_total_value) TextView itemTotal;
@@ -33,7 +32,6 @@ public class ViewHolderOrderWithBill extends ViewHolderOrder {
     private Context context;
     private Order order;
     private Fragment fragment;
-
 
 
 
@@ -92,10 +90,15 @@ public class ViewHolderOrderWithBill extends ViewHolderOrder {
 
 
 
+
+
     @OnClick(R.id.list_item)
     void listItemClick()
     {
-        ((ListItemClick)fragment).listItemClick(order,getAdapterPosition());
+        if(fragment instanceof ListItemClick)
+        {
+            ((ListItemClick)fragment).listItemClick(order,getAdapterPosition());
+        }
     }
 
 

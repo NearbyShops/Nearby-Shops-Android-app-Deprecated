@@ -8,14 +8,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 
-import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.ViewHolderCurrentMarket;
-import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.ViewHolderMarket;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderCurrentMarket;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.Lists.Markets.Model.MarketsList;
-import org.nearbyshops.enduserappnew.Lists.Markets.Model.SignInMarker;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.Model.MarketsList;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SignInMarker;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarker;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderRoleDashboard;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;

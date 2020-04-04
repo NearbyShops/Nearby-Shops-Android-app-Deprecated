@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders;
+package org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 
-import org.nearbyshops.enduserappnew.Lists.Markets.ViewModels.MarketViewModel;
+import org.nearbyshops.enduserappnew.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.MyApplication;

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.Markets.ViewModels;
+package org.nearbyshops.enduserappnew.ViewModels;
 
 import android.app.Application;
 
@@ -12,8 +12,8 @@ import okhttp3.OkHttpClient;
 import org.nearbyshops.enduserappnew.API.LoginUsingOTPService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.API_SDS.ServiceConfigService;
-import org.nearbyshops.enduserappnew.Lists.Markets.Model.MarketsList;
-import org.nearbyshops.enduserappnew.Lists.Markets.Model.SignInMarker;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.Model.MarketsList;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SignInMarker;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;

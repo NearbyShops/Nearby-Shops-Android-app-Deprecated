@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders;
+package org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket;
 
 import android.content.Context;
 import android.content.DialogInterface;

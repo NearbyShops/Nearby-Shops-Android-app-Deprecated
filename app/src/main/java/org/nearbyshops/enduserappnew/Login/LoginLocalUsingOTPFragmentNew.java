@@ -1,8 +1,8 @@
 package org.nearbyshops.enduserappnew.Login;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,42 +10,50 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.hbb20.CountryCodePicker;
 
-import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
-
+import org.nearbyshops.enduserappnew.API.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.API.LoginUsingOTPService;
 import org.nearbyshops.enduserappnew.API.UserService;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import javax.inject.Inject;
-
 /**
  * Created by sumeet on 19/4/17.
  */
 
-public class LoginLocalUsingOTPFragment extends Fragment {
+public class LoginLocalUsingOTPFragmentNew extends Fragment {
 
 
 
@@ -68,13 +76,11 @@ public class LoginLocalUsingOTPFragment extends Fragment {
     @BindView(R.id.login) Button loginButton;
     @BindView(R.id.text_input_password) TextInputLayout textInputPassword;
 
-
     private int registrationMode = User.REGISTRATION_MODE_PHONE;
 
 
 
-
-    public LoginLocalUsingOTPFragment() {
+    public LoginLocalUsingOTPFragmentNew() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -93,18 +99,27 @@ public class LoginLocalUsingOTPFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_login_using_otp_local, container, false);
         ButterKnife.bind(this,rootView);
 
-
-        if(getChildFragmentManager().findFragmentByTag(TAG_SERVICE_INDICATOR)==null)
-        {
-            getChildFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.service_indicator,new ServiceIndicatorFragment(),TAG_SERVICE_INDICATOR)
-                    .commit();
-        }
-
-
+        bindRegistrationMode();
+        setupCountryCodePicker();
 
         return rootView;
+    }
+
+
+
+
+
+    private void setupCountryCodePicker()
+    {
+
+        ccp.setCcpClickable(true);
+
+        ServiceConfigurationLocal serviceConfig = PrefServiceConfig.getServiceConfigLocal(getActivity());
+
+        if(serviceConfig!=null)
+        {
+            ccp.setCountryForNameCode(serviceConfig.getISOCountryCode());
+        }
     }
 
 
@@ -116,12 +131,6 @@ public class LoginLocalUsingOTPFragment extends Fragment {
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
-
-
-
-
-
-
 
 
 
@@ -177,8 +186,16 @@ public class LoginLocalUsingOTPFragment extends Fragment {
 
 
 
-        // phone and password both needs to be valid
-        isValid = validatePhone() && isValid;
+
+        if(registrationMode==User.REGISTRATION_MODE_EMAIL)
+        {
+
+        }
+        else if(registrationMode==User.REGISTRATION_MODE_PHONE)
+        {
+            // phone and password both needs to be valid
+            isValid = validatePhone() && isValid;
+        }
 
 
 
@@ -193,15 +210,13 @@ public class LoginLocalUsingOTPFragment extends Fragment {
 
     private boolean validatePhone()
     {
-
-
         boolean isValid = true;
         boolean phoneValidity = false;
 //        boolean emailValidity = false;
 //
 //
 //        emailValidity = EmailValidator.getInstance().isValid(username.getText().toString());
-        phoneValidity = android.util.Patterns.PHONE.matcher(username.getText().toString()).matches();
+        phoneValidity = Patterns.PHONE.matcher(username.getText().toString()).matches();
 
 
         if(username.getText().toString().isEmpty())
@@ -212,13 +227,13 @@ public class LoginLocalUsingOTPFragment extends Fragment {
 
             isValid = false;
         }
-//        else if(username.getText().toString().length()!=10)
-//        {
-//            username.setError("Enter a valid phone number !");
-//            username.requestFocus();
-//
-//            isValid = false;
-//        }
+        else if(username.getText().toString().length()!=10)
+        {
+            username.setError("Enter a valid phone number !");
+            username.requestFocus();
+
+            isValid = false;
+        }
 
 
         if(!phoneValidity)
@@ -232,6 +247,37 @@ public class LoginLocalUsingOTPFragment extends Fragment {
         return isValid;
     }
 
+
+    private boolean validateEmail()
+    {
+        boolean isValid = true;
+        boolean emailValidity = false;
+//
+//
+//        emailValidity = EmailValidator.getInstance().isValid(username.getText().toString());
+        emailValidity = Patterns.EMAIL_ADDRESS.matcher(username.getText().toString()).matches();
+
+
+        if(username.getText().toString().isEmpty())
+        {
+//            password.requestFocus();
+            username.setError("Please enter email !");
+            username.requestFocus();
+
+            isValid = false;
+        }
+
+
+        if(!emailValidity)
+        {
+            username.setError("Invalid Email !");
+            isValid = false;
+        }
+
+
+
+        return isValid;
+    }
 
 
 
@@ -249,8 +295,11 @@ public class LoginLocalUsingOTPFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
         isDestroyed= true;
     }
+
+
 
 
 
@@ -259,11 +308,11 @@ public class LoginLocalUsingOTPFragment extends Fragment {
     {
         if(textInputPassword.getVisibility()==View.GONE)
         {
-            sendOTP();
+            sendOTP(registrationMode);
         }
         else if (textInputPassword.getVisibility()==View.VISIBLE)
         {
-            makeRequestLogin();
+            loginToEndpoint();
         }
 
     }
@@ -273,7 +322,7 @@ public class LoginLocalUsingOTPFragment extends Fragment {
 
 
 
-    private void makeRequestLogin()
+    private void loginToEndpoint()
     {
 
         if(!validateData())
@@ -283,9 +332,22 @@ public class LoginLocalUsingOTPFragment extends Fragment {
         }
 
 
+//        final String phoneWithCode = username.getText().toString();
 
-        final String phoneWithCode = username.getText().toString();
-//        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
+        String phoneWithCode = "";
+
+        if(registrationMode==User.REGISTRATION_MODE_PHONE)
+        {
+            phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
+        }
+        else if(registrationMode==User.REGISTRATION_MODE_EMAIL)
+        {
+            phoneWithCode = username.getText().toString();
+        }
+
+
+
+
 
         progressBar.setVisibility(View.VISIBLE);
         loginButton.setVisibility(View.INVISIBLE);
@@ -299,12 +361,16 @@ public class LoginLocalUsingOTPFragment extends Fragment {
 
 
 
-        Call<User> call = retrofit.create(LoginUsingOTPService.class).getProfileWithLogin(
-                PrefLogin.baseEncoding(phoneWithCode,password.getText().toString())
+
+        Call<User> call = retrofit.create(LoginUsingOTPService.class).verifyCredentialsUsingOTP(
+                PrefLogin.baseEncoding(phoneWithCode, password.getText().toString()),
+                registrationMode
         );
 
 
 
+
+        String finalPhoneWithCode = phoneWithCode;
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -323,58 +389,27 @@ public class LoginLocalUsingOTPFragment extends Fragment {
 
 
 
-//                    if(response.body().getRole()!=User.ROLE_END_USER_CODE)
-//                    {
-//                        showToastMessage("Only an End-User is allowed to login");
-//                        return;
-//                    }
-
                     User user = response.body();
 
 
 
-                    PrefLogin.saveToken(
-                            getActivity(),
-                            user.getPhone(),
-                            user.getToken()
-                    );
+                    if(user!=null)
+                    {
+                        PrefLogin.saveToken(
+                                getActivity(),
+                                finalPhoneWithCode,
+                                user.getToken()
+                        );
 
 
 
+                        // save user profile information
+                        PrefLogin.saveUserProfile(
+                                user,
+                                getActivity()
+                        );
 
-
-                    // save token and token expiry timestamp
-//                    PrefLogin.saveToken(
-//                            getActivity(),
-//                            response.body().getToken(),
-//                            response.body().getTimestampTokenExpires()
-//                    );
-
-
-                    // save user profile information
-                    PrefLogin.saveUserProfile(
-                            response.body(),
-                            getActivity()
-                    );
-
-
-
-
-
-
-
-
-
-//                    PrefOneSignal.saveToken(getActivity(),PrefOneSignal.getLastToken(getActivity()));
-//
-//                    if(PrefOneSignal.getToken(getActivity())!=null)
-//                    {
-//                        // update one signal id if its not updated
-//                        getActivity().startService(new Intent(getActivity(), UpdateOneSignalID.class));
-//                    }
-
-
-
+                    }
 
 
 
@@ -384,24 +419,16 @@ public class LoginLocalUsingOTPFragment extends Fragment {
 
                     if(getActivity() instanceof NotifyAboutLogin)
                     {
-//                        showToastMessage("Notify about login !");
                         ((NotifyAboutLogin) getActivity()).loginSuccess();
                     }
-
-
-
-//                        getActivity().finish();
-
-
-//                    showToastMessage("LoginUsingOTP success : code : " + String.valueOf(response.code()));
 
 
 
                 }
                 else
                 {
-                    showToastMessage("Login Failed : Phone or OTP is incorrect !");
-//                    System.out.println("Login Failed : Code " + String.valueOf(response.code()));
+//                    showToastMessage("Login Failed : Username or password is incorrect !");
+                    showToastMessage("Login Failed : Code " + response.code());
                 }
 
             }
@@ -422,6 +449,8 @@ public class LoginLocalUsingOTPFragment extends Fragment {
             }
         });
 
+
+
     }
 
 
@@ -429,32 +458,34 @@ public class LoginLocalUsingOTPFragment extends Fragment {
 
 
 
-    private void sendOTP()
+    private void sendOTP(int registrationMode)
     {
 
-        if(!validatePhone())
+
+        if(registrationMode==User.REGISTRATION_MODE_PHONE && !validatePhone())
         {
             // validation failed return
+            return;
+        }
+        else if(registrationMode==User.REGISTRATION_MODE_EMAIL && !validateEmail())
+        {
             return;
         }
 
 
 
 //        final String phoneWithCode = username.getText().toString();
-//        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
-
 
         String phoneWithCode = "";
 
-        if(registrationMode==User.REGISTRATION_MODE_PHONE)
-        {
-            phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
-        }
-        else if(registrationMode==User.REGISTRATION_MODE_EMAIL)
+        if(registrationMode==User.REGISTRATION_MODE_EMAIL)
         {
             phoneWithCode = username.getText().toString();
         }
-
+        else if(registrationMode==User.REGISTRATION_MODE_PHONE)
+        {
+            phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
+        }
 
 
 
@@ -471,9 +502,24 @@ public class LoginLocalUsingOTPFragment extends Fragment {
 
 
 
-        Call<ResponseBody> call = retrofit.create(UserService.class).sendVerificationPhone(
-                phoneWithCode
-        );
+
+
+
+        Call<ResponseBody> call = null;
+
+
+        if(registrationMode==User.REGISTRATION_MODE_EMAIL)
+        {
+            call = retrofit.create(UserService.class).sendVerificationEmail(
+                    phoneWithCode
+            );
+        }
+        else if(registrationMode==User.REGISTRATION_MODE_PHONE)
+        {
+            call = retrofit.create(UserService.class).sendVerificationPhone(
+                    phoneWithCode
+            );
+        }
 
 
 
@@ -481,66 +527,73 @@ public class LoginLocalUsingOTPFragment extends Fragment {
         loginButton.setText("Login");
 
 
-
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-
-                if(isDestroyed)
-                {
-                    return;
-                }
-
-                progressBar.setVisibility(View.GONE);
-                loginButton.setVisibility(View.VISIBLE);
-
-
-
-                if(response.code()==200) {
-                    // save username and password
-
-//                    showToastMessage("OTP Sent !");
-                }
-                else
-                {
-                    showToastMessage("Failed to send OTP ... failed Code : " + response.code());
-                }
-
-
-                }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-
-                if(isDestroyed)
-                {
-                    return;
-                }
-
-                showToastMessage("Failed ... Please check your network !");
-
-                progressBar.setVisibility(View.GONE);
-                loginButton.setVisibility(View.VISIBLE);
-
-
-
+            if (call == null) {
+                return;
             }
-        });
 
+
+
+
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+                    if(isDestroyed)
+                    {
+                        return;
+                    }
+
+                    progressBar.setVisibility(View.GONE);
+                    loginButton.setVisibility(View.VISIBLE);
+
+
+
+                    if(response.code()==200) {
+                        // save username and password
+
+    //                    showToastMessage("OTP Sent !");
+
+                        if(registrationMode==User.REGISTRATION_MODE_EMAIL)
+                        {
+                            showToastMessage("OTP sent on your Email !");
+                        }
+                        else if(registrationMode==User.REGISTRATION_MODE_PHONE)
+                        {
+                            showToastMessage("OTP sent on your Phone !");
+                        }
+
+                    }
+                    else
+                    {
+                        showToastMessage("Failed to send OTP ... failed Code : " + response.code());
+                    }
+
+
+                    }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                    if(isDestroyed)
+                    {
+                        return;
+                    }
+
+                    showToastMessage("Failed ... Please check your network !");
+
+                    progressBar.setVisibility(View.GONE);
+                    loginButton.setVisibility(View.VISIBLE);
+
+
+
+                }
+            });
 
 
 
     }
-
-
-
-
-
-
-
 
 
 
@@ -595,11 +648,6 @@ public class LoginLocalUsingOTPFragment extends Fragment {
 
             ccp.setVisibility(View.VISIBLE);
 
-
-            ccp.setCountryForNameCode("IN");
-            ccp.setCcpClickable(false);
-
-
             username.setInputType(InputType.TYPE_CLASS_PHONE);
             username.setHint("Enter Phone");
         }
@@ -610,5 +658,13 @@ public class LoginLocalUsingOTPFragment extends Fragment {
 
 
 
+    @OnClick(R.id.login_using_password)
+    void loginUsingPasswordClick()
+    {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,new LoginGlobalUsingPasswordFragment())
+                .commitNow();
+    }
 
 }

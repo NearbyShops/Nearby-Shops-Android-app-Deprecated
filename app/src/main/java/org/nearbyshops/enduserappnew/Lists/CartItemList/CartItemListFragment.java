@@ -253,8 +253,6 @@ public class CartItemListFragment extends Fragment
 
 
 
-
-
     private void displayCartStats()
     {
 
@@ -262,7 +260,6 @@ public class CartItemListFragment extends Fragment
         {
             cartTotal = cartStats.getCart_Total();
             totalValue.setText("Total : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.format("%.2f", cartTotal));
-
 //            adapter.setCartStats(cartStats);
         }
     }
@@ -520,12 +517,11 @@ public class CartItemListFragment extends Fragment
 
 
 
-        showToastMessage("Item Updated !");
-        totalValue.setText("Total : "  + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.format("%.2f", cartTotal));
-        cartStats.setCart_Total(cartTotal);
-
-
+        fetchCartStats();
     }
+
+
+
 
     @Override
     public void notifyRemove(CartItem cartItem) {

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders;
+package org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import butterknife.BindView;
@@ -24,7 +23,7 @@ import butterknife.OnLongClick;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduserappnew.Lists.Markets.ViewModels.MarketViewModel;
+import org.nearbyshops.enduserappnew.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.MyApplication;
@@ -46,7 +45,7 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder{
 //    @BindView(R.id.distance) TextView distance;
     @BindView(R.id.rating) TextView rating;
     @BindView(R.id.rating_count) TextView ratingCount;
-//    @BindView(R.id.description) TextView description;
+    @BindView(R.id.short_description) TextView description;
     @BindView(R.id.logo) ImageView serviceLogo;
 
     @BindView(R.id.distance) TextView distance;
@@ -177,6 +176,8 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder{
 
 
         distance.setText(String.format("%.2f Km", configurationGlobal.getRt_distance()));
+
+        description.setText(configurationGlobal.getDescriptionShort());
 
 //                service.getAddress() + ", " +
 

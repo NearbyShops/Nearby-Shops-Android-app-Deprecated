@@ -20,8 +20,8 @@ import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 
 import org.nearbyshops.enduserappnew.API.API_SDS.ServiceConfigService;
-import org.nearbyshops.enduserappnew.Lists.Markets.Interfaces.MarketSelected;
-import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.ViewHolderMarket;
+import org.nearbyshops.enduserappnew.Interfaces.MarketSelected;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;

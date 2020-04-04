@@ -254,13 +254,12 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
     ArrayList<ItemImage> dataset = new ArrayList<>();
-    @BindView(R.id.recyclerview_item_images)
-    RecyclerView itemImagesList;
+    @BindView(R.id.recyclerview_item_images) RecyclerView itemImagesList;
     AdapterItemImages adapterItemImages;
     GridLayoutManager layoutManager;
 
 
-    void setupRecyclerView() {
+    private void setupRecyclerView() {
 
         adapterItemImages = new AdapterItemImages(dataset,getActivity(),this);
         itemImagesList.setAdapter(adapterItemImages);
@@ -279,7 +278,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
     GridLayoutManager layoutManagerItemSpecs;
 
 
-    void setupRecyclerViewSpecs()
+    private void setupRecyclerViewSpecs()
     {
         adapterItemSpecs = new AdapterItemSpecifications(datasetSpecs,getActivity(),this);
         itemSpecsList.setAdapter(adapterItemSpecs);
@@ -291,7 +290,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
     }
 
 
-    void makeNetworkCallSpecs(final boolean clearDataset)
+    private void makeNetworkCallSpecs(final boolean clearDataset)
     {
         Call<List<ItemSpecificationName>> call = itemSpecNameService.getItemSpecName(
           item.getItemID(),null
@@ -1240,7 +1239,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
-    void makeRequestDeleteItemImage(ItemImage itemImage, final int position)
+    private void makeRequestDeleteItemImage(ItemImage itemImage, final int position)
     {
         Call<ResponseBody> call = itemImageService.deleteItemImageData(
                 PrefLogin.getAuthorizationHeaders(getActivity()),

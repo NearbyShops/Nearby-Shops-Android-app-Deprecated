@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.Markets.Interfaces;
+package org.nearbyshops.enduserappnew.Interfaces;
 
 
 

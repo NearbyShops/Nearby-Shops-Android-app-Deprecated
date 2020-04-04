@@ -156,7 +156,7 @@
 <!--        <activity android:name=".aSellerModule.QuickStockEditor.QuickStockEditor" />-->
         <activity android:name=".aSellerModule.FilterDeliveryGuy.FilterDeliveryGuy" />
 
-        <activity android:name=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard" />
+        <activity android:name=".aSellerModule.DashboardShop.ShopDashboard" />
         <activity android:name=".Lists.TransactionHistory.Transactions" />
 
 
@@ -166,11 +166,11 @@
             android:launchMode="singleTop"
             android:name=".Lists.OrderHistory.OrderHistory"
             android:label="Order History"
-            android:parentActivityName=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
 
             <meta-data
                 android:name="android.app.searchable"
@@ -189,11 +189,11 @@
             android:launchMode="singleTop"
             android:name=".Lists.OrderHistoryPaging.OrderHistoryPaging"
             android:label="Order History"
-            android:parentActivityName=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
 
             <meta-data
                 android:name="android.app.searchable"
@@ -212,10 +212,10 @@
             android:launchMode="singleTop"
             android:name=".aSellerModule.InventoryOrders.PickFromShopInventory.PickFromShopInventory"
             android:label="Pick From Shop Inventory"
-            android:parentActivityName=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
 
             <meta-data
                 android:name="android.app.searchable"
@@ -233,10 +233,10 @@
             android:launchMode="singleTop"
             android:name=".aSellerModule.InventoryOrders.HomeDeliveryInventory.HomeDelivery"
             android:label="Home Delivery Inventory"
-            android:parentActivityName=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
 
             <meta-data
                 android:name="android.app.searchable"
@@ -254,10 +254,10 @@
         <activity
             android:name=".aSellerModule.QuickStockEditor.QuickStockEditor"
             android:label="Quick Stock Editor"
-            android:parentActivityName=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
         </activity>
 
 
@@ -267,11 +267,11 @@
             android:name=".aSellerModule.ItemsDatabase.ItemsDatabase"
             android:label="Items Database"
             android:launchMode="singleTop"
-            android:parentActivityName=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -287,10 +287,10 @@
             android:name=".aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat"
             android:label="Items In Shop"
             android:launchMode="singleTop"
-            android:parentActivityName=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -307,10 +307,10 @@
             android:name=".aSellerModule.ItemsInShopSeller.ItemsInShop"
             android:label="Items In Shop"
             android:launchMode="singleTop"
-            android:parentActivityName=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -443,7 +443,6 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-
 
 
 

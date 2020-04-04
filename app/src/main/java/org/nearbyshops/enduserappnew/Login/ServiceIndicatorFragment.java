@@ -151,7 +151,7 @@ public class ServiceIndicatorFragment extends Fragment {
 
 
             String imagePath = PrefGeneral.getServiceURL(getActivity())
-                    + "/api/serviceconfiguration/Image/three_hundred_" + serviceConfig.getLogoImagePath() + ".jpg";
+                    + "/api/ServiceConfiguration/Image/three_hundred_" + serviceConfig.getLogoImagePath() + ".jpg";
 
 
 //                System.out.println("Service LOGO : " + imagePath);

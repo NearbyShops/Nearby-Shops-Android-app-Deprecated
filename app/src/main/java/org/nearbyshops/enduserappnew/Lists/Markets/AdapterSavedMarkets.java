@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.ViewHolderMarketSmall;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarketSmall;
 
 import java.util.List;
 

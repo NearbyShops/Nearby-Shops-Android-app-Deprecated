@@ -48,7 +48,7 @@ import java.util.List;
  */
 
 public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        ViewHolderOrderWithBillDeprecated.ListItemClick, ViewHolderOrderItem.ListItemClick, ViewHolderShopSmall.ListItemClick
+        ViewHolderOrderItem.ListItemClick, ViewHolderShopSmall.ListItemClick
         {
 
     private Order order;
@@ -303,17 +303,6 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         Log.d("order_detail",message);
     }
 
-
-
-    @Override
-    public void listItemClick(Order order, int position) {
-
-    }
-
-    @Override
-    public boolean listItemLongClick(View view, Order order, int position) {
-        return false;
-    }
 
 
 

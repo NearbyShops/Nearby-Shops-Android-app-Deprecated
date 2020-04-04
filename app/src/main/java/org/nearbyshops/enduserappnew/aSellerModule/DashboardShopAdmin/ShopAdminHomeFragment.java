@@ -23,7 +23,7 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard;
+import org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard;
 import org.nearbyshops.enduserappnew.Lists.TransactionHistory.Transactions;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
@@ -568,11 +568,10 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-
     @OnClick(R.id.header_tutorials)
     void headerTutorialsClick()
     {
-        UtilityFunctions.openURL("https://blog.nearbyshops.org/tag/tutorials/",getActivity());
+        UtilityFunctions.openURL("https://blog.nearbyshops.org/tag/tutorials-for-shop-owners/",getActivity());
     }
 
 

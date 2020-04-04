@@ -27,17 +27,10 @@ public class Highlights {
 
 
         list.add(HighlightItem.getNegotiatePrices());
-        list.add(HighlightItem.getBookCabsAtZeroCommission());
         list.add(HighlightItem.getBookingHelpline());
-//        list.add(HighlightItem.getLowestFareGuarantee());
-        list.add(HighlightItem.getFlexiFares());
-        list.add(HighlightItem.getMultipleDestinations());
-        list.add(HighlightItem.getShareCabWithFriends());
-
 
         Highlights highlights = new Highlights();
         highlights.setHighlightList(list);
-
         highlights.setListTitle(null);
 
 
@@ -47,60 +40,6 @@ public class Highlights {
 
 
 
-
-
-
-
-    public static Highlights getHighlightsLocalCabs()
-    {
-
-        List<Object> list = new ArrayList<>();
-
-        list.add(HighlightItem.getNoSurgePricing());
-        list.add(HighlightItem.getFlexiFares());
-        list.add(HighlightItem.getMultipleDestinations());
-        list.add(HighlightItem.getShareCabWithFriends());
-
-
-        Highlights highlights = new Highlights();
-        highlights.setHighlightList(list);
-
-        highlights.setListTitle("");
-
-
-        return highlights;
-    }
-
-
-
-
-
-
-
-    public static Highlights getHighlightsOutstation()
-    {
-
-        List<Object> list = new ArrayList<>();
-
-
-        list.add(HighlightItem.getNegotiatePrices());
-        list.add(HighlightItem.getBookCabsAtZeroCommission());
-        list.add(HighlightItem.getBookingHelpline());
-//        list.add(HighlightItem.getLowestFareGuarantee());
-        list.add(HighlightItem.getOneWayAndReturnCabsAvailable());
-        list.add(HighlightItem.getFlexiFares());
-        list.add(HighlightItem.getMultipleDestinations());
-        list.add(HighlightItem.getShareCabWithFriends());
-
-
-        Highlights highlights = new Highlights();
-        highlights.setHighlightList(list);
-
-        highlights.setListTitle("");
-
-
-        return highlights;
-    }
 
 
 

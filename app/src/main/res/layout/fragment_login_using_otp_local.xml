@@ -45,7 +45,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Discover local markets in your area and shop locally !"
+                android:text="Shop locally in your area !"
                 android:layout_width="wrap_content"/>
 
 
@@ -108,6 +108,7 @@
 
 
 
+
         <TextView
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             android:gravity="center"
@@ -115,16 +116,17 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="3dp"
             android:padding="10dp"
-            android:background="@color/light_grey"
-            app:layout_constraintEnd_toStartOf="@id/select_phone"
-            app:layout_constraintRight_toRightOf="parent"
+            android:background="@color/phonographyBlue"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/border_two"
-            android:text="E-mail"
-            android:textColor="@color/blueGrey800"
+            app:layout_constraintEnd_toStartOf="@id/select_email"
+            android:text="Phone"
+            android:textColor="@color/white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/select_email"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:id="@+id/select_phone" />
+
+
 
         <TextView
             app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -133,16 +135,15 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="3dp"
             android:padding="10dp"
-            android:background="@color/phonographyBlue"
+            android:background="@color/light_grey"
+            app:layout_constraintStart_toEndOf="@id/select_phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/border_two"
-            app:layout_constraintStart_toEndOf="@id/select_email"
-            android:text="Phone"
-            android:textColor="@color/white"
+            android:text="E-mail"
+            android:textColor="@color/blueGrey800"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/select_phone" />
-
+            android:id="@+id/select_email" />
 
 
 
@@ -156,9 +157,9 @@
             android:paddingTop="2dp"
             android:id="@+id/ccp"
             app:ccp_showFlag="true"
+            app:ccp_clickable="true"
             app:ccp_showNameCode="false"
             app:ccp_showPhoneCode="true"
-            app:ccp_defaultPhoneCode="91"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

@@ -21,14 +21,11 @@ public interface LoginUsingOTPService {
 
 
 
-    @PUT("/api/v1/User/LoginUsingOTP/SendPhoneVerificationCode/{phone}")
-    Call<ResponseBody> sendPhoneVerificationCode(@Path("phone") String phone);
-
-
-
-    @GET ("/api/v1/User/LoginUsingOTP/CheckPhoneVerificationCode/{phone}")
-    Call<ResponseBody> checkPhoneVerificationCode(@Path("phone") String phone,
-                                                  @Query("VerificationCode") String verificationCode);
+    @GET ("/api/v1/User/LoginUsingOTP/VerifyCredentialsUsingOTP")
+    Call<User> verifyCredentialsUsingOTP(
+            @Header("Authorization")String headerParam,
+            @Query("RegistrationMode")int registrationMode // 1 for email and 2 for phone
+    );
 
 
 

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.Markets.Model;
+package org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.Model;
 
 
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;

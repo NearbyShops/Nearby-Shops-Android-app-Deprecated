@@ -43,6 +43,7 @@ import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortShops;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
+import org.nearbyshops.enduserappnew.zHighlightSlider.Model.Highlights;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -513,22 +514,16 @@ public class FragmentShopsList extends Fragment implements
                     if(response.body()!=null)
                     {
 
-
                         if(clearDataset)
                         {
                             dataset.clear();
-
-//                            dataset.add(0,Highlights.getHighlightsCabRental());
+//                            dataset.add(0, Highlights.getHighlightsCabRental());
                         }
-
 
                         dataset.addAll(response.body().getResults());
 
 
-
-
                         adapter.notifyDataSetChanged();
-
                         if(response.body().getItemCount()!=null)
                         {
                             item_count = response.body().getItemCount();

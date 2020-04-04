@@ -24,373 +24,403 @@
     android:paddingTop="@dimen/activity_vertical_margin"   -->
 
 
-
-
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin">
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
 
         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:background="#88000000"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-
-
-<!--        android:text="Items"-->
-        <TextView
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/header_items"
-            android:text="Step 1 : Add Items to Shop"
-            android:textSize="17sp"
-            android:background="@color/light_grey"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <LinearLayout
             android:layout_marginTop="10dp"
-            android:layout_below="@id/header_items"
-            android:weightSum="2"
-            android:id="@+id/row_zero"
-            android:layout_width="match_parent"
+            android:id="@+id/header_tutorials"
+            android:padding="10dp"
+            android:background="@color/gplus_color_2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView2"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_weight="2"
-                android:id="@+id/option_add_items"
-                android:background="@color/phonographyBlue"
+
+
+            <TextView
+                android:id="@+id/header"
+                android:textSize="20sp"
+                android:textColor="@color/blueGrey800"
+                android:text="Tutorials and Guides"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/menu_item_width">
+                android:layout_height="match_parent"/>
+
+
+        </LinearLayout>
+
+
+
+        <!--        android:text="Items"-->
+        <TextView
+            android:id="@+id/header_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/light_grey"
+            android:padding="5dp"
+            android:text="Step 1 : Add Items to Shop"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_tutorials" />
+
+
+        <LinearLayout
+            android:id="@+id/row_zero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_items">
+
+            <RelativeLayout
+                android:id="@+id/option_add_items"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_weight="2"
+                android:background="@color/phonographyBlue">
 
                 <ImageView
-                    app:srcCompat="@drawable/ic_items_24px"
-                    android:tint="#ffffff"
-                    android:padding="10dp"
-                    android:layout_above="@+id/text_add_items"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_add_items"
+                    android:padding="10dp"
+                    android:tint="#ffffff"
+                    app:srcCompat="@drawable/ic_items_24px" />
 
 
                 <TextView
-                    android:padding="10dp"
                     android:id="@+id/text_add_items"
-                    android:textSize="@dimen/menu_item_text_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
-                    android:textColor="#ffffff"
+                    android:padding="10dp"
                     android:text="Items Database"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>
+
 
         </LinearLayout>
 
 
         <LinearLayout
-            android:orientation="horizontal"
             android:id="@+id/borderOne"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/row_zero"
-            android:background="#88000000"
             android:layout_width="match_parent"
-            android:layout_height="1dp"/>
-
-
-<!--        android:text="Items in Shop"-->
-        <TextView
-            android:layout_below="@id/borderOne"
-            android:padding="5dp"
+            android:layout_height="1dp"
             android:layout_marginTop="10dp"
+            android:background="#88000000"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row_zero" />
+
+
+        <!--        android:text="Items in Shop"-->
+        <TextView
             android:id="@+id/header_stock_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/light_grey"
+            android:padding="5dp"
             android:text="Step 2 : Set Prices and Availability"
             android:textSize="17sp"
-            android:background="@color/light_grey"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/borderOne" />
 
 
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:id="@+id/row_one"
-            android:layout_below="@id/header_stock_items"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_stock_items">
 
             <RelativeLayout
-                android:layout_marginRight="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:layout_below="@id/borderOne"
                 android:id="@+id/option_edit_stock"
-                android:background="@color/slate_grey"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/menu_item_width">
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_below="@id/borderOne"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@color/slate_grey">
 
                 <ImageView
-                    app:srcCompat="@drawable/ic_items_24px"
-                    android:tint="#ffffff"
-                    android:padding="10dp"
-                    android:layout_above="@+id/text_add_stock"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_add_stock"
+                    android:padding="10dp"
+                    android:tint="#ffffff"
+                    app:srcCompat="@drawable/ic_items_24px" />
 
 
                 <!--android:text="Edit Stock"-->
                 <TextView
-                    android:padding="10dp"
                     android:id="@+id/text_add_stock"
-                    android:textSize="@dimen/menu_item_text_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentBottom="true"
-                    android:textColor="#ffffff"
+                    android:padding="10dp"
                     android:text="Items in Shop\nby Category"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>
 
 
             <RelativeLayout
+                android:id="@+id/option_items_in_stock"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_below="@id/borderOne"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:layout_below="@id/borderOne"
-                android:id="@+id/option_items_in_stock"
-                android:background="@color/blueGrey800"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/menu_item_width">
+                android:background="@color/blueGrey800">
 
                 <ImageView
-                    app:srcCompat="@drawable/ic_dns_black_24px"
-                    android:tint="#ffffff"
-                    android:padding="10dp"
-                    android:layout_above="@+id/text_stock_items"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_stock_items"
+                    android:padding="10dp"
+                    android:tint="#ffffff"
+                    app:srcCompat="@drawable/ic_dns_black_24px" />
 
 
                 <!--android:text="Edit Stock"-->
                 <TextView
-                    android:padding="10dp"
                     android:id="@+id/text_stock_items"
-                    android:textSize="@dimen/menu_item_text_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentBottom="true"
-                    android:textColor="#ffffff"
+                    android:padding="10dp"
                     android:text="Items in Shop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>
 
 
         </LinearLayout>
 
 
-
-
-
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:id="@+id/row_one_one"
-            android:weightSum="2"
-            android:layout_below="@id/row_one"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row_one">
 
 
             <RelativeLayout
                 android:id="@+id/shop_home_quick_stock_editor"
-                android:background="@color/gplus_color_2"
-                android:layout_weight="2"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/menu_item_width">
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_weight="2"
+                android:background="@color/gplus_color_2">
 
                 <ImageView
-                    app:srcCompat="@drawable/ic_edit_white_36px"
-                    android:tint="#ffffff"
-                    android:padding="10dp"
-                    android:layout_above="@+id/text_quick_stock_editor"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_quick_stock_editor"
+                    android:padding="10dp"
+                    android:tint="#ffffff"
+                    app:srcCompat="@drawable/ic_edit_white_36px" />
 
                 <TextView
-                    android:padding="10dp"
                     android:id="@+id/text_quick_stock_editor"
-                    android:textSize="@dimen/menu_item_text_size"
-                    android:layout_alignParentBottom="true"
-                    android:textColor="#ffffff"
-                    android:text="Quick Stock Editor"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:text="Quick Stock Editor"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>
         </LinearLayout>
 
 
-
-
-
         <TextView
-            android:layout_marginTop="10dp"
             android:id="@+id/border_delivery"
-            android:layout_below="@id/row_one_one"
-            android:background="@color/grey800"
             android:layout_width="match_parent"
-            android:layout_height="1dp" />
-
-        
-        <TextView
-            android:padding="5dp"
+            android:layout_height="1dp"
             android:layout_marginTop="10dp"
+            android:background="@color/grey800"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row_one_one" />
+
+
+        <TextView
             android:id="@+id/header_delivery"
-            android:layout_below="@id/border_delivery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/light_grey"
+            android:padding="5dp"
             android:text="Step 3 : Manage Orders and Delivery"
             android:textSize="17sp"
-            android:background="@color/light_grey"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/border_delivery" />
 
 
         <LinearLayout
             android:id="@+id/row_two"
-            android:weightSum="2"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/header_delivery"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_delivery">
 
             <!--android:layout_marginRight="5dp"-->
             <!--android:layout_marginEnd="5dp"-->
 
 
-
-
-
             <RelativeLayout
-                android:layout_marginEnd="5dp"
                 android:id="@+id/option_orders"
-                android:background="@color/blueGrey800"
-                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/menu_item_width">
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@color/blueGrey800">
 
                 <ImageView
-                    app:srcCompat="@drawable/ic_local_shipping_black_24px"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_cancel"
+
                     android:padding="10dp"
                     android:tint="#ffffff"
-
-                    android:layout_above="@+id/text_cancel"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    app:srcCompat="@drawable/ic_local_shipping_black_24px" />
 
                 <TextView
-                    android:padding="10dp"
                     android:id="@+id/text_cancel"
-                    android:textSize="@dimen/menu_item_text_size"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:textColor="#ffffff"
-                    android:text="Home Delivery Inventory"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:text="Home Delivery Inventory"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>
 
 
-
             <RelativeLayout
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
                 android:id="@+id/option_orders_pick_from_shop"
-                android:background="@color/buttonColorDark"
-                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/menu_item_width">
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@color/buttonColorDark">
 
                 <ImageView
-                    app:srcCompat="@drawable/ic_home_black_24dp"
-                    android:tint="#ffffff"
-                    android:padding="10dp"
-                    android:layout_above="@+id/text_pick_from_shop"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_pick_from_shop"
+                    android:padding="10dp"
+                    android:tint="#ffffff"
+                    app:srcCompat="@drawable/ic_home_black_24dp" />
 
                 <TextView
-                    android:padding="10dp"
                     android:id="@+id/text_pick_from_shop"
-                    android:textSize="@dimen/menu_item_text_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
-                    android:textColor="#ffffff"
+                    android:padding="10dp"
                     android:text="Pick From Shop Inventory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>
         </LinearLayout>
 
 
-
-
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:id="@+id/row_order_history"
-            android:weightSum="2"
-            android:layout_below="@id/row_two"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row_two">
 
 
             <RelativeLayout
                 android:id="@+id/shop_home_order_history"
-                android:background="@color/phonographyBlue"
-                android:layout_weight="2"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/menu_item_width">
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_weight="2"
+                android:background="@color/phonographyBlue">
 
                 <ImageView
-                    app:srcCompat="@drawable/ic_receipt_black_24dp"
-                    android:tint="#ffffff"
-                    android:padding="10dp"
-                    android:layout_above="@+id/text_orders_history"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_orders_history"
+                    android:padding="10dp"
+                    android:tint="#ffffff"
+                    app:srcCompat="@drawable/ic_receipt_black_24dp" />
 
                 <TextView
-                    android:padding="10dp"
                     android:id="@+id/text_orders_history"
-                    android:textSize="@dimen/menu_item_text_size"
-                    android:layout_alignParentBottom="true"
-                    android:textColor="#ffffff"
-                    android:text="Order History"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:text="Order History"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>
-
 
 
         </LinearLayout>
 
 
         <LinearLayout
-            android:orientation="horizontal"
             android:id="@+id/bordertwo"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/row_order_history"
-            android:background="#88000000"
             android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#88000000"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row_order_history" />
 
 
-
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

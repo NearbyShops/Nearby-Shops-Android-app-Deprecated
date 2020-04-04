@@ -9,16 +9,17 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCa
 import org.nearbyshops.enduserappnew.HomeBackup;
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToStaffDialog;
 import org.nearbyshops.enduserappnew.Login.LoginGlobalUsingPasswordFragment;
+import org.nearbyshops.enduserappnew.Login.LoginLocalUsingOTPFragmentNew;
 import org.nearbyshops.enduserappnew.PlacePickerGoogleMaps.PlacePickerWithMapFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
-import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarketSmall1Mar20;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.BackupViewHolderMarketSmall1Mar20;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersDataSource;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersListPagingFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToShopStaffDialog;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.EditShopStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissionsFragment;
-import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarket;
-import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.BackupViewHolderMarketSmall;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.BackupViewHolderMarket;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.BackupViewHolderMarketSmall;
 import org.nearbyshops.enduserappnew.Login.LoginGlobalUsingOTPFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemBackup;
@@ -68,9 +69,9 @@ import org.nearbyshops.enduserappnew.Lists.Markets.MarketsFragment;
 import org.nearbyshops.enduserappnew.Lists.Markets.MarketsFragmentNew;
 import org.nearbyshops.enduserappnew.Lists.Markets.SubmitURLDialog;
 import org.nearbyshops.enduserappnew.Lists.Markets.AdapterMarkets;
-import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.ViewHolderMarket;
-import org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders.ViewHolderMarketSmall;
-import org.nearbyshops.enduserappnew.Lists.Markets.ViewModels.MarketViewModel;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarketSmall;
+import org.nearbyshops.enduserappnew.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.PushOneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.FragmentOrderDetail;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
@@ -304,4 +305,6 @@ public interface NetComponent {
     void Inject(StaffDashboardFragment staffDashboardFragment);
 
     void Inject(PlacePickerWithMapFragment placePickerWithMapFragment);
+
+    void Inject(LoginLocalUsingOTPFragmentNew loginLocalUsingOTPFragmentNew);
 }

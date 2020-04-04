@@ -48,7 +48,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ShopImageList;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopDashboard.ShopDashboard;
+import org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.AddCredit;
 

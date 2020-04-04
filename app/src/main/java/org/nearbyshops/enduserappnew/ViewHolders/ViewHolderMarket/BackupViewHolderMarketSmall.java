@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.Markets.ViewHolders;
+package org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -8,8 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
@@ -45,27 +46,23 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
-public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-
-    @BindView(R.id.service_name) TextView serviceName;
-    @BindView(R.id.address) TextView serviceAddress;
-//    @BindView(R.id.indicator_category) TextView indicatorCategory;
-//    @BindView(R.id.indicator_verified) TextView indicatorVerified;
-    @BindView(R.id.distance) TextView distance;
-    @BindView(R.id.rating) TextView rating;
-    @BindView(R.id.rating_count) TextView ratingCount;
-    @BindView(R.id.description) TextView description;
-    @BindView(R.id.logo) ImageView serviceLogo;
+    @BindView(R.id.market_photo) ImageView marketPhoto;
+    @BindView(R.id.market_name) TextView marketName;
+    @BindView(R.id.market_city) TextView marketCity;
 
     @BindView(R.id.progress_bar_select) ProgressBar progressBarSelect;
     @BindView(R.id.select_market) TextView selectMarket;
 
 
+
     private ServiceConfigurationGlobal configurationGlobal;
-    private Fragment subscriber;
     private Context context;
+
+
+    private Fragment subscriber;
 
 
     @Inject Gson gson;
@@ -74,38 +71,25 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 
 
-    public static BackupViewHolderMarket create(ViewGroup parent, Context context, Fragment subscriber)
+
+    public static BackupViewHolderMarketSmall create(ViewGroup parent, Context context, Fragment subscriber)
     {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_market, parent, false);
+                .inflate(R.layout.list_item_market_type_small,parent,false);
 
-        return new BackupViewHolderMarket(view,parent,context,subscriber);
+        return new BackupViewHolderMarketSmall(view,context,subscriber);
     }
 
 
 
 
-
-
-
-    public BackupViewHolderMarket(View itemView, ViewGroup parent, Context context, Fragment subscriber)
-    {
+    public BackupViewHolderMarketSmall(@NonNull View itemView, Context context, Fragment subscriber) {
         super(itemView);
         ButterKnife.bind(this,itemView);
 
-
-
         this.context = context;
         this.subscriber = subscriber;
-
-//        itemView = LayoutInflater.from(parent.getContext())
-//                .inflate(R.layout.list_item_market,parent,false);
-
-
-        itemView.setOnClickListener(this);
-
-
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent()
@@ -115,66 +99,19 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 
 
-
-
-
-    public void setItem(ServiceConfigurationGlobal configurationGlobal)
+    public void setItem(ServiceConfigurationGlobal item)
     {
-        this.configurationGlobal = configurationGlobal;
+
+        this.configurationGlobal = item;
 
 
-        serviceName.setText(configurationGlobal.getServiceName());
-        serviceAddress.setText(configurationGlobal.getCity());
-
-//                service.getAddress() + ", " +
-
-
-
-//                if(service.getVerified())
-//                {
-//                    holder.indicatorVerified.setVisibility(View.VISIBLE);
-//                }
-//                else
-//                {
-//                    holder.indicatorVerified.setVisibility(View.GONE);
-//                }
-
-
-
-//                holder.indicatorVerified.setVisibility(View.VISIBLE);
-
-
-
-
-
-        distance.setText("Distance : " + String.format("%.2f",configurationGlobal.getRt_distance()));
-//                holder.rating.setText(String.format("%.2f",));
-
-        description.setText(configurationGlobal.getDescriptionShort());
-
-
-        if(configurationGlobal.getRt_rating_count()==0)
-        {
-            rating.setText(" New ");
-            rating.setBackgroundColor(ContextCompat.getColor(context, R.color.phonographyBlue));
-            ratingCount.setVisibility(View.GONE);
-        }
-        else
-        {
-            rating.setText(String.format("%.2f",configurationGlobal.getRt_rating_avg()));
-            ratingCount.setText("( " + (int) configurationGlobal.getRt_rating_count() + " Ratings )");
-
-            rating.setBackgroundColor(ContextCompat.getColor(context, R.color.gplus_color_2));
-            ratingCount.setVisibility(View.VISIBLE);
-
-        }
-
-
-
+        marketName.setText(configurationGlobal.getServiceName());
+        marketCity.setText(configurationGlobal.getCity());
 
 
         String imagePath = PrefServiceConfig.getServiceURL_SDS(context)
                 + "/api/v1/ServiceConfiguration/Image/three_hundred_" + configurationGlobal.getLogoImagePath() + ".jpg";
+
 
 //                System.out.println("Service LOGO : " + imagePath);
 
@@ -186,7 +123,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
         Picasso.get()
                 .load(imagePath)
                 .placeholder(placeholder)
-                .into(serviceLogo);
+                .into(marketPhoto);
 
     }
 
@@ -194,16 +131,17 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 
 
+    @OnClick(R.id.list_item)
+    void listItemClick()
+    {
 
-//        @OnClick(R.id.description)
-//        void copyURLClick()
-//        {
-//            ClipboardManager clipboard = (ClipboardManager) fragment.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-//            ClipData clip = ClipData.newPlainText("URL", serviceURL.getText().toString());
-//            clipboard.setPrimaryClip(clip);
-//
-//            showToastMessage("Copied !");
-//        }
+
+        if(subscriber instanceof ViewHolderMarket.ListItemClick)
+        {
+            ((ViewHolderMarket.ListItemClick) subscriber).listItemClick(configurationGlobal,getLayoutPosition());
+        }
+    }
+
 
 
 
@@ -216,7 +154,6 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
         ServiceConfigurationGlobal configurationGlobal = this.configurationGlobal;
 
 
-
         if(PrefLoginGlobal.getUser(context)==null)
         {
             // user not logged in so just fetch configuration
@@ -227,21 +164,9 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
             // user logged in so make an attempt to login to local service
             loginToLocalEndpoint(configurationGlobal);
         }
-
-
-
     }
 
 
-
-    @Override
-    public void onClick(View v) {
-
-        if(subscriber instanceof ListItemClick)
-        {
-            ((ListItemClick) subscriber).listItemClick(configurationGlobal,getLayoutPosition());
-        }
-    }
 
 
 
@@ -267,10 +192,10 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 
 
-
         ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
 
         Call<ServiceConfigurationLocal> call = service.getServiceConfiguration(0.0,0.0);
+
 
 
 
@@ -288,6 +213,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 
 
+
                 if(response.code()==200)
                 {
 
@@ -297,6 +223,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
                     ServiceConfigurationLocal config = response.body();
 
+
                     if(config!=null)
                     {
                         Currency currency = Currency.getInstance(new Locale("",config.getISOCountryCode()));
@@ -305,11 +232,13 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 
 
-                    if(subscriber instanceof ListItemClick)
-                    {
 
-                        ((ListItemClick) subscriber).selectMarketSuccessful(configurationGlobal,getLayoutPosition());
+
+                    if(subscriber instanceof ViewHolderMarket.ListItemClick)
+                    {
+                        ((ViewHolderMarket.ListItemClick) subscriber).selectMarketSuccessful(configurationGlobal,getLayoutPosition());
                     }
+
 
                 }
                 else
@@ -318,11 +247,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 //                        PrefGeneral.saveServiceURL(null,getApplicationContext());
 
 
-
-                    if(subscriber instanceof  ListItemClick)
-                    {
-                        ((ListItemClick) subscriber).showMessage("Failed Code : " + response.code());
-                    }
+                    showToastMessage("Failed Code : " + response.code());
                 }
 
 
@@ -336,29 +261,24 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
                 selectMarket.setVisibility(View.VISIBLE);
                 progressBarSelect.setVisibility(View.INVISIBLE);
+                showToastMessage("Failed ... Please check your network ! ");
 
 
-                if(subscriber instanceof ListItemClick)
-                {
-                    ((ListItemClick) subscriber).showMessage("Failed ... Please check your network ! ");
-                }
             }
         });
     }
 
 
 
+
+
     private void loginToLocalEndpoint(final ServiceConfigurationGlobal configurationGlobal)
     {
 
+
 //        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
-
-
-
-
         selectMarket.setVisibility(View.INVISIBLE);
         progressBarSelect.setVisibility(View.VISIBLE);
-
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -368,15 +288,10 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
                 .build();
 
 
-
-
-
         Call<User> call = retrofit.create(LoginUsingOTPService.class).loginWithGlobalCredentials(
                 PrefLoginGlobal.getAuthorizationHeaders(context),
                 PrefServiceConfig.getServiceURL_SDS(context),
-                123,
-
-                true,false
+                123,true,false
         );
 
 
@@ -387,8 +302,6 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-
-
 
 
                 selectMarket.setVisibility(View.VISIBLE);
@@ -410,11 +323,6 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
                     User user = response.body();
 
 
-//                    PrefLogin.saveCredentials(
-//                            context,
-//                            user.getPhone(),
-//                            user.getPassword()
-//                    );
 
                     String username = "";
 
@@ -435,7 +343,9 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
                         username = String.valueOf(user.getUserID());
                     }
 
+
                     // local username can be different from the supplied username
+
 
                     PrefLogin.saveCredentialsPassword(
                             context,
@@ -444,12 +354,15 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
                     );
 
 
-
 //                    PrefLogin.saveCredentials(
 //                            context,
 //                            PrefLoginGlobal.getUsername(context),
 //                            PrefLoginGlobal.getPassword(context)
 //                    );
+
+
+
+
 
 
                     PrefLogin.saveUserProfile(
@@ -460,9 +373,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 
                     ServiceConfigurationLocal configurationLocal = user.getServiceConfigurationLocal();
-
                     PrefServiceConfig.saveServiceConfigLocal(configurationLocal,context);
-
 
 
                     if(configurationLocal!=null)
@@ -475,24 +386,21 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
                     UtilityFunctions.updateFirebaseSubscriptions();
 
-                    if(subscriber instanceof ListItemClick)
-                    {
-                        ((ListItemClick) subscriber).selectMarketSuccessful(configurationGlobal,getLayoutPosition());
-                    }
 
+                    if(subscriber instanceof ViewHolderMarket.ListItemClick)
+                    {
+                        ((ViewHolderMarket.ListItemClick) subscriber).selectMarketSuccessful(configurationGlobal,getLayoutPosition());
+                    }
 
 
                 }
                 else
                 {
 
-                    if(subscriber instanceof ListItemClick)
+                    if(subscriber instanceof ViewHolderMarket.ListItemClick)
                     {
-                        ((ListItemClick) subscriber).showMessage("Login Failed : Username or password is incorrect !");
+                        ((ViewHolderMarket.ListItemClick) subscriber).showMessage("Login Failed : Username or password is incorrect !");
                     }
-
-
-                    System.out.println("Login Failed : Code " + response.code());
                 }
 
             }
@@ -504,9 +412,9 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
             public void onFailure(Call<User> call, Throwable t) {
 
 
-                if(subscriber instanceof ListItemClick)
+                if(subscriber instanceof ViewHolderMarket.ListItemClick)
                 {
-                    ((ListItemClick) subscriber).showMessage("Failed ... Please check your network connection !");
+                    ((ViewHolderMarket.ListItemClick) subscriber).showMessage("Failed ... Please check your network connection !");
                 }
 
                 selectMarket.setVisibility(View.VISIBLE);
@@ -520,14 +428,11 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 
 
-    public interface ListItemClick
+
+    private void showToastMessage(String message)
     {
-        void listItemClick(ServiceConfigurationGlobal configurationGlobal, int position);
-        void selectMarketSuccessful(ServiceConfigurationGlobal configurationGlobal, int position);
-        void showMessage(String message);
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
     }
 
+
 }
-
-
-

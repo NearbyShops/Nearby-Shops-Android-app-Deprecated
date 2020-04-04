@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopDashboard;
+package org.nearbyshops.enduserappnew.aSellerModule.DashboardShop;
 
 import android.content.Intent;
 import android.os.Build;
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsDatabase.ItemsDatabase;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopSeller.ItemsInShop;
@@ -208,6 +209,16 @@ public class ShopDashboard extends AppCompatActivity {
     void showToastMessage(String message)
     {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+
+
+
+
+
+    @OnClick(R.id.header_tutorials)
+    void headerTutorialsClick()
+    {
+        UtilityFunctions.openURL("https://blog.nearbyshops.org/tag/tutorials-for-shop-owners/",this);
     }
 
 }
