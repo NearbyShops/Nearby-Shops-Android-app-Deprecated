@@ -74,7 +74,7 @@ The app uses Single Activity Architecture, where most of the screens are impleme
 Features and Highlights
 ----------------------------
 
-Support for Multiple Currencies : You can set your locale and country and currency for your local market will be set accordingly.
+Support for Multiple Currencies : You can select your country and currency for your local market will be set accordingly.
 
 Mobile First - Multi-Vendor Platform where customers can send orders to multiple Shops / Restaurants
 
@@ -90,16 +90,14 @@ Location based filtering is available, which means that customers will see only 
 
 Vendors / Shop-Owners can track orders through orders inventory and update the order progress !
 
-By adding delivery staff, shop-owners can deliver orders by themselves. Shared delivery logistics will also be available in future releases of Nearby Shops. 
+By adding delivery staff, shop-owners can deliver orders by themselves. Delivery by Market is also available. 
 
 Billing and payments are supported. Shop-owners are billed according to the number of orders they deliver successfully. And Service Providers (Market Owners) can collect payments from the shop-owners. 
 
-Nearby Shops Multi-Market Mode - you can add your local market to nearby shops market discovery service and your market becomes visible and accessible to Global audience of Nearby Shops app. Read more about Nearby Shops multi-market mode !
 
-
-Delivery Logic
+Order Delivery
 ----------------------------
-Delivery by Vendors and Delivery by Market both are supported. Vendors can provide delivery using their own delivery staff. Delivery can also be provided by Delivery Staff Employed by Market Administrator.
+We support both "Delivery by Vendors" and "Delivery by Market" delivery options. Vendors can provide delivery using their own delivery staff. Delivery can also be provided by Delivery Staff Employed by the Market Administrator.
 
 
 Libraries Used
