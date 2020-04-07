@@ -45,7 +45,7 @@
 
         <TextView
             android:layout_marginTop="0dp"
-            android:text="Staff User ID : 13"
+            android:text="@string/list_item_staff_new_staff_user_id_text"
             android:id="@+id/staff_user_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -76,7 +76,7 @@
             android:background="@color/gplus_color_2"
             android:textSize="15sp"
             android:layout_marginTop="3dp"
-            android:text="Shop Staff"
+            android:text="@string/list_item_staff_new_user_role_text"
             android:id="@+id/user_role"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -85,7 +85,7 @@
         <TextView
             android:layout_marginTop="0dp"
             android:textSize="17sp"
-            android:text="Sumeet Kumar"
+            android:text="@string/list_item_staff_new_name_text"
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -106,7 +106,7 @@
 
             <TextView
                 android:textSize="17sp"
-                android:text="9490523891"
+                android:text="@string/list_item_staff_new_phone_text"
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

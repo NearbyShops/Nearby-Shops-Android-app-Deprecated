@@ -40,7 +40,7 @@
         android:textColor="@color/white"
         android:background="@color/buttonColorDark"
         android:id="@+id/next"
-        android:text="Next"
+        android:text="@string/fragment_check_reset_code_next_text"
         android:layout_marginTop="10dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -113,7 +113,7 @@
             <TextView
                 android:textStyle="normal"
                 android:id="@+id/header"
-                android:text="Step 2 : Reset your password"
+                android:text="@string/fragment_check_reset_code_header_text"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -141,7 +141,7 @@
                 android:id="@+id/header_title"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/border_header"
-                android:text="We have sent you a reset code on your e-mail ID : "
+                android:text="@string/fragment_check_reset_code_header_title_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -152,7 +152,7 @@
                 android:textSize="17sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/header_title"
-                android:text="abcd@example.com"
+                android:text="@string/fragment_check_reset_code_email_text_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -162,7 +162,7 @@
                 android:layout_marginTop="5dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/email_text"
-                android:text="Please enter the reset code you have received !"
+                android:text="@string/fragment_check_reset_code_message_email_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -251,7 +251,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:id="@+id/message"
                 android:layout_marginStart="10dp"
-                android:text="Verification code is Valid"
+                android:text="@string/fragment_check_reset_code_message_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -262,7 +262,7 @@
             <TextView
                 android:layout_marginTop="15dp"
                 android:id="@+id/resend_message"
-                android:text="Didnt received code ? Resend code again !"
+                android:text="@string/fragment_check_reset_code_resend_message_text"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/message"
                 android:layout_width="wrap_content"
@@ -282,7 +282,7 @@
                 android:paddingEnd="10dp"
                 android:background="@color/backgroundTinted"
                 android:id="@+id/resend_code"
-                android:text="Resend code"
+                android:text="@string/fragment_check_reset_code_resend_code_text"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/resend_message"
                 android:layout_width="wrap_content"
@@ -297,7 +297,7 @@
                 app:layout_constraintTop_toTopOf="@id/resend_code"
                 app:layout_constraintBottom_toBottomOf="@id/resend_code"
                 android:id="@+id/message_resend"
-                android:text="Sending Verification Code ..."
+                android:text="@string/fragment_check_reset_code_message_resend_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

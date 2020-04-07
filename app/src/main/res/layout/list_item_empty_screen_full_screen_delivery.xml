@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/graphic_image"
-        android:text="Add a new Delivery Address"
+        android:text="@string/list_item_empty_screen_full_screen_delivery_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -37,7 +37,7 @@
     <TextView
         android:gravity="center"
         android:layout_marginTop="10dp"
-        android:text="You have no saved delivery address. Please add a new delivery address by clicking the add button below !"
+        android:text="@string/list_item_empty_screen_full_screen_delivery_message_text"
         android:id="@+id/message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -18,7 +18,7 @@
         android:layout_marginTop="10dp"
         android:id="@+id/header"
         android:textSize="20sp"
-        android:text="Reviews for Spencer Vegetable Shop"
+        android:text="@string/review_stats_chart_header_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -32,7 +32,7 @@
         app:layout_constraintRight_toRightOf="@+id/header"
         android:id="@+id/rating_text"
         android:textSize="15sp"
-        android:text="7.6 out of 10 Star (3234 Reviews)"
+        android:text="@string/review_stats_chart_rating_text_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -85,7 +85,7 @@
         app:layout_constraintLeft_toRightOf="@+id/bar_one"
         app:layout_constraintBottom_toBottomOf="@+id/bar_one"
         app:layout_constraintTop_toTopOf="@+id/bar_one"
-        android:text="10000"
+        android:text="@string/review_stats_chart_ten_star_bar_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -128,7 +128,7 @@
         app:layout_constraintLeft_toRightOf="@+id/bar_two"
         app:layout_constraintBottom_toBottomOf="@+id/bar_two"
         app:layout_constraintTop_toTopOf="@+id/bar_two"
-        android:text="90909"
+        android:text="@string/review_stats_chart_nine_star_bar_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -172,7 +172,7 @@
         app:layout_constraintLeft_toRightOf="@+id/bar_three"
         app:layout_constraintBottom_toBottomOf="@+id/bar_three"
         app:layout_constraintTop_toTopOf="@+id/bar_three"
-        android:text="8008"
+        android:text="@string/review_stats_chart_eight_star_bar_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -220,7 +220,7 @@
         app:layout_constraintLeft_toRightOf="@+id/bar_four"
         app:layout_constraintBottom_toBottomOf="@+id/bar_four"
         app:layout_constraintTop_toTopOf="@+id/bar_four"
-        android:text="70056"
+        android:text="@string/review_stats_chart_seven_star_bar_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -264,7 +264,7 @@
         app:layout_constraintLeft_toRightOf="@+id/bar_five"
         app:layout_constraintBottom_toBottomOf="@+id/bar_five"
         app:layout_constraintTop_toTopOf="@+id/bar_five"
-        android:text="60006"
+        android:text="@string/review_stats_chart_six_star_bar_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -309,7 +309,7 @@
         app:layout_constraintLeft_toRightOf="@+id/bar_six"
         app:layout_constraintBottom_toBottomOf="@+id/bar_six"
         app:layout_constraintTop_toTopOf="@+id/bar_six"
-        android:text="50005"
+        android:text="@string/review_stats_chart_five_star_bar_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -353,7 +353,7 @@
         app:layout_constraintLeft_toRightOf="@+id/bar_seven"
         app:layout_constraintBottom_toBottomOf="@+id/bar_seven"
         app:layout_constraintTop_toTopOf="@+id/bar_seven"
-        android:text="4004"
+        android:text="@string/review_stats_chart_four_star_bar_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -397,7 +397,7 @@
         app:layout_constraintLeft_toRightOf="@+id/bar_eight"
         app:layout_constraintBottom_toBottomOf="@+id/bar_eight"
         app:layout_constraintTop_toTopOf="@+id/bar_eight"
-        android:text="22313"
+        android:text="@string/review_stats_chart_three_star_bar_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -441,7 +441,7 @@
         app:layout_constraintLeft_toRightOf="@+id/bar_nine"
         app:layout_constraintBottom_toBottomOf="@+id/bar_nine"
         app:layout_constraintTop_toTopOf="@+id/bar_nine"
-        android:text="1231"
+        android:text="@string/review_stats_chart_two_star_bar_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -488,7 +488,7 @@
         app:layout_constraintLeft_toRightOf="@+id/bar_ten"
         app:layout_constraintBottom_toBottomOf="@+id/bar_ten"
         app:layout_constraintTop_toTopOf="@+id/bar_ten"
-        android:text="234985"
+        android:text="@string/review_stats_chart_one_star_bar_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

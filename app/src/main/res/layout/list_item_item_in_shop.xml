@@ -43,7 +43,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
                 android:layout_gravity="center"
-                android:text="In Shop"
+                android:text="@string/list_item_item_in_shop_in_shop_text_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -107,7 +107,7 @@
             android:textColor="#000000"
             android:id="@+id/itemName"
             android:textStyle="bold"
-            android:text="Item Name"
+            android:text="@string/list_item_item_in_shop_itemName_text"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/top_bar"
             android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
             app:layout_constraintLeft_toLeftOf="@+id/itemName"
             app:layout_constraintRight_toRightOf="@+id/itemName"
             app:layout_constraintTop_toBottomOf="@+id/itemName"
-            android:text="Price Range : Rs 108.00 - 382.00"
+            android:text="@string/list_item_item_in_shop_price_range_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -138,7 +138,7 @@
             app:layout_constraintLeft_toLeftOf="@+id/itemName"
             app:layout_constraintRight_toRightOf="@+id/itemName"
             app:layout_constraintTop_toBottomOf="@+id/price_range"
-            android:text="Price Average : Rs 108.00"
+            android:text="@string/list_item_item_in_shop_price_average_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -149,7 +149,7 @@
             android:layout_marginTop="2dp"
             android:id="@+id/order_status"
             android:textSize="15sp"
-            android:text="Available In 23 Shops"
+            android:text="@string/list_item_item_in_shop_order_status_text"
             app:layout_constraintLeft_toLeftOf="@+id/itemName"
             app:layout_constraintRight_toRightOf="@+id/itemName"
             app:layout_constraintTop_toBottomOf="@+id/price_average"
@@ -163,7 +163,7 @@
             app:layout_constraintTop_toBottomOf="@+id/order_status"
             app:layout_constraintLeft_toLeftOf="@+id/itemName"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="4.3"
+            android:text="@string/list_item_item_in_shop_item_rating_text"
             android:padding="2dp"
             android:textColor="@color/white"
             android:background="@color/gplus_color_2"
@@ -178,7 +178,7 @@
             app:layout_constraintTop_toTopOf="@+id/item_rating"
             app:layout_constraintBottom_toBottomOf="@+id/item_rating"
             app:layout_constraintLeft_toRightOf="@+id/item_rating"
-            android:text="(3421 Ratings)"
+            android:text="@string/list_item_item_in_shop_rating_count_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp" />

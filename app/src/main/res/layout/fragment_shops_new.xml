@@ -84,7 +84,7 @@
 
 
             <TextView
-                android:text="0 out of 0 Shops"
+                android:text="@string/fragment_shops_new_shop_count_indicator_text"
                 android:textColor="@color/gplus_color_1"
                 android:id="@+id/shop_count_indicator"
                 android:paddingTop="0dp"
@@ -162,7 +162,7 @@
                 android:textColor="@color/gplus_color_1"
                 android:id="@+id/text_sort"
                 android:padding="5dp"
-                android:text="Filter / Sort"
+                android:text="@string/fragment_shops_new_text_sort_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -309,7 +309,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:id="@+id/empty_screen_message"
-            android:text=""
+            android:text="@string/fragment_shops_new_empty_screen_message_text"
             android:layout_width="300dp"
             android:layout_height="wrap_content" />
 
@@ -321,7 +321,7 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:textColor="@color/white"
-            android:text="Try Again"
+            android:text="@string/fragment_shops_new_button_try_again_text"
             android:background="@color/buttonColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

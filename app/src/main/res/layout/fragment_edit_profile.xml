@@ -93,7 +93,7 @@
                         <!--android:layout_alignParentBottom="true"-->
                         <!--android:layout_width="match_parent"-->
                         <!--android:layout_height="wrap_content"-->
-                        <!--android:text="Change Picture" />-->
+                        <!--android:text="@string/fragment_edit_profile_textChangePicture_text" />-->
 
 
                     <!--<ImageView-->
@@ -141,7 +141,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Change Picture" />
+                        android:text="@string/fragment_edit_profile_textChangePicture_text" />
 
 
                     <ImageView
@@ -169,7 +169,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Remove Picture"/>
+                    android:text="@string/fragment_edit_profile_removePicture_text"/>
 
 
 
@@ -259,7 +259,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:text="password"
+                        android:text="@string/fragment_edit_profile_password_text"
                         android:enabled="false"
                         android:id="@+id/password"
                         android:inputType="textPassword"
@@ -278,7 +278,7 @@
                     android:padding="10dp"
                     android:id="@+id/label_change_password"
                     android:layout_marginTop="5dp"
-                    android:text="Click here to change your password !"
+                    android:text="@string/fragment_edit_profile_label_change_password_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -307,7 +307,7 @@
                     android:padding="10dp"
                     android:id="@+id/label_add_or_change_email"
                     android:layout_marginTop="5dp"
-                    android:text="Click here to add or change your email !"
+                    android:text="@string/fragment_edit_profile_label_add_or_change_email_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -349,7 +349,7 @@
                     android:padding="10dp"
                     android:id="@+id/label_add_or_change_phone"
                     android:layout_marginTop="5dp"
-                    android:text="Click here to add or change your phone !"
+                    android:text="@string/fragment_edit_profile_label_add_or_change_phone_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -386,7 +386,7 @@
                     android:layout_height="wrap_content">
 
                     <RadioButton
-                        android:text="Male"
+                        android:text="@string/fragment_edit_profile_choice_male_text"
                         android:id="@+id/choice_male"
                         android:layout_weight="1"
                         android:layout_width="0dp"
@@ -394,7 +394,7 @@
 
 
                     <RadioButton
-                        android:text="Female"
+                        android:text="@string/fragment_edit_profile_choice_female_text"
                         android:id="@+id/choice_female"
                         android:layout_weight="1"
                         android:layout_width="0dp"
@@ -489,7 +489,7 @@
 
                 <CheckBox
                     android:layout_marginTop="10dp"
-                    android:text="Make account private"
+                    android:text="@string/fragment_edit_profile_make_account_private_text"
                     android:id="@+id/make_account_private"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -523,7 +523,7 @@
         <!--android:layout_height="50dp"-->
         <!--android:background="@color/blueGrey800"-->
         <!--android:textColor="@color/white"-->
-        <!--android:text="Save"/>-->
+        <!--android:text="@string/fragment_edit_profile_saveButton_text"/>-->
 
 
 
@@ -590,7 +590,7 @@
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:id="@+id/saveButton"
-            android:text="Save"
+            android:text="@string/fragment_edit_profile_saveButton_text"
             android:layout_width="@dimen/request_button_width"
             android:layout_height="0dp" />
 

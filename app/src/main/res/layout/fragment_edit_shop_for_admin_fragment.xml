@@ -75,7 +75,7 @@
                 <!--android:layout_alignParentBottom="true"-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="wrap_content"-->
-                <!--android:text="Change Picture" />-->
+                <!--android:text="@string/fragment_edit_shop_for_admin_fragment_textChangePicture_text" />-->
 
 
             <!--<ImageView-->
@@ -122,7 +122,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Change Picture" />
+                android:text="@string/fragment_edit_shop_for_admin_fragment_textChangePicture_text" />
 
 
             <ImageView
@@ -151,7 +151,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Remove Picture"/>
+            android:text="@string/fragment_edit_shop_for_admin_fragment_removePicture_text"/>
 
 
         <TextView
@@ -167,7 +167,7 @@
 
         <TextView
             android:layout_marginTop="5dp"
-            android:text="Name : - "
+            android:text="@string/fragment_edit_shop_for_admin_fragment_shop_admin_name_text"
             android:id="@+id/shop_admin_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -176,7 +176,7 @@
 
         <TextView
             android:layout_marginTop="5dp"
-            android:text="Phone : - "
+            android:text="@string/fragment_edit_shop_for_admin_fragment_shop_admin_phone_text"
             android:id="@+id/shop_admin_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -184,7 +184,7 @@
 
         <TextView
             android:layout_marginTop="5dp"
-            android:text="Time Registered : - "
+            android:text="@string/fragment_edit_shop_for_admin_fragment_time_created_text"
             android:id="@+id/time_created"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -196,7 +196,7 @@
             android:textSize="20sp"
             android:layout_marginTop="10dp"
             android:id="@+id/account_balance"
-            android:text=" - "
+            android:text="@string/fragment_edit_shop_for_admin_fragment_account_balance_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -247,7 +247,7 @@
         <Switch
             android:layout_marginTop="10dp"
             android:background="@color/light_grey"
-            android:text="Enable / Disable Account"
+            android:text="@string/fragment_edit_shop_for_admin_fragment_switch_enable_text"
             android:id="@+id/switch_enable"
             android:textOff="Enable Account"
             android:textOn="Disable Account"
@@ -270,7 +270,7 @@
         <Switch
             android:layout_marginTop="10dp"
             android:background="@color/light_grey"
-            android:text="Transfer to waitlist"
+            android:text="@string/fragment_edit_shop_for_admin_fragment_switch_waitlist_text"
             android:id="@+id/switch_waitlist"
             android:textOff="Transfer to waitlist"
             android:textOn="Remove From Waitlist"
@@ -305,7 +305,7 @@
             android:id="@+id/shop_open"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="Is Shop Open ?"
+            android:text="@string/fragment_edit_shop_for_admin_fragment_shop_open_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -327,7 +327,7 @@
             android:padding="10dp"
             android:background="@color/gplus_color_4"
             android:id="@+id/error_delivery_option_top"
-            android:text="Error Saving Profile : You must pick at least one delivery Option"
+            android:text="@string/fragment_edit_shop_for_admin_fragment_error_delivery_option_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -576,7 +576,7 @@
             android:id="@+id/pick_location_button"
             android:padding="10dp"
             android:textColor="@color/white"
-            android:text="Pick Location From Map"
+            android:text="@string/fragment_edit_shop_for_admin_fragment_pick_location_button_text"
             android:background="@color/blueGrey800"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -604,7 +604,7 @@
             android:background="@color/light_grey"
             android:layout_marginTop="10dp"
             android:padding="5dp"
-            android:text="Shop Location"
+            android:text="@string/fragment_edit_shop_for_admin_fragment_shop_location_header_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -635,7 +635,7 @@
             android:textSize="17sp"
             android:layout_marginTop="10dp"
             android:id="@+id/get_directions_button"
-            android:text="Get directions to shop"
+            android:text="@string/fragment_edit_shop_for_admin_fragment_get_directions_button_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -696,7 +696,7 @@
             android:padding="10dp"
             android:background="@color/gplus_color_4"
             android:id="@+id/error_delivery_option"
-            android:text="Error Saving Profile : You must pick at least one delivery Option"
+            android:text="@string/fragment_edit_shop_for_admin_fragment_error_delivery_option_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -706,7 +706,7 @@
 
         <CheckBox
             android:layout_marginTop="10dp"
-            android:text="Pick from Shop Available"
+            android:text="@string/fragment_edit_shop_for_admin_fragment_pick_from_shop_available_text"
             android:id="@+id/pick_from_shop_available"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -715,7 +715,7 @@
 
         <CheckBox
             android:layout_marginTop="10dp"
-            android:text="Home Delivery Available"
+            android:text="@string/fragment_edit_shop_for_admin_fragment_home_delivery_available_text"
             android:id="@+id/home_delivery_available"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -733,7 +733,7 @@
             <!--android:layout_height="wrap_content"-->
             <!--android:background="@color/blueGrey800"-->
             <!--android:textColor="@color/white"-->
-            <!--android:text="Save"/>-->
+            <!--android:text="@string/fragment_edit_shop_for_admin_fragment_saveButton_text"/>-->
 
     </LinearLayout>
 
@@ -771,7 +771,7 @@
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:id="@+id/saveButton"
-            android:text="Save"
+            android:text="@string/fragment_edit_shop_for_admin_fragment_saveButton_text"
             android:layout_width="130dp"
             android:layout_height="0dp" />
 

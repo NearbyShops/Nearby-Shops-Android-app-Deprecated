@@ -118,7 +118,7 @@
                             android:layout_alignParentBottom="true"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Change Picture" />
+                            android:text="@string/fragment_edit_service_textChangePicture_text" />
 
 
                         <ImageView
@@ -150,7 +150,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Remove Picture"/>
+                        android:text="@string/fragment_edit_service_removePicture_text"/>
 
 
                     <!--<LinearLayout-->
@@ -495,7 +495,7 @@
                             android:id="@+id/pick_location_button"
                             android:padding="10dp"
                             android:textColor="@color/white"
-                            android:text="Pick Location From Map"
+                            android:text="@string/fragment_edit_service_pick_location_button_text"
                             android:background="@color/blueGrey800"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -558,7 +558,7 @@
                             <!--android:layout_height="wrap_content"-->
                             <!--android:background="@color/blueGrey800"-->
                             <!--android:textColor="@color/white"-->
-                            <!--android:text="Save"/>-->
+                            <!--android:text="@string/fragment_edit_service_saveButton_text"/>-->
 
                     <!--</LinearLayout>-->
 
@@ -633,7 +633,7 @@
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:id="@+id/saveButton"
-            android:text="Save"
+            android:text="@string/fragment_edit_service_saveButton_text"
             android:layout_width="@dimen/request_button_width"
             android:layout_height="0dp" />
 

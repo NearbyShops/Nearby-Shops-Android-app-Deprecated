@@ -40,7 +40,7 @@
 
     <TextView
         android:id="@+id/review_date"
-        android:text="Review Date"
+        android:text="@string/list_item_shop_review_review_date_text"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_toRightOf="@id/profile_image"
@@ -62,7 +62,7 @@
         android:layout_marginLeft="0dp"
         android:layout_marginStart="0dp"
         android:layout_below="@id/profile_image"
-        android:text="Review Title"
+        android:text="@string/list_item_shop_review_review_title_text"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -70,7 +70,7 @@
 
     <TextView
         android:id="@+id/review_text"
-        android:text="Review Sample Description."
+        android:text="@string/list_item_shop_review_review_text_text"
         android:layout_marginLeft="0dp"
         android:layout_marginStart="0dp"
         android:layout_below="@id/review_title"
@@ -106,7 +106,7 @@
         android:layout_below="@id/border_bottom"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:text="Thanked !"
+        android:text="@string/list_item_shop_review_thanks_button_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -119,7 +119,7 @@
         android:layout_marginEnd="10dp"
         android:layout_alignParentRight="true"
         android:layout_below="@id/thanks_button"
-        android:text="(1121)"
+        android:text="@string/list_item_shop_review_thanks_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

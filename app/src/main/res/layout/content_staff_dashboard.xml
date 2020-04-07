@@ -35,7 +35,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:padding="5dp"
             android:id="@+id/header_items"
-            android:text="Shops and Items"
+            android:text="@string/content_staff_dashboard_header_items_text"
             android:textSize="17sp"
             android:background="@color/light_grey"
             android:layout_width="0dp"
@@ -78,7 +78,7 @@
             android:id="@+id/text_shop_approvals"
             android:textSize="@dimen/menu_item_text_size"
             android:textColor="#ffffff"
-            android:text="Shops Database"
+            android:text="@string/content_staff_dashboard_text_shop_approvals_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -107,7 +107,7 @@
             android:id="@+id/text_add_items"
             android:textSize="@dimen/menu_item_text_size"
             android:textColor="#ffffff"
-            android:text="Items Database"
+            android:text="@string/content_staff_dashboard_text_add_items_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -131,7 +131,7 @@
                 android:id="@+id/header"
                 android:textSize="20sp"
                 android:textColor="@color/blueGrey800"
-                android:text="Tutorials and Guides"
+                android:text="@string/content_staff_dashboard_header_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -163,7 +163,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:padding="5dp"
             android:id="@+id/header_orders"
-            android:text="Orders and User Accounts"
+            android:text="@string/content_staff_dashboard_header_orders_text"
             android:textSize="17sp"
             android:background="@color/light_grey"
             android:layout_width="0dp"
@@ -195,7 +195,7 @@
             android:id="@+id/text_orders_history"
             android:textSize="@dimen/menu_item_text_size"
             android:textColor="#ffffff"
-            android:text="Order History"
+            android:text="@string/content_staff_dashboard_text_orders_history_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -225,7 +225,7 @@
             android:id="@+id/text_item_specs"
             android:textSize="@dimen/menu_item_text_size"
             android:textColor="#ffffff"
-            android:text="User Accounts"
+            android:text="@string/content_staff_dashboard_text_item_specs_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 

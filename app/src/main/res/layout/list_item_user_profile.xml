@@ -38,7 +38,7 @@
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/profile_image"
-        android:text="| Log Out"
+        android:text="@string/list_item_user_profile_log_out_button_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -59,7 +59,7 @@
             android:id="@+id/header_booked_by"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome"
+            android:text="@string/list_item_user_profile_header_booked_by_text"
             app:layout_constraintLeft_toRightOf="@id/guideline"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/profile_image" />

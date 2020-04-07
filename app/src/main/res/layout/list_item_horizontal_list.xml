@@ -20,7 +20,7 @@
         android:paddingBottom="5dp"
         android:id="@+id/list_title"
         android:textSize="20sp"
-        android:text="Favourite Markets"
+        android:text="@string/list_item_horizontal_list_list_title_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

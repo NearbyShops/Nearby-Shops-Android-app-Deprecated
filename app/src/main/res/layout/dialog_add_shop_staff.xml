@@ -58,7 +58,7 @@
                     android:textColor="@color/white"
                     android:background="@color/buttonColor"
                     android:padding="10dp"
-                    android:text="Shop Staff"
+                    android:text="@string/dialog_add_shop_staff_role_shop_staff_text"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
@@ -72,7 +72,7 @@
                     android:textColor="@color/blueGrey800"
                     android:background="@color/light_grey"
                     android:padding="10dp"
-                    android:text="Delivery Person"
+                    android:text="@string/dialog_add_shop_staff_role_delivery_text"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
@@ -159,7 +159,7 @@
                         android:textColor="@color/white"
                         android:background="@color/gplus_color_1"
                         android:layout_weight="1"
-                        android:text="Add Member"
+                        android:text="@string/dialog_add_shop_staff_add_member_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -187,7 +187,7 @@
                     android:textColor="@color/white"
                     android:background="@color/gplus_color_4"
                     android:layout_weight="1"
-                    android:text="Dismiss"
+                    android:text="@string/dialog_add_shop_staff_dismiss_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
 

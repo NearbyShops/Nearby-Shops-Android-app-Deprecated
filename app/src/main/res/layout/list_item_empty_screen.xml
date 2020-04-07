@@ -45,7 +45,7 @@
         android:paddingStart="10dp"
         android:textColor="@color/white"
         android:background="@color/colorPrimary"
-        android:text="button"
+        android:text="@string/list_item_empty_screen_button_text"
         android:id="@+id/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/message"

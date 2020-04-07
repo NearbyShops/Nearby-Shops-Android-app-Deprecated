@@ -20,7 +20,7 @@
         android:textColor="@color/white"
         android:background="@color/buttonColorDark"
         android:id="@+id/next"
-        android:text="Next"
+        android:text="@string/fragment_change_phone_next_text"
         android:layout_marginTop="10dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -119,7 +119,7 @@
             <TextView
                 android:textStyle="normal"
                 android:id="@+id/header"
-                android:text="Step 1 : Enter new Phone"
+                android:text="@string/fragment_change_phone_header_text"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -260,7 +260,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:id="@+id/message"
                 android:layout_marginStart="10dp"
-                android:text="Not Available for Registration"
+                android:text="@string/fragment_change_phone_message_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -276,7 +276,7 @@
                 android:id="@+id/header_password"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/message"
-                android:text="Please enter your current password to verify its you"
+                android:text="@string/fragment_change_phone_header_password_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

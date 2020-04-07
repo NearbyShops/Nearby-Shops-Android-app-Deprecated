@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
-        android:text="Abhinav Kumar"
+        android:text="@string/list_item_address_item_new_name_text"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="K-53, BEL Colony, Koramangla"
+        android:text="@string/list_item_address_item_new_deliveryAddress_text"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/border" />
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="Mumbai"
+        android:text="@string/list_item_address_item_new_city_text"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/deliveryAddress" />
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="- 500042"
+        android:text="@string/list_item_address_item_new_pincode_text"
         android:textSize="20dp"
         app:layout_constraintLeft_toRightOf="@id/city"
         app:layout_constraintStart_toEndOf="@id/city"
@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="Near Bhudevi Temple"
+        android:text="@string/list_item_address_item_new_landmark_text"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/city" />
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="9490523891"
+        android:text="@string/list_item_address_item_new_phoneNumber_text"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/borderTwo" />
@@ -134,7 +134,7 @@
             android:background="@color/blueGrey800"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Edit"
+            android:text="@string/list_item_address_item_new_editButton_text"
             android:textColor="#ffffff"
             android:textSize="17dp" />
 
@@ -148,7 +148,7 @@
             android:background="@color/gplus_color_4"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Remove"
+            android:text="@string/list_item_address_item_new_removeButton_text"
             android:textColor="#ffffff"
             android:textSize="17dp" />
 
@@ -170,7 +170,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/mapbox_blue"
-        android:text="Select this address" />
+        android:text="@string/list_item_address_item_new_button_select_text" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

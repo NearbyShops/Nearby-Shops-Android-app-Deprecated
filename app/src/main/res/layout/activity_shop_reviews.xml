@@ -46,7 +46,7 @@
                 android:textColor="@color/white"
                 android:id="@+id/text_sort"
                 android:padding="5dp"
-                android:text="Filter / Sort"
+                android:text="@string/activity_shop_reviews_text_sort_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>

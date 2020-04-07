@@ -76,7 +76,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Change Picture" />
+                android:text="@string/fragment_edit_item_category_textChangePicture_text" />
 
 
             <ImageView
@@ -105,7 +105,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Remove Picture"/>
+            android:text="@string/fragment_edit_item_category_removePicture_text"/>
 
 
 
@@ -193,7 +193,7 @@
             android:padding="10dp"
             android:textColor="@color/white"
             android:background="@color/blueGrey800"
-            android:text="What is Leaf Node Item Category ? "
+            android:text="@string/fragment_edit_item_category_whatleaf_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -226,7 +226,7 @@
             android:padding="10dp"
             android:textColor="@color/white"
             android:background="@color/blueGrey800"
-            android:text="What is Abstract Node Item Category ? "
+            android:text="@string/fragment_edit_item_category_what_is_abstract_node_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -283,7 +283,7 @@
                 <!--android:layout_height="wrap_content"-->
                 <!--android:background="@color/blueGrey800"-->
                 <!--android:textColor="@color/white"-->
-                <!--android:text="Save"/>-->
+                <!--android:text="@string/fragment_edit_item_category_saveButton_text"/>-->
 
 
 
@@ -337,7 +337,7 @@
             <!--android:textSize="18sp"-->
             <!--android:layout_margin="10dp"-->
             <!--android:id="@+id/saveButton"-->
-            <!--android:text="Save"-->
+            <!--android:text="@string/fragment_edit_item_category_saveButton_text"-->
             <!--android:layout_width="130dp"-->
             <!--android:layout_height="0dp" />-->
 
@@ -360,7 +360,7 @@
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:id="@+id/saveButton"
-            android:text="Save"
+            android:text="@string/fragment_edit_item_category_saveButton_text"
             android:layout_width="130dp"
             android:layout_height="0dp" />
 
@@ -390,7 +390,7 @@
             <!--android:textSize="18sp"-->
             <!--android:layout_margin="10dp"-->
             <!--android:id="@+id/saveButtonNew"-->
-            <!--android:text="Save"-->
+            <!--android:text="@string/fragment_edit_item_category_saveButton_text"-->
             <!--android:layout_width="130dp"-->
             <!--android:layout_height="0dp" />-->
 

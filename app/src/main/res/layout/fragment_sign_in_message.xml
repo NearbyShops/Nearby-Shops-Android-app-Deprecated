@@ -100,7 +100,7 @@
         android:textColor="@color/white"
         android:background="@color/buttonColorDark"
         android:id="@+id/sign_in_button"
-        android:text="Sign In"
+        android:text="@string/fragment_sign_in_message_sign_in_button_text"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         app:layout_constraintRight_toRightOf="parent"

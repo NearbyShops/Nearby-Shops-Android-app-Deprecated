@@ -83,7 +83,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/light_grey"
             android:padding="5dp"
-            android:text="Step 1 : Add Items to Shop"
+            android:text="@string/content_shop_home_for_staff_header_items_text"
             android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header_tutorials" />
@@ -121,7 +121,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:padding="10dp"
-                    android:text="Items Database"
+                    android:text="@string/content_shop_home_for_staff_text_add_items_text"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>
@@ -149,7 +149,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/light_grey"
             android:padding="5dp"
-            android:text="Step 2 : Set Prices and Availability"
+            android:text="@string/content_shop_home_for_staff_header_stock_items_text"
             android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/borderOne" />
@@ -191,7 +191,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentBottom="true"
                     android:padding="10dp"
-                    android:text="Items in Shop\nby Category"
+                    android:text="@string/content_shop_home_for_staff_text_add_stock_text"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>
@@ -225,7 +225,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentBottom="true"
                     android:padding="10dp"
-                    android:text="Items in Shop"
+                    android:text="@string/content_shop_home_for_staff_text_stock_items_text"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>
@@ -265,7 +265,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:padding="10dp"
-                    android:text="Quick Stock Editor"
+                    android:text="@string/content_shop_home_for_staff_text_quick_stock_editor_text"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>
@@ -289,7 +289,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/light_grey"
             android:padding="5dp"
-            android:text="Step 3 : Manage Orders and Delivery"
+            android:text="@string/content_shop_home_for_staff_header_delivery_text"
             android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/border_delivery" />
@@ -333,7 +333,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:padding="10dp"
-                    android:text="Home Delivery Inventory"
+                    android:text="@string/content_shop_home_for_staff_text_cancel_text"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>
@@ -363,7 +363,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:padding="10dp"
-                    android:text="Pick From Shop Inventory"
+                    android:text="@string/content_shop_home_for_staff_text_pick_from_shop_text"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>
@@ -401,7 +401,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:padding="10dp"
-                    android:text="Order History"
+                    android:text="@string/content_shop_home_for_staff_text_orders_history_text"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/menu_item_text_size" />
             </RelativeLayout>

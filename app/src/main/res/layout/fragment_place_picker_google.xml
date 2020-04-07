@@ -110,7 +110,7 @@
                 android:layout_gravity="end|center_vertical"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:text="Done"
+                android:text="@string/fragment_place_picker_google_done_button_text"
                 android:paddingEnd="25dp"
                 android:paddingStart="25dp"
                 android:background="@color/phonographyBlue"
@@ -135,7 +135,7 @@
                 android:gravity="center_vertical"
                 android:textSize="15sp"
                 android:layout_marginStart="10dp"
-                android:text=""
+                android:text="@string/fragment_place_picker_google_distance_from_pickup_text"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/done_button"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -211,7 +211,7 @@
                 android:textSize="18sp"
                 android:padding="10dp"
                 android:textColor="@color/blueGrey800"
-                android:text="Enter Address"
+                android:text="@string/fragment_place_picker_google_search_text_hint"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
@@ -269,7 +269,7 @@
             android:textColor="@color/white"
             android:id="@+id/instructions"
             android:textSize="17sp"
-            android:text="Select Your Location"
+            android:text="@string/fragment_place_picker_google_instructions_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -321,7 +321,7 @@
             <!--android:textColor="@color/white"-->
             <!--android:id="@+id/pickup"-->
             <!--android:textSize="15sp"-->
-            <!--android:text=" - "-->
+            <!--android:text="@string/fragment_place_picker_google_pickup_text"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content" />-->
 
@@ -367,7 +367,7 @@
             <!--android:textColor="@color/white"-->
             <!--android:id="@+id/destination"-->
             <!--android:textSize="15sp"-->
-            <!--android:text=" - "-->
+            <!--android:text="@string/fragment_place_picker_google_pickup_text"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content" />-->
 
@@ -445,7 +445,7 @@
             <!--android:textColor="@color/white"-->
             <!--android:id="@+id/destination"-->
             <!--android:textSize="15sp"-->
-            <!--android:text=" - "-->
+            <!--android:text="@string/fragment_place_picker_google_pickup_text"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content" />-->
 
@@ -495,7 +495,7 @@
             android:textColor="@color/white"
             android:id="@+id/pickup"
             android:textSize="15sp"
-            android:text=" - "
+            android:text="@string/fragment_place_picker_google_pickup_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -553,7 +553,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/pickup_box"
         android:id="@+id/copyrights_map"
-        android:text="\u00a9 Google"
+        android:text="@string/fragment_place_picker_google_copyrights_map_text"
         android:padding="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />

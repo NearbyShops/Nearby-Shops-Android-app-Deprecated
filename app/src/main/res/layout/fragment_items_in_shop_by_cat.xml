@@ -269,7 +269,7 @@
             android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" - "/>
+            android:text="@string/fragment_items_in_shop_by_cat_cartTotal_text"/>
 
 
 
@@ -290,7 +290,7 @@
             android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" - "/>
+            android:text="@string/fragment_items_in_shop_by_cat_cartTotal_text"/>
 
 
 

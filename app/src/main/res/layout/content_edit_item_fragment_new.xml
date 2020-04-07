@@ -91,7 +91,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Change Picture" />
+                    android:text="@string/content_edit_item_fragment_new_textChangePicture_text" />
 
 
                 <ImageView
@@ -120,7 +120,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Remove Picture"/>
+                android:text="@string/content_edit_item_fragment_new_removePicture_text"/>
 
 
 
@@ -301,7 +301,7 @@
                     android:padding="5dp"
                     android:textColor="@color/white"
                     android:background="@color/buttonColorDark"
-                    android:text="Item Specifications"
+                    android:text="@string/content_edit_item_fragment_new_item_specifications_text"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content" />
@@ -339,7 +339,7 @@
             <!--android:layout_height="wrap_content"-->
             <!--android:background="@color/blueGrey800"-->
             <!--android:textColor="@color/white"-->
-            <!--android:text="Save"/>-->
+            <!--android:text="@string/content_edit_item_fragment_new_saveButton_text"/>-->
 
 
 
@@ -379,7 +379,7 @@
             <!--android:layout_height="wrap_content"-->
             <!--android:background="@color/blueGrey800"-->
             <!--android:textColor="@color/white"-->
-            <!--android:text="Save"/>-->
+            <!--android:text="@string/content_edit_item_fragment_new_saveButton_text"/>-->
 
 
         <TextView
@@ -396,7 +396,7 @@
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:id="@+id/saveButton"
-            android:text="Save"
+            android:text="@string/content_edit_item_fragment_new_saveButton_text"
             android:layout_width="130dp"
             android:layout_height="0dp" />
 

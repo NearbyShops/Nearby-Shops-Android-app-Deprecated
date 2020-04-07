@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Sort Order's"
+            android:text="@string/fragment_sliding_sort_orders_cl_text_sortby_text"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Sort Criterion"
+            android:text="@string/fragment_sliding_sort_orders_cl_header_criterion_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/border_zero" />
 
@@ -66,7 +66,7 @@
                 android:background="#22000000"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Delivery Distance" />
+                android:text="@string/fragment_sliding_sort_orders_cl_sort_distance_text" />
 
             <TextView
                 android:id="@+id/sort_date_time"
@@ -81,7 +81,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="2dp"
                 android:paddingBottom="10dp"
-                android:text="Date Time" />
+                android:text="@string/fragment_sliding_sort_orders_cl_sort_date_time_text" />
 
 
         </LinearLayout>
@@ -105,7 +105,7 @@
                 android:background="#22000000"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Order Status" />
+                android:text="@string/fragment_sliding_sort_orders_cl_order_status_text" />
 
             <TextView
                 android:id="@+id/pincode"
@@ -120,7 +120,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="2dp"
                 android:paddingBottom="10dp"
-                android:text="Pincode" />
+                android:text="@string/fragment_sliding_sort_orders_cl_pincode_text" />
         </LinearLayout>
 
         <TextView
@@ -141,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Sort Order"
+            android:text="@string/fragment_sliding_sort_orders_cl_header_sort_order_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/border_one" />
 
@@ -197,7 +197,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Filter Order's"
+            android:text="@string/fragment_sliding_sort_orders_cl_text_filter_text"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/border_two" />
@@ -217,7 +217,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="Filter by Order Status"
+            android:text="@string/fragment_sliding_sort_orders_cl_header_filter_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/border_three" />
 
@@ -233,7 +233,7 @@
             android:paddingStart="5dp"
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
-            android:text="Clear Filter"
+            android:text="@string/fragment_sliding_sort_orders_cl_clear_filter_delivery_type_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -256,7 +256,7 @@
                 android:background="@color/phonographyBlue"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Pending" />
+                android:text="@string/fragment_sliding_sort_orders_cl_filter_pending_text" />
 
             <TextView
                 android:id="@+id/filter_complete"
@@ -270,7 +270,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="2dp"
                 android:paddingBottom="10dp"
-                android:text="Complete" />
+                android:text="@string/fragment_sliding_sort_orders_cl_filter_complete_text" />
 
 
 
@@ -286,7 +286,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="2dp"
                 android:paddingBottom="10dp"
-                android:text="Cancelled" />
+                android:text="@string/fragment_sliding_sort_orders_cl_filter_cancelled_text" />
 
 
         </LinearLayout>
@@ -312,7 +312,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="Filter by Delivery Type"
+            android:text="@string/fragment_sliding_sort_orders_cl_header_filter_by_type_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/border_filter_by_delivery_type" />
 
@@ -328,7 +328,7 @@
             android:paddingStart="5dp"
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
-            android:text="Clear Filter"
+            android:text="@string/fragment_sliding_sort_orders_cl_clear_filter_delivery_type_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -350,7 +350,7 @@
                 android:background="#22000000"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Home Delivery" />
+                android:text="@string/fragment_sliding_sort_orders_cl_filter_home_delivery_text" />
 
             <TextView
                 android:id="@+id/filter_pick_from_shop"
@@ -365,7 +365,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="2dp"
                 android:paddingBottom="10dp"
-                android:text="Pick from Shop" />
+                android:text="@string/fragment_sliding_sort_orders_cl_filter_pick_from_shop_text" />
 
 
         </LinearLayout>

@@ -19,7 +19,7 @@
         android:textColor="@color/white"
         android:background="@color/buttonColorDark"
         android:id="@+id/update_phone"
-        android:text="Update Phone"
+        android:text="@string/fragment_verify_phone_update_phone_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +85,7 @@
             <TextView
                 android:textStyle="normal"
                 android:id="@+id/header"
-                android:text="Step 4 : Verify your Phone"
+                android:text="@string/fragment_verify_phone_header_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +113,7 @@
                 android:id="@+id/header_title"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/border_header"
-                android:text="We have sent you a one time password (OTP) code on your Phone : "
+                android:text="@string/fragment_verify_phone_header_title_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -124,7 +124,7 @@
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/header_title"
-                android:text="1234567890"
+                android:text="@string/fragment_verify_phone_email_text_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -134,7 +134,7 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/email_text"
-                android:text="Please enter the OTP code you have received !"
+                android:text="@string/fragment_verify_phone_message_email_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -222,7 +222,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:id="@+id/message"
                 android:layout_marginStart="10dp"
-                android:text="OTP code is Valid"
+                android:text="@string/fragment_verify_phone_message_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -233,7 +233,7 @@
             <TextView
                 android:layout_marginTop="25dp"
                 android:id="@+id/resend_message"
-                android:text="Didnt received code ? Resend OTP code again !"
+                android:text="@string/fragment_verify_phone_resend_message_text"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/message"
                 android:layout_width="wrap_content"
@@ -253,7 +253,7 @@
                 android:paddingEnd="10dp"
                 android:background="@color/backgroundTinted"
                 android:id="@+id/resend_code"
-                android:text="Resend code"
+                android:text="@string/fragment_verify_phone_resend_code_text"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/resend_message"
                 android:layout_width="wrap_content"
@@ -266,7 +266,7 @@
                 app:layout_constraintLeft_toLeftOf="@id/resend_code"
                 app:layout_constraintTop_toBottomOf="@id/resend_code"
                 android:id="@+id/message_resend"
-                android:text="Sending OTP Code ..."
+                android:text="@string/fragment_verify_phone_message_resend_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

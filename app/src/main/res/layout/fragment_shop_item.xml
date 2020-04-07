@@ -59,7 +59,7 @@
                 android:padding="10dp"
                 android:id="@+id/header"
                 android:layout_below="@id/border_one"
-                android:text="Available in following Shops !"
+                android:text="@string/fragment_shop_item_header_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

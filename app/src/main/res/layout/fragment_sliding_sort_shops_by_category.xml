@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:text="Sort Shop's"
+            android:text="@string/fragment_sliding_sort_shops_by_category_text_sortby_text"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Sort Criterion"
+            android:text="@string/fragment_sliding_sort_shops_by_category_header_criterion_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/border_zero" />
 
@@ -60,7 +60,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:layout_marginTop="10dp"
-            android:text="Distance"
+            android:text="@string/fragment_sliding_sort_shops_by_category_sort_distance_text"
             app:layout_constraintTop_toBottomOf="@id/header_criterion"
             app:layout_constraintEnd_toStartOf="@+id/sort_rating"
             app:layout_constraintStart_toStartOf="parent" />
@@ -76,7 +76,7 @@
             android:paddingTop="10dp"
             android:paddingRight="2dp"
             android:paddingBottom="10dp"
-            android:text="Rating"
+            android:text="@string/fragment_sliding_sort_shops_by_category_sort_rating_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/sort_distance"
             app:layout_constraintTop_toBottomOf="@+id/header_criterion" />
@@ -140,7 +140,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Sort Order"
+            android:text="@string/fragment_sliding_sort_shops_by_category_header_sort_order_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/border_one" />
 

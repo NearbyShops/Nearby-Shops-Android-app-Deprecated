@@ -193,7 +193,7 @@
                 android:id="@+id/location_header"
                 android:layout_below="@id/landmarkContainer"
                 android:padding="5dp"
-                android:text="Enter Location Coordinates"
+                android:text="@string/fragment_edit_address_location_header_text"
                 android:background="@color/light_grey"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -220,7 +220,7 @@
                 android:id="@+id/latitude_container">
 
                 <EditText
-                    android:text="0.00"
+                    android:text="@string/fragment_edit_address_latitude_text"
                     android:inputType="numberDecimal"
                     android:id="@+id/latitude"
                     android:layout_width="match_parent"
@@ -240,7 +240,7 @@
                 android:id="@+id/longitude_container">
 
                 <EditText
-                    android:text="0.00"
+                    android:text="@string/fragment_edit_address_latitude_text"
                     android:inputType="numberDecimal"
                     android:id="@+id/longitude"
                     android:layout_width="match_parent"
@@ -255,7 +255,7 @@
                 android:layout_below="@id/longitude_container"
                 android:padding="10dp"
                 android:textColor="@color/white"
-                android:text="Pick Location From Map"
+                android:text="@string/fragment_edit_address_pick_location_button_text"
                 android:background="@color/blueGrey800"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -269,7 +269,7 @@
                 android:layout_below="@id/pick_location_button"
                 android:padding="10dp"
                 android:textColor="@color/white"
-                android:text="Navigate"
+                android:text="@string/fragment_edit_address_navigate_button_text"
                 android:background="@color/blueGrey800"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -302,7 +302,7 @@
                 <!--android:layout_height="wrap_content"-->
                 <!--android:background="@color/blueGrey800"-->
                 <!--android:textColor="@color/white"-->
-                <!--android:text="Save"/>-->
+                <!--android:text="@string/fragment_edit_address_saveButton_text"/>-->
 
 
         </RelativeLayout>
@@ -345,7 +345,7 @@
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:id="@+id/saveButton"
-            android:text="Save"
+            android:text="@string/fragment_edit_address_saveButton_text"
             android:layout_width="@dimen/request_button_width"
             android:layout_height="0dp" />
 

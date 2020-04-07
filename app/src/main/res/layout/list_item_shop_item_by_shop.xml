@@ -35,7 +35,7 @@
             android:id="@+id/item_title"
             android:textSize="20sp"
             android:layout_marginTop="5dp"
-            android:text="Item Name"
+            android:text="@string/list_item_shop_item_by_shop_item_title_text"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -85,7 +85,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:id="@+id/item_price"
-            android:text="Rs. 43 per Dozen"
+            android:text="@string/list_item_shop_item_by_shop_item_price_text"
             android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@+id/border_one"
             app:layout_constraintRight_toRightOf="parent"
@@ -97,7 +97,7 @@
         <TextView
             android:layout_marginTop="2dp"
             android:textSize="15sp"
-            android:text="Available : 30"
+            android:text="@string/list_item_shop_item_by_shop_available_text"
             android:id="@+id/available"
             app:layout_constraintLeft_toLeftOf="@+id/item_price"
             app:layout_constraintTop_toBottomOf="@+id/item_price"
@@ -116,7 +116,7 @@
             android:textColor="@color/white"
             android:padding="3dp"
             android:background="@color/gplus_color_1"
-            android:text="4.3"
+            android:text="@string/list_item_shop_item_by_shop_rating_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -126,7 +126,7 @@
             android:layout_marginStart="10dp"
             app:layout_constraintLeft_toRightOf="@+id/rating"
             app:layout_constraintBottom_toBottomOf="@+id/rating"
-            android:text="(3422 Ratings)"
+            android:text="@string/list_item_shop_item_by_shop_rating_count_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -176,7 +176,7 @@
             android:id="@+id/itemQuantity"
             android:gravity="center"
             android:inputType="number"
-            android:text="0"
+            android:text="@string/list_item_shop_item_by_shop_itemQuantity_text"
             android:layout_width="70dp"
             android:layout_height="0dp"
             android:layout_marginTop="5dp"
@@ -211,7 +211,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:gravity="center"
             android:textSize="17sp"
-            android:text="Total : 34.00"
+            android:text="@string/list_item_shop_item_by_shop_total_text"
             android:layout_width="0dp"
             android:layout_height="0dp" />
 
@@ -232,7 +232,7 @@
             android:background="@color/gplus_color_4"
             android:padding="10dp"
             android:gravity="center"
-            android:text="Out of Stock"
+            android:text="@string/list_item_shop_item_by_shop_out_of_stock_indicator_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -249,7 +249,7 @@
             android:gravity="end"
             android:textColor="@color/colorWhite"
             android:background="@color/blueGrey800"
-            android:text="Add to Cart"
+            android:text="@string/list_item_shop_item_by_shop_add_to_cart_text_text"
             android:padding="20dp"
             android:layout_weight="1"
             android:layout_width="0dp"

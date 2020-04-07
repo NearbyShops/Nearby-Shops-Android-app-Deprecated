@@ -42,7 +42,7 @@
         android:padding="10dp"
         android:id="@+id/header"
         android:layout_below="@id/border_one"
-        android:text="Available in following Shops !"
+        android:text="@string/list_item_header_type_simple_header_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

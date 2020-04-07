@@ -33,7 +33,7 @@
         <TextView
             android:id="@+id/title"
             android:textColor="@color/white"
-            android:text="Title"
+            android:text="@string/fragment_item_image_slider_title_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -42,7 +42,7 @@
         <TextView
             android:id="@+id/description"
             android:textColor="@color/white"
-            android:text="Description"
+            android:text="@string/fragment_item_image_slider_description_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -52,7 +52,7 @@
             android:textSize="10dp"
             android:id="@+id/copyrights"
             android:textColor="@color/white"
-            android:text="Copyrigts"
+            android:text="@string/fragment_item_image_slider_copyrights_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 

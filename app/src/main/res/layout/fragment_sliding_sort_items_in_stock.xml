@@ -21,7 +21,7 @@
             android:id="@+id/text_sortby"
             android:textSize="20sp"
             android:layout_marginTop="10dp"
-            android:text="Sort Item's In Shop"
+            android:text="@string/fragment_sliding_sort_items_in_stock_text_sortby_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -37,7 +37,7 @@
         <TextView
             android:layout_marginTop="5dp"
             android:id="@+id/header_criterion"
-            android:text="Sort Criterion"
+            android:text="@string/fragment_sliding_sort_items_in_stock_header_criterion_text"
             android:layout_below="@id/border_zero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -57,7 +57,7 @@
                 android:gravity="center"
                 android:layout_weight="1"
                 android:background="#22000000"
-                android:text="Items Available"
+                android:text="@string/fragment_sliding_sort_items_in_stock_sort_available_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
@@ -72,7 +72,7 @@
                 android:paddingRight="2dp"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="Item Price"
+                android:text="@string/fragment_sliding_sort_items_in_stock_sort_price_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
@@ -97,7 +97,7 @@
                 android:gravity="center"
                 android:layout_weight="1"
                 android:background="#22000000"
-                android:text="Date Added"
+                android:text="@string/fragment_sliding_sort_items_in_stock_sort_date_added_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
@@ -112,7 +112,7 @@
                 android:paddingRight="2dp"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="Date Updated"
+                android:text="@string/fragment_sliding_sort_items_in_stock_sort_date_updated_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -132,7 +132,7 @@
         <TextView
             android:layout_marginTop="5dp"
             android:id="@+id/header_sort_order"
-            android:text="Sort Order"
+            android:text="@string/fragment_sliding_sort_items_in_stock_header_sort_order_text"
             android:layout_below="@id/border_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -189,7 +189,7 @@
             android:id="@+id/header_filter"
             android:textSize="20sp"
             android:layout_marginTop="20dp"
-            android:text="Filter Item's In Shop"
+            android:text="@string/fragment_sliding_sort_items_in_stock_header_filter_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -211,7 +211,7 @@
         <TextView
             android:layout_marginTop="5dp"
             android:id="@+id/header_filter_stars"
-            android:text="Filter's"
+            android:text="@string/fragment_sliding_sort_items_in_stock_header_filter_stars_text"
             android:layout_below="@id/border_three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -246,7 +246,7 @@
                 android:padding="10dp"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="Out of Stock"
+                android:text="@string/fragment_sliding_sort_items_in_stock_filter_out_of_stock_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
@@ -258,7 +258,7 @@
                 android:padding="10dp"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="Price not Set"
+                android:text="@string/fragment_sliding_sort_items_in_stock_filter_price_not_set_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 

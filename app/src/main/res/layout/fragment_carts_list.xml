@@ -39,7 +39,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="21sp"
                     android:textColor="@color/white"
-                    android:text="Cart"
+                    android:text="@string/fragment_carts_list_app_name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 <!--                android:text="@string/app_name"-->
@@ -140,7 +140,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:id="@+id/empty_screen_message"
-            android:text="You have not added any items in your cart ! When you add items to cart they will appear here !"
+            android:text="@string/fragment_carts_list_empty_screen_message_text"
             android:layout_width="300dp"
             android:layout_height="wrap_content" />
 
@@ -152,7 +152,7 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:textColor="@color/white"
-            android:text="Try Again"
+            android:text="@string/fragment_carts_list_button_try_again_text"
             android:background="@color/buttonColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
