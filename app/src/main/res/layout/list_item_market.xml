@@ -85,7 +85,7 @@
         app:layout_constraintStart_toEndOf="@id/border_name"
         app:layout_constraintBottom_toBottomOf="@id/service_name"
         app:layout_constraintTop_toTopOf="@id/service_name"
-        android:text="Begumpet bazaar of the lal baza"
+        android:text="@string/list_item_market_address_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 

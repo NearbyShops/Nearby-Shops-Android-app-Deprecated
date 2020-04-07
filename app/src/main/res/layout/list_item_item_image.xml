@@ -47,7 +47,7 @@
 
     <TextView
         android:padding="5dp"
-        android:text="Copyright : "
+        android:text="@string/list_item_item_image_copyright_info_text"
         android:id="@+id/copyright_info"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"

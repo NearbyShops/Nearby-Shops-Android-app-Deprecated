@@ -28,7 +28,7 @@
         android:gravity="center"
         android:layout_gravity="center"
         android:textSize="10sp"
-        android:text="Designed By Freepik"
+        android:text="@string/list_item_empty_screen_full_screen_copyrights_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

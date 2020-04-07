@@ -165,7 +165,7 @@
 
 
                     <TextView
-                        android:text="Market Name"
+                        android:text="@string/fragment_market_detail_market_name_text"
                         android:textSize="30sp"
                         android:id="@+id/market_name"
                         app:layout_constraintStart_toStartOf="parent"
@@ -237,7 +237,7 @@
                             android:textStyle="bold"
                             android:background="@color/gplus_color_2"
                             android:textColor="@color/white"
-                            android:text=" - "
+                            android:text="@string/fragment_market_detail_market_address_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -257,7 +257,7 @@
                         <TextView
                             android:id="@+id/rating_count"
                             android:layout_marginStart="10dp"
-                            android:text=" - "
+                            android:text="@string/fragment_market_detail_market_address_text"
                             app:layout_constraintBottom_toBottomOf="@+id/rating"
                             app:layout_constraintLeft_toRightOf="@+id/rating"
                             android:layout_width="wrap_content"
@@ -296,7 +296,7 @@
                             android:textColor="#000000"
                             android:layout_marginTop="0dp"
                             android:textSize="20sp"
-                            android:text=" - "
+                            android:text="@string/fragment_market_detail_market_address_text"
                             android:id="@+id/phone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -321,7 +321,7 @@
                         android:layout_marginTop="10dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/phone_block"
-                        android:text=" - "
+                        android:text="@string/fragment_market_detail_market_address_text"
                         android:id="@+id/market_description"
                         android:maxLines="5"
                         android:layout_width="wrap_content"
@@ -335,7 +335,7 @@
                         android:layout_marginTop="10dp"
                         android:textColor="@color/buttonColorDark"
                         android:id="@+id/read_full_button"
-                        android:text="Read Full Description"
+                        android:text="@string/fragment_market_detail_read_full_button_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -378,7 +378,7 @@
                     <TextView
                         android:id="@+id/market_address"
                         android:layout_marginTop="10dp"
-                        android:text=" - "
+                        android:text="@string/fragment_market_detail_market_address_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -394,7 +394,7 @@
                             android:id="@+id/get_directions"
                             android:textStyle="bold"
                             android:textColor="@color/phonographyBlue"
-                            android:text="Get Directions"
+                            android:text="@string/fragment_market_detail_get_directions_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -413,7 +413,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/phonographyBlue"
                             android:layout_marginStart="0dp"
-                            android:text="See on Map"
+                            android:text="@string/fragment_market_detail_see_on_map_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -495,7 +495,7 @@
                                 <!--android:textColor="#000000"-->
                                 <!--android:layout_marginTop="0dp"-->
                                 <!--android:textSize="20sp"-->
-                                <!--android:text=" - "-->
+                                <!--android:text="@string/fragment_market_detail_market_address_text"-->
                                 <!--android:id="@+id/phone_delivery"-->
                                 <!--android:layout_width="wrap_content"-->
                                 <!--android:layout_height="wrap_content" />-->
@@ -520,7 +520,7 @@
                         <!--&lt;!&ndash;<TextView&ndash;&gt;-->
                             <!--&lt;!&ndash;android:id="@+id/delivery_charge_text"&ndash;&gt;-->
                             <!--&lt;!&ndash;android:layout_marginTop="10dp"&ndash;&gt;-->
-                            <!--&lt;!&ndash;android:text=" - "&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:text="@string/fragment_market_detail_market_address_text"&ndash;&gt;-->
                             <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
                             <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
 
@@ -529,7 +529,7 @@
                         <!--&lt;!&ndash;<TextView&ndash;&gt;-->
                             <!--&lt;!&ndash;android:id="@+id/free_delivery_info"&ndash;&gt;-->
                             <!--&lt;!&ndash;android:layout_marginTop="5dp"&ndash;&gt;-->
-                            <!--&lt;!&ndash;android:text=" - "&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:text="@string/fragment_market_detail_market_address_text"&ndash;&gt;-->
                             <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
                             <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
 
@@ -579,7 +579,7 @@
                         <TextView
                             android:gravity="start"
                             android:layout_marginTop="10dp"
-                            android:text="Rate this Market"
+                            android:text="@string/fragment_market_detail_edit_review_text_text"
                             android:id="@+id/edit_review_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -621,7 +621,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_toRightOf="@id/member_profile_image"
                             android:layout_toEndOf="@id/member_profile_image"
-                            android:text="Member Name"
+                            android:text="@string/fragment_market_detail_member_name_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -654,7 +654,7 @@
                         <TextView
                             android:layout_marginLeft="10dp"
                             android:layout_marginStart="10dp"
-                            android:text="2015-sep-15"
+                            android:text="@string/fragment_market_detail_review_date_text"
                             android:layout_below="@id/member_rating"
                             android:layout_toRightOf="@id/member_profile_image"
                             android:layout_toEndOf="@id/member_profile_image"
@@ -679,7 +679,7 @@
                             android:layout_marginLeft="0dp"
                             android:layout_marginStart="0dp"
                             android:layout_below="@id/member_profile_image"
-                            android:text="Review Title"
+                            android:text="@string/fragment_market_detail_review_title_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -689,7 +689,7 @@
                             android:layout_marginLeft="0dp"
                             android:layout_marginStart="0dp"
                             android:layout_below="@id/review_title"
-                            android:text="Review Description"
+                            android:text="@string/fragment_market_detail_review_description_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -700,7 +700,7 @@
                             android:id="@+id/edit_review_label"
                             android:layout_alignParentRight="true"
                             android:layout_alignParentEnd="true"
-                            android:text="EDIT"
+                            android:text="@string/fragment_market_detail_edit_review_label_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -780,7 +780,7 @@
                         <!--android:textSize="30sp"-->
                         <!--android:textColor="@color/buttonColorDark"-->
                         <!--android:layout_marginTop="15dp"-->
-                        <!--android:text="See all Reviews"-->
+                        <!--android:text="@string/fragment_market_detail_see_reviews_text"-->
                         <!--android:layout_width="match_parent"-->
                         <!--android:layout_height="wrap_content" />-->
 
@@ -791,7 +791,7 @@
                         android:layout_marginTop="15sp"
                         android:textSize="30sp"
                         android:textColor="@color/orange"
-                        android:text="See all Reviews"
+                        android:text="@string/fragment_market_detail_see_reviews_text"
                         android:id="@+id/see_reviews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

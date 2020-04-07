@@ -90,7 +90,7 @@
         android:id="@+id/assign_parent"
         android:textColor="#ffffff"
         android:background="@color/blueGrey800"
-        android:text="Assign Selected Category as Parent"
+        android:text="@string/activity_item_categories_parent_assign_parent_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -110,7 +110,7 @@
             android:padding="5dp"
             android:id="@+id/show_hide_instructions"
             android:layout_below="@id/appbar"
-            android:text="Show / Hide Usage Instructions"
+            android:text="@string/activity_item_categories_parent_show_hide_instructions_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -119,7 +119,7 @@
             android:textColor="#ffffff"
             android:background="@color/orangeDark"
             android:padding="5dp"
-            android:text="Long Click to select Category. \nClick to Enter Subcategory."
+            android:text="@string/activity_item_categories_parent_usage_instructions_text"
             android:layout_below="@id/show_hide_instructions"
             android:id="@+id/usage_instructions"
             android:layout_width="match_parent"

@@ -20,7 +20,7 @@
             android:textColor="@color/white"
             android:background="@color/buttonColorDark"
             android:id="@+id/finish_button"
-            android:text="Finish"
+            android:text="@string/fragment_result_change_email_finish_button_text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -87,7 +87,7 @@
                         android:layout_marginStart="0dp"
                         android:layout_marginTop="10dp"
                         android:id="@+id/header_message"
-                        android:text="E-mail change Successful !"
+                        android:text="@string/fragment_result_change_email_header_message_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -103,7 +103,7 @@
                     <TextView
                         android:id="@+id/account_credentials"
                         android:layout_marginTop="5dp"
-                        android:text="E-mail : abcd@example.com\nPassword : XXXXXXX (password is hidden)"
+                        android:text="@string/fragment_result_change_email_account_credentials_text"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/header_message"
                         android:layout_width="wrap_content"

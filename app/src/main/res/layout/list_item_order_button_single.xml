@@ -44,7 +44,7 @@
         android:background="@color/mapbox_blue"
         android:gravity="center"
         android:layout_weight="1"
-        android:text=" Confirm "
+        android:text="@string/list_item_order_button_single_button_single_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 

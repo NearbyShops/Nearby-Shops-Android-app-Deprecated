@@ -70,7 +70,7 @@
                     <!--android:layout_alignParentBottom="true"-->
                     <!--android:layout_width="match_parent"-->
                     <!--android:layout_height="wrap_content"-->
-                    <!--android:text="Change Picture" />-->
+                    <!--android:text="@string/content_edit_shop_image_fragment_textChangePicture_text" />-->
 
 
                 <!--<ImageView-->
@@ -118,7 +118,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Change Picture" />
+                    android:text="@string/content_edit_shop_image_fragment_textChangePicture_text" />
 
 
                 <ImageView
@@ -146,7 +146,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Remove Picture"/>
+                android:text="@string/content_edit_shop_image_fragment_removePicture_text"/>
 
 
 
@@ -230,7 +230,7 @@
                 <!--android:layout_height="wrap_content"-->
                 <!--android:background="@color/blueGrey800"-->
                 <!--android:textColor="@color/white"-->
-                <!--android:text="Save"/>-->
+                <!--android:text="@string/content_edit_shop_image_fragment_saveButton_text"/>-->
 
 
         </LinearLayout>
@@ -268,7 +268,7 @@
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:id="@+id/saveButton"
-            android:text="Save"
+            android:text="@string/content_edit_shop_image_fragment_saveButton_text"
             android:layout_width="130dp"
             android:layout_height="0dp" />
 

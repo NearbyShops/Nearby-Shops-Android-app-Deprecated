@@ -30,7 +30,7 @@
         android:textSize="17sp"
         android:layout_alignParentBottom="true"
         android:padding="10dp"
-        android:text="Add new address"
+        android:text="@string/content_delivery_address_addNewAddress_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

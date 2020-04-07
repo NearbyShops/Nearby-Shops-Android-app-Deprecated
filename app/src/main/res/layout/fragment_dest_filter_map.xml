@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/label"
-        android:text=" - "
+        android:text="@string/fragment_dest_filter_map_label_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 

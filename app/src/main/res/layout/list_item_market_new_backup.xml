@@ -62,7 +62,7 @@
             android:id="@+id/service_name"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="Farmers Garden"
+            android:text="@string/list_item_market_new_backup_service_name_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -73,7 +73,7 @@
             app:layout_constraintStart_toEndOf="@id/border_name"
             app:layout_constraintBottom_toBottomOf="@id/service_name"
             app:layout_constraintTop_toTopOf="@id/service_name"
-            android:text="Hyderabad"
+            android:text="@string/list_item_market_new_backup_address_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -92,7 +92,7 @@
                 android:id="@+id/rating"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="4.1"
+                android:text="@string/list_item_market_new_backup_rating_text"
                 android:textColor="@color/white"
                 android:paddingStart="3dp"
                 android:paddingEnd="3dp"
@@ -106,7 +106,7 @@
                 android:id="@+id/rating_count"
                 app:layout_constraintLeft_toRightOf="@+id/rating"
                 app:layout_constraintBottom_toBottomOf="@+id/rating"
-                android:text="( 23 Ratings)"
+                android:text="@string/list_item_market_new_backup_rating_count_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
@@ -117,7 +117,7 @@
                 android:padding="3dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="Select Market"
+                android:text="@string/list_item_market_new_backup_select_market_text"
                 android:background="@color/mapbox_blue"
                 app:layout_constraintStart_toStartOf="@id/rating"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -19,7 +19,7 @@
             android:layout_marginTop="0dp"
             android:textSize="15sp"
             android:id="@+id/transaction_id"
-            android:text="ID : 12345"
+            android:text="@string/list_item_transaction_new_transaction_id_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -65,7 +65,7 @@
             <TextView
                 android:id="@+id/transaction_timestamp"
                 android:layout_marginTop="0dp"
-                android:text="12-august-2017 : 6:45 PM"
+                android:text="@string/list_item_transaction_new_transaction_timestamp_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -76,7 +76,7 @@
                 android:textColor="@color/phonographyBlue"
                 android:id="@+id/transaction_title"
                 android:textSize="15sp"
-                android:text="Title for transaction"
+                android:text="@string/list_item_transaction_new_transaction_title_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -86,7 +86,7 @@
                 android:id="@+id/transaction_description"
                 android:textSize="12sp"
                 android:layout_marginTop="0dp"
-                android:text="description"
+                android:text="@string/list_item_transaction_new_transaction_description_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -111,7 +111,7 @@
             android:textSize="17sp"
             android:padding="5dp"
             android:id="@+id/transaction_balance"
-            android:text="\ 56233"
+            android:text="@string/list_item_transaction_new_transaction_balance_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
     </TableRow>

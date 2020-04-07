@@ -37,7 +37,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="21sp"
                     android:textColor="@color/white"
-                    android:text="Orders"
+                    android:text="@string/fragment_orders_new_app_name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 <!--                android:text="@string/app_name"-->
@@ -72,7 +72,7 @@
 
 
             <TextView
-                android:text="0 out of 0 Orders"
+                android:text="@string/fragment_orders_new_shop_count_indicator_text"
                 android:textColor="@color/white"
                 android:id="@+id/shop_count_indicator"
                 android:paddingLeft="10dp"
@@ -112,7 +112,7 @@
                 android:layout_marginEnd="10dp"
                 android:id="@+id/text_sort"
                 android:padding="5dp"
-                android:text="Filter / Sort"
+                android:text="@string/fragment_orders_new_text_sort_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -238,7 +238,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:id="@+id/empty_screen_message"
-            android:text="No orders to show here ! If the filters are turned on try turning them off !"
+            android:text="@string/fragment_orders_new_empty_screen_message_text"
             android:layout_width="300dp"
             android:layout_height="wrap_content" />
 
@@ -251,7 +251,7 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:textColor="@color/white"
-            android:text="Try Again"
+            android:text="@string/fragment_orders_new_button_try_again_text"
             android:background="@color/buttonColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

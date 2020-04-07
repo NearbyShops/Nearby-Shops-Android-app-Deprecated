@@ -165,7 +165,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:id="@+id/empty_screen_message"
-            android:text="This Shop does not have any images !"
+            android:text="@string/fragment_shop_images_empty_screen_message_text"
             android:layout_width="300dp"
             android:layout_height="wrap_content" />
 

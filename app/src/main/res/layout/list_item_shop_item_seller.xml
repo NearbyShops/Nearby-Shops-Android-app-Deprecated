@@ -36,7 +36,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:textSize="17sp"
             android:id="@+id/itemName"
-            android:text="Item Name"
+            android:text="@string/list_item_shop_item_seller_itemName_text"
             android:layout_height="wrap_content"
             android:layout_width="0dp" />
 
@@ -48,7 +48,7 @@
             android:padding="5dp"
             android:background="@color/gplus_color_1"
             android:layout_marginTop="5dp"
-            android:text="Special Quantities - Select only if applicable"
+            android:text="@string/list_item_shop_item_seller_header_quantities_text"
             android:id="@+id/header_quantities"
             app:layout_constraintTop_toBottomOf="@id/itemName"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +109,7 @@
             android:background="@color/teal"
             android:textSize="15dp"
             android:id="@+id/availableText"
-            android:text="Available : 56 Items"
+            android:text="@string/list_item_shop_item_seller_availableText_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -140,7 +140,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:inputType="number"
-                android:text="0"
+                android:text="@string/list_item_shop_item_seller_itemPrice_text"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
@@ -170,7 +170,7 @@
             android:background="@color/teal"
             android:textSize="15dp"
             android:id="@+id/priceText"
-            android:text="Price : Rs : 56 / Kg"
+            android:text="@string/list_item_shop_item_seller_priceText_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -202,7 +202,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:inputType="number"
-                android:text="0"
+                android:text="@string/list_item_shop_item_seller_itemPrice_text"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
@@ -276,7 +276,7 @@
             android:textColor="#ffffff"
             android:background="@color/deepOrange900"
             android:padding="10dp"
-            android:text="Remove"
+            android:text="@string/list_item_shop_item_seller_removeButton_text"
             android:textSize="15sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
@@ -306,7 +306,7 @@
             android:textSize="15sp"
             android:textColor="#ffffff"
             android:background="@color/blueGrey800"
-            android:text="Update"
+            android:text="@string/list_item_shop_item_seller_updateButton_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 

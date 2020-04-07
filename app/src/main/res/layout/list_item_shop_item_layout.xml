@@ -74,7 +74,7 @@
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="D-Mart, Green hills"
+            android:text="@string/list_item_shop_item_layout_shopName_text"
             android:id="@+id/shopName"
             android:layout_toRightOf="@id/shopImage"
             android:layout_alignParentTop="true" />
@@ -128,7 +128,7 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:background="@color/orangeDark"
-                android:text="Pick from shop"
+                android:text="@string/list_item_shop_item_layout_indicator_pick_from_shop_text"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
@@ -143,7 +143,7 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:background="@color/phonographyBlue"
-                android:text="Home Delivery"
+                android:text="@string/list_item_shop_item_layout_indicator_home_delivery_text"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
@@ -160,7 +160,7 @@
             android:layout_above="@id/labels_delivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delivery : "
+            android:text="@string/list_item_shop_item_layout_deliveryCharge_text"
             android:id="@+id/deliveryCharge"
             android:layout_marginRight="0dp"
             android:layout_marginLeft="0dp"
@@ -183,7 +183,7 @@
             android:layout_height="wrap_content"
             android:background="@color/blueGrey800"
             android:textColor="@color/white"
-            android:text="5 Km"
+            android:text="@string/list_item_shop_item_layout_distance_text"
             android:id="@+id/distance" />
 
 
@@ -197,14 +197,14 @@
             android:background="@color/gplus_color_2"
             android:textColor="@color/white"
             android:padding="2dp"
-            android:text="5.3"
+            android:text="@string/list_item_shop_item_layout_rating_text"
             android:id="@+id/rating"/>
 
         <TextView
             android:id="@+id/ratings_count"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
-            android:text="(2312 Ratings)"
+            android:text="@string/list_item_shop_item_layout_ratings_count_text"
             android:layout_toRightOf="@id/rating"
             android:layout_toEndOf="@id/rating"
             android:layout_alignBottom="@id/rating"
@@ -255,7 +255,7 @@
             android:textSize="17sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Available : 00"
+            android:text="@string/list_item_shop_item_layout_itemsAvailable_text"
             android:id="@+id/itemsAvailable"
 
             android:layout_alignBottom="@+id/shopImage"
@@ -390,7 +390,7 @@
             android:paddingRight="5dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Total : 0"/>
+            android:text="@string/list_item_shop_item_layout_itemTotal_text"/>
 
 
 
@@ -405,7 +405,7 @@
 
 
         <!--<EditText-->
-            <!--android:text="0"-->
+            <!--android:text="@string/list_item_shop_item_layout_itemQuantity_text"-->
             <!--android:id="@+id/itemQuantity"-->
             <!--android:gravity="center"-->
             <!--android:layout_marginLeft="5dp"-->
@@ -418,7 +418,7 @@
 
         <TextView
             android:textSize="20sp"
-            android:text="0"
+            android:text="@string/list_item_shop_item_layout_itemQuantity_text"
             android:id="@+id/itemQuantity"
             android:gravity="center"
             android:layout_marginLeft="5dp"
@@ -453,7 +453,7 @@
             android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0 Items in Cart"/>
+            android:text="@string/list_item_shop_item_layout_itemsInCart_text"/>
 
         <TextView
             android:id="@+id/cartTotal"
@@ -462,7 +462,7 @@
             android:textColor="@color/colorWhite"
             android:background="@color/teal"
             android:padding="5dp"
-            android:text="Cart Total : 0"
+            android:text="@string/list_item_shop_item_layout_cartTotal_text"
             android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -489,7 +489,7 @@
             android:background="@color/gplus_color_4"
             android:padding="10dp"
             android:gravity="center"
-            android:text="Out of Stock"
+            android:text="@string/list_item_shop_item_layout_out_of_stock_indicator_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -525,7 +525,7 @@
                 android:layout_marginRight="0dp"
                 android:textColor="@color/colorWhite"
                 android:background="@color/grey800"
-                android:text="Add to Cart"
+                android:text="@string/list_item_shop_item_layout_textAddToCart_text"
                 android:padding="20dp"
                 android:layout_weight="1"
                 android:layout_width="0dp"

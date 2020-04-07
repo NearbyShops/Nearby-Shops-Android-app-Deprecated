@@ -86,7 +86,7 @@
             android:textSize="15sp"
             android:padding="10dp"
             android:textColor="@color/white"
-            android:text="Change Market"
+            android:text="@string/fragment_login_using_otp_change_city_text"
             android:background="@color/phonographyBlue"
             app:layout_constraintTop_toBottomOf="@+id/service_indicator"
             app:layout_constraintRight_toRightOf="parent"

@@ -44,7 +44,7 @@
                 android:textSize="15sp"
                 android:gravity="center_vertical"
                 android:layout_weight="1"
-                android:text=" - "
+                android:text="@string/fragment_service_indicator_status_text"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/status"/>
@@ -95,7 +95,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/market_photo"
         app:layout_constraintStart_toEndOf="@id/market_photo"
-        android:text="Farmer's Garden"
+        android:text="@string/fragment_service_indicator_market_name_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
@@ -105,7 +105,7 @@
         android:textSize="15sp"
         app:layout_constraintTop_toBottomOf="@id/market_name"
         app:layout_constraintStart_toStartOf="@id/market_name"
-        android:text="Hyderabad"
+        android:text="@string/fragment_service_indicator_market_city_text"
         android:id="@+id/market_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

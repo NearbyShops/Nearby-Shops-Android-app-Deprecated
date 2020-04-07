@@ -147,7 +147,7 @@
 
 
                     <TextView
-                        android:text="Daily Needs"
+                        android:text="@string/fragment_shop_detail_shop_name_text"
                         android:textSize="30sp"
                         android:id="@+id/shop_name"
                         app:layout_constraintStart_toStartOf="parent"
@@ -176,7 +176,7 @@
                             android:gravity="center"
                             android:textColor="@color/white"
                             android:background="@color/orangeDark"
-                            android:text="Pick from shop"
+                            android:text="@string/fragment_shop_detail_indicator_pick_from_shop_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -192,7 +192,7 @@
                             android:gravity="center"
                             android:textColor="@color/white"
                             android:background="@color/phonographyBlue"
-                            android:text="Home Delivery"
+                            android:text="@string/fragment_shop_detail_indicator_home_delivery_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -219,7 +219,7 @@
                             android:textStyle="bold"
                             android:background="@color/gplus_color_2"
                             android:textColor="@color/white"
-                            android:text=" - "
+                            android:text="@string/fragment_shop_detail_delivery_charge_text_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -239,7 +239,7 @@
                         <TextView
                             android:id="@+id/rating_count"
                             android:layout_marginStart="10dp"
-                            android:text=" - "
+                            android:text="@string/fragment_shop_detail_delivery_charge_text_text"
                             app:layout_constraintBottom_toBottomOf="@+id/rating"
                             app:layout_constraintLeft_toRightOf="@+id/rating"
                             android:layout_width="wrap_content"
@@ -278,7 +278,7 @@
                             android:textColor="#000000"
                             android:layout_marginTop="0dp"
                             android:textSize="20sp"
-                            android:text=" - "
+                            android:text="@string/fragment_shop_detail_delivery_charge_text_text"
                             android:id="@+id/phone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -303,7 +303,7 @@
                         android:layout_marginTop="10dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/phone_block"
-                        android:text=" - "
+                        android:text="@string/fragment_shop_detail_delivery_charge_text_text"
                         android:id="@+id/shop_description"
                         android:maxLines="5"
                         android:layout_width="wrap_content"
@@ -317,7 +317,7 @@
                         android:layout_marginTop="10dp"
                         android:textColor="@color/buttonColorDark"
                         android:id="@+id/read_full_button"
-                        android:text="Read Full Description"
+                        android:text="@string/fragment_shop_detail_read_full_button_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -360,7 +360,7 @@
                     <TextView
                         android:id="@+id/shop_address"
                         android:layout_marginTop="10dp"
-                        android:text=" - "
+                        android:text="@string/fragment_shop_detail_delivery_charge_text_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -376,7 +376,7 @@
                             android:id="@+id/get_directions"
                             android:textStyle="bold"
                             android:textColor="@color/phonographyBlue"
-                            android:text="Get Directions"
+                            android:text="@string/fragment_shop_detail_get_directions_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -395,7 +395,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/phonographyBlue"
                             android:layout_marginStart="0dp"
-                            android:text="See on Map"
+                            android:text="@string/fragment_shop_detail_see_on_map_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -412,7 +412,7 @@
                         android:layout_marginTop="20dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/phone_block"
-                        android:text="Delivery Helpline"
+                        android:text="@string/fragment_shop_detail_label_delivery_helpline_text"
                         android:id="@+id/label_delivery_helpline"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -477,7 +477,7 @@
                                 android:textColor="#000000"
                                 android:layout_marginTop="0dp"
                                 android:textSize="20sp"
-                                android:text=" - "
+                                android:text="@string/fragment_shop_detail_delivery_charge_text_text"
                                 android:id="@+id/phone_delivery"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -490,7 +490,7 @@
                                 android:layout_marginBottom="0dp"
                                 android:gravity="center"
                                 android:layout_marginStart="10dp"
-                                android:text="Delivery Helpline"
+                                android:text="@string/fragment_shop_detail_label_delivery_helpline_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent" />
 
@@ -502,7 +502,7 @@
                         <TextView
                             android:id="@+id/delivery_charge_text"
                             android:layout_marginTop="10dp"
-                            android:text=" - "
+                            android:text="@string/fragment_shop_detail_delivery_charge_text_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -511,7 +511,7 @@
                         <TextView
                             android:id="@+id/free_delivery_info"
                             android:layout_marginTop="5dp"
-                            android:text=" - "
+                            android:text="@string/fragment_shop_detail_delivery_charge_text_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -561,7 +561,7 @@
                         <TextView
                             android:gravity="start"
                             android:layout_marginTop="10dp"
-                            android:text="Rate this Shop"
+                            android:text="@string/fragment_shop_detail_edit_review_text_text"
                             android:id="@+id/edit_review_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -603,7 +603,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_toRightOf="@id/member_profile_image"
                             android:layout_toEndOf="@id/member_profile_image"
-                            android:text="Member Name"
+                            android:text="@string/fragment_shop_detail_member_name_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -636,7 +636,7 @@
                         <TextView
                             android:layout_marginLeft="10dp"
                             android:layout_marginStart="10dp"
-                            android:text="2015-sep-15"
+                            android:text="@string/fragment_shop_detail_review_date_text"
                             android:layout_below="@id/member_rating"
                             android:layout_toRightOf="@id/member_profile_image"
                             android:layout_toEndOf="@id/member_profile_image"
@@ -661,7 +661,7 @@
                             android:layout_marginLeft="0dp"
                             android:layout_marginStart="0dp"
                             android:layout_below="@id/member_profile_image"
-                            android:text="Review Title"
+                            android:text="@string/fragment_shop_detail_review_title_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -671,7 +671,7 @@
                             android:layout_marginLeft="0dp"
                             android:layout_marginStart="0dp"
                             android:layout_below="@id/review_title"
-                            android:text="Review Description"
+                            android:text="@string/fragment_shop_detail_review_description_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -682,7 +682,7 @@
                             android:id="@+id/edit_review_label"
                             android:layout_alignParentRight="true"
                             android:layout_alignParentEnd="true"
-                            android:text="EDIT"
+                            android:text="@string/fragment_shop_detail_edit_review_label_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -760,7 +760,7 @@
                         <!--android:textSize="30sp"-->
                         <!--android:textColor="@color/buttonColorDark"-->
                         <!--android:layout_marginTop="15dp"-->
-                        <!--android:text="See all Reviews"-->
+                        <!--android:text="@string/fragment_shop_detail_see_reviews_text"-->
                         <!--android:layout_width="match_parent"-->
                         <!--android:layout_height="wrap_content" />-->
 
@@ -771,7 +771,7 @@
                         android:layout_marginTop="15sp"
                         android:textSize="30sp"
                         android:textColor="@color/orange"
-                        android:text="See all Reviews"
+                        android:text="@string/fragment_shop_detail_see_reviews_text"
                         android:id="@+id/see_reviews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

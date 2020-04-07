@@ -121,7 +121,7 @@
             app:layout_constraintBottom_toBottomOf="@id/categoryImage"
             app:layout_constraintStart_toStartOf="@id/categoryImage"
             app:layout_constraintEnd_toEndOf="@id/categoryImage"
-            android:text="Item Category Name"/>
+            android:text="@string/list_item_item_category_small_name_text"/>
 
 
 

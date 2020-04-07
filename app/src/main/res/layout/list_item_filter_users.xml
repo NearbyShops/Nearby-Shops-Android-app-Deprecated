@@ -35,7 +35,7 @@
             android:gravity="center"
             android:background="@color/gplus_color_1"
             android:textColor="@color/white"
-            android:text=" Reset "
+            android:text="@string/list_item_filter_users_reset_sort_order_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -55,7 +55,7 @@
             android:gravity="center"
             android:background="@color/buttonColor"
             android:textColor="@color/white"
-            android:text="Time of Registration"
+            android:text="@string/list_item_filter_users_sort_by_time_text"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
@@ -69,7 +69,7 @@
             android:gravity="center"
             android:background="@color/buttonColor"
             android:textColor="@color/white"
-            android:text="User ID"
+            android:text="@string/list_item_filter_users_sort_by_user_id_text"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
@@ -109,7 +109,7 @@
             android:gravity="center"
             android:background="@color/gplus_color_1"
             android:textColor="@color/white"
-            android:text=" Reset "
+            android:text="@string/list_item_filter_users_reset_sort_order_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -128,7 +128,7 @@
             android:gravity="center"
             android:background="@color/buttonColor"
             android:textColor="@color/white"
-            android:text="Ascending"
+            android:text="@string/list_item_filter_users_sort_ascending_text"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
@@ -142,7 +142,7 @@
             android:gravity="center"
             android:background="@color/buttonColor"
             android:textColor="@color/white"
-            android:text="Descending"
+            android:text="@string/list_item_filter_users_sort_descending_text"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
@@ -180,7 +180,7 @@
             android:gravity="center"
             android:background="@color/orangeDark"
             android:textColor="@color/white"
-            android:text=" Clear "
+            android:text="@string/list_item_filter_users_clear_filter_roles_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -204,7 +204,7 @@
             android:gravity="center"
             android:background="@color/buttonColor"
             android:textColor="@color/white"
-            android:text="EndUser"
+            android:text="@string/list_item_filter_users_role_end_user_text"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
@@ -212,7 +212,7 @@
 
         <TextView
             android:id="@+id/role_delivery"
-            android:text="Delivery"
+            android:text="@string/list_item_filter_users_role_delivery_text"
             android:layout_marginStart="1dp"
             android:padding="5dp"
             android:gravity="center"
@@ -229,7 +229,7 @@
             android:gravity="center"
             android:background="@color/buttonColor"
             android:textColor="@color/white"
-            android:text="ShopStaff"
+            android:text="@string/list_item_filter_users_role_shop_staff_text"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
@@ -254,7 +254,7 @@
             android:gravity="center"
             android:background="@color/buttonColor"
             android:textColor="@color/white"
-            android:text="Admin"
+            android:text="@string/list_item_filter_users_role_admin_text"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
@@ -267,7 +267,7 @@
             android:gravity="center"
             android:background="@color/buttonColor"
             android:textColor="@color/white"
-            android:text="Staff"
+            android:text="@string/list_item_filter_users_role_staff_text"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
@@ -275,7 +275,7 @@
 
         <TextView
             android:id="@+id/role_shop_admin"
-            android:text="ShopAdmin"
+            android:text="@string/list_item_filter_users_role_shop_admin_text"
             android:layout_marginStart="1dp"
             android:padding="5dp"
             android:gravity="center"

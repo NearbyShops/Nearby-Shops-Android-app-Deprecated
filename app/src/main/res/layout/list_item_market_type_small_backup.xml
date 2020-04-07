@@ -22,7 +22,7 @@
     <TextView
         android:layout_marginTop="5dp"
         android:textSize="17sp"
-        android:text="Farmers Garden"
+        android:text="@string/list_item_market_type_small_backup_market_name_text"
         android:id="@+id/market_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -32,7 +32,7 @@
     <TextView
         android:textSize="12sp"
         android:id="@+id/market_city"
-        android:text="Pune"
+        android:text="@string/list_item_market_type_small_backup_market_city_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -51,7 +51,7 @@
             android:id="@+id/select_market"
             android:padding="2dp"
             android:gravity="center"
-            android:text="Select Market"
+            android:text="@string/list_item_market_type_small_backup_select_market_text"
             android:background="@color/mapbox_blue"
             app:layout_constraintTop_toTopOf="parent"
             android:textColor="@color/white"

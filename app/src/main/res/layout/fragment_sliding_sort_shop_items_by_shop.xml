@@ -21,7 +21,7 @@
             android:id="@+id/text_sortby"
             android:textSize="20sp"
             android:layout_marginTop="10dp"
-            android:text="Sort Item's"
+            android:text="@string/fragment_sliding_sort_shop_items_by_shop_text_sortby_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -37,7 +37,7 @@
         <TextView
             android:layout_marginTop="5dp"
             android:id="@+id/header_criterion"
-            android:text="Sort Criterion"
+            android:text="@string/fragment_sliding_sort_shop_items_by_shop_header_criterion_text"
             android:layout_below="@id/border_zero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -57,7 +57,7 @@
                 android:gravity="center"
                 android:layout_weight="1"
                 android:background="#22000000"
-                android:text="Item Rating"
+                android:text="@string/fragment_sliding_sort_shop_items_by_shop_sort_rating_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
@@ -72,7 +72,7 @@
                 android:paddingRight="2dp"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="Popularity"
+                android:text="@string/fragment_sliding_sort_shop_items_by_shop_sort_popularity_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
@@ -97,7 +97,7 @@
                 android:gravity="center"
                 android:layout_weight="1"
                 android:background="#22000000"
-                android:text="A - Z"
+                android:text="@string/fragment_sliding_sort_shop_items_by_shop_a_to_z_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
@@ -112,7 +112,7 @@
                 android:paddingRight="2dp"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="Item Price"
+                android:text="@string/fragment_sliding_sort_shop_items_by_shop_item_price_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -132,7 +132,7 @@
         <TextView
             android:layout_marginTop="5dp"
             android:id="@+id/header_sort_order"
-            android:text="Sort Order"
+            android:text="@string/fragment_sliding_sort_shop_items_by_shop_header_sort_order_text"
             android:layout_below="@id/border_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

@@ -58,21 +58,21 @@
 
             <CheckBox
                 android:layout_marginTop="10dp"
-                android:text="Create Update Item Categories"
+                android:text="@string/fragment_edit_staff_permissions_permit_create_update_item_cat_text"
                 android:id="@+id/permit_create_update_item_cat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
 
             <CheckBox
-                android:text="Create Update Items"
+                android:text="@string/fragment_edit_staff_permissions_permit_create_update_items_text"
                 android:id="@+id/permit_create_update_items"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
 
             <CheckBox
-                android:text="Enable / Disable Shops"
+                android:text="@string/fragment_edit_staff_permissions_permit_enable_shops_text"
                 android:id="@+id/permit_enable_shops"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -146,7 +146,7 @@
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:id="@+id/saveButton"
-            android:text="Save"
+            android:text="@string/fragment_edit_staff_permissions_saveButton_text"
             android:layout_width="@dimen/request_button_width"
             android:layout_height="0dp" />
 

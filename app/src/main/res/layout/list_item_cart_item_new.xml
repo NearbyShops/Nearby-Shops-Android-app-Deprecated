@@ -58,7 +58,7 @@
             android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Item Name"
+            android:text="@string/list_item_cart_item_new_itemName_text"
             android:id="@+id/itemName"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
@@ -78,7 +78,7 @@
             android:textSize="17sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Available : 00"
+            android:text="@string/list_item_cart_item_new_itemsAvailable_text"
             android:id="@+id/itemsAvailable"
             android:layout_above="@id/itemPrice"
             android:layout_alignParentRight="true"
@@ -92,7 +92,7 @@
             android:textSize="17sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price : Rs 0"
+            android:text="@string/list_item_cart_item_new_itemPrice_text"
             android:id="@+id/itemPrice"
             android:layout_marginRight="0dp"
             android:layout_marginLeft="0dp"
@@ -131,7 +131,7 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Total = Rs 240"/>
+            android:text="@string/list_item_cart_item_new_itemTotal_text"/>
 
 
 
@@ -150,7 +150,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:inputType="number"
-            android:text="0"
+            android:text="@string/list_item_cart_item_new_itemQuantity_text"
             android:layout_width="50dp"
             android:layout_height="match_parent" />
 
@@ -193,7 +193,7 @@
             android:layout_marginRight="0dp"
             android:textColor="@color/colorWhite"
             android:background="@color/gplus_color_4"
-            android:text="Remove"
+            android:text="@string/list_item_cart_item_new_textRemove_text"
             android:padding="10dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
@@ -223,7 +223,7 @@
             android:layout_marginRight="0dp"
             android:textColor="@color/colorWhite"
             android:background="@color/phonographyBlue"
-            android:text="Update"
+            android:text="@string/list_item_cart_item_new_textUpdate_text"
             android:padding="10dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />

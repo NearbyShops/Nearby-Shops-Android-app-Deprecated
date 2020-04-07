@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/label_instructions"
-        android:text="Long Press to select location and use slider to adjust Radius."
+        android:text="@string/activity_pick_delivery_radius_label_instructions_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
@@ -51,7 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/copyrights_map"
-        android:text="\u00a9 OpenMapTiles \u00a9 OpenStreetMap contributors"
+        android:text="@string/activity_pick_delivery_radius_copyrights_map_text"
         android:padding="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
@@ -83,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/label"
-        android:text=" - "
+        android:text="@string/activity_pick_delivery_radius_label_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 

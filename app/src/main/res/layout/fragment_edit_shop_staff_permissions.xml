@@ -57,7 +57,7 @@
 
             <CheckBox
                 android:layout_marginTop="10dp"
-                android:text="Permit Add Remove Items"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_add_remove_items_text"
                 android:id="@+id/permit_add_remove_items"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -67,7 +67,7 @@
 
             <CheckBox
                 android:layout_marginTop="10dp"
-                android:text="Permit Update Items In Shop"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_update_items_in_shop_text"
                 android:id="@+id/permit_update_items_in_shop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -76,7 +76,7 @@
 
             <CheckBox
                 android:layout_marginTop="10dp"
-                android:text="Permit Cancel Orders"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_cancel_orders_text"
                 android:id="@+id/permit_cancel_orders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -85,7 +85,7 @@
 
             <CheckBox
                 android:layout_marginTop="10dp"
-                android:text="Permit Confirm Orders"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_confirm_orders_text"
                 android:id="@+id/permit_confirm_orders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -95,7 +95,7 @@
 
             <CheckBox
                 android:layout_marginTop="10dp"
-                android:text="Permit Set Orders Packed"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_set_orders_packed_text"
                 android:id="@+id/permit_set_orders_packed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -104,7 +104,7 @@
 
             <CheckBox
                 android:layout_marginTop="10dp"
-                android:text="Permit Handover to Delivery"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_handover_to_delivery_text"
                 android:id="@+id/permit_handover_to_delivery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -114,7 +114,7 @@
 
             <CheckBox
                 android:layout_marginTop="10dp"
-                android:text="Permit Accept Payments "
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_accept_payments_text"
                 android:id="@+id/permit_accept_payments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -122,7 +122,7 @@
 
             <CheckBox
                 android:layout_marginTop="10dp"
-                android:text="Permit Accept Returns "
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_accept_returns_text"
                 android:id="@+id/permit_accept_returns"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -180,7 +180,7 @@
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:id="@+id/saveButton"
-            android:text="Save"
+            android:text="@string/fragment_edit_shop_staff_permissions_saveButton_text"
             android:layout_width="@dimen/request_button_width"
             android:layout_height="0dp" />
 

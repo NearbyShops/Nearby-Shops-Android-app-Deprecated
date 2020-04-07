@@ -29,7 +29,7 @@
 
 
             <TextView
-                android:text="Step 1"
+                android:text="@string/list_item_tutorial_step_title_top_text"
                 android:textColor="@color/white"
                 android:id="@+id/title_top"
                 android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="17sp"
-                android:text="Send Request to Multiple Drivers"
+                android:text="@string/list_item_tutorial_step_title_text"
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -60,7 +60,7 @@
             <TextView
                 android:textSize="12sp"
                 android:textColor="@color/white"
-                android:text="Why pay full package fare when you finish earlier"
+                android:text="@string/list_item_tutorial_step_description_text"
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

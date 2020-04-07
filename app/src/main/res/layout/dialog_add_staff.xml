@@ -125,7 +125,7 @@
                         android:textColor="@color/white"
                         android:background="@color/gplus_color_1"
                         android:layout_weight="1"
-                        android:text="Add Member"
+                        android:text="@string/dialog_add_staff_add_member_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -153,7 +153,7 @@
                     android:textColor="@color/white"
                     android:background="@color/gplus_color_4"
                     android:layout_weight="1"
-                    android:text="Dismiss"
+                    android:text="@string/dialog_add_staff_dismiss_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
 

@@ -51,7 +51,7 @@
             android:layout_marginEnd="1dp"
             android:gravity="center"
             android:textColor="@color/white"
-            android:text="Add to Shop"
+            android:text="@string/fragment_items_database_add_to_shop_text"
             android:paddingTop="10dp"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"

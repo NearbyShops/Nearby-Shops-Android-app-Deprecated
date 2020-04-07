@@ -36,7 +36,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="21sp"
                     android:textColor="@color/white"
-                    android:text="Profile"
+                    android:text="@string/fragment_profile_app_name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -245,7 +245,7 @@
                         android:id="@+id/header_booked_by"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Welcome"
+                        android:text="@string/fragment_profile_header_booked_by_text"
                         app:layout_constraintLeft_toRightOf="@id/guideline"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="@id/profile_image" />
@@ -258,7 +258,7 @@
                         android:layout_marginStart="0dp"
                         android:gravity="start"
                         android:paddingTop="0dp"
-                        android:text=" - "
+                        android:text="@string/fragment_profile_user_name_text"
                         android:textColor="@color/blueGrey800"
                         android:textSize="20sp"
                         android:textStyle="normal"
@@ -272,7 +272,7 @@
                         android:id="@+id/user_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="User ID : 123" />
+                        android:text="@string/fragment_profile_user_id_text" />
 
 
                     <TextView
@@ -311,7 +311,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="5dp"
                             android:gravity="center"
-                            android:text="9490523891"
+                            android:text="@string/fragment_profile_phone_text"
                             android:textColor="#000000"
                             android:textSize="17sp"
                             android:textStyle="normal"
@@ -706,7 +706,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="You Owe : \u20B9 3023"
+                        android:text="@string/fragment_profile_current_dues_text"
                         android:textSize="20sp" />
 
 
@@ -719,7 +719,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Your Credit Limit : \u20B9 5000" />
+                        android:text="@string/fragment_profile_credit_limit_text" />
 
 
                     <TextView
@@ -939,7 +939,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="Logout"
+                            android:text="@string/fragment_profile_label_login_text"
                             android:textColor="@color/white"
                             android:textSize="24sp" />
 
@@ -985,7 +985,7 @@
                 <!--android:id="@+id/label_login"-->
                 <!--android:textSize="24sp"-->
                 <!--android:paddingStart="10dp"-->
-                <!--android:text="Logout"-->
+                <!--android:text="@string/fragment_profile_label_login_text"-->
                 <!--android:layout_width="0dp"-->
                 <!--android:layout_height="0dp"-->
                 <!--app:layout_constraintRight_toRightOf="parent"-->

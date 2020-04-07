@@ -93,7 +93,7 @@
 
 
         <TextView
-            android:text="Copyright Text"
+            android:text="@string/list_item_shop_image_copyright_info_text"
             android:textSize="9dp"
             android:id="@+id/copyright_info"
             android:textColor="@color/white"

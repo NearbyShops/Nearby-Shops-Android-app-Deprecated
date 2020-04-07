@@ -48,7 +48,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="21sp"
-                    android:text="Items"
+                    android:text="@string/fragment_item_categories_simple_app_name_text"
                     android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -175,7 +175,7 @@
                 android:textColor="@color/white"
                 android:id="@+id/text_sort"
                 android:padding="5dp"
-                android:text="Filter / Sort"
+                android:text="@string/fragment_item_categories_simple_text_sort_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -313,7 +313,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:id="@+id/empty_screen_message"
-            android:text="Uh .. oh .. no items available at your location .. try changing your location ..."
+            android:text="@string/fragment_item_categories_simple_empty_screen_message_text"
             android:layout_width="300dp"
             android:layout_height="wrap_content" />
 
@@ -325,7 +325,7 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:textColor="@color/white"
-            android:text="Try Again"
+            android:text="@string/fragment_item_categories_simple_button_try_again_text"
             android:background="@color/buttonColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

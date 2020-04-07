@@ -26,7 +26,7 @@
         android:layout_marginTop="2dp"
         android:background="@color/gplus_color_2"
         android:padding="5dp"
-        android:text=" - "
+        android:text="@string/list_item_order_button_double_distance_text"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:background="@color/gplus_color_2"
         android:padding="5dp"
-        android:text=" |  Get Directions"
+        android:text="@string/list_item_order_button_double_get_directions_text"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/distance"
@@ -78,7 +78,7 @@
         android:background="@color/teal"
         android:gravity="center"
         android:layout_weight="1"
-        android:text="Delivered"
+        android:text="@string/list_item_order_button_double_button_left_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
@@ -110,7 +110,7 @@
         android:background="@color/buttonColorDark"
         android:gravity="center"
         android:layout_weight="1"
-        android:text="Return"
+        android:text="@string/list_item_order_button_double_button_right_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 

@@ -30,7 +30,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginStart="0dp"
             android:textSize="24dp"
-            android:text="Shop Review"
+            android:text="@string/dialog_rate_review_shop_header_title_text"
             android:layout_alignTop="@id/dialog_dismiss_icon"
             android:layout_alignBottom="@id/dialog_dismiss_icon"
             android:layout_alignParentLeft="true"
@@ -62,7 +62,7 @@
         <TextView
             android:textSize="17sp"
             android:gravity="center"
-            android:text="by Member Name"
+            android:text="@string/dialog_rate_review_shop_member_name_text"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:id="@+id/member_name"
@@ -90,7 +90,7 @@
             android:layout_toRightOf="@id/member_profile_image"
             android:layout_below="@id/member_name"
             android:layout_alignBottom="@id/member_profile_image"
-            android:text=" - "
+            android:text="@string/dialog_rate_review_shop_item_rating_text_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -183,7 +183,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:gravity="center"
-                android:text="Cancel"
+                android:text="@string/dialog_rate_review_shop_cancel_button_text"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
@@ -198,7 +198,7 @@
                 android:paddingBottom="10dp"
                 android:background="@color/blueGrey800"
                 android:gravity="center"
-                android:text="Submit"
+                android:text="@string/dialog_rate_review_shop_submit_button_text"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />

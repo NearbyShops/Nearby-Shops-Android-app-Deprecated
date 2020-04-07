@@ -51,7 +51,7 @@
                 android:layout_marginStart="5dp"
                 android:id="@+id/text_sub"
                 android:padding="5dp"
-                android:text="4 out of 46 Grocery Items"
+                android:text="@string/activity_items_in_stock_by_cat_text_sub_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -74,7 +74,7 @@
                 android:layout_marginRight="5dp"
                 android:id="@+id/text_sort"
                 android:padding="5dp"
-                android:text="Filter / Sort"
+                android:text="@string/activity_items_in_stock_by_cat_text_sort_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

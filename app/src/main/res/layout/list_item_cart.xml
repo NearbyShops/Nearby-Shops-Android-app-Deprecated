@@ -83,7 +83,7 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:background="@color/orangeDark"
-                android:text="Pick from shop"
+                android:text="@string/list_item_cart_indicator_pick_from_shop_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -96,7 +96,7 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:background="@color/phonographyBlue"
-                android:text="Home Delivery"
+                android:text="@string/list_item_cart_indicator_home_delivery_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -108,7 +108,7 @@
             android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delivery Rs 0 per order"
+            android:text="@string/list_item_cart_deliveryCharge_text"
             android:id="@+id/deliveryCharge"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/shopImage"
@@ -161,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/rating"
-            android:text="0 Km"
+            android:text="@string/list_item_cart_distance_text"
             android:id="@+id/distance" />
 
 
@@ -215,7 +215,7 @@
             android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Cart Total : Rs 0"/>
+            android:text="@string/list_item_cart_cartTotal_text"/>
 
     </LinearLayout>
 

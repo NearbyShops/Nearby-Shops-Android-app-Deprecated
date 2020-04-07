@@ -93,14 +93,14 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="21sp"
                     android:textColor="@color/white"
-                    android:text="Items in Cart"
+                    android:text="@string/fragment_cart_item_list_header_title_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <!--                android:text="@string/app_name"-->
 
 
                 <TextView
-                    android:text="Daily Needs"
+                    android:text="@string/fragment_cart_item_list_shop_name_text"
                     android:id="@+id/shop_name"
                     app:layout_constraintStart_toStartOf="@id/header_title"
                     app:layout_constraintTop_toBottomOf="@id/header_title"
@@ -206,7 +206,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:id="@+id/empty_screen_message"
-            android:text="You have not added any items in your cart ! When you add items to cart they will appear here !"
+            android:text="@string/fragment_cart_item_list_empty_screen_message_text"
             android:layout_width="300dp"
             android:layout_height="wrap_content" />
 
@@ -218,7 +218,7 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:textColor="@color/white"
-            android:text="Try Again"
+            android:text="@string/fragment_cart_item_list_button_try_again_text"
             android:background="@color/buttonColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -251,7 +251,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/confirm"
-            android:text="Checkout !"
+            android:text="@string/fragment_cart_item_list_confirm_text"
             android:textSize="17sp"
             android:layout_margin="10sp"
             android:padding="10dp"
@@ -298,7 +298,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="1dp"
             android:layout_marginStart="10dp"
-            android:text="Total"
+            android:text="@string/fragment_cart_item_list_total_text"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
             android:textSize="17dp"
@@ -316,7 +316,7 @@
             app:layout_constraintHorizontal_chainStyle="spread"
             android:id="@+id/totalValue"
             android:layout_margin="10dp"
-            android:text=" 00.00"
+            android:text="@string/fragment_cart_item_list_totalValue_text"
             android:textSize="24sp"
             android:padding="5dp"
             android:textColor="@color/blueGrey800"
