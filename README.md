@@ -175,9 +175,11 @@ If you're interested please get in touch with us on https://forum.nearbyshops.or
 
 
 
-Commercial Use Requires Permission
+Payment Required for Both Commercial and Non-Commercial Use
 -----------------------------------
-Commercial Use not allowed without permission. Commercial use or commercial fork of this project must require permission. 
+We have a small License fee which you need to pay in order to use this app. Even for Non-commercial purpose payment is required. If you have financial difficulty you can talk to us !
+
+Further Commercial Use not allowed without permission. Commercial use or commercial fork of this project must require permission. 
 
 
 License
