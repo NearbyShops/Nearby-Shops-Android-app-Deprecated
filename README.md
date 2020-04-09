@@ -15,7 +15,7 @@ We have a small License fee which you need to pay in order to use (white-label) 
 
 https://nearbyshops.org/pricing.html
 
-We cant maintain this project without financial support. Your understand is appreciated ! 
+We cant maintain this project without financial support. Your understanding is appreciated ! 
 
 
 About Nearby Shops
