@@ -1,3 +1,15 @@
+## Deprecation Notice
+
+Due to corruption in Git Files. We have now deprecated this repository. Please refer to our new git repository here
+https://github.com/NearbyShops/Nearby-Shops-Android-app
+
+
+
+
+
+------------------------------------------------------------
+
+
 Nearby Shops 
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Nearby%20Shops%20Open%20Source%20Food%20Delivery%20and%20Hyperlocal%20app&url=https://github.com/NearbyShops/Nearby-Shops-End-User-Android-app&via=moraysumeet&hashtags=opensource,androiddev,fooddelivery,android,ecommerce)
 =============
@@ -6,6 +18,8 @@ Nearby Shops
 <img src="https://www.mathlearningcenter.org/sites/default/files/images/Follow%20on%20Twitter.png"
 width="120">
 </a>
+
+
 
 
 
